@@ -1,0 +1,248 @@
+scripted_map_modes = {
+	TWR_government_type_map_mode = {
+		top = {
+			type = country
+
+			targets = {
+			}
+
+			color = {
+				FROM = {
+					if = {
+						limit = { has_idea = established_democracy }
+						set_temp_variable = { red = 0 }
+						set_temp_variable = { green = 0.41 }
+						set_temp_variable = { blue = 0 }
+					}
+					else_if = {
+						limit = { has_idea = facade_democracy }
+						set_temp_variable = { red = 0.40 }
+						set_temp_variable = { green = 0.74 }
+						set_temp_variable = { blue = 0.39 }
+					}
+					else_if = {
+						limit = { has_idea = authoritarian_system }
+						set_temp_variable = { red = 1 }
+						set_temp_variable = { green = 0.88 }
+						set_temp_variable = { blue = 0.55 }
+					}
+					else_if = {
+						limit = { has_idea = dictatorship }
+						set_temp_variable = { red = 0.96 }
+						set_temp_variable = { green = 0.43 }
+						set_temp_variable = { blue = 0.26 }
+					}
+					else_if = {
+						limit = { has_idea = fanatical_dictatorship }
+						set_temp_variable = { red = 0.66 }
+						set_temp_variable = { green = 0.15 }
+						set_temp_variable = { blue = 0.12 }
+					}
+					else_if = {
+						limit = { has_idea = kleptocratic_regime }
+						set_temp_variable = { red = 0.40 }
+						set_temp_variable = { green = 0 }
+						set_temp_variable = { blue = 0.09 }
+					}
+
+					set_temp_variable = { alpha = 0.25 }
+				}
+			}
+
+			thickness = yes
+		}
+		bottom = {
+			type = country
+
+			targets = {
+			}
+
+			color = {
+				FROM = {
+					set_temp_variable = { red = 0 }
+					set_temp_variable = { green = 0 }
+					set_temp_variable = { blue = 0 }
+					set_temp_variable = { alpha = 0.75 }
+				}
+			}
+
+			thickness = yes
+		}
+
+		far_text = country
+		near_text = state
+	}
+	TWR_industrialisation_map_mode = {
+		top = {
+			type = country
+
+			targets = {
+			}
+
+			color = {
+				FROM = {
+					set_temp_variable = { red = 0 }
+					set_temp_variable = { green = 0.32 }
+					set_temp_variable = { blue = 0.55 }
+					if = {
+						limit = { has_idea = consumerist_nation }
+						set_temp_variable = { alpha = 1 }
+					}
+					else_if = {
+						limit = { has_idea = industrialised_nation }
+						set_temp_variable = { alpha = 0.75 }
+					}
+					else_if = {
+						limit = { has_idea = semi_industrialised_nation }
+						set_temp_variable = { alpha = 0.50 }
+					}
+					else_if = {
+						limit = { has_idea = agrarian_nation }
+						set_temp_variable = { alpha = 0.25 }
+					}
+				}
+			}
+
+			thickness = yes
+		}
+		bottom = {
+			type = country
+
+			targets = {
+			}
+
+			color = {
+				FROM = {
+					set_temp_variable = { red = 0.55 }
+					set_temp_variable = { green = 0.55 }
+					set_temp_variable = { blue = 0.55 }
+
+					if = {
+						limit = { has_idea = consumerist_nation }
+						set_temp_variable = { alpha = 0 }
+					}
+					else_if = {
+						limit = { has_idea = industrialised_nation }
+						set_temp_variable = { alpha = 0.25 }
+					}
+					else_if = {
+						limit = { has_idea = semi_industrialised_nation }
+						set_temp_variable = { alpha = 0.50 }
+					}
+					else_if = {
+						limit = { has_idea = agrarian_nation }
+						set_temp_variable = { alpha = 0.75 }
+					}
+				}
+			}
+
+			thickness = yes
+		}
+
+		far_text = country
+		near_text = state
+	}
+	TWR_GDP_map_mode = {
+		top = {
+			type = country
+
+			targets = {
+			}
+
+			color = {
+				FROM = {
+					set_temp_variable = { red = 0 }
+					set_temp_variable = { green = 0.32 }
+					set_temp_variable = { blue = 0.55 }
+
+					set_temp_variable = { alpha = country_GDP }
+					divide_temp_variable = { alpha = global.average_GDP }
+					divide_temp_variable = { alpha = 2 }
+					clamp_temp_variable = { var = alpha min = 0.25 max = 1 }
+				}
+			}
+
+			thickness = yes
+		}
+		bottom = {
+			type = country
+
+			targets = {
+			}
+
+			color = {
+				FROM = {
+					set_temp_variable = { red = 0.55 }
+					set_temp_variable = { green = 0.55 }
+					set_temp_variable = { blue = 0.55 }
+
+					set_temp_variable = { temp_alpha = country_GDP }
+					divide_temp_variable = { temp_alpha = global.average_GDP }
+					divide_temp_variable = { temp_alpha = 2 }
+					clamp_temp_variable = { var = temp_alpha min = 0.25 max = 1 }
+
+					set_temp_variable = { alpha = 1 }
+					subtract_from_temp_variable = { alpha = temp_alpha }
+				}
+			}
+
+			thickness = yes
+		}
+
+		far_text = country
+		near_text = state
+	}
+	# to be added later
+	TWR_GDP_per_capita_map_mode = {
+		top = {
+			type = country
+
+			targets = {
+			}
+
+			color = {
+				FROM = {
+					set_temp_variable = { red = 0 }
+					set_temp_variable = { green = 0.32 }
+					set_temp_variable = { blue = 0.55 }
+
+					set_temp_variable = { alpha = country_GDP_per_capita }
+					set_temp_variable = { temp_divide = global.average_GDP_per_capita }
+					multiply_temp_variable = { temp_divide = 2 }
+					divide_temp_variable = { alpha = temp_divide }
+					clamp_temp_variable = { var = alpha min = 0.25 max = 1 }
+				}
+			}
+
+			thickness = yes
+		}
+		bottom = {
+			type = country
+
+			targets = {
+			}
+
+			color = {
+				FROM = {
+					set_temp_variable = { red = 0.55 }
+					set_temp_variable = { green = 0.55 }
+					set_temp_variable = { blue = 0.55 }
+
+					set_temp_variable = { temp_alpha = country_GDP_per_capita }
+					set_temp_variable = { temp_divide = global.average_GDP_per_capita }
+					multiply_temp_variable = { temp_divide = 2 }
+					divide_temp_variable = { temp_alpha = temp_divide }
+					clamp_temp_variable = { var = temp_alpha min = 0.25 max = 1 }
+
+					set_temp_variable = { alpha = 1 }
+					subtract_from_temp_variable = { alpha = temp_alpha }
+				}
+			}
+
+			thickness = yes
+		}
+
+		far_text = country
+		near_text = state
+	}
+}

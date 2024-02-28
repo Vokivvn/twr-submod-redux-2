@@ -1,0 +1,748 @@
+focus_tree = {
+		id = NRI_focus
+
+		country = {
+		factor = 0
+
+		modifier = {
+			add = 100
+			tag = NRI
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_questionable_food
+		icon = GFX_GENERIC_From_the_depths
+		x = 3
+		y = 0
+		cost = 0.8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_questionable_food"
+		add_ideas = NRI_Unknown_Cannibalism
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_let_it_happen
+		icon = GFX_GENERIC_resistance
+		prerequisite = { focus = NRI_questionable_food }
+		mutually_exclusive = { focus = NRI_stop_it }
+		relative_position_id = NRI_questionable_food
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_let_it_happen"
+		swap_ideas = {
+		remove_idea = NRI_Unknown_Cannibalism
+		add_idea = NRI_Accepted_Cannibalism
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_stop_it
+		icon = GFX_GENERIC_Arrests
+		prerequisite = { focus = NRI_questionable_food }
+		mutually_exclusive = { focus = NRI_let_it_happen }
+		relative_position_id = NRI_questionable_food
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_stop_it"
+			swap_ideas = {
+			remove_idea = NRI_Unknown_Cannibalism
+			add_idea = NRI_Forbidden_Cannibalism
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_farms
+		icon = GFX_GENERIC_farmers_rise
+		prerequisite = { focus = NRI_let_it_happen focus = NRI_stop_it}
+		relative_position_id = NRI_stop_it
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_farms"
+		576 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+					}
+			}
+		575 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+					}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_glaciaculture
+		icon = GFX_NRI_under_ice_fishing
+		prerequisite = { focus = NRI_farms }
+		relative_position_id = NRI_farms
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_glaciaculture"
+		516 = {
+		add_extra_state_shared_building_slots = 1
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_raiding_parties
+		icon = GFX_GENERIC_Ding_Dong
+		prerequisite = { focus = NRI_stop_it }
+		relative_position_id = NRI_stop_it
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_raiding_parties"
+			add_ideas = NRI_Food_Raids
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_oil_for_food
+		icon = GFX_focus_CDA_our_oil
+		prerequisite = { focus = NRI_raiding_parties }
+		relative_position_id = NRI_raiding_parties
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_oil_for_food"
+		575 = {
+		add_resource = {
+		type = oil
+		amount = 8
+				}
+			}
+		}
+
+	}
+	
+	
+	focus = {
+	cancelable = no
+		id = NRI_reprocessing_plants
+		icon = GFX_GENERIC_industrial_grey
+		prerequisite = { focus = NRI_let_it_happen }
+		relative_position_id = NRI_let_it_happen
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_reprocessing_plants"
+		576 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		level = 1
+		instant_build = yes
+				}
+			}
+		575 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		level = 1
+		instant_build = yes
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_demand_quality
+		icon = GFX_GENERIC_cow
+		prerequisite = { focus = NRI_reprocessing_plants }
+		relative_position_id = NRI_reprocessing_plants
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_demand_quality"
+			add_stability = 0.05
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_threaten_exposure
+		icon = GFX_GENERIC_Stab_Paper
+		prerequisite = { focus = NRI_demand_quality }
+		prerequisite = { focus = NRI_glaciaculture }
+		relative_position_id = NRI_demand_quality
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_threaten_exposure"
+		swap_ideas = {
+		remove_idea = NRI_Accepted_Cannibalism
+		add_idea = NRI_Formal_End_to_Cannibalism
+		}
+		hidden_effect = {
+		complete_national_focus = NRI_lack_of_everything 
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_expand_glaciaculture
+		icon = GFX_GENERIC_Canned_Fish
+		prerequisite = { focus = NRI_oil_for_food }
+		prerequisite = { focus = NRI_glaciaculture }
+		relative_position_id = NRI_oil_for_food
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_expand_glaciaculture"
+		516 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		level = 1
+		instant_build = yes
+				}
+			}
+		swap_ideas = {
+		remove_idea = NRI_Forbidden_Cannibalism
+		add_idea = NRI_Formal_End_to_Cannibalism
+		}
+		hidden_effect = {
+		complete_national_focus = NRI_lack_of_everything 
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_lack_of_everything
+		icon = GFX_focus_generic_concessions
+		relative_position_id = NRI_questionable_food
+		x = 10
+		y = 0
+		cost = 10
+		ai_will_do = {
+			
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_lack_of_everything"
+		country_event = { id = twrnorilsk.1 }
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_crypto_syndicalism
+		icon = GFX_GENERIC_SocDem_Star
+		prerequisite = { focus = NRI_lack_of_everything }
+		relative_position_id = NRI_lack_of_everything
+		mutually_exclusive = { focus = NRI_rand }
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_crypto_syndicalism"
+			custom_effect_tooltip = NorilskSyndicates
+			hidden_effect = {
+				set_politics = {
+					ruling_party = socialist
+				}
+				add_popularity = {
+					ideology = socialist
+					popularity = 0.60
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_food
+		icon = GFX_CHI_Food_Industry
+		prerequisite = { focus = NRI_crypto_syndicalism }
+		relative_position_id = NRI_crypto_syndicalism
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_food"
+			add_ideas = NRI_The_Right_to_Food
+			remove_ideas = central_russian_famine
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_anonymity
+		icon = GFX_GENERIC_CIvil_Oversight
+		prerequisite = { focus = NRI_crypto_syndicalism }
+		relative_position_id = NRI_crypto_syndicalism
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_anonymity"
+		add_ideas = NRI_The_Right_to_Anonymity
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_survival
+		icon = GFX_GENERIC_Social_Democracy_Time
+		prerequisite = { focus = NRI_crypto_syndicalism }
+		relative_position_id = NRI_crypto_syndicalism 
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_survival"
+		add_ideas = NRI_The_Right_to_Survival
+		remove_ideas = norilsk_gulag
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_bureau_of_coordination
+		icon = GFX_GENERIC_Factory_Planning
+		prerequisite = { focus = NRI_food }
+		prerequisite = { focus = NRI_anonymity }
+		relative_position_id = NRI_food
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_bureau_of_coordination"
+			add_ideas = NRI_Bureau_of_Coordination
+		
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_bureau_of_distribution
+		icon = GFX_GENERIC_green_diplomacy
+		prerequisite = { focus = NRI_anonymity }
+		prerequisite = { focus = NRI_survival }
+		relative_position_id = NRI_anonymity
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_bureau_of_distribution"
+			add_ideas = NRI_Bureau_of_Distribution
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_collectivize_glaciaculture
+		icon = GFX_NRI_under_ice_fishing
+		prerequisite = { focus = NRI_bureau_of_coordination }
+		prerequisite = { focus = NRI_bureau_of_distribution }
+		relative_position_id = NRI_bureau_of_coordination
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_collectivize_glaciaculture"
+		516 = {	
+			add_building_construction = {
+			type = industrial_complex
+			level = 1
+			instant_build = yes
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_cyclical_management
+		icon = GFX_GENERIC_Unionize
+		prerequisite = { focus = NRI_bureau_of_coordination }
+		prerequisite = { focus = NRI_bureau_of_distribution }
+		relative_position_id = NRI_bureau_of_coordination
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_cyclical_management"
+		add_political_power = 100
+
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_heat_conserving_architecture
+		icon = GFX_GENERIC_Construction_Engineering
+		prerequisite = { focus = NRI_bureau_of_coordination }
+		prerequisite = { focus = NRI_bureau_of_distribution }
+		relative_position_id = NRI_bureau_of_distribution
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_heat_conserving_architecture"
+		add_stability = 0.05
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_siberian_crypto_collective
+		icon = GFX_GENERIC_propaganda_communist
+		prerequisite = { focus = NRI_collectivize_glaciaculture }
+		prerequisite = { focus = NRI_cyclical_management }
+		prerequisite = { focus = NRI_heat_conserving_architecture }
+		relative_position_id = NRI_cyclical_management
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_siberian_crypto_collective"
+		remove_ideas = NRI_unchecked_capitalism
+
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_rand
+		icon = GFX_GENERIC_Market_Liberal
+		prerequisite = { focus = NRI_lack_of_everything }
+		relative_position_id = NRI_lack_of_everything
+		mutually_exclusive = { focus = NRI_crypto_syndicalism }
+		x = 3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_rand"
+		custom_effect_tooltip = NorilskRand  
+		
+		}
+
+	}
+	
+	
+	focus = {
+	cancelable = no
+		id = NRI_human_capital
+		icon = GFX_GER_Slavery
+		prerequisite = { focus = NRI_rand }
+		relative_position_id = NRI_rand
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_human_capital"
+		swap_ideas = {
+		remove_idea = norilsk_gulag
+		add_idea = NRI_Unregulated_Capitalist_GULAGS
+		}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_absolute_privitization
+		icon = GFX_GENERIC_Brain_Money
+		prerequisite = { focus = NRI_rand }
+		relative_position_id = NRI_rand
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_absolute_privitization"
+		add_offsite_building = { type = arms_factory level = 1 }
+		add_offsite_building = { type = industrial_complex level = 1 }
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_poverty_fault_of_impoverished
+		icon = GFX_GENERIC_Crush_the_Workers
+		prerequisite = { focus = NRI_rand }
+		relative_position_id = NRI_rand
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_poverty_fault_of_impoverished"
+		add_ideas = NRI_Survival_for_the_Fittest
+		remove_ideas = central_russian_famine
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_business_owner_councils
+		icon = GFX_GENERIC_Magic_Man
+		prerequisite = { focus = NRI_human_capital }
+		prerequisite = { focus = NRI_absolute_privitization }
+		relative_position_id = NRI_absolute_privitization
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_business_owner_councils"
+		add_political_power = 100
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_legalize_black_market
+		icon = GFX_GENERIC_Ripping_Papers
+		prerequisite = { focus = NRI_absolute_privitization }
+		prerequisite = { focus = NRI_poverty_fault_of_impoverished }
+		relative_position_id = NRI_absolute_privitization
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_legalize_black_market"
+			swap_ideas = {
+			remove_idea = NRI_unchecked_capitalism
+			add_idea = NRI_Anarcho_Capitalism
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_lease_out_military
+		icon = GFX_GENERIC_buy_equipment
+		prerequisite = { focus = NRI_legalize_black_market }
+		prerequisite = { focus = NRI_business_owner_councils }
+		relative_position_id = NRI_business_owner_councils
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_lease_out_military"
+		add_offsite_building = { type = arms_factory level = 1 }
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_glacial_petroleum_endeavors
+		icon = GFX_GENERIC_oil_drilling
+		prerequisite = { focus = NRI_legalize_black_market }
+		prerequisite = { focus = NRI_business_owner_councils }
+		relative_position_id = NRI_business_owner_councils
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NRI_oil_for_food"
+		516 = {
+		add_resource = {
+		type = oil
+		amount = 10
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_human_life_capital
+		icon = GFX_GENERIC_Death_Factory
+		prerequisite = { focus = NRI_legalize_black_market }
+		prerequisite = { focus = NRI_business_owner_councils }
+		relative_position_id = NRI_legalize_black_market
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_human_life_capital"
+		add_political_power = 100 
+		add_stability = -0.05
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = NRI_novorossiya_trade_consortium
+		icon = GFX_GENERIC_Trading
+		prerequisite = { focus = NRI_lease_out_military }
+		prerequisite = { focus = NRI_glacial_petroleum_endeavors }
+		prerequisite = { focus = NRI_human_life_capital }
+		relative_position_id = NRI_glacial_petroleum_endeavors
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_novorossiya_trade_consortium"
+		swap_ideas = {
+		remove_idea = NRI_Anarcho_Capitalism
+		add_idea = NRI_The_Dream_of_Ayn_Rand
+		}
+
+		}
+
+	}
+	
+}

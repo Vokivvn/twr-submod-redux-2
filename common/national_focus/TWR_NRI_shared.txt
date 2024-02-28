@@ -1,0 +1,2509 @@
+###Initial Tree###
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Norilsk_Parliament
+		icon = GFX_NRI_Norilsk_Parliament
+		cost = 5
+		x = 2
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Norilsk_Parliament"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Election_Campaign
+		icon = GFX_NRI_Election_Season
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Norilsk_Parliament
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		relative_position_id = NRI_The_Norilsk_Parliament
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Election_Campaign"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_First_General_Election
+		icon = GFX_NRI_General_Election
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Election_Campaign
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		relative_position_id = NRI_The_Election_Campaign
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_First_General_Election"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	
+###Liberal Tree###
+	shared_focus = {
+	cancelable = no
+		id = NRI_A_Liberal_Victory
+		icon = GFX_NRI_LRSP_Victory
+		cost = 5
+		x = 6
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_A_Liberal_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Reconcile_with_the_Defectors
+		icon = GFX_focus_KRA_Meeting_With_The_Plurinational_Committee
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_A_Liberal_Victory
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_A_Liberal_Victory
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Reconcile_with_the_Defectors"
+			remove_ideas = NRI_A_Young_Democracy
+			add_stability = 0.05
+			add_popularity = {
+		    ideology = marxist_leninist
+		    popularity = 0.1
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Rescue_the_Dying_City
+		icon = GFX_NRI_Rescue_the_Dying_City
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Reconcile_with_the_Defectors
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Reconcile_with_the_Defectors
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Rescue_the_Dying_City"
+			country_event = {
+				id = twrnorilsk.2
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Pave_the_Snow_Roads
+		icon = GFX_GENERIC_highway
+		cost = 7
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = NRI_Rescue_the_Dying_City
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Rescue_the_Dying_City
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Pave_the_Snow_Roads"
+			516 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			remove_ideas = NRI_A_Lack_of_Supplies
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Norilsk_Emergency_Committee
+		icon = GFX_NRI_Norilsk_Emergency_Commitee
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Rescue_the_Dying_City
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Rescue_the_Dying_City
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Norilsk_Emergency_Committee"
+			country_event = {
+				id = twrnorilsk.3
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_De_Urbanisation
+		icon = GFX_NRI_DeUrbanisation
+		cost = 7
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Pave_the_Snow_Roads
+		}
+		prerequisite = {
+			focus = NRI_Norilsk_Emergency_Committee
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Pave_the_Snow_Roads
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_De_Urbanisation"
+			add_stability = -0.05
+			add_war_support = -0.05
+			remove_ideas = central_russian_famine
+			add_timed_idea = {
+		    idea = central_russian_famine_2
+		    days = 365
+			}
+			capital_scope = {
+			add_manpower = -5000
+			}
+			random_owned_state = {
+			add_manpower = 2000
+			}
+			random_owned_state = {
+			add_manpower = 1200
+			}			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Our_Economic_Plan
+		icon = GFX_GENERIC_Magnifying_Glass
+		cost = 7
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = NRI_De_Urbanisation
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_De_Urbanisation
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Our_Economic_Plan"
+			custom_effect_tooltip = UNLOCK_ECONOMIC_TREE_NRI
+			#Economic Tree Unlock
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Assemble_the_Regional_Soviets
+		icon = GFX_GENERIC_Unionize
+		cost = 7
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_De_Urbanisation
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_De_Urbanisation
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Assemble_the_Regional_Soviets"
+			country_event = {
+				id = twrnorilsk.4
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Establish_the_Trade_Protectiion_Corp
+		icon = GFX_focus_CDA_new_red_army
+		cost = 7
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = NRI_Rescue_the_Dying_City
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Rescue_the_Dying_City
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Establish_the_Trade_Protectiion_Corp"
+			#LOAD MILITARY TREE
+			custom_effect_tooltip = NRI_Trade_Protection_Corps_tt
+			custom_effect_tooltip = UNLOCK_MIL_TREE_NRI
+			hidden_effect = {
+				load_oob = NRI_Trade_Protection_Corps_oob
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Norilsk_Venice_of_the_North
+		icon = GFX_NRI_Norilsk_Venice_of_the_North
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Establish_the_Trade_Protectiion_Corp
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Establish_the_Trade_Protectiion_Corp
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Norilsk_Venice_of_the_North"
+			add_ideas = NRI_Venice_of_the_North
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Formalise_the_Tax_Code
+		icon = GFX_NRI_Formalise_the_Tax_Code
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Norilsk_Venice_of_the_North
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Norilsk_Venice_of_the_North
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Formalise_the_Tax_Code"
+			add_ideas = NRI_Formalied_Tax_Code
+			hidden_effect = {
+				country_event = {
+					id = twrnorilsk.5
+					days = 5
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_A_Socialist_Confederation
+		icon = GFX_GENERIC_Communist_Icon
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Our_Economic_Plan
+		}
+		prerequisite = {
+			focus = NRI_Assemble_the_Regional_Soviets
+		}
+		prerequisite = {
+			focus = NRI_Formalise_the_Tax_Code
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Assemble_the_Regional_Soviets
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_A_Socialist_Confederation"
+			country_event = {
+				id = twrnorilsk.6
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Issue_Our_Passports
+		icon = GFX_NOR_passport_convention
+		cost = 7
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = NRI_A_Socialist_Confederation
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_A_Socialist_Confederation
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Issue_Our_Passports"
+			country_event = {
+				id = twrnorilsk.601
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_First_Constitution
+		icon = GFX_NRI_The_First_Constitution
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_A_Socialist_Confederation
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_A_Socialist_Confederation
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_First_Constitution"
+			country_event = {
+				id = twrnorilsk.7
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Union_of_Peoples
+		icon = GFX_NRI_The_Union_of_Peoples
+		cost = 8
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = NRI_A_Socialist_Confederation
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_A_Socialist_Confederation
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Union_of_Peoples"
+			swap_ideas = {
+			remove_idea = NRI_Brotherhood_in_Desperate_Times
+			add_idea = NRI_A_Union_of_Peoples
+			}
+			custom_effect_tooltip = UNLOCKS_CORING_MECHANIC
+		}
+	}
+	
+###Defector Tree###
+	shared_focus = {
+	cancelable = no
+		id = NRI_A_Socialist_Victory
+		icon = GFX_NRI_Vanguard_Victory
+		cost = 5
+		x = 13
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_A_Socialist_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Declare_Martial_Law
+		icon = GFX_GENERIC_Martial_Law_Ends
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_A_Socialist_Victory
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_A_Socialist_Victory
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Declare_Martial_Law"
+			add_political_power = -100
+			remove_ideas = NRI_A_Young_Democracy
+			add_ideas = authoritarian_system
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Quell_the_Bread_Revolts
+		icon = GFX_NRI_Norilsk_Quell_the_Bread_Riots
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Declare_Martial_Law
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Declare_Martial_Law
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Quell_the_Bread_Revolts"
+			country_event = twrnorilsk.801
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Anti_Nazi_Propaganda
+		icon = GFX_GENERIC_Anti-Nazi_Propaganda
+		cost = 5
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = NRI_Quell_the_Bread_Revolts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Quell_the_Bread_Revolts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Anti_Nazi_Propaganda"
+			add_ideas = NRI_Antifascist_Propaganda
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Suspend_the_Norilsk_Parliament
+		icon = GFX_KOR_dissolve_parliament
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Quell_the_Bread_Revolts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Quell_the_Bread_Revolts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Suspend_the_Norilsk_Parliament"
+			add_ideas = dictatorship
+			add_popularity = {
+		    ideology = marxist_leninist
+		    popularity = 0.5
+			}
+
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Relocation_Project
+		icon = GFX_NRI_Relocation_Projects
+		cost = 8
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Anti_Nazi_Propaganda
+		}
+		prerequisite = {
+			focus = NRI_Suspend_the_Norilsk_Parliament
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Anti_Nazi_Propaganda
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Relocation_Project"
+			add_stability = 0.05
+			remove_ideas = NRI_A_Lack_of_Supplies
+			capital_scope = { add_manpower = -5000 }
+			517 = { add_manpower = 3500 }
+			576 = { add_manpower = 1000 }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Norilsk_Revival_Plan
+		icon = GFX_GER_first_plan
+		cost = 5
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = NRI_Relocation_Project
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Relocation_Project
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Norilsk_Revival_Plan"
+			custom_effect_tooltip = UNLOCK_ECONOMIC_TREE_NRI
+			#Load economic tree
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Norilsk_Military_Districts
+		icon = GFX_goal_generic_military_sphere
+		cost = 5
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Relocation_Project
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Relocation_Project
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Norilsk_Military_Districts"
+			country_event = {
+				id = twrnorilsk.8
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Reform_the_Norilsk_Red_Army
+		icon = GFX_REM_Liberation_Army
+		cost = 5
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = NRI_Quell_the_Bread_Revolts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Quell_the_Bread_Revolts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Reform_the_Norilsk_Red_Army"
+			custom_effect_tooltip = UNLOCK_MIL_TREE_NRI
+			add_manpower = 2000
+			#Load military tree
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Military_Police_Jury_Courts
+		icon = GFX_NRI_Military_Police_Jury_Courts
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Reform_the_Norilsk_Red_Army
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Reform_the_Norilsk_Red_Army
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Military_Police_Jury_Courts"
+			country_event = {
+				id = twrnorilsk.9
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Fortress_of_the_North
+		icon = GFX_NRI_Fortress_of_the_North
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Military_Police_Jury_Courts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Military_Police_Jury_Courts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Fortress_of_the_North"
+			1021 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 2972
+				}
+			}
+			576 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7707
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Unitary_Republic
+		icon = GFX_SPA_Union
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Norilsk_Revival_Plan
+		}
+		prerequisite = {
+			focus = NRI_Norilsk_Military_Districts
+		}
+		prerequisite = {
+			focus = NRI_Fortress_of_the_North
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Norilsk_Military_Districts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Unitary_Republic"
+			country_event = {
+				id = twrnorilsk.10
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Introduce_the_Draft
+		icon = GFX_GER_Expand_the_Draft
+		cost = 5
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Unitary_Republic
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_Unitary_Republic
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Introduce_the_Draft"
+			if = {
+			limit = { has_idea = volunteer_only }
+			add_ideas = limited_conscription
+			}
+			if = {
+			limit = { has_idea = limited_conscription }
+			add_ideas = extensive_conscription
+			}
+			else = {
+			add_manpower = 5000
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Stability_Above_All
+		icon = GFX_GENERIC_Pass_Legislation
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Unitary_Republic
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_Unitary_Republic
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Stability_Above_All"
+			add_stability = 0.15
+			add_war_support = -0.15
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_All_Under_A_Red_Banner
+		icon = GFX_GENERIC_Socialist_Revolution
+		cost = 5
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Unitary_Republic
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_Unitary_Republic
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_All_Under_A_Red_Banner"
+			country_event = {
+				id = twrnorilsk.11
+			}
+		}
+	}
+	
+###Trotskyist Tree###
+	shared_focus = {
+	cancelable = no
+		id = NRI_An_Alternative_Victory
+		icon = GFX_NRI_Trotskyite_Victory
+		cost = 5
+		x = 20
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_An_Alternative_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Vanguard_of_the_Revolution
+		icon = GFX_GENERIC_Soviet_Soldier
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_An_Alternative_Victory
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_An_Alternative_Victory
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Vanguard_of_the_Revolution"
+			country_event = {
+				id = twrnorilsk.12
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Distribute_the_Resources
+		icon = GFX_SOV_gagarin_The_Committee_For_Revolutionary_Stability
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Vanguard_of_the_Revolution
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Vanguard_of_the_Revolution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Distribute_the_Resources"
+			add_timed_idea = {
+				idea = NRI_Redistribution_of_Wealth
+				days = 365
+			}
+			add_political_power = -150
+			remove_ideas = NRI_A_Lack_of_Supplies
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+			id = NRI_Expand_the_Norilsk_Mine
+			icon = GFX_GENERIC_Steel_Shovel
+			cost = 5
+			x = -2
+			y = 1
+			prerequisite = {
+				focus = NRI_Distribute_the_Resources
+			}
+			ai_will_do = {
+				factor = 1
+			}
+			relative_position_id = NRI_Distribute_the_Resources
+			completion_reward = {
+				log = "[GetDateText]: [Root.GetName]: Focus NRI_Expand_the_Norilsk_Mine"
+				576 = {
+				add_resource = {
+				type = steel
+				amount = 15
+					}
+				}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Revolution_Knows_No_Rest
+		icon = GFX_GENERIC_armed_liberation
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Distribute_the_Resources
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Distribute_the_Resources
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Revolution_Knows_No_Rest"
+			country_event = {
+				id = twrnorilsk.13
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Expel_the_Elite_Class
+		icon = GFX_GENERIC_deport_people
+		cost = 5
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Expand_the_Norilsk_Mine
+		}
+		prerequisite = {
+			focus = NRI_The_Revolution_Knows_No_Rest
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Expand_the_Norilsk_Mine
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Expel_the_Elite_Class"
+			country_event = {
+				id = twrnorilsk.14
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Five_Year_Plan
+		icon = GFX_GENERIC_Clogs_Socialist
+		cost = 5
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = NRI_Expel_the_Elite_Class
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Expel_the_Elite_Class
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Five_Year_Plan"
+			custom_effect_tooltip = UNLOCK_ECONOMIC_TREE_NRI
+			#Load economic tree
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Root_Out_the_Remote_Landowners
+		icon = GFX_GENERIC_Communist_Spy
+		cost = 5
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Expel_the_Elite_Class
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Expel_the_Elite_Class
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Root_Out_the_Remote_Landowners"
+			add_timed_idea = {
+				idea = NRI_Anti_Landlord_Campaign
+				days = 365
+			}
+			remove_ideas = central_russian_famine
+			add_timed_idea = {
+		    idea = central_russian_famine_2
+		    days = 365
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Norilsk_Workers_Army
+		icon = GFX_GENERIC_secret_rearmament_red
+		cost = 5
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = NRI_Distribute_the_Resources
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Distribute_the_Resources
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Norilsk_Workers_Army"
+			custom_effect_tooltip = UNLOCK_MIL_TREE_NRI
+			#Load army tree
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Introduce_Political_Commissars
+		icon = GFX_GENERIC_Introduce_Political_Commissars
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Norilsk_Workers_Army
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Norilsk_Workers_Army
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Introduce_Political_Commissars"
+			country_event = {
+				id = twrnorilsk.15
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Revolutionary_Heart_of_the_North
+		icon = GFX_GENERIC_Global_Revolution
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Introduce_Political_Commissars
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Introduce_Political_Commissars
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Revolutionary_Heart_of_the_North"
+			1021 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 2972
+				}
+			}
+			576 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 7707
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_True_Soviets
+		icon = GFX_SOV_Expanded_REP
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Five_Year_Plan
+		}
+		prerequisite = {
+			focus = NRI_Root_Out_the_Remote_Landowners
+		}
+		prerequisite = {
+			focus = NRI_The_Revolutionary_Heart_of_the_North
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Root_Out_the_Remote_Landowners
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_True_Soviets"
+			country_event = {
+				id = twrnorilsk.16
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Mandatory_Militia_Training
+		icon = GFX_NRI_Mandatory_Militia_Training
+		cost = 5
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = NRI_The_True_Soviets
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_True_Soviets
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Mandatory_Militia_Training"
+			add_ideas = NRI_Mandatory_Militia_Training
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Spirit_of_Trotsky_Guides_Us
+		icon = GFX_GENERIC_Trotsky
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_True_Soviets
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_True_Soviets
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Spirit_of_Trotsky_Guides_Us"
+			add_war_support = 0.1
+			swap_ideas = {
+			add_idea = NRI_The_Autonomous_Countryside_2_Lib
+			remove_idea = NRI_The_Autonomous_Countryside
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_A_Common_Identity
+		icon = GFX_SOV_Old_Worker
+		cost = 5
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = NRI_The_True_Soviets
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_True_Soviets
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_A_Common_Identity"
+			custom_effect_tooltip = UNLOCKS_CORING_MECHANIC
+		}
+	}
+	
+###Nazbol Tree###
+	shared_focus = {
+	cancelable = no
+		id = NRI_A_Communist_Victory
+		icon = GFX_NRI_Nazbol_Victory
+		cost = 5
+		x = 27
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_A_Communist_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Emergency_Powers_Act
+		icon = GFX_GENERIC_Arrests
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_A_Communist_Victory
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_A_Communist_Victory
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Emergency_Powers_Act"
+			add_ideas = dictatorship
+			add_stability = -0.2
+			remove_ideas = NRI_A_Young_Democracy
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Open_the_Food_Storage
+		icon = GFX_SER_focus_new_balkan_breadbasket
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Emergency_Powers_Act
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Emergency_Powers_Act
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Open_the_Food_Storage"
+			country_event = {
+				id = twrnorilsk.17
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Reopen_the_Camps
+		icon = GFX_NOV_Gulag_Kings
+		cost = 5
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = NRI_Open_the_Food_Storage
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Open_the_Food_Storage
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Reopen_the_Camps"
+			add_ideas = NRI_Renewed_GULAG_System
+			capital_scope = {
+			add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_God_and_the_Soviet
+		icon = GFX_NRI_God_and_the_Soviet
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Open_the_Food_Storage
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Open_the_Food_Storage
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_God_and_the_Soviet"
+			add_war_support = 0.15
+			hidden_effect = {
+			country_event = { id = twrnorilsk.170 days = 7 random = 300 }
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Deport_the_Undesirables
+		icon = GFX_GENERIC_brick_out_fire
+		cost = 5
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Reopen_the_Camps
+		}
+		prerequisite = {
+			focus = NRI_The_God_and_the_Soviet
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Reopen_the_Camps
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Deport_the_Undesirables"
+			country_event = {
+				id = twrnorilsk.18
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Our_Five_Year_Plan
+		icon = GFX_REM_Proletarian_Industries
+		cost = 5
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = NRI_Deport_the_Undesirables
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Deport_the_Undesirables
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Our_Five_Year_Plan"
+			custom_effect_tooltip = UNLOCK_ECONOMIC_TREE_NRI
+			#Load economic tree
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Liquidate_the_Landlords
+		icon = GFX_SOV_Dekulak
+		cost = 5
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Deport_the_Undesirables
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Deport_the_Undesirables
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Liquidate_the_Landlords"
+			add_timed_idea = {
+				idea = NRI_Anti_Landlord_Campaign
+				days = 243
+			}
+			remove_ideas = NRI_A_Lack_of_Supplies
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_New_Army
+		icon = GFX_TRV_The_New_Russian_Army
+		cost = 5
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = NRI_Open_the_Food_Storage
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Open_the_Food_Storage
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_New_Army"
+			custom_effect_tooltip = UNLOCK_MIL_TREE_NRI
+			#Load army tree
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Clerical_Commissars
+		icon = GFX_SER_focus_Recruit_Warrior_Priests
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_New_Army
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_New_Army
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Clerical_Commissars"
+			country_event = {
+				id = twrnorilsk.150
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Headquarters_of_the_National_Revolution
+		icon = GFX_NRI_Headquarters_of_the_National_Revolution
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Clerical_Commissars
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Clerical_Commissars
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Headquarters_of_the_National_Revolution"
+			country_event = {
+				id = twrnorilsk.19
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_New_Soviet_Man
+		icon = GFX_GENERIC_Spartan
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Our_Five_Year_Plan
+		}
+		prerequisite = {
+			focus = NRI_Liquidate_the_Landlords
+		}
+		prerequisite = {
+			focus = NRI_Headquarters_of_the_National_Revolution
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Liquidate_the_Landlords
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_New_Soviet_Man"
+			add_ideas = fanatical_dictatorship
+			remove_ideas = NRI_The_Autonomous_Countryside
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_A_Nation_of_Survivalists
+		icon = GFX_NRI_A_Nation_of_Survivalists
+		cost = 5
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = NRI_The_New_Soviet_Man
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_New_Soviet_Man
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_A_Nation_of_Survivalists"
+			add_ideas = NRI_A_Nation_of_Survivalists
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Form_the_NKDG #People's Commissariat for State Affairs
+		icon = GFX_SOV_konev_Expanding_The_NKVDs_Role
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_New_Soviet_Man
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_New_Soviet_Man
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Form_the_NKDG"
+			add_ideas = NRI_NKDG
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Revisionist_Nationalism
+		icon = GFX_GENERIC_Liberationist
+		cost = 8
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = NRI_The_New_Soviet_Man
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_New_Soviet_Man
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Revisionist_Nationalism"
+			remove_ideas = NRI_Brotherhood_in_Desperate_Times
+			custom_effect_tooltip = UNLOCKS_CORING_MECHANIC
+		}
+	}
+
+###Rightist Tree###
+	shared_focus = {
+	cancelable = no
+		id = NRI_Iron_Fist #Gamer
+		icon = GFX_NRI_Jaba_In
+		cost = 5
+		x = 33
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Iron_Fist"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Suspend_Political_Activities
+		icon = GFX_GENERIC_Anti_Dem
+		cost = 7
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = NRI_Iron_Fist
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Suspend_Political_Activities"
+			country_event = twrnripol.6
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Ban_Communist_Imagery
+		icon = GFX_GENERIC_Anti_Com
+		cost = 10
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Iron_Fist
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Ban_Communist_Imagery"
+			add_political_power = 150
+			remove_ideas = NRI_Brotherhood_in_Desperate_Times
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_A_Spring_In_Winter
+		icon = GFX_GENERIC_Riot_focus
+		cost = 9
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = NRI_Suspend_Political_Activities
+		}
+		prerequisite = {
+			focus = NRI_Ban_Communist_Imagery
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_A_Spring_In_Winter"
+			country_event = twrnripol.7
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Norilsk_Square_Incident
+		icon = GFX_GENERIC_Anti_Protest_Law
+		cost = 5
+		x = -2
+		y = 3
+		prerequisite = {
+			focus = NRI_A_Spring_In_Winter
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Norilsk_Square_Incident"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Reward_the_Army
+		icon = GFX_NOV_Lukewarm_Officers
+		cost = 5
+		x = -2
+		y = 4
+		prerequisite = {
+			focus = NRI_Norilsk_Square_Incident
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Reward_the_Army"
+			custom_effect_tooltip = UNLOCK_MIL_TREE_NRI
+			army_experience = 15
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Fill_Our_Pockets
+		icon = GFX_GENERIC_corruption_money
+		cost = 5
+		x = -2
+		y = 5
+		prerequisite = {
+			focus = NRI_Reward_the_Army
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Fill_Our_Pockets"
+			add_ideas = kleptocratic_regime
+			custom_effect_tooltip = UNLOCK_ECONOMIC_TREE_NRI
+			custom_effect_tooltip = UNLOCKS_CORING_MECHANIC
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Democratic_Partisans_Assume_Control
+		icon = GFX_GENERIC_Talk_With_Democrats
+		cost = 5
+		x = 2
+		y = 3
+		prerequisite = {
+			focus = NRI_A_Spring_In_Winter
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Democratic_Partisans_Assume_Control"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Snap_Election
+		icon = GFX_GENERIC_Democracy
+		cost = 5
+		x = 2
+		y = 4
+		prerequisite = {
+			focus = NRI_Democratic_Partisans_Assume_Control
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Snap_Election"
+			country_event = twrnripol.8
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_PDR_Victory
+		icon = GFX_RUS_Coming_of_Democracy
+		cost = 5
+		x = 0
+		y = 5
+		prerequisite = {
+			focus = NRI_Snap_Election
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_PDR_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Join_PDR_Command
+		icon = GFX_RUC_An_Elk_is_Born
+		cost = 5
+		x = -1
+		y = 6
+		prerequisite = {
+			focus = NRI_PDR_Victory
+		}
+		available = {
+			country_exists = IRK
+			IRK = {
+				has_war = no
+			}
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_PDR_Victory"
+			custom_effect_tooltip = BECOME_IRK_OR_GAME_OVER
+			if = {
+			limit = { IRK = { is_ai = yes } }
+			IRK = { change_tag_from = ROOT }
+			}
+			IRK = { country_event = twrnripol.9 }
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_KDP_Victory
+		icon = GFX_GENERIC_Christian_Socialism
+		cost = 5
+		x = 2
+		y = 5
+		prerequisite = {
+			focus = NRI_Snap_Election
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_KDP_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Disaster_Relief
+		icon = GFX_GENERIC_Famine
+		cost = 5
+		x = 1
+		y = 6
+		prerequisite = {
+			focus = NRI_PDR_Victory
+			focus = NRI_KDP_Victory
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Disaster_Relief"
+			remove_ideas = central_russian_famine
+			add_timed_idea = {
+		    idea = central_russian_famine_2
+		    days = 365
+			}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_SP_Victory
+		icon = GFX_focus_ITA_Approach_the_Socialists
+		cost = 5
+		x = 4
+		y = 5
+		prerequisite = {
+			focus = NRI_Snap_Election
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_SP_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Humanitarian_Efforts
+		icon = GFX_RUS_The_Social_Security_Act
+		cost = 5
+		x = 4
+		y = 6
+		prerequisite = {
+			focus = NRI_SP_Victory
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Humanitarian_Efforts"
+			remove_ideas = central_russian_famine
+			add_timed_idea = {
+		    idea = central_russian_famine_2
+		    days = 150
+			}
+			add_political_power = -150
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Fund_Roads
+		icon = GFX_GENERIC_highway
+		cost = 5
+		x = 2
+		y = 7
+		prerequisite = {
+			focus = NRI_Disaster_Relief
+			focus = NRI_Humanitarian_Efforts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Fund_Roads"
+			remove_ideas = NRI_A_Lack_of_Supplies
+			516 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Explore_Economic_Opportunities
+		icon = GFX_GENERIC_economic_prosperity
+		cost = 5
+		x = 1
+		y = 8
+		prerequisite = {
+			focus = NRI_Fund_Roads
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Explore_Economic_Opportunities"
+			custom_effect_tooltip = UNLOCK_ECONOMIC_TREE_NRI
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Increase_Defence_Capacity
+		icon = GFX_GENERIC_Officer_Army
+		cost = 5
+		x = 3
+		y = 8
+		prerequisite = {
+			focus = NRI_Fund_Roads
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Iron_Fist
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Increase_Defence_Capacity"
+			custom_effect_tooltip = UNLOCK_MIL_TREE_NRI
+			custom_effect_tooltip = UNLOCKS_CORING_MECHANIC
+		}
+	}
+	
+###Economic Tree###
+	shared_focus = {
+	cancelable = no
+		id = NRI_Our_Fragile_Economy
+		icon = GFX_GENERIC_Grim_Industry
+		cost = 8
+		x = 41
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			OR = {
+			has_completed_focus = NRI_Our_Economic_Plan
+			has_completed_focus = NRI_Norilsk_Revival_Plan
+			has_completed_focus = NRI_The_Five_Year_Plan
+			has_completed_focus = NRI_Our_Five_Year_Plan
+			has_completed_focus = NRI_Explore_Economic_Opportunities
+			has_completed_focus = NRI_Fill_Our_Pockets
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Our_Fragile_Economy"
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Construct_Civilian_Workshops
+		icon = GFX_GENERIC_wrench_industry
+		cost = 7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Our_Fragile_Economy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Our_Fragile_Economy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Construct_Civilian_Workshops"
+			capital_scope = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+		    type = industrial_complex
+		    level = 1
+		    instant_build = yes
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Expand_Norilsk_Talnakh
+		icon = GFX_goal_generic_construct_civilian
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Construct_Civilian_Workshops
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Construct_Civilian_Workshops
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Expand_Norilsk_Talnakh"
+			add_resource = {
+		    type = steel
+		    amount = 25
+		    state = 516
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Concentrate_Industry_in_Norilsk
+		icon = GFX_GENERIC_arms_industry
+		cost = 7
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = NRI_Expand_Norilsk_Talnakh
+		}
+		mutually_exclusive = {
+			focus = NRI_The_Brave_Frontier
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Expand_Norilsk_Talnakh
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Concentrate_Industry_in_Norilsk"
+			capital_scope = {
+			add_extra_state_shared_building_slots = 2
+			}
+			add_tech_bonus = {
+		    bonus = 0.5
+		    uses = 1
+		    category = concentrated_industry
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Factory_Town
+		icon = GFX_GENERIC_Factory_Complex
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_Concentrate_Industry_in_Norilsk
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Concentrate_Industry_in_Norilsk
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Factory_Town"
+			capital_scope = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+		    type = industrial_complex
+		    level = 1
+		    instant_build = yes
+				}
+			add_building_construction = {
+		    type = arms_factory
+		    level = 1
+		    instant_build = yes
+				}
+			}			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Petrol_of_Norilsk
+		icon = GFX_GENERIC_More_OiL
+		cost = 8
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Factory_Town
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_Factory_Town
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Petrol_of_Norilsk"
+			add_resource = {
+		    type = oil
+		    amount = 25
+		    state = 1021
+			}			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Brave_Frontier
+		icon = GFX_RUS_Lessons_from_the_Siberian_Ice_March
+		cost = 8
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Expand_Norilsk_Talnakh
+		}
+		mutually_exclusive = {
+			focus = NRI_Concentrate_Industry_in_Norilsk
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Expand_Norilsk_Talnakh
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Brave_Frontier"
+			516 = {
+			add_extra_state_shared_building_slots = 1
+			}
+			576 = {
+			add_extra_state_shared_building_slots = 1
+			}
+			575 = {
+			add_extra_state_shared_building_slots = 1
+			}
+			add_tech_bonus = {
+		    bonus = 0.7
+		    uses = 1
+		    category = dispersed_industry
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Southern_Farmlands
+		icon = GFX_SER_focus_farmer_battalions
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Brave_Frontier
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_Brave_Frontier
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Southern_Farmlands"
+			576 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+		    type = industrial_complex
+		    level = 1
+		    instant_build = yes
+				}		
+			add_state_modifier = {
+		    	modifier = {
+		        local_resources = 2.0
+		        monthly_population = 0.3
+		    		}
+				}
+			}
+			575 = {	
+			add_state_modifier = {
+		    	modifier = {
+		        local_resources = 2.0
+		        monthly_population = 0.3
+		    		}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Second_City
+		icon = GFX_GENERIC_Major_City
+		cost = 8
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Southern_Farmlands
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_Southern_Farmlands
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Second_City"
+			add_victory_points = {
+			province = 7707
+			value = 5
+			}
+			576 = {
+			add_building_construction = {
+		    type = bunker
+		    level = 3
+		    instant_build = yes
+		    province = 7707
+		    	}
+		    set_state_category = town
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+		    type = arms_factory
+		    level = 1
+		    instant_build = yes
+				}		    
+			}
+		}
+	}
+#Military tree
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Revolutionary_Self_Defense_Forces
+		icon = GFX_NRI_flag_icon
+		cost = 8
+		x = 47
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			OR = {
+			has_completed_focus = NRI_Establish_the_Trade_Protectiion_Corp
+			has_completed_focus = NRI_Reform_the_Norilsk_Red_Army
+			has_completed_focus = NRI_Norilsk_Workers_Army
+			has_completed_focus = NRI_The_New_Army
+			has_completed_focus = NRI_Increase_Defence_Capacity
+			has_completed_focus = NRI_Reward_the_Army
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Revolutionary_Self_Defense_Forces"
+			add_manpower = 1000
+			add_ideas = NRI_RSDF_1
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Formalize_the_Military_Hierarchy
+		icon = GFX_GENERIC_old_guard
+		cost = 7
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Revolutionary_Self_Defense_Forces
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_Revolutionary_Self_Defense_Forces
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Formalize_the_Military_Hierarchy"
+			army_experience = 35
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Open_Soviet_Armories
+		icon = GFX_SOV_kalashnikov_rifle
+		cost = 7
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = NRI_Formalize_the_Military_Hierarchy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Formalize_the_Military_Hierarchy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Open_Soviet_Armories"
+			add_equipment_to_stockpile = {
+		    type = infantry_equipment_0
+		    amount = 900
+		    producer = SOV
+			}
+			add_equipment_to_stockpile = {
+		    type = support_equipment
+		    amount = 50
+		    producer = SOV
+			}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Hunter_Battalions
+		icon = GFX_GENERIC_Mountain_Troops
+		cost = 7
+		x = -1
+		y = 2
+		prerequisite = {
+			focus = NRI_Open_Soviet_Armories
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Formalize_the_Military_Hierarchy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Hunter_Battalions"
+			hidden_effect = {
+			division_template = {
+		    name = "Okhotnichiy Batal'on"
+		    is_locked = yes
+		    priority = 2
+		    template_counter = 0
+		    regiments = {
+		        light_infantry = { x = 0 y = 0 }
+		        light_infantry = { x = 0 y = 1 }
+		        light_infantry = { x = 0 y = 2 }
+		        light_infantry = { x = 0 y = 3 }
+		    }
+		    support = { 
+		        recon = { x = 0 y = 0 }
+		        	}
+		    	} 
+			}
+			capital_scope = {
+			create_unit = {
+		    division = "name = \"Okhotnichiy Batal'on\" division_template = \"Okhotnichiy Batal'on\" start_experience_factor = 1.0 start_equipment_factor = 0.5"
+		    owner = NRI
+				}
+			}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Norilsk_Officer_School
+		icon = GFX_GENERIC_Officer_Cap
+		cost = 9
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Formalize_the_Military_Hierarchy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Formalize_the_Military_Hierarchy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Norilsk_Officer_School"
+			every_unit_leader = {
+			add_skill_level = 1
+			}
+			add_research_slot = 1
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_The_Great_Empty_Doctrine
+		icon = GFX_BRY_Lake_Baikal
+		cost = 7
+		x = 1
+		y = 2
+		prerequisite = {
+			focus = NRI_The_Norilsk_Officer_School
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Formalize_the_Military_Hierarchy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_The_Great_Empty_Doctrine"
+			swap_ideas = {
+			remove_idea = NRI_RSDF_1
+			add_idea = NRI_RSDF_2
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = NRI_Recruitment_Teams
+		icon = GFX_GENERIC_recruitment
+		cost = 7
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = NRI_The_Great_Empty_Doctrine
+		}
+		prerequisite = {
+			focus = NRI_Hunter_Battalions
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Formalize_the_Military_Hierarchy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Recruitment_Teams"
+			add_manpower = 2000
+			custom_effect_tooltip = NRI_RECRUITMENT_DECISION
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Form_the_Flying_Corps
+		icon = GFX_focus_chi_flying_tigers
+		cost = 7
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_The_Revolutionary_Self_Defense_Forces
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_The_Revolutionary_Self_Defense_Forces
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Form_the_Flying_Corps"
+			air_experience = 10
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Retrofit_Soviet_Air_Equipment 
+		icon = GFX_USA_air_support
+		cost = 7
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = NRI_Form_the_Flying_Corps
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Form_the_Flying_Corps
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Retrofit_Soviet_Air_Equipment"
+			add_equipment_to_stockpile = {
+		    type = fighter_equipment_0
+		    amount = 25
+		    producer = SOV
+			}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Laying_the_Air_Strips
+		icon = GFX_GENERIC_airliner_take_off
+		cost = 7
+		x = 1
+		y = 2
+		prerequisite = {
+			focus = NRI_Form_the_Flying_Corps
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Form_the_Flying_Corps
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Laying_the_Air_Strips"
+			capital_scope = {
+			add_building_construction = {
+		    type = air_base
+		    level = 1
+		    instant_build = yes
+				}
+			}
+			random_owned_state = {
+			limit = {
+			is_capital = no
+			}
+			add_building_construction = {
+		    type = air_base
+		    level = 1
+		    instant_build = yes
+				}
+			}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_Reactivate_the_German_Trophies
+		icon = GFX_GER_overwhelming_power
+		cost = 7
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = NRI_Laying_the_Air_Strips
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = NRI_Form_the_Flying_Corps
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_Reactivate_the_German_Trophies"
+			add_equipment_to_stockpile = {
+		    type = jet_fighter_equipment_1
+		    amount = 5
+		    producer = GER
+			}
+			hidden_effect = {
+			#random_list
+			}		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = NRI_A_Standard_Army
+		icon = GFX_GENERIC_Red_Army_Overhaul
+		cost = 7
+		x = 0
+		y = 5
+		prerequisite = {
+			focus = NRI_Reactivate_the_German_Trophies
+		}
+		prerequisite = {
+			focus = NRI_Recruitment_Teams
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		NOT = { has_idea = NRI_A_Lack_of_Supplies }
+		}
+		relative_position_id = NRI_The_Revolutionary_Self_Defense_Forces
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NRI_A_Standard_Army"
+			swap_ideas = {
+			remove_idea = NRI_RSDF_2
+			add_idea = NRI_RSDF_3
+			}
+		}
+	}

@@ -1,0 +1,2463 @@
+###################################################
+###=========| SERBIA CHETNIK SHARED |===========###
+###======| Made by Canadian Lizard   |==========###
+####=========| Coded by GreyShadow |===========####
+###################################################
+
+
+	###################################
+	### CHETNIK RECLEMATION PATH
+	###################################
+
+	shared_focus = {
+		cancelable = no
+		id = SER_Meet_the_Old_Boss
+		icon = GFX_SER_focus_meet_the_old_boss
+		mutually_exclusive = { focus = SER_Liberate_the_Sons_of_Serbia }
+		x = -7
+		y = 0
+		cost = 5
+		cancel_if_invalid = yes
+		ai_will_do = {
+		    factor = 2
+			
+			modifier = {
+				factor = 18
+				
+				has_army_manpower = {
+					size > 49999
+				}
+				num_of_factories > 10
+			}
+		}
+		available = {
+			has_completed_focus = SER_The_South_Slavic_Salvation_Front
+			has_completed_focus = SER_Hold_New_Elections
+			has_army_manpower = {
+				size > 49999
+			}
+			num_of_factories > 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Meet_the_Old_Boss"
+			add_war_support = 0.15
+			add_state_core = 979 #Pirot
+			add_state_core = 106 #Macedonia
+			add_state_core = 980 #Western Macedonia
+			add_state_core = 105 #Montenegro
+			add_state_core = 109 #Croatia
+			add_state_core = 1030 #Slavonia
+			add_state_core = 104 #Bosnia
+			add_state_core = 983 #Herzegovina
+			add_state_core = 103 #Dalmatia
+			add_state_core = 1016
+			add_state_core = 163 #Zara
+			add_state_core = 770 #Prekmurje
+			add_state_core = 102 #Slovenia
+			add_state_core = 765 #Ljubljana
+			add_state_core = 815 #Rijeka
+			add_state_core = 814 #Western Slovenia
+			add_state_core = 813 #Istria
+			add_state_core = 812 #Southern Trieste
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Liberate_the_Sons_of_Serbia
+		icon = GFX_SER_focus_lost_sons_of_serbia
+		mutually_exclusive = { focus = SER_Meet_the_Old_Boss }
+		x = -5
+		y = 0
+		cost = 5
+		cancel_if_invalid = yes
+		ai_will_do = {
+		    factor = 2
+			
+			modifier = {
+				factor = 18
+				
+				has_army_manpower = {
+					size > 49999
+				}
+				num_of_factories > 10
+			}
+		}
+		available = {
+			has_completed_focus = SER_Junta_of_Sait_Sava
+			has_army_manpower = {
+				size > 49999
+			}
+			num_of_factories > 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Liberate_the_Sons_of_Serbia"
+			add_war_support = 0.15
+			add_state_core = 979 #Pirot
+			add_state_core = 106 #Macedonia
+			add_state_core = 980 #Western Macedonia
+			add_state_core = 105 #Montenegro
+			add_state_core = 104 #Bosnia
+			add_state_core = 983 #Herzegovina
+			add_state_core = 103 #Dalmatia
+			add_state_core = 163 #Zara
+			add_state_core = 1030 #Slavonia
+		}
+	}
+
+
+	shared_focus = {
+		cancelable = no
+		id = SER_Bring_Banat_into_the_Fold
+		icon = GFX_SER_focus_bring_banat_into_fold
+		prerequisite = { focus = SER_Meet_the_Old_Boss focus = SER_Liberate_the_Sons_of_Serbia }
+		relative_position_id = SER_Meet_the_Old_Boss
+		x = 1
+		y = 1
+		cost = 6
+		bypass = {
+			ROOT = {
+				owns_state = 772
+			}
+		}
+		available = {
+			has_war = no
+		}
+		cancel_if_invalid = yes
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Bring_Banat_into_the_Fold"
+			if = {
+				limit = {
+					SBA = {
+						exists = yes
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SBA
+				}
+				else_if = {
+					limit = {
+						BNT = {
+							owns_state = 772
+						}
+					}
+					HUN = {
+						country_event = { days = 1 id = twrserbia.86 }
+					}
+				}
+				else = {
+					772 = {
+						owner = {
+							country_event = { days = 1 id = twrserbia.86 }
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_End_Bulgarian_Hegemony
+		icon = GFX_SER_focus_end_bulgarian_hegemony
+		prerequisite = { focus = SER_Bring_Banat_into_the_Fold }
+		relative_position_id = SER_Bring_Banat_into_the_Fold
+		x = -2
+		y = 1
+		cost = 6
+		available = {
+			has_war = no
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 979
+				owns_state = 106
+			}
+		}
+		cancel_if_invalid = yes
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_End_Bulgarian_Hegemony"
+			create_wargoal = {
+				type = annex_everything
+				target = BUL
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Liberate_Vojvodina_Chetnik
+		icon = GFX_SER_focus_liberate_vojovidna
+		prerequisite = { focus = SER_Bring_Banat_into_the_Fold }
+		relative_position_id = SER_Bring_Banat_into_the_Fold
+		x = 0
+		y = 1
+		cost = 6
+		available = {
+			owns_state = 772
+			has_war = no
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 45
+			}
+		}
+		cancel_if_invalid = yes
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Liberate_Vojvodina_Chetnik"
+			if = {
+				limit = {
+					HUN = {
+						owns_state = 45
+					}
+				}
+				SER = {
+					start_border_war = {
+						change_state_after_war = no
+						attacker = {
+							state = 772
+							num_provinces = 4
+							on_win = twrserbia.53
+							on_lose = twrserbia.54
+							on_cancel = twrserbia.54
+						}
+							
+						defender = {
+							state = 45
+							num_provinces = 4
+							on_win = twrserbia.54
+							on_lose = twrserbia.53
+							on_cancel = twrserbia.54
+						}
+					}
+				}
+				else = {
+					45 = {
+						owner = {
+							SER = {
+								create_wargoal = {
+									type = annex_everything
+									target = PREV
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Bring_Order_to_Pristina
+		icon = GFX_SER_focus_bring_order_to_pristina
+		prerequisite = { focus = SER_Bring_Banat_into_the_Fold }
+		relative_position_id = SER_Bring_Banat_into_the_Fold
+		x = 2
+		y = 1
+		cost = 6
+		available = {
+			has_war = no
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 818
+				owns_state = 980
+			}
+		}
+		cancel_if_invalid = yes
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Bring_Order_to_Pristina"
+			create_wargoal = {
+				type = annex_everything
+				target = ALB
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Kings_Loyal_Partisans
+		icon = GFX_SER_focus_kings_loyal_partisans
+		prerequisite = { focus = SER_End_Bulgarian_Hegemony }
+		prerequisite = { focus = SER_Liberate_Vojvodina_Chetnik }
+		prerequisite = { focus = SER_Bring_Order_to_Pristina }
+		relative_position_id = SER_Liberate_Vojvodina_Chetnik
+		x = 0
+		y = 1
+		cost = 6
+		available = {
+			has_war = no
+		}
+		cancel_if_invalid = yes
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Kings_Loyal_Partisans"
+			unlock_decision_category_tooltip = partisan_category
+			country_event = { id = twrserbiaflavour.15 }
+			set_variable = {
+				var = SER_partisan_bosnia_strength
+				value = 20
+			}
+			set_variable = {
+				var = SER_partisan_croatia_strength
+				value = 10
+			}
+			set_variable = {
+				var = SER_partisan_zara_strength
+				value = 0
+			}
+			set_variable = {
+				var = SER_partisan_istria_strength
+				value = 0
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Unite_the_Lost_Brothers
+		icon = GFX_SER_focus_unite_the_lost_brothers
+		prerequisite = { focus = SER_The_Kings_Loyal_Partisans }
+		relative_position_id = SER_The_Kings_Loyal_Partisans
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 105
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Unite_the_Lost_Brothers"
+			unlock_decision_tooltip = launch_the_revolt_montenegro
+			ITA = {
+				country_event = { id = twrserbia.62 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_End_the_Croatian_Experiment
+		icon = GFX_SER_focus_end_the_croatian_experiment
+		prerequisite = { focus = SER_Unite_the_Lost_Brothers }
+		relative_position_id = SER_Unite_the_Lost_Brothers
+		x = -1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 819
+				owns_state = 982
+				owns_state = 109
+				owns_state = 1030
+				owns_state = 981
+				owns_state = 104
+				owns_state = 983
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_End_the_Croatian_Experiment"
+			unlock_decision_tooltip = launch_the_revolt_bosnia
+			if = {
+				limit = {
+					has_completed_focus = SER_The_South_Slavic_Salvation_Front
+				}
+				unlock_decision_tooltip = launch_the_revolt_croatia
+				SER_increase_partisan_croatia_strength_low = yes
+			}
+			SER_increase_partisan_bosnia_strength_low = yes
+			CRO = {
+				country_event = { id = twrserbia.66 }
+			}
+			hidden_effect = {
+				CPS = {
+					add_state_core = 109
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Secure_the_Adriatic
+		icon = GFX_SER_focus_secure_adriatic
+		prerequisite = { focus = SER_Unite_the_Lost_Brothers }
+		relative_position_id = SER_Unite_the_Lost_Brothers
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 103
+				owns_state = 163
+				owns_state = 1016
+				owns_state = 815
+				owns_state = 765
+				owns_state = 813
+				owns_state = 814
+				owns_state = 812
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Secure_the_Adriatic"
+			unlock_decision_tooltip = launch_the_revolt_zara
+			custom_effect_tooltip = SER_increase_partisan_zara_strength_low_tt
+			if = {
+				limit = {
+					has_completed_focus = SER_The_South_Slavic_Salvation_Front
+				}
+				unlock_decision_tooltip = launch_the_revolt_istria
+				custom_effect_tooltip = SER_increase_partisan_istria_strength_low_tt
+			}
+			if = {
+				limit = {
+					ITA = {
+						owns_state = 814
+					}
+				}
+				ITA = {
+					country_event = { id = twrserbia.71 }
+					add_to_variable = { ita_var_dalmatia_opposition = 0.05 }
+					add_to_variable = { ita_var_slovenia_opposition = 0.05 }
+				}
+			}
+			if = {
+				limit = {
+					CRO = {
+						owns_state = 103 #Dalmatia
+						owns_state = 1016
+					}
+				}
+				CRO = {
+					country_event = { id = twrserbia.71 }
+				}
+			}
+			hidden_effect = {
+				ISC = {
+					add_state_core = 765
+				}
+				DPS = {
+					add_state_core = 163
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Royal_Yugoslavic_Supremacy
+		icon = GFX_SER_focus_royal_yugoslavic_supremacy
+		prerequisite = { focus = SER_End_the_Croatian_Experiment }
+		prerequisite = { focus = SER_Secure_the_Adriatic }
+		mutually_exclusive = { focus = SER_Consolidate_Greater_Serbia }
+		relative_position_id = SER_End_the_Croatian_Experiment
+		x = 0
+		y = 1
+		cost = 6
+		available = {
+			has_completed_focus = SER_The_South_Slavic_Salvation_Front
+		}
+		ai_will_do = {
+		    factor = 0
+			
+			modifier = {
+				factor = 12
+				
+				OR = {
+					AND = {
+						owns_state = 104
+						owns_state = 981
+						owns_state = 983
+					}
+					AND = {
+						owns_state = 104
+						owns_state = 981
+						owns_state = 983
+						owns_state = 982
+					}
+				}
+				owns_state = 772
+				owns_state = 819
+				owns_state = 45
+				owns_state = 105
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Royal_Yugoslavic_Supremacy"
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_political_power = 150
+			set_country_flag = partisans_done
+			custom_effect_tooltip = SER_Partisans_Over_tt
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							owns_state = 104
+							owns_state = 981
+							owns_state = 983
+						}
+						AND = {
+							owns_state = 104
+							owns_state = 981
+							owns_state = 983
+							owns_state = 982
+						}
+					}
+					owns_state = 772
+					owns_state = 819
+					owns_state = 45
+					owns_state = 105
+				}
+				set_country_flag = YUGO_Formed
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Consolidate_Greater_Serbia
+		icon = GFX_SER_focus_consolidate_greater_serbia_2
+		prerequisite = { focus = SER_End_the_Croatian_Experiment }
+		prerequisite = { focus = SER_Secure_the_Adriatic }
+		mutually_exclusive = { focus = SER_Royal_Yugoslavic_Supremacy }
+		relative_position_id = SER_Secure_the_Adriatic
+		x = 0
+		y = 1
+		cost = 6
+		available = {
+			has_completed_focus = SER_Junta_of_Sait_Sava
+		}
+		ai_will_do = {
+		    factor = 0
+			
+			modifier = {
+				factor = 12
+				
+				owns_state = 979 #Pirot
+				owns_state = 106 #Macedonia
+				owns_state = 980 #Western Macedonia
+				owns_state = 105 #Montenegro
+				owns_state = 104 #Bosnia
+				owns_state = 983 #Herzegovina
+				owns_state = 103 #Dalmatia
+				owns_state = 163 #Zara
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Consolidate_Greater_Serbia"
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_political_power = 150
+			set_country_flag = partisans_done
+			custom_effect_tooltip = SER_Partisans_Over_tt
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = SER_GRS
+		}
+	}
+	
+	##################################
+	### CHETNIK ECONOMY PATH
+	##################################
+
+	shared_focus = {
+		cancelable = no
+		id = SER_Economic_Relief_Mandate
+		icon = GFX_GENERIC_industrial_grey
+		x = -14
+		y = 0
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Economic_Relief_Mandate"
+			add_ideas = SER_economic_relief
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Battle_For_The_Economy
+		icon = GFX_GENERIC_Cogs_For_Factory
+		prerequisite = { focus = SER_Economic_Relief_Mandate }
+		relative_position_id = SER_Economic_Relief_Mandate
+		x = -3
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		available = {
+			owns_state = 108
+			owns_state = 107
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Battle_For_The_Economy"
+			107 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			108 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Battle_for_Roads
+		icon = GFX_GENERIC_highway
+		prerequisite = { focus = SER_Economic_Relief_Mandate }
+		relative_position_id = SER_Economic_Relief_Mandate
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Battle_for_Roads"
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			build_railway = {
+				level = 2
+				path = { 9599 3984 6970 3939 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Battle_For_Industry
+		icon = GFX_GENERIC_military_industry_produce
+		prerequisite = { focus = SER_Economic_Relief_Mandate }
+		relative_position_id = SER_Economic_Relief_Mandate
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Battle_For_Industry"
+			107 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Battle_For_Education
+		icon = GFX_GENERIC_science
+		prerequisite = { focus = SER_Economic_Relief_Mandate }
+		relative_position_id = SER_Economic_Relief_Mandate
+		x = 3
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Battle_For_Education"
+			add_research_slot = 1
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Cash_Crop_Exploitation
+		icon = GFX_GENERIC_Pile_of_Money
+		prerequisite = { focus = SER_The_Battle_For_The_Economy }
+		prerequisite = { focus = SER_The_Battle_for_Roads }
+		relative_position_id = SER_The_Battle_For_The_Economy
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Cash_Crop_Exploitation"
+			swap_ideas = {
+				remove_idea = SER_economic_relief
+				add_idea = SER_economic_relief_2
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Mechanization_Reforms
+		icon = GFX_GENERIC_Strong_Farming
+		prerequisite = { focus = SER_Cash_Crop_Exploitation }
+		relative_position_id = SER_Cash_Crop_Exploitation
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Mechanization_Reforms"
+			swap_ideas = {
+				remove_idea = SER_economic_relief_2
+				add_idea = SER_economic_relief_3
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Tungsten_Mines_of_Bor
+		icon = GFX_focus_generic_tungsten
+		prerequisite = { focus = SER_The_Battle_For_Industry }
+		prerequisite = { focus = SER_The_Battle_For_Education }
+		relative_position_id = SER_The_Battle_For_Industry
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		available = {
+			owns_state = 108
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Tungsten_Mines_of_Bor"
+			add_resource = {
+				type = tungsten
+				amount = 10
+				state = 108
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Steel_Mills_of_Radinac
+		icon = GFX_GENERIC_Steel_Shovel
+		prerequisite = { focus = SER_The_Tungsten_Mines_of_Bor }
+		relative_position_id = SER_The_Tungsten_Mines_of_Bor
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		available = {
+			owns_state = 107
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Steel_Mills_of_Radinac"
+			add_resource = {
+				type = steel
+				amount = 5
+				state = 107
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Establishing_Crown_Companies
+		icon = GFX_GENERIC_Crown_Money
+		prerequisite = { focus = SER_Mechanization_Reforms }
+		prerequisite = { focus = SER_The_Steel_Mills_of_Radinac }
+		relative_position_id = SER_Mechanization_Reforms
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Establishing_Crown_Companies"
+			swap_ideas = {
+				remove_idea = SER_economic_relief_3
+				add_idea = SER_crown_companies
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Reprivitize_the_Banks
+		icon = GFX_ITA_Privatising_the_Banks
+		prerequisite = { focus = SER_Establishing_Crown_Companies }
+		relative_position_id = SER_Establishing_Crown_Companies
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reprivitize_the_Banks"
+			add_ideas = SER_reprivitized_banks
+			add_political_power = 30
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Stabilize_the_Dinar
+		icon = GFX_SER_focus_dinar
+		prerequisite = { focus = SER_Establishing_Crown_Companies }
+		relative_position_id = SER_Establishing_Crown_Companies
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Stabilize_the_Dinar"
+			add_timed_idea = {
+				idea = SER_stabilized_dinar
+				days = 120
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Reimburse_Private_Investors
+		icon = GFX_USA_gov_investment
+		prerequisite = { focus = SER_Establishing_Crown_Companies }
+		relative_position_id = SER_Establishing_Crown_Companies
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reimburse_Private_Investors"
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Comfortable_Social_Security_Net
+		icon = GFX_GENERIC_industry_agreement
+		prerequisite = { focus = SER_Reprivitize_the_Banks }
+		prerequisite = { focus = SER_Stabilize_the_Dinar }
+		relative_position_id = SER_Reprivitize_the_Banks
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Comfortable_Social_Security_Net"
+			swap_ideas = {
+				remove_idea = SER_reprivitized_banks
+				add_idea = SER_reprivitized_banks2
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Sweeping_Industrial_Reform
+		icon = GFX_GENERIC_military_industry_produce
+		prerequisite = { focus = SER_Reimburse_Private_Investors }
+		prerequisite = { focus = SER_Stabilize_the_Dinar }
+		relative_position_id = SER_Stabilize_the_Dinar
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Sweeping_Industrial_Reform"
+			add_ideas = SER_industrial_reforms
+		}
+	}
+	
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Resource_Extraction_Initiative
+		icon = GFX_GENERIC_More_OiL
+		prerequisite = { focus = SER_A_Comfortable_Social_Security_Net }
+		prerequisite = { focus = SER_Sweeping_Industrial_Reform }
+		relative_position_id = SER_A_Comfortable_Social_Security_Net
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Resource_Extraction_Initiative"
+			add_tech_bonus = {
+				bonus = 0.60
+				uses = 1
+				category = excavation_tech
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Mostars_Aluminium_Plant_Chetnnik
+		icon = GFX_focus_generic_aluminum
+		prerequisite = { focus = SER_Resource_Extraction_Initiative }
+		relative_position_id = SER_Resource_Extraction_Initiative
+		x = -3
+		y = 1
+		cost = 5
+		available = {
+			owns_state = 104
+		}
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Mostars_Aluminium_Plant_Chetnnik"
+			add_resource = {
+				type = aluminium
+				amount = 10
+				state = 104
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Zagrebs_Steel_Mills_chetnik
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = SER_Resource_Extraction_Initiative }
+		relative_position_id = SER_Resource_Extraction_Initiative
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			owns_state = 109
+		}
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Zagrebs_Steel_Mills_chetnik"
+			add_resource = {
+				type = steel
+				amount = 8
+				state = 109
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Podgoricas_Aluminium
+		icon = GFX_focus_generic_aluminum
+		prerequisite = { focus = SER_Resource_Extraction_Initiative }
+		relative_position_id = SER_Resource_Extraction_Initiative
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			owns_state = 105
+		}
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Podgoricas_Aluminium"
+			add_resource = {
+				type = aluminium
+				amount = 12
+				state = 105
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Kosovos_Chromium
+		icon = GFX_GENERIC_chromium
+		prerequisite = { focus = SER_Resource_Extraction_Initiative }
+		relative_position_id = SER_Resource_Extraction_Initiative
+		x = 3
+		y = 1
+		cost = 5
+		available = {
+			owns_state = 818
+		}
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Kosovos_Chromium"
+			add_resource = {
+				type = chromium
+				amount = 18
+				state = 818
+			}
+		}
+	}
+	
+	##################################
+	### CHETNIK DIPLOMACY PATH
+	##################################
+
+	shared_focus = {
+		cancelable = no
+		id = SER_South_Slavs_on_the_World_Stage
+		icon = GFX_SER_focus_South_Slavs_On_Stage
+		x = 2
+		y = 0
+		cost = 5
+		ai_will_do = {
+		    factor = 14
+		}
+		available = {
+			AND = {
+				owns_state = 979
+				owns_state = 106
+				owns_state = 980
+				owns_state = 105
+				owns_state = 104
+				owns_state = 983
+				owns_state = 103
+				owns_state = 163
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_South_Slavs_on_the_World_Stage"
+			add_political_power = 70
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Our_Old_Friends
+		icon = GFX_ENG_USA_atlantic_union
+		prerequisite = { focus = SER_South_Slavs_on_the_World_Stage }
+		mutually_exclusive = { focus = SER_A_New_Balkan_Vanguard }
+		relative_position_id = SER_South_Slavs_on_the_World_Stage
+		x = -1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_Old_Friends"
+			country_event = { id = twrserbiaflavour.18 }
+			USA = {
+				country_event = { days = 1 id = twrserbia.116 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_British_Investments
+		icon = GFX_GENERIC_British_Tourists
+		prerequisite = { focus = SER_Our_Old_Friends }
+		relative_position_id = SER_Our_Old_Friends
+		x = -1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_British_Investments"
+			ENG = {
+				country_event = { days = 1 id = twrserbiaflavour.21 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Most_Royal_Visit_to_London
+		icon = GFX_focus_eng_the_sun_never_sets
+		prerequisite = { focus = SER_British_Investments }
+		relative_position_id = SER_British_Investments
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Most_Royal_Visit_to_London"
+			country_event = { hours = 2 id = twrserbiaflavour.19 }
+			add_opinion_modifier = {
+				target = ENG
+				modifier = unholy_alliance_trade
+			}
+			ENG = {
+				add_opinion_modifier = {
+					target = SER
+					modifier = unholy_alliance_trade
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_New_Balkan_Vanguard
+		icon = GFX_SER_focus_new_balkan_vanguard
+		prerequisite = { focus = SER_South_Slavs_on_the_World_Stage }
+		mutually_exclusive = { focus = SER_Our_Old_Friends }
+		relative_position_id = SER_South_Slavs_on_the_World_Stage
+		x = 1
+		y = 1
+		cost = 6
+		available = {
+			OR = {
+				ROM = {
+					OR = {
+						exists = yes
+						is_in_faction = no
+						is_subject = no
+					}
+				}
+				CZE = {
+					OR = {
+						exists = yes
+						is_in_faction = no
+						is_subject = no
+					}
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_New_Balkan_Vanguard"
+			create_faction = "Belgrade Pact"
+			set_country_flag = SER_Belgrade_Pact
+			country_event = { id = twrserbiaflavour.17 }
+			if = {
+				limit = {
+					ROM = {
+						exists = yes
+						is_in_faction = no
+						is_subject = no
+					}
+				}
+				ROM = {
+					country_event = { days = 1 id = twrserbia.120 }
+				}
+			}
+			if = {
+				limit = {
+					CZE = {
+						exists = yes
+						is_in_faction = no
+						is_subject = no
+					}
+				}
+				CZE = {
+					country_event = { days = 1 id = twrserbia.120 }
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Joint_Military_Exercises
+		icon = GFX_focus_generic_military_mission
+		prerequisite = { focus = SER_A_New_Balkan_Vanguard }
+		relative_position_id = SER_A_New_Balkan_Vanguard
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Joint_Military_Exercises"
+			add_ideas = SER_belgrade_pact_member_3
+			every_country = {
+				limit = {
+					is_in_faction_with = SER
+				}
+				add_ideas = SER_belgrade_pact_member_3
+			}
+			country_event = { id = twrserbiaflavour.24 }
+			if = {
+				limit = {
+					ROM = {
+						is_in_faction_with = SER
+					}
+				}
+				ROM = {
+					country_event = { id = twrserbiaflavour.25 }
+				}
+			}
+			if = {
+				limit = {
+					CZE = {
+						is_in_faction_with = SER
+					}
+				}
+				CZE = {
+					country_event = { id = twrserbiaflavour.26 }
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Favourable_Trade_Deals_for_All
+		icon = GFX_GENERIC_gold_trade
+		prerequisite = { focus = SER_Joint_Military_Exercises }
+		relative_position_id = SER_Joint_Military_Exercises
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Favourable_Trade_Deals_for_All"
+			swap_ideas = {
+				remove_idea = SER_belgrade_pact_member_3
+				add_idea = SER_belgrade_pact_member_4
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = SER
+				}
+				swap_ideas = {
+					remove_idea = SER_belgrade_pact_member_3
+					add_idea = SER_belgrade_pact_member_4
+				} 
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Reconciliation_with_Sofia
+		icon = GFX_SER_focus_Recouncilation_with_Sofia
+		prerequisite = { focus = SER_A_New_Balkan_Vanguard focus = SER_Our_Old_Friends }
+		relative_position_id = SER_Our_Old_Friends
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reconciliation_with_Sofia"
+			BUL = {
+				country_event = { days = 1 id = twrserbia.123 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Serb_in_Ankara
+		icon = GFX_SER_focus_A_Serb_in_Ankara
+		prerequisite = { focus = SER_Reconciliation_with_Sofia }
+		relative_position_id = SER_Reconciliation_with_Sofia
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Serb_in_Ankara"
+			TUR = {
+				country_event = { days = 1 id = twrserbia.126 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Renewed_Antifascist_Vanguard
+		icon = GFX_SER_focus_death_to_fascism
+		prerequisite = { focus = SER_A_Serb_in_Ankara }
+		prerequisite = { focus = SER_A_Most_Royal_Visit_to_London }
+		relative_position_id = SER_A_Most_Royal_Visit_to_London
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Renewed_Antifascist_Vanguard"
+			add_ideas = SER_renewed_antifascist_vanguard
+			country_event = { id = twrserbiaflavour.28 }
+			hidden_effect = {
+				ENG = {
+					country_event = { id = twrserbiaflavour.28 }
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Defuse_the_Powderkeg
+		icon = GFX_GENERIC_diffuse_tension
+		prerequisite = { focus = SER_A_Serb_in_Ankara }
+		prerequisite = { focus = SER_Favourable_Trade_Deals_for_All }
+		relative_position_id = SER_Favourable_Trade_Deals_for_All
+		x = -1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Defuse_the_Powderkeg"
+			add_war_support = 0.1
+			every_country = {
+				limit = {
+					is_in_faction_with = SER
+				}
+				add_war_support = 0.1
+			}
+			add_threat = -2
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Formally_Join_the_UN
+		icon = GFX_GENERIC_UN
+		prerequisite = { focus = SER_The_Renewed_Antifascist_Vanguard focus = SER_Defuse_the_Powderkeg }
+		relative_position_id = SER_The_Renewed_Antifascist_Vanguard
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Formally_Join_the_UN"
+			custom_effect_tooltip = BUL_JOIN_UN
+			add_stability = 0.1
+			TWR_add_to_un = yes
+		}
+	}
+	
+	##############################
+	### CHETNIK ARMY PATH
+	##############################
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_New_Royal_Army_Chetnik
+		icon = GFX_SER_focus_New_Royal_Army
+		x = 16
+		y = 0
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_New_Royal_Army_Chetnik"
+			army_experience = 15
+			if = {
+				limit = {
+					has_idea = SER_chetnik_army
+				}
+				remove_ideas = SER_chetnik_army
+				else_if = {
+					limit = {
+						has_idea = SER_zbor_army
+					}
+					remove_ideas = SER_zbor_army
+				}
+				else_if = {
+					limit = {
+						has_idea = SER_chetnik_zbor_army
+					}
+					remove_ideas = SER_chetnik_zbor_army
+				}
+			}
+			if = {
+				limit = {
+					has_idea = SER_german_detachment
+				}
+				remove_ideas = SER_german_detachment
+				country_lock_all_division_template = no
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Lessons_from_the_Axis_Invasion_Army
+		icon = GFX_GENERIC_sniper_defense
+		prerequisite = { focus = SER_The_New_Royal_Army_Chetnik }
+		relative_position_id = SER_The_New_Royal_Army_Chetnik
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Lessons_from_the_Axis_Invasion_Army"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Toronto_Accord_Advisors
+		icon = GFX_GENERIC_USA_Diplomat
+		prerequisite = { focus = SER_Lessons_from_the_Axis_Invasion_Army }
+		prerequisite = { focus = SER_Fight_in_the_Hills_if_you_Must }
+		relative_position_id = SER_Lessons_from_the_Axis_Invasion_Army
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = SER_doesnt_have_fanatical_resistance		
+				NOT = {
+					has_idea = SER_fanatical_resistance_chetnik
+					has_idea = SER_fanatical_resistance_chetnik_2
+					has_idea = SER_fanatical_resistance_chetnik_3
+					has_idea = SER_fanatical_resistance_chetnik_4
+					has_idea = SER_fanatical_resistance_chetnik_5
+					has_idea = SER_fanatical_resistance_chetnik_6
+					has_idea = SER_fanatical_resistance_chetnik_7
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Toronto_Accord_Advisors"
+			custom_effect_tooltip = SER_Fanatical_Resistance_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_fanatical_resistance_chetnik
+					}
+					swap_ideas = {
+						remove_idea = SER_fanatical_resistance_chetnik
+						add_idea = SER_fanatical_resistance_chetnik_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_2
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_2
+							add_idea = SER_fanatical_resistance_chetnik_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_3
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_3
+							add_idea = SER_fanatical_resistance_chetnik_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_4
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_4
+							add_idea = SER_fanatical_resistance_chetnik_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_5
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_5
+							add_idea = SER_fanatical_resistance_chetnik_6
+						}
+					}
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Countering_the_Blitzkrieg
+		icon = GFX_GENERIC_tank_warfare
+		prerequisite = { focus = SER_Toronto_Accord_Advisors }
+		relative_position_id = SER_Toronto_Accord_Advisors
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 9
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Countering_the_Blitzkrieg"
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = cat_anti_tank
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Enforcing_Discipline_Army
+		icon = GFX_GENERIC_whip_people
+		prerequisite = { focus = SER_Lessons_from_the_Axis_Invasion_Army }
+		prerequisite = { focus = SER_Fight_in_the_Hills_if_you_Must }
+		relative_position_id = SER_Lessons_from_the_Axis_Invasion_Army
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = SER_doesnt_have_fanatical_resistance		
+				NOT = {
+					has_idea = SER_fanatical_resistance_chetnik
+					has_idea = SER_fanatical_resistance_chetnik_2
+					has_idea = SER_fanatical_resistance_chetnik_3
+					has_idea = SER_fanatical_resistance_chetnik_4
+					has_idea = SER_fanatical_resistance_chetnik_5
+					has_idea = SER_fanatical_resistance_chetnik_6
+					has_idea = SER_fanatical_resistance_chetnik_7
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Enforcing_Discipline_Army"
+			custom_effect_tooltip = SER_Fanatical_Resistance_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_fanatical_resistance_chetnik
+					}
+					swap_ideas = {
+						remove_idea = SER_fanatical_resistance_chetnik
+						add_idea = SER_fanatical_resistance_chetnik_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_2
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_2
+							add_idea = SER_fanatical_resistance_chetnik_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_3
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_3
+							add_idea = SER_fanatical_resistance_chetnik_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_4
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_4
+							add_idea = SER_fanatical_resistance_chetnik_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_5
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_5
+							add_idea = SER_fanatical_resistance_chetnik_6
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Kings_Rangers
+		icon = GFX_GENERIC_black_insurgent
+		prerequisite = { focus = SER_Enforcing_Discipline_Army }
+		relative_position_id = SER_Enforcing_Discipline_Army
+		x = 0
+		y = 1
+		cost = 5
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = SER_doesnt_have_fanatical_resistance		
+				NOT = {
+					has_idea = SER_fanatical_resistance_chetnik
+					has_idea = SER_fanatical_resistance_chetnik_2
+					has_idea = SER_fanatical_resistance_chetnik_3
+					has_idea = SER_fanatical_resistance_chetnik_4
+					has_idea = SER_fanatical_resistance_chetnik_5
+					has_idea = SER_fanatical_resistance_chetnik_6
+					has_idea = SER_fanatical_resistance_chetnik_7
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Kings_Rangers"
+			custom_effect_tooltip = SER_Fanatical_Resistance_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_fanatical_resistance_chetnik
+					}
+					swap_ideas = {
+						remove_idea = SER_fanatical_resistance_chetnik
+						add_idea = SER_fanatical_resistance_chetnik_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_2
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_2
+							add_idea = SER_fanatical_resistance_chetnik_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_3
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_3
+							add_idea = SER_fanatical_resistance_chetnik_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_4
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_4
+							add_idea = SER_fanatical_resistance_chetnik_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_5
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_5
+							add_idea = SER_fanatical_resistance_chetnik_6
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Fight_in_the_Hills_if_you_Must
+		icon = GFX_GENERIC_Mountain_Warfare
+		prerequisite = { focus = SER_The_New_Royal_Army_Chetnik }
+		relative_position_id = SER_The_New_Royal_Army_Chetnik
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 13
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Fight_in_the_Hills_if_you_Must"
+			custom_effect_tooltip = SER_serbian_elites
+		    hidden_effect = {
+			    division_template = {
+	                name = "Serbian Elite Mountaineer Brigade"
+	                regiments = {
+						mountaineers = { x = 0 y = 0 }
+						mountaineers = { x = 0 y = 1 }
+						mountaineers = { x = 0 y = 2 }
+						mountaineers = { x = 1 y = 0 }
+						mountaineers = { x = 1 y = 1 }
+						mountaineers = { x = 1 y = 2 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1 }
+						artillery = { x = 0 y = 2 }
+					}
+				}
+		        random_owned_controlled_state = {
+				    create_unit = { division = "name = \"1. Serbian Elite Mountaineer Brigade\" division_template = \"Serbian Elite Mountaineer Brigade\" start_experience_factor = 1.0 start_equipment_factor = 1.0" owner = ROOT }
+			    }
+			    random_owned_controlled_state = {
+				    create_unit = { division = "name = \"2. Serbian Elite Mountaineer Brigade\" division_template = \"Serbian Elite Mountaineer Brigade\" start_experience_factor = 1.0 start_equipment_factor = 1.0" owner = ROOT }
+			    }
+			}
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 1
+				category = mountaineers_tech
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_For_Every_Acre_of_Land_is_Precious
+		icon = GFX_GENERIC_Barricade
+		prerequisite = { focus = SER_Fight_in_the_Hills_if_you_Must }
+		prerequisite = { focus = SER_Lessons_from_the_Axis_Invasion_Army }
+		relative_position_id = SER_Fight_in_the_Hills_if_you_Must
+		x = 0
+		y = 1
+		cost = 5
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = SER_doesnt_have_fanatical_resistance		
+				NOT = {
+					has_idea = SER_fanatical_resistance_chetnik
+					has_idea = SER_fanatical_resistance_chetnik_2
+					has_idea = SER_fanatical_resistance_chetnik_3
+					has_idea = SER_fanatical_resistance_chetnik_4
+					has_idea = SER_fanatical_resistance_chetnik_5
+					has_idea = SER_fanatical_resistance_chetnik_6
+					has_idea = SER_fanatical_resistance_chetnik_7
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_For_Every_Acre_of_Land_is_Precious"
+			custom_effect_tooltip = SER_Fanatical_Resistance_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_fanatical_resistance_chetnik
+					}
+					swap_ideas = {
+						remove_idea = SER_fanatical_resistance_chetnik
+						add_idea = SER_fanatical_resistance_chetnik_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_2
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_2
+							add_idea = SER_fanatical_resistance_chetnik_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_3
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_3
+							add_idea = SER_fanatical_resistance_chetnik_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_4
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_4
+							add_idea = SER_fanatical_resistance_chetnik_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_5
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_5
+							add_idea = SER_fanatical_resistance_chetnik_6
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Modern_Bootcamp_for_a_Modern_Army
+		icon = GFX_GENERIC_training_2
+		prerequisite = { focus = SER_For_Every_Acre_of_Land_is_Precious }
+		relative_position_id = SER_For_Every_Acre_of_Land_is_Precious
+		x = 0
+		y = 1
+		cost = 5
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = SER_doesnt_have_fanatical_resistance		
+				NOT = {
+					has_idea = SER_fanatical_resistance_chetnik
+					has_idea = SER_fanatical_resistance_chetnik_2
+					has_idea = SER_fanatical_resistance_chetnik_3
+					has_idea = SER_fanatical_resistance_chetnik_4
+					has_idea = SER_fanatical_resistance_chetnik_5
+					has_idea = SER_fanatical_resistance_chetnik_6
+					has_idea = SER_fanatical_resistance_chetnik_7
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Modern_Bootcamp_for_a_Modern_Army"
+			custom_effect_tooltip = SER_Fanatical_Resistance_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_fanatical_resistance_chetnik
+					}
+					swap_ideas = {
+						remove_idea = SER_fanatical_resistance_chetnik
+						add_idea = SER_fanatical_resistance_chetnik_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_2
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_2
+							add_idea = SER_fanatical_resistance_chetnik_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_3
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_3
+							add_idea = SER_fanatical_resistance_chetnik_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_4
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_4
+							add_idea = SER_fanatical_resistance_chetnik_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SER_fanatical_resistance_chetnik_5
+						}
+						swap_ideas = {
+							remove_idea = SER_fanatical_resistance_chetnik_5
+							add_idea = SER_fanatical_resistance_chetnik_6
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Reopening_Zastava_Chetnik
+		icon = GFX_GENERIC_Military_Equipment
+		prerequisite = { focus = SER_Countering_the_Blitzkrieg }
+		prerequisite = { focus = SER_The_Kings_Rangers }
+		prerequisite = { focus = SER_A_Modern_Bootcamp_for_a_Modern_Army }
+		relative_position_id = SER_Countering_the_Blitzkrieg
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reopening_Zastava_Chetnik"
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = infantry_weapons
+			}
+			108 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Our_New_Armoured_Knights
+		icon = GFX_GENERIC_tank_and_gun
+		prerequisite = { focus = SER_Countering_the_Blitzkrieg }
+		prerequisite = { focus = SER_The_Kings_Rangers }
+		prerequisite = { focus = SER_A_Modern_Bootcamp_for_a_Modern_Army }
+		relative_position_id = SER_The_Kings_Rangers
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_New_Armoured_Knights"
+			custom_effect_tooltip = SER_light_tank
+		    hidden_effect = {
+			    division_template = {
+					name = "Kraljevska Tenkovska Divizija"
+					regiments = {
+						mechanized = { x = 0 y = 0 }
+						mechanized = { x = 0 y = 1 }
+						motorized = { x = 0 y = 2 }
+						light_armor = { x = 1 y = 0 }
+						light_armor = { x = 1 y = 1 }
+						light_armor = { x = 1 y = 2 }
+					}
+					support = {
+						engineer = { x = 0 y = 0 }
+						artillery = { x = 0 y = 1 }
+					}
+				}
+		        random_owned_controlled_state = {
+				    create_unit = { division = "name = \"1. Kraljevska Tenkovska Divizija\" division_template = \"Kraljevska Tenkovska Divizija\" start_experience_factor = 0.5 start_equipment_factor = 1.0" owner = ROOT }
+			    }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Unity_Through_Strength
+		icon = GFX_GENERIC_Army_Cooperation
+		prerequisite = { focus = SER_Reopening_Zastava_Chetnik }
+		prerequisite = { focus = SER_Our_New_Armoured_Knights }
+		relative_position_id = SER_Reopening_Zastava_Chetnik
+		x = 1
+		y = 1
+		cost = 5
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = SER_doesnt_have_fanatical_resistance		
+				NOT = {
+					has_idea = SER_fanatical_resistance_chetnik
+					has_idea = SER_fanatical_resistance_chetnik_2
+					has_idea = SER_fanatical_resistance_chetnik_3
+					has_idea = SER_fanatical_resistance_chetnik_4
+					has_idea = SER_fanatical_resistance_chetnik_5
+					has_idea = SER_fanatical_resistance_chetnik_6
+					has_idea = SER_fanatical_resistance_chetnik_7
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Unity_Through_Strength"
+			custom_effect_tooltip = SER_Fanatical_Resistance_Improvement_tt
+			hidden_effect = {
+				swap_ideas = {
+					remove_idea = SER_fanatical_resistance_chetnik_6
+					add_idea = SER_fanatical_resistance_chetnik_7
+				}
+			}
+		}
+	}
+	
+	##################################
+	### CHETNIK AIRFORCE PATH
+	##################################
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Rebuild_the_Royal_Airforce
+		icon = GFX_SER_focus_Royal_Airforce
+		x = 22
+		y = 0
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Rebuild_the_Royal_Airforce"
+			air_experience = 15
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Reuse_leftover_Luftwaffe_planes_Chetnik
+		icon = GFX_GENERIC_Luftwaffe
+		prerequisite = { focus = SER_Rebuild_the_Royal_Airforce }
+		relative_position_id = SER_Rebuild_the_Royal_Airforce
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reuse_leftover_Luftwaffe_planes_Chetnik"
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_0
+				amount = 50
+				producer = GER
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment_1
+				amount = 50
+				producer = GER
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Battlefield_support_Chetnik
+		icon = GFX_GENERIC_airland_battle
+		prerequisite = { focus = SER_Reuse_leftover_Luftwaffe_planes_Chetnik }
+		relative_position_id = SER_Reuse_leftover_Luftwaffe_planes_Chetnik
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Battlefield_support_Chetnik"
+			add_ideas = SER_Battlefield_support
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Lessons_from_the_Axis_invasion_Chetnik
+		icon = GFX_GENERIC_Firebombing
+		prerequisite = { focus = SER_Reuse_leftover_Luftwaffe_planes_Chetnik }
+		relative_position_id = SER_Reuse_leftover_Luftwaffe_planes_Chetnik
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Lessons_from_the_Axis_invasion_Chetnik"
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.8
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Own_the_skies_Chetnik
+		icon = GFX_SER_focus_Own_the_Skies_Chetnik
+		prerequisite = { focus = SER_Lessons_from_the_Axis_invasion_Chetnik }
+		prerequisite = { focus = SER_Battlefield_support_Chetnik }
+		relative_position_id = SER_Lessons_from_the_Axis_invasion_Chetnik
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Own_the_skies_Chetnik"
+			custom_effect_tooltip = SER_battlefield_support_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_Battlefield_support
+					}
+					swap_ideas = {
+						remove_idea = SER_Battlefield_support
+						add_idea = SER_Battlefield_support2
+					}
+					else = {
+						swap_ideas = {
+							remove_idea = SER_Battlefield_support2
+							add_idea = SER_Battlefield_support3
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Request_British_Assistance_Chetnik
+		icon = GFX_focus_chi_british_cooperation
+		prerequisite = { focus = SER_Battlefield_support_Chetnik }
+		prerequisite = { focus = SER_Lessons_from_the_Axis_invasion_Chetnik }
+		relative_position_id = SER_Battlefield_support_Chetnik
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Request_British_Assistance_Chetnik"
+			ENG = {
+				country_event = { days = 1 id = twrserbia.97 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Formalize_the_American_Airforce_Liasons
+		icon = GFX_focus_generic_military_mission
+		prerequisite = { focus = SER_Lessons_from_the_Axis_invasion_Chetnik }
+		prerequisite = { focus = SER_Battlefield_support_Chetnik }
+		relative_position_id = SER_Reuse_leftover_Luftwaffe_planes_Chetnik
+		x = 0
+		y = 2
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Formalize_the_American_Airforce_Liasons"
+			custom_effect_tooltip = SER_battlefield_support_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_Battlefield_support
+					}
+					swap_ideas = {
+						remove_idea = SER_Battlefield_support
+						add_idea = SER_Battlefield_support2
+					}
+					else = {
+						swap_ideas = {
+							remove_idea = SER_Battlefield_support2
+							add_idea = SER_Battlefield_support3
+						}
+					}
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+	
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Yugoslavian_Plane_Chetnik
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = SER_Request_British_Assistance_Chetnik }
+		prerequisite = { focus = SER_Formalize_the_American_Airforce_Liasons }
+		prerequisite = { focus = SER_Own_the_skies_Chetnik }
+		relative_position_id = SER_Request_British_Assistance_Chetnik
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Yugoslavian_Plane_Chetnik"
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 1
+				category = jet_fighter
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Yugoslavian_Helicopter_Chetnik
+		icon = GFX_GENERIC_helicopter
+		prerequisite = { focus = SER_Request_British_Assistance_Chetnik }
+		prerequisite = { focus = SER_Formalize_the_American_Airforce_Liasons }
+		prerequisite = { focus = SER_Own_the_skies_Chetnik }
+		relative_position_id = SER_Own_the_skies_Chetnik
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Yugoslavian_Helicopter_Chetnik"
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 1
+				category = helicopter
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Kings_Winged_Angels
+		icon = GFX_focus_chi_flying_tigers
+		prerequisite = { focus = SER_A_Yugoslavian_Plane_Chetnik }
+		prerequisite = { focus = SER_A_Yugoslavian_Helicopter_Chetnik }
+		relative_position_id = SER_A_Yugoslavian_Plane_Chetnik
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Kings_Winged_Angels"
+			custom_effect_tooltip = SER_battlefield_support_tt
+			hidden_effect = {
+				swap_ideas = {
+					remove_idea = SER_Battlefield_support3
+					add_idea = SER_Battlefield_support4
+				}
+			}
+		}
+	}
+	
+	##############################
+	### CHETNIK NAVY PATH
+	##############################
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Rebuild_the_Royal_Navy
+		icon = GFX_SER_focus_Royal_Navy
+		x = 27
+		y = 0
+		cost = 5
+		available = {
+			any_owned_state = {
+				is_coastal = yes
+			}
+		}
+		ai_will_do = {
+		    factor = 13
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Rebuild_the_Royal_Navy"
+			navy_experience = 15
+			#create_navy_leader = {
+			#	name = "Mate Jerković"
+			#	picture = "SER_Mate_Jerkovic.dds"
+			#	traits = { }
+			#	skill = 2
+			#	attack_skill = 2
+			#	defense_skill = 2
+			#	maneuvering_skill = 1
+			#	coordination_skill = 2
+			#}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Reusing_Italian_Ships_Chetnik
+		icon = GFX_SER_focus_reuse_old_italian_ships
+		prerequisite = { focus = SER_Rebuild_the_Royal_Navy }
+		relative_position_id = SER_Rebuild_the_Royal_Navy
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			owns_state = 105
+		}
+		ai_will_do = {
+		    factor = 13
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reusing_Italian_Ships_Chetnik"
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 40
+				producer = ITA
+			}
+			set_technology = {
+				ww2_destroyer = 1
+			}
+			custom_effect_tooltip = SER_Outdated_Destroyers
+			hidden_effect = { load_oob = "SER_Outdated_Destroyers" }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Request_old_British_Warships
+		icon = GFX_GENERIC_Align_UK
+		prerequisite = { focus = SER_Reusing_Italian_Ships_Chetnik }
+		relative_position_id = SER_Reusing_Italian_Ships_Chetnik
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Request_old_British_Warships"
+			ENG = {
+				country_event = { days = 1 id = twrserbia.106 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Challenge_the_Kriegsmarine_Chetnik
+		icon = GFX_SER_focus_challenge_the_kriegsmarine
+		prerequisite = { focus = SER_Request_old_British_Warships }
+		relative_position_id = SER_Request_old_British_Warships
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 7
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Challenge_the_Kriegsmarine_Chetnik"
+			add_ideas = SER_Challenge_the_Kriegsmarine
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Challenge_the_Regina_Marina_Chetnik
+		icon = GFX_SER_focus_challenge_the_regina_marina
+		prerequisite = { focus = SER_Request_old_British_Warships }
+		relative_position_id = SER_Request_old_British_Warships
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 7
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Challenge_the_Regina_Marina_Chetnik"
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Defence_of_the_Adriatic_Chetnik
+		icon = GFX_SER_focus_defense_of_the_adriatic
+		prerequisite = { focus = SER_Challenge_the_Kriegsmarine_Chetnik }
+		prerequisite = { focus = SER_Challenge_the_Regina_Marina_Chetnik }
+		relative_position_id = SER_Challenge_the_Kriegsmarine_Chetnik
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Defence_of_the_Adriatic_Chetnik"
+			swap_ideas = {
+				remove_idea = SER_Challenge_the_Kriegsmarine
+				add_idea = SER_Challenge_the_Kriegsmarine2
+			}
+		}
+	}

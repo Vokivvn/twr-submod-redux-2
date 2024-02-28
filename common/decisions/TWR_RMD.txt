@@ -1,0 +1,204 @@
+#######################################
+## KONR
+#######################################
+
+KONR_Empire_Matters_decisions = {
+	KONR_Spawn_Militias = {
+		icon = generic_ignite_civil_war
+		allowed = { tag = RMD }
+		visible = {
+			has_country_flag = RNNA_Human_Waves_ENABLE
+			has_country_flag = RNNA_Empire_Matters_ENABLE
+		}
+		ai_will_do = {
+			factor = 15
+		}
+		days_remove = 30
+		cost = 50
+		days_re_enable = 25
+		fire_only_once = no
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KONR_Spawn_Militias"
+			custom_effect_tooltip = SPAWN_MILITIAS_tt
+			hidden_effect = {
+			if = {
+			limit = {
+			NOT = {
+			has_template = "Imperatorskoye Opolcheniye"
+				}
+			}
+			division_template = {
+				name = "Imperatorskoye Opolcheniye"
+				regiments = {
+				militia = { x = 0 y = 0 }
+				militia = { x = 0 y = 1 }
+				militia = { x = 0 y = 2 }
+				militia = { x = 1 y = 0 }
+				militia = { x = 1 y = 1 }
+				militia = { x = 1 y = 2 }
+				}
+				support = {
+				engineer = { x = 0 y = 0 }
+				}
+				is_locked = yes
+					}
+				}
+				random_owned_state = {
+				create_unit = {
+    			division = "division_template = \"Imperatorskoye Opolcheniye\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = RMD
+				}
+				create_unit = {
+    			division = "division_template = \"Imperatorskoye Opolcheniye\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = RMD
+				}
+				create_unit = {
+    			division = "division_template = \"Imperatorskoye Opolcheniye\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = RMD
+				}
+				create_unit = {
+    			division = "division_template = \"Imperatorskoye Opolcheniye\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = RMD
+				}
+				create_unit = {
+    			division = "division_template = \"Imperatorskoye Opolcheniye\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = RMD
+				}
+				create_unit = {
+    			division = "division_template = \"Imperatorskoye Opolcheniye\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = RMD
+				}
+				}
+			}
+		}
+	}
+
+	KONR_Tour_Moscow = {
+		icon = generic_nationalism
+		allowed = { tag = RMD }
+		fire_only_once = yes
+		visible = {
+			has_country_flag = RNNA_Tours_ENABLE
+			has_country_flag = RNNA_Empire_Matters_ENABLE
+		}
+		ai_will_do = {
+			factor = 15
+		}
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KONR_Tour_Moscow"
+			country_event = { id = royaltour.1 }
+		}
+	}
+	KONR_Tour_Petrograd = {
+		icon = generic_nationalism
+		allowed = { tag = RMD }
+		fire_only_once = yes
+		visible = {
+			has_country_flag = RNNA_Tours_ENABLE
+			has_country_flag = RNNA_Empire_Matters_ENABLE
+			owns_state = 195
+		}
+		ai_will_do = {
+			factor = 15
+		}
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KONR_Tour_Petrograd"
+			country_event = { id = royaltour.2 }
+		}
+	}
+	KONR_Tour_Kiev = {
+		icon = generic_nationalism
+		allowed = { tag = RMD }
+		fire_only_once = yes
+		visible = {
+			has_country_flag = RNNA_Tours_ENABLE
+			has_country_flag = RNNA_Empire_Matters_ENABLE
+			owns_state = 193
+		}
+		ai_will_do = {
+			factor = 15
+		}
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KONR_Tour_Kiev"
+			country_event = { id = royaltour.3 }
+		}
+	}
+	KONR_Tour_Novosibirsk = {
+		icon = generic_nationalism
+		allowed = { tag = RMD }
+		fire_only_once = yes
+		visible = {
+			has_country_flag = RNNA_Tours_ENABLE
+			has_country_flag = RNNA_Empire_Matters_ENABLE
+			owns_state = 570
+		}
+		ai_will_do = {
+			factor = 15
+		}
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KONR_Tour_Novosibirsk"
+			country_event = { id = royaltour.4 }
+		}
+	}
+	KONR_Tour_Vladivostok = {
+		icon = generic_nationalism
+		allowed = { tag = RMD }
+		fire_only_once = yes
+		visible = {
+			has_country_flag = RNNA_Tours_ENABLE
+			has_country_flag = RNNA_Empire_Matters_ENABLE
+			owns_state = 408
+		}
+		ai_will_do = {
+			factor = 15
+		}
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KONR_Tour_Vladivostok"
+			country_event = { id = royaltour.5 }
+		}
+	}
+}
+rmd_nationalism = {
+rmd_reunification = {
+		icon = generic_form_nation
+		fire_only_once = yes
+		allowed = {
+			tag = RMD
+		}
+		available = {
+			owns_state = 398
+			owns_state = 408
+			NOT = {
+				country_exists = KRA
+				country_exists = NOV
+				country_exists = TRV
+				country_exists = RUS
+				country_exists = SOV
+				country_exists = KAZ
+				country_exists = RFP
+				country_exists = SBR
+				country_exists = NRI
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision rmd_reunification"
+			if = {
+				limit = {
+					RMD = { has_government = paternal_autocrat }
+				}
+				news_event = rmd.19
+			}
+			if = {
+				limit = {
+					RMD = { has_government = fascist }
+				}
+				news_event = rnna.11
+			}
+		}
+	}
+}

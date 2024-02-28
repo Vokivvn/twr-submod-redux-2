@@ -1,0 +1,275 @@
+add_namespace = twr_switzerland
+news_event = { #Swiss Democracy returns
+	id = twr_switzerland.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.1"}
+	title = twr_switzerland.1.t
+	desc = twr_switzerland.1.d
+	picture = GFX_news_event_swiss_federal_council_reformed
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twr_switzerland.1.a
+	}
+}
+
+country_event = {	#Liechtenstein Referendum
+	id = twr_switzerland.2
+	title = twr_switzerland.2.t
+	desc = twr_switzerland.2.d
+	picture = GFX_report_event_election_vote
+	
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.2"}
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = twr_switzerland.2.a #A new canton!
+		ai_chance = {
+		factor = 60
+		}
+		add_political_power = -50
+		custom_effect_tooltip = LIECHTENSTEIN_CANTON
+		set_country_flag = LIECHTENSTEIN_PART_OF_SWITZERLAND
+	}
+	option = {
+		name = twr_switzerland.2.b #Restore Principality
+		ai_chance = {
+		factor = 30
+		}
+		add_stability = 0.01
+		custom_effect_tooltip = LIECHTENSTEIN_RESTORED
+		set_country_flag = LIECHTENSTEIN_FREED
+		hidden_effect = {
+		news_event = twr_switzerland.3
+			151 = {
+				add_province_modifier = {
+					static_modifiers = { liechtenstein_i }
+					province = {
+						id = 661
+					}
+				}
+			}
+		}	
+	}
+}
+news_event = { #Swiss Democracy returns
+	id = twr_switzerland.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.3"}
+	title = twr_switzerland.3.t
+	desc = twr_switzerland.3.d
+	picture = GFX_news_event_liechtenstein
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twr_switzerland.3.a
+		trigger = { tag = SWI }
+	}
+	option = {
+		name = twr_switzerland.3.b
+		trigger = { NOT = { tag = SWI } }
+	}
+}
+country_event = {	#Swiss Victory
+	id = twr_switzerland.4
+	title = twr_switzerland.4.t
+	desc = twr_switzerland.4.d
+	picture = GFX_report_event_norway_resistance
+	
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.4"}
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = twr_switzerland.5.a
+		news_event = twr_switzerland.5
+		white_peace_with_all = yes
+		transfer_state = 3
+	}
+}
+news_event = { #Swiss Ceasefire
+	id = twr_switzerland.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.5"}
+	title = twr_switzerland.5.t
+	desc = twr_switzerland.5.d
+	picture = GFX_news_event_swiss_civil_war
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twr_switzerland.5.a
+		trigger = { tag = SWI }
+	}
+	option = {
+		name = twr_switzerland.5.b
+		trigger = { NOT = { tag = SWI } }
+	}
+}
+country_event = {	#Swiss Fate
+	id = twr_switzerland.6
+	title = twr_switzerland.6.t
+	desc = twr_switzerland.6.d
+	picture = GFX_report_event_norway_resistance
+	
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.6"}
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = twr_switzerland.6.a #Diplomatic
+		trigger = {
+		NOT = {
+		tag = HSS
+		has_country_leader = {
+	    name = "Joseph Goebbels"
+	    ruling_only = yes		
+				}
+			}
+		}
+		ai_chance = {
+		factor = 90 
+		}
+		add_stability = 0.1
+		SWI = {
+		country_event = twr_switzerland.7
+		}
+	}
+	option = {
+		name = twr_switzerland.6.b #No talks
+		custom_effect_tooltip = GER_INVADE_SWITZERLAND_LATER
+		set_country_flag = HOSTILE_STANCE_AGAINST_SWITZERLAND
+	}
+}
+country_event = {	#Swiss Meeting
+	id = twr_switzerland.7
+	title = twr_switzerland.7.t
+	desc = twr_switzerland.7.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.7"}
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = twr_switzerland.7.a
+		news_event = twr_switzerland.8
+		add_ideas = SWI_swiss_neutrality
+		clr_country_flag = SWI_SUCCESSFUL_REBELLION_INSECURITY
+		FROM = {
+		country_event = { id = twr_switzerland.9 days = 3 }
+		add_opinion_modifier = {
+	    target = SWI
+	    modifier = opening_up
+			}
+		reverse_add_opinion_modifier = {
+	    target = SWI
+	    modifier = opening_up
+			}
+		}
+		add_timed_idea = {
+	    idea = SWI_assets_organizing
+	    days = 200
+		}
+		hidden_effect = {
+		3 = {
+		remove_core_of = GER
+		remove_core_of = HSS
+		remove_core_of = HGR
+		}
+		151 = {
+		remove_core_of = GER
+		remove_core_of = HSS
+		remove_core_of = HGR
+			}
+		}
+	}
+}
+news_event = { #Swiss Meeting
+	id = twr_switzerland.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.8"}
+	title = twr_switzerland.8.t
+	desc = twr_switzerland.8.d
+	picture = GFX_news_event_swiss_german_compromise
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twr_switzerland.8.a
+		trigger = { tag = SWI }
+	}
+	option = {
+		name = twr_switzerland.8.b
+		trigger = { NOT = { tag = SWI } }
+	}
+}
+country_event = {	#Swiss Benefits
+	id = twr_switzerland.9
+	title = twr_switzerland.9.t
+	desc = twr_switzerland.9.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.9"}
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = twr_switzerland.9.a
+		custom_effect_tooltip = SWI_BENEFITS_GER
+		set_country_flag = SWI_GER_RECONCILE
+	}
+}
+news_event = { #Swiss Reinvasion
+	id = twr_switzerland.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.10"}
+	title = twr_switzerland.10.t
+	desc = twr_switzerland.10.d
+	picture = GFX_news_event_second_invasion_of_switzerland
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twr_switzerland.10.a
+		trigger = { tag = SWI }
+	}
+	option = {
+		name = twr_switzerland.10.b
+		trigger = { NOT = { tag = SWI } }
+	}
+}
+news_event = { #Swiss Victory
+	id = twr_switzerland.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twr_switzerland.11"}
+	title = twr_switzerland.11.t
+	desc = twr_switzerland.11.d
+	picture = GFX_news_event_swiss_second_victory
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twr_switzerland.11.a
+		trigger = { tag = SWI }
+	}
+	option = {
+		name = twr_switzerland.11.b
+		trigger = { NOT = { tag = SWI } }
+	}
+}

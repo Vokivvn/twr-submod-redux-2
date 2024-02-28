@@ -1,0 +1,1220 @@
+
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Moroccan_independence_war_lost_2
+			icon = GFX_SPA_moroccan_guerillas
+			x = 51
+			y = 0
+			ai_will_do = {
+				factor = 1
+			}
+	        available = { has_country_flag = SPR_MOR_LOSS }
+	        bypass = {
+	        has_country_flag = SPR_MOR_LOSS
+	        }
+			cost = 8
+			completion_reward = {
+			custom_effect_tooltip = THE_WAR_IN_MOROCCO_LOST
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_accept_spanish_refugees
+			icon = GFX_GENERIC_public_housing
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Moroccan_independence_war_lost_2
+			}
+			relative_position_id = SPA_Moroccan_independence_war_lost_2
+			cost = 8
+			completion_reward = {
+				add_stability = -0.1		
+				add_manpower = 2000		
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_dismiss_military_staff
+			icon = GFX_GENERIC_army_agreement
+			x = 1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Moroccan_independence_war_lost_2
+			}
+			relative_position_id = SPA_Moroccan_independence_war_lost_2
+			cost = 8
+			completion_reward = {
+				add_war_support = -0.05	
+				army_experience = 30	
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_the_Bunker_coup
+			icon = GFX_GENERIC_Third_Force
+			x = -4
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			available = { always = no } 
+			prerequisite = {
+				focus = SPA_dismiss_military_staff
+			}
+			prerequisite = {
+				focus = SPA_accept_spanish_refugees
+			}
+			relative_position_id = SPA_dismiss_military_staff
+			cost = 8
+			completion_reward = {
+			custom_effect_tooltip = BUNKER_COUP_HAPPENED
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_division_of_power
+			icon = GFX_GENERIC_secret_service
+			x = 0
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+
+			prerequisite = {
+				focus = SPA_the_Bunker_coup
+			}
+			relative_position_id = SPA_the_Bunker_coup
+			cost = 8
+			completion_reward = {
+	        	add_political_power = 100
+				add_stability = 0.05
+	        	add_war_support = -0.05		
+			}
+		}
+
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Pinar_in_the_government
+			icon = GFX_SPA_Blas_Pinar
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_division_of_power
+			}
+
+			relative_position_id = SPA_division_of_power
+			cost = 8
+			completion_reward = {
+			add_ideas = SPA_HoG_Blas_Pinar
+			add_popularity = {
+    		ideology = fascist
+    		popularity = 0.15
+				}
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Giron_in_the_army
+			icon = GFX_SPA_Giron
+			x = 1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_division_of_power
+			}
+
+			relative_position_id = SPA_division_of_power
+			cost = 8
+			completion_reward = {
+			add_manpower = 20000
+			create_field_marshal = {
+			name = "José Antonio Girón"
+			picture = "Jose_Antonio_Giron.dds"
+			traits = { }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 1
+				}			
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Doctrine_of_aggression
+			icon = GFX_goal_generic_occupy_states_ongoing_war
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Giron_in_the_army focus = SPA_Pinar_in_the_government
+			}
+
+			relative_position_id = SPA_Giron_in_the_army 
+			cost = 8
+			completion_reward = {
+				add_war_support = 0.1
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Promise_social_security
+			icon = GFX_GENERIC_economic_prosperity
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_SPA_L_BUNKER
+				}
+			}
+			prerequisite = {
+				focus = SPA_Giron_in_the_army 
+			}
+			mutually_exclusive = { focus = SPA_Mobilize_the_armed_industry }
+
+			relative_position_id = SPA_Giron_in_the_army 
+			cost = 8
+			completion_reward = {
+			add_stability = 0.05
+			random_owned_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			    type = industrial_complex
+			    level = 2
+			    instant_build = yes
+					}
+			add_building_construction = {
+			    type = infrastructure
+			    level = 1
+			    instant_build = yes
+					}
+				}					
+				
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Reopen_the_camps
+			icon = GFX_GENERIC_imprison_opposition
+			x = 1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Giron_in_the_army 
+			}
+
+			relative_position_id = SPA_Giron_in_the_army 
+			cost = 8
+			completion_reward = {
+				add_popularity = { ideology = marxist_leninist popularity = -0.05 }	
+				add_popularity = { ideology = bolshevik_leninist popularity = -0.04 }	
+				add_popularity = { ideology = socialist popularity = -0.07 }
+				add_ideas = { SPA_Labour_Camps }
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Authoritarian_welfare
+			icon = GFX_USA_expand_welfare
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Reopen_the_camps
+			}
+			prerequisite = {
+				focus = SPA_Promise_social_security
+			}
+
+			relative_position_id = SPA_Reopen_the_camps
+			cost = 8
+			completion_reward = {
+				add_ideas = { SPA_Authoritarian_Welfare_idea }
+			}
+		}
+		shared_focus = {
+		cancelable = no
+			id = SPA_Crush_the_student_movement
+			icon = GFX_GENERIC_army_guy
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Pinar_in_the_government
+			}
+
+			relative_position_id = SPA_Pinar_in_the_government
+			cost = 8
+			completion_reward = {
+				add_popularity = { ideology = social_democrat popularity = -0.09 }	
+				add_popularity = { ideology = liberal popularity = -0.07 }	
+				add_popularity = { ideology = socialist popularity = -0.07 }			
+				add_manpower = -1000
+			}
+		}
+		shared_focus = {
+		cancelable = no
+			id = SPA_Military_education
+			icon = GFX_SPA_spanish_education
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Crush_the_student_movement
+			}
+			prerequisite = {
+				focus = SPA_Mobilize_the_armed_industry
+			}
+
+			relative_position_id = SPA_Crush_the_student_movement
+			cost = 8
+			completion_reward = {
+				add_war_support = 0.05
+				add_ideas = paramilitarism_focus
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Mobilize_the_armed_industry 
+			icon = GFX_GENERIC_economy_control
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Pinar_in_the_government
+			}
+			mutually_exclusive = { focus = SPA_Promise_social_security}
+
+			relative_position_id = SPA_Pinar_in_the_government
+			cost = 8
+			completion_reward = {
+			random_owned_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			    type = arms_factory
+			    level = 2
+			    instant_build = yes
+					}
+				}				
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Combat_american_influence 
+			icon = GFX_GENERIC_Anti_US
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Doctrine_of_aggression
+			}
+			prerequisite = {
+				focus = SPA_Mobilize_the_armed_industry focus = SPA_Promise_social_security
+			}
+
+			relative_position_id = SPA_Doctrine_of_aggression
+			cost = 8
+			completion_reward = {
+			add_stability = 0.1
+			add_opinion_modifier = {
+	    	target = USA
+	    	modifier = faction_traitor
+				}
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_March_on_Gibraltar
+			icon = GFX_SPA_gibraltar
+			x = 0
+			y = 3
+			will_lead_to_war_with = ENG
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Combat_american_influence
+			}
+
+			relative_position_id = SPA_Doctrine_of_aggression
+			cost = 8
+			completion_reward = {
+				country_event = { id = twrspain.62 days = 0 }
+				add_stability = 0.05
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Falangist_bureaucracy
+			icon = GFX_SPA_falangist_loyalty
+			x = 1
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Military_education
+			}
+			prerequisite = {
+				focus = SPA_March_on_Gibraltar
+			}
+			relative_position_id = SPA_Military_education
+			cost = 8
+			completion_reward = {
+				add_political_power = 150
+	            add_war_support = 0.05
+	            add_popularity = { ideology = fascist popularity = 0.1 }	
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_Illusion_of_democracy
+			icon = GFX_GENERIC_Fake_Democracy
+			x = -1
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_Authoritarian_welfare
+			}
+			prerequisite = {
+				focus = SPA_March_on_Gibraltar
+			}
+			relative_position_id = SPA_Authoritarian_welfare
+			cost = 8
+			completion_reward = {
+				add_ideas = facade_democracy
+				add_stability = 0.1	
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_student_movement_era
+			icon = GFX_SPA_generic_protest
+			x = 2
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			available = { always = no } 
+			prerequisite = {
+				focus = SPA_dismiss_military_staff
+			}
+			prerequisite = {
+				focus = SPA_accept_spanish_refugees
+			}
+			relative_position_id = SPA_dismiss_military_staff
+			cost = 8
+			completion_reward = {
+				custom_effect_tooltip = STUDENT_MOVEMENT_SPA
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_the_liberation_front_takes_control
+			icon = GFX_SPA_liberation_council
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			available = { always = no } 
+			prerequisite = {
+				focus = SPA_student_movement_era
+			}
+			mutually_exclusive = {
+				focus = SPA_student_liberalism_implemented
+			}
+
+			relative_position_id = SPA_student_movement_era
+			cost = 8
+			completion_reward = {
+				custom_effect_tooltip = THE_LIBERATION_FRONT_SPAIN	
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_red_wind_across_spain
+			icon = GFX_SPA_Red_Wind
+			x = 0
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_the_liberation_front_takes_control
+			}
+			
+			available = {
+				is_communist = yes
+			}
+
+			relative_position_id = SPA_the_liberation_front_takes_control
+			cost = 8
+			completion_reward = {
+				add_popularity = { ideology = marxist_leninist popularity = 0.1 }
+				add_political_power = 150
+				add_stability = -0.05
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_reconstruct_spanish_society #Undo Francoist Mistakes
+			icon = GFX_GENERIC_Education
+			x = 3
+			y = 1
+			ai_will_do = {
+				factor = 1
+				modifier = {
+					factor = 1000
+					OR = {
+						has_global_flag = COUNTRY_PATH_SPA_L_STALIN
+						has_global_flag = COUNTRY_PATH_SPA_L_STUDENTCOMMIES
+						has_global_flag = COUNTRY_PATH_SPA_L_DEMOCRACY
+					}
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_SPA_L_BUNKER
+				}
+			}
+			prerequisite = {
+				focus = SPA_the_liberation_front_takes_control
+				focus = SPA_student_liberalism_implemented
+			}
+			
+			available = {
+				OR = {
+					is_democratic = yes
+					is_communist = yes
+				}
+			}
+
+			relative_position_id = SPA_the_liberation_front_takes_control
+			cost = 8
+			completion_reward = {
+			add_popularity = { ideology = fascist popularity = -0.15 }
+			add_popularity = { ideology = paternal_autocrat popularity = -0.15 }
+			add_manpower = -2500
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_legalize_marxist_books
+			icon = GFX_GENERIC_marxist_thought
+			x = 0
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_reconstruct_spanish_society
+			}
+			
+			available = {
+				OR = {
+					is_democratic = yes
+					is_communist = yes
+				}
+			}
+
+			relative_position_id = SPA_reconstruct_spanish_society
+			cost = 8
+			completion_reward = {
+				add_popularity = { ideology = socialist popularity = 0.03 }
+				add_popularity = { ideology = marxist_leninist popularity = 0.03 }
+				add_popularity = { ideology = bolshevik_leninist popularity = 0.03 }
+				add_political_power = 30
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_open_up_to_the_international_community
+			icon = GFX_GENERIC_Judicial
+			x = 0
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_legalize_marxist_books
+			}
+			
+			available = {
+				OR = {
+					is_democratic = yes
+					is_communist = yes
+				}
+			}
+
+			relative_position_id = SPA_legalize_marxist_books
+			cost = 8
+			completion_reward = {
+				add_ideas = { SPA_International_Diplomacy_Effort }
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_the_secret_youth_police_of_spain
+			icon = GFX_GENERIC_Commie_Government
+			x = 1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_red_wind_across_spain 
+			}
+			prerequisite = {
+				focus = SPA_reconstruct_spanish_society
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_red_wind_across_spain
+			cost = 8
+			completion_reward = {
+				add_ideas = { SPA_Youth_Secret_Police }
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_assassinate_high_profile_francoists
+			icon = GFX_GENERIC_Coffee_with_Murder
+			x = 0
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+
+			prerequisite = {
+				focus = SPA_the_secret_youth_police_of_spain
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_the_secret_youth_police_of_spain
+			cost = 9
+			completion_reward = {
+				add_stability = -0.1
+				add_war_support = 0.15
+				add_political_power = 250
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_form_local_authorities
+			icon = GFX_GENERIC_state_economy
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_red_wind_across_spain 
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_red_wind_across_spain
+			cost = 8
+			completion_reward = {
+				add_ideas = { SPA_Decentralized_Authority }
+			}
+		}
+
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_university_as_leadership
+			icon = GFX_GENERIC_Bank
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_SPA_L_STALIN
+				}
+			}
+			prerequisite = {
+				focus = SPA_assassinate_high_profile_francoists
+			}
+			prerequisite = {
+				focus = SPA_form_local_authorities
+			}
+			mutually_exclusive = {
+				focus = SPA_purge_university
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_assassinate_high_profile_francoists
+			cost = 5
+			completion_reward = {
+				add_timed_idea = {
+				    idea = SPA_Student_Leadership
+				    days = 365
+				}
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_prosperity_of_hundred
+			icon = GFX_SPA_prog_tax
+			x = 1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_university_as_leadership focus = SPA_purge_university
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_university_as_leadership 
+			cost = 8
+			completion_reward = {
+				add_ideas = { SPA_Progressive_Taxation }
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_purge_university
+			icon = GFX_SPA_purge_university
+			x = 1
+			y = 1
+			ai_will_do = {
+				factor = 1
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_SPA_L_STUDENTCOMMIES
+				}
+			}
+			prerequisite = {
+				focus = SPA_assassinate_high_profile_francoists
+			}
+			prerequisite = {
+				focus = SPA_legalize_marxist_books
+			}
+			mutually_exclusive = {
+				focus = SPA_university_as_leadership
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_assassinate_high_profile_francoists
+			cost = 8
+			completion_reward = {
+                        country_event = { id = twrspain.78 days = 0 }
+				add_timed_idea = {
+				    idea = SPA_Universities_Purged
+				    days = 365
+				}
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_maoist_resurgence_in_spain
+			icon = GFX_SOV_stalinism
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_purge_university
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_purge_university
+			cost = 8
+			completion_reward = {
+	        	add_popularity = { ideology = marxist_leninist popularity = 0.15 }
+	        	add_war_support = 0.05	
+				add_stability = -0.1
+	        	custom_effect_tooltip = SPA_A_CULT_OF_STALIN	
+		 	}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_end_church_politics
+			icon = GFX_GENERIC_Stamp_Christain
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_appoint_a_chairman focus = SPA_maoist_resurgence_in_spain
+			}
+			prerequisite = {
+				focus = SPA_prosperity_of_hundred
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_maoist_resurgence_in_spain
+			cost = 8
+			completion_reward = {
+				add_timed_idea = {
+				    idea = SPA_Suppressing_Church
+				    days = 365
+				}
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_appoint_a_chairman
+			icon = GFX_GENERIC_minority_aimed_projects
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_university_as_leadership
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_university_as_leadership
+			cost = 8
+			completion_reward = {
+				add_stability = 0.05
+			}
+		}
+		shared_focus = {
+		cancelable = no
+			id = SPA_free_the_unions
+			icon = GFX_GENERIC_meet_trade_unions
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_appoint_a_chairman 
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_appoint_a_chairman 
+			cost = 8
+			completion_reward = {
+				add_ideas = { SPA_Powerful_Unions }
+				add_political_power = 100
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_formation_to_party
+			icon = GFX_SOV_traditionalist_socialism
+			x = 1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_maoist_resurgence_in_spain
+			}
+			available = {
+				is_communist = yes
+			}
+			relative_position_id = SPA_maoist_resurgence_in_spain
+			cost = 8
+			completion_reward = {
+				country_event = { id = twrspain.31 days = 0 }
+	    	    add_popularity = { ideology = marxist_leninist popularity = 0.1 }		
+				add_war_support = 0.05
+	        	add_political_power = 50
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_student_liberalism_implemented
+			icon = GFX_GENERIC_compassionate_social_system
+			x = 4
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_student_movement_era
+			}
+			mutually_exclusive = {
+				focus = SPA_the_liberation_front_takes_control
+			}
+			available = {
+				is_democratic = yes
+			}
+			available = { always = no } 
+			relative_position_id = SPA_student_movement_era
+			cost = 8
+			completion_reward = {
+			custom_effect_tooltip = STUDENT_LIBERALISM
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_reinvite_the_pce
+			icon = GFX_GENERIC_Communist_Discourse
+			x = 0
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_student_liberalism_implemented
+			}
+			mutually_exclusive = {
+				focus = SPA_keep_the_francoist_students
+			}
+			available = {
+				is_democratic = yes
+			}
+			relative_position_id = SPA_student_liberalism_implemented
+			cost = 8
+			completion_reward = {
+			add_stability = 0.15
+	            add_popularity = {
+                ideology = marxist_leninist
+                popularity = 0.07
+                }					
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_falangist_crackdown
+			icon = GFX_SPA_censorship
+			x = 0
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_reinvite_the_pce
+			}
+			available = { 
+				is_democratic = yes
+				has_political_power > 50
+			}
+			relative_position_id = SPA_reinvite_the_pce
+			cost = 8
+			completion_reward = {
+				add_war_support = 0.15
+	            add_political_power = -100
+	            add_popularity = {
+                ideology = fascist
+                popularity = -0.15
+                }	
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_redraw_the_communities
+			icon = GFX_GENERIC_draw_borders
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_falangist_crackdown
+			}
+			available = {
+				is_democratic = yes
+			}
+			mutually_exclusive = {
+				focus = SPA_continue_centralized_governance
+			}
+			relative_position_id = SPA_falangist_crackdown
+			cost = 8
+			completion_reward = {
+				add_ideas = { SPA_Decentralized_Authority }
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_dissolve_the_military_police
+			icon = GFX_SPA_end_police
+			x = -1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_redraw_the_communities focus = SPA_continue_centralized_governance
+			}
+			available = {
+				is_democratic = yes
+			}
+			relative_position_id = SPA_redraw_the_communities
+			cost = 8
+			completion_reward = {
+				add_stability = -0.05
+	            add_popularity = { ideology = liberal popularity = 0.05 }	
+				add_popularity = { ideology = social_democrat popularity = 0.05 }
+	            add_popularity = { ideology = conservative popularity = 0.05 }			
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_reconcile_with_the_exiled_republic
+			icon = GFX_SPA_republican
+			x = 1
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_redraw_the_communities focus = SPA_continue_centralized_governance
+			}
+			available = {
+				is_democratic = yes
+			}
+			relative_position_id = SPA_redraw_the_communities
+			cost = 8
+			completion_reward = {
+				country_event = { id = twrspain.24 days = 0 }		
+				add_popularity = { ideology = social_democrat popularity = 0.05 }
+				add_popularity = { ideology = liberal popularity = 0.05 }
+				add_popularity = { ideology = marxist_leninist popularity = 0.05 }
+				add_war_support = 0.05		
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_acknowledge_catalan_suffering
+			icon = GFX_SPA_catalonian_independists
+			x = 3
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_redraw_the_communities focus = SPA_continue_centralized_governance
+			}
+			available = {
+				is_democratic = yes
+			}
+			relative_position_id = SPA_redraw_the_communities
+			cost = 8
+			completion_reward = {
+				add_stability = 0.05
+				165 = {
+				add_dynamic_modifier = { modifier = autonomous_state }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+					    type = infrastructure
+					    level = 1
+					    instant_build = yes
+					}
+				}
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_rewrite_the_constitution
+			icon = GFX_focus_generic_treaty
+			x = 2
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_reinvite_the_pce focus = SPA_keep_the_francoist_students
+			}
+			available = {
+				is_democratic = yes
+			}
+			relative_position_id = SPA_reinvite_the_pce
+			cost = 8
+			completion_reward = {
+				add_political_power = 150
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_keep_the_francoist_students
+			icon = GFX_GENERIC_Third_Force
+			x = 3
+			y = 1
+			ai_will_do = {
+				factor = 1
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_SPA_L_DEMOCRACY
+				}
+			}
+			prerequisite = {
+				focus = SPA_student_liberalism_implemented
+			}
+			mutually_exclusive = {
+				focus = SPA_reinvite_the_pce
+			}
+			available = {
+				is_democratic = yes
+			}
+			relative_position_id = SPA_student_liberalism_implemented
+			cost = 8
+			completion_reward = {
+				add_stability = 0.15
+	            add_political_power = -100
+	            add_popularity = {
+                ideology = paternal_autocrat
+                popularity = 0.1
+                }					
+				
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_legacy_of_the_caudillo #need some stuff
+			icon = GFX_SPA_our_caudillo_victorious
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_keep_the_francoist_students
+			}
+			available = {
+				is_democratic = yes
+			}
+
+			relative_position_id = SPA_keep_the_francoist_students
+			cost = 8
+			completion_reward = {
+				add_stability = 0.15
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_continue_centralized_governance
+			icon = GFX_GENERIC_mobilize_police
+			x = 0
+			y = 2
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_legacy_of_the_caudillo
+			}
+			prerequisite = {
+				focus = SPA_rewrite_the_constitution
+			}
+			mutually_exclusive = {
+				focus = SPA_redraw_the_communities
+			}
+			available = {
+				is_democratic = yes
+			}
+			relative_position_id = SPA_rewrite_the_constitution
+			cost = 8
+			completion_reward = {
+				add_ideas = { SPA_Centralized_Authority }	
+			}
+		}
+
+		shared_focus = {
+		cancelable = no
+			id = SPA_start_the_first_election
+			icon = GFX_GENERIC_government_power
+			x = 2
+			y = 1
+			ai_will_do = {
+				factor = 1
+			}
+			prerequisite = {
+				focus = SPA_dissolve_the_military_police
+			}
+			prerequisite = {
+				focus = SPA_reconcile_with_the_exiled_republic
+			}
+			prerequisite = {
+				focus = SPA_acknowledge_catalan_suffering
+			}
+			available = {
+				is_democratic = yes
+			}
+			relative_position_id = SPA_dissolve_the_military_police
+			cost = 8
+			completion_reward = {
+				add_ideas = established_democracy
+			}
+		}

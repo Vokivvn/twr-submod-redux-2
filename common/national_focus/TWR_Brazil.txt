@@ -1,0 +1,1584 @@
+focus_tree = {
+	id = TWR_Brazil
+	country = {
+		factor = 0 
+		modifier = {
+			add = 10
+			tag = BRA
+		}
+	}
+	default = no
+	reset_on_civilwar = no
+
+
+ 	continuous_focus_position = { x = 50 y = -1000 }
+
+	focus = {
+	cancelable = no
+		id = BRA_Vargas
+		icon = GFX_BRA_Vargas
+		cost = 10
+		x = 4
+		y = 0
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Petrobras
+		icon = GFX_BRA_Petrobras
+		cost = 10
+		x = 4
+		y = 1
+		prerequisite = { focus = BRA_Vargas }
+			completion_reward = {
+				500 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+				add_building_construction = {
+				type = synthetic_refinery 
+				level = 1
+				instant_build = yes
+				}
+			}
+		}
+
+	}
+
+
+	focus = {
+	cancelable = no
+		id = BRA_The_Fernao_Dias_Highway
+		icon = GFX_GENERIC_highway
+		cost = 10
+		x = 3
+		y = 2
+		prerequisite = { focus = BRA_Petrobras }
+				completion_reward = {
+		add_stability = 0.02
+		501 = {
+		add_building_construction = {
+			type = infrastructure
+			level = 2
+			instant_build = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Invest_in_Hydroelectric_Power_Plants
+		icon = GFX_GENERIC_dam
+		cost = 10
+		x = 5
+		y = 2
+			prerequisite = { focus = BRA_Petrobras }
+					completion_reward = {
+			add_political_power = 25
+			501 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Brazilian_Coffee_Institute
+		icon = GFX_BRA_Coffee
+		cost = 10
+		x = 4
+		y = 3
+		prerequisite = { focus = BRA_The_Fernao_Dias_Highway focus = BRA_Invest_in_Hydroelectric_Power_Plants }
+		completion_reward = {
+		add_ideas = { BRA_Coffee_Institute }
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_American_Military_Aid
+		icon = GFX_USA_american_steel
+		cost = 10
+		x = 1
+		y = 1
+		prerequisite = { focus = BRA_Vargas }
+				completion_reward = {
+		add_stability = 0.02
+		add_offsite_building = { type = arms_factory level = 1 }
+				}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Placate_the_Armed_Forces
+		icon = GFX_GENERIC_Army_Cooperation
+		cost = 10
+		x = 1
+		y = 2
+		prerequisite = { focus = BRA_American_Military_Aid }
+		completion_reward = {
+			add_stability = 0.02
+			add_war_support = 0.02
+			add_popularity = { ideology = social_democrat popularity = 0.05 }
+			}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Rally_the_Nationalists
+		icon = GFX_BRA_Nationalism
+		cost = 10
+		x = 1
+		y = 3
+		prerequisite = { focus = BRA_Placate_the_Armed_Forces }
+		completion_reward = {
+		add_war_support = 0.05
+        add_popularity = { ideology = social_democrat popularity = 0.05 }                
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_German_Ambassador_Crisis
+		icon = GFX_GENERIC_secret_service
+		cost = 10
+		x = 4
+		y = 4
+		available = {
+		always = no
+		}
+		prerequisite = {focus = BRA_Brazilian_Coffee_Institute }
+		prerequisite = {focus = BRA_Rally_the_Nationalists }
+		prerequisite = {focus = BRA_Nationalize_Oil_Industry }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			custom_effect_tooltip = BrazilGerman
+		}
+
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Adress_the_Northeastern_Drought
+		icon = GFX_GENERIC_Famine
+		cost = 10
+		x = 7
+		y = 1
+		prerequisite = { focus = BRA_Vargas }
+		completion_reward = {
+			swap_ideas = { 
+				remove_idea = Acute_Balance_of_Payments_Crisis 
+				add_idea = Acute_Balance_of_Payments_Crisis_1 
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Import_Licensing
+		icon = GFX_goal_generic_trade
+		cost = 10
+		x = 7
+		y = 2
+prerequisite = { focus = BRA_Adress_the_Northeastern_Drought }
+		completion_reward = {
+		swap_ideas = { remove_idea = Acute_Balance_of_Payments_Crisis_1 add_idea = Acute_Balance_of_Payments_Crisis_2 }	
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Nationalize_Oil_Industry
+		icon = GFX_GENERIC_More_OiL
+		cost = 10
+		x = 7
+		y = 3
+prerequisite = { focus = BRA_Import_Licensing }
+		completion_reward = {
+add_political_power = 50
+501 = { 
+add_resource = {
+    type = oil
+    amount = 8
+}
+}
+499 = { 
+add_resource = {
+    type = oil
+    amount = 5
+}
+}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Improve_Oil_Production
+		icon = GFX_GENERIC_Oil_Wells
+		cost = 10
+		x = 7
+		y = 4
+prerequisite = { focus = BRA_Nationalize_Oil_Industry }
+		completion_reward = {
+501 = { 
+add_resource = {
+    type = oil
+    amount = 11
+}
+}
+499 = { 
+add_resource = {
+    type = oil
+    amount = 7
+}
+}
+503 = { 
+add_resource = {
+    type = oil
+    amount = 5
+}
+}
+
+
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Vargas_second_term
+		icon = GFX_BRA_Vargas
+		cost = 10
+mutually_exclusive = { focus = BRA_I_leave_life_to_enter_history }
+		x = 3
+		y = 5
+		available = {
+		always = no
+		}
+prerequisite = { focus = BRA_German_Ambassador_Crisis }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			custom_effect_tooltip = BrazilVargasSecond
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Adress_the_Labour_Issue
+		icon = GFX_GENERIC_Human_Cogs
+		cost = 10
+		x = 7
+		y = 6
+prerequisite = { focus = BRA_Vargas_second_term }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			add_ideas = BRA_Employment_For_the_Working_Man
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Promote_Urbanization
+		icon = GFX_GENERIC_urbanization1
+		cost = 10
+		x = 7
+		y = 7
+prerequisite = { focus = BRA_Adress_the_Labour_Issue}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			add_ideas = BRA_Urban_Planning
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_The_Neglected_Peasantry
+		icon = GFX_GENERIC_Strong_Farming
+		cost = 10
+		x = 7
+		y = 8
+prerequisite = { focus = BRA_Promote_Urbanization}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			add_ideas = BRA_Assist_the_Farmers
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_focus_on_the_Brazilian_industry
+		icon = GFX_GENERIC_Loans
+		cost = 10
+		x = 4
+		y = 6
+prerequisite = { focus = BRA_Vargas_second_term }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_explore_the_untouched_frontier
+		icon = GFX_GENERIC_Into_The_Jungle
+		cost = 10
+		x = 5
+		y = 7
+prerequisite = { focus = BRA_focus_on_the_Brazilian_industry}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			495 = {
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+				add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Nationalize_Power_Plants
+		icon = GFX_GENERIC_Power_Plant
+		cost = 10
+		x = 3
+		y = 7
+		prerequisite = { focus = BRA_focus_on_the_Brazilian_industry}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Nationalize_Power_Plants"
+			500 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+			}
+			498 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Connect_the_Regions
+		icon = GFX_GENERIC_Protect_the_Railways
+		cost = 10
+		x = 4
+		y = 8
+		prerequisite = { focus = BRA_Nationalize_Power_Plants focus = BRA_explore_the_untouched_frontier }
+		completion_reward = {
+			add_ideas = BRA_Connect_Our_Countryside
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Surpress_government_opposition
+		icon = GFX_BRA_crush_integralism
+		cost = 10
+		x = 1
+		y = 6
+		prerequisite = { focus = BRA_Vargas_second_term }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Surpress_government_opposition"
+			add_ideas = BRA_Push_out_the_Integralists
+			add_political_power = 25
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Placate_the_Democrats
+		icon = GFX_GENERIC_Social_Democracy_Time
+		cost = 10
+		x = 1
+		y = 7
+		prerequisite = { focus = BRA_Surpress_government_opposition}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Placate_the_Democrats"
+			add_stability = 0.02
+			add_popularity = {
+			ideology = social_democrat
+			popularity = 0.05
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Criminalize_the_Communist_Party
+		icon = GFX_GENERIC_Anti_Com
+		cost = 10
+		x = 1
+		y = 8
+		prerequisite = { focus = BRA_Placate_the_Democrats }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Criminalize_the_Communist_Party"
+			add_ideas = BRA_Ban_the_Communists
+			add_political_power = 25
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Modern_Brazil
+		icon = GFX_BRA_modern_law
+		cost = 10
+		x = 4
+		y = 9
+		prerequisite = { focus = BRA_Criminalize_the_Communist_Party focus = BRA_Connect_the_Regions focus = BRA_The_Neglected_Peasantry }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Modern_Brazil"
+			remove_ideas = Muddy_Sea_of_Corruption
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Begin_Brasilia
+		icon = GFX_GENERIC_Construction_Engineering
+		cost = 10
+		x = 4
+		y = 10
+		prerequisite = { focus = BRA_Modern_Brazil }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Begin_Brasilia"
+			505 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_I_leave_life_to_enter_history 
+		icon = GFX_GENERIC_speech
+		cost = 10
+		mutually_exclusive = { focus = BRA_Vargas_second_term }
+		x = 5
+		y = 5
+		available = {
+		always = no
+		}
+		prerequisite = { focus = BRA_German_Ambassador_Crisis }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			custom_effect_tooltip = VargasDead
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_UDN
+		icon = GFX_BRA_UDN
+		cost = 10
+		x = 12
+		y = 0
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			custom_effect_tooltip = VictoryUDN
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_decentralize_power
+		icon = GFX_GENERIC_capital_region
+		cost = 10
+		x = 10
+		y = 1
+prerequisite = { focus = BRA_UDN }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			add_ideas = BRA_Decentralised_Government
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Udenismo
+		icon = GFX_GENERIC_victory_liberty
+		cost = 10
+		x = 12
+		y = 1
+prerequisite = { focus = BRA_UDN }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			swap_ideas = {
+			remove_idea = Muddy_Sea_of_Corruption
+			add_idea = BRA_Udenismos
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Connect_Regions
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 10
+		x = 10
+		y = 2
+prerequisite = { focus = BRA_decentralize_power }
+prerequisite = { focus = BRA_Udenismo }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			502 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			503 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			500 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			496 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			499 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			498 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Defender_against_Populism
+		icon = GFX_GENERIC_Refugees
+		cost = 10
+		x = 12
+		y = 3
+prerequisite = { focus = BRA_Udenismo }
+prerequisite = { focus = BRA_Friendly_Ties_with_the_Military }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			add_political_power = 100
+			add_stability = -0.05
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Increase_Education_Budget
+		icon = GFX_POR_Education_Reform
+		cost = 10
+		x = 10
+		y = 3
+prerequisite = { focus = BRA_Connect_Regions }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			add_research_slot = 1
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Keep_Communism_Away
+		icon = GFX_GENERIC_starve_communists
+		cost = 10
+		x = 12
+		y = 4
+		mutually_exclusive = { focus = BRA_Keep_Communism_in_Check }
+		prerequisite = { focus = BRA_Increase_Education_Budget focus = BRA_Defender_against_Populism }
+		completion_reward = {
+			add_ideas = BRA_Ban_the_Communists
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Ban_Salgados_Party
+		icon = GFX_BRA_crush_integralism
+		cost = 10
+		x = 12
+		y = 6
+prerequisite = { focus = BRA_Keep_Communism_Away }
+		completion_reward = {
+			add_ideas = BRA_Ban_the_Integralists
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Keep_Communism_in_Check 
+		icon = GFX_GENERIC_meet_trade_unions
+		cost = 10
+		x = 10
+		y = 4
+mutually_exclusive = { focus = BRA_Keep_Communism_Away}
+prerequisite = { focus = BRA_Increase_Education_Budget focus = BRA_Defender_against_Populism }
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.05
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Support_American_Business
+		icon = GFX_GENERIC_USA_Diplomat
+		cost = 10
+		x = 11
+		y = 5
+		prerequisite = { focus = BRA_Keep_Communism_in_Check focus = BRA_Keep_Communism_Away }
+		completion_reward = {
+			500 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Friendly_Ties_with_the_Military
+		icon = GFX_GENERIC_army_guy
+		cost = 10
+		x = 13
+		y = 2
+		prerequisite = { focus = BRA_UDN focus = BRA_PSD }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Friendly_Ties_with_the_Military"
+			add_political_power = 25
+			add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.05
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_PTB
+		icon = GFX_BRA_labour
+		cost = 10
+		x = 17
+		y = 0
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_PTB"
+			custom_effect_tooltip = VictoryPTB
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_PSD
+		icon = GFX_GENERIC_Social_Liberalism
+		cost = 10
+		x = 15
+		y = 0
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_PSD"
+			custom_effect_tooltip = VictoryPSD
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Go_with_Kubitschek
+		icon = GFX_BRA_Kubitschek
+		cost = 10
+		x = 15
+		y = 1
+
+		prerequisite = { focus = BRA_PSD }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Go_with_Kubitschek"
+			add_country_leader_trait = popular_figurehead2
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Go_with_Jango 
+		icon = GFX_BRA_Jango
+		cost = 10
+		x = 17
+		y = 1
+
+		prerequisite = { focus = BRA_PTB }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Go_with_Jango"
+			add_stability = 0.05
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Combat_Adult_Illiteracy
+		icon = GFX_FIN_law_and_faith
+		cost = 10
+		x = 17
+		y = 2
+
+		prerequisite = { focus = BRA_Go_with_Jango }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Combat_Adult_Illiteracy"
+			add_ideas = BRA_Adult_Literacy_Programs
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Peace_in_South_America
+		icon = GFX_GENERIC_South_America
+		cost = 10
+		x = 17
+		y = 4
+
+		prerequisite = { focus = BRA_Combat_Adult_Illiteracy }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Peace_in_South_America"
+			custom_effect_tooltip = BrazilCooperation
+			hidden_effect = {
+			add_opinion_modifier = {
+			target = BOL
+			modifier = south_american_cooperation
+			}	
+			add_opinion_modifier = {
+			target = VEN
+			modifier = south_american_cooperation
+			}	
+			add_opinion_modifier = {
+			target = COL
+			modifier = south_american_cooperation
+			}	
+			add_opinion_modifier = {
+			target = PRU
+			modifier = south_american_cooperation
+			}	
+			add_opinion_modifier = {
+			target = ARG
+			modifier = south_american_cooperation
+			}
+			add_opinion_modifier = {
+			target = PAR
+			modifier = south_american_cooperation
+			}
+			add_opinion_modifier = {
+			target = URG
+			modifier = south_american_cooperation
+				}
+			}
+		}
+
+	}
+
+	focus = {
+	cancelable = no
+		id = BRA_Reconcile_with_the_Soviet_Union
+		icon = GFX_focus_chi_mission_to_the_soviet_union
+		cost = 10
+		x = 18
+		y = 5
+
+		prerequisite = { focus = BRA_Peace_in_South_America }
+		
+		available = {
+			country_exists = SOV
+		}
+		
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Reconcile_with_the_Soviet_Union"
+			add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.05
+			}
+			add_political_power = 25
+		}
+
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Central_Health_Bureaucracy
+		icon = GFX_GENERIC_Medical_Evil
+		cost = 10
+		x = 15
+		y = 2
+		prerequisite = { focus = BRA_Go_with_Kubitschek }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+			add_ideas = BRA_Brazilian_Healthcare
+		}
+
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Associated_Capital_Policy
+		icon = GFX_GENERIC_gold_trade
+		cost = 10
+		x = 15
+		y = 4
+		prerequisite = { focus = BRA_Central_Health_Bureaucracy }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Associated_Capital_Policy"
+			custom_effect_tooltip = BrazilTrade
+			hidden_effect = {
+			add_opinion_modifier = {
+			target = BOL
+			modifier = freetrade
+			}	
+			add_opinion_modifier = {
+			target = VEN
+			modifier = freetrade
+			}	
+			add_opinion_modifier = {
+			target = COL
+			modifier = freetrade
+			}	
+			add_opinion_modifier = {
+			target = PRU
+			modifier = freetrade
+			}	
+			add_opinion_modifier = {
+			target = ARG
+			modifier = freetrade
+			}
+			add_opinion_modifier = {
+			target = PAR
+			modifier = freetrade
+			}
+			add_opinion_modifier = {
+			target = URG
+			modifier = freetrade
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Transregional_Infrastructure
+		icon = GFX_GENERIC_highway
+		x = 14
+		y = 5
+		cost = 10
+		prerequisite = { focus = BRA_Associated_Capital_Policy }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Transregional_Infrastructure"
+			504 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}		
+			}
+			505 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}		
+			}
+			280 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}		
+			}
+			495 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+				}		
+			}
+		}
+
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Diversify_the_Economy
+		icon = GFX_GENERIC_industry_agreement
+		x = 16
+		y = 5
+		cost = 10
+		prerequisite = { focus = BRA_Associated_Capital_Policy focus = BRA_Peace_in_South_America }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Diversify_the_Economy"
+			random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}	
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}	
+			}
+		}
+
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Keep_the_Military_Happy
+		icon = GFX_GENERIC_bag_of_money
+		cost = 10
+		x = 14
+		y = 3
+		prerequisite = { focus = BRA_Friendly_Ties_with_the_Military }
+		prerequisite = { focus = BRA_Central_Health_Bureaucracy }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Keep_the_Military_Happy"
+			add_ideas = BRA_Military_Compensation
+		}
+
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Honour_Vargas_Populism
+		icon = GFX_BRA_Vargas
+		cost = 10
+		x = 16
+		y = 3
+		prerequisite = { focus = BRA_Go_with_Kubitschek focus = BRA_Go_with_Jango }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Honour_Vargas_Populism"
+			add_stability = 0.02
+			add_political_power = 25
+		}
+
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Gomes_Junta
+		icon = GFX_BRA_gomes
+		cost = 10
+		x = 22
+		y = 0
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Gomes_Junta"
+			remove_ideas = BRA_Fourth_Republic
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_American_Oil_Companies
+		icon = GFX_GENERIC_American_Oil
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Gomes_Junta
+		prerequisite = { 
+			focus = BRA_Gomes_Junta
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_American_Oil_Companies"
+			add_ideas = { BRA_Foreign_Oil_Expertise }
+			add_opinion_modifier = { target = USA modifier = medium_increase }
+			add_resource = {
+			    type = oil
+			    amount = 2
+			    state = 501
+			}
+			add_resource = {
+			    type = oil
+			    amount = 2
+			    state = 499
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_Meet_with_American_Plutocrats
+		icon = GFX_GENERIC_USA_Diplomat
+		cost = 10
+		x = -2
+		y = 1
+		relative_position_id = BRA_American_Oil_Companies
+		prerequisite = { 
+			focus = BRA_American_Oil_Companies
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Meet_with_American_Plutocrats"
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_The_Question_of_the_Toronto_Accord
+		icon = GFX_GENERIC_TA_overseen_elections
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Meet_with_American_Plutocrats
+		prerequisite = { 
+			focus = BRA_Meet_with_American_Plutocrats
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_The_Question_of_the_Toronto_Accord"
+			country_event = {
+				id = twrbrazil.13
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_Clear_out_the_Nazi_Lovers
+		icon = GFX_SPA_fire_nazi
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_American_Oil_Companies
+		prerequisite = { 
+			focus = BRA_American_Oil_Companies
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BRA_Clear_out_the_Nazi_Lovers"
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_The_South_American_Eagle
+		icon = GFX_BRA_The_South_American_Eagle
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Clear_out_the_Nazi_Lovers
+		prerequisite = { 
+			focus = BRA_Clear_out_the_Nazi_Lovers
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_The_South_American_Eagle"
+			add_ideas = { BRA_South_American_Eagle_idea }
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_Adopt_American_Economics
+		icon = GFX_GENERIC_USA_Money
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_The_South_American_Eagle
+		prerequisite = { 
+			focus = BRA_The_South_American_Eagle
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Adopt_American_Economics"
+			add_ideas = BRA_American_Economics
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_A_Military_for_Freedom
+		icon = GFX_GENERIC_Liberalism
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Adopt_American_Economics
+		prerequisite = { 
+			focus = BRA_Adopt_American_Economics
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_A_Military_for_Freedom"
+			add_war_support = 0.05
+			add_ideas = { BRA_Military_For_Freedom }
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Monteiro_Junta
+		icon = GFX_BRA_monteiro
+		cost = 10
+		x = 4
+		y = 0
+		relative_position_id = BRA_Gomes_Junta
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Monteiro_Junta"
+			remove_ideas = BRA_Fourth_Republic
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_German_Oil_Companies
+		icon = GFX_GER_oil_reserves
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Monteiro_Junta
+		prerequisite = { 
+			focus = BRA_Monteiro_Junta
+		}
+		available = {
+			has_country_flag = BRA_Pro_Germans
+			OR = {
+				country_exists = GER
+				country_exists = HSS
+				country_exists = HGR
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_German_Oil_Companies"
+			add_opinion_modifier = { target = GER modifier = medium_increase }
+			add_ideas = { BRA_Foreign_Oil_Expertise }
+			add_resource = {
+			    type = oil
+			    amount = 2
+			    state = 501
+			}
+			add_resource = {
+			    type = oil
+			    amount = 2
+			    state = 499
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_Meet_with_German_War_Industrialists
+		icon = GFX_GER_agreement
+		cost = 10
+		x = 2
+		y = 1
+		relative_position_id = BRA_German_Oil_Companies
+		prerequisite = { 
+			focus = BRA_German_Oil_Companies
+		}
+		available = {
+			has_country_flag = BRA_Pro_Germans
+			OR = {
+				country_exists = GER
+				country_exists = HSS
+				country_exists = HGR
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Meet_with_German_War_Industrialists"
+			add_offsite_building = { type = arms_factory level = 2 }
+			GER = {
+			country_event = { id = twrbrazil.21 } 
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_The_Problem_of_the_USA
+		icon = GFX_BRA_The_Problem_of_the_USA
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Meet_with_German_War_Industrialists
+		prerequisite = { 
+			focus = BRA_Meet_with_German_War_Industrialists
+		}
+		available = {
+			has_country_flag = BRA_Pro_Germans
+			OR = {
+				country_exists = GER
+				country_exists = HSS
+				country_exists = HGR
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_The_Problem_of_the_USA"
+			country_event = { id = twrbrazil.17 } 
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_Integrate_the_Integralists
+		icon = GFX_BRA_integralism
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_German_Oil_Companies
+		prerequisite = { 
+			focus = BRA_German_Oil_Companies
+		}
+		available = {
+		has_country_flag = BRA_Pro_Germans
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Integrate_the_Integralists"
+			add_political_power = 50
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.05
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_Prussian_Military_Traditions
+		icon = GFX_GER_Prussian_Shits
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Integrate_the_Integralists
+		prerequisite = { 
+			focus = BRA_Integrate_the_Integralists
+		}
+		available = {
+		has_country_flag = BRA_Pro_Germans
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Prussian_Military_Traditions"
+			add_ideas = { BRA_Prussian_Discipline }
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_Adopt_German_Economics
+		icon = GFX_GER_Labourist
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Prussian_Military_Traditions
+		prerequisite = { 
+			focus = BRA_Prussian_Military_Traditions
+		}
+		available = {
+		has_country_flag = BRA_Pro_Germans
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Adopt_German_Economics"
+			add_ideas = BRA_German_Economics
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = BRA_A_Military_for_Order 
+		icon = GFX_GENERIC_Officer_Army
+		cost = 10
+		x = 0
+		y = 1
+		relative_position_id = BRA_Adopt_German_Economics
+		prerequisite = { 
+			focus = BRA_Adopt_German_Economics
+		}
+		available = {
+		has_country_flag = BRA_Pro_Germans
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_A_Military_for_Order "
+			add_ideas = { BRA_Military_For_Order }
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Restore_Immediate_Stability
+		icon = GFX_GENERIC_Government
+		cost = 12
+		x = 2
+		y = 1
+		relative_position_id = BRA_Gomes_Junta
+		prerequisite = { 
+			focus = BRA_Gomes_Junta
+			focus = BRA_Monteiro_Junta
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BRA_Restore_Immediate_Stability"
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Secure_Loyalty_of_Generals
+		icon = GFX_GER_General_Staff
+		cost = 10
+		x = 2
+		y = 2
+		relative_position_id = BRA_Gomes_Junta
+		prerequisite = { 
+			focus = BRA_Restore_Immediate_Stability
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Secure_Loyalty_of_Generals"
+			add_command_power = 50
+			add_political_power = -100
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Institutional_Acts
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 10
+		x = 2
+		y = 3
+		relative_position_id = BRA_Gomes_Junta
+		prerequisite = { 
+			focus = BRA_Secure_Loyalty_of_Generals
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Institutional_Acts"
+			add_ideas = { BRA_Institutional_Acts_idea }
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Suppress_Opposition
+		icon = GFX_GENERIC_imprison_opposition1
+		cost = 10
+		x = 2
+		y = 4
+		relative_position_id = BRA_Gomes_Junta
+		prerequisite = { 
+			focus = BRA_Institutional_Acts
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Suppress_Opposition"
+			add_ideas = { BRA_Coffee_Institute }
+			add_political_power = 25
+			add_popularity = { ideology = social_democrat popularity = -0.05 }
+			add_popularity = { ideology = liberal popularity = -0.05 }
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = BRA_Stable_Regime
+		icon = GFX_GENERIC_authoritarian_fist
+		cost = 10
+		x = 2
+		y = 5
+		relative_position_id = BRA_Gomes_Junta
+		prerequisite = { 
+			focus = BRA_Suppress_Opposition
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRA_Stable_Regime"
+			swap_ideas = { 
+				remove_idea = BRA_Institutional_Acts_idea
+				add_idea = BRA_Institutional_Acts_idea_2
+			}
+		}
+	}
+	
+
+
+	#focus = {
+	#cancelable = no
+	#	id = BRA_PRP
+	#	icon = GFX_BRA_int_party
+	#	cost = 10
+	#	x = 20
+	#	y = 0
+	#	available = {
+	#	always = no
+	#	}
+	#	completion_reward = {
+	#		log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+	#	}
+	#
+	#}
+
+	#focus = {
+	#cancelable = no
+	#	id = BRA_Moderate_the_Partyline
+	#	icon = GFX_GENERIC_elite_party
+	#	cost = 10
+	#	x = 20
+	#	y = 1
+	#	prerequisite = { focus = BRA_PRP }
+	#	mutually_exclusive = { focus = BRA_Observe_European_Fascism }
+	#	completion_reward = {
+	#		log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+	#	}
+	#
+	#}
+
+	#focus = {
+	#cancelable = no
+	#	id = BRA_Support_the_Church
+	#	icon = GFX_GENERIC_christian_agreement
+	#	cost = 10
+	#	x = 19
+	#	y = 2
+	#	prerequisite = { focus = BRA_PRP focus = BRA_PTB }
+	#	completion_reward = {
+	#		log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+	#	}
+	#
+	#}
+
+	#focus = {
+	#cancelable = no
+	#	id = BRA_Observe_European_Fascism 
+	#	icon = GFX_GENERIC_Learn_from_Hitler
+	#	cost = 10
+	#	x = 22
+	#	y = 1
+	#	prerequisite = { focus = BRA_PRP }
+	#	mutually_exclusive = { focus = BRA_Moderate_the_Partyline }
+	#	completion_reward = {
+	#		log = "[GetDateText]: [Root.GetName]: Focus SPA_expand_rif_frontier"
+	#	}
+	#
+	#}

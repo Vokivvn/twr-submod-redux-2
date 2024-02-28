@@ -1,0 +1,1009 @@
+#####################
+##Coded by Spyeter###
+#####################
+
+shared_focus = {
+	id = CRO_Military_Coup
+	icon = GFX_CRO_Amnesty_For_The_Homeguard
+	cost = 5
+	x = 14
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Military_Coup"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		clr_country_flag = CRO_resistance_mechanic_enabled
+		news_event = { id = croatianews.24 }  
+		hidden_effect = {
+		109 = { #zagreb
+                remove_province_modifier = {
+                    static_modifiers = { terrain_zagreb }
+                    province = { id = 11581 }
+                }
+            	add_province_modifier = {
+                static_modifiers = { terrain_zagreb_free }
+                province = { id = 11581 }
+            }
+        }
+		remove_ideas = {
+		CRO_german_funding_for_supression 
+		CRO_german_funding_for_supression_1
+		CRO_italian_influence 
+		CRO_The_Demarcation_Line_idea 
+		CRO_Legacy_Of_The_Treaty_Of_Rome_idea 
+		CRO_Divided_Home_Guard_idea
+		}
+		add_ideas = {
+		CRO_Unstable_Government_idea
+		CRO_Ustashe_Resistance_idea
+		CRO_End_of_Monstrosity_idea
+		authoritarian_system
+				}
+		country_lock_all_division_template = no
+			}
+		        add_timed_idea = {
+			        idea = CRO_Political_Instability 
+			        days = 220
+		        }
+		}
+	}
+
+shared_focus = {
+	id = CRO_Purge_Old_Ministers
+	icon = GFX_GENERIC_Purge_Paper
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Military_Coup
+	prerequisite = {
+		focus = CRO_Military_Coup
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Purge_Old_Ministers"
+		add_timed_idea = {
+			idea = CRO_Purged_Government_idea
+			days = 150
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Root_Out_Ustashe_Sympathizers
+	icon = GFX_GENERIC_Political_Purge
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Military_Coup
+	prerequisite = {
+		focus = CRO_Military_Coup
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Root_Out_Ustashe_Sympathizers"
+		add_stability = 0.05
+		add_political_power = 30
+	}
+}
+
+shared_focus = {
+	id = CRO_The_Croatian_Cincinnatus
+	icon = GFX_CRO_The_Croatian_Cincinnatus
+	cost = 5
+	x = 1
+	y = 2
+	relative_position_id = CRO_Military_Coup
+	prerequisite = {
+		focus = CRO_Purge_Old_Ministers
+	}
+	prerequisite = {
+		focus = CRO_Root_Out_Ustashe_Sympathizers
+	}
+	mutually_exclusive = {
+		focus = CRO_Declare_State_Of_Emergency
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_The_Croatian_Cincinnatus"
+		country_event = { id = croatiamilitary.2 hours = 2 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Declare_State_Of_Emergency
+	icon = GFX_CRO_Declare_State_Of_Emergency
+	cost = 5
+	x = -1
+	y = 2
+	relative_position_id = CRO_Military_Coup
+	prerequisite = {
+		focus = CRO_Purge_Old_Ministers
+	}
+	prerequisite = {
+		focus = CRO_Root_Out_Ustashe_Sympathizers
+	}
+	mutually_exclusive = {
+		focus = CRO_The_Croatian_Cincinnatus
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Declare_State_Of_Emergency"
+		country_event = { id = croatiamilitary.3 hours = 3 }
+		hidden_effect = {
+			set_cosmetic_tag = CRO_Junta
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Secure_The_State
+	icon = GFX_CRO_The_New_State
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Declare_State_Of_Emergency
+	prerequisite = {
+		focus = CRO_Declare_State_Of_Emergency
+	}
+	allow_branch = {
+			has_completed_focus = CRO_Declare_State_Of_Emergency
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Secure_The_State"
+		country_event = { id = croatiamilitary.4 hours = 2 }
+		add_ideas = CRO_The_New_State_idea
+		add_ideas = CRO_Oruznistvo_idea 
+		IF = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			cro_create_intelligence_agency = yes
+		}	
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Purge_The_Ustase
+	icon = GFX_CRO_Disband_the_Ustashe
+	cost = 5
+	x = -3
+	y = 1
+	relative_position_id = CRO_Vokic_Secure_The_State
+	prerequisite = {
+		focus = CRO_Vokic_Secure_The_State
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Purge_The_Ustase"
+		remove_ideas = CRO_Ustashe_Resistance_idea
+		add_popularity = {
+			ideology = national_socialist
+			popularity = -1
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity =-1
+		}
+		add_stability = 0.05
+		every_unit_leader = {
+			limit = { 
+				has_trait = ustashe_general 
+			}
+			retire = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Root_Out_The_Partisans
+	icon = GFX_GENERIC_Anti_Com
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Vokic_Secure_The_State
+	prerequisite = {
+		focus = CRO_Vokic_Secure_The_State
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Root_Out_The_Partisans"
+		add_stability = 0.05
+		103 = { add_manpower = -1756 }
+		1016 = { add_manpower = -2068 }
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.10
+		}
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.10
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_End_Bosnian_Seperatism
+	icon = GFX_CRO_The_Bosnian_Uprising
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Vokic_Secure_The_State
+	prerequisite = {
+		focus = CRO_Vokic_Secure_The_State
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_End_Bosnian_Seperatism"
+		add_stability = 0.05
+		104 = { add_manpower = -569 }
+		981 = { add_manpower = -348 }
+		982 = { add_manpower = -879 }
+		hidden_effect = {
+		cro_remove_bosnia_modifiers = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Drive_Out_Chetniks
+	icon = GFX_SER_focus_absorb_chetniks
+	cost = 5
+	x = 3
+	y = 1
+	relative_position_id = CRO_Vokic_Secure_The_State
+	prerequisite = {
+		focus = CRO_Vokic_Secure_The_State
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Drive_Out_Chetniks"
+		add_stability = 0.05
+		981 = { add_manpower = -254 }
+		982 = { add_manpower = -165 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Deal_With_Democrats
+	icon = GFX_GENERIC_Talk_With_Democrats
+	cost = 5
+	x = -1
+	y = 2
+	relative_position_id = CRO_Vokic_Secure_The_State
+	prerequisite = {
+		focus = CRO_Vokic_Drive_Out_Chetniks
+	}
+	prerequisite = {
+		focus = CRO_Vokic_End_Bosnian_Seperatism
+	}
+	prerequisite = {
+		focus = CRO_Vokic_Root_Out_The_Partisans
+	}
+	prerequisite = {
+		focus = CRO_Vokic_Purge_The_Ustase
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Deal_With_Democrats"
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_End_Racial_Laws
+	icon = GFX_CRO_To_the_Cross
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Vokic_Deal_With_Democrats
+	prerequisite = {
+		focus = CRO_Vokic_Deal_With_Democrats
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_End_Racial_Laws"
+		add_stability = 0.15
+		add_political_power = 150
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Deal_With_Socialists
+	icon = GFX_GENERIC_Communist_Discourse
+	cost = 5
+	x = 1
+	y = 2
+	relative_position_id = CRO_Vokic_Secure_The_State
+	prerequisite = {
+		focus = CRO_Vokic_Drive_Out_Chetniks
+	}
+	prerequisite = {
+		focus = CRO_Vokic_End_Bosnian_Seperatism
+	}
+	prerequisite = {
+		focus = CRO_Vokic_Root_Out_The_Partisans
+	}
+	prerequisite = {
+		focus = CRO_Vokic_Purge_The_Ustase
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Deal_With_Socialists"
+		add_stability = 0.10
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.10
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Expand_Worker_Rights
+	icon = GFX_GENERIC_Workers_Paradise
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Vokic_Deal_With_Socialists
+	prerequisite = {
+		focus = CRO_Vokic_Deal_With_Socialists
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_End_Racial_Laws"
+		add_ideas = CRO_workers_rights_protected 
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_The_State_Secured
+	icon = GFX_CRO_Italian_Supervision
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Vokic_Expand_Worker_Rights
+	prerequisite = {
+		focus = CRO_Vokic_End_Racial_Laws
+	}
+	prerequisite = {
+		focus = CRO_Vokic_Expand_Worker_Rights
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_The_State_Secured"
+		swap_ideas = {
+			remove_idea = CRO_Unstable_Government_idea
+			add_idea = CRO_Unstable_Government_1_idea
+		}
+		swap_ideas = {
+			remove_idea = CRO_Martial_Law
+			add_idea = CRO_Martial_Law_1 
+		}
+		country_event = { hours = 2 id = twrcroatia.234 }  
+		add_state_core = 104  
+		add_state_core = 983   
+		add_state_core = 163  
+	 	add_state_core = 815   
+        add_state_core = 981
+        add_state_core = 982
+        add_state_core = 819
+        add_state_core = 813
+		IF = {
+			limit = {
+			45 = { is_owned_by = CRO }
+                                }
+           		add_state_core = 45
+	        } 
+		IF = {
+			limit = {
+			BOS = { is_subject_of = CRO }
+                                }
+           		annex_country = { target = BOS transfer_troops = yes }
+	        }
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Rebuild_the_Countryside
+	icon = GFX_GENERIC_Factory_Complex_Green
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Vokic_The_State_Secured
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Vokic_The_State_Secured
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Rebuild_the_Countryside"
+		163 = { add_extra_state_shared_building_slots = 1 }
+		983 = { add_extra_state_shared_building_slots = 1 }
+		1016 = { add_extra_state_shared_building_slots = 1 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Ease_Taxes_on_Our_Farmers
+	icon = GFX_SER_focus_farmer_battalions
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Vokic_The_State_Secured
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Vokic_The_State_Secured
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Ease_Taxes_on_Our_Farmers"
+		add_timed_idea = {
+			idea = CRO_Eased_Taxes_idea
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Blessings_From_the_Church
+	icon = GFX_GENERIC_Catholic_Government
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Vokic_The_State_Secured
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Vokic_The_State_Secured
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Blessings_From_the_Church"
+		country_event = {
+			id = twrcroatia.43
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Vokic_Croatian_Cultural_Golden_Age
+	icon = GFX_CRO_Golden_Age
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Vokic_The_State_Secured
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Vokic_Rebuild_the_Countryside
+	}
+	prerequisite = {
+		focus = CRO_Vokic_Ease_Taxes_on_Our_Farmers
+	}
+	prerequisite = {
+		focus = CRO_Vokic_Blessings_From_the_Church
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_Croatian_Cultural_Golden_Age"
+		add_ideas = CRO_Croatian_Cultural_Golden_Age_idea
+		unlock_decision_category_tooltip = Croatian_Culture_category
+		set_country_flag = cro_culture_decisions_flag
+                add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = CRO_To_Secure_Our_Borders
+	icon = GFX_CRO_Cast_Them_Away
+	cost = 5
+	x = 20
+	y = 0
+	available = {
+		has_completed_focus = CRO_The_Worst_is_Behind_Us
+		has_completed_focus = CRO_The_New_Military
+	}
+	allow_branch = {
+			has_completed_focus = CRO_Declare_State_Of_Emergency
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Vokic_The_State_Secured"
+			random_owned_state = {
+			add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+			}
+		}	
+			random_owned_state = {
+			add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+			}
+		}
+			random_owned_state = {
+			add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_The_Army_With_A_State
+	icon = GFX_CRO_The_Army_With_A_State
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_To_Secure_Our_Borders
+	prerequisite = {
+		focus = CRO_To_Secure_Our_Borders
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_The_Army_With_A_State"
+		custom_effect_tooltip = army_with_a_state_modifier_tt
+		hidden_effect = {
+		add_dynamic_modifier = { modifier = CRO_Army_With_A_State_Modifier }
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Fortify_The_Hungarian_Border
+	icon = GFX_CRO_The_Hungarian_Problem
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_The_Army_With_A_State
+	prerequisite = {
+		focus = CRO_The_Army_With_A_State
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Fortify_The_Hungarian_Border"
+		109 = {	
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 9611
+			}
+		}
+		109 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 11594
+			}
+		}
+		1030 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 3627
+			}
+		}
+		1030 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 6647
+			}
+		}
+	IF = {
+		limit = {
+			owns_state = 819
+			}
+			819 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 11580
+				}
+			}
+		}
+	IF = {
+		limit = {
+			owns_state = 45
+			}
+			45 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 9608
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 3623
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 9621
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Fortify_The_Italian_Border
+	icon = GFX_CRO_Greater_Autonomy
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_The_Army_With_A_State
+	prerequisite = {
+		focus = CRO_The_Army_With_A_State
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Fortify_The_Italian_Border"
+		103 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 6889
+		}
+		}
+		103 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 11816
+		}
+		}
+		103 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 3924
+		}
+		}
+		103 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 3974
+		}
+		}
+		103 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 984
+		}
+		}
+		1016 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 6611
+		}
+		}
+		1016 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 591
+		}
+		}
+		1016 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 3601
+		}
+		}
+		109 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 3592
+		}
+		}
+		983 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 11845
+		}
+		}
+		983 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 953
+		}
+		}
+		982 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 982
+		}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Fortify_The_Serbian_Border
+	icon = GFX_CRO_Croatian_Exceptionalism
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_The_Army_With_A_State
+	prerequisite = {
+		focus = CRO_The_Army_With_A_State
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Fortify_The_Serbian_Border"
+		982 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 11741
+		}	
+		}
+		982 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 606
+		}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Operation_Jelacic
+	icon = GFX_CRO_Operation_Jelacic
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Fortify_The_Hungarian_Border
+	prerequisite = {
+		focus = CRO_Fortify_The_Hungarian_Border
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Operation_Jelacic"
+		declare_war_on = {
+			target = HUN
+			type = annex_everything
+		}	
+	}
+}
+
+shared_focus = {
+	id = CRO_Operation_Italy
+	icon = GFX_ITA_stab_italy
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Fortify_The_Italian_Border
+	prerequisite = {
+		focus = CRO_Fortify_The_Italian_Border
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Operation_Italy"
+		country_event = { hours = 2 id = twrcroatia.233 }
+		declare_war_on = {
+			target = ITA
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Operation_Drina
+	icon = GFX_SER_focus_Lessons_from_the_Civil_War
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Fortify_The_Serbian_Border
+	prerequisite = {
+		focus = CRO_Fortify_The_Serbian_Border
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Operation_Drina"
+		declare_war_on = {
+			target = SER
+			type = annex_everything
+		}	
+	}
+}
+
+shared_focus = {
+	id = CRO_De_Magyarization
+	icon = GFX_CRO_De_Magyarization
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Operation_Jelacic
+	prerequisite = {
+		focus = CRO_Operation_Jelacic
+	}
+	available = {
+	owns_state = 819
+	owns_state = 45
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Condemn_Fascism"
+		HUN = { 		                
+				add_timed_idea = {
+			        idea = CRO_Refugees_From_Croatia 
+			        days = 700
+		                	}
+				}
+			every_state = {
+				limit = {
+					is_owned_by = CRO
+					is_core_of = CRO
+					is_core_of = HUN
+				}
+				remove_core_of = HUN
+			}		
+	}
+}
+
+shared_focus = {
+	id = CRO_De_Italianisation
+	icon = GFX_ITA_Promote_Italian_Education
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Operation_Italy
+	prerequisite = {
+		focus = CRO_Operation_Italy
+	}
+	available = {
+	owns_state = 163
+	owns_state = 813
+	owns_state = 815
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_De_Italianisation"
+		ITA = { 		                
+				add_timed_idea = {
+			        idea = CRO_Refugees_From_Croatia 
+			        days = 700
+		                	}
+				}
+                163 = { set_state_name = "Zadar" }
+                813 = { set_state_name = "Istra" }
+	        add_stability = -0.05	
+			every_state = {
+				limit = {
+					is_owned_by = CRO
+					is_core_of = CRO
+					is_core_of = ITA
+				}
+				remove_core_of = ITA
+			}		
+	}
+}
+
+shared_focus = {
+	id = CRO_The_Serbian_Problem
+	icon = GFX_SER_focus_Unified_Democratic_Government
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Operation_Drina
+	prerequisite = {
+		focus = CRO_Operation_Drina
+	}
+	available = {SER = { is_subject_of = CRO }}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Self_Reliance"
+		SER = { 		                
+				add_timed_idea = {
+			        idea = CRO_Refugees_From_Croatia 
+			        days = 700
+		                	}
+				}
+			every_state = {
+				limit = {
+					is_owned_by = CRO
+					is_core_of = CRO
+					is_core_of = SER
+				}
+				remove_core_of = SER
+			}		
+	}
+}
+
+shared_focus = {
+	id = CRO_Finally_Secure
+	icon = GFX_GENERIC_Our_Place_In_The_Sun
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Operation_Italy
+	prerequisite = {
+		focus = CRO_De_Magyarization
+	}
+	prerequisite = {
+		focus = CRO_De_Italianisation
+	}
+	prerequisite = {
+		focus = CRO_The_Serbian_Problem
+	}
+	available = {
+	SER = { is_subject_of = CRO }
+	owns_state = 819
+	owns_state = 45
+	owns_state = 163
+	owns_state = 813
+	owns_state = 815
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Finally_Secure"
+		country_event = { id = twr_cro_flavour.10 hours = 2 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Final_Victory
+	icon = GFX_CRO_The_Master_Race_Arrives
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Finally_Secure
+	prerequisite = {
+		focus = CRO_Finally_Secure
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Final_Victory"
+                custom_effect_tooltip = CRO_reunification_decision_tt
+                set_country_flag = CRO_Reunify_Croatia_decision_flag		
+	}
+}

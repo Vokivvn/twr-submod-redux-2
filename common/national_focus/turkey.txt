@@ -1,0 +1,811 @@
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_political_discord
+		icon = GFX_GENERIC_Democracy
+		cost = 7
+		x = 47
+		y = 0
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		add_political_power = 50
+		}
+	}	
+	
+	###FAR-RIGHT (PRO-NAZI) STUFF###
+	shared_focus = {
+	cancelable = no
+		id = TUR_nazi_missionaries
+		icon = GFX_GENERIC_Nazi_Propaganda
+		relative_position_id = TUR_political_discord
+		prerequisite = { focus = TUR_political_discord }
+		mutually_exclusive = { focus = TUR_meeting_with_the_accord }
+		cost = 7
+		x = 2
+		y = 1 
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		custom_effect_tooltip = TUR_discord_nazi
+		hidden_effect = {
+		swap_ideas = {
+		remove_idea = TUR_opposing_influences
+		add_idea = TUR_opposing_influences_nazi
+		}
+		}
+		}
+	}		
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_appealing_the_youth
+		icon = GFX_GENERIC_Officer_Army
+		relative_position_id = TUR_nazi_missionaries
+		prerequisite = { focus = TUR_nazi_missionaries }
+		cost = 7
+		x = 1
+		y = 1
+		available = {
+		national_socialist > 0.29
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		remove_idea = TUR_opposing_influences_nazi
+		add_idea = TUR_opposing_influences_nazi2
+		}		
+		add_manpower = 20000
+		}
+	}	
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_underground_communities
+		icon = GFX_GENERIC_Ultranationalism
+		relative_position_id = TUR_nazi_missionaries
+		prerequisite = { focus = TUR_nazi_missionaries }
+		cost = 7
+		x = -1
+		y = 1
+		available = {
+		national_socialist > 0.34 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		add_equipment_to_stockpile = {
+		type = infantry_equipment
+		amount = 1000
+		producer = TUR
+		}
+		add_popularity = { ideology=national_socialist popularity=0.05 }
+		add_stability = -0.03
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_operation_vindicator
+		icon = GFX_GENERIC_Execution
+		relative_position_id = TUR_underground_communities
+		prerequisite = { focus = TUR_appealing_the_youth }
+		prerequisite = { focus = TUR_underground_communities }
+		cost = 10
+		x = 1
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1 
+		}
+		completion_reward = {
+		custom_effect_tooltip = TUR_operation_vindicator_tooltip
+		hidden_effect = { country_event = { days = 2 id = twrturkey.3 } }
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_approach_germany
+		icon = GFX_GER_Diplomacy_Suitcase
+		relative_position_id = TUR_operation_vindicator
+		prerequisite = { focus = TUR_operation_vindicator }
+		cost = 7
+		x = 0
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1 
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1500
+			producer = GER
+			}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_menace_within
+		icon = GFX_GENERIC_minority_aimed_projects
+		relative_position_id = TUR_operation_vindicator
+		prerequisite = { focus = TUR_operation_vindicator }
+		cost = 10
+		x = -2
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1 
+		}
+		completion_reward = {
+		country_event = { id = twrturkey.6 days = 1 } 
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_cleanse_the_army
+		icon = GFX_GENERIC_Political_Purge
+		relative_position_id = TUR_operation_vindicator
+		prerequisite = { focus = TUR_operation_vindicator }
+		cost = 10
+		x = 2
+		y = 1
+		available = { 
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1 
+		}
+		completion_reward = {
+		country_event = twrturkey.5 
+		}
+	}	
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_devil_at_the_border
+		icon = GFX_TUR_Invade_Syria
+		relative_position_id = TUR_approach_germany
+		prerequisite = { focus = TUR_menace_within }
+		prerequisite = { focus = TUR_cleanse_the_army }
+		cost = 10
+		x = -1
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1 
+		}
+		completion_reward = {
+		create_wargoal = {
+		target = SYR
+		type = annex_everything
+		}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_matter_of_cyprus
+		icon = GFX_TUR_Cyprus
+		relative_position_id = TUR_approach_germany
+		prerequisite = { focus = TUR_menace_within }
+		prerequisite = { focus = TUR_cleanse_the_army }
+		cost = 10
+		x = 1
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1 
+		}
+		completion_reward = {
+		183 = {
+		owner = {
+		country_event = twrturkey.7 
+		}
+		}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_full_measure #BYE ASALA
+		icon = GFX_GENERIC_War_Hawk
+		relative_position_id = TUR_devil_at_the_border
+		prerequisite = { focus = TUR_devil_at_the_border focus = TUR_matter_of_cyprus }
+		cost = 10
+		x = 1
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1 
+		}
+		completion_reward = {
+		custom_effect_tooltip = TUR_full_security
+		hidden_effect = {
+		add_stability = -0.05
+		add_manpower = -25000
+		remove_ideas = TUR_ASALA_presence
+		}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_embracing_islam
+		icon = GFX_GENERIC_Islamic_Burning
+		relative_position_id = TUR_full_measure
+		prerequisite = { focus = TUR_full_measure }
+		cost = 10
+		x = 0
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1 
+		}
+		completion_reward = {
+		}
+	}
+
+	###DEMOCRATIC###
+	shared_focus = {
+	cancelable = no
+		id = TUR_meeting_with_the_accord
+		icon = GFX_TUR_TA_Meeting
+		relative_position_id = TUR_political_discord
+		prerequisite = { focus = TUR_political_discord }
+		mutually_exclusive = { focus = TUR_nazi_missionaries }
+		cost = 7 
+		x = -2
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		}
+	}	
+
+
+	### INDUSTRY ###
+	shared_focus = {
+	cancelable = no
+		id = TUR_retackling_matters_of_finance
+		icon = GFX_GENERIC_planned_economy
+		cost = 7
+		x = 32
+		y = 0
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		country_event=twrturkey.2
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_economic_centralization
+		icon = GFX_GENERIC_economic_prosperity
+		relative_position_id = TUR_retackling_matters_of_finance
+		prerequisite = { focus = TUR_retackling_matters_of_finance }
+		cost = 7
+		x = 0
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		add_idea = TUR_revise_economy2
+		remove_idea = TUR_revise_economy 
+		}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_enterprising_funds
+		icon = GFX_GENERIC_money
+		relative_position_id = TUR_economic_centralization
+		prerequisite = { focus = TUR_economic_centralization }
+		cost = 7
+		x = 0
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		add_idea = TUR_revise_economy3
+		remove_idea = TUR_revise_economy2
+		}		
+		}
+	}	
+	
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_free_market
+		icon = GFX_GER_global_industry
+		relative_position_id = TUR_enterprising_funds
+		prerequisite = { focus = TUR_enterprising_funds }
+		mutually_exclusive = { focus = TUR_kemalist_model }
+		cost = 10
+		x = -3
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		add_idea = TUR_revise_economy_dp
+		remove_idea = TUR_revise_economy3
+		}		
+		}
+	}		
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_little_america
+		icon = GFX_TUR_Little_America
+		relative_position_id = TUR_free_market
+		prerequisite = { focus = TUR_free_market }
+		cost = 7
+		x = -2
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		add_idea=TUR_revise_economy_dp2
+		remove_idea=TUR_revise_economy_dp
+		}
+		USA  ={
+		add_opinion_modifier = {
+		modifier = TUR_little_america_modifier
+		target = TUR
+		}
+		}
+		}
+	}	
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_connecting_the_cities
+		icon = GFX_goal_generic_construct_infrastructure
+		relative_position_id = TUR_free_market
+		prerequisite = { focus = TUR_free_market }
+		cost = 10
+		x = 2
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		341 = {
+		add_building_construction = {
+		type = infrastructure
+		level = 1
+		instant_build = yes
+		}
+		}		
+		339 = {
+		add_building_construction = {
+		type = infrastructure
+		level = 2
+		instant_build = yes
+		}
+		}
+		340 = {
+		add_building_construction = {
+		type = infrastructure
+		level = 1
+		instant_build = yes
+		}
+		}
+		49 = {
+		add_building_construction = {
+		type = infrastructure
+		level = 1
+		instant_build = yes
+		}
+		}
+		348 = {
+		add_building_construction = {
+		type = infrastructure
+		level = 1
+		instant_build = yes
+		}
+		}		
+		}
+	}	
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_develop_the_other_capital
+		icon = GFX_GENERIC_industry_ii
+		relative_position_id = TUR_little_america
+		prerequisite = { focus = TUR_connecting_the_cities }
+		cost = 10
+		x = 3
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		341 = {
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+		type = industrial_complex
+		level = 1
+		instant_build = yes
+		}
+		add_building_construction = {
+		type = arms_factory
+		level = 1
+		instant_build = yes
+		}		
+		}
+		}
+	}		
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_revolutionizing_infrastructure
+		icon = GFX_GENERIC_Infrastructure_Projects
+		relative_position_id = TUR_connecting_the_cities
+		prerequisite = { focus = TUR_little_america }
+		cost = 7
+		x = -3
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		add_idea=TUR_revise_economy_dp3
+		remove_idea=TUR_revise_economy_dp2
+		}
+		}
+	}	
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_widespread_of_civilization
+		icon = GFX_GENERIC_house
+		relative_position_id = TUR_revolutionizing_infrastructure
+		prerequisite = { focus = TUR_revolutionizing_infrastructure }
+		prerequisite = { focus = TUR_develop_the_other_capital }
+		cost = 10
+		x = 1
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		49 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		instant_build = yes
+		level = 1
+		}
+		}
+		344 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		instant_build = yes
+		level = 1
+		}
+		}		
+		354 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		instant_build = yes
+		level = 1
+		}
+		}			
+		}
+	}	
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_kemalist_model
+		icon = GFX_TUR_Kemalist_Economy
+		relative_position_id = TUR_enterprising_funds
+		prerequisite = { focus = TUR_enterprising_funds }
+		mutually_exclusive = { focus = TUR_free_market }
+		cost = 10
+		x = 3
+		y = 1
+		available = {
+		OR = {
+		NOT = { has_government = liberal }
+		NOT = { has_government = conservative }
+		}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		add_idea = TUR_revise_economy_chp
+		remove_idea = TUR_revise_economy3
+		}
+		}
+	}		
+	
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_encourage_the_farmer
+		icon = GFX_GENERIC_Strong_Farming
+		relative_position_id = TUR_kemalist_model
+		prerequisite = { focus = TUR_kemalist_model }
+		cost = 7
+		x = -2
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		add_idea = TUR_revise_economy_chp2
+		remove_idea = TUR_revise_economy_chp
+		}
+		}
+	}	
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_domestic_goods_week
+		icon = GFX_GENERIC_Tea_Farming
+		relative_position_id = TUR_kemalist_model
+		prerequisite = { focus = TUR_kemalist_model }
+		cost = 7
+		x = 2
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		add_timed_idea={idea=TUR_domestic_goods days=365}
+		}
+	}	
+	
+	shared_focus = {
+	cancelable = no
+		id = TUR_national_sef_reliance
+		icon = GFX_GENERIC_military_industry_produce
+		relative_position_id = TUR_encourage_the_farmer
+		prerequisite = { focus = TUR_encourage_the_farmer }
+		cost = 10
+		x = 1
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		339 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = { 
+		type = arms_factory
+		level = 1
+		instant_build = yes
+		}	
+		}
+		346 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = arms_factory
+		level = 1
+		instant_build = yes
+		}	
+		}		
+		}
+	}	
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_cultivating_the_east
+		icon = GFX_GENERIC_Construction_Engineering
+		relative_position_id = TUR_domestic_goods_week
+		prerequisite = { focus = TUR_domestic_goods_week }
+		cost = 10
+		x = -1
+		y = 1
+		available = {
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		344 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		level = 1
+		instant_build = yes
+		}	
+		}
+		350 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		level = 1
+		instant_build = yes
+		}	
+		}
+		352 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		level = 1
+		instant_build = yes
+		}	
+		}
+		353 = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+		type = industrial_complex
+		level = 1
+		instant_build = yes
+		}	
+		}		
+		}
+	}	
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_revitalization_of_industry
+		icon = GFX_GENERIC_central_industry
+		relative_position_id = TUR_cultivating_the_east
+		prerequisite = { focus = TUR_cultivating_the_east }
+		prerequisite = { focus = TUR_national_sef_reliance }
+		cost = 7
+		x = -1
+		y = 1
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		swap_ideas = {
+		add_idea = TUR_revise_economy_chp3
+		remove_idea = TUR_revise_economy_chp2
+		}
+		}
+	}	
+
+	shared_focus = {
+	cancelable = no
+		id = TUR_scientific_research_fund
+		icon = GFX_GENERIC_Research_Buff
+		relative_position_id = TUR_enterprising_funds
+		prerequisite = { focus = TUR_revitalization_of_industry focus = TUR_widespread_of_civilization }
+		cost = 10
+		x = 0
+		y = 5
+		available = {
+		 
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		add_research_slot = 1
+		add_tech_bonus = {
+		bonus = 0.5
+		uses = 1
+		category = industry
+		}
+		}
+	}
+	
+	
+	
+	
+
+
+
+	

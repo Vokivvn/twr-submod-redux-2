@@ -1,0 +1,420 @@
+add_namespace = twrgoebbels
+
+news_event = {
+	id = twrgoebbels.1 #Goebbels Announces Total War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.1"}
+	title = twrgoebbels.1.t
+	desc = twrgoebbels.1.d
+	picture = GFX_news_event_total_war_goebbels
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrgoebbels.1.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrgoebbels.1.b
+	}
+}
+news_event = {
+	id = twrgoebbels.6666 #Goebbels is dead
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.6666"}
+	title = twrgoebbels.6666.t
+	desc = twrgoebbels.6666.d
+	picture = GFX_news_event_goebbels_funeral
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrgoebbels.6666.a
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Emergency Council"
+			desc = ""
+			picture = "Temporary_Council.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				cabinet_crisis
+			}
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrgoebbels.6666.b
+	}
+}
+country_event = {
+	id = twrgoebbels.2 #speer position
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.2"}
+	title = twrgoebbels.2.t
+	desc = twrgoebbels.2.d
+	picture = GFX_report_event_hitler_museum
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrgoebbels.2.a #speer comes
+		add_ideas = GER_AM_Albert_Speer
+	}
+	option = {
+		name = twrgoebbels.2.b #speer assigned a nameless position
+		add_political_power = 100
+	}
+}
+country_event = {
+	id = twrgoebbels.3 #the goebbels census chain start
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.3"}
+	title = twrgoebbels.3.t
+	desc = twrgoebbels.3.d
+	picture = GFX_report_event_nazi_census
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.3.a #the goebbels census chain start
+		add_political_power = 50
+		hidden_effect = {
+		country_event = { id = twrgoebbels.11 days = 15 }
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.4 #honoary aryan abolished something about croatia too
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.4"}
+	title = twrgoebbels.4.t
+	desc = twrgoebbels.4.d
+	picture = GFX_report_event_bye_honoary_aryans
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.4.a #execute maurice
+		hidden_effect = {
+			set_country_flag = Emil_Maurice_unavailable
+			set_country_flag = CROATIA_HAS_JEWS
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.5 #the grand goal speech
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.5"}
+	title = twrgoebbels.5.t
+	desc = twrgoebbels.5.d
+	picture = GFX_report_event_nazi_census
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrgoebbels.5.a #the grand goal speech
+		add_political_power = 50
+	}
+}
+country_event = {
+	id = twrgoebbels.6 #the purge
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.6"}
+	title = twrgoebbels.6.t
+	desc = twrgoebbels.6.d
+	picture = GFX_report_event_bye_honoary_aryans
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.6.a #the grand goal speech
+		add_political_power = 150
+		custom_effect_tooltip = GOEBBELS_DRUM_UP_SUPPORT_FOR_TOTAL_WAR
+		hidden_effect = {
+			add_to_variable = {
+				var = totalwarsupport
+				value = 2
+			} 			
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.7 #animation expansion
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.7"}
+	title = twrgoebbels.7.t
+	desc = twrgoebbels.7.d
+	picture = GFX_report_event_dzf_gmbh
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrgoebbels.7.a #animations
+	}
+}
+country_event = {
+	id = twrgoebbels.8 #youth panzergrenadiers
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.8"}
+	title = twrgoebbels.8.t
+	desc = twrgoebbels.8.d
+	picture = GFX_report_event_nazi_child_panzers
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.8.a #animations
+		custom_effect_tooltip = YOUTH_GRENAIDERS_GOEBBELS
+		hidden_effect = {
+		division_template = {
+		name = "Jugend Panzergrenadier"
+		regiments = {
+		light_infantry = { x = 0 y = 0 }
+		light_infantry = { x = 0 y = 1 }
+		light_infantry = { x = 0 y = 2 }
+		light_infantry = { x = 1 y = 0 }
+		light_infantry = { x = 1 y = 1 }
+		light_infantry = { x = 1 y = 2 }
+		IFV = { x = 2 y = 0 }
+		IFV = { x = 2 y = 1 }
+		IFV = { x = 2 y = 2 }
+		APC = { x = 3 y = 0 }
+		APC = { x = 3 y = 1 }
+		APC = { x = 3 y = 2 }
+		}
+		support = {
+		recon = { x = 0 y = 0 }
+		engineer = { x = 0 y = 1 }
+		signal_company = { x = 0 y = 2 }
+		}
+		is_locked = yes
+			}
+			855 = {
+			create_unit = {
+    		division = "name = \"1. Jugend Panzergrenadier Division 'Leibstandarte Joseph Goebbels'\" division_template = \"Jugend Panzergrenadier\" start_experience_factor = 1.0 start_equipment_factor = 0.01"
+    		owner = GER
+				}
+			create_unit = {
+    		division = "name = \"6. Jugend Panzergrenadier Division 'Kleiner Löwe'\" division_template = \"Jugend Panzergrenadier\" start_experience_factor = 0.4 start_equipment_factor = 0.01"
+    		owner = GER
+				}
+			create_unit = {
+    		division = "name = \"15. Jugend Panzergrenadier Division 'Säule'\" division_template = \"Jugend Panzergrenadier\" start_experience_factor = 0.4 start_equipment_factor = 0.01"
+    		owner = GER
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.9 #youth
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.9"}
+	title = twrgoebbels.9.t
+	desc = twrgoebbels.9.d
+	picture = GFX_report_event_hitler_youth
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.9.a #yay
+		add_ideas = GER_goebbels_youth
+	}
+}
+country_event = {
+	id = twrgoebbels.10 #hitler godhood
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.10"}
+	title = twrgoebbels.10.t
+	desc = twrgoebbels.10.d
+	picture = GFX_report_event_hitler_museum
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.10.a #yay
+    	add_ideas = GER_praise_hitler
+		add_stability = 0.1
+		add_war_support = 0.1
+		add_political_power = 100
+	}
+}
+country_event = {
+	id = twrgoebbels.11 #national census ends
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.11"}
+	title = twrgoebbels.11.t
+	desc = twrgoebbels.11.d
+	picture = GFX_report_event_nazi_census
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.11.a #we wneed to do something bout this
+		add_political_power = 50
+		hidden_effect = {
+		activate_mission = GOEBBELS_auto_mission_1
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.12 #Ending diplomatic ties with Vatican
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.12"}
+	title = twrgoebbels.12.t
+	desc = twrgoebbels.12.d
+	picture = GFX_report_event_nazi_vatican_city
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.12.a #yeet
+		custom_effect_tooltip = VATICAN_POLICY_SET
+		hidden_effect = {
+		set_country_flag = VATICAN_MUST_DIE
+		if = {
+		limit = {
+			ITA = {
+			has_completed_focus = ITA_New_Concordat_With_The_Vatican
+				} 
+			}
+			ITA = {
+			country_event = { id = twrgoebbels.13 days = 2 }
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.13 #Vatican threatened by Germany
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.13"}
+	title = twrgoebbels.13.t
+	desc = twrgoebbels.13.d
+	picture = GFX_report_event_nazi_vatican_city
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.13.a #Let the eagle sleep
+		ai_chance = {
+		factor = 50
+		}
+		add_political_power = 5
+		custom_effect_tooltip = ita_increase_unrest_mainland_tt
+		hidden_effect = {
+		add_to_variable = { ita_var_domestic_opposition = 0.02 }
+		}
+	}
+	option = {
+		name = twrgoebbels.13.b #We must react and protect the Vatican
+		ai_chance = {
+		factor = 20
+		}
+		add_political_power = -50
+		add_war_support = 0.1
+		GER = {
+		country_event = { id = twrgoebbels.14 days = 2 }
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.14 #Italian Statement
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.14"}
+	title = twrgoebbels.14.t
+	desc = twrgoebbels.14.d
+	picture = GFX_report_event_nazi_vatican_city
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.14.a #we will remember this
+		add_political_power = -50
+		custom_effect_tooltip = NAZI_ITALIAN_BEEF_GOEBBELS
+		hidden_effect = {
+		set_country_flag = ITA_Insulted
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.15 #Church torched and general chaos
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.15"}
+	title = twrgoebbels.15.t
+	desc = twrgoebbels.15.d
+	picture = GFX_report_event_torched_catholic_church
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.15.a #It is worth it
+		add_political_power = 150
+	}
+}
+news_event = {
+	id = twrgoebbels.16 #The War Starts NEED LOC
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.16"}
+	title = twrgoebbels.16.t
+	desc = twrgoebbels.16.d
+	picture = GFX_news_event_goebbels_declare_war
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrgoebbels.16.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrgoebbels.16.b
+	}
+}
+country_event = {
+	id = twrgoebbels.1515 #test osteuropa
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.1515"}
+	title = twrgoebbels.1515.t
+	desc = twrgoebbels.1515.d
+	picture = GFX_report_event_torched_catholic_church
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.1515.a #It is worth it
+		GER_create_RK_ost = yes
+	}
+}
+news_event = {#Breaking the Reichskonkordat
+	id = twrgoebbels.121
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.121"}
+	title = twrgoebbels.121.t
+	desc = twrgoebbels.121.d
+	picture = GFX_news_event_Reichskonkordat
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrgoebbels.121.a
+		trigger = {
+			is_german = yes
+		}
+	}
+	option = {
+		name = twrgoebbels.121.b
+		trigger = {
+			NOT = {
+			is_german = yes
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgoebbels.17 #Flavor Event, essentially entails a reformed officer corps/high command
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgoebbels.17"}
+	title = twrgoebbels.17.t
+	desc = twrgoebbels.17.d
+	picture = GFX_report_event_german_high_command
+	is_triggered_only = yes
+
+	option = {
+		name = twrgoebbels.17.a
+		add_ideas = {
+			GER_reformed_officer_corps
+		}
+	}
+}

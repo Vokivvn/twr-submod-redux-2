@@ -1,0 +1,131 @@
+shared_focus = {
+	id = CRO_Poglavnik_Lorkovic
+	icon = GFX_CRO_Poglavnik_Lorkovic
+	cost = 5
+	x = 14
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Poglavnik_Lorkovic"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		
+          }
+   }
+
+   shared_focus = {
+	id = CRO_Alliance_With_The_Homeguard
+	icon = GFX_CRO_Formalise_the_Duumvirate
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Poglavnik_Lorkovic
+	prerequisite = {
+		focus = CRO_Poglavnik_Lorkovic
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Alliance_With_The_Homeguard"
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.10
+		}		
+          }
+   }
+
+    shared_focus = {
+	id = CRO_Alliance_With_The_HSS
+	icon = GFX_CRO_An_Uneasy_Alliance
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Poglavnik_Lorkovic
+	prerequisite = {
+		focus = CRO_Poglavnik_Lorkovic
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Alliance_With_The_HSS"
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.10
+		}		
+          }
+   }
+
+    shared_focus = {
+	id = CRO_Confirm_The_Coalition
+	icon = GFX_CRO_Confirm_The_Coalition
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Poglavnik_Lorkovic
+	prerequisite = {
+		focus = CRO_Alliance_With_The_Homeguard
+	}
+	prerequisite = {
+		focus = CRO_Alliance_With_The_HSS
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Confirm_The_Coalition"
+        add_stability = 0.1
+    		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.10
+		}
+    		add_popularity = {
+			ideology = conservative
+			popularity = 0.10
+		}
+        }
+   }
+
+    shared_focus = {
+	id = CRO_Overthrow_The_Ustashe
+	icon = GFX_CRO_Disband_the_Ustashe
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Confirm_The_Coalition
+	prerequisite = {
+		focus = CRO_Confirm_The_Coalition
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Confirm_The_Coalition"
+		load_focus_tree = CRO_HSS_Tree
+		complete_national_focus = CRO_HSS_The_Peasants_Plot		
+        hidden_effect = {
+                retire_ideology_leader = national_socialist
+			create_country_leader = {
+				name = "Power Vacuum"
+				#desc = ""
+				#picture = ""
+				expire = "1965.1.1"
+				ideology = national_socialism
+			}
+		set_politics = {
+			ruling_party = paternal_autocrat
+			last_election = "1935.6.9"
+			election_frequency = 12
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.51
+		}
+                add_ideas = {
+                CRO_MoS_Ante_Vokic 
+                CRO_FM_Vjekoslav_Vrancic 
+                CRO_AM_Lovro_Susic 
+                }
+		remove_ideas = {
+		CRO_german_funding_for_supression 
+		CRO_german_funding_for_supression_1
+		CRO_italian_influence 
+		CRO_The_Demarcation_Line_idea 
+		CRO_Legacy_Of_The_Treaty_Of_Rome_idea 
+		}
+          }
+        }
+   }

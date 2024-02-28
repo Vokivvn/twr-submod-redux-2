@@ -1,0 +1,185 @@
+RUS_Ivanomika_cat = {
+	icon = eng_concessions_to_the_trade_unions
+	picture = GFX_decision_cat_ivanomika_boys
+	priority = {
+		base = 11
+	}
+	available = {
+		#tag = 
+	}
+	visible = {
+		has_country_flag = RUS_Ivanomika_decisions_flag
+	}
+}
+
+RUS_Russo_Chinese_Mongolia_cat = {
+	icon = pawn
+	priority = {
+		base = 11
+	}
+	available = {
+		#tag = 
+	}
+	visible = {
+		has_country_flag = RUS_invade_mongolia_decision_flag
+	}
+}
+
+##############################
+## SIBERIAN WAR STUFF BELOW ##
+##############################
+internal_control_decisions = {
+    icon = pawn
+	priority = {
+        base = 1
+		modifier = {
+			add = 3
+			has_idea = RUS_Siberian_War_idea
+		}
+    }
+    available = { 
+		tag = RUS
+    }
+	visible = {
+		has_country_flag = fighting_siberian_war
+	}
+}
+retreat_to_sakhalin_decisions = {
+    icon = generic_crisis
+	picture = GFX_decision_cat_retreat_russia
+	priority = {
+        base = 10
+    }
+    available = { 
+		tag = RUS
+    }
+	visible = {
+		OR = {
+			#has_idea = RUS_the_great_retreat
+			#has_completed_focus = RUS_fortress_sakhalin
+		}
+	}
+}
+soviet_border_diplomacy_decisions = {
+    icon = russian_soviet_border
+	priority = {
+        base = 4
+    }
+    available = { 
+		tag = RUS
+    }
+	visible = {
+		#has_completed_focus = RUS_the_soviet_border
+	}
+}
+
+russian_reconquest = { #to nylon with love
+    icon = generic_foreign_policy
+    picture = GFX_decision_cat_soviet
+	priority = {
+        base = 10
+    }
+	visible = {
+		has_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+	}
+}
+
+NOV_russian_reconquest = { # west russian reconquest decision, copy and tweaked soviet one (also given to russian republic)
+    icon = generic_foreign_policy
+    picture = GFX_decision_cat_soviet
+	priority = {
+        base = 10
+    }
+    available = {
+    	OR = {
+    		tag = NOV
+    		tag = RUS
+    	}
+    }
+	visible = {
+		#has_country_flag = NOV_WESTERN_RUSSIA_UNIFICATION
+	}
+}
+
+
+##############################
+## REINTEGRATE RUSSIA STUFF ##
+##############################
+
+russian_integration_decisions = {
+    icon = pawn
+	priority = {
+        base = 1
+    }
+    allowed = { 
+    OR = {
+		tag = RUS
+		tag = KCS
+	    }
+    }
+	visible = {
+		has_country_flag = CENTRAL_RUSSIA_REUNIFICATION
+	}
+}
+
+russia_reconquering = {
+    icon = pawn
+	priority = {
+        base = 1
+    }
+    allowed = {
+    	NOT = {
+    		tag = RFP
+    	}
+    }
+	visible = {
+		has_country_flag = WEST_RUSSIA_REUNIFICATION
+		NOT = {
+		has_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+		}
+	}
+}
+
+russia_park_initative = {
+    icon = pawn
+	priority = {
+        base = 1
+    }
+    picture = GFX_decision_cat_russia_parks
+    available = { 
+		tag = RUS
+		NOT = {
+			has_government = paternal_autocrat
+		}
+    }
+	visible = {
+		has_country_flag = russia_reconquer
+	}
+}
+
+
+
+russia_reunification = {
+	icon = pawn
+	priority = {
+		base = 1
+	}
+	visible = {
+		has_country_flag = reconquering_russia
+	}
+}
+
+# Duma
+RUS_duma = {
+	allowed = {
+		original_tag = RUS
+	}
+
+	visible = {
+		has_country_flag = RUS_duma_enabled
+	}
+
+	visible_when_empty = yes
+	scripted_gui = RUS_duma
+	priority = 2000
+}

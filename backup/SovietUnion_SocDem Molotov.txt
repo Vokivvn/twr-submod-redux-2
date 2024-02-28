@@ -1,0 +1,278 @@
+focus_tree = { 
+id = soc_dem_union_molotov
+country = {
+		factor = 0
+	}
+	default = no 
+
+
+focus = {
+	cancelable = no 
+id = SOV_socdem_ivanov
+icon = GFX_SOV_ivanov
+x = 12
+y = 4
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_appointapresident } 
+mutually_exclusive = { focus = SOV_thenewwomanvigdorova }  
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_socdem_ivanov"
+		create_country_leader = {
+			name = "Fyodor Ivanov"
+			desc = ""
+			picture = "Fyodor_Ivanov.dds"
+			expire = "1975.1.1"
+			ideology = zhukovist_democracy
+			traits = {}
+		}
+		load_focus_tree = soc_dem_union_ivanov
+		
+		}
+ } 
+
+
+focus = {
+	cancelable = no 
+id = SOV_thenewwomanvigdorova
+icon = GFX_SOV_vigdorova
+x = 10
+y = 4
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_immediateelections focus = SOV_appointapresident } 
+mutually_exclusive = { focus = SOV_socdem_ivanov } 
+mutually_exclusive = { focus = SOV_theyoungmanorlov }
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_thenewwomanvigdorova"
+		create_country_leader = {
+			name = "Frida Vigdorova"
+			desc = ""
+			picture = "Vigdorova.dds"
+			expire = "1975.1.1"
+			ideology = soviet_democracy
+			traits = {}
+		}
+		load_focus_tree = soc_dem_union_vigdorova
+		}
+ } 
+
+
+focus = {
+	cancelable = no 
+id = SOV_truefreedomornot
+icon = GFX_SOV_Molotov
+x = 10
+y = 0
+cost = 10
+available_if_capitulated = yes 
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_truefreedomornot"
+			add_political_power = 100
+			add_stability = -0.05
+		}
+ } 
+
+
+focus = {
+	cancelable = no 
+id = SOV_restalinization
+icon = GFX_SOV_restalinization
+x = 9
+y = 1
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_truefreedomornot } 
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_restalinization"
+			add_political_power = -100
+			add_stability = -0.05
+		}
+ }
+ 
+
+focus = {
+	cancelable = no 
+id = SOV_handlelooseends
+icon = GFX_focus_prc_infiltration
+x = 11
+y = 1
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_truefreedomornot } 
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_handlelooseends"
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.025
+			}
+			add_political_power = -50
+			add_stability = -0.05
+		}
+ } 
+
+
+focus = {
+	cancelable = no 
+id = SOV_stalinistdemocracy
+icon = GFX_focus_YUG_pan_slavic_congress
+x = 7
+y = 1
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_truefreedomornot } 
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_stalinistdemocracy"
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.025
+			}
+			add_stability = -0.05
+		}
+ } 
+
+
+focus = {
+	cancelable = no 
+id = SOV_handlethereformistmilitary
+icon = GFX_GENERIC_death_officer
+x = 13
+y = 1
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_truefreedomornot } 
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_handlethereformistmilitary"
+			add_political_power = -100
+			add_stability = -0.1
+		}
+ } 
+
+
+focus = {
+	cancelable = no 
+id = SOV_rokossovskyassumescontrol
+icon = GFX_SOV_rokossovsky
+x = 10
+y = 2
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_handlethereformistmilitary } 
+prerequisite = { focus = SOV_stalinistdemocracy } 
+prerequisite = { focus = SOV_restalinization } 
+prerequisite = { focus = SOV_handlelooseends } 
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_rokossovskyassumescontrol"
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Konstantin Rokossovsky"
+			desc = ""
+			picture = "Rokossovsky.dds"
+			expire = "1975.1.1"
+			ideology = soviet_democracy
+			traits = {}
+		}
+		add_stability = 0.1
+		}
+ } 
+
+
+focus = {
+	cancelable = no 
+id = SOV_immediateelections
+icon = GFX_focus_generic_soviet_politics
+x = 9
+y = 3
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_rokossovskyassumescontrol } 
+mutually_exclusive = { focus = SOV_appointapresident } 
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_immediateelections"
+			country_event = sovpowerstruggle.13
+			add_political_power = 100
+			add_stability = 0.05
+		}
+ } 
+
+
+focus = {
+	cancelable = no 
+id = SOV_theyoungmanorlov
+icon = GFX_SOV_orlov
+x = 8
+y = 4
+cost = 10
+available_if_capitulated = yes 
+prerequisite = { focus = SOV_immediateelections } 
+mutually_exclusive = { focus = SOV_thenewwomanvigdorova }  
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_theyoungmanorlov"
+		create_country_leader = {
+			name = "Yuri Orlov"
+			desc = ""
+			picture = "Orlov.dds"
+			expire = "1975.1.1"
+			ideology = soviet_democracy
+			traits = {}
+		}
+		
+				load_focus_tree = soc_dem_union_orlov
+
+		}
+ }
+ 
+
+focus = {
+	cancelable = no 
+id = SOV_appointapresident
+icon = GFX_GENERIC_massive_army
+x = 11
+y = 3
+cost = 10
+available_if_capitulated = yes 
+available = {
+	has_political_power > 100
+}
+prerequisite = { focus = SOV_rokossovskyassumescontrol } 
+mutually_exclusive = { focus = SOV_immediateelections } 
+ai_will_do = { 
+ factor = 1
+ } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_appointapresident"
+			add_political_power = -100
+		}
+ }
+}
+ 

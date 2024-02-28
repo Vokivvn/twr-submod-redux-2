@@ -1,0 +1,437 @@
+focus_tree = {
+	id = TWR_Altai_tree
+	country = {
+		factor = 0
+		
+	}
+	default = no
+	
+ 	continuous_focus_position = { x = 50 y = -1000 }  
+	
+	focus = {
+	cancelable = no
+		id = TAN_reform_the_militia
+		icon = GFX_TAN_reform_militia
+		mutually_exclusive = { focus = TAN_expand_the_militia }
+		x = 4
+		y = 5
+		cost = 8
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_reform_the_militia"
+			add_political_power = -100
+			set_division_template_lock = {
+				division_template = "Strelkovaya Polk"
+				is_locked = no
+			}
+			set_division_template_lock = {
+				division_template = "Binarnyy Strelkovaya Polk"
+				is_locked = no
+			}
+			set_division_template_lock = {
+				division_template = "Tankovaya Polk"
+				is_locked = no
+			}
+			army_experience = 50
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_expand_the_militia
+		icon = GFX_TAN_expand_militia
+		mutually_exclusive = { focus = TAN_reform_the_militia }
+		x = 4
+		y = 0
+		cost = 8
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		relative_position_id = TAN_reform_the_militia
+		ai_will_do = {
+		    factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_expand_the_militia"
+			set_division_template_lock = {
+				division_template = "Strelkovaya Polk"
+				is_locked = no
+			}
+			set_division_template_lock = {
+				division_template = "Binarnyy Strelkovaya Polk"
+				is_locked = no
+			}
+			set_division_template_lock = {
+				division_template = "Tankovaya Polk"
+				is_locked = no
+			}
+			#killcohesion
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_adopt_agressive_tactics
+		icon = GFX_SOV_Mechanized_Wave
+		prerequisite = { focus = TAN_reform_the_militia }
+		x = 0
+		y = 1
+		cost = 8
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		relative_position_id = TAN_reform_the_militia
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_adopt_agressive_tactics"
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.5
+					uses = 1
+					category = land_doctrine
+				}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_altai_red_army
+		icon = GFX_SOV_Human_Wave
+		prerequisite = { focus = TAN_expand_the_militia }
+		x = 0
+		y = 1
+		cost = 8
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		relative_position_id = TAN_expand_the_militia
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_altai_red_army"
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.5
+					uses = 1
+					category = land_doctrine
+				}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_master_metal_sheet_manufacturing
+		icon = GFX_GENERIC_military_industry_produce
+		prerequisite = { focus = TAN_expand_the_militia focus = TAN_reform_the_militia }
+		x = -2
+		y = 1
+		cost = 8
+		relative_position_id = TAN_expand_the_militia
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_master_metal_sheet_manufacturing"
+			#add gun production bonus
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_purchase_kalashnikovs_rifle
+		icon = GFX_SOV_kalashnikov_rifle
+		prerequisite = { focus = TAN_master_metal_sheet_manufacturing }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_master_metal_sheet_manufacturing
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_purchase_kalashnikovs_rifle"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 200
+				producer = SOV
+			}
+			add_tech_bonus = {
+				name = rifle_bonus
+				bonus = 0.8
+				uses = 1
+				technology = infantry_weapons_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_kuzbass_tank_production
+		icon = GFX_focus_generic_tank_production
+		prerequisite = { focus = TAN_adopt_agressive_tactics }
+		x = -2
+		y = 1
+		cost = 8
+		relative_position_id = TAN_adopt_agressive_tactics
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_kuzbass_tank_production"
+			#add tank production
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_integrate_federal_police
+		icon = GFX_GENERIC_mobilize_police
+		prerequisite = { focus = TAN_adopt_agressive_tactics }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_adopt_agressive_tactics
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_integrate_federal_police"
+			#bettercohesion
+			#add military police research
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_improve_militia_c_et_c
+		icon = GFX_GENERIC_Drafted_Army
+		prerequisite = { focus = TAN_altai_red_army }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_altai_red_army
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_improve_militia_c_et_c"
+			#add command power idea
+			#add reserach bonus signal company
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_modernizing_artillery
+		icon = GFX_GENERIC_artillery
+		prerequisite = { focus = TAN_altai_red_army }
+		x = 2
+		y = 1
+		cost = 8
+		relative_position_id = TAN_altai_red_army
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_modernizing_artillery"
+			#add artillery bonus
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_domestic_designs
+		icon = GFX_SOV_T55
+		prerequisite = { focus = TAN_kuzbass_tank_production }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_kuzbass_tank_production
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_domestic_designs"
+			#add tank design bonus
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_doctrine_of_fast_victory
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = TAN_integrate_federal_police }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_integrate_federal_police
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_doctrine_of_fast_victory"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_infantry_squad_r_et_d
+		icon = GFX_GENERIC_Air_Assault_Units
+		prerequisite = { focus = TAN_purchase_kalashnikovs_rifle }
+		x = 0
+		y = 2
+		cost = 8
+		relative_position_id = TAN_master_metal_sheet_manufacturing
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_infantry_squad_r_et_d"
+			add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 0.4
+				uses = 2
+				category = infantry_weapons
+				category = light_air
+				category = infantry_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_doctrine_of_deterrence
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = TAN_improve_militia_c_et_c }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_improve_militia_c_et_c
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_doctrine_of_deterrence"
+			add_ideas = deterrence
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_raise_the_tuvan_legion
+		icon = GFX_PRC_War_of_National_Liberation
+		prerequisite = { focus = TAN_modernizing_artillery }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_modernizing_artillery
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_raise_the_tuvan_legion"
+			#add tuvan legion
+			add_manpower = 50000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_tuvan_drill
+		icon = GFX_TAN_tuvan_drill
+		prerequisite = { focus = TAN_doctrine_of_fast_victory }
+		prerequisite = { focus = TAN_domestic_designs focus = TAN_infantry_squad_r_et_d }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_doctrine_of_fast_victory
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_tuvan_drill"
+			#add tuvan drill idea
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_total_defense
+		icon = GFX_SOV_Red_Army
+		prerequisite = { focus = TAN_doctrine_of_deterrence }
+		prerequisite = { focus = TAN_raise_the_tuvan_legion focus = TAN_infantry_squad_r_et_d }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = TAN_doctrine_of_deterrence
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_total_defense"
+			#add total defense idea
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_toka_must_go
+		icon = GFX_TAN_toka_must_go
+		mutually_exclusive = { focus = TAN_consolidate_power_in_kyzyl }
+		x = 4
+		y = 0
+		cost = 8
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 2
+			#a modifier = {
+			#	add = -2
+			#	#federation cohesion
+			#}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_toka_must_go"
+			kill_country_leader = yes
+		}
+	}
+	focus = {
+	cancelable = no
+		id = TAN_consolidate_power_in_kyzyl
+		icon = GFX_CAN_Quebec_Special_Status
+		mutually_exclusive = { focus = TAN_toka_must_go }
+		x = 3
+		y = 0
+		cost = 8
+		relative_position_id = TAN_toka_must_go
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TAN_consolidate_power_in_kyzyl"
+			add_stability = 0.1
+		}
+	}
+	
+}

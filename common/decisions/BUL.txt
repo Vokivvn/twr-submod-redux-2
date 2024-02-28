@@ -1,0 +1,1572 @@
+#########################################################################
+#  Bulgarian Decisions
+#########################################################################
+BUL_diplomatic_actions = {
+	defending_our_democracy = {
+
+		icon = generic_nationalism
+
+		available = {
+			has_war = yes
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		visible = {
+			original_tag = BUL
+			OR = {
+				has_government = liberal
+				has_government = social_democrat
+				has_government = conservative
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision defending_our_democracy"
+			add_manpower = 50000
+			add_war_support = 0.25
+		}
+	}
+	ask_to_join_german_faction = {
+
+		icon = generic_nationalism
+
+		available = {
+			is_subject = no
+			is_puppet = no
+			NOT = {
+			has_global_flag = german_civil_war_started
+			}
+			855 = {
+			owner = {
+			is_fascist = yes
+			has_war = no
+			is_faction_leader = yes
+				}
+			}
+		}
+
+		cost = 80
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+			original_tag = BUL
+			has_completed_focus = BUL_A_New_Order_Arises1
+			is_in_faction = no
+			855 = {
+			owner = {
+			is_fascist = yes
+			has_war = no
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ask_to_join_german_faction"
+			855 = {
+			owner = {
+				country_event = bulgaria.33
+				}
+			}
+		}
+	}
+	ask_to_join_italian_faction = {
+
+		icon = generic_nationalism
+
+		available = {
+			ITA = { 
+				is_faction_leader = yes 
+				has_government = fascist
+			}
+			is_subject = no
+			is_puppet = no
+		}
+
+		cost = 80
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+			original_tag = BUL
+			has_completed_focus = BUL_The_Bulgarian_Il_Duce 
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ask_to_join_italian_faction"
+			ITA = {
+				country_event = bulgaria.33
+			}
+		}
+	}
+	bulgaria_first = {
+
+		icon = generic_nationalism
+
+		available = {
+		}
+
+		cost = 80
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+			original_tag = BUL
+			has_completed_focus = BUL_Time_for_Politics1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision bulgaria_first"
+			add_ideas = BUL_bulgaria_first
+		}
+	}
+	retake_macedonia = {
+
+		icon = generic_operation
+
+		available = {
+			country_exists = MCD
+			NOT = {
+				owns_state = 980
+			}
+			NOT = {
+				owns_state = 106
+			}
+			has_war = no
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+			original_tag = BUL
+			country_exists = MCD
+			is_subject = no
+			NOT = {
+			is_in_faction_with = MCD
+			has_war_with = MCD
+			}
+		}
+
+		war_with_on_complete = MCD
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision retake_macedonia"
+			create_wargoal = {
+			    type = annex_everything
+			    target = MCD
+			}
+		}
+	}
+	invade_romania = {
+
+		icon = generic_operation
+
+		available = {
+			country_exists = ROM
+			has_war = no
+			NOT = {
+				has_global_flag = BULGARIA_ALREADY_FOUGHT_ROMANIA
+			}
+			is_subject = no
+			is_puppet = no
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+				factor = 1000
+			}
+		}
+
+		visible = {
+			original_tag = BUL
+			country_exists = ROM
+			has_idea = BUL_offensive_preparations
+			is_subject = no
+			NOT = {
+				is_in_faction_with = ROM
+				has_war_with = ROM
+			}
+		}
+		war_with_on_complete = ROM
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision retake_macedonia"
+			create_wargoal = {
+			    type = annex_everything
+			    target = ROM
+			}
+		}
+	}
+	invade_serbia = {
+
+		icon = generic_operation
+
+		available = {
+			country_exists = SER
+			has_war = no
+			is_subject = no
+			is_puppet = no
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+			country_exists = SER
+			has_idea = BUL_offensive_preparations
+			is_subject = no
+			NOT = {
+			is_in_faction_with = SER
+			has_war_with = SER
+			}
+		}
+		war_with_on_complete = SER
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision retake_macedonia"
+			create_wargoal = {
+			    type = annex_everything
+			    target = SER
+			}
+		}
+	}
+	invade_greece = {
+
+		icon = generic_operation
+
+		available = {
+			country_exists = GRE
+			has_war = no
+			is_subject = no
+			is_puppet = no
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+				factor = 1000
+			}
+		}
+
+		visible = {
+			original_tag = BUL
+			country_exists = GRE
+			has_idea = BUL_offensive_preparations
+			is_subject = no
+			NOT = {
+				is_in_faction_with = GRE
+				has_war_with = GRE
+			}
+		}
+		war_with_on_complete = GRE
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision retake_macedonia"
+			create_wargoal = {
+			    type = annex_everything
+			    target = GRE
+			}
+		}
+	}
+	prepare_defence = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			OR = {
+				threat > 0.4
+				has_war = yes
+			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_BEGIN_DEFENSIVE_PREP
+			add_command_power = -40
+			hidden_effect = {
+				set_country_flag = BUL_preparing_defences
+			}
+        }
+        ai_will_do = {
+			factor = 50
+			modifier = {
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+				factor = 0
+			}
+		}
+	}
+	prepare_defence_countdown = {
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = BUL_preparing_defences
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 60
+		complete_effect = {
+        }
+        timeout_effect = {
+        	add_ideas = BUL_defensive_preparations
+		}
+	}
+	prepare_offence = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_operation
+		available = {
+			threat > 0.4
+			has_completed_focus = BUL_Lukov_Prevails
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_BEGIN_OFFENSIVE_PREP
+			add_command_power = -30
+			hidden_effect = {
+				set_country_flag = BUL_preparing_offence
+			}
+        }
+        ai_will_do = {
+			factor = 25
+			modifier = {
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+				factor = 1000
+			}
+		}
+	}
+	prepare_offence_countdown = {
+		icon = generic_operation
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = BUL_preparing_offence
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 100
+		complete_effect = {
+        }
+        timeout_effect = {
+        	add_ideas = BUL_offensive_preparations
+		}
+	}
+	upgrade_forts_thrace = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			owns_state = 48
+			owns_state = 1009
+			controls_state = 48
+			controls_state = 1009
+			NOT = {
+				has_country_flag = BUL_building_forts
+			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_START_BUILDING_THRACE_FORTS
+			hidden_effect = {
+				set_country_flag = BUL_thrace_forts
+			}
+			set_country_flag = BUL_building_forts
+			add_timed_idea = {
+			    idea = BUL_building_forts
+			    days = 100
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	upgrade_forts_thrace_countdown = {
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = BUL_thrace_forts
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 100
+		complete_effect = {
+        }
+        timeout_effect = {
+        	clr_country_flag = BUL_building_forts
+        	48 = {
+	        	add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 6857
+				}
+			}
+			1009 = {
+	        	add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = {
+				        all_provinces = yes
+				        limit_to_border = yes
+				    }
+				}
+			}
+		}
+	}
+	upgrade_forts_east = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			owns_state = 48
+			owns_state = 979
+			controls_state = 48
+			controls_state = 979
+			NOT = {
+				has_country_flag = BUL_building_forts
+			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_START_BUILDING_EAST_FORTS
+			hidden_effect = {
+				set_country_flag = BUL_east_forts
+			}
+			set_country_flag = BUL_building_forts
+			add_timed_idea = {
+			    idea = BUL_building_forts
+			    days = 100
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	upgrade_forts_east_countdown = {
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = BUL_east_forts
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 100
+		complete_effect = {
+        }
+        timeout_effect = {
+        	clr_country_flag = BUL_building_forts
+        	48 = {
+	        	add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 9771
+				}
+			}
+			979 = {
+	        	add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = {
+				        all_provinces = yes
+				        limit_to_border = yes
+				    }
+				}
+			}
+		}
+	}
+	upgrade_forts_north = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			owns_state = 77
+			controls_state = 77
+			NOT = {
+				has_country_flag = BUL_building_forts
+			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_START_BUILDING_NORTH_FORTS
+			hidden_effect = {
+				set_country_flag = BUL_north_forts
+			}
+			set_country_flag = BUL_building_forts
+			add_timed_idea = {
+			    idea = BUL_building_forts
+			    days = 100
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	upgrade_forts_north_countdown = {
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = BUL_north_forts
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 100
+		complete_effect = {
+        }
+        timeout_effect = {
+        	clr_country_flag = BUL_building_forts
+			77 = {
+	        	add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = {
+				        all_provinces = yes
+				        limit_to_border = yes
+				    }
+				}
+			}
+		}
+	}
+	join_the_UN = {
+		cost = 10
+		fire_only_once = yes
+		icon = UN
+		available = {
+			has_war = no
+		}
+		visible = {
+			OR = {
+				country_exists = PGR
+				DDR = {
+					exists = yes
+					has_war = no
+					owns_state = 855
+				}
+			}
+			NOT = {
+				has_government = fascist
+			}
+			NOT = {
+				has_government = national_socialist
+			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_JOIN_UN
+			add_stability = 0.1
+			TWR_add_to_un = yes
+        }
+        ai_will_do = {
+			factor = 50
+		}
+	}
+	join_the_TA = {
+		cost = 10
+		fire_only_once = yes
+		icon = generic_nationalism
+		available = {
+			has_war = no
+			date > 1958.01.01
+		}
+		visible = {
+			is_subject = no
+			is_puppet = no
+			NOT = {
+				is_in_faction_with = USA
+			}
+			OR = {
+				country_exists = PGR
+				DDR = {
+					exists = yes
+					has_war = no
+					owns_state = 855
+				}
+			}
+			OR = {
+				has_government = liberal
+				has_government = social_democrat
+				has_government = conservative
+			}
+			NOT = {
+				any_owned_state = {
+					is_core_of = SER
+					is_core_of = GRE
+				}
+			}
+		}
+		complete_effect = {
+			USA = {
+				country_event = { id = bulgaria.45 days = 1 }
+			}
+        }
+        ai_will_do = {
+			factor = 50
+		}
+	}
+	ask_for_TA_help = {
+		cost = 10
+		fire_only_once = yes
+		icon = generic_nationalism
+		available = {
+		}
+		visible = {
+			OR = {
+				has_government = liberal
+				has_government = social_democrat
+				has_government = conservative
+			}
+			has_war = yes
+			NOT = {
+				is_in_faction_with = USA
+			}
+		}
+		complete_effect = {
+			USA = {
+				country_event = { id = bulgaria.48 days = 1 }
+			}
+        }
+        ai_will_do = {
+			factor = 50
+		}
+	}
+}
+
+BUL_crisis_actions = {
+	ask_germany_for_debt_relief = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+			original_tag = BUL
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ask_germany_for_debt_relief"
+			GER = {
+				country_event = { id = bulgaria.34 days = 1 }
+			}
+		}
+	}
+	ask_italy_for_debt_relief = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+			original_tag = BUL
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ask_italy_for_debt_relief"
+			ITA = {
+				country_event = { id = bulgaria.37 days = 1 }
+			}
+		}
+	}
+	crackdown_on_opposition = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		visible = {
+			original_tag = BUL
+			date > 1952.05.01
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision crackdown_on_opposition"
+			add_manpower = -1000
+			add_popularity = {
+			    ideology = paternal_autocrat
+			    popularity = -0.03
+			}
+			add_to_variable = {
+				var = BUL_var_fascist_support
+				value = 10
+			}
+			add_to_variable = {
+				var = BUL_var_monarchist_support
+				value = -10
+			}
+			custom_effect_tooltip = fascist_support_add_10
+			clamp_BUL_politics_variables = yes
+		}
+	}
+	propaganda_campaign = {
+
+		icon = eng_propaganda_campaigns
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		visible = {
+			original_tag = BUL
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision propaganda_campaign"
+			add_popularity = {
+			    ideology = fascist
+			    popularity = 0.03
+			}
+			add_to_variable = {
+				var = BUL_var_fascist_support
+				value = 5
+			}
+			add_to_variable = {
+				var = BUL_var_monarchist_support
+				value = -5
+			}
+			custom_effect_tooltip = fascist_support_add_5
+			clamp_BUL_politics_variables = yes
+		}
+	}
+	enforce_curfew = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		visible = {
+			original_tag = BUL
+			date > 1952.05.25
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision crackdown_on_opposition"
+			add_stability = 0.05
+			add_to_variable = {
+				var = BUL_var_fascist_support
+				value = -10
+			}
+			add_to_variable = {
+				var = BUL_var_monarchist_support
+				value = 10
+			}
+			custom_effect_tooltip = monarchist_support_add_10
+			clamp_BUL_politics_variables = yes
+		}
+	}
+}
+
+BUL_communist_actions = {
+	defending_the_revolution = {
+
+		icon = generic_nationalism
+
+		available = {
+			has_war = yes
+			surrender_progress > 0.1
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		visible = {
+			original_tag = BLC
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision defending_the_revolution"
+			add_manpower = 50000
+			add_war_support = 0.25
+		}
+	}
+	BUL_five_year_plan = {
+
+		icon = generic_construction
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		visible = {
+			original_tag = BLC
+			OR = {
+				has_completed_focus = BLC_Bashev_Stalinism
+				has_completed_focus = BLC_Todorov_Kalininism
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision 5_year_plan"
+			country_event = blcbulgaria.6
+		}
+	}
+	purge_the_party = {
+
+		icon = oppression
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		visible = {
+			original_tag = BLC
+			has_completed_focus = BLC_Bashev_Stalinism
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision purge_the_party"
+			add_stability = 0.2
+			add_command_power = -100
+			add_war_support = -0.05
+		}
+	}
+	fully_collectivise_agriculture = {
+
+		icon = oppression
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		visible = {
+			original_tag = BLC
+			has_completed_focus = BLC_Bashev_Stalinism
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision collectivise_agriculture"
+			add_stability = 0.1
+			add_war_support = -0.03
+			add_manpower = -5000
+			add_timed_idea = {
+			    idea = BLC_collectivising_agriculture
+			    days = 200
+			}
+		}
+	}
+	infrastructural_improvements = {
+
+		icon = oppression
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		visible = {
+			original_tag = BLC
+			has_completed_focus = BLC_Todorov_Kalininism
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision infrastructural_improvements"
+			add_ideas = BLC_infrastructure_improvement
+		}
+	}
+	democratise_the_workplace = {
+
+		icon = oppression
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		visible = {
+			original_tag = BLC
+			has_completed_focus = BLC_Peeva_Council_Communism
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision democratise_the_workplace"
+			add_ideas = facade_democracy
+			add_war_support = 0.15
+		}
+	}
+	BLC_retake_macedonia = {
+
+		icon = generic_operation
+
+		available = {
+			country_exists = MCD
+			NOT = {
+				owns_state = 980
+			}
+			NOT = {
+				owns_state = 106
+			}
+			has_war = no
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		visible = {
+			original_tag = BLC
+			country_exists = MCD
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BLC_retake_macedonia"
+			create_wargoal = {
+			    type = annex_everything
+			    target = MCD
+			}
+		}
+	}
+	BLC_prepare_offence = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_operation
+		available = {
+			has_war = no
+			has_army_manpower = {
+   				size > 200000
+   			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_BEGIN_OFFENSIVE_PREP
+			add_command_power = -30
+			hidden_effect = {
+				set_country_flag = BLC_preparing_offence
+			}
+        }
+        ai_will_do = {
+			factor = 50
+		}
+	}
+	BLC_prepare_offence_countdown = {
+		icon = generic_operation
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = BLC_preparing_offence
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 100
+		complete_effect = {
+        }
+        timeout_effect = {
+        	add_ideas = BUL_offensive_preparations
+		}
+	}
+	BLC_invade_romania = {
+
+		icon = generic_operation
+
+		available = {
+			country_exists = ROM
+			has_war = no
+			NOT = {
+				ROM = { has_government = socialist }
+			}
+			NOT = {
+				ROM = { has_government = bolshevik_leninist }
+			}
+			NOT = {
+				ROM = { has_government = marxist_leninist }
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		visible = {
+			original_tag = BLC
+			country_exists = ROM
+			has_idea = BUL_offensive_preparations
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision retake_macedonia"
+			create_wargoal = {
+			    type = annex_everything
+			    target = ROM
+			}
+		}
+	}
+	BLC_invade_serbia = {
+
+		icon = generic_operation
+
+		available = {
+			country_exists = SER
+			has_war = no
+			NOT = {
+				SER = { has_government = socialist }
+			}
+			NOT = {
+				SER = { has_government = bolshevik_leninist }
+			}
+			NOT = {
+				SER = { has_government = marxist_leninist }
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		visible = {
+			original_tag = BLC
+			country_exists = SER
+			has_idea = BUL_offensive_preparations
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision retake_macedonia"
+			create_wargoal = {
+			    type = annex_everything
+			    target = SER
+			}
+		}
+	}
+	BLC_invade_greece = {
+
+		icon = generic_operation
+
+		available = {
+			country_exists = GRE
+			has_war = no
+			NOT = {
+				GRE = { has_government = socialist }
+			}
+			NOT = {
+				GRE = { has_government = bolshevik_leninist }
+			}
+			NOT = {
+				GRE = { has_government = marxist_leninist }
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		visible = {
+			original_tag = BLC
+			country_exists = GRE
+			has_idea = BUL_offensive_preparations
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision retake_macedonia"
+			create_wargoal = {
+			    type = annex_everything
+			    target = GRE
+			}
+		}
+	}
+}
+
+BUL_democratic_actions = {
+	agricultural_subsidies = {
+
+		icon = generic_decision
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+			has_country_flag = agrarian_union_won
+		}
+
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision agricultural_subsidies"
+			add_timed_idea = {
+			    idea = BUL_agricultural_subsidies
+			    days = 180
+			}
+		}
+	}
+	industrial_subsidies = {
+
+		icon = generic_decision
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+		}
+
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision agricultural_subsidies"
+			add_timed_idea = {
+			    idea = BUL_industrial_subsidies
+			    days = 180
+			}
+		}
+	}
+	protectionist_policies = {
+
+		icon = generic_decision
+
+		available = {
+			NOT = {
+				has_idea = BUL_open_economy
+			}
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+			OR = {
+				has_country_flag = agrarian_union_won
+				has_country_flag = socdems_won
+				has_country_flag = socialists_won
+			}
+		}
+
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision agricultural_subsidies"
+			add_timed_idea = {
+			    idea = BUL_protectionism
+			    days = 180
+			}
+			add_ideas = limited_exports
+		}
+	}
+	open_economy_policies = {
+
+		icon = generic_decision
+
+		available = {
+			NOT = {
+				has_idea = BUL_protectionism
+			}
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+			OR = {
+				has_country_flag = liberals_won
+				has_country_flag = socdems_won
+			}
+		}
+
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision agricultural_subsidies"
+			add_timed_idea = {
+			    idea = BUL_open_economy
+			    days = 180
+			}
+			add_ideas = free_trade
+		}
+	}
+	lay_foundations_for_welfare_system = {
+
+		icon = generic_decision
+
+		available = {
+		}
+
+		cost = 120
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+			OR = {
+				has_country_flag = socdems_won
+				has_country_flag = socialists_won
+			}
+		}
+
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision lay_foundations_for_welfare_system"
+			add_ideas = BUL_basic_welfare
+		}
+	}
+	upgrading_railways = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_BEGIN_RAILWAYS
+			hidden_effect = {
+				set_country_flag = BUL_upgrading_railways
+			}
+        }
+        ai_will_do = {
+			factor = 50
+		}
+	}
+	upgrading_railways_countdown = {
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = BUL_upgrading_railways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 200
+		complete_effect = {
+        }
+        timeout_effect = {
+        	set_country_flag = railways_upgraded_once
+        	build_railway = {
+				level = 1
+				path = { 949 3971 3952 3819 6842 9769 949 9783 }
+			}
+			if = {
+				limit = {
+					owns_state = 184
+				}
+				build_railway = {
+					level = 1
+					path = { 949 3908 3937 6923 9862 11905 }
+				}
+				else = {
+					build_railway = {
+						level = 1
+						path = { 949 3908 3937 6923 9862 }
+					}
+				}
+			}
+		}
+	}
+	upgrading_railways_2 = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_war = no
+		}
+		visible = {
+			has_country_flag = railways_upgraded_once
+		}
+		complete_effect = {
+			custom_effect_tooltip = BUL_BEGIN_RAILWAYS
+			hidden_effect = {
+				set_country_flag = BUL_upgrading_railways_2
+			}
+        }
+        ai_will_do = {
+			factor = 50
+		}
+	}
+	upgrading_railways_countdown_2 = {
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = BUL_upgrading_railways_2
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 200
+		complete_effect = {
+        }
+        timeout_effect = {
+        	build_railway = {
+				level = 1
+				path = { 949 3971 3952 3819 6842 9769 949 9783 }
+			}
+			if = {
+				limit = {
+					owns_state = 184
+				}
+				build_railway = {
+					level = 1
+					path = { 949 3908 3937 6923 9862 11905 }
+				}
+				else = {
+					build_railway = {
+						level = 1
+						path = { 949 3908 3937 6923 9862 }
+					}
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 106
+				}
+				build_railway = {
+					level = 1
+					path = { 949 935 907 3882 }
+				}
+			}
+		}
+	}
+	war_readiness_act = {
+
+		icon = generic_decision
+
+		available = {
+			threat > 0.4
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+			threat > 0.4
+		}
+
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision war_readiness_act"
+			add_ideas = BUL_increased_military_readiness
+		}
+	}
+	finish_land_reform = {
+
+		icon = generic_decision
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+			OR = {
+				has_country_flag = socdems_won
+				has_country_flag = socialists_won
+				has_country_flag = agrarian_union_won
+			}
+		}
+
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision finish_land_reform"
+			add_ideas = BUL_land_reformed
+		}
+	}
+	encourage_foreign_investment = {
+
+		icon = generic_decision
+
+		available = {
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			original_tag = BUL
+			has_country_flag = liberals_won
+		}
+
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision encourage_foreign_investment"
+			add_ideas = BUL_encouraging_foreign_investment
+			add_offsite_building = { type = industrial_complex level = 1 }
+			country_event = { id = bulgaria.44 days = 100 }
+		}
+	}
+}

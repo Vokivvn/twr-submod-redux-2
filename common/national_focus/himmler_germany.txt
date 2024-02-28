@@ -1,0 +1,2180 @@
+	focus_tree = {
+	id = himmler_germany
+	country = {
+		factor = 0
+	}
+	default = no
+	continuous_focus_position = { x = 50 y = -1000 }
+	focus = {
+	cancelable = no
+		id = HSS_Trust_In_Himmler
+		icon = GFX_GER_himmler
+		cost = 8.00
+		x = 4
+		y = 0
+
+		bypass = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Trust_In_Himmler"
+			custom_effect_tooltip = GER_himmler_bypass_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Won_At_What_Cost
+		icon = GFX_GER_SS_Skull
+		cost = 8.00
+		x = 10
+		y = 0
+		bypass = {
+		NOT = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+				}
+			}
+		}
+
+		available = {
+		NOT = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Won_At_What_Cost"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_SS_Economy
+		icon = GFX_SS_nuclear_tophat
+		cost = 8.00
+		x = 20
+		y = 0
+		available = {
+		NOT = {
+		has_idea = GER_grand_power_struggles
+		}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_SS_Economy"
+			add_tech_bonus = {
+				name = HSS_The_SS_Economy
+				bonus = 0.5
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_SS_Army
+		text = GER_Introduce_SS_Kampfgruppe
+		icon = GFX_SS_Raiders
+		cost = 8.00
+		x = 34
+		y = 0
+		available = {
+		NOT = {
+		has_idea = GER_grand_power_struggles
+		}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_SS_Army"
+			add_war_support = 0.10
+			add_command_power = 25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_Great_Leader
+		icon = GFX_GER_Volkshalle
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Trust_In_Himmler
+		}
+		x = 4
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_Great_Leader"
+			add_country_leader_trait = dictator
+			add_stability = 0.05
+			hidden_effect = {
+			every_owned_state = {
+			set_demilitarized_zone = no
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Direct_Command
+		icon = GFX_HSS_Himmler_Command
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_Great_Leader
+		}
+		x = 1
+		y = 2
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Direct_Command"
+			create_field_marshal = {
+				name = "Heinrich Himmler"
+				picture = "Henrich_Himmler.dds"
+				traits = { politically_connected media_personality }
+				id = 666666
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Trust_In_Heydrich
+		icon = GFX_GER_Trusting_Heydrich
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_Great_Leader
+		}
+		mutually_exclusive = {
+			focus = HSS_Jealousy_Blinds
+		}
+		x = 3
+		y = 2
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Trust_In_Heydrich"
+			add_stability = 0.05
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -2500
+				producer = GER
+			}
+			add_opinion_modifier = {
+				target = RGO
+				modifier = GER_himmler_trusts_heydrich
+			}
+			RGO = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GER_himmler_trusts_heydrich
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 2500
+					producer = GER
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Jealousy_Blinds
+		icon = GFX_GER_Kill_Heydrich
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_Great_Leader
+		}
+		mutually_exclusive = {
+			focus = HSS_Trust_In_Heydrich
+		}
+		x = 5
+		y = 2
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Jealousy_Blinds"
+			RGO = {
+				country_event = { id = twrhimmler.2 days = 10 }
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Supervise_All_Germans
+		icon = GFX_HSS_Supervise_All_Germans
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Trust_In_Heydrich
+			focus = HSS_Jealousy_Blinds
+		}
+		x = 4
+		y = 3
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Supervise_All_Germans"
+			unlock_decision_category_tooltip = himmler_project
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Central_Registery
+		icon = GFX_HSS_Central_Registery
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Supervise_All_Germans
+		}
+		x = 2
+		y = 4
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Central_Registery"
+			add_ideas = GER_central_registery
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Nation_Of_Fear
+		icon = GFX_GENERIC_Spy
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Supervise_All_Germans
+		}
+		x = 4
+		y = 4
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Nation_Of_Fear"
+			custom_effect_tooltip = GER_fear_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Deutsche_Abteilung #Destroying Factionalism
+		icon = GFX_GER_himmler_vision
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Nation_Of_Fear
+		}
+		x = 3
+		y = 5
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Deutsche_Abteilung"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+			remove_ideas = GER_grand_power_struggles
+			country_event = twrhimmler.3
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Central_Listening_Post
+		icon = GFX_GENERIC_spying_on_nazis
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Nation_Of_Fear
+		}
+		x = 5
+		y = 5
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Central_Listening_Post"
+			add_ideas = GER_central_listening_post
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Thought_Crimes
+		icon = GFX_GER_Thought_Crime
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Central_Listening_Post
+		}
+		x = 5
+		y = 6
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Thought_Crimes"
+			country_event = { id = twrhimmler.6 days = 2 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Ban_Books
+		icon = GFX_GER_Ban_Books
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Thought_Crimes
+		}
+		x = 5
+		y = 7
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Ban_Books"
+			country_event = { id = twrhimmler.1 days = 3 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Ahnenerbe_Expansions
+		icon = GFX_HSS_Ahnenerbe
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Ban_Books
+		}
+		x = 5
+		y = 8
+
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Ahnenerbe_Expansions"
+			add_research_slot = 1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Summon_Heydrich
+		icon = GFX_GER_Blonde_Beast
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Won_At_What_Cost
+		}
+		mutually_exclusive = {
+			focus = HSS_Hans_Lammers_Stay
+		}
+		x = 8
+		y = 1
+		available = {
+			has_country_leader = {
+				name = "Reinhard Heydrich"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Reinhard Heydrich"
+				ruling_only = yes
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Summon_Heydrich"
+			custom_effect_tooltip = GER_heydrich_bypass_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Security_The_Priority
+		icon = GFX_SS_Stands_Alone
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Summon_Heydrich
+		}
+		x = 8
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Security_The_Priority"
+			add_stability = 0.10
+			add_ideas = GER_security_above_all
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Enemies_from_Within
+		icon = GFX_GER_SS_Courts
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Security_The_Priority
+		}
+		x = 8
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Enemies_from_Within"
+			remove_ideas = GER_grand_power_struggles
+			country_event = twrheydrichhh.2
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Gotenland_Intergrated
+		icon = GFX_RGO_Germania_Gotenland
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Enemies_from_Within
+		}
+		mutually_exclusive = {
+			focus = HSS_Loyal_Gotenland
+		}
+		x = 7
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Gotenland_Intergrated"
+			RGO = {
+				every_unit_leader = { set_nationality = HSS }
+				every_state = {
+					limit = { is_core_of = PREV }
+					add_core_of = ROOT
+				}
+			}
+			annex_country = { target = RGO transfer_troops = yes }
+			news_event = twrheydrichnews.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Loyal_Gotenland
+		icon = GFX_RGO_Fotress_Gotenland
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Enemies_from_Within
+		}
+		mutually_exclusive = {
+			focus = HSS_Gotenland_Intergrated
+		}
+		x = 9
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Loyal_Gotenland"
+			add_stability = 0.05
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -2500
+				producer = HSS
+			}
+			add_opinion_modifier = {
+				target = RGO
+				modifier = GER_loyal_gotenland
+			}
+			RGO = {
+			create_country_leader = {
+			name = "Adolf Eichmann"
+			desc = "Adolf_Eichmann_DESC"
+			picture = "Adolf_Eichmann.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			}
+
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GER_loyal_gotenland
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 2500
+					producer = HSS
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Protector_Of_Germans
+		icon = GFX_GER_Aryan_Question
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Gotenland_Intergrated
+			focus = HSS_Loyal_Gotenland
+		}
+		x = 8
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Protector_Of_Germans"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+			add_country_leader_trait = protector_of_the_germans
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Leader_Commands #Brutal Efficiency
+		icon = GFX_GER_Totalen_Kreig
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Protector_Of_Germans
+		}
+		x = 7
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Leader_Commands"
+			add_stability = 0.15
+			add_war_support = 0.15
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Einsatzgruppen
+		icon = GFX_SS_Raiders
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Protector_Of_Germans
+		}
+		x = 9
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Einsatzgruppen"
+			custom_effect_tooltip = GER_heydrich_death_squad_units_tt
+			hidden_effect = {
+				division_template = {
+					name = "Einsatzgruppen Heydrich"
+					priority = 2
+					division_names_group = GER_Inf_01
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+					}
+				}
+				855 = {
+					create_unit = {
+						division = "name = \"Einsatzgruppe I\" division_template = \"Einsatzgruppen Himmler\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Einsatzgruppe II\" division_template = \"Einsatzgruppen Himmler\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Einsatzgruppe III\" division_template = \"Einsatzgruppen Himmler\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Einsatzgruppe IV\" division_template = \"Einsatzgruppen Himmler\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Einsatzgruppe V\" division_template = \"Einsatzgruppen Himmler\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Playground
+		icon = GFX_GER_ss_police_state
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Leader_Commands
+		}
+		prerequisite = {
+			focus = HSS_Einsatzgruppen
+		}
+		x = 8
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Playground"
+			add_stability = 0.05
+			add_political_power = 75
+			country_event = { id = twrheydrichhh.3 days = 10 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_Book
+		icon = GFX_GER_The_Black_Book
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Playground
+		}
+		x = 9
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_Book"
+			country_event = { id = twrheydrichhh.1 days = 3 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Hans_Lammers_Stay
+		icon = GFX_GER_Hans_Lammers
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Won_At_What_Cost
+		}
+		mutually_exclusive = {
+			focus = HSS_Summon_Heydrich
+		}
+		x = 12
+		y = 1
+		available = {
+			has_country_leader = {
+				name = "Hans Lammers"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Hans Lammers"
+				ruling_only = yes
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Hans_Lammers_Stay"
+			custom_effect_tooltip = GER_lammers_bypass_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Committee_of_Three
+		icon = GFX_SS_Administration
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Hans_Lammers_Stay
+		}
+		x = 0
+		y = 1
+		relative_position_id = HSS_Hans_Lammers_Stay
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Committee_of_Three"
+			add_political_power = 100
+			country_event = twrlammers.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Rehabilitate_Our_Enemies
+		icon = GFX_GENERIC_Nazi_Propaganda
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Committee_of_Three
+		}
+		x = 0
+		y = 2
+		relative_position_id = HSS_Hans_Lammers_Stay
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Rehabilitate_Our_Enemies"
+			set_country_flag = HSS_Rehabbed_Enemies
+			custom_effect_tooltip = GER_cooperating_with_other_factions_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Return_of_the_Wehrmacht
+		icon = GFX_GENERIC_German_Soldiers2
+		cost = 5.00
+		prerequisite = {
+			focus = HSS_Rehabilitate_Our_Enemies
+		}
+		x = -1
+		y = 3
+		relative_position_id = HSS_Hans_Lammers_Stay
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Return_of_the_Wehrmacht"
+			remove_ideas = GER_SS_leaders
+			army_experience = 50
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Sideline_Extreme_Elements
+		icon = GFX_GENERIC_Purge_Paper
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Rehabilitate_Our_Enemies
+		}
+		x = 1
+		y = 3
+		relative_position_id = HSS_Hans_Lammers_Stay
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Sideline_Extreme_Elements"
+			add_stability = 0.1
+			add_political_power = -75
+			remove_ideas = GER_military_youth
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Restore_the_NSDAP
+		icon = GFX_GER_NSDAP_Focus
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Sideline_Extreme_Elements
+		}
+		prerequisite = {
+			focus = HSS_Return_of_the_Wehrmacht
+		}
+		x = 0
+		y = 4
+		relative_position_id = HSS_Hans_Lammers_Stay
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Restore_the_NSDAP"
+			set_party_name = {
+				ideology = national_socialist
+				long_name = GER_national_socialist_party_long
+				name = GER_national_socialist_party
+			}
+			news_event = twrlammersnews.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Status_Quo_With_Schutzstaffel_Bias
+		icon = GFX_HSS_Strengthen_the_SS
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Restore_the_NSDAP
+		}
+		x = 0
+		y = 5
+		relative_position_id = HSS_Hans_Lammers_Stay
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Status_Quo_With_Schutzstaffel_Bias"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+			remove_ideas = GER_grand_power_struggles
+			add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Slave_Economy
+		icon = GFX_GER_slaves
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_SS_Economy
+		}
+		x = 17
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Slave_Economy"
+			add_ideas = GER_ss_slave_labor
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Accquire_Workers
+		icon = GFX_GENERIC_workers
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Slave_Economy
+		}
+		x = 15
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Accquire_Workers"
+			add_manpower = 10000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Greater_Germany
+		icon = GFX_GER_Germany_Once_More
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Accquire_Workers
+		}
+		x = 15
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Greater_Germany"
+			add_war_support = 0.15
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_For_The_Bomb
+		icon = GFX_SS_Nuclear
+		cost = 15.00
+		prerequisite = {
+			focus = HSS_Greater_Germany
+		}
+		x = 15
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_For_The_Bomb"
+			add_tech_bonus = {
+				name = HSS_For_The_Bomb
+				bonus = 1.0
+				uses = 1
+				category = nuclear
+			}
+			56 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+    		type = nuclear_reactor
+    		level = 1
+    		instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Factory_Polen
+		icon = GFX_GENERIC_Death_Factory
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Slave_Economy
+		}
+		x = 17
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Factory_Polen"
+			10 = {
+			add_manpower = -5000
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+    		type = arms_factory
+    		level = 1
+    		instant_build = yes
+				}
+			add_building_construction = {
+    		type = industrial_complex
+    		level = 1
+    		instant_build = yes
+				}
+			}
+			88 = {
+			add_manpower = -5000
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+    		type = arms_factory
+    		level = 1
+    		instant_build = yes
+				}
+			add_building_construction = {
+    		type = industrial_complex
+    		level = 1
+    		instant_build = yes
+				}			
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Force_Labour
+		icon = GFX_GER_ger_labour
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_SS_Economy
+		}
+		x = 19
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Force_Labour"
+			custom_effect_tooltip = MANDATORY_VOLUNTEER_FACTORY_WORK_DECISIONS
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS-WVHA
+		icon = GFX_GENERIC_arms_industry
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Force_Labour
+		}
+		x = 19
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS-WVHA"
+			add_offsite_building = { type = arms_factory level = 1 }
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_political_power = -50
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_With_The_Credits
+		icon = GFX_GER_nationalize_credit
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Factory_Polen
+			focus = HSS_SS-WVHA
+		}
+		mutually_exclusive = {
+			focus = HSS_Traditional_Economy
+		}
+		x = 17
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_With_The_Credits"
+			add_ideas = GER_SS_Credits_System
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Traditional_Economy
+		icon = GFX_GENERIC_ignored_economy
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS-WVHA
+			focus = HSS_Factory_Polen
+		}
+		available = {
+		NOT = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+				}		
+			}
+		}
+		mutually_exclusive = {
+			focus = HSS_With_The_Credits
+		}
+		x = 19
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Traditional_Economy"
+			add_ideas = tot_economic_mobilisation
+			add_political_power = 200
+			add_war_support = 0.15
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_War_Economy
+		icon = GFX_GER_A_Tiger_Tank
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Traditional_Economy
+		}
+		x = 19
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_War_Economy"
+			random_owned_state = {
+			limit = { is_capital = yes }
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+    		type = arms_factory
+    		level = 2
+    		instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Forced_Industry
+		icon = GFX_GER_bussiness_as_usual
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_War_Economy
+		}
+		x = 19
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Forced_Industry"
+			add_ideas = GER_work_culture_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Ideological_Economics
+		icon = GFX_GER_End_Of_The_Civil_War
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_SS_Economy
+		}
+		x = 21
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Ideological_Economics"
+			add_ideas = closed_economy
+			add_resource = {
+    		type = oil
+    		amount = 15
+    		state = 64
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_NatSoc_Industry
+		icon = GFX_GER_Reichsbank
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Ideological_Economics
+		}
+		x = 21
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_NatSoc_Industry"
+			add_offsite_building = { type = arms_factory level = 2 }
+
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Oversights
+		icon = GFX_GER_ss_officers
+		cost = 10.00
+		prerequisite = {
+			focus = HSS_The_SS_Economy
+		}
+		x = 23
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Oversights"
+			add_research_slot = 1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Controls_Economy
+		icon = GFX_GER_ss_carrot
+		cost = 3.00
+		prerequisite = {
+			focus = HSS_SS_Oversights
+		}
+		x = 23
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Controls_Economy"
+			add_political_power = 50
+			add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Himmlers_Crackdown
+		icon = GFX_ENG_ensure_public_support
+		cost = 8.00
+		available = {
+			has_country_leader = {
+				name = "Heinrich Himmler"
+				ruling_only = yes
+			}		
+		}
+		prerequisite = {
+			focus = HSS_SS_Controls_Economy
+		}
+		mutually_exclusive = {
+			focus = HSS_Blind_Eye_Corruption
+		}
+		x = 22
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Himmlers_Crackdown"
+			remove_ideas = GER_bormann_corruption_1
+			add_political_power = -150
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Blind_Eye_Corruption
+		icon = GFX_BGR_Corruption_Finest
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Controls_Economy
+		}
+		mutually_exclusive = {
+			focus = HSS_Himmlers_Crackdown
+		}
+		x = 24
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Blind_Eye_Corruption"
+			swap_ideas = {
+			remove_idea = GER_bormann_corruption_1
+			add_idea = GER_bormann_corruption_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Masters_Of_Land
+		icon = GFX_GER_ss_reich
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_SS_Army
+		}
+		x = 30
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Masters_Of_Land"
+			add_doctrine_cost_reduction = {
+				name = HSS_Masters_Of_Land
+				cost_reduction = 0.8
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Well_Trained_Soldiers
+		icon = GFX_KOR_improve_training
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Masters_Of_Land
+		}
+		x = 29
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Well_Trained_Soldiers"
+			add_ideas = GER_strict_army_standards_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Refit_The_Heer
+		icon = GFX_GER_weaken_authority
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Well_Trained_Soldiers
+		}
+		x = 27
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Refit_The_Heer"
+			add_tech_bonus = {
+				name = HSS_Refit_The_Heer
+				bonus = 0.5
+				uses = 4
+				category = infantry_weapons
+				category = artillery
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_Auxiliary
+		icon = GFX_GER_SS_police
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Well_Trained_Soldiers
+		}
+		x = 29
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_Auxiliary"
+			army_experience = 25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Professional_Troopers
+		icon = GFX_SS_Raiders
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_Auxiliary
+		}
+		x = 29
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Professional_Troopers"
+			swap_ideas = {
+				remove_idea = GER_strict_army_standards_1
+				add_idea = GER_strict_army_standards_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Blind_Loyalty
+		icon = GFX_GER_SS_Deathsquads
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Professional_Troopers
+		}
+		x = 29
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Blind_Loyalty"
+			add_war_support = 0.15
+			if = {
+			limit = { has_idea = GER_SS_Infightings }
+			remove_ideas = GER_SS_Infightings
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Volunteers
+		icon = GFX_GER_ss_volunteers
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Masters_Of_Land
+		}
+		x = 31
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Volunteers"
+			add_ideas = GER_ss_corps_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_Black_Ghosts
+		icon = GFX_GER_SS_Skull
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Volunteers
+		}
+		x = 31
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_Black_Ghosts"
+			swap_ideas = {
+				remove_idea = GER_ss_corps_1
+				add_idea = GER_ss_corps_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_New_Panzers
+		icon = GFX_goal_generic_army_tanks
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_Black_Ghosts
+		}
+		x = 31
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_New_Panzers"
+			add_tech_bonus = {
+				name = HSS_The_New_Panzers
+				bonus = 0.5
+				uses = 3
+				category = armor
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Panzergrenadier_Expansions
+		icon = GFX_GER_transports
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_New_Panzers
+		}
+		x = 31
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Panzergrenadier_Expansions"
+			add_tech_bonus = {
+				name = HSS_Panzergrenadier_Expansions
+				bonus = 1.0
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_Knights_Of_Germania
+		icon = GFX_GENERIC_nazi_knights
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Blind_Loyalty
+		}
+		prerequisite = {
+			focus = HSS_Panzergrenadier_Expansions
+		}
+		x = 30
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_Knights_Of_Germania"
+			remove_ideas = GER_overgrown_officer_corps
+			unlock_decision_category_tooltip = SS_conquest
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Naval_Part
+		icon = GFX_GER_ss_officers
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_SS_Army
+		}
+		x = 34
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Naval_Part"
+			add_doctrine_cost_reduction = {
+				name = HSS_Naval_Part
+				cost_reduction = 0.8
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Privateers
+		icon = GFX_GER_ss_execution
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Naval_Part
+		}
+		x = 34
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Privateers"
+			add_manpower = 15000
+			navy_experience = 25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Under_Raiders
+		icon = GFX_goal_generic_navy_anti_submarine
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Privateers
+		}
+		x = 33
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Under_Raiders"
+			add_tech_bonus = {
+				name = HSS_Under_Raiders
+				bonus = 1.0
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Special_Submarines
+		icon = GFX_goal_generic_navy_submarine
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Under_Raiders
+		}
+		x = 33
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Special_Submarines"
+			add_ideas = GER_special_submarines
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Lighting_War_On_Sea
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Privateers
+		}
+		x = 35
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Lighting_War_On_Sea"
+			add_ideas = GER_ships_fast_as_lightning
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Small_And_Fast
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Lighting_War_On_Sea
+		}
+		x = 35
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Small_And_Fast"
+			add_tech_bonus = {
+				name = HSS_Small_And_Fast
+				bonus = 1.0
+				uses = 1
+				category = dd_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_SS_Own_Navy
+		icon = GFX_SS_Navy
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Special_Submarines
+		}
+		prerequisite = {
+			focus = HSS_Small_And_Fast
+		}
+		x = 34
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_SS_Own_Navy"
+			if = {
+			limit = {
+			has_idea = GER_oversized_fleet
+			}
+			remove_ideas = GER_oversized_fleet
+			}
+			random_owned_state = {
+			limit = { is_coastal = yes }
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+    		type = dockyard
+    		level = 2
+    		instant_build = yes
+				}
+			}
+			#effects
+			add_ideas = GER_SS_kampfmarine
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Air_Wing
+		icon = GFX_SS_Airforce
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_The_SS_Army
+		}
+		x = 38
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Air_Wing"
+			add_doctrine_cost_reduction = {
+				name = HSS_SS_Air_Wing
+				cost_reduction = 0.8
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Skills_Not_Needed
+		icon = GFX_GER_Fire_Police
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Air_Wing
+		}
+		x = 37
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Skills_Not_Needed"
+			add_manpower = 15000
+			add_ideas = GER_unskilled_pilots
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Strongest_Will
+		icon = GFX_GENERIC_skilled_fighters
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Skills_Not_Needed
+		}
+		x = 37
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Strongest_Will"
+			hidden_effect = {
+				set_rule = {
+					can_use_kamikaze_pilots = yes
+				}
+			}
+			custom_effect_tooltip = kamikaze_focus_tooltip
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Helicopter_Brigades
+		icon = GFX_SS_Helicopters
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Air_Wing
+		}
+		x = 39
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Helicopter_Brigades"
+			add_tech_bonus = {
+				name = HSS_SS_Helicopter_Brigades
+				bonus = 2.0
+				uses = 1
+				category = helicopter
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Paratroopers
+		icon = GFX_SS_Paratroopers
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Helicopter_Brigades
+		}
+		x = 39
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Paratroopers"
+			add_tech_bonus = {
+				name = HSS_SS_Paratroopers
+				bonus = 2.0
+				uses = 1
+				category = para_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Commando_Operations
+		icon = GFX_GER_SS_infiltration
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Paratroopers
+		}
+		x = 38
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Commando_Operations"
+			if = {
+				limit = {
+					has_idea = GER_ss_paratroopers_2
+				}
+				swap_ideas = {
+					remove_idea = GER_ss_paratroopers_2
+					add_idea = GER_ss_paratroopers_3
+				}
+			}
+			else = {
+				add_ideas = GER_ss_paratroopers_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Late_Night_Raids #Unquestioned Devotion
+		icon = GFX_GER_Party_in_the_house
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Deutsche_Abteilung
+		}
+		x = 3
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Late_Night_Raids"
+			add_political_power = 50
+			add_war_support = 0.10
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Death_Squads
+		icon = GFX_GER_SS_Deathsquads
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Late_Night_Raids
+		}
+		x = 3
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Death_Squads"
+			custom_effect_tooltip = GER_himmler_death_squad_units_tt
+			hidden_effect = {
+				division_template = {
+					name = "Einsatzgruppen Himmler"
+					priority = 2
+					division_names_group = GER_Inf_01
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+					}
+				}
+				855 = {
+					create_unit = {
+						division = "name = \"Einsatzgruppe I\" division_template = \"Einsatzgruppen Himmler\" start_experience_factor = 2.0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Einsatzgruppe II\" division_template = \"Einsatzgruppen Himmler\" start_experience_factor = 2.0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Einsatzgruppe III\" division_template = \"Einsatzgruppen Himmler\" start_experience_factor = 2.0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Altering_History #German Cultural Movement
+		icon = GFX_HSS_Altering_History
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Death_Squads
+		}
+		x = 3
+		y = 8
+
+		available = {
+			has_war = no
+		}
+
+		cancel_if_invalid = yes
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Altering_History"
+			custom_effect_tooltip = GER_altering_history_is_bad_tt
+			news_event = { id = twrhimmlernews.2 days = 5 }
+			add_stability = -0.20
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Paganism_Endorsed
+		icon = GFX_SSB_BLACK_SUN
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Altering_History
+		}
+		x = 2
+		y = 9
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Paganism_Endorsed"
+			add_ideas = GER_paganism_endorsed
+			add_stability = -0.05
+			add_political_power = -75
+			country_event = { id = twrhimmler.4 days = 5 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Speak_Ministry
+		icon = GFX_GER_Ministry_of_Speech
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Ahnenerbe_Expansions
+			focus = HSS_Expand_RSHA
+		}
+		x = 6
+		y = 9
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Speak_Ministry"
+			custom_effect_tooltip = GER_speak_ministry_tt
+			country_event = { id = twrheydrichhh.4 days = 5 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Esoteric_Germany
+		icon = GFX_HSS_Valknut_Persia
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Altering_History
+		}
+		x = 4
+		y = 9
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Esoteric_Germany"
+			add_stability = -0.05
+			add_political_power = -75
+			custom_effect_tooltip = GER_embraced_esoterism_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = HSS_Germans_On_Back #Greater Aryan Question
+		icon = GFX_GER_shitty_cabin
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Esoteric_Germany
+		}
+		prerequisite = {
+			focus = HSS_Paganism_Endorsed
+		}
+		x = 3
+		y = 10
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Germans_On_Back"
+			country_event = twrhimmler.5
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Ordenstaat_Germania
+		icon = GFX_HSS_SS_Germania
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Germans_On_Back
+		}
+		mutually_exclusive = {
+			focus = HSS_The_New_Coronation
+		}
+		relative_position_id = HSS_Germans_On_Back
+		x = -1
+		y = 1
+
+		available = {
+			has_country_flag = GER_ss_ordenstaat_germania_flag
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Ordenstaat_Germania"
+			drop_cosmetic_tag = yes
+			add_political_power = 200
+			set_cosmetic_tag = HSS_ordenstaat_germania
+			news_event = twrhimmlernews.3
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_The_New_Coronation
+		icon = GFX_HSS_Declare_Empire
+		cost = 13.00
+		prerequisite = {
+			focus = HSS_Germans_On_Back
+		}
+		mutually_exclusive = {
+			focus = HSS_SS_Ordenstaat_Germania
+		}
+		relative_position_id = HSS_Germans_On_Back
+		x = 1
+		y = 1
+
+		available = {
+			has_country_flag = GER_aryan_empire_flag
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_The_New_Coronation"
+			drop_cosmetic_tag = yes
+			retire_country_leader = yes
+			create_country_leader = {
+			name = "Heinrich Himmler"
+			desc = "Heinrich_Himmler_DESC"
+			picture = "Emperor_Himmler.dds"
+			expire = "1965.1.1"
+			ideology = esoteric_national_socialism
+			traits = { reichsfuhrer dictator insane }
+			}
+			add_political_power = -150
+			add_stability = -0.15
+			set_cosmetic_tag = HSS_aryan_empire
+			news_event = twrhimmlernews.4
+			hidden_effect = {
+			country_event = {
+			id = twrcounterrevolt.1 days = 7
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_SS_Credit_System
+		icon = GFX_GENERIC_ss_handshake
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Speak_Ministry
+		}
+		x = 6
+		y = 10
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_SS_Credit_System"
+			country_event = twrheydrichhh.5
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Expand_RSHA
+		icon = GFX_SS_inspection
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Playground
+		}
+		x = 7
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Expand_RSHA"
+			add_ideas = GER_the_RHSA
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Abolish_Money
+		icon = GFX_GENERIC_End_Trade
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_With_The_Credits
+		}
+		x = 17
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Abolish_Money"
+			swap_ideas = {
+    		remove_idea = GER_SS_Credits_System
+    		add_idea = GER_SS_Credits_System_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Free_Factories
+		icon = GFX_GENERIC_Cogs_For_Factory
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Abolish_Money
+		}
+		x = 17
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Free_Factories"
+			country_event = twrhimmler.11
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Ignore_Crisis
+		icon = GFX_GENERIC_No_Capitalism
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Forced_Industry
+			focus = HSS_Free_Factories
+		}
+		x = 18
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Ignore_Crisis"
+			remove_ideas = GER_economic_stagnation
+			add_timed_idea = {
+    		idea = GER_economic_recovery_1
+    		days = 365
+			}
+			add_political_power = 150
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Farming_is_Utmost
+		icon = GFX_GENERIC_Strong_Farming
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Ignore_Crisis
+		}
+		x = 18
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Farming_is_Utmost"
+			50 = {
+			add_extra_state_shared_building_slots = 3
+			}
+			55 = {
+			add_extra_state_shared_building_slots = 3
+			}
+			54 = {
+			add_extra_state_shared_building_slots = 3
+			}
+			add_ideas = agrarian_nation
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = HSS_Black_Devils
+		icon = GFX_GENERIC_death_officer
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_SS_Paratroopers
+		}
+		x = 40
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Black_Devils"
+			if = {
+				limit = {
+					has_idea = GER_ss_paratroopers_1
+				}
+				swap_ideas = {
+					remove_idea = GER_ss_paratroopers_1
+					add_idea = GER_ss_paratroopers_3
+				}
+			}
+			else = {
+				add_ideas = GER_ss_paratroopers_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Intergrate_The_High_Command
+		icon = GFX_SS_Administration
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Refit_The_Heer
+		}
+		x = 27
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Intergrate_The_High_Command"
+			add_ideas = GER_integrated_high_command
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Reward_The_Followers
+		icon = GFX_GER_ss_loyal_guards
+		cost = 8.00
+		prerequisite = {
+			focus = HSS_Intergrate_The_High_Command
+		}
+		x = 27
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Reward_The_Followers"
+			add_command_power = 25
+			add_political_power = 100
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Josias_Coup
+		icon = GFX_GER_The_Prince
+		cost = 8.00
+		available = {
+			always = no
+		}		
+		x = 9
+		y = 9
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Josias_Coup"
+			custom_effect_tooltip = JOSIAS_HERE
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Revert_Himmlers_Reforms
+		icon = GFX_GENERIC_Ripping_Papers
+		cost = 12.00
+		relative_position_id = HSS_Josias_Coup
+		prerequisite = {
+			focus = HSS_Josias_Coup
+		}	
+		x = 1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Josias_Coup"
+			add_stability = 0.15
+			remove_ideas = {
+			HSS_BLACK_BOOK
+			HSS_NO_BOOKS
+			HSS_GERMAN_SCIENCE
+			HSS_CCTV_1
+			HSS_CCTV_2
+			HSS_CCTV_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_Denounce_Himmler
+		icon = GFX_GER_himmler_ss
+		cost = 7.00
+		relative_position_id = HSS_Josias_Coup
+		prerequisite = {
+			focus = HSS_Josias_Coup
+		}	
+		x = -1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_Josias_Coup"
+			add_stability = 0.1
+			add_political_power = -150
+			add_popularity = {
+    		ideology = national_socialist
+    		popularity = 0.1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HSS_A_New_Leader
+		icon = GFX_GENERIC_SS_Hankshake
+		cost = 7.00	
+		relative_position_id = HSS_Josias_Coup
+		prerequisite = {
+			focus = HSS_Denounce_Himmler
+		}	
+		prerequisite = {
+			focus = HSS_Revert_Himmlers_Reforms
+		}	
+		x = 0
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HSS_A_New_Leader"
+			add_country_leader_trait = the_true_prince
+		}
+	}
+}

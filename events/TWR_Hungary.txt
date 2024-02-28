@@ -1,0 +1,3437 @@
+﻿##################
+# Hungarian Events
+###########################
+
+add_namespace = hungary
+add_namespace = twrgermanhungary
+add_namespace = twrromaniahungary
+add_namespace = croathungary
+add_namespace = twrhungary
+add_namespace = twrnewpolitic
+add_namespace = twristvan
+add_namespace = twrfashhun
+add_namespace = twrhunjunta
+add_namespace = twrhunrev
+add_namespace = twrhundem
+
+country_event = { 
+	id = twrhungary.0
+	title = twrhungary.0.t
+	desc = twrhungary.0.d
+	picture = GFX_report_event_hungary_intro
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.0.a
+	}
+}
+
+country_event = { 
+	id = twrhungary.1 #Third German Rally Organized
+	title = twrhungary.1.t
+	desc = twrhungary.1.d
+	picture = GFX_report_event_german_march_hungary_1
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.1.a
+		add_political_power = -50
+		hidden_effect = {
+		GER = {
+		country_event = { id = twrhungary.2 hours = 3 }
+			}
+		country_event = { id = twrhungary.3 days = 5 }
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.2 #SS Permitted Operations
+	title = twrhungary.2.t
+	desc = twrhungary.2.d
+	picture = GFX_report_event_german_march_hungary_1
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.2.a
+		add_war_support = 0.01
+	}
+}
+
+country_event = { 
+	id = twrhungary.3 #A Bloodbath in Budapest
+	title = twrhungary.3.t
+	desc = twrhungary.3.d
+	picture = GFX_report_event_the_german_march
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.3.a
+		custom_effect_tooltip = GERMAN_INFLUENCE_GROWS
+		add_popularity = {
+		    ideology = national_socialist
+		    popularity = 0.03
+		}
+		add_popularity = {
+		    ideology = fascist
+		    popularity = 0.03
+		}
+		add_stability = -0.1
+		hidden_effect = {
+		set_country_flag = BUDAPEST_BLOODBATH_HUN
+		country_event = { id = twrhungary.4 hours = 7 }
+		add_to_variable = {
+		    var = german_bund_influence
+		    value = 5
+			}
+		clamp_hungarian_variables = yes
+		}
+	}
+}
+
+
+country_event = { 
+	id = twrhungary.301 #Zoltan Boszormeny Returns
+	title = twrhungary.301.t
+	desc = twrhungary.301.d
+	picture = GFX_report_event_movement_day
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.301.a #Let him in
+		add_popularity = {
+		    ideology = national_socialist
+		    popularity = 0.01
+		}
+		custom_effect_tooltip = MILITARY_LOYALTY_DECREASES
+		hidden_effect = {
+		clr_country_flag = Zoltan_Boszormeny_unavailable
+		subtract_from_variable = {
+    	var = hungarian_military_loyalty
+    	value = 1
+			}
+		}		
+	}
+	
+	option = { 
+		name = twrhungary.301.b #Deny his entry
+		add_stability = 0.05
+	}
+}
+
+country_event = { 
+	id = twrhungary.4 #Emergency Cabinet Meeting
+	title = twrhungary.4.t
+	desc = twrhungary.4.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.4.a
+		complete_national_focus = HUN_Steady_As_She_Goes
+	}
+}
+
+country_event = { 
+	id = twrhungary.5 #Investigations
+	title = twrhungary.5.t
+	desc = twrhungary.5.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.5.a #Publicly denounce Germany's actions
+		add_war_support = 0.1
+		add_stability = -0.05
+		add_political_power = 50
+		custom_effect_tooltip = GERMAN_INFLUENCE_DECREASES_LOT
+		add_opinion_modifier = {
+		    target = GER
+		    modifier = protest_action_strong
+		}
+		reverse_add_opinion_modifier = {
+		    target = GER
+		    modifier = protest_action_strong
+		}
+		news_event = twrhungary.5011
+		hidden_effect = {
+		subtract_from_variable = {
+		    var = german_bund_influence
+		    value = 10
+			}
+		set_global_flag = GER_HUN_COLD
+		}
+	}
+	option = { 
+		name = twrhungary.5.b #Contact the Germans in secret
+		GER = {
+		country_event = { id = twrhungary.501 hours = 3 }
+		}
+	}
+	option = { 
+		name = twrhungary.5.c #Classify the information
+		add_stability = 0.05
+		add_political_power = -50
+		custom_effect_tooltip = MILITARY_LOYALTY_DECREASES
+		hidden_effect = {
+		set_global_flag = GER_HUN_NEUTRAL
+		subtract_from_variable = {
+    	var = hungarian_military_loyalty
+    	value = 1
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.501 #Hungary's Message
+	title = twrhungary.501.t
+	desc = twrhungary.501.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.501.a #Issue an apology
+		add_political_power = -50
+		HUN = { country_event = { id = twrhungary.502 hours = 5 } }
+		hidden_effect = {
+		set_global_flag = GER_HUN_NEUTRAL
+		}
+	}
+	option = { 
+		name = twrhungary.501.b #Ignore their message
+		HUN = { country_event = { id = twrhungary.503 hours = 5 } }
+		hidden_effect = {
+		set_global_flag = GER_HUN_COLD
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.502 #Germany's Apology
+	title = twrhungary.502.t
+	desc = twrhungary.502.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.502.a #Issue an apology
+		add_political_power = 50
+		custom_effect_tooltip = GERMAN_INFLUENCE_DECREASES
+		hidden_effect = {
+		subtract_from_variable = {
+		    var = german_bund_influence
+		    value = 5
+			}
+		}		
+	}
+}
+
+country_event = { 
+	id = twrhungary.503 #Our Messages Ignored
+	title = twrhungary.503.t
+	desc = twrhungary.503.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.503.a
+		add_political_power = -50
+		custom_effect_tooltip = GERMAN_INFLUENCE_DECREASES_LOT
+		add_opinion_modifier = {
+		    target = GER
+		    modifier = protest_action_strong
+		}
+		reverse_add_opinion_modifier = {
+		    target = GER
+		    modifier = protest_action_strong
+		}
+		news_event = twrhungary.5011
+		hidden_effect = {
+		subtract_from_variable = {
+		    var = german_bund_influence
+		    value = 10
+			}
+		}
+	}
+}
+
+news_event = {#Hungary Denounces Germany
+	id = twrhungary.5011
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrhungary.5011"}
+	title = twrhungary.5011.t
+	desc = twrhungary.5011.d
+	picture = GFX_news_event_budapest_news
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrhungary.5011.a
+		trigger = {
+			NOT = {
+				OR = {
+					TAG = HUN
+					has_country_flag = german_language
+				}
+			}
+		}
+	}
+	option = {
+		name = twrhungary.5011.b
+		trigger = {
+			OR = {
+				TAG = HUN
+			}
+		}
+	}
+
+	option = {
+		name = twrhungary.5011.c
+		trigger = {
+			OR = {
+				has_country_flag = german_language
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.6 #Discussions with the Military
+	title = twrhungary.6.t
+	desc = twrhungary.6.d
+	picture = GFX_report_event_hungarian_war
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.6.a
+		custom_effect_tooltip = MILITARY_LOYALTY_GROWS
+		custom_effect_tooltip = MILITARY_INFLUENCE_GROWS
+		add_political_power = -50
+		swap_ideas = {
+	    remove_idea = HUN_Anti_German_Military
+	    add_idea = HUN_Anti_German_Military2
+		}
+		hidden_effect = {
+		add_to_variable = {
+		    var = hungarian_military_loyalty
+		    value = 1
+			}
+		add_to_variable = {
+		    var = hungarian_military_influence
+		    value = 5
+			}
+		}
+	}
+	option = { 
+		name = twrhungary.6.b
+		custom_effect_tooltip = MILITARY_INFLUENCE_GROWS
+		custom_effect_tooltip = MILITARY_LOYALTY_DECREASES
+		add_popularity = {
+	    ideology = fascist
+	    popularity = 0.05
+		}
+		add_political_power = 50
+		swap_ideas = {
+	    remove_idea = HUN_Anti_German_Military
+	    add_idea = HUN_Anti_German_Military2
+		}
+		hidden_effect = {
+		subtract_from_variable = {
+    	var = hungarian_military_loyalty
+    	value = 1
+			}
+		add_to_variable = {
+		    var = hungarian_military_influence
+		    value = 5
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.7 #Matters of the Monarchy
+	title = twrhungary.7.t
+	desc = twrhungary.7.d
+	picture = GFX_report_event_hungarian_throne
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.7.a #Let a committee handle it
+		add_political_power = 50
+		custom_effect_tooltip = HUN_CROWN_COMMITTEE_TT
+		hidden_effect = {
+		set_country_flag = CROWN_COMMITTEE_HUN
+		add_to_variable = {
+		var = hungarian_establishment_influence
+		value = 5
+			}
+		country_event = { id = twrhungary.701 days = 5 }
+		}
+	}
+	option = { 
+		name = twrhungary.7.c #Save this trouble for the future
+		custom_effect_tooltip = THE_DISCUSSIONS_WENT_NOWHERE_TT
+		add_stability = 0.02
+		set_country_flag = MONARCH_PROBLEM_UNDECIDED
+	}
+}
+
+country_event = { 
+	id = twrhungary.701
+	title = twrhungary.701.t
+	desc = twrhungary.701.d
+	picture = GFX_report_event_hungarian_throne
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.701.a #Italian King
+		ai_chance = {
+		factor = 40
+		}
+		add_political_power = 10
+		add_popularity = {
+		    ideology = paternal_autocrat
+		    popularity = 0.03
+		}
+		custom_effect_tooltip = ITALIAN_KING_HUN_tt
+		hidden_effect = {
+		set_country_flag = HUN_picked_italian
+		}
+	}
+	option = { 
+		name = twrhungary.701.a #Habsburg King
+		ai_chance = {
+		factor = 50
+		}
+		add_stability = 0.05
+		add_popularity = {
+		    ideology = conservative
+		    popularity = 0.05
+		}
+		custom_effect_tooltip = AUS_KING_HUN_tt
+		hidden_effect = {
+		set_country_flag = HUN_picked_austrian
+		}
+	}
+	option = { 
+		name = twrhungary.701.c #There will be no monarchy
+		ai_chance = {
+		factor = 0
+		}
+		add_popularity = {
+		    ideology = social_democrat
+		    popularity = 0.05
+		}
+		custom_effect_tooltip = HUN_THERE_NO_KING_tt
+		hidden_effect = {
+		set_country_flag = HUN_picked_no_king
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.8 #Budapest Connections
+	title = twrhungary.8.t
+	desc = twrhungary.8.d
+	picture = GFX_report_event_USA_HUN_time
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = twrhungary.8.b #Establish connections
+		USA = {
+		country_event = { id = twrhungary.802 hours = 9 }
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.802 #Hungarian Request
+	title = twrhungary.802.t
+	desc = twrhungary.802.d
+	picture = GFX_report_event_USA_HUN_time
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.802.a #Establish connections
+		ai_chance = {
+			factor = 60
+		}
+		HUN = {
+		country_event = { id = twrhungary.8021 hours = 9 }
+		}
+	}
+	option = { 
+		name = twrhungary.802.b #Establish connectionsn't
+		ai_chance = {
+			factor = 10
+		}
+		HUN = {
+		country_event = { id = twrhungary.8022 hours = 9 }
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.8021 #America accepts
+	title = twrhungary.8021.t
+	desc = twrhungary.8021.d
+	picture = GFX_report_event_USA_HUN_time
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.8021.a #Establish connections and Contact the exile 
+		add_political_power = 75
+		add_opinion_modifier = {
+    	target = USA
+    	modifier = medium_increase
+		}
+		reverse_add_opinion_modifier = {
+    	target = USA
+    	modifier = medium_increase
+		}
+		hidden_effect = {
+		set_country_flag = USA_HUN_established_contacts
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.8022 #America refuses
+	title = twrhungary.8022.t
+	desc = twrhungary.8022.d
+	picture = GFX_report_event_USA_HUN_time
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.8022.a #Establish connections and Contact the exile 
+		add_political_power = 75
+		hidden_effect = {
+		set_country_flag = USA_HUN_request_denied
+		}
+	}
+}
+
+
+country_event = { 
+	id = twrhungary.9 #Jewish Division Formed
+	title = twrhungary.9.t
+	desc = twrhungary.9.d
+	picture = GFX_report_event_jewish_labour_division
+	trigger = {
+	has_country_flag = HUN_magyar_tree
+	}
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.9.a #Form the division
+		add_manpower = 3000
+		custom_effect_tooltip = HUN_form_the_division_tt
+		hidden_effect = {
+		division_template = {
+	    name = "Light Division"
+	    regiments = {
+	        light_infantry = { x = 0 y = 0 }
+	        light_infantry = { x = 0 y = 1 }
+	        light_infantry = { x = 0 y = 2 }
+	        light_infantry = { x = 0 y = 3 }
+	    }
+	    support = { 
+	        engineer = { x = 0 y = 0 }
+	        }
+	    	} 
+	    capital_scope = {
+	    create_unit = {
+    	division = "name = \"Különleges Gyaloghadosztály\" division_template = \"Light Division\" start_experience_factor = 1.0 start_equipment_factor = 0"
+    	owner = HUN
+			}
+	    	}
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.10 #The Night of Torches
+	title = twrhungary.10.t
+	desc = twrhungary.10.d
+	picture = GFX_report_event_hungarian_executions
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.10.a #Many have fallen
+		capital_scope = { add_manpower = -1000 }
+		every_owned_state = {
+		limit = { is_capital = no }
+		add_manpower = -700
+		}
+		add_stability = -0.1
+		custom_effect_tooltip = HUN_pogromos_happened_tt
+		hidden_effect = {
+		set_country_flag = JEWS_FREEMASONS_EXECUTED_HUN
+		}
+	}
+}
+
+country_event = { 
+	id = twrhungary.110 #Volksbund Influence grows
+	title = twrhungary.110.t
+	desc = twrhungary.110.d
+	picture = GFX_report_event_the_german_march
+	trigger = {
+	HUN = {
+	has_idea = HUN_Volksbund
+		}
+	}
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.110.a #German funding Volksbund
+		custom_effect_tooltip = GERMAN_INFLUENCE_GROWS
+	}
+}
+
+country_event = { 
+	id = twrhungary.11 #Compromise With NatSocs
+	title = twrhungary.11.t
+	desc = twrhungary.11.d
+	picture = GFX_report_event_hungarian_nazis
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.11.a
+		set_country_flag = GERMAN_COLLABORATIONIST_HUN
+		add_popularity = {
+		    ideology = national_socialist
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = fascist
+		    popularity = 0.1
+		}
+		add_stability = 0.1
+		add_political_power = -100
+	}
+}
+
+country_event = { 
+	id = twrhungary.12 #The Horthys' Fate
+	title = twrhungary.12.t
+	desc = twrhungary.12.d
+	picture = GFX_report_event_hungarian_executions
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.12.a
+		ai_chance = {
+		factor = 30
+		}
+		add_popularity = {
+		    ideology = paternal_autocrat
+		    popularity = -0.05
+		}
+		add_war_support = -0.05
+		add_political_power = -100
+		custom_effect_tooltip = HUN_THE_HORTHYS_FLEE
+		set_country_flag = Istvan_Horthy_unavailable
+		set_country_flag = HORTHYS_EXILED
+		if = {
+		limit = {
+		has_country_leader = {
+		    name = "Miklós Horthy"
+		    ruling_only = no
+		    }
+		}
+		retire_ideology_leader = paternal_autocrat
+		create_country_leader = {
+			name = "Géza Lakatos"
+			desc = "Lakatos_DESC"
+			picture = "Geza_Lakatos.dds"
+			expire = "1965.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+
+				}
+			}
+		}
+	}
+	
+	option = { 
+		name = twrhungary.12.b
+		ai_chance = {
+		factor = 40
+		}
+		add_popularity = {
+		    ideology = paternal_autocrat
+		    popularity = -0.1
+		}
+		add_war_support = -0.1
+		add_political_power = -50
+		custom_effect_tooltip = HUN_THE_HORTHYS_DEAD
+		set_country_flag = Istvan_Horthy_unavailable
+		set_country_flag = HORTHYS_EXECUTED
+		if = {
+		limit = {
+		has_country_leader = {
+		    name = "Miklós Horthy"
+		    ruling_only = no
+		    }
+		}
+		kill_ideology_leader = paternal_autocrat
+		create_country_leader = {
+			name = "Géza Lakatos"
+			desc = "Lakatos_DESC"
+			picture = "Geza_Lakatos.dds"
+			expire = "1965.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+
+				}
+			}
+		}
+		news_event = twrhungary.121
+	}
+}
+news_event = {
+	id = twrhungary.121 #Horthy executed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrhungary.121"}
+	title = twrhungary.121.t
+	desc = twrhungary.121.d
+	picture = GFX_news_event_hungarian_execution
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrhungary.121.a
+		trigger = { NOT = { tag = HUN } }
+	}
+	option = {
+		name = twrhungary.121.b
+		trigger = { tag = HUN }
+	}
+}
+
+country_event = { 
+	id = twrhungary.13 #Emergency Stability Act
+	title = twrhungary.13.t
+	desc = twrhungary.13.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.13.a
+		add_popularity = {
+		    ideology = fascist
+		    popularity = -0.1
+		}
+		add_popularity = {
+		    ideology = national_socialist
+		    popularity = -0.1
+		}
+		add_popularity = {
+		    ideology = conservative
+		    popularity = -0.05
+		}
+		add_popularity = {
+		    ideology = liberal
+		    popularity = -0.05
+		}
+		add_popularity = {
+		    ideology = social_democrat
+		    popularity = -0.05
+		}
+		add_popularity = {
+		    ideology = socialist
+		    popularity = -0.1
+		}
+		add_popularity = {
+		    ideology = bolshevik_leninist
+		    popularity = -0.1
+		}
+		add_popularity = {
+		    ideology = marxist_leninist
+		    popularity = -0.1
+		}
+		add_political_power = 50
+		add_stability = 0.05
+	}
+}
+news_event = {
+	id = twrhungary.14 #New Regent
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrhungary.14"}
+	title = twrhungary.14.t
+	desc = twrhungary.14.d
+	picture = GFX_news_event_new_hungarian_regent
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrhungary.14.a
+		trigger = { NOT = { tag = HUN } }
+	}
+	option = {
+		name = twrhungary.14.b
+		trigger = { tag = HUN }
+	}
+}
+
+country_event = { 
+	id = twrhungary.15 #Budapest Pocket
+	title = twrhungary.15.t
+	desc = twrhungary.15.d
+	picture = GFX_report_event_bunker_01
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhungary.15.a #Northern Approach
+		ai_chance = { factor = 40 }
+		43 = {
+		set_building_level = {
+	    type = bunker
+	    level = 9
+	    province = 9660
+			}
+		set_building_level = {
+	    type = bunker
+	    level = 7
+	    province = 9690
+			}
+		set_building_level = {
+	    type = bunker
+	    level = 7
+	    province = 716
+			}
+		}
+	}
+	
+	option = { 
+		name = twrhungary.15.b #Southern Approach
+		ai_chance = { factor = 30 }
+		43 = {
+		set_building_level = {
+	    type = bunker
+	    level = 9
+	    province = 9660
+			}
+		set_building_level = {
+	    type = bunker
+	    level = 7
+	    province = 11625
+			}
+		set_building_level = {
+	    type = bunker
+	    level = 7
+	    province = 6670
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = hungary.1
+	title = croathungary.1.t
+	desc = croathungary.1.d
+	picture = GFX_report_event_belarusian_revolt
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = croathungary.1.a
+		add_manpower = -1500
+		add_stability = -0.05
+		45 = {
+			damage_building = {
+				type = infrastructure
+				damage = 3
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = croathungary.2
+	title = croathungary.2.t
+	desc = croathungary.2.d
+	picture = GFX_report_event_hungary_future
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = croathungary.2.a
+		add_stability = 0.05
+		add_political_power = 50
+	}
+}
+
+country_event = { 
+	id = croathungary.3
+	title = croathungary.3.t
+	desc = croathungary.3.d
+	picture = GFX_report_event_forest_raid
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = croathungary.3.a
+		add_stability = -0.05
+		add_political_power = -50
+	}
+}
+
+country_event = { #Hungarian Defeat in the Croat Invasion
+	id = croathungary.4
+	title = croathungary.4.t
+	desc = croathungary.4.d
+	picture = GFX_report_event_forest_raid
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = croathungary.4.a
+		add_stability = -0.1
+		add_political_power = -100
+	}
+}
+
+country_event = { #Hungarian Victory in the Croat Invasion
+	id = croathungary.5
+	title = croathungary.5.t
+	desc = croathungary.5.d
+	picture = GFX_report_event_forest_raid
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { 
+		name = hungary.5.a
+		
+		add_stability = 0.05
+		add_political_power = 50
+	}
+}
+
+country_event = {
+	id = twrgermanhungary.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermanhungary.1"}
+	title = twrgermanhungary.1.t
+	desc = twrgermanhungary.1.d
+	picture = GFX_report_event_business_as_usual
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermanhungary.1.a
+		ai_chance = { 
+			factor = 75
+		}
+		add_stability = -0.1
+		add_manpower = -5000
+		hidden_effect = { GER = { country_event = { days = 0 id = twrgermany.21 } } }
+	}
+
+	option = {
+		name = twrgermanhungary.1.b
+		ai_chance = { 
+			factor = 10
+		}
+		add_political_power = -200
+		hidden_effect = { GER = { country_event = { days = 0 id = twrgermany.23 } } }
+	}
+}
+
+country_event = {
+	id = twrromaniahungary.1 #romanian war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.1"}
+	title = twrromaniahungary.1.t
+	desc = twrromaniahungary.1.d
+	picture = GFX_report_event_romanian_marching
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.1.a #prepare for an invasion
+		ai_chance = { 
+			factor = 75
+		}
+		custom_effect_tooltip = IMPENDINGWARWITHHUNGARY
+		hidden_effect = {
+			add_ai_strategy = {
+				type = conquer
+				id = HUN
+				value = 100
+			}
+			country_event = {
+				id = twrromaniahungary.2 days = 7 random = 500
+			}
+		}
+	}
+
+	option = {
+		name = twrromaniahungary.1.b #postpone the invasion
+		ai_chance = { 
+			factor = 0
+		}
+		trigger = {
+			#doesn't actually do anything
+			always = no
+		}
+		add_political_power = -200
+		hidden_effect = {
+			set_country_flag = ROMIMPENDINGWAR
+		}
+	}
+}
+country_event = {
+	id = twrromaniahungary.2 #war time
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.2"}
+	title = twrromaniahungary.2.t
+	desc = twrromaniahungary.2.d
+	picture = GFX_report_event_romanian_war
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.1.a #prepare for an invasion
+		declare_war_on = {
+			target = HUN
+			type = annex_everything
+		}
+		hidden_effect = {
+			news_event = { id = twrromaniahungary.4 days = 2 }
+			set_country_flag = ROMHUNWAR
+			HUN = {
+				country_event = { id = twrromaniahungary.3 days = 1 }
+				set_country_flag = ROMHUNWAR
+			}
+		}
+	}
+}
+country_event = {
+	id = twrromaniahungary.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.3"}
+	title = twrromaniahungary.3.t
+	desc = twrromaniahungary.3.d
+	picture = GFX_report_event_hungarian_war
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.3.a #hungary response
+		add_war_support = 0.1
+		custom_effect_tooltip = GAMEPLAY_REASON_PRERKMURJE_DEMILED
+		hidden_effect = {
+			load_oob = "HUN_RESERVE"
+		}
+	}
+}
+news_event = {
+	id = twrromaniahungary.4 #romanian hungarian war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.4"}
+	title = twrromaniahungary.4.t
+	desc = twrromaniahungary.4.d
+	picture = GFX_news_event_hungarian_romanian_war
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.4.a
+	}
+}
+country_event = {
+	id = twrromaniahungary.5 #ceasefire
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.5"}
+	title = twrromaniahungary.5.t
+	desc = twrromaniahungary.5.d
+	picture = GFX_report_event_romanian_war
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.5.a #prepare for an invasion
+		add_political_power = -150
+		add_stability = -0.1
+		add_ideas = ROM_failed_invasion
+		news_event = twrromaniahungary.902
+		hidden_effect = {
+			clr_country_flag = ROMHUNWAR
+			HUN = {
+				clr_country_flag = ROMHUNWAR
+				set_country_flag = CAN_INVADE_BANAT
+			}
+			HUN = { white_peace_with_ROOT = yes }
+			if = {
+				limit = {
+					has_country_flag = ROM_ELECTIONS_AFTER_WAR
+				}
+				country_event = {
+					id = twrromania.4
+					days = 30
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrromaniahungary.7 #romanian victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.7"}
+	title = twrromaniahungary.7.t
+	desc = twrromaniahungary.7.d
+	picture = GFX_report_event_romanian_marching
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.7.a #prepare for an invasion
+		ROM = {
+			transfer_state = 838
+			transfer_state = 76
+			transfer_state = 839
+			add_ideas = ROM_victory
+			set_country_flag = CAN_INVADE_BANAT
+		}
+		HUN = {
+			add_ideas = ROMHUN_defeat
+			add_manpower = -100000
+		}
+		hidden_effect = {
+			clr_country_flag = ROMHUNWAR
+			news_event = twrromaniahungary.9
+			HUN = {
+				clr_country_flag = ROMHUNWAR
+			}
+			HUN = { white_peace_with_ROOT = yes }
+			if = {
+				limit = {
+					country_exists = SLO
+					SLO = {
+						has_war_with = HUN
+					}
+				}   
+				SLO = {
+					country_event = slovakia.70123
+				}
+			}
+			HUN = {
+				country_event = {
+					id = twrromaniahungary.903
+					hours = 5
+				}
+				set_country_flag = HUN_LOST_ROM_WAR
+			}
+			if = {
+				limit = {
+					has_country_flag = ROM_ELECTIONS_AFTER_WAR
+				}
+				country_event = {
+					id = twrromania.4
+					days = 30
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrromaniahungary.8 #hungarian victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.8"}
+	title = twrromaniahungary.8.t
+	desc = twrromaniahungary.8.d
+	picture = GFX_report_event_romanian_marching
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.8.a #prepare for an invasion
+		HUN = {
+			add_ideas = HUN_reparations
+			set_country_flag = CAN_INVADE_BANAT
+			news_event = twrromaniahungary.901
+			transfer_state = 83
+		}
+		ROM = {
+			add_manpower = -100000
+			add_ideas = ROMHUN_defeat
+			set_country_flag = ROM_LOST_ROM_WAR
+		}
+		hidden_effect = {
+			clr_country_flag = ROMHUNWAR
+			ROM = {
+				clr_country_flag = ROMHUNWAR
+			}
+			ROM = { white_peace_with_ROOT = yes }
+			ROM = {
+				if = {
+					limit = {
+						has_country_flag = ROM_ELECTIONS_AFTER_WAR
+					}
+					country_event = {
+						id = twrromania.4
+						days = 30
+					}
+				}
+			}
+		}
+	}
+}
+news_event = {
+	id = twrromaniahungary.9 #romanian victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.9"}
+	title = twrromaniahungary.9.t
+	desc = twrromaniahungary.9.d
+	picture = GFX_news_event_romanian_victory
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.9.a
+		trigger = { tag = ROM }
+	}
+	option = {
+		name = twrromaniahungary.9.b
+		trigger = { 
+			NOT = {
+				tag = ROM 
+			}
+		}
+	}
+}
+news_event = {
+	id = twrromaniahungary.901 #hungarian victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.901"}
+	title = twrromaniahungary.901.t
+	desc = twrromaniahungary.901.d
+	picture = GFX_news_event_hungarian_victory
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.901.a
+		trigger = { tag = HUN }
+	}
+	option = {
+		name = twrromaniahungary.901.b
+		trigger = { 
+			NOT = {
+				tag = HUN 
+			}
+		}
+	}
+}
+news_event = {
+	id = twrromaniahungary.902 #ceasefire
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.902"}
+	title = twrromaniahungary.902.t
+	desc = twrromaniahungary.902.d
+	picture = GFX_news_event_hungarian_victory
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.902.a
+	}
+}
+country_event = {
+	id = twrromaniahungary.903 #hungarian defeat Hungary
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.903"}
+	title = twrromaniahungary.903.t
+	desc = twrromaniahungary.903.d
+	picture = GFX_report_event_horthy_resigns
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.903.a #end of horthy
+		add_political_power = -100
+		add_stability = -0.1
+		custom_effect_tooltip = MILITARY_LOYALTY_DECREASES
+		hidden_effect = {
+		subtract_from_variable = {
+    	var = hungarian_military_loyalty
+    	value = 2
+			}
+		}
+	}
+}
+
+#Hungarian collapse
+
+country_event = {
+	id = twrromaniahungary.10 #hungarian collapsing - Need changing soon
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.10"}
+	title = twrromaniahungary.10.t
+	desc = twrromaniahungary.10.d
+	picture = GFX_report_event_horthy_resigns
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.10.a #end of horthy
+		add_political_power = -100
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Géza Lakatos"
+			desc = "Lakatos_DESC"
+			picture = "Geza_Lakatos.dds"
+			expire = "1965.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+
+			}
+		}
+		hidden_effect = {
+			news_event = {
+				id = twrromaniahungary.101 days = 1
+			}
+			set_country_flag = HUN_MILITARY_COUP
+			set_global_flag = VOLKSBUND_FUNDING_DISALLOWED
+			add_ideas = {
+			HoG_Bela_Miklos
+			FM_Gusztav_Hennyey
+			AM_Dezso_Laky
+			CoStaff_Vilmos_Nagy
+			CoAir_Andras_Littay
+			}
+		}
+	}
+}
+
+news_event = {
+	id = twrromaniahungary.101 #horthy couped
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.101"}
+	title = twrromaniahungary.101.t
+	desc = twrromaniahungary.101.d
+	picture = GFX_news_event_horthy_resigns
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.101.a
+	}
+}
+
+
+country_event = {
+	id = twrromaniahungary.11 #captho ukraine
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.11"}
+	title = twrromaniahungary.11.t
+	desc = twrromaniahungary.11.d
+	picture = GFX_report_event_cap_ukraine
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.11.a #end of horthy
+		add_stability = -0.1
+		CKR = {
+			transfer_state = 73
+			add_state_core = 73
+			73 = { set_demilitarized_zone = no }
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrromaniahungary.13 days = 30
+			}
+		}
+	}
+	option = {
+		name = twrromaniahungary.11.b #end of horthy
+		add_stability = -0.1
+		CKR = {
+			transfer_state = 73
+			add_state_core = 73
+			73 = { set_demilitarized_zone = no }
+			change_tag_from = ROOT
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrromaniahungary.13 days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrromaniahungary.12 #slovak
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.12"}
+	title = twrromaniahungary.12.t
+	desc = twrromaniahungary.12.d
+	picture = GFX_report_event_slovak_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.12.a #end of horthy
+		add_war_support = 0.1
+		transfer_state = 664
+		664 = { set_demilitarized_zone = no }
+		hidden_effect = {
+			HUN = {
+				country_event = { id = twrromaniahungary.121 days = 1 }
+			}
+		}
+	}
+	option = {
+		name = twrromaniahungary.12.b #end of horthy
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = 50
+		add_stability = 0.1
+	}
+}
+
+country_event = {
+	id = twrromaniahungary.121 #slovak
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.121"}
+	title = twrromaniahungary.121.t
+	desc = twrromaniahungary.121.d
+	picture = GFX_report_event_slovak_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.121.a #sad
+		add_political_power = -100
+	}
+}
+
+country_event = {
+	id = twrromaniahungary.13 #Hungarian Revolution
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.13"}
+	title = twrromaniahungary.13.t
+	desc = twrromaniahungary.13.d
+	picture = GFX_report_event_hungary_future
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.13.a #To the Assembly
+		trigger = {
+		is_democratic = no
+		}
+		ai_chance = { 
+			factor = 55
+		}
+		add_stability = -0.2
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = social_democrat
+			elections_allowed = no
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = HUN_MEP_party_long 
+			name = HUN_MEP_party 
+		}		
+		if = {
+		limit = {
+		has_country_leader = {
+		    name = "Miklós Horthy"
+		    ruling_only = no
+		    }
+		}
+		retire_ideology_leader = paternal_autocrat
+		create_country_leader = {
+			name = "Miklós Kállay"
+			desc = "Miklos_Kallay_DESC"
+			picture = "Miklos_Kallay.dds"
+			expire = "1965.1.1"
+			ideology = authoritarian_democracy
+			traits = {
+
+				}
+			}
+		}
+		set_cosmetic_tag = HUN_MEP
+		add_ideas = {
+		HoG_Anna_Kethly
+		FM_Dezso_Keresztury
+		MoS_Istvan_Ries
+		AM_Sandor_Ronai
+		}
+		every_unit_leader = {
+		limit = { has_trait = politically_connected }
+		retire = yes
+		}
+		country_event = { id = twrromaniahungary.16 days = 3 }
+		hidden_effect = {
+		set_country_flag = CATEGORY_HUN_DONE
+		set_country_flag = HORTHY_RETIRED
+		clr_country_flag = has_symbolic_figurehead
+		clr_country_flag = HUN_vacant_throne
+		remove_ideas = HUN_German_Influence
+		news_event = {
+				id = twrromaniahungary.103 days = 1
+			}
+		}
+	}
+	option = {
+		name = twrromaniahungary.13.b #To the fascists
+		trigger = {
+		OR = {
+		has_country_leader = {
+    	name = "Miklós Horthy"
+    	ruling_only = yes
+				}
+		is_democratic = yes
+			}
+		}
+		ai_chance = { 
+			factor = 45
+		}
+		add_stability = -0.2
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.3
+		}
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+		}
+		drop_cosmetic_tag = yes
+		add_ideas = dictatorship
+		set_party_name = { 
+		    ideology = paternal_autocrat 
+		    long_name = HUN_military_party_long 
+		    name = HUN_military_party 
+		}
+		complete_national_focus = HUN_Change_In_Direction
+		every_unit_leader = {
+		limit = { has_trait = anti_nazi_general }
+		retire = yes
+		}
+		create_field_marshal = {
+		name = "Károly Beregfy"
+		picture = "Karoly_Beregfy.dds"
+		traits = { defensive_doctrine }
+		skill = 2
+		attack_skill = 1
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 2
+		}
+		hidden_effect = {
+			news_event = {
+				id = twrromaniahungary.104 days = 1
+			}
+			set_country_flag = HUNFASCISTS
+			set_country_flag = CATEGORY_HUN_DONE
+			set_country_flag = CURRENT_INSTABILITY_HUN
+			add_ideas = {
+			HoG_Bela_Imredy
+			FM_Gabor_Kemeny
+			MoS_Andor_Jaross
+			AM_Emil_Szakvary
+			CoStaff_Karoly_Beregfy
+			CoArmy_Karoly_Beregfy
+			}
+		}
+	}
+}
+news_event = {
+	id = twrromaniahungary.103 #end of the kingdom
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.103"}
+	title = twrromaniahungary.103.t
+	desc = twrromaniahungary.103.d
+	picture = GFX_news_event_hungarian_general_strike
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.103.a
+	}
+}
+
+country_event = {
+	id = twrromaniahungary.131 #arrow cross coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.131"}
+	title = twrromaniahungary.131.t
+	desc = twrromaniahungary.131.d
+	picture = GFX_report_event_arrow_cross_coup
+	
+	is_triggered_only = yes
+
+	option = {
+		name = twrromaniahungary.131.b #arrow cross successful
+		ai_chance = { 
+			factor = 40
+		}
+		add_stability = -0.2
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.3
+		}
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+		}
+		drop_cosmetic_tag = yes
+		add_ideas = HUN_revanchist
+		add_ideas = dictatorship
+		hidden_effect = {
+			news_event = {
+				id = twrromaniahungary.104 days = 1
+			}
+			set_country_flag = HUNFASCISTS
+			set_country_flag = CATEGORY_HUN_DONE
+			add_ideas = {
+			HoG_Bela_Imredy
+			FM_Gabor_Kemeny
+			MoS_Andor_Jaross
+			AM_Emil_Szakvary
+			CoStaff_Karoly_Beregfy
+			CoArmy_Karoly_Beregfy
+			}
+		}
+	}
+}
+
+news_event = {
+	id = twrromaniahungary.104 #arrow
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.104"}
+	title = twrromaniahungary.104.t
+	desc = twrromaniahungary.104.d
+	picture = GFX_news_event_arrow_coup
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.104.a
+	}
+}
+
+country_event = {
+	id = twrromaniahungary.14 #election
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.14"}
+	title = twrromaniahungary.14.t
+	desc = twrromaniahungary.14.d
+	picture = GFX_report_event_election_results
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrromaniahungary.14.a #Istvan Elected
+		trigger = {
+		has_country_flag = NEP_FORMED_HUN
+		}
+		ai_chance = { 
+			factor = 30
+		}
+		set_politics = {
+			ruling_party = paternal_autocrat
+			elections_allowed = yes
+			election_frequency = 72
+		}
+		add_political_power = -50
+		hold_election = ROOT
+		set_country_flag = NEP_VICTORY
+		news_event = twrromaniahungary.15
+		add_timed_idea = {
+	    idea = HUN_new_democracy
+	    days = 180
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.15
+		}
+
+	}
+	option = {
+		name = twrromaniahungary.14.b #FKgP Elected
+		ai_chance = { 
+			factor = 75
+		}
+		add_political_power = 50
+		add_timed_idea = {
+	    idea = HUN_new_democracy
+	    days = 180
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+			election_frequency = 72
+		}
+		hidden_effect = {
+		add_ideas = {
+		HoG_Ferenc_Nagy
+		FM_Janos_Gyongyosi
+		MoS_Jozsef_Antall
+		AM_Istvan_Vasary
+			}
+		}
+		hold_election = ROOT
+		news_event = twrromaniahungary.15
+	}
+	option = {
+		name = twrromaniahungary.14.c #MSZDP Elected
+		ai_chance = { 
+			factor = 50
+		}
+		add_political_power = 50
+		add_timed_idea = {
+	    idea = HUN_new_democracy
+	    days = 180
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = social_democrat
+			elections_allowed = yes
+			election_frequency = 72
+		}
+		hidden_effect = {
+		add_ideas = {
+		HoG_Anna_Kethly
+		FM_Dezso_Keresztury
+		MoS_Istvan_Ries
+		AM_Sandor_Ronai
+			}
+		}
+		hold_election = ROOT
+		news_event = twrromaniahungary.15
+	}
+	option = {
+		name = twrromaniahungary.14.e #PDP Elected
+		ai_chance = { 
+			factor = 35
+		}
+		add_political_power = 50
+		add_timed_idea = {
+	    idea = HUN_new_democracy
+	    days = 180
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.35
+		}
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = yes
+			election_frequency = 72
+		}
+		hidden_effect = {
+		add_ideas = {
+		HoG_Margit_Slachta
+		AM_Sandor_Ronai
+			}
+		if = {
+		limit = { NOT = { has_country_flag = JEWS_FREEMASONS_EXECUTED_HUN } }
+		add_ideas = {
+		FM_Geza_Supka
+		MoS_Imre_Csecsy
+		AM_Erno_Brody
+				}
+			}
+		if = {
+		limit = { has_country_flag = JEWS_FREEMASONS_EXECUTED_HUN }
+		add_ideas = {
+		FM_Sandor_Szent-Ivanyi
+		MoS_Geza_Teleki
+		AM_Imre_Oltvanyi
+				}
+			}
+		}
+		hold_election = ROOT
+		news_event = twrromaniahungary.15
+	}
+}
+
+news_event = {
+	id = twrromaniahungary.15 #Hungarian Elections
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.15"}
+	title = twrromaniahungary.15.t
+	desc = twrromaniahungary.15.d
+	picture = GFX_news_event_socdem_dictatorship_HUN
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.15.a
+	}
+}
+
+
+country_event = {
+	id = twrromaniahungary.16 #Future of the Republic
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.16"}
+	title = twrromaniahungary.16.t
+	desc = twrromaniahungary.16.d
+	picture = GFX_report_event_arrow_cross_coup
+	
+	is_triggered_only = yes
+
+	option = {
+		name = twrromaniahungary.16.b #Restore democracy
+		ai_chance = { 
+			factor = 50
+		}
+		country_event = { id = twrromaniahungary.14 days = 3 }
+		add_ideas = established_democracy
+		hidden_effect = {
+		load_focus_tree = { tree = hungary_democratic_or_istvan keep_completed = yes }
+		}
+	}
+
+	option = {
+		name = twrromaniahungary.16.b #Guardian Government
+		ai_chance = { 
+			factor = 30
+		}
+		add_stability = 0.1
+		add_political_power = -150
+		set_country_flag = HUN_SOCDEM_AUTOCRACY_WTF
+		set_country_flag = CURRENT_INSTABILITY_HUN
+		hidden_effect = {
+		load_focus_tree = { tree = hungary_socdem_dictatorship keep_completed = yes }
+		}
+		news_event = twrromaniahungary.17
+	}
+}
+
+news_event = {
+	id = twrromaniahungary.17 #Hungarian Dictatorship SocDem
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.17"}
+	title = twrromaniahungary.17.t
+	desc = twrromaniahungary.17.d
+	picture = GFX_news_event_socdem_dictatorship_HUN
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.17.a
+	}
+}
+
+news_event = {
+	id = twrromaniahungary.18 #Second War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrromaniahungary.18"}
+	title = twrromaniahungary.18.t
+	desc = twrromaniahungary.18.d
+	picture = GFX_news_event_second_war_romania
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrromaniahungary.18.a
+		trigger = {
+		OR = {
+		tag = HUN
+		tag = ROM
+			}
+		}
+	}
+
+	option = {
+		name = twrromaniahungary.18.b
+		trigger = {
+		NOT = {
+		tag = HUN
+		tag = ROM
+			}
+		}
+	}
+}
+
+
+#New Politics
+country_event = {
+	id = twrnewpolitic.1 #Military Coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnewpolitic.1"}
+	title = twrnewpolitic.1.t
+	desc = twrnewpolitic.1.d
+	picture = GFX_report_event_hungarian_war
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrnewpolitic.1.a #end of horthy
+		add_political_power = -100
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Géza Lakatos"
+			desc = "Lakatos_DESC"
+			picture = "Geza_Lakatos.dds"
+			expire = "1965.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+
+			}
+		}
+		set_party_name = { 
+		    ideology = paternal_autocrat 
+		    long_name = HUN_military_party_long 
+		    name = HUN_military_party 
+		}
+		hidden_effect = {
+			news_event = {
+				id = twrnewpolitic.1010 hours = 1
+			}
+			set_country_flag = HUN_MILITARY_COUP
+			set_global_flag = VOLKSBUND_FUNDING_DISALLOWED
+			hidden_effect = {
+			set_country_flag = HORTHY_RETIRED
+			set_country_flag = CATEGORY_HUN_DONE
+			set_country_flag = CURRENT_INSTABILITY_HUN
+			}
+			add_ideas = {
+			HoG_Bela_Miklos
+			FM_Gusztav_Hennyey
+			AM_Dezso_Laky
+			CoStaff_Vilmos_Nagy
+			CoAir_Andras_Littay
+			}
+		}
+	}
+}
+
+news_event = {
+	id = twrnewpolitic.1010 #military coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnewpolitic.1010"}
+	title = twrnewpolitic.1010.t
+	desc = twrnewpolitic.1010.d
+	picture = GFX_news_event_hungarian_coup
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnewpolitic.1010.a
+	}
+}
+country_event = {
+	id = twrnewpolitic.2 #arrow cross coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnewpolitic.2"}
+	title = twrnewpolitic.2.t
+	desc = twrnewpolitic.2.d
+	picture = GFX_report_event_arrow_cross_coup
+	trigger = {
+		check_variable = {
+		var = german_bund_influence
+		value = 100
+		compare = greater_than_or_equals
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrnewpolitic.2.b #arrow cross successful
+		ai_chance = { 
+			factor = 40
+		}
+		add_stability = -0.2
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.3
+		}
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+		}
+		drop_cosmetic_tag = yes
+		add_ideas = dictatorship
+		set_party_name = { 
+		    ideology = paternal_autocrat 
+		    long_name = HUN_military_party_long 
+		    name = HUN_military_party 
+		}
+		complete_national_focus = HUN_Change_In_Direction
+		hidden_effect = {
+			news_event = {
+				id = twrromaniahungary.104 days = 1
+			}
+			set_country_flag = HUNFASCISTS
+			set_country_flag = CATEGORY_HUN_DONE
+			set_country_flag = CURRENT_INSTABILITY_HUN
+			add_ideas = {
+			HoG_Bela_Imredy
+			FM_Gabor_Kemeny
+			MoS_Andor_Jaross
+			AM_Emil_Szakvary
+			CoStaff_Karoly_Beregfy
+			CoArmy_Karoly_Beregfy
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnewpolitic.3 #High Command Displeased
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnewpolitic.3"}
+	title = twrnewpolitic.3.t
+	desc = twrnewpolitic.3.d
+	picture = GFX_report_event_hungarian_garrisons
+	
+	is_triggered_only = yes
+
+	option = {
+		name = twrnewpolitic.3.a #Let them rant
+		ai_chance = {
+		factor = 30
+		}
+		custom_effect_tooltip = MILITARY_LOYALTY_DECREASES
+		subtract_from_variable = {
+		    var = hungarian_military_loyalty
+		    value = 1
+		}
+		clamp_hungarian_variables = yes
+	}
+	option = {
+		name = twrnewpolitic.3.b #Give them promises
+		ai_chance = {
+		factor = 30
+		}
+		add_political_power = -50
+		custom_effect_tooltip = MILITARY_INFLUENCE_GROWS
+		add_to_variable = {
+		    var = hungarian_military_influence
+		    value = 5
+		}
+		clamp_hungarian_variables = yes
+	}
+}
+country_event = {
+	id = twrnewpolitic.4 #Deputies Speak Out
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnewpolitic.4"}
+	title = twrnewpolitic.4.t
+	desc = twrnewpolitic.4.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+
+	option = {
+		name = twrnewpolitic.4.a #Let them rant
+		ai_chance = {
+		factor = 30
+		}
+		add_stability = -0.05
+		add_political_power = -50
+	}
+	option = {
+		name = twrnewpolitic.4.b #Give them promises
+		ai_chance = {
+		factor = 30
+		}
+		add_stability = 0.01
+		custom_effect_tooltip = PARLIAMENT_INFLUENCE_GROWS
+		add_to_variable = {
+		    var = hungarian_establishment_influence
+		    value = 5
+		}
+		clamp_hungarian_variables = yes
+	}
+}
+
+country_event = { 
+	id = twristvan.1
+	title = twristvan.1.t
+	desc = twristvan.1.d
+	picture = GFX_report_event_soldier_of_horthy
+	
+	is_triggered_only = yes
+
+	immediate = {
+	hidden_effect = {
+	set_country_flag = CURRENT_INSTABILITY_HUN
+	set_country_flag = CATEGORY_HUN_DONE
+		}
+	}
+	
+	option = { 
+		name = twristvan.1.a
+		complete_national_focus = HUN_Soldier_of_Horthy
+		add_stability = 0.15
+		add_political_power = 70
+		hidden_effect = {
+		country_event = { id = twristvan.2 days = 7 }
+		clear_hungarian_variables = yes
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.2
+	title = twristvan.2.t
+	desc = twristvan.2.d
+	picture = GFX_report_event_horthy_appoint_istvan
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.2.a
+		complete_national_focus = HUN_Glorious_Retirement
+		retire_country_leader = yes
+		create_country_leader = {
+		name = "István Horthy"
+		desc = "ISTVAN_HORTHY_DESC"
+		picture = "Istvan_Horthy.dds"
+		expire = "1965.1.1"
+		ideology = authoritarian_democracy
+		traits = {
+		popular_figurehead
+			}
+		}
+		news_event = twristvan.3
+		hidden_effect = { set_country_flag = HORTHY_RETIRED }
+	}
+}
+
+news_event = {
+	id = twristvan.3 #istvan horthy
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twristvan.3"}
+	title = twristvan.3.t
+	desc = twristvan.3.d
+	picture = GFX_news_event_istvan_horthy_inpower
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twristvan.3.a
+	}
+}
+
+country_event = { 
+	id = twristvan.4
+	title = twristvan.4.t
+	desc = twristvan.4.d
+	picture = GFX_report_event_hungarian_throne
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.4.a
+		trigger = { has_country_flag = HUN_picked_italian }
+		hidden_effect = {
+		clr_country_flag = HUN_vacant_throne
+		set_country_flag = mon_Filiberto_I
+		add_ideas = hos_mediocre
+		}
+		news_event = twristvan.401
+		set_cosmetic_tag = HUN_KING
+		if = {
+		limit = { 
+		ITA = {
+		is_communist = no
+		has_country_flag = has_symbolic_figurehead
+			}
+		}
+		add_opinion_modifier = {
+	    target = ITA
+	    modifier = large_increase
+		}
+		reverse_add_opinion_modifier = {
+	    target = ITA
+	    modifier = large_increase 
+	    	}
+		}
+	}
+	option = { 
+		name = twristvan.4.b
+		trigger = { has_country_flag = HUN_picked_austrian }
+		country_event = { id = twristvan.402 days = 7 }
+	}
+	option = { 
+		name = twristvan.4.c
+		trigger = { has_country_flag = HUN_picked_no_king }
+		clr_country_flag = has_symbolic_figurehead
+		clr_country_flag = HUN_vacant_throne
+		set_country_flag = ISTVAN_REPUBLIC
+		set_cosmetic_tag = HUN_MEP
+		news_event = twristvan.404
+	}
+}
+
+news_event = {
+	id = twristvan.401 #Italian king
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twristvan.401"}
+	title = twristvan.401.t
+	desc = twristvan.401.d
+	picture = GFX_news_event_italian_king_hungary
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twristvan.401.a
+	}
+}
+
+country_event = { 
+	id = twristvan.402 #Otto returns
+	title = twristvan.402.t
+	desc = twristvan.402.d
+	picture = GFX_report_event_generic_plane
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.402.a
+		hidden_effect = {
+		clr_country_flag = HUN_vacant_throne
+		set_country_flag = mon_Otto_II
+		add_ideas = hos_popular_figurehead
+		}
+		news_event = twristvan.403
+		set_cosmetic_tag = HUN_KING
+	}
+}
+
+news_event = {
+	id = twristvan.403 #otto hungary
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twristvan.403"}
+	title = twristvan.403.t
+	desc = twristvan.403.d
+	picture = GFX_news_event_otto_von_habsburg
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twristvan.403.a
+	}
+}
+
+news_event = {
+	id = twristvan.404 #republican hungary
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twristvan.404"}
+	title = twristvan.404.t
+	desc = twristvan.404.d
+	picture = GFX_news_event_republican_hungary
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twristvan.404.a
+	}
+}
+
+country_event = { 
+	id = twristvan.5
+	title = twristvan.5.t
+	desc = twristvan.5.d
+	picture = GFX_report_event_hungarian_throne
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.5.a
+		ai_chance = {
+		factor = 10
+		}
+		clr_country_flag = has_symbolic_figurehead
+		clr_country_flag = HUN_vacant_throne
+		set_country_flag = ISTVAN_REPUBLIC
+		set_cosmetic_tag = HUN_MEP
+		news_event = twristvan.404
+		add_political_power = -100
+		add_stability = -0.02
+	}
+	option = { 
+		name = twristvan.5.b
+		ai_chance = { 
+		factor = 30
+		}
+		country_event = { id = twristvan.402 days = 7 }
+		add_political_power = -50
+	}
+	option = { 
+		name = twristvan.5.c #Status Quo
+		ai_chance = { 
+		factor = 70
+		}
+		custom_effect_tooltip = MAINTAIN_THE_VACANT_THRONE
+		set_country_flag = STATUS_QUO_ISTVAN
+	}
+}
+
+country_event = { 
+	id = twristvan.6 #Presidential Decree
+	title = twristvan.6.t
+	desc = twristvan.6.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.6.a
+		add_stability = 0.1
+	}
+}
+
+country_event = { 
+	id = twristvan.7 #Royal Statement
+	title = twristvan.7.t
+	desc = twristvan.7.d
+	picture = GFX_report_event_king_otto
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.7.a
+		add_stability = 0.1
+	}
+}
+
+country_event = { 
+	id = twristvan.8 #Start of the Convention
+	title = twristvan.8.t
+	desc = twristvan.8.d
+	picture = GFX_report_event_hungarian_parliament_2
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.8.a
+		custom_effect_tooltip = START_CONVENTION_HUN
+		hidden_effect = {
+		if = {
+		limit = { has_country_flag = ISTVAN_REPUBLIC }
+		country_event = { id = twristvan.9 days = 3 }
+			}
+		if = {
+		limit = { has_country_flag = mon_Otto_II }
+		country_event = { id = twristvan.10 days = 3 }
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.9 #Rumours of a Grand Coalition
+	title = twristvan.9.t
+	desc = twristvan.9.d
+	picture = GFX_report_event_hungarian_parliament_2
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.9.a
+		hidden_effect = {
+		country_event = { id = twristvan.91 days = 5 }
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.91 #The Coalition Forms
+	title = twristvan.91.t
+	desc = twristvan.91.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.91.a #Let them operate freely
+		ai_chance = {
+		factor = 30
+		}
+		add_war_support = -0.1
+		add_stability = 0.05
+		hidden_effect = {
+		country_event = { id = twristvan.92 days = 6 }
+		}
+	}
+	
+	option = { 
+		name = twristvan.91.b #Partner with friendly parties add timed idea
+		ai_chance = {
+		factor = 50
+		}
+		add_political_power = -100
+		add_popularity = {
+		    ideology = paternal_autocrat
+		    popularity = 0.1
+		}
+		hidden_effect = {
+		country_event = { id = twristvan.93 days = 6 }
+		}		
+	}
+}
+
+country_event = { 
+	id = twristvan.92 #Coalition Gains Traction
+	title = twristvan.92.t
+	desc = twristvan.92.d
+	picture = GFX_report_event_hun_coalition_traction
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.92.a #Let them operate
+		add_popularity = {
+		    ideology = conservative
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = social_democrat
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = liberal
+		    popularity = 0.1
+		}
+		hidden_effect = {
+		country_event = { id = twristvan.922 days = 9 }
+		}
+	}
+	option = { 
+		name = twristvan.92.b #Horthy will run in this fair election!
+		add_popularity = {
+		    ideology = conservative
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = social_democrat
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = liberal
+		    popularity = 0.1
+		}
+		hidden_effect = {
+		country_event = { id = twristvan.921 days = 5 }
+		country_event = { id = twristvan.922 days = 9 }
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.10 #Monarchist Charter
+	title = twristvan.10.t
+	desc = twristvan.10.d
+	picture = GFX_report_event_cardinal_mindszenty
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.10.a
+		hidden_effect = {
+		country_event = { id = twristvan.101 days = 5 }
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.101 #King Otto II Advice
+	title = twristvan.101.t
+	desc = twristvan.101.d
+	picture = GFX_report_event_otto_ii_talk
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.101.a #Otto is right
+		ai_chance = {
+		factor = 50
+		}
+		add_stability = 0.05
+		hidden_effect = {
+		country_event = { id = twristvan.1011 days = 5 }
+		}
+	}
+	option = { 
+		name = twristvan.101.b #Sideline the King
+		ai_chance = {
+		factor = 30
+		}
+		add_stability = -0.05
+		add_political_power = -50
+		add_ideas = HUN_king_horthy_dispute
+		hidden_effect = {
+		country_event = { id = twristvan.93 days = 3 }
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.1011 #Democrats With Kings Blessings
+	title = twristvan.1011.t
+	desc = twristvan.1011.d
+	picture = GFX_report_event_hun_coalition_traction
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.1011.a #Let them operate
+		add_popularity = {
+		    ideology = conservative
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = social_democrat
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = liberal
+		    popularity = 0.1
+		}
+		hidden_effect = {
+		country_event = { id = twristvan.922 days = 9 }
+		}
+	}
+	option = { 
+		name = twristvan.1011.b #Horthy will run in this fair election!
+		add_popularity = {
+		    ideology = conservative
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = social_democrat
+		    popularity = 0.1
+		}
+		add_popularity = {
+		    ideology = liberal
+		    popularity = 0.1
+		}
+		hidden_effect = {
+		country_event = { id = twristvan.921 days = 5 }
+		country_event = { id = twristvan.922 days = 9 }
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.921 #Istvan Transforms the MEP
+	title = twristvan.921.t
+	desc = twristvan.921.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.921.a #Let them operate freely
+		add_political_power = 90
+		set_party_name = { 
+		    ideology = paternal_autocrat 
+		    long_name = HUN_NEP_party_long 
+		    name = HUN_NEP_party 
+		}	
+		set_country_flag = NEP_FORMED_HUN	
+	}
+}
+
+country_event = { 
+	id = twristvan.922 #Ratify Democratization
+	title = twristvan.922.t
+	desc = twristvan.922.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.922.a #Democracy will come
+		add_stability = 0.05	
+		hidden_effect = {
+		set_country_flag = DEMOCRATIC_REFORM_TIDE_HUN
+		}
+	}
+}
+
+
+country_event = { 
+	id = twristvan.93 #Istvan Transforms the RIghtists
+	title = twristvan.93.t
+	desc = twristvan.93.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.93.a #Forceful Merger of FKgP and MEP
+		add_stability = -0.05
+		add_popularity = {
+		    ideology = conservative
+		    popularity = -0.1
+		}
+		create_country_leader = {
+			name = "Miklós Kállay"
+			desc = "Miklos_Kallay_DESC"
+			picture = "Miklos_Kallay.dds"
+			expire = "1965.1.1"
+			ideology = national_conservatism
+			traits = {
+
+				}
+			}		
+		set_party_name = { 
+		    ideology = conservative 
+		    long_name = HUN_EDP_party_con_long 
+		    name = HUN_EDP_party 
+		}			
+		set_party_name = { 
+		    ideology = paternal_autocrat 
+		    long_name = HUN_EDP_party_pat_long 
+		    name = HUN_EDP_party 
+		}		
+		hidden_effect = {
+		set_country_flag = FKGP_MERGED_MEP
+		country_event = { id = twristvan.931 days = 5 }
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.931 #Psuedo Democracy Ratified
+	title = twristvan.931.t
+	desc = twristvan.931.d
+	picture = GFX_report_event_hungarian_parliament_2
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.931.a #Democracy?
+		add_political_power = 50
+		hidden_effect = {
+		set_country_flag = FAKE_DEMOCRACY_HUN
+		}
+	}
+}
+
+country_event = { 
+	id = twristvan.11 #End of the Convention
+	title = twristvan.11.t
+	desc = twristvan.11.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.11.a #For better of for worse
+		custom_effect_tooltip = A_NEW_CONSTITUTION_HUN
+		add_stability = 0.05
+	}
+}
+
+country_event = { 
+	id = twristvan.12 #Fake Election
+	title = twristvan.12.t
+	desc = twristvan.12.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.12.a #For better of for worse
+	}
+}
+
+country_event = { 
+	id = twristvan.13 #Magyar Airlines
+	title = twristvan.13.t
+	desc = twristvan.13.d
+	picture = GFX_report_event_generic_plane
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.13.a #For better of for worse
+		add_equipment_to_stockpile = {
+	    type = transport_plane_equipment
+	    amount = 50
+	    producer = ENG
+		}
+		add_ideas = HUN_Magyar_Airlines_idea
+	}
+}
+
+country_event = { 
+	id = twristvan.14 #Learn from the USA
+	title = twristvan.14.t
+	desc = twristvan.14.d
+	picture = GFX_report_event_us_congress
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.14.a #For better of for worse
+		add_stability = 0.05
+		add_ideas = HUN_us_system
+	}
+}
+
+country_event = { 
+	id = twristvan.15 #Creating an Industrial Town
+	title = twristvan.15.t
+	desc = twristvan.15.d
+	picture = GFX_report_event_generic_factory
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.15.a #Our own Detriot
+		custom_effect_tooltip = UNLOCK_DECISION_TO_FURTHER_INVEST_HUN
+	}
+}
+
+country_event = { 
+	id = twristvan.17 #Hungary of the Future
+	title = twristvan.16.t
+	desc = twristvan.16.d
+	picture = GFX_report_event_early_rockets
+
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.16.a #Huzzah
+	}
+}
+
+country_event = { 
+	id = twristvan.16 #Hungary of the Future
+	title = twristvan.16.t
+	desc = twristvan.16.d
+	picture = GFX_report_event_early_rockets
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twristvan.16.a #Huzzah
+	}
+}
+
+country_event = { 
+	id = twrhundem.1 #Conservative Hungary
+	title = twrhundem.1.t
+	desc = twrhundem.1.d
+	picture = GFX_report_event_hungarian_parliament_2
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhundem.1.a #Huzzah
+		add_popularity = {
+    	ideology = conservative
+    	popularity = 0.15
+		}
+		add_stability = 0.15
+	}
+}
+
+country_event = { 
+	id = twrhundem.2 #SocDem Hungary
+	title = twrhundem.2.t
+	desc = twrhundem.2.d
+	picture = GFX_report_event_hungarian_parliament_2
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhundem.2.a #Huzzah
+		add_popularity = {
+    	ideology = social_democrat
+    	popularity = 0.15
+		}
+		add_stability = 0.15
+	}
+}
+
+country_event = { 
+	id = twrhundem.3 #Liberal Hungary
+	title = twrhundem.3.t
+	desc = twrhundem.3.d
+	picture = GFX_report_event_hungarian_parliament_2
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhundem.2.a #Huzzah
+		add_popularity = {
+    	ideology = liberal
+    	popularity = 0.15
+		}
+		add_stability = 0.15
+	}
+}
+
+country_event = { 
+	id = twrhundem.4 #Hungarian Request
+	title = twrhundem.4.t
+	desc = twrhundem.4.d
+	picture = GFX_report_event_USA_HUN_time
+	
+	is_triggered_only = yes
+		option = { 
+		name = twrhundem.4.a #Accept
+		ai_chance = {
+		factor = 50
+		}
+		HUN = {
+		country_event = { id = twrhundem.5 hours = 10 }
+		}
+	}
+	
+	option = { 
+		name = twrhundem.4.b #Reject
+		ai_chance = {
+		factor = 30
+		}
+		HUN = {
+		country_event = { id = twrhundem.6 hours = 10 }
+		}
+	}
+}
+
+country_event = { 
+	id = twrhundem.5 #American accept
+	title = twrhundem.5.t
+	desc = twrhundem.5.d
+	picture = GFX_report_event_USA_HUN_time
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhundem.5.a #Huzzah
+		add_political_power = 50
+		diplomatic_relation = {
+    	country = USA
+    	relation = non_aggression_pact
+    	active = yes
+		}
+		set_country_flag = ALIGN_WITH_TA_HUN
+		clr_country_flag = OPTION_IN_PROGRESS_HUN
+	}
+}
+
+country_event = { 
+	id = twrhundem.6 #American reject
+	title = twrhundem.6.t
+	desc = twrhundem.6.d
+	picture = GFX_report_event_USA_HUN_time
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhundem.6.a #Shame
+		add_political_power = -50
+		clr_country_flag = OPTION_IN_PROGRESS_HUN
+	}
+}
+
+country_event = { 
+	id = twrhundem.7 #Zoltan Tildy Retires
+	title = twrhundem.7.t
+	desc = twrhundem.7.d
+	picture = GFX_report_event_hungarian_parliament_2
+	trigger = {
+	date < 1956.12.03
+	tag = HUN
+	}
+	is_triggered_only = no
+	fire_only_once = yes
+	
+	option = { 
+		name = twrhundem.7.a #Alright
+		retire_ideology_leader = conservative
+	}
+}
+
+country_event = { 
+	id = twrfashhun.1 #Great Terror
+	title = twrfashhun.1.t
+	desc = twrfashhun.1.d
+	picture = GFX_report_event_nazi_police_arrest
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrfashhun.1.a
+		capital_scope = {
+		damage_building = {
+    	type = infrastructure
+    	damage = 2
+			}
+		damage_building = {
+    	type = arms_factory
+    	damage = 1
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = twrfashhun.2 #Land Reform
+	title = twrfashhun.2.t
+	desc = twrfashhun.2.d
+	picture = GFX_report_event_ruk_farmers_strike
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrfashhun.2.a
+		add_popularity = {
+    	ideology = fascist
+    	popularity = 0.1
+			}
+		add_political_power = 100
+		every_owned_state = {
+		add_extra_state_shared_building_slots = 1
+		add_state_modifier = {
+		    modifier = {
+		        local_supplies = 0.15
+		    	}
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = twrfashhun.3 #a-Semitism
+	title = twrfashhun.3.t
+	desc = twrfashhun.3.d
+	picture = GFX_report_event_nazi_police_arrest
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrfashhun.3.a
+		add_stability = -0.1
+		every_owned_state = {
+		damage_building = {
+    	type = infrastructure
+    	damage = 1
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = twrfashhun.4 #German question
+	title = twrfashhun.4.t
+	desc = twrfashhun.4.d
+	picture = GFX_report_event_german_march_hungary_1
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrfashhun.4.a #National Socialist takeover of the nation
+		trigger = {
+			OR = {
+				AND = {
+					country_exists = GER
+					GER = {
+						has_war = no
+						has_government = national_socialist
+					}
+				}
+				AND = {
+					country_exists = HSS
+					HSS = {
+						has_war = no
+						has_government = national_socialist
+					}
+				}
+				AND = {
+					country_exists = HGR
+					HGR = {
+						has_war = no
+						has_government = national_socialist
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 30
+		}
+		set_politics = {
+			ruling_party = national_socialist
+		}
+		add_popularity = {
+	    	ideology = national_socialist
+	    	popularity = 0.5
+		}
+		add_stability = -0.45
+		add_war_support = -0.15
+		add_political_power = 150
+		set_country_flag = HUN_FULL_NATSOC_COOPERATION
+		add_ideas = {
+			HoG_Franz_Anton_Basch
+			FM_Istvan_Balogh
+		}
+		news_event = twrfashhun.6
+	}
+	option = { 
+		name = twrfashhun.4.b #Contiue collaboration
+		ai_chance = {
+			factor = 40
+		}
+		add_stability = 0.05
+		set_country_flag = PROLONGED_COLLAB_HUNGARY_FASH
+	}
+	option = { 
+		name = twrfashhun.4.c #Stop collaboration
+		trigger = {
+			NOT = {
+				OR = {
+					is_in_faction_with = GER
+					is_in_faction_with = HGR
+					is_in_faction_with = HSS
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 10
+				NOT = {
+					country_exists = GER
+					country_exists = HSS
+					country_exists = HGR
+				}
+			}
+		}
+		add_stability = 0.15
+		add_war_support = 0.15
+		clr_country_flag = GERMAN_COLLABORATIONIST_HUN
+		set_country_flag = INDEPENDENT_HUNGARY_FASH
+		set_country_flag = ANTI_GERMAN_NATION
+	}
+}
+
+news_event = {
+	id = twrfashhun.5 #Hungarian remilitrazation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrfashhun.5"}
+	title = twrfashhun.5.t
+	desc = twrfashhun.5.d
+	picture = GFX_news_event_hungary_remilitarization
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrfashhun.5.a
+	}
+}
+
+news_event = {
+	id = twrfashhun.6 #NatSoc Coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrfashhun.6"}
+	title = twrfashhun.6.t
+	desc = twrfashhun.6.d
+	picture = GFX_news_event_hungarian_nazi_coup
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrfashhun.6.a
+	}
+}
+
+country_event = { 
+	id = twrfashhun.7 #Scythe Coup
+	title = twrfashhun.7.t
+	desc = twrfashhun.7.d
+	picture = GFX_report_event_hungarian_nazis
+	
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+	country_exists = HSS
+	tag = HUN
+	HUN = {
+	has_idea = FM_Zoltan_Boszormeny
+	has_government = national_socialist
+		}
+	}
+	
+	option = { 
+		name = twrfashhun.7.a #Nonsense.
+		ai_chance = {
+		factor = 5
+		}
+	}
+	
+	option = { 
+		name = twrfashhun.7.b #How...?
+		ai_chance = {
+		factor = 1
+		}
+		add_stability = -0.15
+		kill_country_leader = yes
+		if = {
+		limit = { has_cosmetic_tag = HUN_GREATER }
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = HUN_SCY_GREATER
+		}
+		else = {
+		set_cosmetic_tag = HUN_SCY
+		}
+		set_party_name = { 
+    	ideology = national_socialist 
+    	long_name = SCYTHE_CROSS_HUN_LONG
+    	name = SCYTHE_CROSS_HUN 
+		}
+		create_country_leader = {
+		name = "Zoltán Böszörmény"
+		desc = "Zoltan_Boszormeny_DESC"
+		picture = "Zoltan_Boszormeny.dds"
+		expire = "1965.1.1"
+		ideology = strasserism
+		traits = { }
+		}
+	}
+}
+
+
+country_event = { 
+	id = twrhunjunta.1 #Hungarian request
+	title = twrhunjunta.1.t
+	desc = twrhunjunta.1.d
+	picture = GFX_report_event_hungary_intro
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunjunta.1.a #Accept
+		ai_chance = {
+		factor = 50
+		}
+		HUN = {
+		country_event = { id = twrhunjunta.2 hours = 10 }
+		}
+	}
+	
+	option = { 
+		name = twrhunjunta.1.b #Reject
+		trigger = {
+		NOT = {
+		has_completed_focus = ITA_Contact_Horthy
+			}
+		}
+		ai_chance = {
+		factor = 30
+		}
+		HUN = {
+		country_event = { id = twrhunjunta.3 hours = 10 }
+		}
+	}
+}
+
+country_event = { 
+	id = twrhunjunta.2 #Italians accept
+	title = twrhunjunta.2.t
+	desc = twrhunjunta.2.d
+	picture = GFX_report_event_nationhood_debate_ITA
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunjunta.2.a #Huzzah
+		add_political_power = 50
+		set_country_flag = ALIGN_WITH_ITA_HUN
+		clr_country_flag = OPTION_IN_PROGRESS_HUN
+	}
+}
+
+country_event = { 
+	id = twrhunjunta.3 #Italians reject
+	title = twrhunjunta.3.t
+	desc = twrhunjunta.3.d
+	picture = GFX_report_event_nationhood_debate_ITA
+	
+	is_triggered_only = yes
+	immediate = {
+	hidden_effect = {
+		set_country_flag = ITALIAN_REJECTED
+		}
+	}
+	option = { 
+		name = twrhunjunta.3.a #Shame
+		add_political_power = -50
+		clr_country_flag = OPTION_IN_PROGRESS_HUN
+	}
+}
+
+country_event = { 
+	id = twrhunjunta.4 #White Terror
+	title = twrhunjunta.4.t
+	desc = twrhunjunta.4.d
+	picture = GFX_report_event_nazi_police_arrest
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunjunta.4.a #Shame
+		add_stability = 0.05
+		capital_scope = {
+		add_manpower = -500
+		}
+		add_popularity = {
+    	ideology = liberal
+    	popularity = -0.5
+		}
+		add_popularity = {
+    	ideology = socialist
+    	popularity = -0.5
+		}
+		add_popularity = {
+    	ideology = social_democrat
+    	popularity = -0.5
+		}
+		add_popularity = {
+    	ideology = marxist_leninist
+    	popularity = -0.5
+		}
+		add_popularity = {
+    	ideology = bolshevik_leninist
+    	popularity = -0.5
+		}
+	}
+}
+
+country_event = { 
+	id = twrhunrev.1 #The Three Accussations
+	title = twrhunrev.1.t
+	desc = twrhunrev.1.d
+	picture = GFX_report_event_general_strike
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunrev.1.a #The struggle begins
+		add_political_power = -150
+		add_war_support = -0.1
+		add_ideas = HUN_class_struggle
+		country_event = { id = twrhunrev.2 days = 3 }
+	}
+}
+
+country_event = { 
+	id = twrhunrev.2 #General Strikes Called
+	title = twrhunrev.2.t
+	desc = twrhunrev.2.d
+	picture = GFX_report_event_hungarian_revolution
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunrev.2.a #Summon an emergency congress
+		add_stability = -0.1
+		capital_scope = {
+		damage_building = {
+    	type = arms_factory
+    	damage = 3
+			}
+		}
+		country_event = { id = twrhunrev.3 days = 3 }
+	}
+}
+
+country_event = { 
+	id = twrhunrev.3 #Congress
+	title = twrhunrev.3.t
+	desc = twrhunrev.3.d
+	picture = GFX_report_event_communist_congress_bulgaria
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunrev.3.a #Reaffirm the current line
+		ai_chance = {
+		factor = 30
+		}
+		custom_effect_tooltip = FOCUS_UNLOCKED_SOCDEM_HUN
+		set_country_flag = SOCDEM_MAJORITY_IN_CONGRESS_HUN
+	}
+	
+	option = { 
+		name = twrhunrev.3.b #The Socialists condemn the sitting government
+		ai_chance = {
+		factor = 50
+		}
+		custom_effect_tooltip = FOCUS_UNLOCKED_SOC_HUN
+		set_country_flag = RADICALS_MAJORITY_IN_CONGRESS_HUN
+	}
+}
+
+news_event = {
+	id = twrhunrev.4 #Socialist Coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrhunrev.4"}
+	title = twrhunrev.4.t
+	desc = twrhunrev.4.d
+	picture = GFX_news_event_socialist_hungary
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrhunrev.4.a
+	}
+}
+
+country_event = { 
+	id = twrhunrev.5 #Silent Revolution
+	title = twrhunrev.5.t
+	desc = twrhunrev.5.d
+	picture = GFX_report_event_communist_congress_bulgaria
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunrev.5.a #Reaffirm the current line
+		capital_scope = {
+		add_manpower = -500
+		}
+	}
+}
+
+country_event = { 
+	id = twrhunrev.6 #Wildcat Revolutions struck down
+	title = twrhunrev.6.t
+	desc = twrhunrev.6.d
+	picture = GFX_report_event_generic_western_riot
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunrev.6.a #Reaffirm the current line
+		capital_scope = {
+		add_manpower = -150
+		}
+	}
+}
+
+country_event = { 
+	id = twrhunrev.7 #Status Quo
+	title = twrhunrev.7.t
+	desc = twrhunrev.7.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunrev.7.a #Nothing has changed
+		swap_ideas = {
+	    remove_idea = HUN_material_awards
+	    add_idea = HUN_Status_Quo_Restored
+		}
+	}
+}
+
+country_event = { 
+	id = twrhunrev.8 #Transy ASSRs
+	title = twrhunrev.8.t
+	desc = twrhunrev.8.d
+	picture = GFX_report_event_hungarian_parliament
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = twrhunrev.8.a #Maintain Greater Hungary
+		ai_chance = {
+		factor = 0
+		}
+	}
+	
+	option = { 
+		name = twrhunrev.8.b #Follow in Bela Kun's footsteps!
+		ai_chance = {
+		factor = 1
+		}
+		set_country_flag = BELA_KUN_ASSR
+		add_stability = 0.1
+		84 = {
+		add_core_of = TRY
+		}
+		release_autonomy = {
+    	target = TRY
+    	autonomy_state = autonomy_SSR
+    	freedom_level = 0.3
+		}
+		hidden_effect = {
+			TRY = {
+			add_ideas = {
+			disarmed_nation
+			ROM_military_disarmed
+				}
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 100
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+				}
+				set_politics = {
+				ruling_party = socialist
+				}
+				set_cosmetic_tag = TRY_SSR	
+			}		
+		}
+	}
+}

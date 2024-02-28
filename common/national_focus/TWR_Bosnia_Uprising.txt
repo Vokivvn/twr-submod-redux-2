@@ -1,0 +1,149 @@
+focus_tree = {
+	id = BOS_Uprising_Tree
+	country = {
+		factor = 0
+	}
+	default = no
+	shared_focus = BOS_For_Bosnia
+	continuous_focus_position = { x = 50 y = -1000 }
+}
+
+shared_focus = {
+	id = BOS_For_Bosnia
+	icon = GFX_CRO_The_Bosnian_Uprising
+	cost = 4
+	x = 7
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus BOS_For_Bosnia"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = BOS_An_United_Front
+	icon = GFX_GENERIC_Partisans
+	cost = 4
+	x = 0
+	y = 1
+	cancelable = no
+	relative_position_id = BOS_For_Bosnia
+	prerequisite = {
+		focus = BOS_For_Bosnia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_An_United_Front"
+                add_ideas = BOS_An_United_Front
+	}
+}
+
+
+shared_focus = {
+	id = BOS_Arms_Smuggling
+	icon = GFX_GENERIC_Holding_Gun
+	cost = 4
+	x = -1
+	y = 1
+	relative_position_id = BOS_An_United_Front
+	cancelable = no
+	prerequisite = {
+		focus = BOS_An_United_Front
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus BOS_Arms_Smuggling"
+        add_equipment_to_stockpile = {
+        type = infantry_equipment
+        amount = 1000
+             }
+	}
+}
+
+shared_focus = {
+	id = BOS_Guerilla_Tactics
+	icon = GFX_GENERIC_Mountain_Warfare
+	cost = 4
+	x = 1
+	y = 1
+	relative_position_id = BOS_An_United_Front
+	cancelable = no
+	prerequisite = {
+		focus = BOS_An_United_Front
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus BOS_Guerilla_Tactics"
+                add_ideas = BOS_Guerilla_Tactics
+	}
+}
+
+shared_focus = {
+	id = BOS_Emergency_Reinforcements
+	icon = GFX_GENERIC_Soldiers_Defense
+	cost = 4
+	x = 0
+	y = 2
+	relative_position_id = BOS_An_United_Front
+	cancelable = no
+	prerequisite = {
+		focus = BOS_Arms_Smuggling
+	}
+	prerequisite = {
+		focus = BOS_Guerilla_Tactics
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus BOS_Emergency_Reinforcements"
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Bosanska Planinska Divizija'\" division_template = \"Bosanska Planinska Divizija\" start_experience_factor = 0.3" owner = BOS
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Bosanska Planinska Divizija'\" division_template = \"Bosanska Planinska Divizija\" start_experience_factor = 0.3" owner = BOS
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Bosanska Planinska Divizija'\" division_template = \"Bosanska Planinska Divizija\" start_experience_factor = 0.3" owner = BOS
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Bosanska Planinska Divizija'\" division_template = \"Bosanska Planinska Divizija\" start_experience_factor = 0.3" owner = BOS
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Bosanska Planinska Divizija'\" division_template = \"Bosanska Planinska Divizija\" start_experience_factor = 0.3" owner = BOS
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Bosanska Planinska Divizija'\" division_template = \"Bosanska Planinska Divizija\" start_experience_factor = 0.3" owner = BOS
+						}
+					}
+	}
+}
+
+shared_focus = {
+	id = BOS_Victory
+	icon = GFX_GENERIC_victory_liberty
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = BOS_Emergency_Reinforcements
+	cancelable = no
+	prerequisite = {
+		focus = BOS_Emergency_Reinforcements
+	}
+        available = {
+        has_war = no
+        }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_An_United_Front"
+               remove_ideas = { BOS_Guerilla_Tactics BOS_An_United_Front BOS_For_Bosnia }
+               load_focus_tree = generic    
+	}
+}
+
+

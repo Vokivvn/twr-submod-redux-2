@@ -1,0 +1,6652 @@
+﻿add_namespace = russia
+add_namespace = rus_elec
+add_namespace = rus_duma
+add_namespace = ivanomika
+add_namespace = russiaflavour
+
+add_namespace = twrrussia
+add_namespace = twrsiberia
+add_namespace = twrrushidden
+add_namespace = rusreunification
+add_namespace = russianarmy
+add_namespace = russianreconquest
+add_namespace = russiacrisis
+add_namespace = karelia
+add_namespace = russianarmy
+
+country_event = {
+	id = russia.1 # Our Flags at Half-Mast
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.1"}
+	title = russia.1.t
+	desc = russia.1.d
+	
+	picture = GFX_report_event_generic_western_riot
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.1.a
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = russia.2 # Rogozhin's Speech
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.2"}
+	title = russia.2.t
+	desc = russia.2.d
+	
+	picture = GFX_report_event_radio
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.2.a
+		add_stability = 0.01
+	}
+}
+
+country_event = {
+	id = russia.3 # Demonise the Leninists
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.3"}
+	title = russia.3.t
+	desc = russia.3.d
+	
+	picture = GFX_report_commies_bad
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.3.a
+		add_war_support = 0.01
+	}
+}
+
+country_event = {
+	id = russia.4 # Vonsiatsky Banned
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.4"}
+	title = russia.4.t
+	desc = russia.4.d
+	
+	picture = GFX_report_event_russia_anastasy
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.4.a
+		add_popularity = {
+    	ideology = fascist
+    	popularity = -0.01
+		}
+	}
+}
+
+country_event = {
+	id = russia.5 # The Duma's Grand Reopening
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.5"}
+	title = russia.5.t
+	desc = russia.5.d
+	
+	picture = GFX_report_event_duma_meeting
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.5.a
+		load_focus_tree = {
+			tree = RUS_intro1_tree
+			keep_completed = yes
+		}
+		complete_national_focus = RUS_Intro1_The_Dumas_Grand_Reopening
+		add_political_power = -50
+	}
+}
+
+country_event = {
+	id = russia.6 # The Future of Russia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.6"}
+	title = russia.6.t
+	desc = russia.6.d
+	
+	picture = GFX_report_event_prague_protest
+	is_triggered_only = yes
+	
+	option = { # mikhailov
+		ai_chance = {
+			factor = 40
+		}
+		name = russia.6.a
+		complete_national_focus = RUS_Intro1_Mikhailov_Leads_the_Way
+	}
+	option = { # rogozhin stays
+		ai_chance = {
+			factor = 40
+		}
+		name = russia.6.b
+		complete_national_focus = RUS_Intro1_Rogozhin_Stays
+	}
+}
+
+country_event = {
+	id = russia.7 # Mikhailov Takes Power
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.7"}
+	title = russia.7.t
+	desc = russia.7.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.7.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Ivan Mikhailov"
+			desc = "POLITICS_IVAN_MIKHAILOV_DESC"
+			picture = "Ivan_Mikhailov.dds"
+			expire = "1968.1.1"
+			ideology = military_dictatorshipz
+			traits = {}
+		}
+		add_stability = 0.05
+	}
+}
+
+country_event = {
+	id = russia.8 # Mass Protests Begin
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.8"}
+	title = russia.8.t
+	desc = russia.8.d
+	
+	picture = GFX_report_event_slovak_uni_protest
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.8.a
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = russia.9 # The Kerensky-Rogozhin Cult
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.9"}
+	title = russia.9.t
+	desc = russia.9.d
+	
+	picture = GFX_report_event_kerensky
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.9.a
+		IF = {
+			limit = {
+				has_completed_focus = RUS_Intro1_Mikhailov_Leads_the_Way
+			}
+			load_focus_tree = RUS_mikhailov_tree
+		}
+	}
+}
+
+country_event = {
+	id = russia.10 # The Russian Cincinnatus
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.10"}
+	title = russia.10.t
+	desc = russia.10.d
+	
+	picture = GFX_report_event_russia_rogozhin
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.10.a
+		add_stability = 0.05
+	}
+}
+
+country_event = {
+	id = russia.11 # The Electoral Cycle Begins
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.11"}
+	title = russia.11.t
+	desc = russia.11.d
+	
+	picture = GFX_report_event_russia_rogozhin
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.11.a
+		add_stability = 0.03
+		add_war_support = 0.03
+		hidden_effect = {
+			load_focus_tree = RUS_election_tree
+		}
+	}
+}
+
+country_event = {
+	id = russia.12 # Disarming the Student Groups
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.12"}
+	title = russia.12.t
+	desc = russia.12.d
+	
+	picture = GFX_report_event_student_charges
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.12.a
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = russia.13 # The [GetYear] Duma "Election"
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.13"}
+	title = russia.13.t
+	desc = russia.13.d
+	
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.13.a
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.1
+		}
+		set_party_name = {
+			ideology = paternal_autocrat
+			name = "NTS - Moderates"
+			long_name = "Natsional'no Trudovoy Soyuz (National Alliance of Russian Solidarists) - Moderates"
+		}
+		set_party_name = {
+			ideology = fascist
+			name = "NTS - Radicals"
+			long_name = "Natsional'no Trudovoy Soyuz (National Alliance of Russian Solidarists) - Radicals"
+		}
+		set_party_name = {
+			ideology = national_socialist
+			name = "RFP"
+			long_name = "Rossiyskaya Fashistskaya Partiya (Russian Fascist Party)"
+		}
+	}
+}
+
+country_event = {
+	id = russia.14 # Mikhailov's Troika
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.14"}
+	title = russia.14.t
+	desc = russia.14.d
+	
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.14.a
+		add_ideas = RUS_Mikhailovs_Troika_idea
+		set_variable = { RUS_Ivanomika_consciousness = 5 }
+		set_variable = { RUS_Ivanomika_spending = 0 }
+		set_variable = { RUS_Ivanomika_development = 9 }
+	}
+}
+
+country_event = {
+	id = russia.15 # The Grand Opening of the A. V. Kolchak Museum
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.15"}
+	title = russia.15.t
+	desc = russia.15.d
+	
+	picture = GFX_report_kolchak
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.15.a
+		add_political_power = 30
+		add_war_support = 0.01
+	}
+}
+
+country_event = {
+	id = russia.16 # Ivanomika
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.16"}
+	title = russia.16.t
+	desc = russia.16.d
+	
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.16.a
+		set_country_flag = RUS_Ivanomika_decisions_flag
+		unlock_decision_category_tooltip = RUS_Ivanomika_cat
+		add_political_power = 150
+		add_stability = 0.05
+		hidden_effect = {
+			activate_mission = RUS_Ivanomika_Add_Money_Mission
+		}
+	}
+}
+
+country_event = {
+	id = russia.17 # Decision Time
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.17"}
+	title = russia.17.t
+	desc = russia.17.d
+	
+	picture = GFX_report_event_student_charges
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.17.a
+		complete_national_focus = RUS_Intro1_More_Fuel_on_the_Fire
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = russia.18 # Reclaiming the Motherland
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.18"}
+	title = russia.18.t
+	desc = russia.18.d
+	
+	picture = GFX_report_event_chinese_soldiers_mountain
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.18.a
+	}
+}
+
+country_event = {
+	id = russia.19 # The Perm Trials
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.19"}
+	title = russia.19.t
+	desc = russia.19.d
+	
+	picture = GFX_report_event_russian_courtroom
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.19.a
+		IF = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea
+				add_idea = RUS_Overextended_Administration_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_1
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_1
+				add_idea = RUS_Overextended_Administration_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_2
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_2
+				add_idea = RUS_Overextended_Administration_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_3
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_3
+				add_idea = RUS_Overextended_Administration_idea_4
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_4
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_4
+				add_idea = RUS_Overextended_Administration_idea_5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.20 # Liberation of Ukraine
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.20"}
+	title = russia.20.t
+	desc = russia.20.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.20.a
+		UKR = { transfer_state = 93 }
+		UKR = { transfer_state = 94 }
+		UKR = { transfer_state = 193 }
+		UKR = { transfer_state = 194 }
+		UKR = { transfer_state = 196 }
+		UKR = { transfer_state = 197 }
+		UKR = { transfer_state = 199 }
+		UKR = { transfer_state = 200 }
+		UKR = { transfer_state = 201 }
+		UKR = { transfer_state = 202 }
+		UKR = { transfer_state = 203 }
+		UKR = { transfer_state = 221 }
+		UKR = { transfer_state = 225 }
+		UKR = { transfer_state = 226 }
+		UKR = { transfer_state = 227 }
+		UKR = { transfer_state = 241 }
+		UKR = { transfer_state = 259 }
+		UKR = { transfer_state = 986 }
+		UKR = { transfer_state = 987 }
+		UKR = { transfer_state = 988 }
+		UKR = { transfer_state = 989 }
+		UKR = { transfer_state = 990 }
+		UKR = { transfer_state = 991 }
+		UKR = { transfer_state = 992 }
+		puppet = UKR
+		UKR = {
+			set_cosmetic_tag = UKR_PUPPET_RUS
+			set_capital = { state = 202 }
+			set_politics = {	
+				ruling_party = conservative
+				last_election = "1933.7.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Stepan Vytvytskyi"
+				desc = "STEPAN_VYTVYTSKYI_DESC"
+				picture = "Stepan_Vytvytskyi.dds"
+				expire = "1968.1.1"
+				ideology = national_conservatism
+				traits = {}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.21 # Liberation of Byelorussia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.21"}
+	title = russia.21.t
+	desc = russia.21.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.21.a
+		BLR = { transfer_state = 95 }
+		BLR = { transfer_state = 96 }
+		BLR = { transfer_state = 204 }
+		BLR = { transfer_state = 206 }
+		BLR = { transfer_state = 207 }
+		BLR = { transfer_state = 928 }
+		puppet = BLR
+		BLR = {
+			set_cosmetic_tag = BLR_PUPPET_RUS
+			set_politics = {	
+				ruling_party = paternal_autocrat
+				last_election = "1933.7.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Mikola Abramchyk"
+				desc = "MIKOLA_ABRAMCHYK_DESC"
+				picture = "Mikola_Abramchyk.dds"
+				expire = "1968.1.1"
+				ideology = authoritarian_democracy
+				traits = {}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.22 # Liberation of Azerbaijan
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.22"}
+	title = russia.22.t
+	desc = russia.22.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.22.a
+		AZR = { transfer_state = 229 }
+		AZR = { transfer_state = 854 }
+		AZR = { transfer_state = 966 }
+		AZR = { transfer_state = 967 }
+		AZR = { transfer_state = 968 }
+		AZR = { transfer_state = 969 }
+		puppet = AZR
+		AZR = {
+			set_cosmetic_tag = AZR_PUPPET_RUS
+			set_capital = { state = 854 }
+			set_politics = {	
+				ruling_party = liberal
+				last_election = "1933.7.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Mustafa Vakilov"
+				desc = "MUSTAFA_VAKILOV_DESC"
+				picture = "Mustafa_Vakilov.dds"
+				expire = "1968.1.1"
+				ideology = national_liberalism
+				traits = {}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.23 # A Liberal Trinity
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.23"}
+	title = russia.23.t
+	desc = russia.23.d
+	
+	picture = GFX_report_event_nabokov
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.23.a
+	}
+}
+
+country_event = {
+	id = russia.24 # USA - Russia Requests Arms Sales
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.24"}
+	title = russia.24.t
+	desc = russia.24.d
+	
+	picture = GFX_report_event_russia_trade
+	is_triggered_only = yes
+	
+	option = { # Yes
+		name = russia.24.a
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 5000
+			target = RUS
+		}
+		RUS = {
+			country_event = {
+				id = russia.25
+				hours = 7
+			}
+		}
+	}
+	option = { # No
+		name = russia.24.b
+		RUS = {
+			country_event = {
+				id = russia.26
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.25 # America Sends Arms!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.25"}
+	title = russia.25.t
+	desc = russia.25.d
+	
+	picture = GFX_report_event_russia_trade
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.25.a
+	}
+}
+
+country_event = {
+	id = russia.26 # America Refuses to Send Arms
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.26"}
+	title = russia.26.t
+	desc = russia.26.d
+	
+	picture = GFX_report_event_russia_trade
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.26.a
+	}
+}
+
+country_event = {
+	id = russia.27 # USA - Russia Requests to Join the Toronto Accord
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.27"}
+	title = russia.27.t
+	desc = russia.27.d
+	
+	picture = GFX_report_event_russia_america_bff
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = russia.27.a
+		RUS = {
+			country_event = {
+				id = russia.28
+				hours = 7
+			}
+		}
+	}
+	option = { #No
+		name = russia.27.b
+		RUS = {
+			country_event = {
+				id = russia.29
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.28 # Toronto Accord Membership Accepted
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.28"}
+	title = russia.28.t
+	desc = russia.28.d
+	
+	picture = GFX_report_event_russia_america_bff
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.28.a
+		USA = { add_to_faction = RUS }
+	}
+}
+
+country_event = {
+	id = russia.29 # Toronto Accord Membership Declined
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.29"}
+	title = russia.29.t
+	desc = russia.29.d
+	
+	picture = GFX_report_event_russia_america_bff
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.29.a
+	}
+}
+
+country_event = {
+	id = russia.30 # The Great Social Justice Debate
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.30"}
+	title = russia.30.t
+	desc = russia.30.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = { # side with the liberals
+		name = russia.30.a
+		complete_national_focus = RUS_Kadety_The_Progressive_Solution
+	}
+	option = { # side with the conservatives
+		name = russia.30.b
+		complete_national_focus = RUS_Kadety_The_National_Solution
+	}
+}
+
+country_event = {
+	id = russia.31 # Vladivostok Jewish Cultural Centre Opening (GONE WRONG) (GONE ANTISEMITIC)
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.31"}
+	title = russia.31.t
+	desc = russia.31.d
+	
+	picture = GFX_report_event_russian_newspaper
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.31.a
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.05
+		}
+	}
+}
+
+country_event = {
+	id = russia.32 # Vladivostok Jewish Cultural Centre Opening
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.32"}
+	title = russia.32.t
+	desc = russia.32.d
+	
+	picture = GFX_report_event_russian_newspaper
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.32.a
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.025
+		}
+	}
+}
+
+country_event = {
+	id = russia.33 # The National Agenda
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.33"}
+	title = russia.33.t
+	desc = russia.33.d
+	
+	picture = GFX_report_event_solz
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.33.a
+	}
+}
+
+country_event = {
+	id = russia.34 # Our Place in the World
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.34"}
+	title = russia.34.t
+	desc = russia.34.d
+	
+	picture = GFX_report_event_no_more_commies
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.34.a
+	}
+}
+
+country_event = {
+	id = russia.35 # ROOT - Russia Requests Temporary Labour Exchanges
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.35"}
+	title = russia.35.t
+	desc = russia.35.d
+	
+	picture = GFX_report_event_factory_workers
+	is_triggered_only = yes
+	
+	option = { #sure
+		name = russia.35.a
+		add_timed_idea = {
+			idea = RUS_Foreign_Labour_idea
+			days = 720
+		}
+		RUS = {
+			country_event = {
+				id = russia.36
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.35.b
+		RUS = {
+			country_event = {
+				id = russia.37
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.36 # [ROOT] Agrees to a Labour Exchange
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.36"}
+	title = russia.36.t
+	desc = russia.36.d
+	
+	picture = GFX_report_event_factory_workers
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.36.a
+		add_timed_idea = {
+			idea = RUS_Foreign_Labour_idea
+			days = 720
+		}
+	}
+}
+
+country_event = {
+	id = russia.37 # [ROOT] Refuses a Labour Exchange
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.37"}
+	title = russia.37.t
+	desc = russia.37.d
+	
+	picture = GFX_report_event_factory_workers
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.37.a
+	}
+}
+
+country_event = {
+	id = russia.38 # China - Russia Requests Border Conference
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.38"}
+	title = russia.38.t
+	desc = russia.38.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #sure
+		name = russia.38.a
+		RUS = {
+			country_event = {
+				id = russia.40
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.38.b
+		RUS = {
+			country_event = {
+				id = russia.39
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.39 # China Refuses a Border Agreement
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.39"}
+	title = russia.39.t
+	desc = russia.39.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.39.a
+	}
+}
+
+country_event = {
+	id = russia.40 # The Status of Mongolia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.40"}
+	title = russia.40.t
+	desc = russia.40.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { # russian
+		name = russia.40.a
+		set_country_flag = RUS_RUS_mongolia_flag
+		CHI = {
+			country_event = {
+				id = russia.41
+				hours = 7
+			}
+		}
+	}
+	option = { # chinese
+		name = russia.40.b
+		set_country_flag = RUS_CHI_mongolia_flag
+		CHI = {
+			country_event = {
+				id = russia.42
+				hours = 7
+			}
+		}
+	}
+	option = { # buffer state
+		name = russia.40.c
+		set_country_flag = RUS_MON_mongolia_flag
+		CHI = {
+			country_event = {
+				id = russia.43
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.41 # China - Russia Claims Mongolia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.41"}
+	title = russia.41.t
+	desc = russia.41.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.41.a
+		RUS = {
+			country_event = {
+				id = russia.45
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.41.b
+		RUS = {
+			country_event = {
+				id = russia.44
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.42 # China - Russia Renounces Claims on Mongolia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.42"}
+	title = russia.42.t
+	desc = russia.42.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.42.a
+		RUS = {
+			country_event = {
+				id = russia.45
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.42.b
+		RUS = {
+			country_event = {
+				id = russia.44
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.43 # China - Russia Supports a Mongolian Buffer State
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.43"}
+	title = russia.43.t
+	desc = russia.43.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.43.a
+		RUS = {
+			country_event = {
+				id = russia.45
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.43.b
+		RUS = {
+			country_event = {
+				id = russia.44
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.44 # China Refuses Planned Borders
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.44"}
+	title = russia.44.t
+	desc = russia.44.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.44.a
+		IF = {
+			limit = {
+				has_country_flag = RUS_RUS_mongolia_flag
+			}
+			clr_country_flag = RUS_RUS_mongolia_flag
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RUS_CHI_mongolia_flag
+			}
+			clr_country_flag = RUS_CHI_mongolia_flag
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RUS_MON_mongolia_flag
+			}
+			clr_country_flag = RUS_MON_mongolia_flag
+		}
+		country_event = {
+			id = russia.45
+			hours = 7
+		}
+	}
+}
+
+country_event = {
+	id = russia.45 # The Status of Tuva
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.45"}
+	title = russia.45.t
+	desc = russia.45.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { # russian
+		name = russia.45.a
+		set_country_flag = RUS_RUS_tuva_flag
+		CHI = {
+			country_event = {
+				id = russia.46
+				hours = 7
+			}
+		}
+	}
+	option = { # chinese
+		name = russia.45.b
+		trigger = {
+			NOT = {
+				OR = {
+					has_country_flag = RUS_RUS_mongolia_flag
+					has_country_flag = RUS_MON_mongolia_flag
+				}
+			}
+		}
+		set_country_flag = RUS_CHI_tuva_flag
+		CHI = {
+			country_event = {
+				id = russia.47
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.46 # China - Russia Claims Tuva
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.46"}
+	title = russia.46.t
+	desc = russia.46.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.46.a
+		RUS = {
+			country_event = {
+				id = russia.49
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.46.b
+		RUS = {
+			country_event = {
+				id = russia.48
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.47 # China - Russia Renounces Claims on Tuva
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.47"}
+	title = russia.47.t
+	desc = russia.47.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.47.a
+		RUS = {
+			country_event = {
+				id = russia.49
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.42.b
+		RUS = {
+			country_event = {
+				id = russia.48
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.48 # China Refuses Planned Borders
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.48"}
+	title = russia.48.t
+	desc = russia.48.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.48.a
+		IF = {
+			limit = {
+				has_country_flag = RUS_RUS_tuva_flag
+			}
+			clr_country_flag = RUS_RUS_tuva_flag
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RUS_CHI_tuva_flag
+			}
+			clr_country_flag = RUS_CHI_tuva_flag
+		}
+		country_event = {
+			id = russia.49
+			hours = 7
+		}
+	}
+}
+
+country_event = {
+	id = russia.49 # Economic Reparations
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.49"}
+	title = russia.49.t
+	desc = russia.49.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { # russian
+		name = russia.49.a
+		set_country_flag = RUS_RUS_reparations_flag
+		CHI = {
+			country_event = {
+				id = russia.50
+				hours = 7
+			}
+		}
+	}
+	option = { # chinese
+		name = russia.49.b
+		set_country_flag = RUS_CHI_reparations_flag
+		CHI = {
+			country_event = {
+				id = russia.51
+				hours = 7
+			}
+		}
+	}
+	option = { # reparations are unnecessary
+		name = russia.49.b
+		set_country_flag = RUS_no_reparations_flag
+		CHI = {
+			country_event = {
+				id = russia.52
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.50 # China - Russia Offers to Pay Reparations
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.50"}
+	title = russia.50.t
+	desc = russia.50.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.50.a
+		RUS = {
+			country_event = {
+				id = russia.53
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.50.b
+		RUS = {
+			country_event = {
+				id = russia.54
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.51 # China - Russia Demands We Pay Reparations
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.51"}
+	title = russia.51.t
+	desc = russia.51.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.51.a
+		RUS = {
+			country_event = {
+				id = russia.53
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.51.b
+		RUS = {
+			country_event = {
+				id = russia.54
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.52 # China - Russia Proposes No Reparations
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.52"}
+	title = russia.52.t
+	desc = russia.52.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.52.a
+		RUS = {
+			country_event = {
+				id = russia.53
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.52.b
+		RUS = {
+			country_event = {
+				id = russia.54
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.53 # China Agrees to the Reparations Proposal!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.53"}
+	title = russia.53.t
+	desc = russia.53.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.53.a
+		country_event = {
+			id = russia.55
+			hours = 7
+		}
+	}
+}
+
+country_event = {
+	id = russia.54 # China Refuses Reparations Proposal
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.54"}
+	title = russia.54.t
+	desc = russia.54.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.54.a
+		IF = {
+			limit = {
+				has_country_flag = RUS_RUS_reparations_flag
+			}
+			clr_country_flag = RUS_RUS_reparations_flag
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RUS_CHI_reparations_flag
+			}
+			clr_country_flag = RUS_CHI_reparations_flag
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RUS_no_reparations_flag
+			}
+			clr_country_flag = RUS_no_reparations_flag
+		}
+		IF = {
+			limit = {
+				OR = {
+					has_country_flag = RUS_RUS_mongolia_flag
+					has_country_flag = RUS_CHI_mongolia_flag
+					has_country_flag = RUS_MON_mongolia_flag
+					has_country_flag = RUS_RUS_tuva_flag
+					has_country_flag = RUS_CHI_tuva_flag
+					has_country_flag = RUS_RUS_reparations_flag
+					has_country_flag = RUS_CHI_reparations_flag
+					has_country_flag = RUS_no_reparations_flag
+				}
+			}
+			country_event = {
+				id = russia.55
+				hours = 7
+			}
+		}
+		else = {
+			country_event = {
+				id = russia.56
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.55 # An End to the Border Conference
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.55"}
+	title = russia.55.t
+	desc = russia.55.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.55.a
+		IF = {
+			limit = { has_country_flag = RUS_RUS_mongolia_flag }
+			clr_country_flag = RUS_RUS_mongolia_flag
+			330 = { add_claim_by = RUS }
+		}
+		else_if = {
+			limit = { has_country_flag = RUS_CHI_mongolia_flag }
+			clr_country_flag = RUS_CHI_mongolia_flag
+			330 = { add_claim_by = CHI }
+		}
+		else_if = {
+			limit = { has_country_flag = RUS_MON_mongolia_flag }
+			clr_country_flag = RUS_MON_mongolia_flag
+			set_country_flag = RUS_invade_mongolia_decision_flag
+		}
+		IF = {
+			limit = { has_country_flag = RUS_RUS_tuva_flag }
+			clr_country_flag = RUS_RUS_tuva_flag
+			329 = { add_claim_by = RUS }
+		}
+		else_if = {
+			limit = { has_country_flag = RUS_CHI_tuva_flag }
+			clr_country_flag = RUS_CHI_tuva_flag
+			329 = { add_claim_by = CHI }
+		}
+		IF = {
+			limit = { has_country_flag = RUS_RUS_reparations_flag }
+			clr_country_flag = RUS_RUS_reparations_flag
+			add_ideas = RUS_Reparations_to_China_idea
+			CHI = { add_ideas = RUS_Reparations_from_Russia_idea }
+		}
+		else_if = {
+			limit = { has_country_flag = RUS_CHI_reparations_flag }
+			clr_country_flag = RUS_CHI_reparations_flag
+			add_ideas = RUS_Reparations_from_China_idea
+			CHI = { add_ideas = RUS_Reparations_to_Russia_idea }
+		}
+	}
+}
+
+country_event = {
+	id = russia.56 # Leaving Empty-Handed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.56"}
+	title = russia.56.t
+	desc = russia.56.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.56.a
+	}
+}
+
+country_event = {
+	id = russia.57 # China - Military Intervention in Mongolia Begins
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.57"}
+	title = russia.57.t
+	desc = russia.57.d
+	
+	picture = GFX_report_event_mongolia_china
+	is_triggered_only = yes
+	
+	option = { #join the war effort
+		name = russia.57.a
+		add_to_war = { 
+			targeted_alliance = RUS
+			enemy = MON
+			hostility_reason = asked_to_join
+		}
+	}
+	option = { #we cant, were busy
+		name = russia.57.b
+		custom_effect_tooltip = RUS_get_all_mongolia_tt
+	}
+}
+
+country_event = {
+	id = russia.58 # Victory in Mongolia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.58"}
+	title = russia.58.t
+	desc = russia.58.d
+	
+	picture = GFX_report_event_buddhists
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.58.a
+		hidden_effect = {
+			white_peace = MON
+			MON = {
+				set_cosmetic_tag = MON_KHAN
+				set_party_name = { 
+					ideology = paternal_autocrat
+					long_name = "Mongolyn Lamyn Töv Zövlöl (Central Lama Council of Mongolia)"
+					name = "MLTZ"
+				}
+				set_politics = {
+					ruling_party = paternal_autocrat
+					last_election = "1936.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 55
+					conservative = 30
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 10
+					marxist_leninist = 5
+				}
+				create_country_leader = {
+					name = "Lobsang Pelden Tenpe Dronme"
+					desc = "LOBSANG_PELDEN_TENPE_DRONME_DESC"
+					picture = "Lobsang_Pelden_Tenpe_Dronme.dds"
+					expire = "1965.1.1"
+					ideology = theocracy
+					traits = {
+					}
+				}
+				remove_ideas = {
+					chinese_communist_refugees
+					MON_The_Legacy_of_Damdinii_Sukhbaatar
+					MON_The_Clergy_Our_intelligentsia
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.59 # Sweden/Finland - Russia Offers Treaty of Protection
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.59"}
+	title = russia.59.t
+	desc = russia.59.d
+	
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+	
+	option = { #sure
+		name = russia.59.a
+		RUS = {
+			country_event = {
+				id = russia.60
+				hours = 7
+			}
+		}
+	}
+	option = { #no
+		name = russia.59.b
+		RUS = {
+			country_event = {
+				id = russia.61
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.60 # [ROOT] Accepts Treaty of Protection
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.60"}
+	title = russia.60.t
+	desc = russia.60.d
+	
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.60.a
+		give_guarantee = ROOT
+	}
+}
+
+country_event = {
+	id = russia.61 # [ROOT] Declines Treaty of Protection
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.61"}
+	title = russia.61.t
+	desc = russia.61.d
+	
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.61.a
+	}
+}
+
+country_event = {
+	id = russia.62 # Completion of the Kamchatka Air Base
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.62"}
+	title = russia.62.t
+	desc = russia.62.d
+	
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.62.a
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = air_base
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.63 # Diverse is Our Motherland
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.63"}
+	title = russia.63.t
+	desc = russia.63.d
+	
+	picture = GFX_report_event_srs
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.63.a
+	}
+}
+
+country_event = {
+	id = russia.64 # We are diverse yo
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.64"}
+	title = russia.64.t
+	desc = russia.64.d
+	
+	picture = GFX_report_event_kazakhs
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.64.a
+	}
+}
+
+country_event = {
+	id = russia.65 # The Status of Education
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.65"}
+	title = russia.65.t
+	desc = russia.65.d
+	
+	picture = GFX_report_event_classroom
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.65.a
+	}
+}
+
+country_event = {
+	id = russia.66 # The Father of the Nation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.66"}
+	title = russia.66.t
+	desc = russia.66.d
+	
+	picture = GFX_report_event_kerensky
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.66.a
+	}
+}
+
+country_event = {
+	id = russia.67 # The Welfare System
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.67"}
+	title = russia.67.t
+	desc = russia.67.d
+	
+	picture = GFX_report_event_russia_breadline
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.67.a
+	}
+}
+
+country_event = {
+	id = russia.68 # Expansion of Vladivostok Port
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.68"}
+	title = russia.68.t
+	desc = russia.68.d
+	
+	picture = GFX_report_event_lend_lease
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.68.a
+		408 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.69 # Peasant Communes Formed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.69"}
+	title = russia.69.t
+	desc = russia.69.d
+	
+	picture = GFX_report_event_russki_peasants
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.69.a
+		random_owned_state = { add_extra_state_shared_building_slots = 1 }
+		random_owned_state = { add_extra_state_shared_building_slots = 1 }
+		random_owned_state = { add_extra_state_shared_building_slots = 1 }
+	}
+}
+
+country_event = {
+	id = russia.70 # Pomerants Takes Power
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.70"}
+	title = russia.70.t
+	desc = russia.70.d
+	
+	picture = GFX_report_event_duma_meeting
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.70.a
+	}
+}
+
+country_event = {
+	id = russia.71 # The Economic Crisis
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.71"}
+	title = russia.71.t
+	desc = russia.71.d
+	
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+	
+	option = { # compromise with the conservatives
+		name = russia.71.a
+		set_country_flag = RUS_pomerants_reconcile_with_conservatives_flag
+	}
+	option = { # stick to our guns
+		name = russia.71.b
+		set_country_flag = RUS_pomerants_galvanise_base_flag
+	}
+}
+
+country_event = {
+	id = russia.72 # Europe, United and Divided
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.72"}
+	title = russia.72.t
+	desc = russia.72.d
+	
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.72.a
+	}
+}
+
+country_event = {
+	id = russia.73 # Italy - Russia Proposes Trade Agreements
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.73"}
+	title = russia.73.t
+	desc = russia.73.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = { # yes
+		name = russia.73.a
+		RUS = {
+			country_event = {
+				id = russia.74
+				hours = 7
+			}
+		}
+	}
+	option = { # no
+		name = russia.73.b
+		RUS = {
+			country_event = {
+				id = russia.75
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russia.74 # Italy Agrees to Trade Deals
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.74"}
+	title = russia.74.t
+	desc = russia.74.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.74.a
+		add_opinion_modifier = {
+			target = ITA
+			modifier = european_outlook
+		}
+		reverse_add_opinion_modifier = {
+			target = ITA
+			modifier = european_outlook
+		}
+	}
+}
+
+country_event = {
+	id = russia.75 # Italy Declines Trade Deals
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.75"}
+	title = russia.75.t
+	desc = russia.75.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.75.a
+	}
+}
+
+country_event = {
+	id = russia.76 # Join the European Union?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.76"}
+	title = russia.76.t
+	desc = russia.76.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = { # go for it
+		name = russia.76.a
+		RUS = { add_to_faction = FROM }
+	}
+	option = { # no
+		name = russia.76.a
+	}
+}
+
+country_event = {
+	id = russia.77 # To Revive a Nation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.77"}
+	title = russia.77.t
+	desc = russia.77.d
+	
+	picture = GFX_report_event_factory_workers
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.77.a
+	}
+}
+
+country_event = {
+	id = russia.78 # University of Khabarovsk Founded
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.78"}
+	title = russia.78.t
+	desc = russia.78.d
+	
+	picture = GFX_report_event_classroom
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.78.a
+		add_research_slot = 1
+	}
+}
+
+country_event = {
+	id = russia.79 # President Pomerants Meets Great Patriotic War Veterans
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.79"}
+	title = russia.79.t
+	desc = russia.79.d
+	
+	picture = GFX_report_event_siberian_conscripts
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.79.a
+		add_political_power = -25
+		army_experience = 10
+	}
+}
+
+country_event = {
+	id = russia.80 # Our Jewish Friends
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.80"}
+	title = russia.80.t
+	desc = russia.80.d
+	
+	picture = GFX_report_event_russki_peasants
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.80.a
+	}
+}
+
+###################
+## CRISIS EVENTS ##
+###################
+country_event = {
+	id = russiacrisis.1 # Protests boiling
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiacrisis.1"}
+	title = russiacrisis.1.t
+	desc = russiacrisis.1.d
+	
+	picture = GFX_report_event_student_charges
+	is_triggered_only = yes
+	
+	option = {
+		name = russiacrisis.1.a
+		add_stability = -0.05
+		country_event = {
+			id = russiacrisis.2
+			days = 2
+		}
+
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = -0.05
+		}
+	}
+}
+
+country_event = {
+	id = russiacrisis.2 # People withdrawing money in panic
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiacrisis.2"}
+	title = russiacrisis.2.t
+	desc = russiacrisis.2.d
+	
+	#picture = GFX_report_event_student_charges
+	is_triggered_only = yes
+	
+	option = {
+		name = russiacrisis.2.a
+		add_stability = -0.05
+		add_war_support = -0.05
+		add_political_power = -50
+		add_ideas = { RUS_far_east_crash_idea }
+		country_event = {
+			id = russiacrisis.3
+			days = 2
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = -0.1
+		}
+	}
+}
+
+country_event = {
+	id = russiacrisis.3 # Rogozhin's shot oh god oh fuck
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiacrisis.3"}
+	title = russiacrisis.3.t
+	desc = russiacrisis.3.d
+	
+	#picture = GFX_report_event_student_charges
+	is_triggered_only = yes
+	
+	option = {
+		name = russiacrisis.3.a
+		add_stability = -0.1
+		add_war_support = -0.1
+		add_political_power = -100
+		random_unit_leader = {
+			limit = { 
+				has_id = 503
+			}
+			retire = yes
+		}
+		set_country_flag = RUS_CoStaff_Anatoly_Rogozhin_unavailable
+		country_event = {
+			id = russiacrisis.4 days = 5
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = -0.1
+		}
+	}
+}
+
+country_event = {
+	id = russiacrisis.4 # Occupation begins
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiacrisis.4"}
+	title = russiacrisis.4.t
+	desc = russiacrisis.4.d
+	
+	#picture = GFX_report_event_student_charges
+	is_triggered_only = yes
+	
+	option = {
+		name = russiacrisis.4.a
+		create_country_leader = {
+			name = "Randolph Pate"
+			desc = "RANDOLPH_PATE_DESC"
+			picture = "Randolph_Pate.dds"
+			expire = "1968.1.1"
+			ideology = military_dictatorshipz
+			traits = { Unwanted_Foreigner }
+		}
+		hidden_effect = {
+			load_focus_tree = RUS_occupation_tree
+			complete_national_focus = RUS_Occupation_The_Toronto_Accord_Transitional_Government
+		}
+	}
+}
+
+#######################
+### ELECTION EVENTS ###
+#######################
+country_event = {
+	id = rus_elec.1 # Religion in Russia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.1"}
+	title = rus_elec.1.t
+	desc = rus_elec.1.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # laicite
+		name = rus_elec.1.a
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.035
+		}
+	}
+	option = { # secularism
+		name = rus_elec.1.b
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.035
+		}
+	}
+	option = { # religion based
+		name = rus_elec.1.c
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.035
+		}
+	}
+}
+
+country_event = {
+	id = rus_elec.2 # The Treatment of Jews
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.2"}
+	title = rus_elec.2.t
+	desc = rus_elec.2.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # protect jews
+		name = rus_elec.2.a
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.035
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.035
+		}
+	}
+	option = { # solzhenitsyn gamer mode
+		name = rus_elec.2.b
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.035
+		}
+	}
+}
+
+country_event = {
+	id = rus_elec.3 # Building a Better Federation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.3"}
+	title = rus_elec.3.t
+	desc = rus_elec.3.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # autonomy
+		name = rus_elec.3.a
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.035
+		}
+	}
+	option = { # federalism
+		name = rus_elec.3.b
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.035
+		}
+	}
+	option = { # russian ethnic top
+		name = rus_elec.3.c
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.035
+		}
+	}
+}
+
+country_event = {
+	id = rus_elec.4 # The Status of Indigenous Peoples
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.4"}
+	title = rus_elec.4.t
+	desc = rus_elec.4.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # lots of aid
+		name = rus_elec.4.a
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.035
+		}
+	}
+	option = { # aid
+		name = rus_elec.4.b
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.035
+		}
+	}
+	option = { # just be russian lol
+		name = rus_elec.4.c
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.035
+		}
+	}
+}
+
+country_event = {
+	id = rus_elec.5 # Capitalism: Right or Wrong?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.5"}
+	title = rus_elec.5.t
+	desc = rus_elec.5.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # protectionism
+		name = rus_elec.5.a
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.035
+		}
+	}
+	option = { # folkhemmet :)
+		name = rus_elec.5.b
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.035
+		}
+	}
+	option = { # capitalism's good
+		name = rus_elec.5.c
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.035
+		}
+	}
+}
+
+country_event = {
+	id = rus_elec.6 # Farmland or Factories?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.6"}
+	title = rus_elec.6.t
+	desc = rus_elec.6.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # return to tradition
+		name = rus_elec.6.a
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.035
+		}
+	}
+	option = { # balance
+		name = rus_elec.6.b
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.035
+		}
+	}
+	option = { # industrialism
+		name = rus_elec.6.c
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.035
+		}
+	}
+}
+
+country_event = {
+	id = rus_elec.7 # The Question of Welfare
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.7"}
+	title = rus_elec.7.t
+	desc = rus_elec.7.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # yes, welfare
+		name = rus_elec.7.a
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.035
+		}
+	}
+	option = { # social security
+		name = rus_elec.7.b
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.035
+		}
+	}
+	option = { # sounds like commie crap
+		name = rus_elec.7.c
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.035
+		}
+	}
+}
+
+country_event = {
+	id = rus_elec.8 # Our Relationship With America
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.8"}
+	title = rus_elec.8.t
+	desc = rus_elec.8.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # good ally
+		name = rus_elec.8.a
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.035
+		}
+	}
+	option = { # greatest ally
+		name = rus_elec.8.b
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.035
+		}
+	}
+	option = { # criinge!
+		name = rus_elec.8.c
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.035
+		}
+	}
+}
+
+country_event = {
+	id = rus_elec.9 # Voting Begins
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.9"}
+	title = rus_elec.9.t
+	desc = rus_elec.9.d
+	
+	picture = GFX_report_event_CAM_vote
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			RUS_duma_election_setup = yes
+		}
+	}
+	
+	option = { # esery
+		name = rus_elec.9.a
+		trigger = {
+			OR = {
+				1 = {
+					check_variable = { RUS_duma_alignment = 1 }
+				}
+				2 = {
+					check_variable = { RUS_duma_alignment = 1 }
+				}
+			}
+			OR = {
+				check_variable = { RUS_duma_government_seat_total = RUS_duma_seat_majority }
+				check_variable = { RUS_duma_government_seat_total > RUS_duma_seat_majority }
+			}
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.025
+		}
+		retire_country_leader = yes
+		set_politics = {
+		ruling_party = social_democrat
+		}
+		clr_country_flag = ROGOZHIN_government
+		set_country_flag = SOROKIN_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_HoG_Mark_Vishniak
+				RUS_FM_Vladimir_Zenzinov
+				RUS_AM_Vasily_Leontyev
+			}
+			load_focus_tree = RUS_esery_tree
+			country_event = { id = rus_elec.11 days = 1460 }
+		}
+	}
+	option = { # kadety
+		name = rus_elec.9.b
+		trigger = {
+			3 = {
+				check_variable = { RUS_duma_alignment = 1 }
+			}
+			OR = {
+				check_variable = { RUS_duma_government_seat_total = RUS_duma_seat_majority }
+				check_variable = { RUS_duma_government_seat_total > RUS_duma_seat_majority }
+			}
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.025
+		}
+		retire_country_leader = yes
+		set_politics = {
+		ruling_party = liberal
+		}
+		clr_country_flag = ROGOZHIN_government
+		set_country_flag = NABOKOV_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_HoG_Boris_Pasternak
+				RUS_FM_Viktor_Nekrasov
+				RUS_AM_Igor_Ansov
+			}
+			load_focus_tree = RUS_kadety_tree
+			country_event = { id = rus_elec.11 days = 1460 }
+		}
+	}
+	option = { # oktyabristy
+		name = rus_elec.9.c
+		trigger = {
+			4 = {
+				check_variable = { RUS_duma_alignment = 1 }
+			}
+			OR = {
+				check_variable = { RUS_duma_government_seat_total = RUS_duma_seat_majority }
+				check_variable = { RUS_duma_government_seat_total > RUS_duma_seat_majority }
+			}
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.025
+		}
+		retire_country_leader = yes
+		set_politics = {
+		ruling_party = conservative
+		}
+		clr_country_flag = ROGOZHIN_government
+		set_country_flag = SOLZHENITSYN_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_AM_Pyotr_Savitsky
+				RUS_FM_Georgy_Vernadsky
+				RUS_HoG_Pyotr_Suvchinsky
+			}
+			load_focus_tree = RUS_octobrist_tree
+			country_event = { id = rus_elec.11 days = 1460 }
+		}
+	}
+	option = { # no majority
+		name = rus_elec.9.e
+		trigger = {
+			check_variable = { RUS_duma_government_seat_total < RUS_duma_seat_majority }
+		}
+		RUS_duma_government_formation_1 = yes
+	}
+}
+
+country_event = {
+	id = rus_elec.10 # post-occupation elections
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.10"}
+	title = rus_elec.10.t
+	desc = rus_elec.10.d
+	
+	#picture = GFX_report_event_student_charges
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_elec.10.a
+		set_party_name = {
+			ideology = liberal
+			name = "RV"
+			long_name = "Russkoye Vozrozhdeniye (Russian Revival)"
+		}
+		set_party_name = {
+			ideology = conservative
+			name = "VR"
+			long_name = "Vtoroye Rozhdeniye (Second Birth)"
+		}
+		create_country_leader = {
+			name = "Grigory Pomerants"
+			desc = "GRIGORY_POMERANTS_DESC"
+			picture = "Grigory_Pomerants.dds"
+			expire = "1968.1.1"
+			ideology = social_liberalism
+			traits = {}
+		}
+		create_country_leader = {
+			name = "Boris Pasternak"
+			desc = "BORIS_PASTERNAK_DESC"
+			picture = "Boris_Pasternak.dds"
+			expire = "1968.1.1"
+			ideology = christian_democracy
+			traits = {}
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.55
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.35
+		}
+		
+		set_politics = {
+		ruling_party = liberal
+		}
+		clr_country_flag = ROGOZHIN_government
+		set_country_flag = POMERANTS_government
+		hidden_effect = {
+			load_focus_tree = RUS_pomerants_tree
+			add_ideas = {
+				RUS_HoG_Elena_Bonner
+				RUS_FM_Pyotr_Yakir
+				RUS_AM_Evsey_Domar
+			}
+			remove_ideas = { GER_junta_martial_laws }
+			add_political_power = 300
+			country_event = { id = rus_elec.12 days = 1460 }
+		}
+	}
+
+	option = {
+		name = rus_elec.10.b
+		set_party_name = {
+			ideology = liberal
+			name = "RV"
+			long_name = "Russkoye Vozrozhdeniye (Russian Revival)"
+		}
+		set_party_name = {
+			ideology = conservative
+			name = "VR"
+			long_name = "Vtoroye Rozhdeniye (Second Birth)"
+		}
+		create_country_leader = {
+			name = "Boris Pasternak"
+			desc = "BORIS_PASTERNAK_DESC"
+			picture = "Boris_Pasternak.dds"
+			expire = "1968.1.1"
+			ideology = christian_democracy
+			traits = {}
+		}
+		create_country_leader = {
+			name = "Grigory Pomerants"
+			desc = "GRIGORY_POMERANTS_DESC"
+			picture = "Grigory_Pomerants.dds"
+			expire = "1968.1.1"
+			ideology = social_liberalism
+			traits = {}
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.55
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.35
+		}
+		set_politics = {
+		ruling_party = conservative
+		}
+		clr_country_flag = ROGOZHIN_government
+		set_country_flag = PASTERNAK_government
+		hidden_effect = {
+			load_focus_tree = RUS_pasternak_tree
+			add_ideas = {
+				RUS_HoG_Konstantin_Paustovsky
+				RUS_FM_Arkadiy_Belinkov
+				RUS_AM_Viktor_Krasin
+			}
+			remove_ideas = { GER_junta_martial_laws }
+			add_political_power = 300
+			country_event = { id = rus_elec.12 days = 1460 }
+		}
+	}
+
+	
+}
+
+# 1958 elections
+country_event = {
+	id = rus_elec.11 # Voting Begins
+	immediate = { log = "[GetDateText]: [Root.GetName]: event rus_elec.11" }
+	title = rus_elec.11.t
+	desc = rus_elec.11.d
+	
+	picture = GFX_report_event_CAM_vote
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			RUS_duma_election_setup = yes
+		}
+	}
+	
+	option = { # esery
+		name = rus_elec.11.a
+		trigger = {
+			OR = {
+				1 = {
+					check_variable = { RUS_duma_alignment = 1 }
+				}
+				2 = {
+					check_variable = { RUS_duma_alignment = 1 }
+				}
+			}
+			check_variable = { RUS_duma_government_seat_total > RUS_duma_seat_majority }
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.025
+		}
+		if = {
+			limit = { has_country_flag = ROGOZHIN_government }
+			retire_country_leader = yes
+		}
+		set_politics = {
+			ruling_party = social_democrat
+		}
+		clr_country_flag = NABOKOV_government
+		clr_country_flag = SOLZHENITSYN_government
+		set_country_flag = SOROKIN_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_HoG_Mark_Vishniak
+				RUS_FM_Vladimir_Zenzinov
+				RUS_AM_Vasily_Leontyev
+			}
+		}
+	}
+	option = { # kadety
+		name = rus_elec.11.b
+		trigger = {
+			3 = {
+				check_variable = { RUS_duma_alignment = 1 }
+			}
+			check_variable = { RUS_duma_government_seat_total > RUS_duma_seat_majority }
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.025
+		}
+		if = {
+			limit = { has_country_flag = ROGOZHIN_government }
+			retire_country_leader = yes
+		}
+		set_politics = {
+		ruling_party = liberal
+		}
+		clr_country_flag = SOROKIN_government
+		clr_country_flag = SOLZHENITSYN_government
+		set_country_flag = NABOKOV_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_HoG_Boris_Pasternak
+				RUS_FM_Viktor_Nekrasov
+				RUS_AM_Igor_Ansov
+			}
+		}
+	}
+	option = { # oktyabristy
+		name = rus_elec.11.c
+		trigger = {
+			4 = {
+				check_variable = { RUS_duma_alignment = 1 }
+			}
+			check_variable = { RUS_duma_government_seat_total > RUS_duma_seat_majority }
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.025
+		}
+		if = {
+			limit = { has_country_flag = ROGOZHIN_government }
+			retire_country_leader = yes
+		}
+		set_politics = {
+			ruling_party = conservative
+		}
+		clr_country_flag = SOROKIN_government
+		clr_country_flag = NABOKOV_government
+		set_country_flag = SOLZHENITSYN_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_AM_Pyotr_Savitsky
+				RUS_FM_Georgy_Vernadsky
+				RUS_HoG_Pyotr_Suvchinsky
+			}
+		}
+	}
+	option = { # no majority
+		name = rus_elec.11.e
+		trigger = {
+			OR = {
+				check_variable = { RUS_duma_government_seat_total = RUS_duma_seat_majority }
+				check_variable = { RUS_duma_government_seat_total < RUS_duma_seat_majority }
+			}
+		}
+		RUS_duma_government_formation_1 = yes
+	}
+}
+
+country_event = {
+	id = rus_elec.12 # post-occupation elections number 2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.12"}
+	title = rus_elec.12.t
+	desc = rus_elec.12.d
+	
+	#picture = GFX_report_event_CAM_vote
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_elec.12.a #libs
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+		
+		set_politics = {
+		ruling_party = liberal
+		}
+		clr_country_flag = PASTERNAK_government
+		set_country_flag = POMERANTS_government
+		hidden_effect = {
+			load_focus_tree = RUS_pomerants_tree
+			add_ideas = {
+				RUS_HoG_Elena_Bonner
+				RUS_FM_Pyotr_Yakir
+				RUS_AM_Evsey_Domar
+			}
+			country_event = { id = rus_elec.13 days = 1460 }
+		}
+	}
+
+	option = {
+		name = rus_elec.12.b #cons
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.05
+		}
+		set_politics = {
+		ruling_party = conservative
+		}
+		clr_country_flag = POMERANTS_government
+		set_country_flag = PASTERNAK_government
+		hidden_effect = {
+			load_focus_tree = RUS_pasternak_tree
+			add_ideas = {
+				RUS_HoG_Konstantin_Paustovsky
+				RUS_FM_Arkadiy_Belinkov
+				RUS_AM_Viktor_Krasin
+			}
+			country_event = { id = rus_elec.13 days = 1460 }
+		}
+	}
+
+	
+}
+
+country_event = {
+	id = rus_elec.13 # post-occupation elections number 3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_elec.13"}
+	title = rus_elec.13.t
+	desc = rus_elec.13.d
+	
+	#picture = GFX_report_event_CAM_vote
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_elec.13.a #libs
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+		
+		set_politics = {
+		ruling_party = liberal
+		}
+		clr_country_flag = PASTERNAK_government
+		set_country_flag = POMERANTS_government
+		hidden_effect = {
+			load_focus_tree = RUS_pomerants_tree
+			add_ideas = {
+				RUS_HoG_Elena_Bonner
+				RUS_FM_Pyotr_Yakir
+				RUS_AM_Evsey_Domar
+			}
+		}
+	}
+
+	option = {
+		name = rus_elec.13.b #cons
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.05
+		}
+		set_politics = {
+		ruling_party = conservative
+		}
+		clr_country_flag = POMERANTS_government
+		set_country_flag = PASTERNAK_government
+		hidden_effect = {
+			load_focus_tree = RUS_pasternak_tree
+			add_ideas = {
+				RUS_HoG_Konstantin_Paustovsky
+				RUS_FM_Arkadiy_Belinkov
+				RUS_AM_Viktor_Krasin
+			}
+		}
+	}
+
+	
+}
+
+###################
+### DUMA EVENTS ###
+###################
+country_event = {
+	id = rus_duma.1 # Assembling a Coalition - SRs
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event rus_duma.1"
+		hidden_effect = {
+			set_variable = { RUS_coalition_seats = 0 }
+			add_to_variable = { RUS_coalition_seats = RUS_srs_seats }
+			add_to_variable = { RUS_coalition_seats = RUS_kadety_seats }
+			set_variable = { RUS_coalition_seats1 = 0 }
+			add_to_variable = { RUS_coalition_seats1 = RUS_srs_seats }
+			add_to_variable = { RUS_coalition_seats1 = RUS_octobrists_seats }
+		}
+	}
+	title = rus_duma.1.t
+	desc = rus_duma.1.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # Kadety coalition
+		name = rus_duma.1.a
+		trigger = {
+			check_variable = { RUS_coalition_seats > RUS_coalition_seats1 }
+		}
+		set_country_flag = RUS_kadety_esery_coalition_flag
+	}
+	option = { # Octobrist coalition
+		name = rus_duma.1.b
+		trigger = {
+			check_variable = { RUS_coalition_seats1 > RUS_coalition_seats }
+		}
+		set_country_flag = RUS_oktyabristy_esery_coalition_flag
+	}
+}
+
+country_event = {
+	id = rus_duma.2 # Assembling a Coalition - Kadety
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event rus_duma.2"
+		hidden_effect = {
+			set_variable = { RUS_coalition_seats = 0 }
+			add_to_variable = { RUS_coalition_seats = RUS_kadety_seats }
+			add_to_variable = { RUS_coalition_seats = RUS_srs_seats }
+			set_variable = { RUS_coalition_seats1 = 0 }
+			add_to_variable = { RUS_coalition_seats1 = RUS_kadety_seats }
+			add_to_variable = { RUS_coalition_seats1 = RUS_octobrists_seats }
+		}
+	}
+	title = rus_duma.2.t
+	desc = rus_duma.2.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # SR coalition
+		name = rus_duma.2.a
+		trigger = {
+			check_variable = { RUS_coalition_seats > RUS_coalition_seats1 }
+		}
+		set_country_flag = RUS_kadety_esery_coalition_flag
+	}
+	option = { # Octobrist coalition
+		name = rus_duma.2.b
+		trigger = {
+			check_variable = { RUS_coalition_seats1 > RUS_coalition_seats }
+		}
+		set_country_flag = RUS_oktyabristy_kadety_coalition_flag
+	}
+}
+
+country_event = {
+	id = rus_duma.3 # Assembling a Coalition - Octobrists
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event rus_duma.3"
+		hidden_effect = {
+			set_variable = { RUS_coalition_seats = 0 }
+			add_to_variable = { RUS_coalition_seats = RUS_octobrists_seats }
+			add_to_variable = { RUS_coalition_seats = RUS_srs_seats }
+			set_variable = { RUS_coalition_seats1 = 0 }
+			add_to_variable = { RUS_coalition_seats1 = RUS_octobrists_seats }
+			add_to_variable = { RUS_coalition_seats1 = RUS_kadety_seats }
+		}
+	}
+	title = rus_duma.3.t
+	desc = rus_duma.3.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = { # SR coalition
+		name = rus_duma.3.a
+		trigger = {
+			check_variable = { RUS_coalition_seats > RUS_coalition_seats1 }
+		}
+		set_country_flag = RUS_oktyabristy_esery_coalition_flag
+	}
+	option = { # Kadety coalition
+		name = rus_duma.3.b
+		trigger = {
+			check_variable = { RUS_coalition_seats1 > RUS_coalition_seats }
+		}
+		set_country_flag = RUS_oktyabristy_kadety_coalition_flag
+	}
+}
+
+country_event = {
+	id = rus_duma.4 # The Female Employment Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.4"}
+	title = rus_duma.4.t
+	desc = rus_duma.4.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.4.a
+		set_country_flag = RUS_bill_female_employment_act_flag
+		RUS_duma_bill_1_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.5 # The Religious Schooling Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.5"}
+	title = rus_duma.5.t
+	desc = rus_duma.5.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.5.a
+		set_country_flag = RUS_bill_religious_schooling_act_flag
+		RUS_duma_bill_2_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.6 # The Religious Institution Tax Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.6"}
+	title = rus_duma.6.t
+	desc = rus_duma.6.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.6.a
+		set_country_flag = RUS_religious_institution_tax_act_flag
+		RUS_duma_bill_3_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.7 # The Immigration Vetting Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.7"}
+	title = rus_duma.7.t
+	desc = rus_duma.7.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.7.a
+		set_country_flag = RUS_bill_immigration_vetting_act_flag
+		RUS_duma_bill_4_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.8 # The Welfare Exemption Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.8"}
+	title = rus_duma.8.t
+	desc = rus_duma.8.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.8.a
+		set_country_flag = RUS_bill_welfare_exemption_act_flag
+		RUS_duma_bill_5_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.9 # The Female Wage Imbursement Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.9"}
+	title = rus_duma.9.t
+	desc = rus_duma.9.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.9.a
+		set_country_flag = RUS_bill_female_wage_imbursement_act_flag
+		RUS_duma_bill_6_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.10 # The Civil Rights Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.10"}
+	title = rus_duma.10.t
+	desc = rus_duma.10.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.10.a
+		set_country_flag = RUS_bill_civil_rights_act_flag
+		RUS_duma_bill_7_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.11 # The Farm Foreclosure Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.11"}
+	title = rus_duma.11.t
+	desc = rus_duma.11.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.11.a
+		set_country_flag = RUS_bill_farm_forclosure_act_flag
+		RUS_duma_bill_8_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.12 # The Socioeconomic Reform Act is Proposed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rus_duma.12"}
+	title = rus_duma.12.t
+	desc = rus_duma.12.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.12.a
+		set_country_flag = RUS_bill_socioeconomic_reform_act_flag
+		RUS_duma_bill_9_effect = yes
+	}
+}
+
+country_event = {
+	id = rus_duma.13 # Bill Passed
+	immediate = { log = "[GetDateText]: [Root.GetName]: event rus_duma.13" }
+	title = rus_duma.13.t
+	desc = rus_duma.13.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.13.a
+		if = {
+			limit = { has_government = social_democrat }
+			add_popularity = { ideology = social_democrat popularity = 0.025 }
+		}
+		else_if = {
+			limit = { has_government = liberal }
+			add_popularity = { ideology = liberal popularity = 0.025 }
+		}
+		else_if = {
+			limit = { has_government = conservative }
+			add_popularity = { ideology = conservative popularity = 0.025 }
+		}
+		clear_variable = RUS_duma_bill_event
+	}
+}
+
+country_event = {
+	id = rus_duma.14 # Bill Failed
+	immediate = { log = "[GetDateText]: [Root.GetName]: event rus_duma.14" }
+	title = rus_duma.14.t
+	desc = rus_duma.14.d
+	
+	picture = GFX_report_event_duma_voting
+	is_triggered_only = yes
+	
+	option = {
+		name = rus_duma.14.a
+		if = {
+			limit = { has_government = social_democrat }
+			add_popularity = { ideology = social_democrat popularity = -0.025 }
+		}
+		else_if = {
+			limit = { has_government = liberal }
+			add_popularity = { ideology = liberal popularity = -0.025 }
+		}
+		else_if = {
+			limit = { has_government = conservative }
+			add_popularity = { ideology = conservative popularity = -0.025 }
+		}
+		clear_variable = RUS_duma_bill_event
+	}
+}
+
+country_event = {
+	id = rus_duma.15 # Duma Bill Timer
+	immediate = { log = "[GetDateText]: [Root.GetName]: event rus_duma.15" }
+	hidden = yes
+	is_triggered_only = yes
+
+	trigger = {
+		# government somehow changes halfway idk
+	}
+
+	immediate = {
+		subtract_from_variable = { RUS_duma_bill_timer = 1 }
+		add_to_variable = { show_RUS_duma = 1 }
+	}
+
+	option = {
+		name = rus_duma.15.a
+		trigger = {
+			check_variable = { RUS_duma_bill_timer > 0 }
+		}
+		country_event = { id = rus_duma.15 hours = 24 }
+	}
+	option = {
+		name = rus_duma.15.b
+		trigger = {
+			check_variable = { RUS_duma_bill_timer = 0 }
+		}
+		if = {
+			limit = {
+				check_variable = { RUS_duma_bill > 0 }
+			}
+			RUS_duma_end_bill_effect = yes
+		}
+	}
+}
+
+########################
+### IVANOMIKA EVENTS ###
+########################
+country_event = {
+	id = ivanomika.1 # Peasant Uprising
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.1"}
+	title = ivanomika.1.t
+	desc = ivanomika.1.d
+	
+	picture = GFX_report_event_russki_peasants
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.1.a
+		IF = {
+			limit = {
+				owns_state = 590
+			}
+			PEC = {
+				transfer_state = 590
+				create_country_leader = {
+					name = "Akmolinsk Peasants' Commitee"
+					desc = "POLITICS_PEASANTS_COMMITEE_DSC"
+					picture = "Peasants_Commitee.dds"
+					expire = "1965.1.1"
+					ideology = agrarian_socialism
+					traits = { }
+				}
+			}
+			declare_war_on = {
+				target = PEC
+				type = civil_war
+			}
+		}
+		else_if = {
+			limit = {
+				owns_state = 654
+			}
+			PEC = {
+				transfer_state = 654
+				create_country_leader = {
+					name = "Altaic Peasants' Commitee"
+					desc = "POLITICS_PEASANTS_COMMITEE_DSC"
+					picture = "Peasants_Commitee.dds"
+					expire = "1965.1.1"
+					ideology = agrarian_socialism
+					traits = { }
+				}
+			}
+			declare_war_on = {
+				target = PEC
+				type = civil_war
+			}
+		}
+		else_if = {
+			limit = {
+				owns_state = 875
+			}
+			PEC = {
+				transfer_state = 875
+				create_country_leader = {
+					name = "Khakass Peasants' Commitee"
+					desc = "POLITICS_PEASANTS_COMMITEE_DSC"
+					picture = "Peasants_Commitee.dds"
+					expire = "1965.1.1"
+					ideology = agrarian_socialism
+					traits = { }
+				}
+			}
+			declare_war_on = {
+				target = PEC
+				type = civil_war
+			}
+		}
+		else_if = {
+			limit = {
+				owns_state = 576
+			}
+			PEC = {
+				transfer_state = 576
+				create_country_leader = {
+					name = "Yenisey Peasants' Commitee"
+					desc = "POLITICS_PEASANTS_COMMITEE_DSC"
+					picture = "Peasants_Commitee.dds"
+					expire = "1965.1.1"
+					ideology = agrarian_socialism
+					traits = { }
+				}
+			}
+			declare_war_on = {
+				target = PEC
+				type = civil_war
+			}
+		}
+		else_if = {
+			limit = {
+				owns_state = 565
+			}
+			PEC = {
+				transfer_state = 565
+				create_country_leader = {
+					name = "Bodaybo Peasants' Commitee"
+					desc = "POLITICS_PEASANTS_COMMITEE_DSC"
+					picture = "Peasants_Commitee.dds"
+					expire = "1965.1.1"
+					ideology = agrarian_socialism
+					traits = { }
+				}
+			}
+			declare_war_on = {
+				target = PEC
+				type = civil_war
+			}
+		}
+		else = {
+			PEC = {
+				transfer_state = 574
+				create_country_leader = {
+					name = "Yakut Peasants' Commitee"
+					desc = "POLITICS_PEASANTS_COMMITEE_DSC"
+					picture = "Peasants_Commitee.dds"
+					expire = "1965.1.1"
+					ideology = agrarian_socialism
+					traits = { }
+				}
+			}
+			declare_war_on = {
+				target = PEC
+				type = civil_war
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.2 # Completion of the Kolyma Route
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.2"}
+	title = ivanomika.2.t
+	desc = ivanomika.2.d
+	
+	picture = GFX_report_event_building_roads
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.2.a
+		add_to_variable = { RUS_Ivanomika_consciousness = -1 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_one_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		build_railway = {
+			level = 1
+			path = { 12683 11607 12634 4878 10701 4798 4726 1748 7844 7691 12660 12543 }
+		}
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.3 # The Matter of Gaming
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.3"}
+	title = ivanomika.3.t
+	desc = ivanomika.3.d
+	
+	picture = GFX_report_event_casino
+	is_triggered_only = yes
+	
+	option = { # ban it
+		name = ivanomika.3.a
+		add_to_variable = { RUS_Ivanomika_consciousness = -5 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_five_consciousness
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # let it operate in a special part of vladivostok
+		name = ivanomika.3.b
+		add_to_variable = { RUS_Ivanomika_spending = -500 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -2 }
+		custom_effect_tooltip = RUS_Ivanomika_save_50k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_two_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.4 # Electrification in Northeast Siberia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.4"}
+	title = ivanomika.4.t
+	desc = ivanomika.4.d
+	
+	picture = GFX_report_event_power_lines
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.4.a
+		add_to_variable = { RUS_Ivanomika_consciousness = -5 }
+		add_to_variable = { RUS_Ivanomika_development = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_five_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.5 # Enlargement of Magadan Seaport
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.5"}
+	title = ivanomika.5.t
+	desc = ivanomika.5.d
+	
+	picture = GFX_report_event_maagdn
+	is_triggered_only = yes
+	
+	option = { # Name it after Saint Peter
+		name = ivanomika.5.a
+		add_to_variable = { RUS_Ivanomika_consciousness = -5 }
+		add_to_variable = { RUS_Ivanomika_development = 2 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_five_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # Name it after Kolchak
+		name = ivanomika.5.b
+		add_to_variable = { RUS_Ivanomika_spending = 10000 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -3 }
+		add_to_variable = { RUS_Ivanomika_development = 2 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_1_billion_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_three_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		add_war_support = 0.05
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.6 # Expansion of Yakut Coalmining
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.6"}
+	title = ivanomika.6.t
+	desc = ivanomika.6.d
+	
+	picture = GFX_report_event_coal_miner
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.6.a
+		add_to_variable = { RUS_Ivanomika_spending = 10000 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		add_to_variable = { RUS_Ivanomika_development = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_100_million_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.7 # Expanding the Trans-Siberian
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.7"}
+	title = ivanomika.7.t
+	desc = ivanomika.7.d
+	
+	picture = GFX_report_event_train
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.7.a
+		add_to_variable = { RUS_Ivanomika_spending = 10000 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -5 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_1_billion_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_five_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		build_railway = {
+			level = 1
+			path = { 3977 957 6989 11750 6684 664 6686 11643 10466 12189 4805 12661 12678 7801 10655 4725 7763 12657 10678 7851 12543 10599 7725 4677 7786 10683 7860 12507 4766 10528 4837 1762 4797 } #Vladivostok to Ulan Ude
+		}
+		build_railway = {
+			level = 1
+			path = { 4797 12540 10661 10549 1813 1876 12621 12691 10639 10712 7886 12631 7757 4866 7274 7825 1860 1733 12679 10696 } #Krasnoyarsk to Novosibirsk
+		}
+		build_railway = {
+			level = 1
+			path = { 10696 4700 12652 10600 3472 7774 7846 4824 10189 1543 9553 1821 10133 7320 3280 361 10314 10286 1380 206 7403 6278 6388 3300 3251 9336 260 6338 11243 11356 9373 6253 6374 3352 11277 11344 9407 6410 6362 3339 214 11217 9235 3290 301 6380 } #Perm to Moscow
+		}
+		build_railway = {
+			level = 1
+			path = { 10639 4724 1777 12595 1780 10705 1828 10635 4733 3336 2972 } #Krasnyoarsk to Norilsk
+		}
+		build_railway = {
+			level = 1
+			path = { 9131 3175 11177 9202 6166 9130 3130 11171 312 3338 } #Vologda to Arkhangelsk
+		}
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.8 # Private Schooling in Chita
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.8"}
+	title = ivanomika.8.t
+	desc = ivanomika.8.d
+	
+	picture = GFX_report_event_classroom
+	is_triggered_only = yes
+	
+	option = { # state schools only
+		name = ivanomika.8.a
+		add_to_variable = { RUS_Ivanomika_spending = 10000 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -5 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_100_million_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_five_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # ok
+		name = ivanomika.8.b
+		add_to_variable = { RUS_Ivanomika_spending = -500 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -2 }
+		custom_effect_tooltip = RUS_Ivanomika_save_500k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_two_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.9 # Welfare for the Poor
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.9"}
+	title = ivanomika.9.t
+	desc = ivanomika.9.d
+	
+	picture = GFX_report_event_russia_breadline
+	is_triggered_only = yes
+	
+	option = { # state will do it
+		name = ivanomika.9.a
+		add_ideas = RUS_Office_of_Social_Security_idea
+		add_to_variable = { RUS_Ivanomika_spending = 30000 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -20 }
+		add_to_variable = { RUS_Ivanomika_development = 8 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_3_billion_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_two_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # church will do it
+		name = ivanomika.9.b
+		add_to_variable = { RUS_Ivanomika_spending = 5000 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -5 }
+		add_to_variable = { RUS_Ivanomika_development = 1 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_5_million_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_five_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.10 # Completion of the Baikal-Pacific Pipeline
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.10"}
+	title = ivanomika.10.t
+	desc = ivanomika.10.d
+	
+	picture = GFX_report_event_oil_pipeline
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.10.a
+		add_to_variable = { RUS_Ivanomika_consciousness = -5 }
+		add_to_variable = { RUS_Ivanomika_development = 10 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_five_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.11 # Shaken, Not Stirred
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.11"}
+	title = ivanomika.11.t
+	desc = ivanomika.11.d
+	
+	picture = GFX_report_event_vodka
+	is_triggered_only = yes
+	
+	option = { # hike tax
+		name = ivanomika.11.a
+		add_to_variable = { RUS_Ivanomika_spending = -500 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 15 }
+		add_to_variable = { RUS_Ivanomika_development = 3 }
+		custom_effect_tooltip = RUS_Ivanomika_save_500k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_fifteen_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		hidden_effect = {
+			country_event = {
+				id = ivanomika.12
+				days = 3
+			}
+		}
+	}
+	option = { # no more tax
+		name = ivanomika.11.b
+		add_to_variable = { RUS_Ivanomika_spending = 500 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_500k_rubles
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.12 # The Vladivostok Vodka Riot
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.12"}
+	title = ivanomika.12.t
+	desc = ivanomika.12.d
+	
+	picture = GFX_report_event_riot_ops
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.12.a
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = ivanomika.13 # The GULAG Archipelago
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.13"}
+	title = ivanomika.13.t
+	desc = ivanomika.13.d
+	
+	picture = GFX_report_event_gulag_prisoners
+	is_triggered_only = yes
+	
+	option = { # repurpose them
+		name = ivanomika.13.a
+		add_to_variable = { RUS_Ivanomika_spending = -1500 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 20 }
+		add_to_variable = { RUS_Ivanomika_development = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_save_1m_500k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_twenty_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+
+	}
+	option = { # abolish them
+		name = ivanomika.13.b
+	}
+}
+
+country_event = {
+	id = ivanomika.14 # Yenisei Dam Completed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.14"}
+	title = ivanomika.14.t
+	desc = ivanomika.14.d
+	
+	picture = GFX_report_event_dam
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.14.a
+		add_to_variable = { RUS_Ivanomika_spending = -1000 }
+		add_to_variable = { RUS_Ivanomika_development = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_save_1m_rubles
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.15 # Norilsk Nickel Mines Expanded
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.15"}
+	title = ivanomika.15.t
+	desc = ivanomika.15.d
+	
+	picture = GFX_report_event_coal_miner
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.15.a
+		add_resource = {
+			type = aluminium
+			amount = 10
+			state = 1021
+		}
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		add_to_variable = { RUS_Ivanomika_development = 2 }
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.16 # Norilsk Iron Mines Expanded
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.16"}
+	title = ivanomika.16.t
+	desc = ivanomika.16.d
+	
+	picture = GFX_report_event_coal_miner
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.16.a
+		add_resource = {
+			type = steel
+			amount = 10
+			state = 1021
+		}
+		add_to_variable = { RUS_Ivanomika_spending = -1000 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		add_to_variable = { RUS_Ivanomika_development = 2 }
+		custom_effect_tooltip = RUS_Ivanomika_save_1m_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		custom_effect_tooltip = RUS_Ivanomika_development_increase
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.17 # The Inmates
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.17"}
+	title = ivanomika.17.t
+	desc = ivanomika.17.d
+	
+	picture = GFX_report_event_gulagees
+	is_triggered_only = yes
+	
+	option = { # lock em up
+		name = ivanomika.17.a
+		add_to_variable = { RUS_Ivanomika_spending = 250 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 10 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_250k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_ten_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # wait for them to do anything stupid
+		name = ivanomika.17.b
+		add_to_variable = { RUS_Ivanomika_consciousness = 15 }
+		add_stability = -0.1
+		custom_effect_tooltip = RUS_Ivanomika_plus_fifteen_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+	}
+}
+
+country_event = {
+	id = ivanomika.18 # Famine and Sausage
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.18"}
+	title = ivanomika.18.t
+	desc = ivanomika.18.d
+	
+	picture = GFX_report_event_sosig
+	is_triggered_only = yes
+	
+	option = { # new doctors sausage rations
+		name = ivanomika.18.a
+		add_to_variable = { RUS_Ivanomika_spending = 5 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_5000_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # different rations
+		name = ivanomika.18.b
+		add_to_variable = { RUS_Ivanomika_spending = 150 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 10 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_15000_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_ten_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.19 # Kazakhs: Allies or Enemies?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.19"}
+	title = ivanomika.19.t
+	desc = ivanomika.19.d
+	
+	picture = GFX_report_event_kazakhs
+	is_triggered_only = yes
+	
+	option = { # allies
+		name = ivanomika.19.a
+		add_to_variable = { RUS_Ivanomika_spending = 200 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_200k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		country_event = {
+			id = ivanomika.20
+			days = 7
+		}
+	}
+	option = { # enemies
+		name = ivanomika.19.b
+		add_to_variable = { RUS_Ivanomika_consciousness = 20 }
+		custom_effect_tooltip = RUS_Ivanomika_plus_twenty_consciousness
+		hidden_effect = {
+			country_event = {
+				id = ivanomika.21
+				days = 12
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.20 # Foundation of the Kazakh SAR
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.20"}
+	title = ivanomika.20.t
+	desc = ivanomika.20.d
+	
+	picture = GFX_report_event_qazaq
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.20.a
+		402 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		406 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		407 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		583 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		587 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		589 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		590 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		993 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		995 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		1018 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+		1020 = {
+			add_dynamic_modifier = {
+				modifier = kazakh_sar_i
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.21 # The Kazakh Insurgency
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.21"}
+	title = ivanomika.21.t
+	desc = ivanomika.21.d
+	
+	picture = GFX_report_event_kazakh_guns
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.21.a
+		# add dynamic modifier for kazakh states
+	}
+}
+
+country_event = {
+	id = ivanomika.22 # The Collaborators Over the Border
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.22"}
+	title = ivanomika.22.t
+	desc = ivanomika.22.d
+	
+	picture = GFX_report_event_roa_march
+	is_triggered_only = yes
+	
+	option = { # issue an amnesty
+		name = ivanomika.22.a
+		add_to_variable = { RUS_Ivanomika_spending = 150 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 15 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_150k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_fifteen_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		add_timed_idea = {
+			idea = RUS_ROA_Refugees_idea
+			days = 180
+		}
+	}
+	option = { # no mercy for traitors
+		name = ivanomika.22.b
+	}
+}
+
+country_event = {
+	id = ivanomika.23 # Correctional Labour for Communists?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.23"}
+	title = ivanomika.23.t
+	desc = ivanomika.23.d
+	
+	picture = GFX_report_event_communist_burn
+	is_triggered_only = yes
+	
+	option = { # send them to work camps
+		name = ivanomika.23.a
+		add_to_variable = { RUS_Ivanomika_spending = 200 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -10 }
+		custom_effect_tooltip = RUS_Ivanomika_save_200k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_ten_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		add_timed_idea = {
+			idea = RUS_Correctional_Labour_idea
+			days = 730
+		}
+	}
+	option = { # let them go
+		name = ivanomika.23.b
+		add_to_variable = { RUS_Ivanomika_consciousness = 15 }
+		custom_effect_tooltip = RUS_Ivanomika_plus_fifteen_consciousness
+		add_stability = -0.1
+		RUS_clamp_IVANAOMIKA = yes
+	}
+}
+
+country_event = {
+	id = ivanomika.24 # Decommunisation of Education
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.24"}
+	title = ivanomika.24.t
+	desc = ivanomika.24.d
+	
+	picture = GFX_report_commies_bad
+	is_triggered_only = yes
+	
+	option = { # restart education from scratch
+		name = ivanomika.24.a
+		add_to_variable = { RUS_Ivanomika_spending = 250 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -15 }
+		custom_effect_tooltip = RUS_Ivanomika_save_250k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_fifteen_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		add_stability = 0.1
+		add_war_support = 0.2
+	}
+	option = { # let them continue education
+		name = ivanomika.24.b
+		add_to_variable = { RUS_Ivanomika_consciousness = 20 }
+		custom_effect_tooltip = RUS_Ivanomika_plus_twenty_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+	}
+}
+
+country_event = {
+	id = ivanomika.25 # Farming in the Steppe
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.25"}
+	title = ivanomika.25.t
+	desc = ivanomika.25.d
+	
+	picture = GFX_report_event_kazakh_farming
+	is_triggered_only = yes
+	
+	option = { # centralise agriculture
+		name = ivanomika.25.a
+		add_to_variable = { RUS_Ivanomika_spending = 250 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_save_250k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		add_ideas = RUS_Kazakh_Agriculture_idea
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # let it be
+		name = ivanomika.25.b
+		add_to_variable = { RUS_Ivanomika_consciousness = -10 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_ten_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+	}
+}
+
+country_event = {
+	id = ivanomika.26 # Decentralised Electricity?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.26"}
+	title = ivanomika.26.t
+	desc = ivanomika.26.d
+	
+	picture = GFX_report_event_power_lines
+	is_triggered_only = yes
+	
+	option = { # decentralise the electrical authority
+		name = ivanomika.26.a
+		add_to_variable = { RUS_Ivanomika_spending = -150 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_150k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # keep it together
+		name = ivanomika.26.b
+		add_to_variable = { RUS_Ivanomika_consciousness = -10 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_ten_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+	}
+}
+
+country_event = {
+	id = ivanomika.27 # Learn From the Red Army
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.27"}
+	title = ivanomika.27.t
+	desc = ivanomika.27.d
+	
+	picture = GFX_report_event_red_army_guys
+	is_triggered_only = yes
+	
+	option = { # no
+		name = ivanomika.27.a
+	}
+	option = { # yes
+		name = ivanomika.27.b
+		add_ideas = RUS_New_Military_Tactics_idea
+	}
+}
+
+country_event = {
+	id = ivanomika.28 # The Hunt
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.28"}
+	title = ivanomika.28.t
+	desc = ivanomika.28.d
+	
+	picture = GFX_report_event_hunting
+	is_triggered_only = yes
+	
+	option = { # yes
+		name = ivanomika.28.a
+		add_to_variable = { RUS_Ivanomika_spending = -300 }
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_300k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # no
+		name = ivanomika.28.b
+	}
+}
+
+country_event = {
+	id = ivanomika.29 # Standoff at the A-A Line
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.29"}
+	title = ivanomika.29.t
+	desc = ivanomika.29.d
+	
+	picture = GFX_report_event_soviet_soldiers_in_battle
+	is_triggered_only = yes
+	
+	option = { # prepare the urals
+		name = ivanomika.29.a
+		262 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+				}
+			}
+		}
+		406 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+				}
+			}
+		}
+	}
+	option = { # create the national redoubt
+		name = ivanomika.29.b
+		add_ideas = RUS_National_Redoubt_idea
+	}
+}
+
+country_event = {
+	id = ivanomika.30 # Autonomy in the Caucasus
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.30"}
+	title = ivanomika.30.t
+	desc = ivanomika.30.d
+	
+	picture = GFX_report_event_caucasus_mountain
+	is_triggered_only = yes
+	
+	option = { # re-establish the autonomies under our administration
+		name = ivanomika.30.a
+		232 = {
+			add_dynamic_modifier = {
+				modifier = mountaineer_sar_i
+			}
+		}
+		233 = {
+			add_dynamic_modifier = {
+				modifier = mountaineer_sar_i
+			}
+		}
+		973 = {
+			add_dynamic_modifier = {
+				modifier = mountaineer_sar_i
+			}
+		}
+		974 = {
+			add_dynamic_modifier = {
+				modifier = mountaineer_sar_i
+			}
+		}
+		975 = {
+			add_dynamic_modifier = {
+				modifier = mountaineer_sar_i
+			}
+		}
+		237 = {
+			add_dynamic_modifier = {
+				modifier = kalmyk_sar_i
+			}
+		}
+		234 = {
+			add_dynamic_modifier = {
+				modifier = cossack_sar_i
+			}
+		}
+		970 = {
+			add_dynamic_modifier = {
+				modifier = ossetian_sar_i
+			}
+		}
+		229 = {
+			add_dynamic_modifier = {
+				modifier = azerbaijani_sar_i
+			}
+		}
+		854 = {
+			add_dynamic_modifier = {
+				modifier = azerbaijani_sar_i
+			}
+		}
+		967 = {
+			add_dynamic_modifier = {
+				modifier = azerbaijani_sar_i
+			}
+		}
+		968 = {
+			add_dynamic_modifier = {
+				modifier = azerbaijani_sar_i
+			}
+		}
+		969 = {
+			add_dynamic_modifier = {
+				modifier = azerbaijani_sar_i
+			}
+		}
+	}
+	option = { # russian rule on the caucasus
+		name = ivanomika.30.b
+		add_stability = -0.1
+		hidden_effect = {
+			country_event = {
+				id = ivanomika.31
+				days = 12
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.31 # Caucasian Insurgency
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.31"}
+	title = ivanomika.31.t
+	desc = ivanomika.31.d
+	
+	picture = GFX_report_event_angry_caucasus
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.31.a
+		# add modifier for caucasian liberation army
+	}
+}
+
+country_event = {
+	id = ivanomika.32 # The Transcaucasians
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.32"}
+	title = ivanomika.32.t
+	desc = ivanomika.32.d
+	
+	picture = GFX_report_event_caucasus_map
+	is_triggered_only = yes
+	
+	option = { # work towards an alliance
+		name = ivanomika.32.a
+		GEO = {
+			country_event = {
+				id = ivanomika.33
+			}
+		}
+		ARM = {
+			country_event = {
+				id = ivanomika.33
+			}
+		}
+	}
+	option = { # invade
+		name = ivanomika.32.b
+		declare_war_on = {
+			target = GEO
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = ARM
+			type = annex_everything
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.33 # Arrival of the Russian Delegation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.33"}
+	title = ivanomika.33.t
+	desc = ivanomika.33.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = { # of course we support an alliance
+		name = ivanomika.33.a
+		RUS = {
+			country_event = {
+				id = ivanomika.34
+				days = 1
+			}
+		}
+	}
+	option = { # no
+		name = ivanomika.33.b
+		RUS = {
+			country_event = {
+				id = ivanomika.35
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.34 # [ROOT] Agrees to an Alliance!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.34"}
+	title = ivanomika.34.t
+	desc = ivanomika.34.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.34.a
+		give_guarantee = ROOT
+		ROOT = {
+			give_military_access = RUS
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.35 # [ROOT] Refuses an Alliance!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.35"}
+	title = ivanomika.35.t
+	desc = ivanomika.35.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.35.a
+		set_country_flag = RUS_can_dow_transcaucasus_decisions_flag
+	}
+}
+
+country_event = {
+	id = ivanomika.36 # Muslims of the Mountains
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.36"}
+	title = ivanomika.36.t
+	desc = ivanomika.36.d
+	
+	picture = GFX_report_event_angry_caucasus
+	is_triggered_only = yes
+	
+	option = { # leave them be
+		name = ivanomika.36.a
+		add_stability = 0.05
+	}
+	option = { # christianise the heretics
+		name = ivanomika.36.b
+		add_stability = -0.1
+		add_ideas = RUS_Orthodox_Evangelism_idea
+	}
+}
+
+country_event = {
+	id = ivanomika.37 # The Wealth of Warm Water
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.37"}
+	title = ivanomika.37.t
+	desc = ivanomika.37.d
+	
+	picture = GFX_report_event_sochi
+	is_triggered_only = yes
+	
+	option = { # we will build ivangrad
+		name = ivanomika.37.a
+		custom_effect_tooltip = RUS_ivangrad_construction_tt
+		set_country_flag = RUS_ivangrad_construction_mission_flag
+	}
+	option = { # build up ports
+		name = ivanomika.37.b
+		#ports in novorossiysk, sochi, rostov, etc.
+	}
+}
+
+country_event = {
+	id = ivanomika.38 # Oil on the Caspian
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.38"}
+	title = ivanomika.38.t
+	desc = ivanomika.38.d
+	
+	picture = GFX_report_event_oil_pipeline
+	is_triggered_only = yes
+	
+	option = { # preemptively claim it for national companies
+		name = ivanomika.38.a
+		# add oil refineries in azerbaijani and dagestani states
+	}
+	option = { # let private companies take it
+		name = ivanomika.38.b
+		add_to_variable = { RUS_Ivanomika_spending = 1500 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_1m_500k_rubles
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.39 # The Fate of Crimea
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.39"}
+	title = ivanomika.39.t
+	desc = ivanomika.39.d
+	
+	picture = GFX_report_event_crimea
+	is_triggered_only = yes
+	
+	option = { # create the tatar autonomous republic
+		name = ivanomika.39.a
+		137 = {
+			add_dynamic_modifier = {
+				modifier = crimean_sar_i
+			} 
+		}
+	}
+	option = { # agricultural centre
+		name = ivanomika.39.b
+		add_to_variable = { RUS_Ivanomika_spending = 1500 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_1m_500k_rubles
+		add_ideas = RUS_Crimean_Agriculture_idea
+		RUS_clamp_IVANAOMIKA = yes
+	}
+	option = { # restart shipping
+		name = ivanomika.39.c
+		# upgrade the port in sevastopol
+	}
+}
+
+country_event = {
+	id = ivanomika.40 # The New Capital
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.40"}
+	title = ivanomika.40.t
+	desc = ivanomika.40.d
+	
+	picture = GFX_report_event_russians_signing_constitution
+	is_triggered_only = yes
+	
+	option = { # moscow
+		name = ivanomika.40.a
+		set_capital = { state = 219 }
+	}
+	option = { # petrograd
+		name = ivanomika.40.b
+		set_capital = { state = 195 }
+	}
+	option = { # novosibirsk
+		name = ivanomika.40.c
+		set_capital = { state = 570 }
+	}
+	option = { # vladivostok
+		name = ivanomika.40.e
+	}
+}
+
+country_event = {
+	id = ivanomika.41 # The Reconstruction of Moscow
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.41"}
+	title = ivanomika.41.t
+	desc = ivanomika.41.d
+	
+	picture = GFX_report_event_moscow
+	is_triggered_only = yes
+	
+	option = { # the history
+		name = ivanomika.41.a
+		add_to_variable = { RUS_Ivanomika_spending = 2000 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_2_million_rubles
+		add_war_support = 0.1
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # western capital
+		name = ivanomika.41.b
+		add_to_variable = { RUS_Ivanomika_spending = 3000 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_3_million_rubles
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		219 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		219 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = { # modernist
+		name = ivanomika.41.c
+		add_to_variable = { RUS_Ivanomika_spending = 1000 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_1_million_rubles
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.42 # The Reconstruction of Petrograd
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.42"}
+	title = ivanomika.42.t
+	desc = ivanomika.42.d
+	
+	picture = GFX_report_event_leningrad
+	is_triggered_only = yes
+	
+	option = { # modern port
+		name = ivanomika.42.a
+		add_to_variable = { RUS_Ivanomika_spending = 3000 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_3_million_rubles
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		195 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = naval_base
+				province = 3151
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = { # western capital
+		name = ivanomika.42.b
+		add_to_variable = { RUS_Ivanomika_spending = 2000 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_2_million_rubles
+		RUS_clamp_IVANAOMIKA = yes
+		195 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = { # the history
+		name = ivanomika.42.c
+		add_to_variable = { RUS_Ivanomika_spending = 1000 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_1_million_rubles
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.43 # Rebuilding Our Nation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.43"}
+	title = ivanomika.43.t
+	desc = ivanomika.43.d
+	
+	picture = GFX_report_event_destroyed_russia
+	is_triggered_only = yes
+	
+	option = { # agrarian powerhouse
+		name = ivanomika.43.a
+		add_to_variable = { RUS_Ivanomika_spending = 4000 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_4_million_rubless
+		RUS_clamp_IVANAOMIKA = yes
+		add_ideas = RUS_Agrarian_West_idea
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+	}
+	option = { # bring industry back
+		name = ivanomika.43.b
+		add_to_variable = { RUS_Ivanomika_spending = 2000 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_2_million_rubless
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		195 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		202 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		206 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		219 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		247 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.44 # The Fate of the Jews
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.44"}
+	title = ivanomika.44.t
+	desc = ivanomika.44.d
+	
+	picture = GFX_report_event_soviet_jews
+	is_triggered_only = yes
+	
+	option = { # accept them
+		name = ivanomika.44.a
+	}
+	option = { # please leave
+		name = ivanomika.44.b
+		add_to_variable = { RUS_Ivanomika_spending = 200 }
+		add_to_variable = { RUS_Ivanomika_consciousness = -0.05 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_200k_rubles
+		custom_effect_tooltip = RUS_Ivanomika_minus_half_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		ISR = {
+			country_event = {
+				id = ivanomika.45
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.45 # Israel - Russian Aliyah
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.45"}
+	title = ivanomika.45.t
+	desc = ivanomika.45.d
+	
+	picture = GFX_report_event_soviet_jews
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.45.a
+		add_timed_idea = {
+			idea = RUS_ISR_Russian_Aliyah_idea
+			days = 720
+		}
+	}
+}
+
+country_event = {
+	id = ivanomika.46 # What About the Partisans?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.46"}
+	title = ivanomika.46.t
+	desc = ivanomika.46.d
+	
+	picture = GFX_report_event_soc_partisans
+	is_triggered_only = yes
+	
+	option = { # welcome them
+		name = ivanomika.46.a
+		add_stability = -0.15
+	}
+	option = { # arrest them
+		name = ivanomika.46.b
+		add_to_variable = { RUS_Ivanomika_consciousness = -0.15 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_point_15_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+	}
+}
+
+country_event = {
+	id = ivanomika.47 # Damming the Volga?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.47"}
+	title = ivanomika.47.t
+	desc = ivanomika.47.d
+	
+	picture = GFX_report_event_volga_dam
+	is_triggered_only = yes
+	
+	option = { # yes
+		name = ivanomika.47.a
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		217 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		236 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		239 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		401 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		977 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = { # no
+		name = ivanomika.47.b
+	}
+}
+
+country_event = {
+	id = ivanomika.48 # The Reconstruction of Arkhangelsk
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.48"}
+	title = ivanomika.48.t
+	desc = ivanomika.48.d
+	
+	picture = GFX_report_event_GENERIC_demonstration
+	is_triggered_only = yes
+	
+	option = { # modern port
+		name = ivanomika.48.a
+		add_to_variable = { RUS_Ivanomika_spending = 200 }
+		custom_effect_tooltip = RUS_Ivanomika_spend_200k_rubles
+		RUS_clamp_IVANAOMIKA = yes
+		if = {
+			limit = {
+				check_variable = { var = RUS_Ivanomika_spending value = 8000 compare = equals }
+			}
+			clr_country_flag = IVANOMIKA_broke
+		}
+		214 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = naval_base
+				province = 3338
+				level = 1
+				instant_build = yes
+			}
+		}
+			
+	}
+	option = { # leave kraut stuff be
+		name = ivanomika.48.b
+	}
+}
+
+country_event = {
+	id = ivanomika.49 # The Collaborators
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.49"}
+	title = ivanomika.49.t
+	desc = ivanomika.49.d
+	
+	picture = GFX_report_event_roa_march
+	is_triggered_only = yes
+	
+	option = { # execute them
+		name = ivanomika.49.a
+		add_to_variable = { RUS_Ivanomika_consciousness = 0.1 }
+		add_stability = 0.1
+		RUS_clamp_IVANAOMIKA = yes
+	}
+	option = { # send them to penal labour
+		name = ivanomika.49.b
+		add_ideas = RUS_Collaborator_Penal_Labour_idea
+	}
+}
+
+country_event = {
+	id = ivanomika.50 # The New Constitution
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.50"}
+	title = ivanomika.50.t
+	desc = ivanomika.50.d
+	
+	picture = GFX_report_event_russians_signing_constitution
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.50.a
+		country_event = { id = ivanomika.51 days = 3 }
+	}
+}
+
+country_event = {
+	id = ivanomika.51 # We are a federal system
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.51"}
+	title = ivanomika.51.t
+	desc = ivanomika.51.d
+	
+	picture = GFX_report_event_russians_signing_constitution
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.51.a
+		country_event = { id = ivanomika.52 days = 3 }
+	}
+}
+
+country_event = {
+	id = ivanomika.52 # Presidential powers
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.52"}
+	title = ivanomika.52.t
+	desc = ivanomika.52.d
+	
+	picture = GFX_report_event_russians_signing_constitution
+	is_triggered_only = yes
+	
+	option = { #Strong president
+		name = ivanomika.52.a
+		country_event = { id = ivanomika.53 days = 3 }
+		add_political_power = 50
+		add_to_variable = { RUS_Ivanomika_consciousness = 5 }
+		custom_effect_tooltip = RUS_Ivanomika_plus_five_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+	}
+
+	option = { #Stronger Duma
+		name = ivanomika.52.b
+		country_event = { id = ivanomika.53 days = 3 }
+		add_stability = 0.05
+		add_to_variable = { RUS_Ivanomika_consciousness = -15 }
+		custom_effect_tooltip = RUS_Ivanomika_minus_five_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+	}
+}
+
+country_event = {
+	id = ivanomika.53 # Languages and Federalism
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.53"}
+	title = ivanomika.53.t
+	desc = ivanomika.53.d
+	
+	picture = GFX_report_event_russians_signing_constitution
+	is_triggered_only = yes
+	
+	option = { #Oblasts determine language rights
+		name = ivanomika.53.a
+		country_event = { id = ivanomika.54 days = 3 }
+	}
+	option = { #Government determines language rights
+		name = ivanomika.53.b
+		country_event = { id = ivanomika.54 days = 3 }
+		add_political_power = 75
+		add_to_variable = { RUS_Ivanomika_consciousness = 10 }
+		custom_effect_tooltip = RUS_Ivanomika_plus_ten_consciousness
+		RUS_clamp_IVANAOMIKA = yes
+	}
+}
+
+country_event = {
+	id = ivanomika.54 # The New Duma
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.54"}
+	title = ivanomika.54.t
+	desc = ivanomika.54.d
+	
+	picture = GFX_report_event_russians_signing_constitution
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.54.a
+		country_event = { id = ivanomika.55 days = 3 }
+	}
+}
+
+country_event = {
+	id = ivanomika.55 # The New Constitution
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.55"}
+	title = ivanomika.55.t
+	desc = ivanomika.55.d
+	
+	picture = GFX_report_event_russians_signing_constitution
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.55.a
+		country_event = { id = ivanomika.56 days = 3 }
+	}
+}
+
+country_event = {
+	id = ivanomika.56 # Constitution dropped yo
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ivanomika.56"}
+	title = ivanomika.56.t
+	desc = ivanomika.56.d
+	
+	picture = GFX_report_event_celebrating_russia
+	is_triggered_only = yes
+	
+	option = {
+		name = ivanomika.56.a
+	}
+}
+
+
+
+country_event = { #End of the Siberian War
+	id = russia.203
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.203"}
+	title = russia.203.t
+	desc = russia.203.d
+	
+	picture = GFX_report_event_chinese_soldiers_mountain
+	trigger = {
+		all_owned_state = {
+			is_core_of = RUS
+		}
+		tag = RUS
+	}
+	fire_only_once = yes
+	
+	option = { #Nice
+		name = russia.203.a
+		hidden_effect = {
+			remove_ideas = RUS_Siberian_War_idea
+		}
+		custom_effect_tooltip = remove_siberian_war_idea_tt
+	}
+}
+
+country_event = { # Fate of Vladimir Romanov
+	id = russia.204
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.204"}
+	title = russia.204.t
+	desc = russia.204.d
+	
+	picture = GFX_report_vladimir_romanov
+	is_triggered_only = yes
+	
+	option = { #Octobrist solution
+		name = russia.204.a
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.05
+		}
+	}
+	option = { #Kadety solution
+		name = russia.204.b
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+	}
+	option = { #SR solution
+		name = russia.204.c
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.05
+		}
+	}
+}
+
+country_event = { #Russia demands sakhalin
+	id = russia.212
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.212"}
+	title = russia.212.t
+	desc = russia.212.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = { #ok
+		name = russia.212.a
+		ai_chance = {
+			factor = 100
+		}
+		effect_tooltip = {
+			RUS = {
+				transfer_state = 655
+				transfer_state = 537
+			}
+		}
+		RUS = {
+			country_event = russia.213
+		}
+	}
+	option = { #nah nika
+		name = russia.212.b
+		ai_chance = {
+			factor = 0
+		}
+		RUS = {
+			country_event = russia.214
+		}
+	}
+}
+
+country_event = { #sakhalin is ours
+	id = russia.213
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.213"}
+	title = russia.213.t
+	desc = russia.213.d
+	
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.213.a
+		transfer_state = 655
+		transfer_state = 537
+	}
+}
+
+country_event = { #no sakhalin
+	id = russia.214
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.214"}
+	title = russia.214.t
+	desc = russia.214.d
+	
+	picture = GFX_report_event_usa_heavy_cruiser
+	is_triggered_only = yes
+	
+	option = { #too bad
+		name = russia.214.a
+		ai_chance = {
+			factor = 80
+		}
+	}
+	option = { #prepare to take it by force
+		name = russia.214.b
+		ai_chance = {
+			factor = 20
+		}
+		trigger = {
+			NOT = {
+				OR = {
+					is_puppet_of = FROM
+					is_in_faction_with = FROM
+				}
+			}
+		}
+		create_wargoal = {
+			type = take_core_state
+			target = FROM
+			generator = {
+				655
+				537
+			}
+		}
+	}
+}
+
+country_event = { #peace in Sakahalin
+	id = russia.215
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.215"}
+	title = russia.215.t
+	desc = russia.215.d
+	
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	
+	option = { #yes
+		name = russia.215.a
+		ai_chance = {
+			factor = 75
+		}
+		RUS = {
+			white_peace_with_ROOT = yes
+		}
+	}
+	option = { #no
+		name = russia.215.b
+		ai_chance = {
+			factor = 25
+		}
+		RUS = {
+			country_event = russia.216
+		}
+	}
+}
+
+country_event = { #no armstice
+	id = russia.216
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.216"}
+	title = russia.216.t
+	desc = russia.216.d
+	
+	picture = GFX_report_event_soviet_tanks_snow
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.216.a
+	}
+}
+
+country_event = { #the soviet border
+	id = russia.217
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.217"}
+	title = russia.217.t
+	desc = russia.217.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.217.a
+	}
+}
+
+country_event = { #russians wish to negotiate mutual border
+	id = russia.218
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.218"}
+	title = russia.218.t
+	desc = russia.218.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = { #yes, the current border will do
+		name = russia.218.a
+		ai_chance = {
+			factor = 20
+		}
+		RUS = {
+			country_event = {
+				id = russia.219
+				days = 2
+			}
+		}
+		set_country_flag = mutual_border_agreed_on
+	}
+	option = { #russians will have to make concessions
+		name = russia.218.b
+		ai_chance = {
+			factor = 50
+		}
+		RUS = {
+			country_event = {
+				id = russia.220
+				days = 2
+			}
+		}
+	}
+	option = { #we will never negotiate with an illegitimate government
+		name = russia.218.c
+		ai_chance = {
+			factor = 30
+		}
+		RUS = {
+			country_event = {
+				id = russia.221
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { #agreed on
+	id = russia.219
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.219"}
+	title = russia.219.t
+	desc = russia.219.d
+	
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.219.a
+		set_country_flag = mutual_border_agreed_on
+		add_opinion_modifier = {
+			target = SOV
+			modifier = mutual_border_agreed_on
+		}
+		reverse_add_opinion_modifier = {
+			target = SOV
+			modifier = mutual_border_agreed_on
+		}
+	}
+}
+
+country_event = { #demand concessions
+	id = russia.220
+	immediate = {
+		hidden_effect = {
+			log = "[GetDateText]: [Root.GetName]: event russia.220"
+			random_owned_state = {
+				limit = {
+					num_owned_neighbour_states = {
+						owner = SOV
+						count > 1
+					}
+				}
+				save_event_target_as = concession_state_target
+			}
+		}
+	}
+	title = {
+		text = russia.220.t_1
+		trigger = {
+			check_variable = {
+				concessions_made < 1
+			}
+		}
+	}
+	desc = {
+		text = russia.220.d_1
+		trigger = {
+			check_variable = {
+				concessions_made < 1
+			}
+		}
+	}
+	title = {
+		text = russia.220.t_2
+		trigger = {
+			check_variable = {
+				concessions_made > 0
+			}
+		}
+	}
+	desc = {
+		text = russia.220.d_2
+		trigger = {
+			check_variable = {
+				concessions_made > 0
+			}
+		}
+	}
+	
+	picture = GFX_report_event_soviet_tanks_snow
+	is_triggered_only = yes
+	
+	option = { #kul
+		name = russia.220.a
+		ai_chance = {
+			factor = 80
+			modifier = {
+				add = -25
+				check_variable = {
+					concessions_made > 0
+				}
+			}
+			modifier = {
+				add = -25
+				check_variable = {
+					concessions_made > 1
+				}
+			}
+			modifier = {
+				add = -25
+				check_variable = {
+					concessions_made > 2
+				}
+			}
+			modifier = {
+				add = -25
+				check_variable = {
+					concessions_made > 3
+				}
+			}
+		}
+		hidden_effect = {
+			add_to_variable = {
+				var = concessions_made
+				value = 1
+			}
+			add_political_power = -5
+			SOV = {
+				transfer_state = event_target:concession_state_target
+				country_event = russia.222
+			}
+		}
+	}
+	option = { #no fuck off
+		name = russia.220.b
+		ai_chance = {
+			factor = 30
+		}
+		add_political_power = 5
+		SOV = {
+			country_event = russia.223
+		}
+	}
+}
+
+country_event = { #russia_negotiations_break_down
+	id = russia.221
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.221"}
+	title = russia.221.t
+	desc = russia.221.d
+	
+	picture = GFX_report_event_soviet_tanks
+	is_triggered_only = yes
+	
+	option = { #another day...
+		name = russia.221.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = { #maybe a more hostile attitude is in order
+		name = russia.221.b
+		ai_chance = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = {
+					concessions_made > 1
+				}
+			}
+		}
+		clr_country_flag = russia_friendly_stance_soviet_union
+		custom_effect_tooltip = russia_hostile_stance_soviet_union_taken
+		set_country_flag = russia_hostile_stance_soviet_union
+	}
+}
+
+country_event = { #russia agrees to concessions
+	id = russia.222
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.222"}
+	title = russia.222.t
+	desc = russia.222.d
+	
+	picture = GFX_report_event_soviet_finnish_pact
+	is_triggered_only = yes
+	
+	option = { #this looks good
+		name = russia.222.a
+		ai_chance = {
+			factor = 40
+			modifier = {
+				add = 30
+				check_variable = {
+					RUS.concessions_made > 1
+				}
+			}
+		}
+		RUS = {
+			country_event = {
+				id = russia.219
+				days = 2
+			}
+		}
+		set_country_flag = mutual_border_agreed_on
+	}
+	option = { #more concessions please
+		name = russia.222.b
+		ai_chance = {
+			factor = 50
+			modifier = {
+				add = -30
+				check_variable = {
+					RUS.concessions_made > 2
+				}
+			}
+		}
+		RUS = {
+			country_event = {
+				id = russia.220
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { #russia refuses concessions
+	id = russia.223
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.223"}
+	title = russia.223.t
+	desc = russia.223.d
+	
+	picture = GFX_report_event_soviet_tanks_snow
+	is_triggered_only = yes
+	
+	option = { #we fold
+		name = russia.223.a
+		ai_chance = {
+			factor = 30
+		}
+		RUS = {
+			country_event = {
+				id = russia.219
+				days = 2
+			}
+		}
+		set_country_flag = mutual_border_agreed_on
+	}
+	option = { #we do not fold
+		name = russia.223.b
+		ai_chance = {
+			factor = 70
+		}
+		RUS = {
+			country_event = {
+				id = russia.221
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { #non agression
+	id = russia.224
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.224"}
+	title = russia.224.t
+	desc = russia.224.d
+	
+	picture = GFX_report_event_soviet_finnish_pact
+	is_triggered_only = yes
+	
+	option = {
+		#we agree
+		name = russia.224.a
+		ai_chance = {
+			factor = 90
+		}
+		RUS = {
+			country_event = {
+				id = russia.225
+				days = 2
+			}
+		}
+		diplomatic_relation = {
+			country = RUS
+			relation = non_aggression_pact
+			active = yes
+		}
+		#a non agression pact
+	}
+	option = {
+		#we dont agree
+		name = russia.224.b
+		ai_chance = {
+			factor = 10
+		}
+		RUS = {
+			country_event = {
+				id = russia.226
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { #pact
+	id = russia.225
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.225"}
+	title = russia.225.t
+	desc = russia.225.d
+	
+	picture = GFX_report_event_soviet_finnish_pact
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.225.a
+	}
+}
+
+country_event = { #no pact
+	id = russia.226
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.226"}
+	title = russia.226.t
+	desc = russia.226.d
+	
+	picture = GFX_report_event_soviet_finnish_pact
+	is_triggered_only = yes
+	
+	option = {
+		name = russia.226.a
+	}
+}
+
+country_event = { #Buryatia generals join us
+	id = russia.227
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russia.227"}
+	title = russia.227.t
+	desc = russia.227.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	
+	option = { 
+		name = russia.227.a
+		ai_chance = {
+			factor = 4000
+		}
+		create_corps_commander = {
+			name = "Vsevolod N. Ivanov"
+			picture = "Vsevolod_Ivanov.dds"
+			traits = { infantry_officer }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Dmitry P. Vertepov"
+			picture = "Dmitry_Vertepov.dds"
+			traits = { cavalry_officer }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 1
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 0
+		}
+		name = russia.227.b
+		annex_country = {
+			target = BRY
+			transfer_troops = yes
+		}
+		hidden_effect = {
+			set_temp_variable = { temp_seat_change = 7 }
+			RUS_duma_add_seat = yes
+		}
+		if = {
+            limit = { country_exists = RFP }
+            declare_war_on = {
+				type = annex_everything
+				target = RFP
+            }
+        }
+        if = {
+            limit = { country_exists = SBR }
+            declare_war_on = {
+				type = annex_everything
+				target = SBR
+            }
+        }
+        create_corps_commander = {
+			name = "Vsevolod N. Ivanov"
+			picture = "Vsevolod_Ivanov.dds"
+			traits = { infantry_officer }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 1
+		}
+
+		create_corps_commander = {
+			name = "Dmitry P. Vertepov"
+			picture = "Dmitry_Vertepov.dds"
+			traits = { cavalry_officer }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		add_stability = -0.1
+		add_war_support = -0.1
+	}
+}
+
+country_event = {
+	id = twrrussia.228 #pasternak is in power, but at what cost
+	title = twrrussia.228.t
+	desc = twrrussia.228.d
+	is_triggered_only = yes
+	#picture = 
+	option = {
+		name = twrrussia.228.a
+	}
+}
+
+country_event = {
+	id = twrrussia.229 #Romanov drops out
+	title = twrrussia.229.t
+	desc = twrrussia.229.d
+	is_triggered_only = yes
+	picture = GFX_report_vladimir_romanov
+	option = {
+		name = twrrussia.229.a
+	}
+}
+
+country_event = {
+	id = russianreconquest.1 # We are going to beat Beria to death
+	title = russianreconquest.1.t
+	desc = russianreconquest.1.d
+	is_triggered_only = yes
+	picture = GFX_report_commies_bad
+	option = {
+		name = russianreconquest.1.a
+		add_war_support = 0.05
+	}
+}
+
+country_event = {
+	id = russianreconquest.2 # Send out anticommunist partisans
+	title = russianreconquest.2.t
+	desc = russianreconquest.2.d
+	is_triggered_only = yes
+	picture = GFX_report_commies_bad
+	option = {
+		name = russianreconquest.2
+		SOV = {
+			country_event = {
+				id = russianreconquest.3
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russianreconquest.3 # Aaaaah anticommunist partisans
+	title = russianreconquest.3.t
+	desc = russianreconquest.3.d
+	is_triggered_only = yes
+	picture = GFX_report_event_partisan_coup
+	option = {
+		name = russianreconquest.3.a
+		add_timed_idea = {
+			idea = RUS_partisans_idea
+			days = 200
+		}
+		ROOT = {
+			transfer_units_fraction = {
+				target = FROM
+				size = 0.05
+				stockpile_ratio = 0.55
+				army_ratio = 0.05
+				navy_ratio = 0.0
+				air_ratio = 0.1
+				keep_unit_leaders_trigger = {
+					always = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russianreconquest.4 # do we intervene in Buryatia
+	title = russianreconquest.4.t
+	desc = russianreconquest.4.d
+	is_triggered_only = yes
+	picture = GFX_report_event_siberian_conscripts
+	option = {
+		name = russianreconquest.4.a #ok
+		BRY = {
+			every_unit_leader = {
+				set_nationality = RUS
+			}
+		}
+		annex_country = {
+			target = BRY
+			transfer_troops = yes
+		}
+		if = {
+			limit = {
+				has_country_flag = RUS_duma_enabled
+			}
+			set_temp_variable = { temp_seat_change = 7 }
+			RUS_duma_add_seat = yes
+		}
+		if = {
+            limit = { country_exists = RFP }
+            declare_war_on = {
+            type = annex_everything
+            target = RFP
+            }
+        }
+        if = {
+            limit = { country_exists = SBR }
+            declare_war_on = {
+            type = annex_everything
+            target = SBR
+            }
+        }
+		
+
+	}
+	option = {
+		ai_chance = {
+			factor = 0
+		}
+		name = russianreconquest.4.b #no
+	}
+}
+
+country_event = {
+	id = russianreconquest.5 # KONR - Russian Republic promises us amnesty
+	title = russianreconquest.5.t
+	desc = russianreconquest.5.d
+	is_triggered_only = yes
+	picture = GFX_report_commies_bad
+	option = {
+		name = russianreconquest.5.a #ok
+		ai_chance = {
+			factor = 20
+		}
+		RUS = {
+			country_event = {
+				id = russianreconquest.6
+				days = 4
+			}
+		}
+	}
+
+	option = {
+		name = russianreconquest.5.b #no
+		ai_chance = {
+			factor = 80
+		}
+		RUS = {
+			country_event = {
+				id = russianreconquest.7
+				days = 4
+			}
+		}
+	}
+
+}
+
+country_event = {
+	id = russianreconquest.6 # Russian Republic - KONR accepts
+	title = russianreconquest.6.t
+	desc = russianreconquest.6.d
+	is_triggered_only = yes
+	picture = GFX_report_commies_bad
+	option = {
+		name = russianreconquest.6 #nice
+		RMD = {
+			every_unit_leader = {
+				set_nationality = RUS
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = RMD
+				}
+				add_core_of = RUS
+			}
+		}
+		annex_country = {
+			target = RMD
+			transfer_troops = yes
+		}
+	}
+}
+
+country_event = {
+	id = russianreconquest.7 # Russian Republic - KONR declines
+	title = russianreconquest.7.t
+	desc = russianreconquest.7.d
+	is_triggered_only = yes
+	picture = GFX_report_commies_bad
+	option = {
+		name = russianreconquest.7 #war
+		declare_war_on = {
+			target = RMD
+			type = annex_everything
+		}
+	}
+}
+
+
+country_event = {
+	id = russianreconquest.8 # Russian Republic - KONR promises us amnesty
+	title = russianreconquest.8.t
+	desc = russianreconquest.8.d
+	is_triggered_only = yes
+	picture = GFX_report_commies_bad
+	option = {
+		name = russianreconquest.8.a #ok
+		ai_chance = {
+			factor = 20
+		}
+		RMD = {
+			country_event = {
+				id = russianreconquest.9
+				days = 4
+			}
+		}
+	}
+
+	option = {
+		name = russianreconquest.8.b #no
+		ai_chance = {
+			factor = 80
+		}
+		RMD = {
+			country_event = {
+				id = russianreconquest.10
+				days = 4
+			}
+		}
+	}
+
+}
+
+country_event = {
+	id = russianreconquest.9 # KONR - Russian Republic accepts
+	title = russianreconquest.9.t
+	desc = russianreconquest.9.d
+	is_triggered_only = yes
+	picture = GFX_report_commies_bad
+	option = {
+		name = russianreconquest.9 #nice
+		RUS = {
+			every_unit_leader = {
+				set_nationality = RMD
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = RUS
+				}
+				add_core_of = RMD
+			}
+		}
+		annex_country = {
+			target = RUS
+			transfer_troops = yes
+		}
+	}
+}
+
+country_event = {
+	id = russianreconquest.10 # KONR - Russian Republic declines
+	title = russianreconquest.10.t
+	desc = russianreconquest.10.d
+	is_triggered_only = yes
+	picture = GFX_report_commies_bad
+	option = {
+		name = russianreconquest.10 #war
+		declare_war_on = {
+			target = RUS
+			type = annex_everything
+		}
+	}
+}
+
+
+### FLAVOUR EVENTS ###
+
+country_event = {
+	id = russiaflavour.1 # Brynner Movie
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.1"}
+	title = russiaflavour.1.t
+	desc = russiaflavour.1.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_yul_bbrynner
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.1.a
+	}
+}
+
+country_event = {
+	id = russiaflavour.2 # David Sarnoff gmaming
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.2"}
+	title = russiaflavour.2.t
+	desc = russiaflavour.2.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_david_sarnoff
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.2.a
+		set_country_flag = TTA_FOUNDED
+		custom_effect_tooltip = TTA_IS_HERE
+	}
+}
+
+country_event = {
+	id = russiaflavour.3 # Viktor Chernov Dies
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.3"}
+	title = russiaflavour.3.t
+	desc = russiaflavour.3.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_victor_chernov
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.3.a
+		kill_ideology_leader = social_democrat
+	}
+}
+
+country_event = {
+	id = russiaflavour.4 # Maklakov Retires
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.4"}
+	title = russiaflavour.4.t
+	desc = russiaflavour.4.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_vasily_maklakov
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.4.a
+		retire_ideology_leader = liberal
+	}
+}
+
+country_event = {
+	id = russiaflavour.5 # Isaac Steinberg Dies
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.5"}
+	title = russiaflavour.5.t
+	desc = russiaflavour.5.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_isaac_steinberg
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.5.a
+		set_country_flag = RUS_isaac_steinberg_dead
+		kill_ideology_leader = socialist
+	}
+}
+
+country_event = {
+	id = russiaflavour.6 # Diner opens 
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.6"}
+	title = russiaflavour.6.t
+	desc = russiaflavour.6.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_diner
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.6.a
+		add_political_power = 5
+	}
+}
+
+country_event = {
+	id = russiaflavour.7 # Mikhayly EXPANDS
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.7"}
+	title = russiaflavour.7.t
+	desc = russiaflavour.7.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_diner
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.7.a
+		add_political_power = 10
+	}
+}
+
+
+country_event = {
+	id = russiaflavour.8 # le American franchisers have arrived
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.8"}
+	title = russiaflavour.8.t
+	desc = russiaflavour.8.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_diner
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.8.a
+		add_political_power = -1
+		hidden_effect = {
+			country_event = {
+				id = russiaflavour.9
+				days = 65
+			}
+		}
+	}
+}
+
+country_event = {
+	id = russiaflavour.9 # Fast-Food Cold War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.9"}
+	title = russiaflavour.9.t
+	desc = russiaflavour.9.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_diner
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.8.a
+		add_war_support = 0.01
+	}
+}
+
+
+country_event = {
+	id = russiaflavour.10 # Puyi book published
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.10"}
+	title = russiaflavour.10.t
+	desc = russiaflavour.10.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_puyi
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.10.a
+	}
+}
+
+country_event = {
+	id = russiaflavour.11 # Russian park initative launched
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.11"}
+	title = russiaflavour.11.t
+	desc = russiaflavour.11.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_caucasus_mountain
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.11.a
+	}
+}
+
+country_event = {
+	id = russiaflavour.12 # Amur river park opened
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.12"}
+	title = russiaflavour.12.t
+	desc = russiaflavour.12.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_baikal
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.12.a
+	}
+}
+
+country_event = {
+	id = russiaflavour.13 # Mount elbrus park opened
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.13"}
+	title = russiaflavour.13.t
+	desc = russiaflavour.13.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_caucasus_mountain
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.13.a
+	}
+}
+
+country_event = {
+	id = russiaflavour.14 # Lena River Protecc
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.14"}
+	title = russiaflavour.14.t
+	desc = russiaflavour.14.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_shipe
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.14.a
+	}
+}
+
+country_event = {
+	id = russiaflavour.15 # Yeltsin elected
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.15"}
+	title = russiaflavour.15.t
+	desc = russiaflavour.15.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_yeltssin
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.15.a
+		add_stability = 0.01
+	}
+}
+
+country_event = {
+	id = russiaflavour.16 # New Yakut Script
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.16"}
+	title = russiaflavour.16.t
+	desc = russiaflavour.16.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_yakut_language
+	is_triggered_only = yes
+	
+	option = { #usual script
+		name = russiaflavour.16.a
+		add_political_power = 40
+	}
+	option = { #turkic script
+		name = russiaflavour.16.b
+		TUR = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = Turkic_ties
+			}
+		}
+		AZR = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = Turkic_ties
+			}
+		}
+		TRA = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = Turkic_ties
+			}
+		}
+		TRK = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = Turkic_ties
+			}
+		}
+		UZB = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = Turkic_ties
+			}
+		}
+	}
+	option = { #any care
+		name = russiaflavour.16.c
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.01
+		}
+	}
+}
+
+country_event = {
+	id = russiaflavour.17 # Pedo book
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russiaflavour.17"}
+	title = russiaflavour.17.t
+	desc = russiaflavour.17.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_nabokov
+	is_triggered_only = yes
+	
+	option = {
+		name = russiaflavour.17.a
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.05
+		}
+		set_country_flag = BOOK_WRITTEN
+	}
+}
+
+country_event = {
+	id = russianarmy.1 # Army is poopoo
+	immediate = {log = "[GetDateText]: [Root.GetName]: event russianarmy.1"}
+	title = russianarmy.1.t
+	desc = russianarmy.1.d
+	fire_only_once = yes
+	
+	picture = GFX_report_event_siberian_conscripts
+	is_triggered_only = yes
+	
+	option = {
+		name = russianarmy.1.a
+	}
+}
+
+
+
+
+
+
+
+### REUNIFICATION EVENTS ###
+
+news_event = {
+	id = rusreunification.1 # Socdem reunification
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.1"}
+	title = rusreunification.1.t
+	desc = rusreunification.1.d
+	
+	picture = GFX_news_event_sr_win
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            RUS = {
+                is_ai = no
+            }
+        }
+    RUS = {
+        sound_effect = RUS_SR_Win
+        }
+        	}
+        }
+    }
+	option = {
+		name = rusreunification.1.a
+		hidden_effect = {
+			RUS = {
+				set_capital = { state = 398 }
+				set_country_flag = reunified_russia
+			}
+			
+		}
+	}
+	option = {
+		name = rusreunification.1.b
+		trigger = {
+			NOT = {
+				TAG = RUS
+			}
+		}
+	}
+}
+
+news_event = {
+	id = rusreunification.2 # Liberal reunification
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.2"}
+	title = rusreunification.2.t
+	desc = rusreunification.2.d
+	
+	picture = GFX_news_event_kadet_win
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            RUS = {
+                is_ai = no
+            }
+        }
+    RUS = {
+        sound_effect = RUS_Kadety_Win
+        }
+        	}
+        }
+    }
+	option = {
+		name = rusreunification.2.a
+		hidden_effect = {
+			RUS = {
+				set_capital = { state = 398 }
+				set_country_flag = reunified_russia
+			}
+		}
+	}
+	option = {
+		name = rusreunification.2.b
+		trigger = {
+			NOT = {
+				TAG = RUS
+			}
+		}
+	}
+}
+
+news_event = {
+	id = rusreunification.9 # Liberal reunification (Pomerants)
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.9"}
+	title = rusreunification.9.t
+	desc = rusreunification.9.d
+	
+	picture = GFX_news_event_kadet_win
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            RUS = {
+                is_ai = no
+            }
+        }
+    RUS = {
+        sound_effect = RUS_Kadety_Win
+        }
+        	}
+        }
+    }
+	option = {
+		name = rusreunification.9.a
+		hidden_effect = {
+			RUS = {
+				set_capital = { state = 398 }
+				set_country_flag = reunified_russia
+			}
+		}
+	}
+	option = {
+		name = rusreunification.9.b
+		trigger = {
+			NOT = {
+				TAG = RUS
+			}
+		}
+	}
+}
+
+news_event = {
+	id = rusreunification.3 # Conservative reunification
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.3"}
+	title = rusreunification.3.t
+	desc = rusreunification.3.d
+	
+	picture = GFX_news_event_octobrist
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            RUS = {
+                is_ai = no
+            }
+        }
+    RUS = {
+        sound_effect = RUS_Octobrists_Win
+        }
+        	}
+        }
+    }
+	option = {
+		name = rusreunification.3.a
+		hidden_effect = {
+			RUS = {
+				set_capital = { state = 398 }
+				set_country_flag = reunified_russia
+			}
+		}
+	}
+	option = {
+		name = rusreunification.3.b
+		trigger = {
+			NOT = {
+				TAG = RUS
+			}
+		}
+	}
+}
+
+news_event = {
+	id = rusreunification.10 # Conservative reunification (Pasternak)
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.10"}
+	title = rusreunification.10.t
+	desc = rusreunification.10.d
+	
+	picture = GFX_news_event_octobrist
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            RUS = {
+                is_ai = no
+            }
+        }
+    RUS = {
+        sound_effect = RUS_Octobrists_Win
+        }
+        	}
+        }
+    }
+	option = {
+		name = rusreunification.10.a
+		hidden_effect = {
+			RUS = {
+				set_capital = { state = 398 }
+				set_country_flag = reunified_russia
+			}
+		}
+	}
+	option = {
+		name = rusreunification.10.b
+		trigger = {
+			NOT = {
+				TAG = RUS
+			}
+		}
+	}
+}
+
+news_event = {
+	id = rusreunification.4 # Mikhailov reunification
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.4"}
+	title = rusreunification.4.t
+	desc = rusreunification.4.d
+	
+	picture = GFX_news_event_mikhailov
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            RUS = {
+                is_ai = no
+            }
+        }
+    RUS = {
+        sound_effect = RUS_Mikhailov_Win
+        }
+        	}
+        }
+    }
+	option = {
+		name = rusreunification.4.a
+		hidden_effect = {
+			RUS = {
+				set_country_flag = reunified_russia
+			}
+		}
+	}
+	option = {
+		name = rusreunification.4.b
+		trigger = {
+			NOT = {
+				TAG = RUS
+			}
+		}
+	}
+}
+
+country_event = {
+	id = rusreunification.5 # Where should capital be
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.5"}
+	title = rusreunification.5.t
+	desc = rusreunification.5.d
+	
+	picture = GFX_report_event_celebrating_russia
+	is_triggered_only = yes
+	option = { #Moscow
+		name = rusreunification.5.a
+		set_capital = { state = 219 }
+	}
+	option = { #Petrograd
+		name = rusreunification.5.b
+		set_capital = { state = 195 }
+	}
+	option = { #Vladivostok
+		name = rusreunification.5.c
+		set_capital = { state = 408 }
+	}
+	option = { #Why change lol
+		name = rusreunification.5.e
+	}
+}
+
+country_event = {
+	id = rusreunification.6 # RR wants Kuril
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.6"}
+	title = rusreunification.6.t
+	desc = rusreunification.6.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	option = { #sure
+		name = rusreunification.6.a
+		ai_chance = {
+			factor = 70
+		}
+		RUS = { country_event = { id = rusreunification.7 } }
+		effect_tooltip = {
+			RUS = {
+				transfer_state = 555
+			}
+		}
+	}
+	option = { #no
+		name = rusreunification.6.b
+		ai_chance = {
+			factor = 30
+		}
+		RUS = { country_event = { id = rusreunification.8 } }
+	}
+}
+
+country_event = {
+	id = rusreunification.7 # America accepts
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.7"}
+	title = rusreunification.7.t
+	desc = rusreunification.7.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	option = { #yay
+		name = rusreunification.7.a
+		transfer_state = 555
+	}
+}
+
+country_event = {
+	id = rusreunification.8 # America declines
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rusreunification.8"}
+	title = rusreunification.8.t
+	desc = rusreunification.8.d
+	
+	picture = GFX_report_event_russian_flag
+	is_triggered_only = yes
+	option = { #fuck
+		name = rusreunification.8.a
+		RUS = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = RUS_Kuril_unsolved
+			}
+		}
+		USA = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = RUS_Kuril_unsolved
+			}
+		}
+	}
+}
+
+country_event = {
+	id = karelia.1 # Russia demands Karelia!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event karelia.1"}
+	title = karelia.1.t
+	desc = karelia.1.d
+	
+	picture = GFX_report_event_chinese_soldiers_mountain
+	is_triggered_only = yes
+	
+	option = { # ok
+		ai_chance = {
+			factor = 70
+		}
+		name = russia.6.a
+		RUZ = {
+		transfer_state = 213
+		transfer_state = 215
+		transfer_state = 216
+		transfer_state = 722
+		}
+		213 = { add_core_of = RUZ }
+		215 = { add_core_of = RUZ }
+		216 = { add_core_of = RUZ }
+		722 = { add_core_of = RUZ }
+		set_global_flag = ISSUE_RESOLVED_PEACEFULLY_FIN
+	}
+	option = { # fuck you
+		ai_chance = {
+			factor = 30
+		}
+		name = russia.6.b
+		declare_war_on = {
+			target = RUZ
+			type = annex_everything
+		}
+		213 = { add_core_of = RUZ }
+		215 = { add_core_of = RUZ }
+		216 = { add_core_of = RUZ }
+		722 = { add_core_of = RUZ }
+		set_global_flag = ISSUE_RESOLVED_PEACEFULLY_FIN
+	}
+}

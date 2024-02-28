@@ -1,0 +1,2097 @@
+###########################################################################################
+#######Honestly Election shit should be here too but i cba to put it back again here#######
+###########################################################################################
+
+
+cro_socialist_republics = {
+	104 = {
+		add_dynamic_modifier = { modifier = fed_bos_i }
+	}
+	983 = {
+		add_dynamic_modifier = { modifier = fed_bos_i }
+	}
+	982 = {
+		add_dynamic_modifier = { modifier = fed_bos_i }
+	}
+	981 = {
+		add_dynamic_modifier = { modifier = fed_bos_i }
+	}
+	980 = {
+		add_dynamic_modifier = { modifier = fed_mac_i }
+	}
+	106 = {
+		add_dynamic_modifier = { modifier = fed_mac_i }
+	}
+	107 = {
+		add_dynamic_modifier = { modifier = fed_ser_i }
+	}
+	108 = {
+		add_dynamic_modifier = { modifier = fed_ser_i }
+	}
+	979 = {
+		add_dynamic_modifier = { modifier = fed_ser_i }
+	}
+	772 = {
+		add_dynamic_modifier = { modifier = fed_voj_i }
+	}
+	45 = {
+		add_dynamic_modifier = { modifier = fed_voj_i }
+	}
+	818 = {
+		add_dynamic_modifier = { modifier = fed_kos_i }
+	}
+	105 = {
+		add_dynamic_modifier = { modifier = fed_mnt_i }
+	}
+	770 = {
+		add_dynamic_modifier = { modifier = fed_slo_i }
+	}
+	814 = {
+		add_dynamic_modifier = { modifier = fed_slo_i }
+	}
+	812 = {
+		add_dynamic_modifier = { modifier = fed_slo_i }
+	}
+	102 = {
+		add_dynamic_modifier = { modifier = fed_slo_i }
+	}
+	765 = {
+		add_dynamic_modifier = { modifier = fed_slo_i }
+	}
+	IF = { 
+		limit = { 
+		   owns_state = 811
+		}
+		811  = {
+			add_dynamic_modifier = { modifier = fed_slo_i }
+		}
+	}
+	IF = { 
+		limit = { 
+			owns_state = 812
+		}
+		812  = {
+			add_dynamic_modifier = { modifier = fed_slo_i }
+		}
+	}
+	109 = {
+		add_dynamic_modifier = { modifier = fed_cro_i }
+	}
+	819 = {
+		add_dynamic_modifier = { modifier = fed_cro_i }
+	}
+	1016 = {
+		add_dynamic_modifier = { modifier = fed_cro_i }
+	}
+	103 = {
+			add_dynamic_modifier = { modifier = fed_cro_i }
+	}
+	163 = {
+		add_dynamic_modifier = { modifier = fed_cro_i }
+	}
+	815 = {
+		add_dynamic_modifier = { modifier = fed_cro_i }
+	}
+	813 = {
+		add_dynamic_modifier = { modifier = fed_cro_i }
+	}
+}
+
+CRO_Ustase_Administration_influence_clamp = {
+	clamp_variable = {
+		var = CRO_Lorkovic_Loyalty
+		min = 0
+		max = 5
+	}
+	clamp_variable = {
+		var = CRO_Lorkovic_Influence
+		min = 0
+		max = 100
+	}
+	clamp_variable = {
+		var = CRO_Artukovic_Loyalty
+		min = 0
+		max = 5
+	}
+	clamp_variable = {
+		var = CRO_Artukovic_Influence
+		min = 0
+		max = 100
+	}
+	clamp_variable = {
+		var = CRO_Francetic_Loyalty
+		min = 0
+		max = 5
+	}
+	clamp_variable = {
+		var = CRO_Francetic_Influence
+		min = 0
+		max = 100
+	}
+}
+
+CRO_fire_cw = {
+	if = {
+		limit = {
+			has_country_flag = CRO_playing_as_ustase
+		}
+		save_global_event_target_as = CRO_old
+		load_focus_tree = CRO_Government_Revolt_Tree
+		complete_national_focus = CRO_The_Revolt_Begins
+		every_unit_leader = {
+			retire = yes
+		}
+		start_civil_war = {
+			ideology = bolshevik_leninist
+			size = 0.5
+			states = all
+			states_filter = { has_state_flag = CRO_PARTISAN_CONTROLLED_STATE }
+			save_global_event_target_as = CRP_target
+		}
+		set_cosmetic_tag = CRO_Ustase_Revolt 
+		country_event = {
+			id = croatiauprising.12
+			days = 2
+		}
+		country_event = {
+			id = twr_bosnia_chetnik.1
+			days = 15
+		}
+		create_field_marshal = {
+			name = "Ante Vokić"
+			picture = "Ante_Vokic.dds"
+			traits = { infantry_officer war_hero homeguard_general }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			
+		}
+		create_field_marshal = {
+			name = "Slavko Kvaternik"
+			picture = "Portrait_Slavko_Kvaternik.dds"
+			traits = { media_personality homeguard_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Jure Francetić"
+			picture = "Jure_Francetic.dds"
+			traits = { organizer ustashe_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Viktor Pavičić"
+			picture = "Viktor_Pavicic.dds"
+			traits = { infantry_officer war_hero homeguard_general }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Ivan Markulj"
+			picture = "Ivan_Markulj.dds"
+			traits = { infantry_officer homeguard_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Matija Čanić"
+			picture = "Matija_Canic.dds"
+			traits = {infantry_officer cavalry_officer hill_fighter homeguard_general}
+			skill = 3
+			attack_skill = 2
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 4
+			
+		}
+		create_corps_commander = {
+			name = "Ivan Babić"
+			picture = "Ivan_Babic.dds"
+			traits = { organizer homeguard_general}
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 4
+			
+		}
+		create_corps_commander = {
+			name = "Ljubo Miloš"
+			picture = "Ljubo_Milos.dds"
+			traits = { trait_reckless harsh_leader ustashe_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+			
+		}
+		create_corps_commander = {
+			name = "Miroslav Navratil"
+			picture = "Miroslav_Navratil.dds"
+			traits = { commando homeguard_general}
+			skill = 2
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Vjekoslav Luburić"
+			picture = "Vjekoslav_Luburic.dds"
+			traits = { trickster harsh_leader trait_reckless ustashe_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Fedor Dragojlov"
+			picture = "Fedor_Dragojlov.dds"
+			traits = { trait_cautious homeguard_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 4
+			planning_skill = 3
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Rafael Boban"
+			picture = "Rafael_Boban.dds"
+			traits = { infantry_officer ustashe_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Vladimir Laxa"
+			picture = "Vladimir_Laxa.dds"
+			traits = { old_guard homeguard_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Petar Brzica"
+			picture = "Petar_Brzica.dds"
+			traits = { commando trait_reckless harsh_leader ustashe_general }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+			
+		}
+		create_corps_commander = {
+			name = "Delko Bogdanić"
+			picture = "Delko_Bogdanic.dds"
+			traits = { organizer ustashe_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			
+		}
+		create_corps_commander = {
+			name = "Ivan Devčić Pivac"
+			picture = "Ivan_Devcic_Pivac.dds"
+			traits = { ustashe_general harsh_leader }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+			
+		}
+		create_navy_leader = {
+			name = "Edgar Angeli"
+			picture = "Edgar_Angeli.dds"
+			traits = {}
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			maneuvering_skill = 2
+			coordination_skill = 2
+		}
+		create_navy_leader = {
+			name = "Nikola Steinfel"
+			picture = "Nikola_Steinfel.dds"
+			traits = { spotter }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			maneuvering_skill = 4
+			coordination_skill = 3
+		}
+		create_navy_leader = {
+			name = "Đuro Jakčin"
+			picture = "Duro_Jakcin.dds"
+			traits = { bold }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			maneuvering_skill = 3
+			coordination_skill = 3
+		}
+		create_country_leader = {
+			name = "Supreme Ustaša Council"
+			desc = "USTASHA_COUNCIL_DESC"
+			picture = "Ustasha_Council.dds"
+			expire = "1965.1.1"
+			ideology = ustasa_movement 
+			traits = { cabinet_crisis }
+		}
+		create_country_leader = {
+			name = "Mladen Lorković"
+			desc = "MLADEN_LORKOVIC_DESC"
+			picture = "Mladen_Lorkovic.dds"
+			expire = "1965.1.1"
+			ideology = clerical_fascism 
+			traits = {fascist_pragmatic}
+		}
+		create_country_leader = {
+			name = "Ante Vokić"
+			desc = "ANTE_VOKIC_DESC"
+			picture = "Ante_Vokic.dds"
+			expire = "1965.1.1"
+			ideology = transitional_regime
+			traits = {marshal cro_military_leader}
+		}
+		create_country_leader = {
+			name = "August Košutić"
+			desc = "AUGUST_KOSUTIC_DESC"
+			picture = "August_Kosutic.dds"
+			expire = "1965.1.1"
+			ideology = agrarianism
+			traits = {popular_figurehead}
+		}
+		create_country_leader = {
+			name = "Miko Tripalo"
+			desc = "Miko_Tripalo_DESC"
+			picture = "Miko_Tripalo.dds"
+			expire = "1965.1.1"
+			ideology = left-wing_populism
+			traits = {reformist}
+		}
+		create_country_leader = {
+			name = "Savka Dabčević Kučar"
+			desc = "Savka_Dabcevic_Kucar_DESC"
+			picture = "Savka_Dabcevic_Kucar.dds"
+			expire = "1965.1.1"
+			ideology = market_liberalism
+			traits = {}
+		}
+		add_ideas = {
+			CRO_HoG_Mladen_Lorkovic
+			CRO_FM_Mehmed_Alajbegovic
+			CRO_MoS_Eugen_Dido_Kvaternik
+			CRO_AM_Dragutin_Toth
+			CRO_CoStaff_Slavko_Kvaternik 
+			CRO_CoArmy_Ante_Vokic
+			CRO_CoNavy_Edgar_Angeli
+			CRO_CoAir_Miroslav_Navratil
+		}
+		add_ideas = CRO_Croatian_Civil_War_idea
+		IF = {
+			limit = {
+				has_country_flag = CRO_Lorkovic_Dead
+			}
+				add_ideas = CRO_HoG_Branimir_Jelic 
+			}
+		CRP = {
+                add_ideas = {
+                    CRO_HoG_Vladimir_Bakaric
+                    CRO_FM_Budimir_Loncar
+                    CRO_MoS_Ivan_Stevo_Krajacic
+                    CRO_AM_Ante_Markovic 
+                    CRO_CoStaff_Velimir_Terzic 
+                    CRO_CoArmy_Mate_Jerkovic
+                	CRO_CoNavy_Mate_Jerkovic
+                    CRO_CoAir_Viktor_Bubanj
+				}
+				add_ideas = CRO_Croatian_Civil_War_idea
+			load_focus_tree = CRO_Partisan_Revolt_Tree
+			complete_national_focus = CRO_For_The_People
+			set_cosmetic_tag = CRO_Partisan_Revolt
+			load_oob = "CRO_Partisans_Civil_War"
+			load_oob = "CRO_Partisan_milita"
+			set_country_flag = Partisan_government
+			create_country_leader = {
+				name = "Ante Vokić"
+				desc = "ANTE_VOKIC_DESC"
+				picture = "Ante_Vokic.dds"
+				expire = "1965.1.1"
+				ideology = transitional_regime
+				traits = {marshal cro_military_leader}
+			}
+			create_country_leader = {
+				name = "August Košutić"
+				desc = "AUGUST_KOSUTIC_DESC"
+				picture = "August_Kosutic.dds"
+				expire = "1965.1.1"
+				ideology = agrarianism
+				traits = {popular_figurehead}
+			}
+			create_country_leader = {
+				name = "Miko Tripalo"
+				desc = "Miko_Tripalo_DESC"
+				picture = "Miko_Tripalo.dds"
+				expire = "1965.1.1"
+				ideology = left-wing_populism
+				traits = {reformist}
+			}
+			create_country_leader = {
+				name = "Savka Dabčević Kučar"
+				desc = "Savka_Dabcevic_Kucar_DESC"
+				picture = "Savka_Dabcevic_Kucar.dds"
+				expire = "1965.1.1"
+				ideology = market_liberalism
+				traits = {}
+			}
+			create_country_leader = {
+				name = "Andrija Hebrang"
+				desc = "Andrija_Hebrang_DESC"
+				picture = "Andrija_Hebrang.dds"
+				expire = "1965.1.1"
+				ideology = marxism_leninism
+				traits = {croatian_stalinist}
+			}
+			create_country_leader = {
+				name = "Karlo Mrazović"
+				desc = "KARLO_MRAZOVIC_DESC"
+				picture = "Karlo_Mrazovic.dds"
+				expire = "1965.1.1"
+				ideology = radical_socialism
+				traits = {protector_of_the_workers_and_students  spanish_cw_veteran}
+			}
+			create_country_leader = {
+				name = "Vladimir Bakarić"
+				desc = "Vladimir_Bakaric_DESC"
+				picture = "Vladimir_Bakaric.dds"
+				expire = "1965.1.1"
+				ideology = titoism
+				traits = {loyal_titoist}
+			}
+			if = {
+				limit = {
+					SER = {
+						NOT = {
+							OR = {
+								has_government = bolshevik_leninist
+								has_government = marxist_leninist
+								has_government = socialist
+							}
+						}
+					}
+					any_other_country = {
+						original_tag = SER
+						NOT = {
+							OR = {
+								has_government = bolshevik_leninist
+								has_government = marxist_leninist
+								has_government = socialist
+							}
+						}
+					}
+				}
+				set_global_flag = Serbian_Partisans_Flee
+				SER = {
+					country_event = {
+						id = twr_croatia_communist.1
+						days = 2
+					}
+				}
+				create_field_marshal = {
+					name = "Arso Jovanović"
+					picture = "Arso_Jovanovic.dds"
+					traits = { infantry_officer partisan_general }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+					id = 100016
+				}
+				create_corps_commander = {
+					name = "Koča Popović"
+					picture = "Koca_Popovic.dds"
+					traits = { trickster partisan_general }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+					id = 100017
+				}	
+				create_corps_commander = {
+					name = "Kosta Nađ"
+					picture = "Kosta_Nad.dds"
+					traits = { commando partisan_general }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 2
+					id = 100018
+				}		
+				create_corps_commander = {
+					name = "Petar Drapšin"
+					picture = "Petar_Drapsin.dds"
+					traits = { commando partisan_general }
+					skill = 3			
+					attack_skill = 2
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+					id = 100019
+				}			
+				create_corps_commander = {
+					name = "Peko Dapčević"
+					picture = "Peko_Dapcevic.dds"
+					traits = { career_officer organizer partisan_general }
+					skill = 3			
+					attack_skill = 2
+					defense_skill = 3
+					planning_skill = 2
+					logistics_skill = 3
+					id = 100020
+				}			
+				create_corps_commander = {
+					name = "Rade Hamović"
+					picture = "Rade_Hamovic.dds"
+					traits = { career_officer partisan_general }
+					skill = 3				
+					attack_skill = 3
+					defense_skill = 1
+					planning_skill = 3
+					logistics_skill = 2
+					id = 100021
+				}				
+				create_corps_commander = {
+					name = "Ljubo Vučković"
+					picture = "Ljubo_Vuckovic.dds"
+					traits = { partisan_general }
+					skill = 2		
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 1
+					logistics_skill = 1
+					id = 100022
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = Tito_killed
+					}
+					SER = {
+						NOT = {
+							OR = {
+								has_government = bolshevik_leninist
+								has_government = marxist_leninist
+								has_government = socialist
+							}
+						}
+					}
+					any_other_country = {
+						original_tag = SER
+						NOT = {
+							OR = {
+								has_government = bolshevik_leninist
+								has_government = marxist_leninist
+								has_government = socialist
+							}
+						}
+					}
+				}
+				create_field_marshal = {
+					name = "Josip Broz Tito"
+					picture = "Josip_Broz_Tito.dds"
+					traits = { war_hero offensive_doctrine inspirational_leader partisan_general }
+					skill = 4
+					attack_skill = 4
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 3
+					id = 100023
+				}
+				set_global_flag = Tito_escaped_Serbia
+				SER = {
+					country_event = {
+						id = twr_croatia_communist.2
+						days = 4
+					}
+				}
+			}
+			create_corps_commander = {
+				name = "Andrija Hebrang"
+				picture = "Andrija_Hebrang.dds"
+				id = 100009
+				traits = { commando  partisan_general }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			 create_field_marshal = {
+				name = "Karlo Mrazović"
+				picture = "Karlo_Mrazovic.dds"
+				traits = { war_hero inspirational_leader partisan_general }
+				skill = 4
+				attack_skill = 3
+				defense_skill = 4
+				planning_skill = 4
+				logistics_skill = 5
+				id = 100011
+			}	
+			create_corps_commander = {
+				name = "Janko Bobetko"
+				picture = "Janko_Bobetko.dds"
+				traits = { partisan_general  }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 3
+				id = 100012
+			}
+			create_corps_commander = {
+				name = "Većeslav Holjevac"
+				picture = "Veceslav_Holjevac.dds"
+				traits = { partisan_general }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 4
+				id = 100024
+			}
+			create_corps_commander = {
+				name = "Anton Tus"
+				picture = "Anton_Tus.dds"
+				traits = { partisan_general commando }
+				skill = 4
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 4
+				logistics_skill = 3
+				id = 100025
+			}
+			create_corps_commander = {
+				name = "Franjo Tuđman"
+				picture = "Franjo_Tudjman.dds"
+				traits = { partisan_general commando }
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+				id = 100026
+			}
+			create_corps_commander = {
+				name = "Velimir Terzić"
+				picture = "Velimir_Terzic.dds"
+				traits = { partisan_general commando }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 4
+				id = 100015
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			has_country_flag = CRO_playing_as_partisans
+		}
+		save_global_event_target_as = CRO_old
+		set_country_flag = Partisan_government
+		load_focus_tree = CRO_Partisan_Revolt_Tree
+		complete_national_focus = CRO_For_The_People
+		set_cosmetic_tag = CRO_Partisan_Revolt
+		load_oob = "CRO_Partisans_Civil_War"
+		load_oob = "CRO_Partisan_milita"
+        every_unit_leader = {
+            retire = yes
+        }
+		start_civil_war = {
+			ideology = national_socialist
+			size = 0.5
+			states = all
+			states_filter = { has_state_flag = CRO_USTASE_CONTROLLED_STATE }
+			save_global_event_target_as = CRP_target
+		}
+		set_politics = {
+			ruling_party = bolshevik_leninist
+			last_election = "1935.6.9"
+			election_frequency = 12
+			elections_allowed = no
+		}
+		set_popularities = {
+			national_socialist = 0
+			fascist = 0
+			paternal_autocrat = 0
+			conservative = 0
+			liberal = 0
+			social_democrat = 0
+			socialist = 35
+			bolshevik_leninist = 40
+			marxist_leninist = 25
+		}
+                add_ideas = {
+                        CRO_HoG_Vladimir_Bakaric
+                        CRO_FM_Budimir_Loncar
+                        CRO_MoS_Ivan_Stevo_Krajacic
+                        CRO_AM_Ante_Markovic
+                        CRO_CoStaff_Velimir_Terzic 
+                        CRO_CoArmy_Mate_Jerkovic
+                        CRO_CoNavy_Mate_Jerkovic
+                        CRO_CoAir_Viktor_Bubanj
+		}
+		retire_ideology_leader = national_socialist
+		retire_ideology_leader = fascist
+		create_country_leader = {
+			name = "Ante Vokić"
+			desc = "ANTE_VOKIC_DESC"
+			picture = "Ante_Vokic.dds"
+			expire = "1965.1.1"
+			ideology = transitional_regime
+			traits = {marshal cro_military_leader}
+		}
+		create_country_leader = {
+			name = "August Košutić"
+			desc = "AUGUST_KOSUTIC_DESC"
+			picture = "August_Kosutic.dds"
+			expire = "1965.1.1"
+			ideology = agrarianism
+			traits = {popular_figurehead}
+		}
+		create_country_leader = {
+			name = "Miko Tripalo"
+			desc = "Miko_Tripalo_DESC"
+			picture = "Miko_Tripalo.dds"
+			expire = "1965.1.1"
+			ideology = left-wing_populism
+			traits = {reformist}
+		}
+		create_country_leader = {
+			name = "Savka Dabčević Kučar"
+			desc = "Savka_Dabcevic_Kucar_DESC"
+			picture = "Savka_Dabcevic_Kucar.dds"
+			expire = "1965.1.1"
+			ideology = market_liberalism
+			traits = {}
+		}
+		create_country_leader = {
+			name = "Andrija Hebrang"
+			desc = "Andrija_Hebrang_DESC"
+			picture = "Andrija_Hebrang.dds"
+			expire = "1965.1.1"
+			ideology = marxism_leninism
+			traits = {croatian_stalinist}
+		}
+		create_country_leader = {
+			name = "Karlo Mrazović"
+			desc = "KARLO_MRAZOVIC_DESC"
+			picture = "Karlo_Mrazovic.dds"
+			expire = "1965.1.1"
+			ideology = radical_socialism
+			traits = {protector_of_the_workers_and_students  spanish_cw_veteran}
+		}
+		create_country_leader = {
+			name = "Vladimir Bakarić"
+			desc = "Vladimir_Bakaric_DESC"
+			picture = "Vladimir_Bakaric.dds"
+			expire = "1965.1.1"
+			ideology = titoism
+			traits = {loyal_titoist}
+		}
+        if = {
+			limit = {
+				SER = {
+					NOT = {
+						OR = {
+							has_government = bolshevik_leninist
+							has_government = marxist_leninist
+							has_government = socialist
+						}
+					}
+				}
+				any_other_country = {
+					original_tag = SER
+					NOT = {
+						OR = {
+							has_government = bolshevik_leninist
+							has_government = marxist_leninist
+							has_government = socialist
+						}
+					}
+				}
+			}
+			set_global_flag = Serbian_Partisans_Flee
+			SER = {
+				country_event = {
+					id = twr_croatia_communist.1
+					days = 2
+				}
+			}
+			create_field_marshal = {
+				name = "Arso Jovanović"
+				picture = "Arso_Jovanovic.dds"
+				traits = { infantry_officer partisan_general }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 3
+				id = 554267
+			}
+			create_corps_commander = {
+				name = "Koča Popović"
+				picture = "Koca_Popovic.dds"
+				traits = { trickster partisan_general }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 3
+				id = 554268
+			}	
+			create_corps_commander = {
+				name = "Kosta Nađ"
+				picture = "Kosta_Nad.dds"
+				traits = { commando partisan_general }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+				id = 554269
+			}		
+			create_corps_commander = {
+				name = "Petar Drapšin"
+				picture = "Petar_Drapsin.dds"
+				traits = { commando partisan_general }
+				skill = 3			
+				attack_skill = 2
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 3
+				id = 554270
+			}			
+			create_corps_commander = {
+				name = "Peko Dapčević"
+				picture = "Peko_Dapcevic.dds"
+				traits = { career_officer organizer partisan_general }
+				skill = 3			
+				attack_skill = 2
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+				id = 554271
+			}			
+			create_corps_commander = {
+				name = "Rade Hamović"
+				picture = "Rade_Hamovic.dds"
+				traits = { career_officer partisan_general }
+				skill = 3				
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 3
+				logistics_skill = 2
+				id = 554272
+			}				
+			create_corps_commander = {
+				name = "Ljubo Vučković"
+				picture = "Ljubo_Vuckovic.dds"
+				traits = { partisan_general }
+				skill = 2		
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 1
+				id = 554273
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = Tito_killed
+				}
+				SER = {
+					NOT = {
+						is_communist = yes
+					}
+				}
+				any_other_country = {
+					original_tag = SER
+					NOT = {
+						is_communist = yes
+					}
+				}
+			}
+			create_field_marshal = {
+				name = "Josip Broz Tito"
+				picture = "Josip_Broz_Tito.dds"
+				traits = { war_hero offensive_doctrine inspirational_leader partisan_general }
+				skill = 4
+				attack_skill = 4
+				defense_skill = 2
+				planning_skill = 4
+				logistics_skill = 3
+				id = 554266
+			}
+			set_global_flag = Tito_escaped_Serbia
+			SER = {
+				country_event = {
+					id = twr_croatia_communist.2
+					days = 4
+				}
+			}
+		}
+		create_corps_commander = {
+			name = "Andrija Hebrang"
+			picture = "Andrija_Hebrang.dds"
+			id = 100009
+			traits = { commando partisan_general }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		create_field_marshal = {
+			name = "Karlo Mrazović"
+			picture = "Karlo_Mrazovic.dds"
+			traits = { war_hero inspirational_leader partisan_general }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 4
+			planning_skill = 4
+			logistics_skill = 5
+			id = 100011
+		}	
+			create_corps_commander = {
+				name = "Janko Bobetko"
+				picture = "Janko_Bobetko.dds"
+				traits = { partisan_general  }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 3
+				id = 100012
+			}
+			create_corps_commander = {
+				name = "Većeslav Holjevac"
+				picture = "Veceslav_Holjevac.dds"
+				traits = { partisan_general }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 4
+				id = 100024
+			}
+			create_corps_commander = {
+				name = "Anton Tus"
+				picture = "Anton_Tus.dds"
+				traits = { partisan_general commando }
+				skill = 4
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 4
+				logistics_skill = 3
+				id = 100025
+			}
+			create_corps_commander = {
+				name = "Franjo Tuđman"
+				picture = "Franjo_Tudjman.dds"
+				traits = { partisan_general commando }
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+				id = 100026
+			}
+			create_corps_commander = {
+				name = "Velimir Terzić"
+				picture = "Velimir_Terzic.dds"
+				traits = { partisan_general commando }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 4
+				id = 100015
+			}
+		CRP = {
+			load_focus_tree = CRO_Government_Revolt_Tree
+			complete_national_focus = CRO_The_Revolt_Begins
+			set_cosmetic_tag = CRO_Ustase_Revolt
+			country_event = {
+				id = croatiauprising.12
+				days = 2
+			}
+			country_event = {
+				id = twr_bosnia_chetnik.1
+				days = 15
+			}
+		add_ideas = {
+	CRO_HoG_Mladen_Lorkovic
+	CRO_FM_Mehmed_Alajbegovic
+	CRO_MoS_Eugen_Dido_Kvaternik
+	CRO_AM_Dragutin_Toth
+	CRO_CoStaff_Slavko_Kvaternik 
+	CRO_CoArmy_Ante_Vokic
+	CRO_CoNavy_Edgar_Angeli
+	CRO_CoAir_Miroslav_Navratil
+	}
+	IF = {
+	limit = {
+	has_country_flag = CRO_Lorkovic_Dead
+			}
+	add_ideas = CRO_HoG_Branimir_Jelic 
+			}
+		create_field_marshal = {
+			name = "Ante Vokić"
+			picture = "Ante_Vokic.dds"
+			traits = { infantry_officer war_hero homeguard_general }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			id = 801
+		}
+		create_field_marshal = {
+			name = "Slavko Kvaternik"
+			picture = "Portrait_Slavko_Kvaternik.dds"
+			traits = { media_personality homeguard_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			id = 100001
+		}
+		create_corps_commander = {
+			name = "Jure Francetić"
+			picture = "Jure_Francetic.dds"
+			traits = { organizer ustashe_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			id = 802
+		}
+		create_corps_commander = {
+			name = "Viktor Pavičić"
+			picture = "Viktor_Pavicic.dds"
+			traits = { infantry_officer war_hero homeguard_general }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 2
+			id = 100008
+		}
+		create_corps_commander = {
+			name = "Ivan Markulj"
+			picture = "Ivan_Markulj.dds"
+			traits = { infantry_officer homeguard_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			id = 100007
+		}
+		create_corps_commander = {
+			name = "Matija Čanić"
+			picture = "Matija_Canic.dds"
+			traits = {infantry_officer cavalry_officer hill_fighter homeguard_general}
+			skill = 3
+			attack_skill = 2
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 4
+			id = 100006
+		}
+		create_corps_commander = {
+			name = "Ivan Babić"
+			picture = "Ivan_Babic.dds"
+			traits = { organizer homeguard_general}
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 4
+			id = 100005
+		}
+		create_corps_commander = {
+			name = "Ljubo Miloš"
+			picture = "Ljubo_Milos.dds"
+			traits = { trait_reckless harsh_leader ustashe_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+			id = 804
+		}
+		create_corps_commander = {
+			name = "Miroslav Navratil"
+			picture = "Miroslav_Navratil.dds"
+			traits = { commando homeguard_general}
+			skill = 2
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 2
+			id = 805
+		}
+		create_corps_commander = {
+			name = "Vjekoslav Luburić"
+			picture = "Vjekoslav_Luburic.dds"
+			traits = { trickster harsh_leader trait_reckless ustashe_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			id = 806
+		}
+		create_corps_commander = {
+			name = "Fedor Dragojlov"
+			picture = "Fedor_Dragojlov.dds"
+			traits = { trait_cautious homeguard_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 4
+			planning_skill = 3
+			logistics_skill = 2
+			id = 100004
+		}
+		create_corps_commander = {
+			name = "Rafael Boban"
+			picture = "Rafael_Boban.dds"
+			traits = { infantry_officer ustashe_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			id = 100010
+		}
+		create_corps_commander = {
+			name = "Vladimir Laxa"
+			picture = "Vladimir_Laxa.dds"
+			traits = { old_guard homeguard_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			id = 100003
+		}
+		create_corps_commander = {
+			name = "Petar Brzica"
+			picture = "Petar_Brzica.dds"
+			traits = { commando trait_reckless harsh_leader ustashe_general }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+			id = 807
+		}
+		create_corps_commander = {
+			name = "Delko Bogdanić"
+			picture = "Delko_Bogdanic.dds"
+			traits = { organizer ustashe_general }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			id = 100002
+		}
+		create_corps_commander = {
+			name = "Ivan Devčić Pivac"
+			picture = "Ivan_Devcic_Pivac.dds"
+			traits = { ustashe_general harsh_leader }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+			id = 100027
+		}
+			create_navy_leader = {
+				name = "Edgar Angeli"
+				picture = "Edgar_Angeli.dds"
+				traits = { }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				maneuvering_skill = 2
+				coordination_skill = 2
+			}
+			create_navy_leader = {
+				name = "Nikola Steinfel"
+				picture = "Nikola_Steinfel.dds"
+				traits = { spotter }
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				maneuvering_skill = 4
+				coordination_skill = 3
+			}
+			create_navy_leader = {
+				name = "Đuro Jakčin"
+				picture = "Duro_Jakcin.dds"
+				traits = { bold }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				maneuvering_skill = 3
+				coordination_skill = 3
+			}
+			create_country_leader = {
+				name = "Supreme Ustaša Council"
+				desc = "USTASHA_COUNCIL_DESC"
+				picture = "Ustasha_Council.dds"
+				expire = "1965.1.1"
+				ideology = ustasa_movement 
+				traits = { cabinet_crisis }
+			}
+			create_country_leader = {
+				name = "Mladen Lorković"
+				desc = "MLADEN_LORKOVIC_DESC"
+				picture = "Mladen_Lorkovic.dds"
+				expire = "1965.1.1"
+				ideology = clerical_fascism 
+				traits = {fascist_pragmatic}
+			}
+			create_country_leader = {
+				name = "Ante Vokić"
+				desc = "ANTE_VOKIC_DESC"
+				picture = "Ante_Vokic.dds"
+				expire = "1965.1.1"
+				ideology = transitional_regime
+				traits = {marshal cro_military_leader}
+			}
+			create_country_leader = {
+				name = "August Košutić"
+				desc = "AUGUST_KOSUTIC_DESC"
+				picture = "August_Kosutic.dds"
+				expire = "1965.1.1"
+				ideology = agrarianism
+				traits = {popular_figurehead}
+			}
+			create_country_leader = {
+				name = "Miko Tripalo"
+				desc = "Miko_Tripalo_DESC"
+				picture = "Miko_Tripalo.dds"
+				expire = "1965.1.1"
+				ideology = left-wing_populism
+				traits = {reformist}
+			}
+			create_country_leader = {
+				name = "Savka Dabčević Kučar"
+				desc = "Savka_Dabcevic_Kucar_DESC"
+				picture = "Savka_Dabcevic_Kucar.dds"
+				expire = "1965.1.1"
+				ideology = market_liberalism
+				traits = {}
+			}
+		}
+	}
+}
+
+CRO_cw_cleanup = {
+	clr_country_flag = CRO_resistance_mechanic_enabled
+	remove_ideas = CRO_Croatian_Civil_War_idea
+	every_state = { 
+		limit = {
+			has_state_flag = CRO_PARTISAN_CONTROLLED_STATE
+			has_state_flag = CRO_USTASE_CONTROLLED_STATE
+		}
+		clr_state_flag = CRO_PARTISAN_CONTROLLED_STATE
+		clr_state_flag = CRO_USTASE_CONTROLLED_STATE
+	}
+	if = {
+		limit = {
+			OR = {
+				is_fascist = yes
+				has_government = paternal_autocrat
+			}
+		}
+		country_event = croatiauprising.20
+	}
+	if = {
+		limit = {
+			has_template = "Obrambena bojna"
+			has_war = no
+			has_civil_war = no
+		}
+		delete_unit_template_and_units = {
+			division_template = "Obrambena bojna"
+			disband = yes 
+		}
+	}
+	if = {
+		limit = {
+			has_template = "Crna Legija"
+			has_war = no
+			has_civil_war = no
+		}
+		delete_unit_template_and_units = {
+			division_template = "Crna Legija"
+			disband = yes
+		}
+	}
+	if = {
+		limit = {
+			has_template = "Ustaške Rezerve"
+		}
+		delete_unit_template_and_units = {
+			division_template = "Ustaške Rezerve"
+			disband = yes 
+		}
+	}
+	if = {
+		limit = {
+			has_template = "Militia"
+		}
+		delete_unit_template_and_units = {
+			division_template = "Militia"
+			disband = yes 
+		}
+	}
+	if = {
+		limit = {
+			has_template = "Jugoslavenska Oslobodilačka Brigada"
+		}
+		delete_unit_template_and_units = {
+			division_template = "Jugoslavenska Oslobodilačka Brigada"
+			disband = yes 
+		}
+	}
+}
+
+cro_remove_bosnia_modifiers = {
+			104 = {
+                remove_dynamic_modifier = { modifier = bosnia_i }
+            }
+			981 = {
+                remove_dynamic_modifier = { modifier = bosnia_i }
+            }
+			982 = {
+                remove_dynamic_modifier = { modifier = bosnia_i }
+            }
+			104 = {
+                remove_dynamic_modifier = { modifier = bosnia_ii }
+            }
+			981 = {
+                remove_dynamic_modifier = { modifier = bosnia_ii }
+            }
+			982 = {
+                remove_dynamic_modifier = { modifier = bosnia_ii }
+            }
+			104 = {
+                remove_dynamic_modifier = { modifier = bosnia_iii }
+            }
+			981 = {
+                remove_dynamic_modifier = { modifier = bosnia_iii }
+            }
+			982 = {
+                remove_dynamic_modifier = { modifier = bosnia_iii }
+            }
+			104 = {
+                remove_dynamic_modifier = { modifier = bosnia_iv }
+            }
+			981 = {
+                remove_dynamic_modifier = { modifier = bosnia_iv }
+            }
+			982 = {
+                remove_dynamic_modifier = { modifier = bosnia_iv }
+            }
+			104 = {
+                remove_dynamic_modifier = { modifier = bosnia_v }
+            }
+			981 = {
+                remove_dynamic_modifier = { modifier = bosnia_v }
+            }
+			982 = {
+                remove_dynamic_modifier = { modifier = bosnia_v }
+            }
+}
+
+
+cro_make_all_advisors_unavailable = {
+set_country_flag = Mladen_Lorkovic_unavailable
+set_country_flag = Andrija_Artukovic_unavailable
+set_country_flag = Branimir_Jelic_unavailable
+set_country_flag = Jure_Francetic_unavailable
+set_country_flag = Nikola_Mandic_unavailable
+set_country_flag = August_Kosutic_unavailable
+set_country_flag = Miko_Tripalo_unavailable
+set_country_flag = Savka_Kucar_unavailable
+set_country_flag = Franjo_Gazi_unavailable
+set_country_flag = Juraj_Krnjevic_unavailable
+set_country_flag = Josip_Broz_unavailable
+set_country_flag = Andrija_Hebrang_unavailable
+set_country_flag = Karlo_Mrazovic_unavailable
+set_country_flag = Vladimir_Bakaric_unavailable
+set_country_flag = Ante_Vokic_unavailable
+set_country_flag = Nikola_Car_unavailable
+set_country_flag = Mehmed_Alajbegovic_unavailable
+set_country_flag = Rafael_Boban_unavailable
+set_country_flag = Vjekoslav_Vrancic_unavailable
+set_country_flag = Ivanko_Farolfi_unavailable
+set_country_flag = Budimir_Loncar_unavailable
+set_country_flag = Ljubo_Leontic_unavailable
+set_country_flag = Ivan_Goran_Kovacic_unavailable
+set_country_flag = Josip_Vrhovec_unavailable
+set_country_flag = Andrija_Artukovic_unavailable
+set_country_flag = Eugen_Dido_Kvaternik_unavailable
+set_country_flag = Ivan_Babic_unavailable
+set_country_flag = Maks_Bace_Milic_unavailable
+set_country_flag = Dragutin_Toth_unavailable
+set_country_flag = Lovro_Susic_unavailable
+set_country_flag = Ljudevit_Tomasic_unavailable
+set_country_flag = Branko_Horvat_unavailable
+set_country_flag = Ante_Markovic_unavailable
+set_country_flag = Slavko_Kvaternik_unavailable
+set_country_flag = Ivan_Markulj_unavailable
+set_country_flag = Velimir_Terzic_unavailable
+set_country_flag = Ante_Vokic_unavailable
+set_country_flag = Vjekoslav_Luburic_unavailable
+set_country_flag = Georg_Dragicevic_unavailable
+set_country_flag = Mate_Jerkovic_unavailable
+set_country_flag = Edgar_Angeli_unavailable
+set_country_flag = Miroslav_Navratil_unavailable
+set_country_flag = Viktor_Bubanj_unavailable
+set_country_flag = Ivan_Stevo_Krajacic_unavailable
+set_country_flag = Dinko_Sakic_unavailable 
+}
+
+collapse_croatia = {
+			cro_make_all_advisors_unavailable = yes
+			release = SER
+			release = ITA
+			release = MNT
+			release = HUN
+			every_other_country = {
+				limit = {
+					has_war_with = CRO
+				}
+				white_peace = CRO
+			}
+			news_event = { id = croatianews.26 }
+			set_country_flag = cro_collapsed_flag
+            news_event = { id = croatianews.26 }
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = no
+			}
+			set_popularities = {
+				socialist = 100
+			}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = esoteric_national_socialism
+		traits = {
+			absolute_chaos
+		}
+	}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = fascism
+		traits = {
+			absolute_chaos
+		}
+	}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = warlordist_autocracy
+		traits = {
+			absolute_chaos
+		}
+	}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = national_conservatism
+		traits = {
+			absolute_chaos
+		}
+	}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = liberal_socialism
+		traits = {
+			absolute_chaos
+		}
+	}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = national_utopianism
+		traits = {
+			absolute_chaos
+		}
+	}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = marxism_leninism
+		traits = {
+			absolute_chaos
+		}
+	}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = council_communism
+		traits = {
+			absolute_chaos
+		}
+	}
+	create_country_leader = {
+		name = "Absolute Chaos"
+		desc = ""
+		picture = "CRO_Anarchy.dds"
+		expire = "1965.1.1"
+		ideology = anarchism
+		traits = {
+			absolute_chaos
+		}
+	}
+	set_party_name = { 
+		ideology = national_socialist
+		name = SER_national_socialist_party_anarchy 
+	}
+	set_party_name = { 
+		ideology = fascist
+		name = SER_fascist_party_anarchy 
+	}
+	set_party_name = { 
+		ideology = paternal_autocrat
+		name = SER_paternal_autocrat_party_anarchy 
+	}
+	set_party_name = { 
+		ideology = conservative
+		name = SER_conservative_party_anarchy 
+	}
+	set_party_name = { 
+		ideology = liberal
+		name = SER_liberal_party_anarchy 
+	}
+	set_party_name = { 
+		ideology = social_democrat
+		name = SER_social_democrat_party_anarchy 
+	}
+	set_party_name = { 
+		ideology = socialist
+		name = SER_socialist_party_anarchy 
+	}
+	set_party_name = { 
+		ideology = bolshevik_leninist  
+		name = SER_bolshevik_leninist_party_anarchy 
+	}
+	set_party_name = { 
+		ideology = marxist_leninist 
+		name = SER_marxist_leninist_party_anarchy 
+	}
+				every_state ={
+					limit = {
+						is_core_of = CRO
+					}
+					remove_core_of = CRO
+				}
+				set_cosmetic_tag = CRO_collapsed
+				add_state_core = 109
+			BOS = {
+				set_politics = {
+					ruling_party = fascist
+					last_election = "1935.6.9"
+					election_frequency = 12
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 55
+					fascist = 45
+				}
+				set_party_name = {
+					ideology = fascist
+					name = BOS_legion_party
+					long_name = BOS_legion_party_long
+				}	
+				set_cosmetic_tag = BOS_legion
+				set_politics = {
+					ruling_party = national_socialist
+					last_election = "1935.6.9"
+					election_frequency = 12
+					elections_allowed = no
+				}		
+				create_country_leader = {
+					name = "Muhamed Hadžiefendić"
+					picture = "gfx/leaders/BOS/Muhamed_Hadziefendic.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {}
+				}
+				transfer_state = 104
+			}
+			HER = {
+				set_cosmetic_tag = HER_collapse
+				transfer_state = 983
+				add_state_core = 983
+				remove_ideas = { CRO_Crusader_Revolt CRO_Crusader_Fanatical_Resistance CRO_Crusader_Little_Influence}
+			}
+			create_dynamic_country = {
+					original_tag = CRO
+					
+					add_ideas = { dictatorship 	semi_industrialised_nation }
+					set_cosmetic_tag = jakcin_zadar
+					transfer_state = 163
+					add_state_core = 163
+					remove_state_core = 109	
+					set_party_name = {
+						ideology = paternal_autocrat
+						name =  PPTA
+						long_name = PPTA_long
+					}	
+					set_popularities = {
+						paternal_autocrat = 90
+						fascist = 10
+					}
+					set_politics = {
+						ruling_party = paternal_autocrat
+						last_election = "1935.6.9"
+						election_frequency = 12
+						elections_allowed = no
+					}	
+					create_country_leader = {
+						name = "Đuro Jakčin"
+						desc = ""
+						picture = "Duro_Jakcin.dds"
+						expire = "1965.1.1"
+						ideology = military_dictatorshipz
+						traits = { HoG_Old_Admiral }
+					}
+					if = {
+						limit = {
+							not = { has_dlc = "Man the Guns" }
+						}
+						set_naval_oob = "CRO_1952_naval_legacy"
+					}
+					if = {
+						limit = {
+		 					has_dlc = "Man the Guns"
+						}
+						set_naval_oob = "CRO_1952_naval_MTG"
+					}
+				}
+				create_dynamic_country = {
+					original_tag = CRO
+					
+					add_ideas = { authoritarian_system 	semi_industrialised_nation }
+					set_politics = { 
+					ruling_party = paternal_autocrat
+					last_election = "1935.6.9"
+					election_frequency = 12
+					elections_allowed = no
+					}
+					set_popularities = {
+					fascist = 5
+					conservative = 20
+					paternal_autocrat = 75
+					}
+					set_party_name = {
+					ideology = paternal_autocrat
+					name = PNS
+					long_name = PNS_long
+					}	
+					set_cosmetic_tag = CRO_Stepinac	
+					transfer_state = 1030
+					add_state_core = 1030	
+					remove_state_core = 109	
+					create_country_leader = {
+						name = "Aloysius Stepinac"
+						picture = "Alojzije_Stepinac.dds"
+						expire = "1965.1.1"
+						ideology = theocracy
+						traits = {}
+					}
+				}
+				create_dynamic_country = {
+					original_tag = CRO
+					
+					add_ideas = { dictatorship 	semi_industrialised_nation }
+					set_cosmetic_tag = SLN
+					transfer_state = 819
+					add_state_core = 819
+					add_state_core = 1030
+					remove_state_core = 109
+					set_party_name = {
+						ideology = paternal_autocrat
+						name =  DUS
+						long_name = DUS_long
+					}
+					set_popularities = {
+						paternal_autocrat = 78
+						conservative = 22
+					}	
+					set_politics = {
+						ruling_party = paternal_autocrat
+						last_election = "1952.1.1"
+						election_frequency = 12
+						elections_allowed = no
+					}	
+					create_country_leader = {
+						name = "Slavko Kvaternik"
+						desc = ""
+						picture = "Portrait_Slavko_Kvaternik.dds"
+						expire = "1965.1.1"
+						ideology = military_dictatorshipz
+						traits = { HoG_Military_Man }
+					}
+				}
+				create_dynamic_country = {
+					original_tag = BOS
+
+					add_ideas = { dictatorship 	agrarian_nation  }
+					set_cosmetic_tag = BOS_CHE
+					transfer_state = 981
+					add_state_core = 981
+					set_party_name = {
+						ideology = paternal_autocrat
+						name = BOS_CHE_party
+						long_name = BOS_CHE_party_long
+					}	
+					set_popularities = {
+						national_socialist = 2
+						fascist = 8
+						paternal_autocrat = 82
+						conservative = 8
+						liberal = 0
+						social_democrat = 0
+						socialist = 0
+						bolshevik_leninist = 0
+						marxist_leninist = 0
+					}
+					set_politics = {
+						ruling_party = paternal_autocrat
+						last_election = "1952.1.1"
+						election_frequency = 12
+						elections_allowed = no
+					}	
+					create_country_leader = {
+						name = "Boško Todorović"
+						desc = ""
+						picture = "Bosko_Todorovic.dds"
+						expire = "1965.1.1"
+						ideology = reactionary_nationalism
+						traits = { }
+					}
+				}
+				create_dynamic_country = {
+					original_tag = SER
+					
+					add_ideas = { dictatorship 	semi_industrialised_nation  }
+					set_cosmetic_tag = musicki_vrbas
+					transfer_state = 982
+					add_state_core = 982
+					add_state_core = 819
+					transfer_state = 772
+					add_state_core = 772
+					set_party_name = {
+						ideology = fascist
+						name =  SER_Musicki_Party
+						long_name = SER_Musicki_Party_long
+					}	
+					set_popularities = {
+						paternal_autocrat = 18
+						fascist = 82
+					}
+					set_politics = {
+						ruling_party = fascist
+						last_election = "1952.1.1"
+						election_frequency = 12
+						elections_allowed = no
+					}	
+					create_country_leader = {
+						name = "Kosta Mušicki"
+						desc = ""
+						picture = "Kosta_Musicki.dds"
+						expire = "1965.1.1"
+						ideology = fascism
+						traits = { }
+					}
+				}
+				create_dynamic_country = {
+					original_tag = HUN
+					
+					add_ideas = { dictatorship 	agrarian_nation  }
+					set_cosmetic_tag = lakatos_vojvodina
+					transfer_state = 45
+					add_state_core = 45
+					add_state_core = 819
+					transfer_state = 772
+					add_state_core = 772
+					HUN = { puppet = PREV }
+					set_party_name = {
+						ideology = paternal_autocrat
+						name =  MGH
+						long_name = MGH_long
+					}	
+					set_popularities = {
+						fascist = 8
+						paternal_autocrat = 92
+					}
+					set_politics = {
+						ruling_party = paternal_autocrat
+						last_election = "1952.1.1"
+						election_frequency = 12
+						elections_allowed = no
+					}	
+					create_country_leader = {
+						name = "Géza Lakatos"
+						desc = ""
+						picture = "Geza_Lakatos.dds"
+						expire = "1965.1.1"
+						ideology = military_dictatorshipz
+						traits = { }
+					}
+				}
+				create_dynamic_country = {
+					original_tag = CRO
+					
+					add_ideas = { authoritarian_system 	semi_industrialised_nation  }
+					set_cosmetic_tag = kvarner_republic
+					transfer_state = 1016
+					add_state_core = 1016
+					remove_state_core = 109
+					set_party_name = {
+						ideology = marxist_leninist
+						name =  NUF
+						long_name = NUF_long
+					}	
+					set_popularities = {
+						marxist_leninist = 35
+						bolshevik_leninist = 32
+						socialist = 33
+					}
+					set_politics = {
+						ruling_party = marxist_leninist
+						last_election = "1952.1.1"
+						election_frequency = 12
+						elections_allowed = no
+					}	
+					create_country_leader = {
+						name = "Collective Leadership"
+						desc = ""
+						picture = "ML_Collective_Leadership.dds"
+						expire = "1965.1.1"
+						ideology = marxism_leninism 
+						traits = { HoG_Revolutionary_Council }
+					}
+				}
+				create_dynamic_country = {
+					original_tag = CRO
+					
+					add_ideas = { established_democracy industrialised_nation  }
+					set_cosmetic_tag = rijeka_commune
+					transfer_state = 815
+					add_state_core = 815
+					remove_state_core = 109
+					set_party_name = {
+						ideology = socialist
+						name =  FAK
+						long_name = FAK_long
+					}	
+					set_popularities = {
+						socialist = 90
+						bolshevik_leninist = 10
+					}
+					set_politics = {
+						ruling_party = socialist
+						last_election = "1952.1.1"
+						election_frequency = 12
+						elections_allowed = no
+					}	
+					create_country_leader = {
+						name = "Ivan Zepp"
+						desc = ""
+						picture = "Ivan_Zepp.dds"
+						expire = "1965.1.1"
+						ideology = anarchism
+						traits = { last_anarchist_of_senj }
+					}
+				}
+				create_dynamic_country = {
+					original_tag = CRO
+			
+					add_ideas = { facade_democracy 	semi_industrialised_nation }
+					set_cosmetic_tag = DAL
+					transfer_state = 103
+					add_state_core = 103
+					remove_state_core = 109
+					set_party_name = {
+						ideology = conservative
+						name =  CRO_conservative_party
+						long_name = CRO_conservative_party_long
+					}
+					set_popularities = {
+						conservative = 65
+						liberal = 15
+						social_democrat = 20
+					}
+					set_politics = {
+						ruling_party = conservative
+						last_election = "1952.1.1"
+						election_frequency = 5
+						elections_allowed = yes
+					}	
+					create_country_leader = {
+						name = "Juraj Krnjević"
+						desc = ""
+						picture = "Juraj_Krnjevic.dds"
+						expire = "1965.1.1"
+						ideology = agrarianism
+						traits = { popular_figurehead }
+					}
+				}
+				CRO = {
+					add_state_core = 109
+					add_state_core = 103
+					add_state_core = 1030
+					add_state_core = 163
+					add_state_core = 1016
+				}
+}
+
+
+cro_commie_leaders = {
+create_country_leader = {
+	name = "Andrija Hebrang"
+	desc = "Andrija_Hebrang_DESC"
+	picture = "Andrija_Hebrang.dds"
+	expire = "1965.1.1"
+	ideology = marxism_leninism
+	traits = {croatian_stalinist}
+}
+
+create_country_leader = {
+	name = "Karlo Mrazović"
+	desc = "KARLO_MRAZOVIC_DESC"
+	picture = "Karlo_Mrazovic.dds"
+	expire = "1965.1.1"
+	ideology = radical_socialism
+	traits = {protector_of_the_workers_and_students  spanish_cw_veteran}
+}
+
+create_country_leader = {
+	name = "Vladimir Bakarić"
+	desc = "Vladimir_Bakaric_DESC"
+	picture = "Vladimir_Bakaric.dds"
+	expire = "1965.1.1"
+	ideology = titoism
+	traits = {loyal_titoist}
+}
+
+}
+
+cro_create_intelligence_agency = {
+	IF = {
+		limit = {
+			has_government = national_socialist
+		}
+		create_intelligence_agency = {
+			name = "UNS"
+			icon = GFX_intelligence_agency_logo_cro_2
+		}
+	}
+	IF = {
+		limit = {
+			is_communist = yes
+		}
+		create_intelligence_agency = {
+			name = "OZNA"
+			icon = GFX_intelligence_agency_logo_yug
+		}
+	}
+	IF = {
+		limit = {
+			OR = {
+				has_government = fascist
+				has_government = paternal_autocrat
+				has_government = conservative
+				has_government = liberal
+				has_government = social_democrat
+			}
+		}
+		create_intelligence_agency = {
+			name = "SOA"
+			icon = GFX_intelligence_agency_logo_cro
+		}
+	}
+}

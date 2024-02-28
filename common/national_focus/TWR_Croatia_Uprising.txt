@@ -1,0 +1,331 @@
+###########################
+## BOSNIAN UPRISING TREE ##
+###########################
+shared_focus = {
+	id = CRO_Chaos_in_Zagreb
+	icon = GFX_GENERIC_Burn_the_Parliament
+	cost = 1
+	x = 7
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Chaos_in_Zagreb"
+		add_political_power = -100
+		add_stability = -0.05
+		add_war_support = -0.05
+		hidden_effect = {
+			country_event = {
+				id = twrcroatia.16
+				hours = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Summon_Parliament
+	icon = GFX_AUS_Congress_Linz
+	cost = 0
+	x = 0
+	y = 1
+	relative_position_id = CRO_Chaos_in_Zagreb
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Chaos_in_Zagreb
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Summon_Parliament"
+		custom_effect_tooltip = CRO_Summon_Parliament_tt
+		hidden_effect = {
+			country_event = {
+				id = croatiauprising.1
+				hours = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Draft_The_Plan_Of_Action
+	icon = GFX_CRO_What_Direction
+	cost = 0
+	x = 0
+	y = 1
+	relative_position_id = CRO_Summon_Parliament
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Summon_Parliament
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Draft_The_Plan_Of_Action"
+		custom_effect_tooltip = CRO_Draft_The_Plan_Of_Action_tt
+		hidden_effect = {
+			country_event = {
+				id = croatiauprising.2
+				hours = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Finish_Off_The_Partisans
+	icon = GFX_GENERIC_End_Marxism
+	cost = 0
+	x = -2
+	y = 1
+	relative_position_id = CRO_Draft_The_Plan_Of_Action
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Draft_The_Plan_Of_Action
+	}
+	available = {
+		always = no
+	}
+	mutually_exclusive = {
+		focus = CRO_Pacify_The_Bosnians
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Finish_Off_The_Partisans"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = CRO_Raid_Partisan_Bases
+	icon = GFX_GENERIC_Village_Raid_and_Arrests
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Finish_Off_The_Partisans
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Finish_Off_The_Partisans
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Raid_Partisan_Bases"
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.05
+		}		
+	}
+}
+
+shared_focus = {
+	id = CRO_Purge_The_Sympathizers
+	icon = GFX_focus_CDA_purge_warlords
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = CRO_Raid_Partisan_Bases
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Raid_Partisan_Bases
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Purge_The_Sympathizers"
+			country_event = {
+				id = croatiauprising.5
+				hours = 2
+			}
+	}
+}
+
+shared_focus = {
+	id = CRO_Set_The_Earth_Alight
+	icon = GFX_GENERIC_kill_with_fire
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = CRO_Purge_The_Sympathizers
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Purge_The_Sympathizers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Set_The_Earth_Alight"
+		country_event = {
+			id = croatiauprising.6
+			hours = 2
+		}
+		IF = {
+			limit = {
+				SER = {
+					is_communist = yes
+				}
+			}
+				SER = {
+						country_event = {
+						id = twr_croatia_communist.8
+						hours = 2
+					}
+				}
+		}
+		hidden_effect = {
+			1016 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_partisan_hq
+				}
+			}
+			clr_country_flag = CRO_partisan_resistance_active
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Pacify_The_Bosnians
+	icon = GFX_GENERIC_a_boot
+	cost = 0
+	x = 2
+	y = 1
+	relative_position_id = CRO_Draft_The_Plan_Of_Action
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Draft_The_Plan_Of_Action
+	}
+	available = {
+		always = no
+	}
+	mutually_exclusive = {
+		focus = CRO_Finish_Off_The_Partisans
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Pacify_The_Bosnians"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = CRO_Intensify_Herzegovina_Recruitment
+	icon = GFX_CRO_Intensify_Herzegovina_Recruitment
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Pacify_The_Bosnians
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Pacify_The_Bosnians
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Intensify_Herzegovina_Recruitment"
+		add_manpower = 2000
+		random_owned_controlled_state = {
+			prioritize = { 983 }
+			create_unit = { 
+				division = "name = \"Hercegovačka Garnizonska Divizija'\" division_template = \"Hrvatsko domobranstvo\" start_experience_factor = 0.3" owner = CRO
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Martial_Law_In_Bosnia
+	icon = GFX_GENERIC_Martial_Law_Ends
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = CRO_Intensify_Herzegovina_Recruitment
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Intensify_Herzegovina_Recruitment
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Martial_Law_In_Bosnia"
+		country_event = {
+			id = croatiauprising.3
+			hours = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Campaign_Of_Terror
+	icon = GFX_GENERIC_gun_skulls
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = CRO_Martial_Law_In_Bosnia
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Martial_Law_In_Bosnia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Campaign_Of_Terror"
+		country_event = {
+			id = croatiauprising.4
+			hours = 2
+		}
+		hidden_effect = {
+			clr_country_flag = CRO_bosnian_resistance_active
+			cro_remove_bosnia_modifiers = yes
+			104 = {
+            	add_dynamic_modifier = { modifier = bosnia_ii }
+            }
+			981 = {
+            	add_dynamic_modifier = { modifier = bosnia_ii }
+            }
+			982 = {
+            	add_dynamic_modifier = { modifier = bosnia_ii }
+            }
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Arm_The_Garrisons
+	icon = GFX_GENERIC_Officer_Army
+	cost = 4
+	x = 0
+	y = 3
+	relative_position_id = CRO_Draft_The_Plan_Of_Action
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Draft_The_Plan_Of_Action
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Arm_The_Garrisons"
+        add_equipment_to_stockpile = {
+        	type = infantry_equipment
+       		amount = 500
+        }
+	}
+}
+
+shared_focus = {
+	id = CRO_An_Uneasy_Calm
+	icon = GFX_CRO_An_Uneasy_Calm
+	cost = 1
+	x = 0
+	y = 2
+	relative_position_id = CRO_Arm_The_Garrisons
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Arm_The_Garrisons
+	}
+	prerequisite = {
+		focus = CRO_Set_The_Earth_Alight
+		focus = CRO_Campaign_Of_Terror
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_An_Uneasy_Calm"
+		country_event = {
+			id = croatiauprising.7
+			hours = 2
+		}
+	}
+}
+

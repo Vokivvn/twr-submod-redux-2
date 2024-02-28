@@ -1,0 +1,2400 @@
+
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_First_Meeting
+		icon = GFX_GENERIC_Room_Meeting
+		cost = 3.00
+		x = 0
+		y = 0
+		completion_reward = {
+		country_event = twrddr.35
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Chairwoman_Thalheimer
+		icon = GFX_DDR_Chairwoman_Bertha
+		cost = 9
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+	available = {
+		always = no
+	}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Chairwoman_Thalheimer"
+			news_event = twrddr.37
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Council_Victorious
+		icon = GFX_GENERIC_left_wing_victory
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Chairwoman_Thalheimer
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Chairwoman_Thalheimer
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_The_Council_Victorious"
+			add_stability = 0.1
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Berlin_Trials
+		icon = GFX_GENERIC_Nazi_Falls
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Council_Victorious
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Council_Victorious
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_The_Berlin_Trials"
+			country_event = twrddr.56
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Finish_the_Revolution
+		icon = GFX_focus_CDA_purge_warlords
+		cost = 9
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Berlin_Trials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Berlin_Trials
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Finish_the_Revolution"
+    		remove_ideas = DDR_Reconstruction
+			add_popularity = {
+	    	ideology = bolshevik_leninist
+	    	popularity = 0.3
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Collectivise_the_Great_Estates
+		icon = GFX_GENERIC_Hammer_Sickle
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Finish_the_Revolution
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Finish_the_Revolution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Collectivise_the_Great_Estates"
+			add_ideas = DDR_Collectivised_Economy
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Seize_the_Means_of_Production
+		icon = GFX_GENERIC_workers
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Collectivise_the_Great_Estates
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Collectivise_the_Great_Estates
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Seize_the_Means_of_Production"
+			swap_ideas = {
+    			remove_idea = DDR_Collectivised_Economy
+    			add_idea = DDR_Collectivised_Economy_2
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Peace_Land_and_Bread
+		icon = GFX_GENERIC_Workers_Paradise
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Seize_the_Means_of_Production
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Seize_the_Means_of_Production
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Peace_Land_and_Bread"
+			add_stability = 0.05
+			swap_ideas = {
+    			remove_idea = DDR_Collectivised_Economy_2
+    			add_idea = DDR_Collectivised_Economy_3
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Condemn_Social_Democrats
+		icon = GFX_GENERIC_social_democracy
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Berlin_Trials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Berlin_Trials
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Condemn_Social_Democrats"
+			add_popularity = {
+		    	ideology = social_democrat
+		    	popularity = -0.5
+			}
+			add_stability = -0.05
+			add_political_power = 100
+		}
+	}
+	
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Relief_the_Chairwoman #SI
+		icon = GFX_focus_generic_self_management
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Condemn_Social_Democrats
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Condemn_Social_Democrats
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Relief_the_Chairwoman"
+			retire_country_leader = yes
+			create_country_leader = {
+			name = "Rosi Wolfstein"
+			desc = ""
+			picture = "Rosi_Wolfstein.dds"
+			expire = "1965.1.1"
+			ideology = luxemburgism
+			traits = {
+			}
+			female = yes
+			}
+			add_stability = 0.1
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Strengthen_the_Councils
+		icon = GFX_GENERIC_Commie_Government
+		cost = 9
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = DDR_Relief_the_Chairwoman
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Relief_the_Chairwoman
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Strengthen_the_Councils"
+			add_political_power = 100
+			remove_ideas = DDR_Austrian_Problem
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Weaken_the_Parliament
+		icon = GFX_GENERIC_Burn_the_Parliament
+		cost = 9
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = DDR_Relief_the_Chairwoman
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Relief_the_Chairwoman
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Weaken_the_Parliament"
+			add_political_power = -50
+			add_stability = 0.05
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Reprint_Die_Gleichheit
+		icon = GFX_GENERIC_democratic_socialists
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Berlin_Trials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Berlin_Trials
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Reprint_Die_Gleichheit"
+			add_ideas = DDR_Die_Gleichheite
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Discredit_Bourgeois_Feminism #Bourgeois Values
+		icon = GFX_GENERIC_socialist_announcement
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Reprint_Die_Gleichheit
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Reprint_Die_Gleichheit
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Discredit_Bourgeois_Feminism"
+			add_political_power = 30
+			add_popularity = {
+		    	ideology = liberal
+		    	popularity = -0.1
+				}
+			add_popularity = {
+		    	ideology = paternal_autocrat
+		    	popularity = -0.1
+			}
+			add_popularity = {
+		    	ideology = conservative
+		    	popularity = -0.1
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Monetary_Aid_for_Mothers #Families
+		icon = GFX_USA_expand_welfare
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Discredit_Bourgeois_Feminism
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Discredit_Bourgeois_Feminism
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Monetary_Aid_for_Mothers"
+			add_ideas = DDR_Family_Welfare
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Expand_Daycare_Services #Childcare
+		icon = GFX_GENERIC_house
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Monetary_Aid_for_Mothers
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Monetary_Aid_for_Mothers
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Expand_Daycare_Services"
+			swap_ideas = {
+    			remove_idea = DDR_Family_Welfare
+    			add_idea = DDR_Family_Welfare_2
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Spartacist_Legacy
+		icon = GFX_GENERIC_socialist_uprising
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_Peace_Land_and_Bread
+		}
+		prerequisite = {
+			focus = DDR_Strengthen_the_Councils
+		}
+		prerequisite = {
+			focus = DDR_Weaken_the_Parliament
+		}
+		prerequisite = {
+			focus = DDR_Expand_Daycare_Services
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Peace_Land_and_Bread
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Spartacist_Legacy"
+			add_war_support = 0.1
+			remove_ideas = DDR_Reconstruction
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Free_Socialist_Republic #SI
+		icon = GFX_GENERIC_peaceful_socialism
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Spartacist_Legacy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Spartacist_Legacy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Free_Socialist_Republic"
+			add_ideas = DDR_New_Socialist_Republic
+		}
+	}
+	
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Chairnan_Mielke
+		icon = GFX_DDR_Chairman_Eric
+		cost = 9
+		x = 14
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+	available = {
+		always = no
+	}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Chairnan_Mielke"
+			news_event = twrddr.38
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Werwolf_Plot
+		icon = GFX_DDR_werwolf_plot
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Chairnan_Mielke
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Chairnan_Mielke
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Werwolf_Plot"
+			country_event = twrddr.57
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Prepare_the_Mock_Trials
+		icon = GFX_DDR_mock_trials
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Werwolf_Plot
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Werwolf_Plot
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Prepare_the_Mock_Trials"
+			country_event = twrddr.58
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Enemies_of_the_People
+		icon = GFX_GENERIC_death_officer
+		cost = 9
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = DDR_Prepare_the_Mock_Trials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Prepare_the_Mock_Trials
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Enemies_of_the_People"
+			add_manpower = -3000
+			add_popularity = {
+		    	ideology = fascist
+		    	popularity = -0.05
+			}
+			add_popularity = {
+		    	ideology = national_socialist
+		    	popularity = -0.05
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Fed_by_Junkers
+		icon = GFX_GENERIC_agriculture
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Enemies_of_the_People
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Enemies_of_the_People
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Fed_by_Junkers"
+			add_stability = -0.1
+			add_offsite_building = { type = industrial_complex level = 3 }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Armed_by_Industrialists
+		icon = GFX_GENERIC_army_agreement
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Fed_by_Junkers
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Fed_by_Junkers
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Armed_by_Industrialists"
+			add_manpower = -3000
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Emergency_Planning_Act
+		icon = GFX_goal_generic_position_armies
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Armed_by_Industrialists
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Armed_by_Industrialists
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Emergency_Planning_Act"
+			add_ideas = DDR_Emergency_Planning_Act
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Form_the_Emergency_Council
+		icon = GFX_GENERIC_Burn_the_Parliament
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Prepare_the_Mock_Trials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Prepare_the_Mock_Trials
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Form_the_Emergency_Council"
+			add_political_power = 100
+			add_stability = 0.03
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Emergency_Debate_Act
+		icon = GFX_GER_security_act
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Form_the_Emergency_Council
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Form_the_Emergency_Council
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Emergency_Debate_Act"
+			add_political_power = -40
+			add_stability = 0.05
+			add_popularity = {
+				ideology = marxist_leninist
+				popularity = 0.1
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Expel_Werewolves_from_Government
+		icon = GFX_TRV_fuck_minorities
+		cost = 9
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = DDR_Emergency_Debate_Act
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Emergency_Debate_Act
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Expel_Werewolves_from_Government"
+			add_timed_idea = {
+				idea = DDR_National_Purge
+				days = 150
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Wolves_in_Sheeps_Clothing
+		icon = GFX_GENERIC_Spy
+		cost = 9
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = DDR_Emergency_Debate_Act
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Emergency_Debate_Act
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Wolves_in_Sheeps_Clothing"
+			add_stability = -0.1
+			add_manpower = -5000
+			add_political_power = -50
+			add_popularity = {
+		    	ideology = fascist
+		    	popularity = -0.05
+			}
+			add_popularity = {
+	    		ideology = national_socialist
+	    		popularity = -0.05
+			}
+			remove_ideas = DDR_Austrian_Problem
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Ministry_for_Anti_Fascism
+		icon = GFX_GENERIC_destroy_nazism
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_Prepare_the_Mock_Trials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Prepare_the_Mock_Trials
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Ministry_for_Anti_Fascism"
+			add_ideas = DDR_Anti_Fascist_Ministry
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_ReEstablish_Antifa
+		icon = GFX_DDR_Antifa
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Ministry_for_Anti_Fascism
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Ministry_for_Anti_Fascism
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_ReEstablish_Antifa"
+			swap_ideas = {
+    			remove_idea = DDR_Anti_Fascist_Ministry
+    			add_idea = DDR_Anti_Fascist_Ministry_2
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Unofficial_Collaborators
+		icon = GFX_GENERIC_another_spy
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_ReEstablish_Antifa
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_ReEstablish_Antifa
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Unofficial_Collaborators"
+			swap_ideas = {
+    			remove_idea = DDR_Anti_Fascist_Ministry_2
+    			add_idea = DDR_Anti_Fascist_Ministry_3
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Emergency_Surveillance_Act
+		icon = GFX_SOV_local_intel
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Unofficial_Collaborators
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Unofficial_Collaborators
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Emergency_Surveillance_Act"
+			add_ideas = DDR_National_Surveillance
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Silberkugeltag
+		icon = GFX_focus_CDA_purge_warlords
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_Emergency_Planning_Act
+		}
+		prerequisite = {
+			focus = DDR_Expel_Werewolves_from_Government
+		}
+		prerequisite = {
+			focus = DDR_Wolves_in_Sheeps_Clothing
+		}
+		prerequisite = {
+			focus = DDR_Emergency_Surveillance_Act
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Emergency_Planning_Act
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Silberkugeltag"
+			add_manpower = -20000
+			add_political_power = 100
+			remove_ideas = DDR_Reconstruction
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Permanent_State_of_Emergency
+		icon = GFX_SOV_deport_officers
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Silberkugeltag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Silberkugeltag
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Permanent_State_of_Emergency"
+			add_ideas = fanatical_dictatorship
+			hidden_effect = {
+				remove_ideas = {
+				    authoritarian_system
+				    dictatorship
+				    kleptocratic_regime
+				    established_democracy
+				    facade_democracy
+				}
+			}
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = DDR_Chairman_Strasser
+		icon = GFX_DDR_Chairman_Otto
+		cost = 9
+		x = 23
+		y = 0
+	available = {
+		always = no
+	}
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Chairman_Strasser"
+			news_event = twrddr.39
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Teutonic_Law_Reform
+		icon = GFX_DDR_Teutonic_Law
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Chairman_Strasser
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Chairman_Strasser
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Teutonic_Law_Reform"
+			add_political_power = 100
+			add_stability = 0.03
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_To_the_Peoples_Courts
+		icon = GFX_GENERIC_Fist_People
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Teutonic_Law_Reform
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Teutonic_Law_Reform
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_To_the_Peoples_Courts"
+			country_event = twrddr.59
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Possession_not_Property
+		icon = GFX_SOV_create_oligarchs
+		cost = 9
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = DDR_To_the_Peoples_Courts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_To_the_Peoples_Courts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Possession_not_Property"
+			add_ideas = DDR_Abolished_Private_Property
+			add_political_power = -30
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Factory_Fellowship
+		icon = GFX_GENERIC_workers
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Possession_not_Property
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Possession_not_Property
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Factory_Fellowship"
+			add_ideas = DDR_Factory_Fellowship
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Federate_the_Handicrafts
+		icon = GFX_GENERIC_Factory_Planning
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Factory_Fellowship
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Factory_Fellowship
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Federate_the_Handicrafts"
+			swap_ideas = {
+    			remove_idea = DDR_Factory_Fellowship
+    			add_idea = DDR_Factory_Fellowship_2
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_German_Socialism
+		icon = GFX_DDR_German_Socialism
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Federate_the_Handicrafts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Federate_the_Handicrafts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_German_Socialism"
+			add_popularity = {
+		    	ideology = national_socialist
+		    	popularity = 0.05
+			}
+			add_political_power = 50
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Form_the_Vocational_Estates
+		icon = GFX_SOV_kalininist_democracy
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_To_the_Peoples_Courts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_To_the_Peoples_Courts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Form_the_Vocational_Estates"
+			add_ideas = DDR_Vocational_Estates
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_German_Democracy
+		icon = GFX_GER_Social_Republic
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Form_the_Vocational_Estates
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Form_the_Vocational_Estates
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_German_Democracy"
+			add_ideas = facade_democracy
+			hidden_effect = {
+				remove_ideas = {
+				    authoritarian_system
+				    dictatorship
+				    fanatical_dictatorship
+				    kleptocratic_regime
+				    established_democracy
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Appoint_the_Great_Council
+		icon = GFX_GENERIC_government_power
+		cost = 9
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = DDR_German_Democracy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_German_Democracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Appoint_the_Great_Council"
+			add_political_power = 100
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_State_Department_of_National_Minorities
+		icon = GFX_GENERIC_minority_aimed_projects
+		cost = 9
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = DDR_German_Democracy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_German_Democracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_State_Department_of_National_Minorities"
+			add_stability = 0.05
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_School_of_Character
+		icon = GFX_focus_generic_military_academy
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_To_the_Peoples_Courts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_To_the_Peoples_Courts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_School_of_Character"
+			add_ideas = DDR_School_of_Character_idea
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Universal_Labour_Service
+		icon = GFX_GENERIC_wrench_industry
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_School_of_Character
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_School_of_Character
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Universal_Labour_Service"
+			add_timed_idea = {
+				idea = DDR_Universal_Labour_Service
+				days = 700
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Combat_Militarism
+		icon = GFX_goal_generic_military_sphere
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Universal_Labour_Service
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Universal_Labour_Service
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_war_support = -0.15
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_New_Spirit
+		icon = GFX_GER_true_believer
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Combat_Militarism
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Combat_Militarism
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_stability = 0.1
+			add_popularity = {
+		    	ideology = national_socialist
+		    	popularity = 0.1
+			}
+			remove_ideas = DDR_Austrian_Problem
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Chairman_for_Life
+		icon = GFX_GENERIC_authoritarian_fist
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_German_Socialism
+		}
+		prerequisite = {
+			focus = DDR_Appoint_the_Great_Council
+		}
+		prerequisite = {
+			focus = DDR_State_Department_of_National_Minorities
+		}
+		prerequisite = {
+			focus = DDR_The_New_Spirit
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_German_Socialism
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_country_leader_trait = dictator
+			remove_ideas = DDR_Reconstruction
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_National_Rebirth
+		icon = GFX_GER_Imperial_Flag
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Chairman_for_Life
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Chairman_for_Life
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_ideas = DDR_National_Rebirth
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_RFK_Coup
+		icon = GFX_DDR_RFK_Coup
+		cost = 0
+		x = 36
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+		add_stability = -0.1
+		hidden_effect = {
+			set_party_name = { 
+			ideology = bolshevik_leninist 
+			long_name = DDR_Revolutionare_Kommunistische_Front
+				name = DDR_RKF
+			}
+			set_politics = {
+			ruling_party = bolshevik_leninist
+			elections_allowed = no
+							}
+			kill_country_leader = yes
+				create_country_leader = {
+					name = "RKF Council"
+					desc = ""
+					picture = "RFK_Council.dds"
+					expire = "1975.1.1"
+					ideology = council_communism
+					traits = {} 
+					}
+					}
+			custom_effect_tooltip = ddrCoup	
+			
+		
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Council_Remains
+		icon = GFX_SOV_duumvirist_senate
+		cost = 5
+		x = -4
+		y = 1
+		prerequisite = {
+			focus = DDR_RFK_Coup
+		}
+		mutually_exclusive = {
+		 focus = DDR_Marshall_Stoph
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_RFK_Coup
+		completion_reward = {
+			add_political_power = 25
+			custom_effect_tooltip = ddrRFK		
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Court_Martials
+		icon = GFX_KOR_army_cabinet
+		cost = 8.7
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Council_Remains
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Council_Remains
+		completion_reward = {
+			add_timed_idea = {
+				idea = DDR_The_Court_Martials
+				days = 180
+			}
+			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Reconstruction_Plan
+		icon = GFX_GENERIC_Factory_Planning
+		cost = 10
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Court_Martials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Court_Martials
+		completion_reward = {
+			855 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+					}
+			}
+			52 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+					}
+			}
+			64 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+					}
+			}
+			808 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+					}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_People_First_Military_Second
+		icon = GFX_GENERIC_Appease_People
+		cost = 2.2
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Reconstruction_Plan
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Reconstruction_Plan
+		completion_reward = {
+			add_ideas = DDR_The_People_First
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Request_Foreign_Humanitarian_Aid
+		icon = GFX_GENERIC_clean_hands
+		cost = 0.8
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_People_First_Military_Second
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_People_First_Military_Second
+		completion_reward = {
+			add_ideas = DDR_Foreign_Humanitarian_Aid 
+				
+		}
+	}
+	
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Revolutionary_Socialism_with_a_Human_Face
+		icon = GFX_GENERIC_socialist_realism
+		cost = 7.2
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Request_Foreign_Humanitarian_Aid
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Request_Foreign_Humanitarian_Aid
+		completion_reward = {
+			add_ideas = DDR_Revolutionary_Socialism_with_a_Human_Face
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_National_Reconstruction_Council
+		icon = GFX_GENERIC_compassionate_social_system
+		cost = 2.9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Court_Martials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Court_Martials
+		completion_reward = {
+			add_ideas = DDR_National_Reconstruction_Council
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Establish_the_SED
+		icon = GFX_DDR_SED
+		cost = 7.9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_National_Reconstruction_Council
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_National_Reconstruction_Council
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+			set_party_name = { 
+			ideology = bolshevik_leninist 
+			long_name = DDR_Sozialistische_Einheitspartei_Deutschlands
+				name = DDR_SED
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_CoOperate_with_other_Socialist_Parties
+		icon = GFX_goal_generic_improve_relations
+		cost = 12.2
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = DDR_Establish_the_SED
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Establish_the_SED
+		completion_reward = {
+			add_ideas = DDR_Left_Unity
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_No_Parliament_Only_the_Central_Committee
+		icon = GFX_GENERIC_Commie_Government
+		cost = 3.6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = DDR_Establish_the_SED
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Establish_the_SED
+		completion_reward = {
+		hidden_effect = {
+			add_popularity = {
+			ideology = conservative
+			popularity = -0.1
+			} 
+			add_popularity = {
+			ideology = liberal
+			popularity = -0.1
+			} 
+			add_popularity = {
+			ideology = social_democrat
+			popularity = -0.1
+			} 
+			add_popularity = {
+			ideology = socialist
+			popularity = 0.1
+			} 
+			add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.1
+			} 
+			add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.1
+			}
+			}
+		custom_effect_tooltip = ddrcommittee
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Volkspolizei
+		icon = GFX_GENERIC_mobilize_police
+		cost = 9.4
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Court_Martials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Court_Martials
+		completion_reward = {
+			add_ideas = DDR_Volkspolizei
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_German_Self-Defense_Force
+		icon = GFX_GENERIC_Black_Red_Yellow
+		cost = 10.8
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Volkspolizei
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Volkspolizei
+		completion_reward = {
+			add_ideas = DDR_German_Self-Defense_Force
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Freie_Deutsche_Jugend
+		icon = GFX_DDR_FDJ
+		cost = 7.9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_German_Self-Defense_Force
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_German_Self-Defense_Force
+		completion_reward = {
+			add_ideas = DDR_FDJ
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Establish_the_Stasi
+		icon = GFX_DDR_Stasi
+		cost = 12.9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Freie_Deutsche_Jugend
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Freie_Deutsche_Jugend
+		completion_reward = {
+			add_ideas = DDR_Stasi
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Resignation_of_the_RFK_Council
+		icon = GFX_GENERIC_Lone_Officer
+		cost = 1
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_Revolutionary_Socialism_with_a_Human_Face
+		}
+		prerequisite = {
+			focus = DDR_CoOperate_with_other_Socialist_Parties
+		}
+		prerequisite = {
+			focus = DDR_No_Parliament_Only_the_Central_Committee
+		}
+		prerequisite = {
+			focus = DDR_Establish_the_Stasi
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Revolutionary_Socialism_with_a_Human_Face
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.1
+			hidden_effect = {	
+			retire_country_leader = yes
+				create_country_leader = {
+					name = "SED"
+					desc = ""
+					picture = "DDR_SED.dds"
+					expire = "1975.1.1"
+					ideology = council_communism
+					traits = {}
+				}
+			}
+		custom_effect_tooltip = ddrSED
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Deutsch_Demokratik_Staat
+		icon = GFX_focus_generic_soviet_politics
+		cost = 3.6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Resignation_of_the_RFK_Council
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Resignation_of_the_RFK_Council
+		completion_reward = {
+			add_ideas = DDR_True_Socialist_Democracy
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Marshall_Stoph
+		icon = GFX_DDR_Stoph
+		cost = 9
+		x = 4
+		y = 1
+		prerequisite = {
+			focus = DDR_RFK_Coup
+		}
+		mutually_exclusive = {
+		focus = DDR_The_Council_Remains
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_RFK_Coup
+		completion_reward = {
+		custom_effect_tooltip = BRANCH_TBD
+		hidden_effect = {
+			set_politics = {
+						ruling_party = marxist_leninist
+						elections_allowed = no
+							}	
+			retire_country_leader = yes
+				create_country_leader = {
+					name = "Willi Stoph"
+					desc = ""
+					picture = "Willi_Stoph.dds"
+					expire = "1975.1.1"
+					ideology = stalinism
+					traits = {
+					revolutionary_general
+					}
+				}
+			}
+		custom_effect_tooltip = ddrStoph		
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Trials_of_the_Class_Traitors
+		icon = GFX_KOR_purge
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Marshall_Stoph
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Marshall_Stoph
+		completion_reward = {
+			add_timed_idea = {
+				idea = DDR_The_Trials_of_Terror
+				days = 180
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Revolution_Against_Democracy
+		icon = GFX_GENERIC_Anti_Dem
+		cost = 9
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = DDR_Trials_of_the_Class_Traitors
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Trials_of_the_Class_Traitors
+		completion_reward = {
+			add_ideas = DDR_Revolution_Against_Democracy 
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Volkswaffenkammern
+		icon = GFX_GENERIC_military_industry_produce
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Revolution_Against_Democracy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Revolution_Against_Democracy
+		completion_reward = {
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 1500 producer = GER }
+			add_manpower = 5000
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Combat_Groups_of_the_Working_Class
+		icon = GFX_DDR_Combat_Groups_of_the_Working_Class
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Volkswaffenkammern
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Volkswaffenkammern
+		completion_reward = {
+			add_war_support = -0.1
+			add_stability = -0.05
+			add_ideas = DDR_Combat_Groups_of_the_Working_Class
+		}
+	}
+	
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Permanent_German_Revolution
+		icon = GFX_focus_CDA_purge_warlords
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Combat_Groups_of_the_Working_Class
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Combat_Groups_of_the_Working_Class
+		completion_reward = {
+			add_stability = -0.1
+			add_ideas = DDR_Permanent_Revolution
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Communist_Junta
+		icon = GFX_DDR_Communist_Junta
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Trials_of_the_Class_Traitors
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Trials_of_the_Class_Traitors
+		completion_reward = {
+			add_ideas = DDR_Communist_Junta
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Council_of_Generals
+		icon = GFX_SOV_deport_officers
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Communist_Junta
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Communist_Junta
+		completion_reward = {
+			add_ideas = DDR_Puppet_Council
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Corner_the_Revisionists
+		icon = GFX_GENERIC_starve_communists
+		cost = 9
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = DDR_Council_of_Generals
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Council_of_Generals
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+			ideology = socialist
+			popularity = -0.1
+			}
+			add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.1
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Ban_the_Bourgeoisie_Parties
+		icon = GFX_focus_rom_parties_end
+		cost = 9
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = DDR_Council_of_Generals
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Council_of_Generals
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+			ideology = conservative
+			popularity = -0.1
+			}
+			add_popularity = {
+			ideology = liberal
+			popularity = -0.1
+			}
+			add_popularity = {
+			ideology = social_democrat
+			popularity = -0.1
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Self_Reliance_of_Basic_Goods
+		icon = GFX_GENERIC_socialist_production
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_Trials_of_the_Class_Traitors
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Trials_of_the_Class_Traitors
+		completion_reward = {
+			add_ideas = DDR_Self_Reliance
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Dig_Up_Old_Nazi_Military_Designs
+		icon = GFX_goal_generic_position_armies
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Self_Reliance_of_Basic_Goods
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Self_Reliance_of_Basic_Goods
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_equipment
+				bonus = 0.5
+				uses = 2
+				category = infantry_tech
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Study_Work_or_Fight
+		icon = GFX_KOR_spread_the_word
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Dig_Up_Old_Nazi_Military_Designs
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Dig_Up_Old_Nazi_Military_Designs
+		completion_reward = {
+			add_stability = -0.05
+			add_ideas = DDR_Study_Work_or_Fight
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Pionierpanzerbrigade
+		icon = GFX_GENERIC_yankee_tank
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Study_Work_or_Fight
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Study_Work_or_Fight
+		completion_reward = {
+			add_stability = -0.05
+			division_template = {
+                        name = "Pionierpanzerbrigade"
+
+						division_names_group = BRENGL_INF_01
+
+						regiments = {
+						light_armor = { x = 0 y = 0 }
+						light_armor = { x = 0 y = 1 }
+						light_armor = { x = 1 y = 0 }
+						light_armor = { x = 1 y = 1 }
+							}
+                    }
+			855 = {
+                        create_unit = {
+                            division = "name = \"1st Pionierpanzerbrigade\" division_template = \"Pionierpanzerbrigade\" start_experience_factor = 0.05 start_equipment_factor = 1"
+                            owner = DDR	
+                        }
+                    }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Revolutionare_Volksarmee
+		icon = GFX_focus_CDA_new_red_army
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_Permanent_German_Revolution
+		}
+		prerequisite = {
+			focus = DDR_Corner_the_Revisionists
+		}
+		prerequisite = {
+			focus = DDR_Ban_the_Bourgeoisie_Parties
+		}
+		prerequisite = {
+			focus = DDR_The_Pionierpanzerbrigade
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Permanent_German_Revolution
+		completion_reward = {
+			add_ideas = DDR_Revolutionare_Volksarmee
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_War_Communism
+		icon = GFX_DDR_War_Communism
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Revolutionare_Volksarmee
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Revolutionare_Volksarmee
+		completion_reward = {
+			add_ideas = DDR_War_Communism
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Childrens_Parade
+		icon = GFX_DDR_FDJ
+		cost = 9
+		x = 49
+		y = 0
+		available = {
+		always = no
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		custom_effect_tooltip = BRANCH_TBD
+		hidden_effect = {
+			set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+			}	
+			retire_country_leader = yes
+				create_country_leader = {
+				name = "FDJ Central Council"
+				desc = ""
+				picture = "FDJ.dds"
+				expire = "1975.1.1"
+				ideology = radical_socialism
+				traits = {
+				communist_revolutionary
+					}
+				}
+			set_party_name = { 
+			ideology = socialist 
+			long_name = DDR_FDJ_LONG
+			name = DDR_FDJ 
+				}
+			}
+		custom_effect_tooltip = ddrParade
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Socialist_Neocracy
+		icon = GFX_GENERIC_peaceful_socialism
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Childrens_Parade
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Childrens_Parade
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Socialist_Neocracy"
+			add_stability = 0.1
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Trials_of_the_Old_Generation
+		icon = GFX_HGR_Old_Germans
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Socialist_Neocracy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Socialist_Neocracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Trials_of_the_Old_Generation"
+			country_event = twrddr.60
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Seed_of_the_Earth
+		icon = GFX_GENERIC_socialist_agriculture
+		cost = 9
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = DDR_Trials_of_the_Old_Generation
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Trials_of_the_Old_Generation
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_The_Seed_of_the_Earth"
+			add_ideas = DDR_Seed_of_the_Earth
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_New_Generation_New_Technology
+		icon = GFX_focus_generic_socialist_science
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Seed_of_the_Earth
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Seed_of_the_Earth
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_New_Generation_New_Technology"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Pre_Planned_Careers
+		icon = GFX_GENERIC_Education
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_New_Generation_New_Technology
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_New_Generation_New_Technology
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Pre_Planned_Careers"
+			add_political_power = 150
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Rising_Young_Sun
+		icon = GFX_focus_CDA_red_caucasus
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Pre_Planned_Careers
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Pre_Planned_Careers
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_The_Rising_Young_Sun"
+			swap_ideas = {
+				remove_idea = DDR_Seed_of_the_Earth
+				add_idea = DDR_Seed_of_the_Earth2
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_The_Peoples_Chamber
+		icon = GFX_GENERIC_Commie_Government
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Trials_of_the_Old_Generation
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Trials_of_the_Old_Generation
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_The_Peoples_Chamber"
+			add_ideas = DDR_The_Peoples_Chamber
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Democratic_Centralism
+		icon = GFX_SOV_zhukovist_democracy
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Peoples_Chamber
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Peoples_Chamber
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Democratic_Centralism"
+			add_stability = 0.05
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_One_Youth_Under_One_Banner
+		icon = GFX_DDR_Indenpendent
+		cost = 9
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = DDR_Democratic_Centralism
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Democratic_Centralism
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_One_Youth_Under_One_Banner"
+			add_political_power = 100
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Establish_the_World_Federation_of_Democratic_Youth
+		icon = GFX_goal_generic_national_unity
+		cost = 9
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = DDR_Democratic_Centralism
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Democratic_Centralism
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Establish_the_World_Federation_of_Democratic_Youth"
+			add_political_power = 100
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Pionierorganisation_Ernst_Thalmann
+		icon = GFX_DDR_Pionierorganisation_Ernst_Thalmann
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_Trials_of_the_Old_Generation
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Trials_of_the_Old_Generation
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Pionierorganisation_Ernst_Thalmann"
+			add_war_support = 0.05
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Junge_Welt
+		icon = GFX_GENERIC_marxist_thought
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Pionierorganisation_Ernst_Thalmann
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Pionierorganisation_Ernst_Thalmann 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Junge_Welt"
+			add_stability = 0.1
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.1
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_FDJ_Dynamo
+		icon = GFX_goal_generic_cavalry
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Junge_Welt
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Junge_Welt
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_FDJ_Dynamo"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Junge_Kasernierte_Volkspolizei
+		icon = GFX_GENERIC_Army_Cooperation
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_FDJ_Dynamo
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_FDJ_Dynamo
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Junge_Kasernierte_Volkspolizei"
+			add_ideas = DDR_Junge_Volkspolizei
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Descendants_of_the_KJVD
+		icon = GFX_focus_generic_join_comintern
+		cost = 9
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = DDR_The_Rising_Young_Sun
+		}
+		prerequisite = {
+			focus = DDR_One_Youth_Under_One_Banner
+		}
+		prerequisite = {
+			focus = DDR_Establish_the_World_Federation_of_Democratic_Youth
+		}
+		prerequisite = {
+			focus = DDR_Junge_Kasernierte_Volkspolizei
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_The_Rising_Young_Sun
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Descendants_of_the_KJVD"
+			add_ideas = DDR_Descendants_KJVD
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = DDR_Young_Socialist_Germany
+		icon = GFX_GENERIC_Hammer_Sickle
+		cost = 9
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = DDR_Descendants_of_the_KJVD
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = DDR_Descendants_of_the_KJVD
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus DDR_Young_Socialist_Germany"
+			add_stability = 0.1
+		}
+	}

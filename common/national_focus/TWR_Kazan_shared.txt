@@ -1,0 +1,3561 @@
+#########################
+## Kazan Starting Tree ##
+#########################
+shared_focus = {
+	id = KZA_The_Tightest_Of_Schedules
+	icon = GFX_TRV_focus_Tightest_Of_Schedules
+	allow_branch = {
+		has_country_flag = KZA_starting_tree
+	}
+	x = 8
+	y = 0
+	cost = 2
+	cancel_if_invalid = yes
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Tightest_Of_Schedules"
+		country_event = { hours = 2 id = twrkazan.1 }
+	}
+}
+
+shared_focus = {
+	id = KZA_Maintaining_Our_Current_Strategy
+	icon = GFX_GENERIC_Martial_Law_Ends
+	prerequisite = { focus = KZA_The_Tightest_Of_Schedules }
+	mutually_exclusive = { focus = KZA_Aggravating_Our_Current_Policies }
+	relative_position_id = KZA_The_Tightest_Of_Schedules
+	x = -1
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Maintaining_Our_Current_Strategy"
+		effect_tooltip = {
+			unlock_national_focus = KZA_The_Spectre_Of_The_Idel
+		}
+		set_country_flag = KAZ_Maintain_Strategy
+	}
+}
+
+shared_focus = {
+	id = KZA_Aggravating_Our_Current_Policies
+	icon = GFX_GENERIC_death
+	prerequisite = { focus = KZA_The_Tightest_Of_Schedules }
+	mutually_exclusive = { focus = KZA_Maintaining_Our_Current_Strategy }
+	relative_position_id = KZA_The_Tightest_Of_Schedules
+	x = 1
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Aggravating_Our_Current_Policies"
+		effect_tooltip = {
+			unlock_national_focus = KZA_VSOUs_Ever_Increasing_Grip
+		}
+		set_country_flag = KAZ_Aggro_Policies
+	}
+}
+
+shared_focus = {
+	id = KZA_The_Spectre_Of_The_Idel
+	icon = GFX_TRV_focus_The_Spectre_Of_The_Idel
+	prerequisite = { focus = KZA_Maintaining_Our_Current_Strategy focus = KZA_Aggravating_Our_Current_Policies }
+	relative_position_id = KZA_Maintaining_Our_Current_Strategy
+	x = -3
+	y = 1
+	cost = 3
+	available = {
+		has_country_flag = KAZ_Maintain_Strategy
+	}
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Spectre_Of_The_Idel"
+		country_event = { hours = 2 id = twrkazan.2 }
+	}
+}
+
+shared_focus = {
+	id = KZA_Collectivizing_Tatar_Pastoralists
+	icon = GFX_GENERIC_FARMER
+	prerequisite = { focus = KZA_The_Spectre_Of_The_Idel }
+	relative_position_id = KZA_The_Spectre_Of_The_Idel
+	x = -2
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Collectivizing_Tatar_Pastoralists"
+		KAZ_decrease_tatar_insurrection = yes
+	}
+}
+
+shared_focus = {
+	id = KZA_Allowing_Loyal_Masquoes_To_Function
+	icon = GFX_GENERIC_MOSQUE
+	prerequisite = { focus = KZA_Collectivizing_Tatar_Pastoralists }
+	relative_position_id = KZA_Collectivizing_Tatar_Pastoralists
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Allowing_Loyal_Masquoes_To_Function"
+		KAZ_decrease_tatar_insurrection = yes
+		add_political_power = -10
+		add_stability = 0.02
+	}
+}
+
+shared_focus = {
+	id = KZA_The_Founding_Of_Kaliningrad
+	icon = GFX_GENERIC_Major_City
+	prerequisite = { focus = KZA_Allowing_Loyal_Masquoes_To_Function }
+	relative_position_id = KZA_Allowing_Loyal_Masquoes_To_Function
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Founding_Of_Kaliningrad"
+		set_province_name = {
+			id = 11225
+			name = "Kaliningrad"
+		}
+		add_political_power = 35
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KZA_Russofication_Continues
+	icon = GFX_GENERIC_Russofication
+	prerequisite = { focus = KZA_The_Spectre_Of_The_Idel }
+	mutually_exclusive = { focus = KZA_Attempt_Complete_De_Tatarisation }
+	relative_position_id = KZA_The_Spectre_Of_The_Idel
+	x = 0
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Russofication_Continues"
+		KAZ_decrease_tatar_insurrection = yes
+	}
+}
+
+shared_focus = {
+	id = KZA_Maintain_Perm_Resettlement_Programs
+	icon = GFX_SOV_slavic_resettlement
+	prerequisite = { focus = KZA_Russofication_Continues }
+	relative_position_id = KZA_Russofication_Continues
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Maintain_Perm_Resettlement_Programs"
+		KAZ_decrease_tatar_insurrection = yes
+		add_manpower = 10000
+	}
+}
+
+shared_focus = {
+	id = KZA_Allowing_The_Language_To_Endure
+	icon = GFX_GENERIC_Appease_People
+	prerequisite = { focus = KZA_Maintain_Perm_Resettlement_Programs }
+	relative_position_id = KZA_Maintain_Perm_Resettlement_Programs
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Allowing_The_Language_To_Endure"
+		add_political_power = 50
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KZA_Attempt_Complete_De_Tatarisation
+	icon = GFX_GENERIC_Crosses
+	prerequisite = { focus = KZA_The_Spectre_Of_The_Idel }
+	mutually_exclusive = { focus = KZA_Russofication_Continues }
+	relative_position_id = KZA_The_Spectre_Of_The_Idel
+	x = 2
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Attempt_Complete_De_Tatarisation"
+		KAZ_decrease_tatar_insurrection = yes
+		add_stability = -0.05
+	}
+}
+
+shared_focus = {
+	id = KZA_Forcibly_Close_Known_Mosques
+	icon = GFX_GENERIC_NO_MOSQUE
+	prerequisite = { focus = KZA_Attempt_Complete_De_Tatarisation }
+	relative_position_id = KZA_Attempt_Complete_De_Tatarisation
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Forcibly_Close_Known_Mosques"
+		add_political_power = 40
+		add_stability = -0.1
+	}
+}
+
+shared_focus = {
+	id = KZA_Disbanding_Tatar_Associations
+	icon = GFX_TRV_focus_Disbanding_Tatar_Associations
+	prerequisite = { focus = KZA_Forcibly_Close_Known_Mosques }
+	relative_position_id = KZA_Forcibly_Close_Known_Mosques
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Disbanding_Tatar_Associations"
+		KAZ_decrease_tatar_insurrection = yes
+		add_manpower = -5800
+	}
+}
+
+shared_focus = {
+	id = KZA_Shrinking_The_Tatar_ASSR
+	icon = GFX_GENERIC_End_Marxism
+	prerequisite = { focus = KZA_The_Founding_Of_Kaliningrad }
+	prerequisite = { focus = KZA_Allowing_The_Language_To_Endure focus = KZA_Disbanding_Tatar_Associations }
+	relative_position_id = KZA_Allowing_The_Language_To_Endure
+	x = 0
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Shrinking_The_Tatar_ASSR"
+		country_event = { days = 1 id = twrkazan_flavour.1 }
+	}
+}
+
+shared_focus = {
+	id = KZA_Pacification_Complete
+	icon = GFX_GENERIC_Pacification
+	prerequisite = { focus = KZA_Shrinking_The_Tatar_ASSR }
+	relative_position_id = KZA_Shrinking_The_Tatar_ASSR
+	x = 0
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Pacification_Complete"
+		remove_ideas = TRV_Tartar_haunting_4
+	}
+}
+
+shared_focus = {
+	id = KZA_The_Time_Has_NOT_Yet_Come
+	icon = GFX_TRV_focus_The_Time_Has_NOT_Yet_Come
+	prerequisite = { focus = KZA_Maintaining_Our_Current_Strategy focus = KZA_Aggravating_Our_Current_Policies }
+	relative_position_id = KZA_Maintaining_Our_Current_Strategy
+	x = 1
+	y = 2
+	cost = 1
+	available = {
+		always = no
+	}
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Time_Has_NOT_Yet_Come"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = KZA_The_Mad_Dash_To_The_Capital
+	icon = GFX_TRV_focus_The_Mad_Dash_To_The_Capital
+	prerequisite = { focus = KZA_The_Time_Has_NOT_Yet_Come }
+	relative_position_id = KZA_The_Time_Has_NOT_Yet_Come
+	x = 0
+	y = 1
+	cost = 3
+	available = {
+		has_war_with = SOV
+	}
+	bypass = {
+		SOV = {
+			exists = no
+		}
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Mad_Dash_To_The_Capital"
+		add_ideas = TRV_Race_Against_Time
+		remove_ideas = TRV_deadline
+	}
+}
+
+shared_focus = {
+	id = KZA_The_Union_Under_The_Army
+	icon = GFX_TRV_focus_The_Union_Under_The_Army
+	prerequisite = { focus = KZA_The_Mad_Dash_To_The_Capital }
+	relative_position_id = KZA_The_Mad_Dash_To_The_Capital
+	x = 0
+	y = 1
+	cost = 10
+	available = {
+		SOV = {
+			exists = no
+		}
+		owns_state = 398
+	}
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Union_Under_The_Army"
+		custom_effect_tooltip = KZA_Taken_Perm
+		add_stability = 0.1
+		add_ideas = SOV_in_shambles
+		add_ideas = SOV_public_discontent
+		if = {
+		limit = { has_country_flag = KAZ_Maintain_Strategy }
+		remove_ideas = TRV_VSOU_haunting
+		}
+		if = {
+		limit = { has_country_flag = KAZ_Aggro_Policies }
+		remove_ideas = TRV_Tartar_haunting
+		}
+		every_state = {
+		limit = { is_core_of = SOV }
+		add_core_of = TRV
+		}
+	}
+}
+
+shared_focus = {
+	id = KZA_Purging_Troublesome_Individuals
+	icon = GFX_GENERIC_Backstab
+	prerequisite = { focus = KZA_The_Union_Under_The_Army }
+	relative_position_id = KZA_The_Union_Under_The_Army
+	x = -1
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Purging_Troublesome_Individuals"
+		add_political_power = 50
+		add_stability = 0.03
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = -0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = KZA_Shuffling_Military_Loyalists_Into_Key_Positions
+	icon = GFX_GENERIC_Officer_Army
+	prerequisite = { focus = KZA_The_Union_Under_The_Army }
+	relative_position_id = KZA_The_Union_Under_The_Army
+	x = 1
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Shuffling_Military_Loyalists_Into_Key_Positions"
+		add_ideas = {
+			TRV_HoG_Yuri_Andropov
+			TRV_FM_Lyudmila_Pavlichenko
+			TRV_MoS_Vasily_Stalin
+			TRV_AM_David_Dragunsky
+		}
+	}
+}
+
+shared_focus = {
+	id = KZA_Convening_The_Military_Transition_Plenum
+	icon = GFX_TRV_focus_Convening_The_Military_Transition_Plenum
+	prerequisite = { focus = KZA_Purging_Troublesome_Individuals }
+	prerequisite = { focus = KZA_Shuffling_Military_Loyalists_Into_Key_Positions }
+	relative_position_id = KZA_Purging_Troublesome_Individuals
+	x = 1
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Shuffling_Military_Loyalists_Into_Key_Positions"
+		custom_effect_tooltip = KZA_New_Dawn
+		add_war_support = 0.1
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = KAZ_Aggro_Policies
+				}
+				retire_country_leader = yes
+				country_event = twrkazan_vasily.1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KZA_VSOUs_Ever_Increasing_Grip
+	icon = GFX_TRV_focus_VSOUs_Ever_Increasing_Grip
+	prerequisite = { focus = KZA_Maintaining_Our_Current_Strategy focus = KZA_Aggravating_Our_Current_Policies }
+	relative_position_id = KZA_Aggravating_Our_Current_Policies
+	x = 3
+	y = 1
+	cost = 3
+	available = {
+		has_country_flag = KAZ_Aggro_Policies
+	}
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_VSOUs_Ever_Increasing_Grip"
+		country_event = { hours = 2 id = twrkazan.3 }
+	}
+}
+
+shared_focus = {
+	id = KZA_Aggravating_The_War_In_The_Countryside
+	icon = GFX_GENERIC_gun_skulls
+	prerequisite = { focus = KZA_VSOUs_Ever_Increasing_Grip }
+	mutually_exclusive = { focus = KZA_Limiting_The_War_In_The_Countryside }
+	relative_position_id = KZA_VSOUs_Ever_Increasing_Grip
+	x = -2
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Aggravating_The_War_In_The_Countryside"
+		KAZ_decrease_vsou_insurrection = yes
+		add_stability = -0.1
+	}
+}
+
+shared_focus = {
+	id = KZA_Begin_Torching_Dissident_Villages
+	icon = GFX_GENERIC_Village_Raid_and_Arrests
+	prerequisite = { focus = KZA_Aggravating_The_War_In_The_Countryside }
+	relative_position_id = KZA_Aggravating_The_War_In_The_Countryside
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Begin_Torching_Dissident_Villages"
+		KAZ_decrease_vsou_insurrection = yes
+		add_manpower = -20531
+	}
+}
+
+shared_focus = {
+	id = KZA_Raiding_Over_The_Kaukasian_Border
+	icon = GFX_GRE_Border_Raid
+	prerequisite = { focus = KZA_Begin_Torching_Dissident_Villages }
+	relative_position_id = KZA_Begin_Torching_Dissident_Villages
+	x = 0
+	y = 1
+	cost = 3
+	will_lead_to_war_with = RKA
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Raiding_Over_The_Kaukasian_Border"
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 407
+				num_provinces = 3
+				on_win = twrkazan.4
+				on_lose = twrkazan.5
+				on_cancel = twrkazan.5
+			}
+						
+			defender = {
+				state = 977
+				num_provinces = 4
+				on_win = twrkazan.6
+				on_lose = twrkazan.7
+				on_cancel = twrkazan.7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KZA_Limiting_The_War_In_The_Countryside
+	icon = GFX_GENERIC_socialist_uprising
+	prerequisite = { focus = KZA_VSOUs_Ever_Increasing_Grip }
+	mutually_exclusive = { focus = KZA_Aggravating_The_War_In_The_Countryside }
+	relative_position_id = KZA_VSOUs_Ever_Increasing_Grip
+	x = 0
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Limiting_The_War_In_The_Countryside"
+		KAZ_decrease_vsou_insurrection = yes
+		add_war_support = -0.05
+	}
+}
+
+shared_focus = {
+	id = KZA_Ignoring_Dissident_Russian_Villages
+	icon = GFX_GENERIC_Crisis_Thumbs_Up
+	prerequisite = { focus = KZA_Limiting_The_War_In_The_Countryside }
+	relative_position_id = KZA_Limiting_The_War_In_The_Countryside
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Ignoring_Dissident_Russian_Villages"
+		add_political_power = 75
+		add_war_support = -0.05
+	}
+}
+
+shared_focus = {
+	id = KZA_Shifting_Some_Operations_To_The_NKVD
+	icon = GFX_SOV_konev_Expanding_The_NKVDs_Role
+	prerequisite = { focus = KZA_Ignoring_Dissident_Russian_Villages }
+	relative_position_id = KZA_Ignoring_Dissident_Russian_Villages
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Shifting_Some_Operations_To_The_NKVD"
+		KAZ_decrease_vsou_insurrection = yes
+		add_political_power = -20
+	}
+}
+
+shared_focus = {
+	id = KZA_Continue_The_Ideological_Campaign
+	icon = GFX_GENERIC_Socialist_Revolution
+	prerequisite = { focus = KZA_VSOUs_Ever_Increasing_Grip }
+	relative_position_id = KZA_VSOUs_Ever_Increasing_Grip
+	x = 2
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Continue_The_Ideological_Campaign"
+		KAZ_decrease_vsou_insurrection = yes
+	}
+}
+
+shared_focus = {
+	id = KZA_Continue_Rebuilding_Loyal_Villages
+	icon = GFX_GENERIC_Factory_Planning
+	prerequisite = { focus = KZA_Continue_The_Ideological_Campaign }
+	relative_position_id = KZA_Continue_The_Ideological_Campaign
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Continue_Rebuilding_Loyal_Villages"
+		KAZ_decrease_vsou_insurrection = yes
+		add_political_power = -50
+	}
+}
+
+shared_focus = {
+	id = KZA_Hearts_And_Minds_Under_Surveillance
+	icon = GFX_SOV_konev_eyes_over_all
+	prerequisite = { focus = KZA_Continue_Rebuilding_Loyal_Villages }
+	relative_position_id = KZA_Continue_Rebuilding_Loyal_Villages
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Hearts_And_Minds_Under_Surveillance"
+		add_stability = -0.15
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = KZA_Sending_More_Troops_To_Monitor_The_Border
+	icon = GFX_GENERIC_Soldiers_Defense
+	prerequisite = { focus = KZA_Hearts_And_Minds_Under_Surveillance }
+	prerequisite = { focus = KZA_Shifting_Some_Operations_To_The_NKVD focus = KZA_Raiding_Over_The_Kaukasian_Border }
+	relative_position_id = KZA_Shifting_Some_Operations_To_The_NKVD
+	x = 0
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Sending_More_Troops_To_Monitor_The_Border"
+		custom_effect_tooltip = KAZ_RKA_forts
+		hidden_effect = {
+			239 = {
+				add_building_construction = {
+					type = bunker
+					province = 9564
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 578
+		
+			level = 1
+					instant_build = yes
+				}
+			}
+			401 = {
+				add_building_construction = {
+					type = bunker
+					province = 11395
+					level = 1
+					instant_build = yes
+				}
+			}
+			407 = {
+				add_building_construction = {
+					type = bunker
+					province = 9530
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 6525
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 468
+					level = 1
+					instant_build = yes
+				}
+			}
+			406 = {
+				add_building_construction = {
+					type = bunker
+					province = 3459
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KZA_The_Fascists_Stain_Has_Been_Eroded
+	icon = GFX_GENERIC_destroy_nazism
+	prerequisite = { focus = KZA_Sending_More_Troops_To_Monitor_The_Border }
+	relative_position_id = KZA_Sending_More_Troops_To_Monitor_The_Border
+	x = 0
+	y = 1
+	cost = 4
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Pacification_Complete"
+		remove_ideas = TRV_VSOU_haunting_4
+	}
+}
+
+shared_focus = {
+	id = KZA_The_Ultravisionaries_Retain_Dominance
+	icon = GFX_TRV_The_Ultravisionaries_Retain_Dominance
+	prerequisite = { focus = KZA_Pacification_Complete }
+	prerequisite = { focus = KZA_Convening_The_Military_Transition_Plenum }
+	relative_position_id = KZA_Convening_The_Military_Transition_Plenum
+	x = -2
+	y = 1
+	cost = 1
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Ultravisionaries_Retain_Dominance"
+		set_cosmetic_tag = KONEV_WEST_RUSSIA
+		set_party_name = { 
+    	ideology = marxist_leninist 
+    	long_name = KONEV_PARTY_long 
+    	name = KONEV_PARTY 
+		}
+		custom_effect_tooltip = KAZ_Ultravisionaries
+		clr_country_flag = KZA_starting_tree
+		set_country_flag = KZA_konev_in_power
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+shared_focus = {
+	id = KZA_The_Ultravanguardists_Gain_Dominance
+	icon = GFX_TRV_focus_The_Ultravanguardists_Gain_Dominance
+	prerequisite = { focus = KZA_The_Fascists_Stain_Has_Been_Eroded }
+	prerequisite = { focus = KZA_Convening_The_Military_Transition_Plenum }
+	relative_position_id = KZA_Convening_The_Military_Transition_Plenum
+	x = 2
+	y = 1
+	cost = 1
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Ultravanguardists_Gain_Dominance"
+		set_cosmetic_tag = STALIN_WEST_RUSSIA
+		set_capital = { state = 251 }
+		set_party_name = { 
+    	ideology = marxist_leninist 
+    	long_name = STALIN_PARTY_long 
+    	name = STALIN_PARTY 
+		}
+		custom_effect_tooltip = KAZ_Ultravanguardists
+		clr_country_flag = KZA_starting_tree
+		set_country_flag = KZA_stalin_in_power
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+#STALIN TREE START
+shared_focus = {
+		id = KZA_The_Return_Of_The_Stalins
+		icon = GFX_TRV_Stalins_In
+		allow_branch = {
+			has_country_flag = KZA_stalin_in_power
+		}
+		available = {
+		has_completed_focus = KZA_Our_Land_Our_People_Our_Blood
+		}
+		x = 0
+		y = 0
+		cost = 7
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Return_Of_The_Stalins"
+		country_event = { hours = 2 id = twrkazan_vasily.8 }
+		}
+}
+	
+shared_focus = {
+		id = KZA_Our_Grim_Dark_Reality
+		icon = GFX_GENERIC_Grim_Industry
+	    prerequisite = {
+			focus = KZA_The_Return_Of_The_Stalins
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_The_Return_Of_The_Stalins
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Our_Grim_Dark_Reality"
+		country_event = { hours = 2 id = twrkazan_vasily.9 }
+		}
+}
+	
+shared_focus = {
+		id = KZA_Ultravanguardism_Spread_Its_Wings
+		icon = GFX_TRV_Ultravanguard
+	    prerequisite = {
+			focus = KZA_Our_Grim_Dark_Reality
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Our_Grim_Dark_Reality
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Ultravanguardism_Spread_Its_Wings"
+		country_event = { hours = 2 id = twrkazan_vasily.10 }
+		custom_effect_tooltip = KZA_Wings_tooltip
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_Union_Prepares_For_Hibernation
+		icon = GFX_TRV_Union_Hibernation
+	    prerequisite = {
+			focus = KZA_Ultravanguardism_Spread_Its_Wings
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Ultravanguardism_Spread_Its_Wings
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Union_Prepares_For_Hibernation"
+		add_war_support = -0.1
+		add_stability = 0.05
+		}
+}
+shared_focus = {
+		id = KZA_Establishing_The_Liberation_Zones
+		icon = GFX_OST_Reparations_In_Perpetuity
+	    prerequisite = {
+			focus = KZA_The_Union_Prepares_For_Hibernation
+		}	
+		x = -2
+		y = 1
+		available = {
+			OST = {
+			exists = no
+			}
+			owns_state = 1018
+			owns_state = 1019
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_The_Union_Prepares_For_Hibernation
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Establishing_The_Liberation_Zones"
+		add_stability = 0.05
+		1019 = { add_core_of = OST }
+		1019 = {
+		set_state_name = OST_LITTLE_STATE_NAME
+		}
+		set_province_name = {
+		    id = 4333
+		    name = OST_CITY_NAME
+		}
+		if = {
+		limit = { owns_state = 1017 }
+		1017 = {
+		custom_effect_tooltip = setup_assr_here
+			}
+		}
+		1018 = {
+			add_core_of = TMS
+		}
+		release_autonomy = {
+    	target = TMS
+    	autonomy_state = autonomy_SSR
+    	freedom_level = 0.5
+		}
+		release_autonomy = {
+    	target = OST
+    	autonomy_state = autonomy_SSR
+    	freedom_level = 0.5
+		}
+		hidden_effect = {
+		OST = {
+		add_ideas = TRV_Liberation_Zones
+		transfer_state = 1019
+		set_capital = { state = 1019 }
+			set_popularities = {
+			    national_socialist = 10
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 10
+			    bolshevik_leninist = 20
+			    marxist_leninist = 60
+			}
+		}
+		TMS = {
+		add_ideas = TRV_Liberation_Zones2
+		transfer_state = 1018		
+		set_capital = { state = 1018 }
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 0
+			    bolshevik_leninist = 0
+			    marxist_leninist = 100
+			}
+		}
+		if = {
+		limit = { owns_state = 1017 }
+        1017 = { 
+		add_dynamic_modifier = { 
+		modifier = riga_ASSR_i 
+					}
+				}
+			}
+		}
+	}
+}
+	
+shared_focus = {
+		id = KZA_Moving_The_Remaining_Ost_Deutsch
+		icon = GFX_SOV_Deport_All_New_Germans
+	    prerequisite = {
+			focus = KZA_Establishing_The_Liberation_Zones
+		}	
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Establishing_The_Liberation_Zones
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Moving_The_Remaining_Ost_Deutsch"
+		unlock_decision_category_tooltip = KZA_deport_minorities_decisions
+		}
+}
+	
+shared_focus = {
+		id = KZA_Establishing_Local_Paramilitary_Groups
+		icon = GFX_OST_SDF
+		mutually_exclusive = {
+		     focus = KZA_Maintaining_Direct_Army_Oversight
+        }
+	    prerequisite = {
+			focus = KZA_Moving_The_Remaining_Ost_Deutsch
+		}	
+		x = 0
+		y = 1
+		available = {
+		OST = { is_subject_of = ROOT }
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Moving_The_Remaining_Ost_Deutsch
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Establishing_Local_Paramilitary_Groups"
+		add_political_power = 50
+		TMS = {
+		hidden_effect = {
+		division_template = {
+	    name = "Militsiya"
+	    is_locked = yes
+	    priority = 0
+	    regiments = {
+	        militia = { x = 0 y = 0 }
+	        militia = { x = 0 y = 1 }
+	        militia = { x = 0 y = 2 }
+	        militia = { x = 0 y = 3 }
+	    }
+	    support = { 
+	        military_police = { x = 0 y = 0 }
+	   			} 
+			}
+		}
+		capital_scope = {
+		create_unit = {
+	    division = "name = \"Aralsk Militsiya\" division_template = \"Militsiya\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+	    owner = TMS
+				}
+			}
+		}
+		OST = {
+		country_event = twrkazan.25
+		hidden_effect = {
+		division_template = {
+	    name = "Polizeiabteilung"
+	    is_locked = yes
+	    priority = 0
+	    regiments = {
+	        militia = { x = 0 y = 0 }
+	        militia = { x = 0 y = 1 }
+	        militia = { x = 0 y = 2 }
+	        militia = { x = 0 y = 3 }
+	        militia = { x = 1 y = 0 }
+	        militia = { x = 1 y = 1 }
+	        militia = { x = 1 y = 2 }
+	        militia = { x = 1 y = 3 }
+	    }
+	    support = { 
+	        military_police = { x = 0 y = 0 }
+	   			} 
+			}
+		}
+		capital_scope = {
+		create_unit = {
+	    division = "name = \"1. Nationale Polizeiabteilung\" division_template = \"Polizeiabteilung\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+	    owner = OST
+			}
+		}
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_Moving_Russians_Out_Of_The_Zones #Aiding Repulics
+		icon = GFX_SOV_reconsider_union
+	    prerequisite = {
+			focus = KZA_Establishing_The_Liberation_Zones
+		}	
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Establishing_The_Liberation_Zones
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Moving_Russians_Out_Of_The_Zones"
+		add_stability = 0.05
+		add_manpower = -1000
+		send_equipment = {
+	    equipment = infantry_equipment
+	    amount = 100
+	    target = TMS
+		}
+		send_equipment = {
+	    equipment = infantry_equipment
+	    amount = 100
+	    target = OST
+		}
+		TMS = { add_manpower = 500 }
+		OST = { add_manpower = 500 }
+		1019 = {
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+	    type = arms_factory
+	    level = 1
+	    instant_build = yes
+			}
+		}
+		1018 = {
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+	    type = arms_factory
+	    level = 1
+	    instant_build = yes
+				}
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_Maintaining_Direct_Army_Oversight
+		icon = GFX_SOV_duumvirist_senate
+		mutually_exclusive = {
+		     focus = KZA_Establishing_Local_Paramilitary_Groups
+        }
+	    prerequisite = {
+			focus = KZA_Moving_Russians_Out_Of_The_Zones
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 5
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Moving_Russians_Out_Of_The_Zones
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Maintaining_Direct_Army_Oversight"
+		add_manpower = 5000
+		add_war_support = 0.05
+		add_stability = 0.05
+		OST = {
+		country_event = { hours = 2 id = twrkazan.26 }
+		}
+		TMS = {
+		country_event = { hours = 2 id = twrkazan.26 }
+		}
+	}
+}
+	
+shared_focus = {
+		id = KZA_Sign_The_Eternal_Compacts
+		icon = GFX_REM_The_New_Proletarian_Social_Revolution
+	    prerequisite = {
+			focus = KZA_Maintaining_Direct_Army_Oversight
+			focus = KZA_Establishing_Local_Paramilitary_Groups
+		}	
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 7
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Establishing_Local_Paramilitary_Groups
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Sign_The_Eternal_Compacts"
+		add_political_power = 50
+		add_offsite_building = { type = arms_factory level = 1 }
+		add_offsite_building = { type = industrial_complex level = 1 }
+		TMS = {
+		add_ideas = TRV_The_Eternal_Compact
+		}
+		OST = {
+		add_ideas = TRV_The_Eternal_Compact
+		}
+	}
+}
+	
+shared_focus = {
+		id = KZA_Returning_To_Socialism_In_One_Country
+		icon = GFX_focus_SOV_socialism_in_one_country
+	    prerequisite = {
+			focus = KZA_The_Union_Prepares_For_Hibernation
+		}	
+		x = 2
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_The_Union_Prepares_For_Hibernation
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Returning_To_Socialism_In_One_Country"
+		add_offsite_building = { type = arms_factory level = 1 }
+		add_country_leader_trait = soviet_isolationism
+		country_event = twrkazan_vasily.2
+		}
+}
+	
+shared_focus = {
+		id = KZA_Ceasing_Relations_With_Non_Socialists #Strictest Control on Export
+		icon = GFX_SIS_trade_with_union
+	    prerequisite = {
+			focus = KZA_Returning_To_Socialism_In_One_Country
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 5
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Returning_To_Socialism_In_One_Country
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Ceasing_Relations_With_Non_Socialists"
+		add_ideas = closed_economy
+		add_ideas = SOV_nkvd_resource_extraction
+		}
+}
+	
+shared_focus = {
+		id = KZA_Expelling_All_Foreign_Expendable_Persons
+		icon = GFX_NOV_Exiling_The_Ost_Deutsche_East
+	    prerequisite = {
+			focus = KZA_Ceasing_Relations_With_Non_Socialists
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Ceasing_Relations_With_Non_Socialists
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Expelling_All_Foreign_Expendable_Persons"
+		swap_ruler_traits = { remove = soviet_isolationism add = soviet_isolationism_extreme }
+		every_country = {
+		limit = {
+		NOT = { tag = TRV }
+		}
+		add_opinion_modifier = {
+    	target = TRV
+    	modifier = small_decrease
+				}
+		}
+		every_owned_state = {
+		limit = { state_population > 1000000 }
+		add_manpower = -600
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_In_Isolation_There_Is_Peace
+		icon = GFX_focus_SOV_third_rome
+	    prerequisite = {
+			focus = KZA_Expelling_All_Foreign_Expendable_Persons
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Expelling_All_Foreign_Expendable_Persons
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_In_Isolation_There_Is_Peace"
+		add_offsite_building = { type = industrial_complex level = 1 }
+		country_event = twrkazan_vasily.3
+		add_war_support = -0.05
+		add_stability = 0.05
+		add_political_power = 90
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_East_Has_become_Shadowed
+		icon = GFX_focus_SOV_reinforce_eastern_naval_bases
+	    prerequisite = {
+			focus = KZA_In_Isolation_There_Is_Peace
+		}	
+		prerequisite = {
+			focus = KZA_Sign_The_Eternal_Compacts
+		}
+		x = -2
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_In_Isolation_There_Is_Peace
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_East_Has_become_Shadowed"
+		add_manpower = -5000
+		408 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 3
+	    instant_build = yes
+	    province = {
+	        all_provinces = yes
+	        limit_to_border = yes
+	   				}
+				}
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_Accepting_The_Failures_Of_Jozef
+		icon = GFX_GENERIC_Stalin
+	    prerequisite = {
+			focus = KZA_Ultravanguardism_Spread_Its_Wings
+		}	
+		x = -7
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Ultravanguardism_Spread_Its_Wings
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		add_stability = -0.1
+		add_political_power = -50
+		SOV_beria_thaw_effect = yes
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Accepting_The_Failures_Of_Jozef"
+		}
+}
+	
+shared_focus = {
+    	id = KZA_And_Turning_To_Vasilys_Solutions
+		icon = GFX_TRV_Vasilys_Solutions
+	    prerequisite = {
+			focus = KZA_Accepting_The_Failures_Of_Jozef
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Accepting_The_Failures_Of_Jozef
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		SOV_beria_thaw_effect = yes
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_And_Turning_To_Vasilys_Solutions"
+		}
+}
+	
+shared_focus = {
+		id = KZA_Wolves_Clawing_At_The_Door #Backstabbed
+		icon = GFX_focus_SOV_military_purge
+		mutually_exclusive = { focus = KZA_A_Society_Of_Order_And_Harmony }
+	    prerequisite = {
+			focus = KZA_And_Turning_To_Vasilys_Solutions
+		}	
+		x = -1
+		y = 1
+		available = {
+			has_country_flag = KZA_Wolves_Clawing_At_The_Door
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_And_Turning_To_Vasilys_Solutions
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		country_event = { hours = 2 id = twrkazan.21 }
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Wolves_Clawing_At_The_Door"
+		}
+}
+	
+shared_focus = {
+		id = KZA_Begin_Planning_A_Final_Purge
+		icon = GFX_focus_SOV_the_last_purge
+	    prerequisite = {
+			focus = KZA_Wolves_Clawing_At_The_Door
+		}	
+		x = -1
+		y = 1
+		available = {
+		}
+		cost = 5
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Wolves_Clawing_At_The_Door
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Begin_Planning_A_Final_Purge"
+		swap_ideas = {
+           remove_idea = SOV_angry_old_guard4
+           add_idea = SOV_angry_old_guard5
+        	}
+		}
+}
+	
+shared_focus = {
+		id = KZA_Stacking_The_Politburo_With_Loyalists
+		icon = GFX_SOV_gagarin_The_Committee_For_Revolutionary_Stability
+	    prerequisite = {
+			focus = KZA_Begin_Planning_A_Final_Purge
+		}	
+		prerequisite = {
+			focus = KZA_Dissolving_The_Presidum
+		}
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Begin_Planning_A_Final_Purge
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Stacking_The_Politburo_With_Loyalists"
+		SOV_beria_thaw_effect = yes
+		country_event = { hours = 1 id = twrkazan.38 }
+		swap_ideas = {
+           remove_idea = SOV_angry_old_guard5
+           add_idea = SOV_angry_old_guard6
+        	}
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_Final_Purge
+		icon = GFX_SOV_purge_nkvd_l
+	    prerequisite = {
+			focus = KZA_Stacking_The_Politburo_With_Loyalists
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Stacking_The_Politburo_With_Loyalists
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Final_Purge"
+		remove_ideas = SOV_angry_old_guard6
+		add_ideas = fanatical_dictatorship
+		add_stability = 0.05
+		set_country_flag = Ivan_Konev_unavailable
+		hidden_effect = {
+		remove_unit_leader = 1011
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_A_Society_Of_Order_And_Harmony
+		icon = GFX_focus_SOV_organization_centralization_discipline
+		mutually_exclusive = { focus = KZA_Wolves_Clawing_At_The_Door }
+	    prerequisite = {
+			focus = KZA_And_Turning_To_Vasilys_Solutions
+		}	
+		x = 1
+		y = 1
+		available = {
+			has_country_flag = KZA_A_Society_Of_Order_And_Harmony
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_And_Turning_To_Vasilys_Solutions
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		country_event = { hours = 2 id = twrkazan.22 }
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_A_Society_Of_Order_And_Harmony"
+		SOV_beria_thaw_effect = yes
+		}
+}
+	
+shared_focus = {
+		id = KZA_Empowering_The_Local_Soviets
+		icon = GFX_focus_spr_class_war
+	    prerequisite = {
+			focus = KZA_A_Society_Of_Order_And_Harmony
+		}	
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_A_Society_Of_Order_And_Harmony
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Empowering_The_Local_Soviets"
+		set_country_flag = KZA_Empowering_The_Local_Soviets
+		add_timed_idea = {
+	    idea = SOV_new_power_systems
+	    days = 100
+		}
+		add_political_power = -150
+		SOV_beria_thaw_effect = yes
+		}
+}
+	
+shared_focus = {
+		id = KZA_Dissolving_The_Presidum #Improve National Security
+		icon = GFX_KRA_Conformity_in_the_Name_of_Security
+	    prerequisite = {
+			focus = KZA_A_Society_Of_Order_And_Harmony
+			focus = KZA_Wolves_Clawing_At_The_Door
+		}	
+		x = 1
+		y = 1
+		available = {
+		OR = {
+		has_completed_focus = KZA_Begin_Planning_A_Final_Purge
+		has_completed_focus = KZA_Empowering_The_Local_Soviets
+			}
+		}
+		cost = 9
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Wolves_Clawing_At_The_Door
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Dissolving_The_Presidum"
+		add_ideas = SOV_enhanced_interogation
+		add_political_power = -50
+	}
+}
+	
+shared_focus = {
+		id = KZA_Examine_The_Politburo_For_Corruption
+		icon = GFX_GENERIC_investigation
+	    prerequisite = {
+			focus = KZA_Dissolving_The_Presidum
+		}	
+		prerequisite = {
+			focus = KZA_Empowering_The_Local_Soviets
+		}
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Empowering_The_Local_Soviets
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Examine_The_Politburo_For_Corruption"
+		SOV_beria_thaw_effect = yes
+		}
+}
+	
+shared_focus = {
+		id = KZA_Returning_The_Ministries_To_Civilian_Control
+		icon = GFX_focus_SOV_the_supreme_soviet
+	    prerequisite = {
+			focus = KZA_Examine_The_Politburo_For_Corruption
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Examine_The_Politburo_For_Corruption
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Returning_The_Ministries_To_Civilian_Control"
+		SOV_beria_thaw_effect = yes
+		add_ideas = authoritarian_system
+		remove_ideas = SOV_angry_old_guard4
+		add_timed_idea = {
+		idea = SOV_angry_old_guard4
+		days = 200
+		}
+		create_country_leader = {
+		name = "Lazar Kaganovich"
+		desc = "Lazar_Kaganovich_DESC"
+		picture = "Lazar_Kaganovich.dds"
+		expire = "1975.1.1"
+		ideology = stalinism   
+		traits = { new_hardliner soviet_isolationism }
+    	}
+		hidden_effect = {
+		country_event = { days = 100 random = 300 id = twrkazan.35 }
+		}
+	}
+}
+	
+shared_focus = {
+		id = KZA_The_Road_To_Autarky
+		icon = GFX_SOV_gulag_program
+	    prerequisite = {
+			focus = KZA_Ultravanguardism_Spread_Its_Wings
+		}	
+		x = 6
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Ultravanguardism_Spread_Its_Wings
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Road_To_Autarky"
+		swap_ideas = {
+		remove_idea = SOV_economic_downturn
+		add_idea = SOV_economic_downturn_1_SOCIALIST
+			}
+		set_country_flag = MINING_RESOURCES
+		custom_effect_tooltip = RUS_Resource_Prospecting_tt		
+		}
+}
+	
+shared_focus = {
+		id = KZA_Blood_Labour_And_Progress
+		icon = GFX_GENERIC_social_labour
+	    prerequisite = {
+			focus = KZA_The_Road_To_Autarky
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_The_Road_To_Autarky
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Blood_Labour_And_Progress"
+		add_ideas = SOV_peoples_utility_squads
+		unlock_decision_category_tooltip = SOV_megaproject_decisions
+		}
+}
+	
+shared_focus = {
+		id = KZA_Devolving_Production_To_The_Countryside
+		icon = GFX_focus_SOV_breadbasket_of_the_union
+		mutually_exclusive = { focus = KZA_Self_Contained_Manufacturing_Centers }
+	    prerequisite = {
+			focus = KZA_Blood_Labour_And_Progress
+		}	
+		x = 2
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Blood_Labour_And_Progress
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Devolving_Production_To_The_Countryside"
+		random_owned_state = {
+		limit = {
+		has_state_category = rural
+		NOT = { has_state_flag = rural_thing_SOV }
+		}
+		add_extra_state_shared_building_slots = 2
+		set_state_flag = rural_thing_SOV
+			}
+		random_owned_state = {
+		limit = {
+		has_state_category = rural
+		NOT = { has_state_flag = rural_thing_SOV }
+		}
+		add_extra_state_shared_building_slots = 2
+		set_state_flag = rural_thing_SOV
+			}
+		random_owned_state = {
+		limit = {
+		has_state_category = rural
+		NOT = { has_state_flag = rural_thing_SOV }
+		}
+		add_extra_state_shared_building_slots = 2
+		set_state_flag = rural_thing_SOV
+			}
+		random_owned_state = {
+		limit = {
+		has_state_category = rural
+		NOT = { has_state_flag = rural_thing_SOV }
+		}
+		add_extra_state_shared_building_slots = 2
+		set_state_flag = rural_thing_SOV
+			}
+		hidden_effect = {
+		every_owned_state = {
+		clr_state_flag = rural_thing_SOV
+				}
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_Creating_New_Agrarian_Universities
+		icon = GFX_SOV_ivanov_Emphasizing_Education
+	    prerequisite = {
+			focus = KZA_Devolving_Production_To_The_Countryside
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Devolving_Production_To_The_Countryside
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Creating_New_Agrarian_Universities"
+		add_research_slot = 1
+		add_political_power = 50
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_Rural_Steel_Issue
+		icon = GFX_GENERIC_Steel_Shovel
+	    prerequisite = {
+			focus = KZA_Creating_New_Agrarian_Universities
+		}	
+		prerequisite = {
+			focus = KZA_The_Siberian_Colonization_Project
+		}
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Creating_New_Agrarian_Universities
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Rural_Steel_Issue"
+		every_owned_state = {
+		add_resource = {
+    	type = steel
+    	amount = 1
+				}
+			}
+		hidden_effect = {
+		country_event = { id = twrkazan_vasily.5 days = 14 }
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_Siberian_Colonization_Project
+		icon = GFX_SOV_Exile_to_Siberia
+	    prerequisite = {
+			focus = KZA_Self_Contained_Manufacturing_Centers
+			focus = KZA_Devolving_Production_To_The_Countryside
+		}	
+		x = -2
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Devolving_Production_To_The_Countryside
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Siberian_Colonization_Project"
+		country_event = twrkazan_vasily.7
+		}
+}
+	
+shared_focus = {
+		id = KZA_Self_Contained_Manufacturing_Centers
+		icon = GFX_NOV_Upgrade_Khrushchyovka
+		mutually_exclusive = { focus = KZA_Devolving_Production_To_The_Countryside }
+	    prerequisite = {
+			focus = KZA_Blood_Labour_And_Progress
+		}	
+		x = -2
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Blood_Labour_And_Progress
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Self_Contained_Manufacturing_Centers"
+		swap_ideas = {
+		remove_idea = SOV_economic_downturn_1_SOCIALIST
+		add_idea = SOV_economic_downturn_2_SOCIALIST		
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_Integrating_Factories_Directly_Onto_Farms
+		icon = GFX_GENERIC_FARMER
+	    prerequisite = {
+			focus = KZA_Self_Contained_Manufacturing_Centers
+		}	
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		relative_position_id = KZA_Self_Contained_Manufacturing_Centers
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Integrating_Factories_Directly_Onto_Farms"
+		add_stability = -0.05
+		swap_ideas = {
+		remove_idea = SOV_economic_downturn_2_SOCIALIST
+		add_idea = SOV_economic_downturn_3_SOCIALIST_TIMED_RECOVER		
+			}
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_Siberian_Mega_Factories
+		icon = GFX_focus_SOV_merge_plants
+	    prerequisite = {
+			focus = KZA_Integrating_Factories_Directly_Onto_Farms
+		}	
+		prerequisite = {
+			focus = KZA_The_Siberian_Colonization_Project
+		}
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 13
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Integrating_Factories_Directly_Onto_Farms
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Siberian_Mega_Factories"
+		country_event = { hours = 2 id = twrkazan_vasily.6 }		
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_First_Truly_Independent_Economy
+		icon = GFX_CAU_Cross_Mountain_Infrastructure_Projects
+	    prerequisite = {
+			focus = KZA_The_Rural_Steel_Issue
+			focus = KZA_The_Siberian_Mega_Factories
+		}	
+		x = 2
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_The_Siberian_Mega_Factories
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_First_Truly_Independent_Economy"
+		remove_ideas = SOV_economic_downturn_3_SOCIALIST_TIMED_RECOVER
+		add_ideas = industrialised_nation
+		}
+}
+
+#SPEC COMMON
+shared_focus = {
+		id = KZA_Ending_Berias_Legacy_Of_Disunity
+		icon = GFX_SOV_Denounce_Beria
+		allow_branch = {
+			OR = {
+				has_country_flag = KZA_konev_in_power
+				has_country_flag = KZA_stalin_in_power
+			}
+		}
+		x = 16
+		y = 0
+		offset = {
+			x = -2
+			y = 0
+			trigger = {
+				has_country_flag = KZA_stalin_in_power
+			}
+		}
+		offset = {
+			x = -5
+			y = 0
+			trigger = {
+				has_country_flag = KZA_konev_in_power
+			}
+		}
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Ending_Berias_Legacy_Of_Disunity"
+		country_event = { hours = 2 id = twrkazan.11 }
+		}
+}
+	
+shared_focus = {
+		id = KZA_Rehabilitating_Useful_Officers
+		icon = GFX_SOV_General_Staff
+	    prerequisite = {
+			focus = KZA_Ending_Berias_Legacy_Of_Disunity
+		}	
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 9
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Ending_Berias_Legacy_Of_Disunity
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Rehabilitating_Useful_Officers"
+		add_political_power = -50
+		add_ideas = TRV_HoG_Lazar_Kaganovich
+		create_corps_commander = {
+	    name = "Vasily Rakov"
+	    picture = "Vasily_Rakov.dds"
+	    traits = { infantry_officer organizer }
+	    skill = 3
+	    attack_skill = 2
+	    defense_skill = 2
+	    planning_skill = 3
+	    logistics_skill = 2
+        }
+		create_corps_commander = {
+	    name = "Vasily Chuikov"
+	    picture = "Vasily_Chuikov.dds"
+	    traits = { harsh_leader organizer }
+	    skill = 4
+	    attack_skill = 2
+	    defense_skill = 5
+	    planning_skill = 4
+	    logistics_skill = 4
+    	}
+	}
+}
+	
+shared_focus = {
+		id = KZA_Stockpiling_The_Supplies_Of_Unification
+		icon = GFX_GENERIC_Support_Equipment_2
+	    prerequisite = {
+			focus = KZA_Ending_Berias_Legacy_Of_Disunity
+		}	
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Ending_Berias_Legacy_Of_Disunity
+
+		available_if_capitulated = yes
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: Focus KZA_Stockpiling_The_Supplies_Of_Unification"
+		add_equipment_to_stockpile = {
+        type = infantry_equipment
+        amount = 1000
+        producer = TRV
+	    }
+	    add_equipment_to_stockpile = {
+        type = artillery_equipment
+        amount = 500
+        producer = TRV
+	    }
+	    add_equipment_to_stockpile = {
+        type = support_equipment
+        amount = 500
+        producer = TRV
+	    }
+		add_equipment_to_stockpile = {
+        type = light_tank_equipment
+        amount = 100
+        producer = TRV
+	    }
+		add_equipment_to_stockpile = {
+        type = fighter_equipment
+        amount = 10      
+        producer = SOV
+	    }
+	}
+}
+	
+shared_focus = {
+		id = KZA_Moving_Into_Siberia
+		icon = GFX_GENERIC_Conquer_Central_Siberia
+	    prerequisite = {
+			focus = KZA_Stockpiling_The_Supplies_Of_Unification
+		}	
+		prerequisite = {
+			focus = KZA_Rehabilitating_Useful_Officers
+		}	
+		x = -1
+		y = 1
+		available = {
+		NOT = {
+		country_exists = KAZ
+			}
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Rehabilitating_Useful_Officers
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Moving_Into_Siberia"
+		custom_effect_tooltip = UNLOCK_LIBERATE_RUSSIA
+		set_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+		set_country_flag = WESTERN_RUSSIA_UNIFICATION
+		set_country_flag = CENTRAL_RUSSIA_REUNIFICATION
+		set_country_flag = CENTRAL_ASIA_REUNIFICATION
+		}
+}
+	
+shared_focus = {
+		id = KZA_Rehabilitate_The_Committee_Faction
+		icon = GFX_SOV_ivanov
+		mutually_exclusive = { focus = KZA_Rehabilitate_Serovs_Faction }
+		mutually_exclusive = { focus = KZA_Rehabilitate_The_Zhdanovschina_Faction }
+		mutually_exclusive = { focus = KZA_Rehabilitate_The_Committee_Faction }
+	    prerequisite = {
+			focus = KZA_Moving_Into_Siberia
+		}	
+		x = 0
+		y = 1
+		available = {
+			or = {
+			has_country_leader = {
+            name = "Vasily Stalin"
+            }
+			has_country_leader = {
+            name = "Ivan Konev"
+            }
+			}
+			NOT = {
+			country_exists = KRA
+			}
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Moving_Into_Siberia
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Rehabilitate_The_Committee_Faction"
+		add_war_support = 0.15
+		add_political_power = -25
+		add_ideas = TRV_FM_Fyodor_Ivanov
+		}
+}
+	
+shared_focus = {
+		id = KZA_Rehabilitate_Serovs_Faction
+		icon = GFX_TRV_Serov_Faction
+		mutually_exclusive = { focus = KZA_Rehabilitate_The_Committee_Faction }
+		mutually_exclusive = { focus = KZA_Rehabilitate_The_Zhdanovschina_Faction }
+		mutually_exclusive = { focus = KZA_Rehabilitate_Serovs_Faction }
+	    prerequisite = {
+			focus = KZA_Moving_Into_Siberia
+		}	
+		x = 3
+		y = 1
+		available = {
+		has_country_leader = {
+            name = "Ivan Konev"
+            }
+			NOT = {
+			country_exists = KRA
+			}
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Moving_Into_Siberia
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Rehabilitate_Serovs_Faction"
+		add_stability = 0.10
+		add_political_power = -25
+		add_ideas = TRV_MoS_Ivan_Serov
+		}
+}
+	
+shared_focus = {
+		id = KZA_Rehabilitate_The_Zhdanovschina_Faction
+		icon = GFX_TRV_Voz_Faction
+		mutually_exclusive = { focus = KZA_Rehabilitate_Serovs_Faction }
+		mutually_exclusive = { focus = KZA_Rehabilitate_The_Committee_Faction }
+		mutually_exclusive = { focus = KZA_Rehabilitate_The_Zhdanovschina_Faction }
+	    prerequisite = {
+			focus = KZA_Moving_Into_Siberia
+		}	
+		x = -3
+		y = 1
+		available = {
+			has_country_leader = {
+            name = "Vasily Stalin"
+            }
+			NOT = {
+			country_exists = NOV
+			}
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Moving_Into_Siberia
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Rehabilitate_The_Zhdanovschina_Faction"
+		add_stability = -0.15
+		add_political_power = 150
+		add_ideas = TRV_AM_Nikolai_Voznesensky
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_Red_Tide_Sweeps_Eastward
+		icon = GFX_SOV_Zhukov_The_Eternal_Militia
+	    prerequisite = {
+			focus = KZA_Rehabilitate_Serovs_Faction
+			focus = KZA_Rehabilitate_The_Committee_Faction
+			focus = KZA_Rehabilitate_The_Zhdanovschina_Faction
+		}		
+		x = 0
+		y = 1
+		available = {
+		NOT = {
+		country_exists = KAZ
+			}
+		}
+		bypass = {
+		owns_state = 408
+		owns_state = 564
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Rehabilitate_The_Committee_Faction
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Red_Tide_Sweeps_Eastward"
+		if = {
+		limit = { country_exists = RUS }
+		declare_war_on = {
+        target = RUS
+        type = annex_everything  
+        	}
+        }
+		if = {
+		limit = { country_exists = BRY }
+		declare_war_on = {
+        target = BRY
+        type = annex_everything  
+        	}
+        }
+		if = {
+		limit = { country_exists = SBR }
+		declare_war_on = {
+        target = SBR
+        type = annex_everything  
+        	}
+        }
+		if = {
+		limit = { country_exists = RFP }
+		declare_war_on = {
+        target = RFP
+        type = annex_everything  
+        	}
+        }
+		add_timed_idea = {
+        idea = TRV_One_Hundred_Day_Offensive
+        days = 100
+        }
+		}
+}
+	
+shared_focus = {
+		id = KZA_Create_The_RFP_Bounty_List
+		icon = GFX_RUS_focus_Shut_Down_Fascist_Publications
+	    prerequisite = {
+			focus = KZA_The_Red_Tide_Sweeps_Eastward
+		}		
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 7
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_The_Red_Tide_Sweeps_Eastward
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Create_The_RFP_Bounty_List"
+		country_event = { hours = 2 id = twrkazan.14 }
+		}
+}
+	
+shared_focus = {
+		id = KZA_The_Cowering_East
+		icon = GFX_SOV_Death
+	    prerequisite = {
+			focus = KZA_Create_The_RFP_Bounty_List
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Create_The_RFP_Bounty_List
+
+		available_if_capitulated = yes
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Cowering_East"
+	add_timed_idea = {
+    idea = TRV_The_Cowering_East
+    days = 180
+	}
+		add_tech_bonus = {
+            bonus = 1.0
+            uses = 1
+            category = radar_tech
+        }
+		add_tech_bonus = {
+            bonus = 1.0
+            uses = 1
+            category = encryption_tech
+        }
+		
+	}
+}
+	
+shared_focus = {
+		id = KZA_Immediate_Expulsion_Of_TA_Capitalists
+		icon = GFX_NOV_Deporting_The_Ost_Deutsche_West
+	    prerequisite = {
+			focus = KZA_The_Red_Tide_Sweeps_Eastward
+		}		
+		x = 1
+		y = 1
+		available = {
+		owns_state = 408
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_The_Red_Tide_Sweeps_Eastward
+
+		available_if_capitulated = yes
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: Focus KZA_Immediate_Expulsion_Of_TA_Capitalists"
+	408 = {
+	add_manpower = -5000
+	}
+	    random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = industrial_complex
+					size > 3
+					include_locked = yes
+				}
+				is_core_of = ROOT
+			}
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+	
+shared_focus = {
+		id = KZA_Reinstating_The_Bygone_Soviets
+		icon = GFX_focus_generic_soviet_politics
+	    prerequisite = {
+			focus = KZA_Immediate_Expulsion_Of_TA_Capitalists
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 7
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Immediate_Expulsion_Of_TA_Capitalists
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Reinstating_The_Bygone_Soviets"
+		add_political_power = -50
+		add_stability = 0.03
+	add_popularity = {
+        ideology = conservative  
+        popularity = -0.1
+    }
+	add_popularity = {
+        ideology = liberal  
+        popularity = -0.1
+    }
+	add_popularity = {
+        ideology = paternal_autocrat  
+        popularity = -0.1
+    }
+		}
+}
+	
+shared_focus = {
+		id = KZA_Our_Land_Our_People_Our_Blood
+		icon = GFX_SOV_vigdorova_sinkiang
+	    prerequisite = {
+			focus = KZA_The_Cowering_East
+		}	
+        prerequisite = {
+			focus = KZA_Reinstating_The_Bygone_Soviets
+		}		
+		x = -1
+		y = 1
+		available = {
+		owns_state = 408
+		owns_state = 398
+		}
+		cost = 10 
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Reinstating_The_Bygone_Soviets
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Our_Land_Our_People_Our_Blood"
+		swap_ideas = {
+		remove_idea = SOV_in_shambles
+		add_idea = SOV_economic_downturn
+		}
+		add_ideas = SOV_angry_old_guard4
+		#REUNIF
+		drop_cosmetic_tag = yes
+		if = {
+		limit = {
+		has_country_leader = {
+    	name = "Ivan Konev"
+    	ruling_only = yes
+				}
+			}
+		set_cosmetic_tag = KONEV_SOV_UNIF
+		news_event = twrkazan_konev.1
+		}
+		if = {
+		limit = {
+		has_country_leader = {
+    	name = "Vasily Stalin"
+    	ruling_only = yes
+				}
+			}
+		set_cosmetic_tag = VASILY_SOV_UNIF
+		news_event = twrkazan_vasily.4
+		}
+	}
+}
+
+
+#KONEV
+shared_focus = {
+		id = KZA_The_Tanks_Roll_Across_Russia
+		icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
+		allow_branch = {
+			has_country_flag = KZA_konev_in_power
+		}
+		x = 0
+		y = 0
+		available = {
+		has_completed_focus = KZA_Our_Land_Our_People_Our_Blood
+		}
+		cost = 7
+		ai_will_do = {
+		factor = 50
+	    }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Tanks_Roll_Across_Russia"
+		country_event = { hours = 2 id = twrkazan_konev.2 }
+		}
+}
+
+shared_focus = {
+		id = KZA_Reassemble_the_Party_Apparatus
+		icon = GFX_GENERIC_communist_star
+        prerequisite = {
+			focus = KZA_The_Tanks_Roll_Across_Russia
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 9
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_The_Tanks_Roll_Across_Russia
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Reassemble_the_Party_Apparatus"
+		country_event = twrkazan_konev.3
+		}
+}
+
+shared_focus = {
+		id = KZA_A_Civilian_Face_for_the_Secretary
+		icon = GFX_TRV_Civilian_Face
+        prerequisite = {
+			focus = KZA_Reassemble_the_Party_Apparatus
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 7
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Reassemble_the_Party_Apparatus
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_A_Civilian_Face_for_the_Secretary"
+		SOV_beria_thaw_effect = yes
+		country_event = twrkazan_konev.4
+		#HoS
+		}
+}
+
+shared_focus = {
+		id = KZA_Infiltrating_the_Reactionaries
+		icon = GFX_SOV_konev_wiretap_phones
+        prerequisite = {
+			focus = KZA_A_Civilian_Face_for_the_Secretary
+		}		
+		x = -5
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_A_Civilian_Face_for_the_Secretary
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Infiltrating_the_Reactionaries"
+		add_political_power = 100
+		SOV_beria_thaw_effect = yes
+		}
+}
+shared_focus = {
+		id = KZA_Spread_Rumours_of_Political_Reforms
+		icon = GFX_GENERIC_secret_service
+        prerequisite = {
+			focus = KZA_Infiltrating_the_Reactionaries
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Infiltrating_the_Reactionaries
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Spread_Rumours_of_Political_Reforms"
+		add_stability = 0.05
+		add_popularity = {
+	    ideology = socialist
+	    popularity = 0.1
+			}
+		add_popularity = {
+	    ideology = social_democrat
+	    popularity = 0.1
+			}
+		}
+}
+shared_focus = {
+		id = KZA_Amend_the_Constitution
+		icon = GFX_GENERIC_Adapt_Constitution
+        prerequisite = {
+			focus = KZA_Spread_Rumours_of_Political_Reforms
+		}		
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Spread_Rumours_of_Political_Reforms
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Amend_the_Constitution"
+		country_event = twrkazan_konev.5
+		}
+}
+shared_focus = {
+		id = KZA_A_Life_Dedicated_to_the_Party
+		icon = GFX_TRV_Konev_to_the_Party
+        prerequisite = {
+			focus = KZA_Amend_the_Constitution
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Amend_the_Constitution
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_A_Life_Dedicated_to_the_Party"
+		#Konev portrait change
+		#Konev stops being a field commander
+		remove_country_leader_trait = great_warlord
+		add_country_leader_trait = dictator
+		add_country_leader_trait = stout_defender
+		set_country_leader_portrait = {
+		ideology = marxist_leninist
+		portrait = GFX_Portrait_Ivan_Konev_Civilian
+			}
+		}
+}
+shared_focus = {
+		id = KZA_Resume_Normal_Party_Activities
+		icon = GFX_GENERIC_elite_party
+        prerequisite = {
+			focus = KZA_A_Life_Dedicated_to_the_Party
+		}		
+		x = 0
+		y = 2
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Amend_the_Constitution
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Resume_Normal_Party_Activities"
+		SOV_beria_thaw_effect = yes
+		country_event = twrkazan_konev.6
+		hidden_effect = {
+		set_country_flag = STALIN_INVESTIGATION_UNLOCKED
+		}
+		unlock_decision_category_tooltip  = SOV_stalin_investigation
+		}
+}
+
+shared_focus = {
+		id = KZA_Infiltration_and_Supply
+		icon = GFX_SOV_Konev_Advanced_Surveillance_Systems
+        prerequisite = {
+			focus = KZA_Spread_Rumours_of_Political_Reforms
+		}		
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Spread_Rumours_of_Political_Reforms
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Infiltration_and_Supply"
+		country_event = twrkazan_konev.7
+		}
+}
+shared_focus = {
+		id = KZA_Work_Together
+		icon = GFX_GENERIC_resistance
+        prerequisite = {
+			focus = KZA_Infiltration_and_Supply
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 9
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Infiltration_and_Supply
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Work_Together"
+		army_experience = 20
+		swap_ideas = {
+		remove_idea = SOV_angry_old_guard4
+		add_idea = SOV_angry_old_guard5
+			}
+		random_owned_state = {
+		limit = {
+		has_state_category = rural
+		NOT = {
+		has_state_flag = TRV_ANTI_HQ
+			}
+		}
+		set_state_flag = TRV_ANTI_HQ
+			}
+		random_owned_state = {
+		limit = {
+		has_state_category = rural
+		NOT = {
+		has_state_flag = TRV_ANTI_HQ
+			}
+		}
+		set_state_flag = TRV_ANTI_HQ
+			}
+		random_owned_state = {
+		limit = {
+		has_state_category = rural
+		NOT = {
+		has_state_flag = TRV_ANTI_HQ
+			}
+		}
+		set_state_flag = TRV_ANTI_HQ
+			}
+		}
+}
+shared_focus = {
+		id = KZA_Insider_Revolt
+		icon = GFX_focus_SOV_panslavic_nationalism
+        prerequisite = {
+			focus = KZA_Work_Together
+		}		
+		x = 0
+		y = 2
+		available = {
+		has_war = no
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Infiltration_and_Supply
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Insider_Revolt"
+		remove_ideas = SOV_angry_old_guard5
+		add_popularity = {
+	    ideology = marxist_leninist
+	    popularity = 1.0
+			}
+		custom_effect_tooltip = START_UPRISING_TRV
+		#Revolt
+		hidden_effect = {
+		create_dynamic_country = {
+			original_tag = SOV
+			copy_tag = PEC
+			set_country_flag = PEASANT_UPRISING_SOVIET_flag
+			set_cosmetic_tag = ANTI_TRV_TAG
+			TRV_anti_soviet_revolt_startup = yes
+			every_state = {
+			limit = { 
+			has_state_flag = TRV_ANTI_HQ
+			}
+			PREV.PREV.PREV = { transfer_state = PREV }
+			clr_state_flag = TRV_ANTI_HQ
+			add_core_of = PREV.PREV.PREV
+			}
+			every_owned_state = {
+				create_unit = {
+					division = "name = \"Belaya Gvardiya\" division_template = \"Belaya Gvardiya\" start_experience_factor = 0.3"
+					owner = PREV
+				}
+				create_unit = {
+					division = "name = \"Belaya Gvardiya\" division_template = \"Belaya Gvardiya\" start_experience_factor = 0.3"
+					owner = PREV
+				}
+				create_unit = {
+					division = "name = \"Belaya Gvardiya\" division_template = \"Belaya Gvardiya\" start_experience_factor = 0.3"
+					owner = PREV
+				}
+				create_unit = {
+					division = "name = \"Belaya Gvardiya\" division_template = \"Belaya Gvardiya\" start_experience_factor = 0.3"
+					owner = PREV
+				}
+			}
+		every_state = {
+			limit = { is_core_of = SOV }
+			add_core_of = PREV
+		}
+		declare_war_on = {
+			target = SOV
+			type = annex_everything
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+		id = KZA_The_Medal_in_Chief
+		icon = GFX_TRV_Funny_Medal
+        prerequisite = {
+			focus = KZA_Insider_Revolt
+		}	
+        prerequisite = {
+			focus = KZA_Resume_Normal_Party_Activities
+		}	
+		x = -1
+		y = 1
+		available = {
+		has_war = no
+		}
+		cost = 7
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Insider_Revolt
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Medal_in_Chief"
+		add_ideas = SOV_Refined_Stalinism
+		country_event = twrkazan_konev.8
+		}
+}
+
+shared_focus = {
+		id = KZA_Communists_of_the_World
+		icon = GFX_NOV_The_Anti_Imperialist_Movement
+        prerequisite = {
+			focus = KZA_A_Civilian_Face_for_the_Secretary
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_A_Civilian_Face_for_the_Secretary
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Communists_of_the_World"
+		add_timed_idea = {
+		idea = SOV_renewed_diplo
+		days = 180
+			}
+		}
+}
+shared_focus = {
+		id = KZA_Form_the_KGB
+		icon = GFX_TRV_Form_The_KGB_v2
+        prerequisite = {
+			focus = KZA_Communists_of_the_World
+		}		
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Communists_of_the_World
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Form_the_KGB"
+		add_ideas = KZA_KGB_Konev
+		}
+}
+shared_focus = {
+		id = KZA_Socialist_Military_Alliance
+		icon = GFX_focus_SOV_builder_of_the_red_army
+        prerequisite = {
+			focus = KZA_Form_the_KGB
+		}		
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Form_the_KGB
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Socialist_Military_Alliance"
+		create_faction = TRV_WORLD_SOCIALIST_ALLIANCE
+		news_event = twrkazan_konev.8
+		}
+}
+shared_focus = {
+		id = KZA_The_Foreign_Friendship_Department
+		icon = GFX_SOV_konev_eyes_over_all
+        prerequisite = {
+			focus = KZA_Form_the_KGB
+		}		
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Form_the_KGB
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Foreign_Friendship_Department"
+		unlock_decision_category_tooltip = SOV_diplo_decisions
+		}
+}
+shared_focus = {
+		id = KZA_International_Red_Army
+		icon = GFX_focus_SOV_mobilization_plan
+        prerequisite = {
+			focus = KZA_Communists_of_the_World
+		}		
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Communists_of_the_World
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_International_Red_Army"
+		swap_ideas = {
+		remove_idea = TRV_Extremist_Army
+		add_idea = TRV_International_Army
+			}
+		}
+}
+shared_focus = {
+		id = KZA_Council_for_the_Liberation_of_Europe
+		icon = GFX_RUS_Embrace_Europeanism
+        prerequisite = {
+			focus = KZA_International_Red_Army
+		}		
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_International_Red_Army
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Council_for_the_Liberation_of_Europe"
+		add_ideas = SOV_volunteer_bonus
+		custom_effect_tooltip = ALLOWS_VOLUNTEERS_TO_ALL_SOCIALIST_TURKENICH
+		add_war_support = 0.05
+		}
+}
+shared_focus = {
+		id = KZA_Reach_for_the_Stars
+		icon = GFX_NOV_The_Launching_of_Nadeyetsa_One
+        prerequisite = {
+			focus = KZA_Council_for_the_Liberation_of_Europe
+		}		
+        prerequisite = {
+			focus = KZA_Socialist_Military_Alliance
+		}		
+        prerequisite = {
+			focus = KZA_The_Foreign_Friendship_Department
+		}		
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 11
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Socialist_Military_Alliance
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Reach_for_the_Stars"
+		show_ideas_tooltip = TRV_Sergei_Korolev
+		add_research_slot = 1
+        585 = {
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = {
+                type = rocket_site
+                level = 1
+                instant_build = yes
+            }
+        }
+        add_tech_bonus = {
+            bonus = 1
+            uses = 1
+            category = rocketry
+        }
+	}
+}
+shared_focus = {
+		id = KZA_Fund_Project_Pavlov
+		icon = GFX_SOV_Konev_NKVD_Unit17
+        prerequisite = {
+			focus = KZA_Reach_for_the_Stars
+		}			
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		mutually_exclusive = { focus = KZA_Fund_Project_Orchid }
+		cost = 11
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Reach_for_the_Stars
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Fund_Project_Pavlov"
+		country_event = twrkazan_konev.9
+		if = {
+		limit = { NOT = { has_tech = immoral_warfare } }
+		set_technology = {
+    	immoral_warfare = 1
+			}
+		}
+		else = {
+		add_equipment_to_stockpile = {
+    	type = support_equipment
+    	amount = 500
+			}
+		}
+	}
+}
+shared_focus = {
+		id = KZA_Fund_Project_Orchid
+		icon = GFX_SOV_Konev_Siberian_Chemical_Weapons_Program
+        prerequisite = {
+			focus = KZA_Reach_for_the_Stars
+		}	
+		mutually_exclusive = { focus = KZA_Fund_Project_Pavlov }
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Reach_for_the_Stars
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Fund_Project_Orchid"
+		add_ideas = SOV_emerald_wind
+        add_tech_bonus = {
+            bonus = 1
+            uses = 1
+            category = chemical_tech
+        }
+		if = {
+		limit = { NOT = { has_tech = immoral_warfare } }
+		set_technology = {
+    	immoral_warfare = 1
+			}
+		}
+		else = {
+		add_equipment_to_stockpile = {
+    	type = support_equipment
+    	amount = 500
+			}
+		}
+	}
+}
+shared_focus = {
+		id = KZA_The_Eternal_Class_Struggle
+		icon = GFX_focus_SOV_proclaim_soviet_hegemony
+        prerequisite = {
+			focus = KZA_Fund_Project_Pavlov
+			focus = KZA_Fund_Project_Orchid
+		}	
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Fund_Project_Pavlov
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_The_Eternal_Class_Struggle"
+		add_stability = 0.1
+		}
+}
+shared_focus = {
+		id = KZA_Economic_Rejuvenation
+		icon = GFX_SOV_konev_nuclear_facility_red
+        prerequisite = {
+			focus = KZA_A_Civilian_Face_for_the_Secretary
+		}		
+		x = 5
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_A_Civilian_Face_for_the_Secretary
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Economic_Rejuvenation"
+		add_timed_idea = {
+		idea = SOV_konev_resumed_five_year_plan
+		days = 365
+			}
+		add_offsite_building = { type = industrial_complex level = 1 }
+		}
+}
+shared_focus = {
+		id = KZA_Food_on_the_Plate
+		icon = GFX_GENERIC_Bread_Icon
+        prerequisite = {
+			focus = KZA_Economic_Rejuvenation
+		}		
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Economic_Rejuvenation
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Food_on_the_Plate"
+		SOV_beria_thaw_effect = yes
+		swap_ideas = {
+		remove_idea = SOV_economic_downturn
+		add_idea = SOV_economic_downturn_1_SOCIALIST
+			}		
+		}
+}
+shared_focus = {
+		id = KZA_Ammunition_in_the_Pocket
+		icon = GFX_GENERIC_Weapons
+        prerequisite = {
+			focus = KZA_Economic_Rejuvenation
+		}		
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Economic_Rejuvenation
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Ammunition_in_the_Pocket"
+		add_offsite_building = { type = arms_factory level = 1 }
+		capital_scope = {
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+	    type = arms_factory
+	    level = 1
+	    instant_build = yes
+				}
+			}
+		}
+}
+shared_focus = {
+		id = KZA_Power_to_the_Industrial_Recovery_Committee
+		icon = GFX_SOV_konev_Expanding_The_NKVDs_Role
+        prerequisite = {
+			focus = KZA_Ammunition_in_the_Pocket
+		}		
+        prerequisite = {
+			focus = KZA_Food_on_the_Plate
+		}		
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Food_on_the_Plate
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Power_to_the_Industrial_Recovery_Committee"
+		unlock_decision_category_tooltip = SOV_megaproject_decisions
+		set_country_flag = MINING_RESOURCES
+		custom_effect_tooltip = RUS_Resource_Prospecting_tt
+		swap_ideas = {
+		remove_idea = SOV_economic_downturn_1_SOCIALIST
+		add_idea = SOV_economic_downturn_2_SOCIALIST
+			}
+		}
+}
+shared_focus = {
+		id = KZA_Rehabilitation_Labour_Scheme
+		icon = GFX_GER_Slavery
+        prerequisite = {
+			focus = KZA_Power_to_the_Industrial_Recovery_Committee
+		}		
+		x = -1
+		y = 1
+		available = {
+		has_completed_focus = KZA_Insider_Revolt
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Power_to_the_Industrial_Recovery_Committee
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Rehabilitation_Labour_Scheme"
+    	add_ideas = SOV_peoples_utility_squads
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+		id = KZA_23_Hour_Work_Day
+		icon = GFX_SOV_Old_Worker	
+        prerequisite = {
+			focus = KZA_Rehabilitation_Labour_Scheme
+		}		
+		x = -1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Rehabilitation_Labour_Scheme
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_23_Hour_Work_Day"
+		swap_ideas = {
+		remove_idea = SOV_economic_downturn_2_SOCIALIST
+		add_idea = SOV_economic_downturn_3_SOCIALIST_TIMED_RECOVER
+			}
+		add_manpower = -60000
+		add_offsite_building = { type = industrial_complex level = 1 }
+		}
+}
+shared_focus = {
+		id = KZA_Continued_Military_Readiness
+		icon = GFX_SOV_konev_advanced_munitions
+        prerequisite = {
+			focus = KZA_Power_to_the_Industrial_Recovery_Committee
+		}		
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 7
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Power_to_the_Industrial_Recovery_Committee
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Continued_Military_Readiness"
+		add_ideas = SOV_bunker_construction_effort
+		}
+}
+shared_focus = {
+		id = KZA_Additional_Tank_Plants
+		icon = GFX_GENERIC_Tank_through_Wall
+        prerequisite = {
+			focus = KZA_Continued_Military_Readiness
+		}		
+		x = 1
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Continued_Military_Readiness
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Additional_Tank_Plants"
+		swap_ideas = {
+		remove_idea = SOV_economic_downturn_2_SOCIALIST
+		add_idea = SOV_economic_downturn_3_SOCIALIST_TIMED_RECOVER
+			}
+		add_offsite_building = { type = arms_factory  level = 2 }
+		}
+}
+shared_focus = {
+		id = KZA_Thank_Krupp
+		icon = GFX_POL_State_of_the_german_Settlers
+        prerequisite = {
+			focus = KZA_Continued_Military_Readiness
+			focus = KZA_Rehabilitation_Labour_Scheme
+		}		
+		x = 0
+		y = 2
+		available = {
+			#
+		}
+		cost = 10
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Power_to_the_Industrial_Recovery_Committee
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Thank_Krupp"
+		capital_scope = {
+		add_resource = {
+	    type = steel
+	    amount = 30
+				}
+		add_building_construction = {
+    	type = industrial_complex
+    	level = 1
+    	instant_build = yes
+				}
+			}
+		add_equipment_to_stockpile = {
+    	type = IFV_equipment
+    	amount = 300
+    	producer = GER
+		}
+	}
+}
+shared_focus = {
+		id = KZA_Cogs_in_the_Machine
+		icon = GFX_SOV_Konevoya_Program	
+        prerequisite = {
+			focus = KZA_Additional_Tank_Plants
+		}
+        prerequisite = {
+			focus = KZA_23_Hour_Work_Day
+		}
+		x = 0
+		y = 1
+		available = {
+			#
+		}
+		cost = 6
+		ai_will_do = {
+		factor = 50
+	    }
+		relative_position_id = KZA_Thank_Krupp
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KZA_Cogs_in_the_Machine"
+		remove_ideas = SOV_economic_downturn_3_SOCIALIST_TIMED_RECOVER
+		add_ideas = industrialised_nation
+		}
+}

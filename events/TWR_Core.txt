@@ -1,0 +1,567 @@
+﻿###########################
+# TWR Events : Government Opinions
+###########################
+
+add_namespace = TWR_gov_opinion
+add_namespace = TWR_special_weapons
+
+#########################################################################
+# Inital Opinion modifiers on startup
+#########################################################################
+country_event = {
+	id = TWR_gov_opinion.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_gov_opinion.1"}
+
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					has_government = national_socialist
+					has_government = fascist
+					has_government = paternal_autocrat
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						AND = {
+							has_government = fascist
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = national_socialist
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = paternal_autocrat
+							NOT = { has_government = ROOT }
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_similar_ideology
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						has_government = conservative
+						has_government = liberal
+						has_government = social_democrat
+						has_government = marxist_leninist
+						has_government = bolshevik_leninist
+						has_government = socialist
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						AND = {
+							has_government = marxist_leninist
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = bolshevik_leninist
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = socialist
+							NOT = { has_government = ROOT }
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_similar_ideology
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						has_government = conservative
+						has_government = liberal
+						has_government = social_democrat
+						has_government = national_socialist
+						has_government = fascist
+						has_government = paternal_autocrat
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_government = conservative
+					has_government = liberal
+					has_government = social_democrat
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						AND = {
+							has_government = conservative
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = liberal
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = social_democrat
+							NOT = { has_government = ROOT }
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_democractic_ideology
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						has_government = national_socialist
+						has_government = fascist
+						has_government = paternal_autocrat
+						has_government = marxist_leninist
+						has_government = bolshevik_leninist
+						has_government = socialist
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_government = national_socialist
+			}
+			set_country_flag = opinion_set_national_socialist
+		}
+		if = {
+			limit = {
+				has_government = fascist
+			}
+			set_country_flag = opinion_set_fascist
+		}
+		if = {
+			limit = {
+				has_government = paternal_autocrat
+			}
+			set_country_flag = opinion_set_paternal_autocrat
+		}
+		if = {
+			limit = {
+				has_government = social_democrat
+			}
+			set_country_flag = opinion_set_social_democrat
+		}
+		if = {
+			limit = {
+				has_government = liberal
+			}
+			set_country_flag = opinion_set_liberal
+		}
+		if = {
+			limit = {
+				has_government = conservative
+			}
+			set_country_flag = opinion_set_conservative
+		}
+		if = {
+			limit = {
+				has_government = marxist_leninist
+			}
+			set_country_flag = opinion_set_marxist_leninist
+		}
+		if = {
+			limit = {
+				has_government = bolshevik_leninist
+			}
+			set_country_flag = opinion_set_bolshevik_leninist
+		}
+		if = {
+			limit = {
+				has_government = socialist
+			}
+			set_country_flag = opinion_set_socialist
+		}
+	}
+
+	option = {
+	}
+}
+
+#########################################################################
+# Change opinion modifiers on government change
+#########################################################################
+country_event = {
+	id = TWR_gov_opinion.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_gov_opinion.2"}
+
+	hidden = yes
+
+	trigger = {
+		OR = {
+			AND = {
+				NOT = { has_government = national_socialist }
+				has_country_flag = opinion_set_national_socialist
+			}
+			AND = {
+				NOT = { has_government = fascist }
+				has_country_flag = opinion_set_fascist
+			}
+			AND = {
+				NOT = { has_government = paternal_autocrat }
+				has_country_flag = opinion_set_paternal_autocrat
+			}
+			AND = {
+				NOT = { has_government = social_democrat }
+				has_country_flag = opinion_set_social_democrat
+			}
+			AND = {
+				NOT = { has_government = liberal }
+				has_country_flag = opinion_set_liberal
+			}
+			AND = {
+				NOT = { has_government = conservative }
+				has_country_flag = opinion_set_conservative
+			}
+			AND = {
+				NOT = { has_government = marxist_leninist }
+				has_country_flag = opinion_set_marxist_leninist
+			}
+			AND = {
+				NOT = { has_government = bolshevik_leninist }
+				has_country_flag = opinion_set_bolshevik_leninist
+			}
+			AND = {
+				NOT = { has_government = socialist }
+				has_country_flag = opinion_set_socialist
+			}
+			AND = {
+				NOT = { has_country_flag = opinion_set_national_socialist }
+				NOT = { has_country_flag = opinion_set_fascist }
+				NOT = { has_country_flag = opinion_set_paternal_autocrat }
+				NOT = { has_country_flag = opinion_set_social_democrat }
+				NOT = { has_country_flag = opinion_set_liberal }
+				NOT = { has_country_flag = opinion_set_conservative }
+				NOT = { has_country_flag = opinion_set_marxist_leninist }
+				NOT = { has_country_flag = opinion_set_bolshevik_leninist }
+				NOT = { has_country_flag = opinion_set_socialist }
+			}
+		}
+	}
+
+	mean_time_to_happen = { days = 2 }
+
+	immediate = {
+		clr_country_flag = opinion_set_national_socialist
+		clr_country_flag = opinion_set_fascist
+		clr_country_flag = opinion_set_paternal_autocrat
+		clr_country_flag = opinion_set_social_democrat
+		clr_country_flag = opinion_set_liberal
+		clr_country_flag = opinion_set_conservative
+		clr_country_flag = opinion_set_marxist_leninist
+		clr_country_flag = opinion_set_bolshevik_leninist
+		clr_country_flag = opinion_set_socialist
+		every_country = {
+			remove_opinion_modifier = {
+				target = ROOT
+				modifier = TWR_similar_ideology
+			}
+			ROOT = {
+				remove_opinion_modifier = {
+					target = PREV
+					modifier = TWR_similar_ideology
+				}
+			}
+			remove_opinion_modifier = {
+				target = ROOT
+				modifier = TWR_different_ideology
+			}
+			ROOT = {
+				remove_opinion_modifier = {
+					target = PREV
+					modifier = TWR_different_ideology
+				}
+			}
+			remove_opinion_modifier = {
+				target = ROOT
+				modifier = TWR_democractic_ideology
+			}
+			ROOT = {
+				remove_opinion_modifier = {
+					target = PREV
+					modifier = TWR_democractic_ideology
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_government = national_socialist
+					has_government = fascist
+					has_government = paternal_autocrat
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						AND = {
+							has_government = fascist
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = national_socialist
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = paternal_autocrat
+							NOT = { has_government = ROOT }
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_similar_ideology
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_similar_ideology
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						has_government = conservative
+						has_government = liberal
+						has_government = social_democrat
+						has_government = marxist_leninist
+						has_government = bolshevik_leninist
+						has_government = socialist
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						AND = {
+							has_government = marxist_leninist
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = bolshevik_leninist
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = socialist
+							NOT = { has_government = ROOT }
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_similar_ideology
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_similar_ideology
+				}
+
+			}
+			every_country = {
+				limit = {
+					OR = {
+						has_government = conservative
+						has_government = liberal
+						has_government = social_democrat
+						has_government = national_socialist
+						has_government = fascist
+						has_government = paternal_autocrat
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_government = conservative
+					has_government = liberal
+					has_government = social_democrat
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						AND = {
+							has_government = conservative
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = liberal
+							NOT = { has_government = ROOT }
+						}
+						AND = {
+							has_government = social_democrat
+							NOT = { has_government = ROOT }
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_democractic_ideology
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_democractic_ideology
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						has_government = national_socialist
+						has_government = fascist
+						has_government = paternal_autocrat
+						has_government = marxist_leninist
+						has_government = bolshevik_leninist
+						has_government = socialist
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = TWR_different_ideology
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_government = national_socialist
+			}
+			set_country_flag = opinion_set_national_socialist
+		}
+		if = {
+			limit = {
+				has_government = fascist
+			}
+			set_country_flag = opinion_set_fascist
+		}
+		if = {
+			limit = {
+				has_government = paternal_autocrat
+			}
+			set_country_flag = opinion_set_paternal_autocrat
+		}
+		if = {
+			limit = {
+				has_government = social_democrat
+			}
+			set_country_flag = opinion_set_social_democrat
+		}
+		if = {
+			limit = {
+				has_government = liberal
+			}
+			set_country_flag = opinion_set_liberal
+		}
+		if = {
+			limit = {
+				has_government = conservative
+			}
+			set_country_flag = opinion_set_conservative
+		}
+		if = {
+			limit = {
+				has_government = marxist_leninist
+			}
+			set_country_flag = opinion_set_marxist_leninist
+		}
+		if = {
+			limit = {
+				has_government = bolshevik_leninist
+			}
+			set_country_flag = opinion_set_bolshevik_leninist
+		}
+		if = {
+			limit = {
+				has_government = socialist
+			}
+			set_country_flag = opinion_set_socialist
+		}
+	}
+
+	option = {
+	}
+}
+
+country_event = {
+	id = TWR_special_weapons.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_special_weapons.0"}
+	title = TWR_special_weapons.0.t
+	desc = TWR_special_weapons.0.d
+	picture = GFX_report_event_v_day_ten_anniversary
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = TWR_special_weapons.0.a
+		add_to_variable = {
+			var = num_of_nukes
+			value = 100
+		}
+	}
+}

@@ -1,0 +1,3392 @@
+﻿	add_namespace = gcw
+	add_namespace = tgcw
+	add_namespace = gcwextraaa
+	##########GERMAN CIVIL WAR#############
+
+	country_event = {
+	id = gcw.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.1"}
+	title = gcw.1.t
+	desc = gcw.1.d
+	picture = GFX_report_event_gcw_starts
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			add_threat = 15
+			USA = {
+				news_event = { id = germannews.7003 days = 1 }
+			}
+			GER = {
+				country_event = { id = gcw.500 days = 1 }
+				country_event = { id = gcw.501 hours = 5 }
+				country_event = { id = gcw.3 days = 95 } #CZE
+				country_event = { id = gcw.7 days = 120 } #SWI
+				country_event = { id = gcw.8 days = 130 } #Benelux
+				add_ideas = GCW_german_civil_war
+				set_country_flag = SS_appeased_or_gone
+				set_country_flag = Heinrich_Himmler_unavailable
+				set_country_flag = heer_revolt
+				remove_ideas = GER_Armys_Boots
+			}
+			DEN = {
+				country_event = { id = twrdenmark.1 days = 17 random = 600 }
+			}
+			RGO = {
+				country_event = { id = twrgotenland.55 days = 1 }
+			}
+			ROS = {
+				country_event = { id = twrostlandcw.1 days = 4 random = 700 }
+			}
+			SBA = {
+				country_event = { id = twrbanat.26 hours = 4 }
+			}
+			ITA = {
+				country_event = { id = twritavar.1 days = 5 } #ITA DOMESTIC OPPOSITION
+				country_event = { id = twritavar.2 days = 5 } #COUNCIL DISPLEASE
+			}
+			FRA = {
+				every_owned_state = {
+					set_demilitarized_zone = no
+				}
+			}
+			dismantle_faction = yes
+			activate_decision = GER_civil_war
+			set_global_flag = german_civil_war_started
+			GER = { 
+				remove_ideas = GER_nazi_recruitment_system
+				remove_ideas = GER_RK_Incomes
+				end_puppet = ROS
+				end_puppet = RUK
+				end_puppet = RMO
+				end_puppet = RKA
+				end_puppet = SLO 
+				end_puppet = NOR
+				end_puppet = DEN
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+				}
+				set_demilitarized_zone = no
+			}
+			every_state = {
+				limit = {
+					is_core_of = GER
+				}
+				add_core_of = HGR
+				add_core_of = HSS
+			}
+		}
+	}
+
+	option = {
+		name = gcw.1.a #Himmler
+		custom_effect_tooltip = PLAY_AS_THE_SS_GCW
+		hidden_effect = {
+		set_global_flag = DONT_TRY_TO_CHEESE_IT_BOY
+			HSS = {
+				transfer_state = 7
+				transfer_state = 35
+				transfer_state = 51
+				transfer_state = 6
+				transfer_state = 34
+				transfer_state = 802
+				transfer_state = 8
+				transfer_state = 42
+				transfer_state = 806
+				transfer_state = 28
+				transfer_state = 3
+				transfer_state = 17
+				transfer_state = 763
+				transfer_state = 762
+				transfer_state = 808
+				transfer_state = 807
+				transfer_state = 50
+				transfer_state = 151
+				transfer_state = 56
+				transfer_state = 57
+				transfer_state = 809
+				transfer_state = 55
+				transfer_state = 36
+				load_oob = "HSS_GCW"
+				country_event = { id = gcw.3 days = 95 } #CZE
+				country_event = { id = gcw.7 days = 120 } #SWI
+				country_event = { id = gcw.8 days = 130 } #Benelux
+				inherit_technology = GER
+				add_political_power = 200
+				set_country_flag = himmler_side_civil_war
+				country_event = { id = gcw.502 days = 2 }
+
+				declare_war_on = {
+					target = GER
+					type = annex_everything
+				}
+				set_technology = {
+				    waffen_ss = 1
+				}
+			}
+			GER = {
+				start_civil_war = {
+					ideology = paternal_autocrat
+					size = 0.47
+					
+					capital = 9
+					states = { 
+						9 75 74 67 766 4 774 152 102 85 768 98 97 5 188 810 72
+					}
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				set_technology = {
+					waffen_ss = 0
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS Panzer-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS-Infanterie-Division"
+				}
+				load_oob = "GER_GCW"
+				declare_war_on = {
+					target = HSS
+					type = annex_everything
+				}
+			}
+			random_country = { 	
+				limit = {
+					original_tag = GER
+					NOT = { tag = GER }
+					has_government = paternal_autocrat
+				}
+				save_event_target_as = enemy_country_civil_war
+				delete_unit_template_and_units = {
+					division_template = "SS Panzer-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS-Infanterie-Division"
+				}
+			}
+			HGR = {
+			
+				transfer_state = 5
+				transfer_state = 4
+				transfer_state = 774
+				#transfer_state = 53
+				transfer_state = 65
+				transfer_state = 69
+				annex_country = {
+					target = event_target:enemy_country_civil_war
+					transfer_troops = yes
+				}
+				set_country_flag = heer_side_civil_war
+				declare_war_on = {
+					target = GER
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = HSS
+					type = annex_everything
+				}
+				set_technology = {
+					waffen_ss = 0
+				}
+				#hidden_effect = { add_ideas = TWR_SECRET_AGGRESSIVE_WACK }
+
+				set_province_controller = 5283
+				set_province_controller = 543
+				set_province_controller = 11525
+				set_province_controller = 557
+				set_province_controller = 469
+				set_province_controller = 11401
+				set_province_controller = 11414
+				set_province_controller = 707
+				set_province_controller = 3688
+				set_province_controller = 6347
+				set_province_controller = 514
+				set_province_controller = 11481
+				set_province_controller = 3535
+				set_province_controller = 6441
+				set_province_controller = 11545
+				set_province_controller = 3295
+				load_oob = "HGR_GCW"
+				country_event = { id = gcw.3 days = 95 } #CZE
+				country_event = { id = gcw.7 days = 120 } #SWI
+				country_event = { id = gcw.8 days = 130 } #Benelux
+				inherit_technology = GER
+				add_political_power = 200
+			}
+			GER = {
+				set_province_controller = 9441
+				set_province_controller = 9471
+				set_province_controller = 6559
+				set_province_controller = 573
+				set_province_controller = 9535
+				set_province_controller = 3514
+				set_province_controller = 241
+				set_province_controller = 548
+				set_province_controller = 6401
+			}
+			HSS = {
+				set_province_controller = 3395
+				set_province_controller = 11493
+				set_province_controller = 11402
+				set_province_controller = 6513
+			}
+			HSS = { change_tag_from = ROOT }
+			GER = {		
+				every_unit_leader = {
+					limit = { has_trait = ss_general }
+					set_nationality = HSS
+				}
+			}		
+			GER = {		
+				every_unit_leader = {
+					limit = { has_trait = heer_staff }
+					set_nationality = HGR
+				}
+			}
+		}
+	}
+	option = {
+		name = gcw.1.b #Government
+		custom_effect_tooltip = STAY_AS_CURRENT_TAG_GCW
+		hidden_effect = {
+		set_global_flag = DONT_TRY_TO_CHEESE_IT_BOY
+			HSS = {
+				transfer_state = 7
+				transfer_state = 35
+				transfer_state = 51
+				transfer_state = 6
+				transfer_state = 34
+				transfer_state = 802
+				transfer_state = 8
+				transfer_state = 42
+				transfer_state = 806
+				transfer_state = 28
+				transfer_state = 3
+				transfer_state = 17
+				transfer_state = 763
+				transfer_state = 762
+				transfer_state = 808
+				transfer_state = 807
+				transfer_state = 50
+				transfer_state = 151
+				transfer_state = 56
+				transfer_state = 57
+				transfer_state = 809
+				transfer_state = 55
+				transfer_state = 36
+				load_oob = "HSS_GCW"
+				country_event = { id = gcw.3 days = 95 } #CZE
+				country_event = { id = gcw.7 days = 120 } #SWI
+				country_event = { id = gcw.8 days = 130 } #Benelux
+				inherit_technology = GER
+				add_political_power = 200
+				set_country_flag = himmler_side_civil_war
+				country_event = { id = gcw.502 days = 2 }
+
+				declare_war_on = {
+					target = GER
+					type = annex_everything
+				}
+				set_technology = {
+				    waffen_ss = 1
+				}
+			}
+			GER = {
+				start_civil_war = {
+					ideology = paternal_autocrat
+					size = 0.4
+					
+					capital = 9
+					states = { 
+						9 75 74 67 766 4 774 152 102 85 768 98 97 5 188 810 72
+					}
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				set_technology = {
+					waffen_ss = 0
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS Panzer-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS-Infanterie-Division"
+				}
+				load_oob = "GER_GCW"
+				declare_war_on = {
+					target = HSS
+					type = annex_everything
+				}
+			}
+			random_country = { 	
+				limit = {
+					original_tag = GER
+					NOT = { tag = GER }
+					has_government = paternal_autocrat
+				}
+				save_event_target_as = enemy_country_civil_war
+				delete_unit_template_and_units = {
+					division_template = "SS Panzer-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS-Infanterie-Division"
+				}
+			}
+			HGR = {
+				transfer_state = 5
+				transfer_state = 4
+				transfer_state = 774
+				#transfer_state = 53
+				transfer_state = 65
+				transfer_state = 69
+				annex_country = {
+					target = event_target:enemy_country_civil_war
+					transfer_troops = yes
+				}
+				set_country_flag = heer_side_civil_war
+				declare_war_on = {
+					target = GER
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = HSS
+					type = annex_everything
+				}
+				set_technology = {
+					waffen_ss = 0
+				}
+
+				set_province_controller = 5283
+				set_province_controller = 543
+				set_province_controller = 11525
+				set_province_controller = 557
+				set_province_controller = 469
+				set_province_controller = 11401
+				set_province_controller = 11414
+				set_province_controller = 707
+				set_province_controller = 3688
+				set_province_controller = 6347
+				set_province_controller = 514
+				set_province_controller = 11481
+				set_province_controller = 3535
+				set_province_controller = 6441
+				set_province_controller = 11545
+				set_province_controller = 3295
+				load_oob = "HGR_GCW"
+				country_event = { id = gcw.3 days = 95 } #CZE
+				country_event = { id = gcw.7 days = 120 } #SWI
+				country_event = { id = gcw.8 days = 130 } #Benelux
+				inherit_technology = GER
+				add_political_power = 200
+			}
+			GER = {
+				set_province_controller = 9441
+				set_province_controller = 9471
+				set_province_controller = 6559
+				set_province_controller = 573
+				set_province_controller = 9535
+				set_province_controller = 3514
+				set_province_controller = 241
+				set_province_controller = 548
+				set_province_controller = 6401
+			}
+			HSS = {
+				set_province_controller = 3395
+				set_province_controller = 11493
+				set_province_controller = 11402
+				set_province_controller = 6513
+			}
+			GER = {		
+				every_unit_leader = {
+					limit = { has_trait = ss_general }
+					set_nationality = HSS
+				}
+			}		
+			GER = {		
+				every_unit_leader = {
+					limit = { has_trait = heer_staff }
+					set_nationality = HGR
+				}
+			}
+		}
+	}
+	option = {
+		name = gcw.1.c #Junta
+		custom_effect_tooltip = HEER_SWITCH_GCW
+		hidden_effect = {
+		set_global_flag = DONT_TRY_TO_CHEESE_IT_BOY
+			HSS = {
+				transfer_state = 7
+				transfer_state = 35
+				transfer_state = 51
+				transfer_state = 6
+				transfer_state = 34
+				transfer_state = 802
+				transfer_state = 8
+				transfer_state = 42
+				transfer_state = 806
+				transfer_state = 28
+				transfer_state = 3
+				transfer_state = 17
+				transfer_state = 763
+				transfer_state = 762
+				transfer_state = 808
+				transfer_state = 807
+				transfer_state = 50
+				transfer_state = 151
+				transfer_state = 56
+				transfer_state = 53
+				transfer_state = 65
+				transfer_state = 69
+				transfer_state = 57
+				transfer_state = 809
+				transfer_state = 55
+				transfer_state = 36
+				load_oob = "HSS_GCW"
+				country_event = { id = gcw.3 days = 95 } #CZE
+				country_event = { id = gcw.7 days = 120 } #SWI
+				country_event = { id = gcw.8 days = 130 } #Benelux
+				inherit_technology = GER
+				add_political_power = 200
+				set_country_flag = himmler_side_civil_war
+				country_event = { id = gcw.502 days = 2 }
+
+				declare_war_on = {
+					target = GER
+					type = annex_everything
+				}
+				set_technology = {
+				    waffen_ss = 1
+				}
+			}
+			GER = {
+				start_civil_war = {
+					ideology = paternal_autocrat
+					size = 0.4
+					
+					capital = 9
+					states = { 
+						9 75 74 67 766 4 774 152 102 85 768 98 97 5 188 810 72
+					}
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				set_technology = {
+					waffen_ss = 0
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS Panzer-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS-Infanterie-Division"
+				}
+				load_oob = "GER_GCW"
+				declare_war_on = {
+					target = HSS
+					type = annex_everything
+				}
+			}
+			random_country = { 	
+				limit = {
+					original_tag = GER
+					NOT = { tag = GER }
+					has_government = paternal_autocrat
+				}
+				save_event_target_as = enemy_country_civil_war
+				delete_unit_template_and_units = {
+					division_template = "SS Panzer-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS-Infanterie-Division"
+				}
+			}
+			HGR = {
+				transfer_state = 5
+				transfer_state = 4
+				transfer_state = 774
+				#transfer_state = 53
+				transfer_state = 65
+				transfer_state = 69
+				annex_country = {
+					target = event_target:enemy_country_civil_war
+					transfer_troops = yes
+				}
+				set_country_flag = heer_side_civil_war
+				declare_war_on = {
+					target = GER
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = HSS
+					type = annex_everything
+				}
+				set_technology = {
+					waffen_ss = 0
+				}
+
+				set_province_controller = 5283
+				set_province_controller = 543
+				set_province_controller = 11525
+				set_province_controller = 557
+				set_province_controller = 469
+				set_province_controller = 11401
+				set_province_controller = 11414
+				set_province_controller = 707
+				set_province_controller = 3688
+				set_province_controller = 6347
+				set_province_controller = 514
+				set_province_controller = 11481
+				set_province_controller = 3535
+				set_province_controller = 6441
+				set_province_controller = 11545
+				set_province_controller = 3295
+				load_oob = "HGR_GCW"
+				country_event = { id = gcw.3 days = 95 } #CZE
+				country_event = { id = gcw.7 days = 120 } #SWI
+				country_event = { id = gcw.8 days = 130 } #Benelux
+				inherit_technology = GER
+				add_political_power = 200
+			}
+			GER = {
+				set_province_controller = 9441
+				set_province_controller = 9471
+				set_province_controller = 6559
+				set_province_controller = 573
+				set_province_controller = 9535
+				set_province_controller = 3514
+				set_province_controller = 241
+				set_province_controller = 548
+				set_province_controller = 6401
+			}
+			HSS = {
+				set_province_controller = 3395
+				set_province_controller = 11493
+				set_province_controller = 11402
+				set_province_controller = 6513
+			}
+			HGR = { change_tag_from = ROOT }
+			GER = {		
+				every_unit_leader = {
+					limit = { has_trait = ss_general }
+					set_nationality = HSS
+				}
+			}		
+			GER = {		
+				every_unit_leader = {
+					limit = { has_trait = heer_staff }
+					set_nationality = HGR
+				}
+			}
+		}
+	}
+	}
+	#Polish Uprising
+	country_event = {
+	id = gcw.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.2"}
+	title = gcw.2.t
+	desc = gcw.2.d
+	picture = GFX_report_event_polish_uprising
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			set_global_flag = polish_revolt
+		}
+	}
+
+
+	option = {
+		name = gcw.2.a
+		URP = {
+
+			transfer_state = 984
+			transfer_state = 985
+			add_state_core = 984	
+			add_state_core = 985	
+			add_state_core = 89	
+			add_state_core = 91
+			declare_war_on = {
+				target = GGP
+				type = annex_everything
+			}
+			add_ideas = bonus_for_revolts
+		}
+		POL = {
+			transfer_state = 89
+			transfer_state = 91
+			declare_war_on = {
+				target = GGP
+				type = annex_everything
+			}
+			create_faction = SOUTHREVOLT #Southern Liberation Front
+			set_country_flag = SOUTHERN_FRONT_LEADER
+			add_to_faction = URP
+			set_politics = { 
+				ruling_party = paternal_autocrat
+				elections_allowed = no  
+			}
+
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = POL_REBELLION
+			set_province_controller = 417
+			set_province_controller = 3410
+		}
+		hidden_effect = {
+			POL = { 
+				load_oob = "POL_REVOLT"
+			}
+			URP = { 
+				load_oob = "URP_REVOLT"
+			}
+			GER = {
+				news_event = { id = twrnews.6 days = 0 }
+			}
+		}
+	}
+
+	option = {
+		name = gcw.2.b
+		URP = {
+			transfer_state = 984
+			transfer_state = 985
+			add_state_core = 984	
+			add_state_core = 985	
+			add_state_core = 89	
+			add_state_core = 91
+			declare_war_on = {
+				target = GGP
+				type = annex_everything
+			}
+			add_ideas = bonus_for_revolts
+		}
+		POL = {
+			transfer_state = 89
+			transfer_state = 91
+			declare_war_on = {
+				target = GGP
+				type = annex_everything
+			}
+			create_faction = SOUTHREVOLT
+			set_country_flag = SOUTHERN_FRONT_LEADER
+			add_to_faction = URP
+			set_politics = { 
+				ruling_party = paternal_autocrat
+				elections_allowed = no  
+			}
+
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = POL_REBELLION
+			set_province_controller = 417
+			set_province_controller = 3410
+		}
+
+		hidden_effect = {
+			POL = { 
+				load_oob = "POL_REVOLT"
+				change_tag_from = ROOT
+			}
+			URP = { 
+				load_oob = "URP_REVOLT"
+			}
+			GER = {
+				news_event = { id = twrnews.6 days = 0 }
+			}
+		}
+	}
+	option = {
+		name = gcw.2.c
+		URP = {
+			transfer_state = 984
+			transfer_state = 985
+			add_state_core = 984	
+			add_state_core = 985	
+			add_state_core = 89	
+			add_state_core = 91
+			declare_war_on = {
+				target = GGP
+				type = annex_everything
+			}
+			add_ideas = bonus_for_revolts
+		}
+		POL = {
+			transfer_state = 89
+			transfer_state = 91
+			create_faction = SOUTHREVOLT
+			set_country_flag = SOUTHERN_FRONT_LEADER
+			add_to_faction = URP
+			declare_war_on = {
+				target = GGP
+				type = annex_everything
+			}
+			set_politics = { 
+				ruling_party = paternal_autocrat
+				elections_allowed = no  
+			}
+
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = POL_REBELLION
+			set_province_controller = 417
+			set_province_controller = 3410
+		}
+
+		hidden_effect = {
+			POL = { 
+				load_oob = "POL_REVOLT"
+			}
+			URP = { 
+				load_oob = "URP_REVOLT"
+				change_tag_from = ROOT
+			}
+			GER = {
+				news_event = { id = twrnews.6 days = 0 }
+			}
+		}
+	}
+	} 
+	#Open the border
+	country_event = {
+	id = gcw.200001
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.200001"}
+	title = gcw.200001.t
+	desc = gcw.200001.d
+	picture = GFX_report_event_german_border_problem
+	is_triggered_only = yes
+
+	option = {
+		name = gcw.200001.a #yes
+		ai_chance = {
+			factor = 1
+		}
+		give_military_access = FROM
+		FROM = {
+			country_event = gcw.200002
+		}
+	}
+	option = {
+		name = gcw.200001.b #no
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.2
+		FROM = {
+			country_event = gcw.200003
+		}
+	}
+	}
+	#Open the border reaction yes
+	country_event = {
+	id = gcw.200002
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.200002"}
+	title = gcw.200002.t
+	desc = gcw.200002.d
+	picture = GFX_report_event_german_border_problem
+	is_triggered_only = yes
+	option = {
+		name = gcw.200002.a #yes
+		ai_chance = {
+			factor = 1
+		}
+		add_war_support = 0.02
+	}
+	}
+	#Open the border reaction no
+	country_event = {
+	id = gcw.200003
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.200003"}
+	title = gcw.200003.t
+	desc = gcw.200003.d
+	picture = GFX_report_event_german_border_problem
+	is_triggered_only = yes
+	option = {
+		name = gcw.200003.a #yes
+		ai_chance = {
+			factor = 1
+		}
+		declare_war_on = {
+			target = GGP
+			type = annex_everything
+		}
+	}
+	option = {
+		name = gcw.200003.b #no
+		ai_chance = {
+			factor = 0
+		}
+	}
+	}
+	#Prague Protest
+	country_event = {
+	id = gcw.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.3"}
+	title = gcw.3.t
+	desc = gcw.3.d
+	picture = GFX_report_event_prague_protest
+	immediate = {
+		hidden_effect = {
+			set_global_flag = prague_protest
+			set_global_flag = CZE_FIRED
+			country_event = { id = gcw.4 days = 7 random = 300 }
+		}
+	}
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+			}
+		}
+	}	
+
+	option = {
+		name = gcw.3.a
+		add_political_power = -100
+		trigger = { controls_state = 9 }
+		75 = {
+		remove_core_of = HGR
+		remove_core_of = GER
+		remove_core_of = HSS
+		}
+		9 = {
+		remove_core_of = HGR
+		remove_core_of = GER
+		remove_core_of = HSS
+		}
+	}
+	option = {
+		name = gcw.3.b
+		trigger = { NOT = { controls_state = 9 } }
+		}
+	}
+	#Prague Uprising
+	country_event = {
+	id = gcw.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.4"}
+	title = gcw.4.t
+	desc = gcw.4.d
+	picture = GFX_report_event_polish_uprising
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		has_global_flag = prague_protest
+		OR = { 
+			TAG = GER
+			TAG = HGR
+			TAG = HSS
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_global_flag = czech_revolt
+		}
+	}
+
+
+	option = {
+		name = gcw.4.a
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { controls_state = 9 }
+		CZE = {
+			transfer_state = 9
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = CZE_REBELLION
+			news_event = { id = twrnews.7 days = 0 }
+		}
+		hidden_effect = {
+			CZE = { 
+				load_oob = "CZE_REVOLT"
+				clr_global_flag = prague_protest
+			}
+		}
+	}
+
+	option = {
+		name = gcw.4.b
+		ai_chance = {
+		factor = 0
+		}
+		trigger = { controls_state = 9 }
+		CZE = {
+			transfer_state = 9
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = CZE_REBELLION
+			news_event = { id = twrnews.7 days = 0 }
+
+		}
+
+		hidden_effect = {
+			CZE = { 
+				load_oob = "CZE_REVOLT"
+				change_tag_from = ROOT
+				clr_global_flag = prague_protest
+			}
+		}
+	}
+	option = {
+		name = gcw.4.c
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { NOT = { controls_state = 9 } }
+	}
+	}
+	#Germania Protest
+	country_event = {
+	id = gcw.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.5"}
+	title = gcw.5.t
+	desc = gcw.5.d
+	picture = GFX_report_event_german_anti_nazis
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+			}
+		}
+	}
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_global_flag = germania_protest
+			country_event = { days = 5 id = gcw.6 }
+		}
+	}
+
+
+	option = {
+		name = gcw.5.a
+		trigger = { controls_state = 855 }
+		add_political_power = -600
+		add_stability = -0.2
+	}
+
+	option = {
+		name = gcw.5.b
+		trigger = { NOT = { controls_state = 855 } }
+		add_political_power = -300
+		add_stability = -0.1
+	}
+	}
+	#Germania Uprising
+	country_event = {
+	id = gcw.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.6"}
+	title = gcw.6.t
+	desc = gcw.6.d
+	picture = GFX_report_event_gcw_starts
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+			}
+		}
+	}	
+
+	immediate = {
+		hidden_effect = {
+			set_global_flag = german_revolution
+			set_global_flag = GCW_CHAOS_FIRED
+			every_state = {
+				limit = {
+					is_core_of = GER
+					NOT = {
+						is_core_of = HOL
+						is_core_of = LUX
+						is_core_of = BEL
+						is_core_of = SWI
+						is_core_of = CZE
+						is_core_of = POL
+						is_core_of = FRA
+					}
+				}
+				add_core_of = DDR
+			}
+			28 = {
+				add_core_of = DDR
+			}
+			GER = { country_event = { id = tgcw.2 days = 3 } }
+			HGR = { country_event = { id = tgcw.2 days = 3 } }
+			HSS = { country_event = { id = tgcw.2 days = 3 } }
+			DDR = {
+			country_event = { id = tgcw.2 days = 3 }
+			inherit_technology = GER
+			}
+		}
+	}
+
+
+	option = {
+		name = gcw.6.a
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { controls_state = 855 }
+		DDR = {
+			transfer_state = 855
+			transfer_state = 808
+			transfer_state = 58
+			transfer_state = 51
+			#set_province_controller = 9357
+			#set_province_controller = 6488
+			#set_province_controller = 587
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = DDR_REBELLION
+			news_event = { id = twrnews.8 days = 0 }
+		}
+		hidden_effect = {
+			DDR = { 
+				load_oob = "DDR_REVOLT"
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = RKN
+				type = annex_everything
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gcw.6.b
+		ai_chance = {
+		factor = 0
+		}
+		trigger = { controls_state = 855 }
+		DDR = {
+			transfer_state = 855
+			transfer_state = 808
+			transfer_state = 58
+			transfer_state = 51
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = DDR_REBELLION
+			news_event = { id = twrnews.8 days = 0 }
+
+		}
+
+		hidden_effect = {
+			DDR = { 
+				load_oob = "DDR_REVOLT"
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = RKN
+				type = annex_everything
+				}
+				change_tag_from = ROOT
+			}
+		}
+	}
+	option = {
+		name = gcw.6.c
+		trigger = { NOT = { controls_state = 855 } }
+		add_political_power = -130
+		add_war_support = -0.05
+	}
+	}
+	#Swiss Uprising
+	country_event = {
+	id = gcw.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7"}
+	title = gcw.7.t
+	desc = gcw.7.d
+	picture = GFX_report_event_gcw_starts
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+			}
+		}
+	}
+	immediate = {
+		hidden_effect = {
+			set_global_flag = swiss_revolution
+			set_global_flag = SWISS_FIRED
+		}
+	}
+
+
+	option = {
+		name = gcw.7.a
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { controls_state = 151 }
+		SWI = {
+			transfer_state = 151
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = SWI_REBELLION
+		}
+		hidden_effect = {
+			SWI = { 
+				load_oob = "SWI_REVOLT"
+				news_event = { id = twrnews.15 days = 0 }
+			}
+		}
+	}
+
+	option = {
+		name = gcw.7.b
+		ai_chance = {
+		factor = 0
+		}
+		trigger = { controls_state = 151 }
+		SWI = {
+			transfer_state = 151
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+			add_ideas = bonus_for_revolts
+			set_cosmetic_tag = SWI_REBELLION
+		}
+
+		hidden_effect = {
+			SWI = { 
+				load_oob = "SWI_REVOLT"
+				change_tag_from = ROOT
+				news_event = { id = twrnews.15 days = 0 }
+			}
+		}
+	}
+	option = {
+		name = gcw.7.c
+		trigger = { NOT = { controls_state = 151 } }
+	}
+	}
+	#Benelux General Strike
+	country_event = {
+	id = gcw.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.8"}
+	title = gcw.8.t
+	desc = gcw.8.d
+	picture = GFX_report_event_benelux_strike
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = gcw.9 days = 3 }
+			RKN = { country_event = gcw.81 }
+			RKN = { country_event = { id = gcw.9 days = 3 } }
+			set_global_flag = BENELUX_FIRED
+		}
+	}
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+				TAG = RKN
+			}
+		}
+	}
+
+
+	option = {
+		name = gcw.8.a
+		trigger = { controls_state = 6 }
+		add_stability = -0.1
+		add_political_power = -200
+	}
+
+	option = {
+		name = gcw.8.b
+		trigger = { 
+			NOT = { controls_state = 6 } 
+		}
+		add_political_power = -100
+	}
+	}
+	country_event = {
+	id = gcw.81
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.81"}
+	title = gcw.8.t
+	desc = gcw.8.d
+	picture = GFX_report_event_benelux_strike
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = gcw.9 days = 3 }
+			RKN = { country_event = { id = gcw.9 days = 3 } }
+			set_global_flag = BENELUX_FIRED
+		}
+	}
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = {
+				TAG = RKN
+			}
+		}
+	}
+
+
+	option = {
+		name = gcw.8.a
+		add_stability = -0.1
+		add_political_power = -200
+	}
+	}
+	#Benelux Uprising
+	country_event = {
+	id = gcw.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.9"}
+	title = gcw.9.t
+	desc = gcw.9.d
+	picture = GFX_report_event_belgian_resistance
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+				TAG = RKN
+			}
+		}
+	}
+	immediate = {
+		hidden_effect = {
+			set_global_flag = benelux_revolution
+			country_event = { id = gcw.10 days = 4 }
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = HOL
+						is_core_of = BEL
+					}
+				}
+				add_core_of = LUX
+			}
+		}
+	}
+
+
+	option = {
+		name = gcw.9.a
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { controls_state = 6 }
+		LUX = {
+			transfer_state = 6
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = RKN
+				type = annex_everything
+			}
+			set_politics = { 
+				ruling_party = paternal_autocrat
+				elections_allowed = no  
+			}
+			create_country_leader = {
+				name = "Benelux Liberation Council"
+				desc = ""
+				picture = "Benelux_Council.dds"
+				expire = "1965.1.1"
+				ideology = military_dictatorshipz
+				traits = {
+
+				}
+			}
+			add_ideas = bonus_for_revolts
+			add_ideas = BEN_internal_conflict
+			set_cosmetic_tag = BEN_REBELLION
+		}
+		hidden_effect = {
+			LUX = { 
+				load_oob = "BEL_NELUX_REVOLT"
+				news_event = { id = twrnews.17 days = 0 }
+			}
+		}
+	}
+
+	option = {
+		name = gcw.9.b
+		ai_chance = {
+		factor = 0
+		}
+		trigger = { controls_state = 6 }
+		LUX = {
+			transfer_state = 6
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+			set_politics = { 
+				ruling_party = paternal_autocrat
+				elections_allowed = no  
+			}
+			create_country_leader = {
+				name = "Benelux Liberation Council"
+				desc = ""
+				picture = "Benelux_Council.dds"
+				expire = "1965.1.1"
+				ideology = military_dictatorshipz
+				traits = {
+
+				}
+			}
+			add_ideas = bonus_for_revolts
+			add_ideas = BEN_internal_conflict
+			set_cosmetic_tag = BEN_REBELLION
+		}
+
+		hidden_effect = {
+			LUX = { 
+				load_oob = "BEL_NELUX_REVOLT"
+				change_tag_from = ROOT
+				news_event = { id = twrnews.17 days = 0 }
+			}
+		}
+	}
+	option = {
+		name = gcw.9.c
+		trigger = { NOT = { controls_state = 6 } }
+	}
+	}
+	#Dutch Uprising
+	country_event = {
+	id = gcw.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.10"}
+	title = gcw.10.t
+	desc = gcw.10.d
+	picture = GFX_report_event_the_dutch_resistance
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = gcw.11 days = 5 }
+			LUX = { country_event = { id = gcw.101 days = 0 } }
+		}
+	}
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		country_exists = LUX
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+				TAG = RKN
+			}
+		}
+	}
+
+
+	option = {
+		name = gcw.10.a
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { controls_state = 7 }
+		LUX = {
+			set_province_controller = 391
+			set_province_controller = 9498
+			set_province_controller = 3211
+		}
+		hidden_effect = {
+			LUX = { 
+				load_oob = "HOL_NELUX_REVOLT"
+			}
+		}
+	}
+	option = {
+		name = gcw.10.b
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { NOT = { controls_state = 7 } }
+	}
+	}
+	#Luxembourger Uprising
+	country_event = {
+	id = gcw.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.11"}
+	title = gcw.11.t
+	desc = gcw.11.d
+	picture = GFX_report_event_luxembourg_resistance
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			LUX = { country_event = { id = gcw.102 days = 0 } }
+		}
+	}
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		country_exists = LUX
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+				TAG = RKN
+			}
+		}
+	}
+
+
+	option = {
+		name = gcw.11.a
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { controls_state = 8 }
+		LUX = {
+			set_province_controller = 6583
+		}
+		hidden_effect = {
+			LUX = { 
+				load_oob = "LUX_NELUX_REVOLT"
+			}
+		}
+	}
+	option = {
+		name = gcw.11.c
+		ai_chance = {
+		factor = 1
+		}
+		trigger = { NOT = { controls_state = 8 } }
+	}
+	}
+	#Dutch Uprising - Reaction
+	country_event = {
+	id = gcw.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.101"}
+	title = gcw.101.t
+	desc = gcw.101.d
+	picture = GFX_report_event_gcw_starts
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+				TAG = RKN
+			}
+		}
+	}
+
+
+	option = {
+		name = gcw.101.a
+		custom_effect_tooltip = NETHERLANDSJOIN
+		add_stability = 0.05
+	}
+	}
+	#Luxembourger Uprising - Reaction
+	country_event = {
+	id = gcw.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.102"}
+	title = gcw.102.t
+	desc = gcw.102.d
+	picture = GFX_report_event_gcw_starts
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	trigger = {
+		has_global_flag = german_civil_war_started
+		has_war = yes
+		AND = {
+			OR = { 
+				TAG = GER
+				TAG = HGR
+				TAG = HSS
+				TAG = RKN
+			}
+		}
+	}
+
+
+	option = {
+		name = gcw.102.a
+		custom_effect_tooltip = LUXEMBOURGJOIN
+		add_stability = 0.05
+	}
+	}
+	#General Government
+	country_event = {
+	id = gcw.500
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.500"}
+	title = gcw.500.t
+	desc = gcw.500.d
+	picture = GFX_report_event_hans_frank
+	is_triggered_only = yes
+
+	option = {
+		name = gcw.500.a
+		ai_chance = { factor = 90 }
+		GGP = {
+			transfer_state = 10
+			transfer_state = 90
+			transfer_state = 92
+			transfer_state = 88
+			transfer_state = 89
+			transfer_state = 91
+			transfer_state = 984
+			transfer_state = 985
+		}
+		hidden_effect = {
+			GGP = { 
+				load_oob = "GGP_SECURITY"
+				country_event = { id = gcw.2 days = 25 } 
+				complete_national_focus = GGP_The_Civil_Administration
+				complete_national_focus = GGP_German_Civil_War
+			}
+		}
+	}
+
+	option = {
+		name = gcw.500.b
+		ai_chance = { factor = 0 }
+		GGP = {
+			transfer_state = 10
+			transfer_state = 90
+			transfer_state = 92
+			transfer_state = 88
+			transfer_state = 89
+			transfer_state = 91
+			transfer_state = 984
+			transfer_state = 985
+		}
+		hidden_effect = {
+			GGP = { 
+				load_oob = "GGP_SECURITY"
+				country_event = { id = gcw.2 days = 25 } 
+				complete_national_focus = GGP_The_Civil_Administration
+				complete_national_focus = GGP_German_Civil_War
+				change_tag_from = ROOT
+			}
+		}
+	}
+	}
+	#Wolfsburg Government
+	country_event = {
+	id = gcw.501
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.501"}
+	title = gcw.501.t
+	desc = gcw.501.d
+	picture = GFX_report_event_wolfsburg_government
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.501.a
+		PET = {
+			transfer_state = 195
+		}
+		hidden_effect = {
+			PET = { 
+				load_oob = "GERMAN_SECURITY_PET"
+			}
+		}
+	}
+	}
+	#Netherlands
+	country_event = {
+	id = gcw.502
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.502"}
+	title = gcw.502.t
+	desc = gcw.502.d
+	picture = GFX_report_event_netherlands_fly
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.502.a
+		RKN = {
+			transfer_state = 36
+			transfer_state = 35
+			transfer_state = 7
+			give_military_access = HSS
+		}
+		hidden_effect = {
+			RKN = { 
+				load_oob = "RKN_SECURITY"
+			}
+		}
+	}
+
+	option = {
+		name = gcw.502.b
+		RKN = {
+			transfer_state = 36
+			transfer_state = 35
+			transfer_state = 7
+			give_military_access = HSS
+		}
+		hidden_effect = {
+			RKN = { 
+				load_oob = "RKN_SECURITY"
+				change_tag_from = ROOT
+			}
+		}
+	}
+	}
+	#GCW FLavours#
+
+	news_event = {
+	id = gcw.1110
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.1110"}
+	title = gcw.1110.t
+	desc = gcw.1110.d
+	picture = GFX_news_event_heer_coup
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes
+
+	option = {
+		name = gcw.1110.a
+	}
+	}
+	#SS Distrust
+
+	country_event = {
+	id = gcw.77701
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.77701"}
+	title = gcw.77701.t #Minor purge
+	desc = gcw.77701.d
+	picture = GFX_report_event_himmler_twat
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.77701.a
+		add_manpower = -1500
+		add_stability = -0.1
+	}
+	}
+
+	country_event = {
+	id = gcw.7771
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7771"}
+	title = gcw.7771.t
+	desc = gcw.7771.d
+	picture = GFX_report_event_himmler_twat
+	is_triggered_only = yes
+	immediate = { 
+		hidden_effect = { 
+			country_event = { id = gcw.7772 days = 25 random = 300 } 
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7771.a
+		custom_effect_tooltip = SSLEADERSHIPQUESTION
+	}
+	}
+
+	country_event = {
+	id = gcw.7772
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7772"}
+	title = gcw.7772.t #Wewelsburg Conspiracy
+	desc = gcw.7772.d
+	picture = GFX_report_event_the_ss_meetings
+	is_triggered_only = yes
+	immediate = { 
+		hidden_effect = { 
+			country_event = { id = gcw.7773 days = 10 random = 300 } 
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7772.a
+		add_political_power = -120
+	}
+	}
+
+	country_event = {
+	id = gcw.7773
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7773"}
+	title = gcw.7773.t #The SS Highups Meeting
+	desc = gcw.7773.d
+	picture = GFX_report_event_the_ss_meetings
+	is_triggered_only = yes
+	immediate = { 
+		hidden_effect = { 
+			country_event = { id = gcw.7774 days = 4 random = 300 } 
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7773.a
+		custom_effect_tooltip = SSMEETING
+	}
+	}
+
+	country_event = {
+	id = gcw.7774
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7774"}
+	title = gcw.7774.t
+	desc = gcw.7774.d
+	picture = GFX_report_event_the_ss_meetings
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7774.a #attend
+		custom_effect_tooltip = NORETURN
+		hidden_effect = { 
+			country_event = { id = gcw.7775 days = 4 random = 300 } 
+		}
+	}
+	option = {
+		name = gcw.7774.b #ignore
+		hidden_effect = { 
+			random_list = {
+				50 = { country_event = { id = gcw.7778 days = 13 random = 300 } } #killed
+				50 = { country_event = { id = gcw.7779 days = 13 random = 300 } } #failed attempt
+			}
+		}
+	}
+	}
+
+	country_event = {
+	id = gcw.7775
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7775"}
+	title = gcw.7775.t #decide ye fate
+	desc = gcw.7775.d
+	picture = GFX_report_event_the_ss_meetings
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7775.a #attend
+		hidden_effect = { 
+			random_list = {
+				50 = { country_event = { id = gcw.7776 days = 1 random = 300 } } #removed
+				50 = { country_event = { id = gcw.7777 days = 1 random = 300 } } #positionkept
+			}
+		}
+	}
+	}
+
+	country_event = {
+	id = gcw.7776
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7776"}
+	title = gcw.7776.t #impeached!
+	desc = gcw.7776.d
+	picture = GFX_report_event_the_ss_meetings
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7776.a #himmler is gone
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Schutzstaffel Ausschuss"
+			desc = "POLITICS_Schutzstaffel_Council_DESC"
+			picture = "SS_Rightful_Chaos.dds"
+			expire = "1965.1.1"
+			ideology = ultranationalism
+			traits = {
+				cabinet_crisis
+			}
+		}
+		hidden_effect = { 
+			news_event = {
+				id = germannews.7001
+				days = 1
+			}
+			country_event = { id = gcw.77710 days = 4 random = 300 } 
+			}
+		}
+	}
+
+	country_event = {
+	id = gcw.7777
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7777"}
+	title = gcw.7777.t #himmler legitmate rule
+	desc = gcw.7777.d
+	picture = GFX_report_event_himmler_twat
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7777.a #unity
+		add_stability = 0.1
+		swap_ideas = {
+			remove_idea = GCW_SS_escalation
+			add_idea = GCW_mild_SS_discontent
+		}
+	}
+	}
+
+	country_event = {
+	id = gcw.7778
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7778"}
+	title = gcw.7778.t
+	desc = gcw.7778.d
+	picture = GFX_report_event_ss_funeral
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7778.a #hesss fuCKING DEAD
+		add_stability = -0.4
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Schutzstaffel Ausschuss"
+			desc = "POLITICS_Schutzstaffel_Council_DESC"
+			picture = "SS_Rightful_Chaos.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				cabinet_crisis
+			}
+		}
+		hidden_effect = { 
+			news_event = {
+				id = germannews.7000
+				hours = 5
+			}
+			set_country_flag = Heinrich_Himmler_unavailable
+			country_event = { id = gcw.77710 days = 4 }
+			}
+		}
+	}
+
+	country_event = {
+	id = gcw.7779
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7779"}
+	title = gcw.7779.t
+	desc = gcw.7779.d
+	picture = GFX_report_event_himmler_twat
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7779.a #hImmlER iSnT DEAD
+		add_stability = -0.2
+		add_political_power = 100
+		remove_ideas = GCW_SS_escalation
+		add_timed_idea = { idea = GCW_ss_purged days = 250 }
+		#remove_unit_leader =
+		hidden_effect = { set_country_flag = HSS_purged }
+	}
+	}
+
+	country_event = {
+	id = gcw.77710 #SI NEED NEWS
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.77710"}
+	title = gcw.77710.t
+	desc = gcw.77710.d
+	picture = GFX_report_event_the_ss_meetings
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = GCW_SS_escalation
+				add_idea = GCW_mild_SS_discontent
+			}
+		}
+	}
+	option = {
+		name = gcw.77710.a #electing hans lammers
+		add_stability = 0.01
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Hans Lammers"
+			desc = "POLITICS_HANS_LAMMERS_DESC"
+			picture = "Hans_Lammers.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				baron_of_terror
+			}
+		}
+	}
+
+	option = {
+		name = gcw.77710.c #electing heydrich
+		ai_chance = {
+		base = 1
+	    modifier = {
+	    factor = 0
+	    RGO = { is_ai = no }
+	    	}
+		}
+		add_stability = 0.02
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Reinhard Heydrich"
+			desc = "POLITICS_FUHRER_HEYDRICH_DESC"
+			picture = "Reinhard_Heydrich.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				god_of_death
+			}
+		}
+		RGO = { country_event = gcw.77712 }
+		}
+	}
+
+	country_event = {
+	id = gcw.77712
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.77712"}
+	title = gcw.77712.t 
+	desc = gcw.77712.d
+	picture = GFX_report_event_the_ss_meetings
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = gcw.77712.a #heydrich aint here
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Alfred Frauenfeld"
+			desc = "POLITICS_Alfred_Frauenfeld_DESC"
+			picture = "Alfred_Frauenfeld.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				dictator
+			}
+		}
+		add_ideas = HoG_Alfred_Frauenfeld
+		hidden_effect = {
+			set_country_flag = Reinhard_Heydrich_unavailable
+		}
+	}
+	}
+	#Heer Junta
+	country_event = {
+	id = gcw.77801
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.77801"}
+	title = gcw.77801.t #Office communication breakdown
+	desc = gcw.77801.d
+	picture = GFX_report_event_manstein_question
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gcw.77801.a	
+		add_command_power = -100
+	}
+	}
+	country_event = {
+	id = gcw.7781
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7781"}
+	title = gcw.7781.t
+	desc = gcw.7781.d
+	picture = GFX_report_event_manstein_question
+	is_triggered_only = yes
+	immediate = { 
+		hidden_effect = { 
+			country_event = { id = gcw.7782 days = 15 random = 300 } 
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7781.a
+	}
+	}
+
+	country_event = {
+	id = gcw.7782
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7782"}
+	title = gcw.7782.t
+	desc = gcw.7782.d
+	picture = GFX_report_event_moderate_clique
+	is_triggered_only = yes
+	immediate = { 
+		hidden_effect = { 
+			country_event = { id = gcw.7783 days = 10 random = 300 } 
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7782.a
+		custom_effect_tooltip = FORMATIONOFTHEMODERATECLIQUE
+		add_political_power = -120
+	}
+	}
+
+	country_event = {
+	id = gcw.7783
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7783"}
+	title = gcw.7783.t
+	desc = gcw.7783.d
+	picture = GFX_report_event_heer_defiance
+	is_triggered_only = yes
+	immediate = { 
+		hidden_effect = {  
+			country_event = { id = gcw.7784 days = 13 random = 300 } 
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7783.a
+		add_ideas = GCW_heer_staff_defiance
+	}
+	}
+
+	country_event = {
+	id = gcw.7784
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7784"}
+	title = gcw.7784.t
+	desc = gcw.7784.d
+	picture = GFX_report_event_the_gatherings
+	is_triggered_only = yes
+	immediate = { 
+		hidden_effect = {  
+			country_event = { id = gcw.7785 days = 5 random = 300 } 
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7784.a
+		add_stability = -0.05
+	}
+	}
+
+	country_event = {
+	id = gcw.7785 #Coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7785"}
+	title = gcw.7785.t
+	desc = gcw.7785.d
+	picture = GFX_report_event_manstein_question
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gcw.7785.a #Manstein side
+		add_stability = 0.3
+		remove_ideas = GCW_heer_staff_defiance
+		add_timed_idea = { idea = GCW_heer_purged days = 350 }
+		remove_unit_leader = 919
+		remove_unit_leader = 920
+		remove_unit_leader = 906
+		remove_unit_leader = 940
+		remove_unit_leader = 903
+		#remove_unit_leader =
+		hidden_effect = {
+			clr_country_flag = manstein_questioned
+			set_country_flag = HGR_purged
+			country_event = { id = gcw.7787 days = 7 }
+		}
+	}
+	option = {
+		name = gcw.7785.b #Moderate side
+		add_stability = -0.3
+		remove_ideas = GCW_heer_staff_defiance
+		add_ideas = GCW_bavarian_crisis
+		remove_unit_leader = 901
+		retire_country_leader = yes
+		set_politics = { 
+			ruling_party = fascist
+			elections_allowed = no  
+		}
+		add_popularity = {
+		ideology = fascist
+		popularity = 0.6
+		}
+		create_country_leader = {
+			name = "Hans Speidel"
+			desc = "Hans_Speidel_DESC"
+			picture = "Hans_Speidel.dds"
+			expire = "1965.1.1"
+			ideology = third_positionism
+			traits = { stout_defender }
+		}
+		add_ideas = {
+		GER_HoG_Hasso_von_Manteuffel
+		GER_FM_Albrecht_Mertz_von_Quirnheim
+		GER_MoS_Hans_Oster
+		}
+		hidden_effect = {
+			clr_country_flag = manstein_questioned
+			set_country_flag = Manstein_Gone
+			news_event = {
+				id = germannews.7002
+				days = 1
+			}
+			if = {
+			limit = { ITA = { is_fascist = yes } }
+			ITA = {
+			country_event = { id = twritalyforeign.69 days = 3 }
+				}
+			}
+		}
+	}
+	}
+	country_event = {
+	id = gcw.7787
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7787"}
+	title = gcw.7787.t #Challenge
+	desc = gcw.7787.d
+	picture = GFX_report_event_german_flag_propaganda
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+	has_war = yes
+	}
+	option = {
+		name = gcw.7787.a #manstein stays
+		add_stability = 0.05
+	}
+	option = {
+		name = gcw.7787.b #Franz Halder 
+		retire_country_leader = yes
+		remove_unit_leader = 901
+		create_country_leader = {
+			name = "Franz Halder"
+			desc = "Franz_Halde_DESC"
+			picture = "Franz_Halder.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+
+			}
+		}
+		add_ideas = {
+		GER_HoG_Wilhelm_List
+		GER_FM_Franz_Halder
+		}
+	}
+	option = {
+		name = gcw.7787.c #Friedrich Olbricht
+		retire_country_leader = yes
+		remove_unit_leader = 901
+		create_country_leader = {
+			name = "Friedrich Olbricht"
+			desc = "Friedrich_Olbricht_DESC"
+			picture = "Olbricht.dds"
+			expire = "1965.1.1"
+			ideology = third_positionism
+			traits = {
+
+			}
+		}
+		set_politics = { 
+			ruling_party = fascist
+			elections_allowed = no  
+		}
+		add_popularity = {
+		ideology = fascist
+		popularity = 0.55
+		}
+		add_ideas = {
+		GER_HoG_Werner_von_Haeften
+		GER_FM_Albrecht_Mertz_von_Quirnheim
+		GER_CoS_Adolf_Heusinger
+		}
+	}
+	}
+	country_event = {
+	id = gcw.7786
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcw.7786"}
+	title = gcw.7786.t #Slovenian independence
+	desc = gcw.7786.d
+	picture = GFX_report_event_slovenian_guards
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { 
+		hidden_effect = {  
+			news_event = { id = twrnews.37 days = 5 random = 300 } 
+		}
+	}
+	option = {
+		name = gcw.7786.a
+		add_stability = -0.05
+		release = SLV
+		hidden_effect = {
+			SLV = {
+				load_oob = "SLV_FREEDOM"
+			}
+		}
+	}
+	option = {
+		name = gcw.7786.b
+		add_stability = -0.05
+		release = SLV
+		hidden_effect = {
+			SLV = {
+				load_oob = "SLV_FREEDOM"
+			}
+			change_tag_from = ROOT
+		}
+	}
+	}
+
+	#GCW FLavours
+
+	country_event = {
+	id = tgcw.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.1"}
+	title = tgcw.1.t #flight of hess
+	desc = tgcw.1.d
+	picture = GFX_report_event_exile_hess
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.1.a #end em
+		hidden_effect = {
+			set_global_flag = hessisdead
+		}
+	}
+	option = {
+		name = tgcw.1.b #let him go
+		hidden_effect = {
+			SWE = {
+				country_event = { id = tgcw.101 days = 1 }
+			}
+		}
+	}
+	}
+	country_event = {
+	id = tgcw.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.101"}
+	title = tgcw.101.t #sweden reacts
+	desc = tgcw.101.d
+	picture = GFX_report_event_exile_hess
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.101.a #let him in
+		hidden_effect = {
+			set_global_flag = hessInSweden
+			news_event = {
+				id = tgcw.104 days = 1
+			}
+		}
+	}
+	option = {
+		name = tgcw.101.b #send the interceptors
+		hidden_effect = {
+			set_global_flag = hessisdead
+		}
+	}
+	}
+	news_event = { #Hess arrives in Sweden
+	id = tgcw.104
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.104"}
+	title = tgcw.104.t
+	desc = tgcw.104.d
+	picture = GFX_news_event_swedish_hess
+
+	fire_only_once = no
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+
+	option = {
+		name = tgcw.104.a
+	}
+	}
+	country_event = {
+	id = tgcw.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.2"}
+	title = tgcw.2.t #defect from generals
+	desc = tgcw.2.d
+	picture = GFX_report_event_gcw_starts
+	is_triggered_only = yes
+	fire_only_once = no
+	trigger = {
+		country_exists = DDR
+	}
+	option = {
+		name = tgcw.2.a #defection
+		trigger = {
+			NOT = { TAG = DDR }
+		}
+		every_unit_leader = {
+			limit = {
+			has_trait = hidden_sympathies
+		}
+			set_nationality = DDR
+		}	
+	}
+	option = {
+		name = tgcw.2.b #hurrah
+		trigger = {
+			TAG = DDR
+		}
+		add_political_power = 50
+		set_country_flag = THE_DDR_DEFECTED
+		}
+	}
+	country_event = {
+	id = tgcw.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.3"}
+	title = tgcw.3.t #Frankfurt Uprising
+	desc = tgcw.3.d
+	picture = GFX_report_event_german_uprising_frankfurt
+	is_triggered_only = yes
+	fire_only_once = no
+	trigger = {
+		country_exists = DDR
+	}
+	option = {
+		name = tgcw.3.a #reaction
+		trigger = {
+			NOT = { TAG = DDR }
+		}
+		add_political_power = -100	
+	}
+	option = {
+		name = tgcw.3.b #hurrah
+		trigger = {
+			TAG = DDR
+		}
+		create_corps_commander = {
+			name = "Fritz Theilen"
+			picture = "Fritz_Theilen.dds"
+			traits = { trickster }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		DDR = {
+			set_state_controller = 808
+			hidden_effect = {
+				load_oob = "DDR_FRANKFURT"
+			}
+		}
+		custom_effect_tooltip = DDR_IN_FRANKFURT
+	}
+	}
+	country_event = {
+	id = tgcw.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.4"}
+	title = tgcw.4.t #Thurigen Uprising
+	desc = tgcw.4.d
+	picture = GFX_report_event_thung_uprising
+	is_triggered_only = yes
+	fire_only_once = no
+	trigger = {
+		country_exists = DDR
+	}
+	option = {
+		name = tgcw.4.a #reaction
+		trigger = {
+			NOT = { TAG = DDR }
+		}
+		add_political_power = -100	
+	}
+	option = {
+		name = tgcw.4.b #hurrah
+		trigger = {
+			TAG = DDR
+		}
+		DDR = {
+			set_state_controller = 60
+			hidden_effect = {
+				load_oob = "DDR_THURIGEN"
+			}
+		}
+		custom_effect_tooltip = DDR_IN_THURIGEN
+	}
+	}
+	country_event = {
+	id = tgcw.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.5"}
+	title = tgcw.5.t #SS Fanatics
+	desc = tgcw.5.d
+	picture = GFX_report_event_gcw_starts
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.5.a
+		add_manpower = 500000
+		add_war_support = 0.15
+		custom_effect_tooltip = SS_fanactial_stuff
+	}
+	}
+	country_event = {
+	id = tgcw.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.6"}
+	title = tgcw.6.t #RIghteous_Front
+	desc = tgcw.6.d
+	picture = GFX_report_event_gcw_starts
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.6.a
+		add_manpower = 500000
+		add_war_support = 0.15
+		custom_effect_tooltip = GER_fanactial_stuff
+	}
+	}
+	country_event = {
+	id = tgcw.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.7"}
+	title = tgcw.7.t #Iron Order
+	desc = tgcw.7.d
+	picture = GFX_report_event_gcw_starts
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.7.a
+		add_manpower = 500000
+		add_war_support = 0.15
+		custom_effect_tooltip = HGR_fanactial_stuff
+	}
+	}
+
+	country_event = {
+	id = tgcw.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.8"}
+	title = tgcw.8.t #Volkshalle collapses
+	desc = tgcw.8.d
+	picture = GFX_report_event_burnt_halle
+	is_triggered_only = yes
+
+	option = {
+		name = tgcw.8.a #uh oh
+		add_ideas = GCW_volkshalle_collapse
+		}
+	}
+
+	country_event = { #supplies
+	id = tgcw.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.9"}
+	title = tgcw.9.t #Volkshalle collapses
+	desc = tgcw.9.d
+	picture = GFX_report_event_volkssturm
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.9.a #uh oh
+		add_ideas = GCW_supplies_disrupted
+	}
+	}
+	country_event = { #factoriesbombed
+	id = tgcw.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.10"}
+	title = tgcw.10.t #Volkshalle collapses
+	desc = tgcw.10.d
+	picture = GFX_report_event_volkssturm
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.10.a #uh oh
+		random_owned_controlled_state = { 
+			limit = {
+				arms_factory >  3
+			}
+			damage_building = {
+				type = arms_factory 
+				damage = 1
+			}
+		}
+		random_owned_controlled_state = { 
+			limit = {
+				arms_factory > 3
+			}
+			damage_building = {
+				type = arms_factory 
+				damage = 1
+			}
+		}
+		random_owned_controlled_state = { 
+			limit = {
+				arms_factory > 3
+			}
+			damage_building = {
+				type = arms_factory 
+				damage = 1
+			}
+		}
+
+	}
+	}
+	country_event = {
+	id = tgcw.9991
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.9991"}
+	title = tgcw.9991.t #Rightful Victory
+	desc = tgcw.9991.d
+	picture = GFX_report_event_business_as_usual
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.9991.a #hurrah
+		add_stability = 0.1
+		add_political_power = 100
+		add_timed_idea = {
+		idea = GER_Counting_Our_Losses
+		days = 180
+		}
+		add_ideas = GER_Natives_Unrest
+		hidden_effect = {
+			clr_global_flag = german_civil_war_started
+			set_global_flag = german_civil_war_over
+			news_event = tgcw.9999
+			every_state = { 
+				remove_core_of = HSS
+				remove_core_of = HGR
+				remove_core_of = DDR
+			}
+			remove_ideas = {
+				GCW_corrupted_bureaucracy
+				GCW_corrupted_army
+				GCW_bavarian_crisis
+				GCW_heer_staff_defiance
+				GCW_mild_SS_discontent
+				GCW_SS_escalation
+				GCW_SS_purged
+				SS_Cliques
+				GCW_dug_in
+				GCW_german_civil_war
+				GCW_volunteer_army
+				GCW_ss_volks
+				GCW_emergency_army
+				GCW_pushing
+				GCW_last_defence
+				GCW_human_wave
+				GCW_equipment_productions
+				GCW_to_the_skies
+				GCW_carpet_bomb
+				GCW_political_chaos
+			}
+			delete_unit_template_and_units = {
+    		division_template = "Volunteer Brigade"
+    		disband = yes
+				}
+			set_division_template_lock  = {
+    		division_template = "Reservearmee"
+    		is_locked = no
+				}
+			delete_unit_template_and_units = {
+    		division_template = "Küstenwache Division"
+    		disband = yes
+				}
+			add_timed_idea = {
+		    idea = GER_restarting_the_army
+		    days = 365
+				}
+			}
+		}
+	}
+	country_event = {
+	id = tgcw.9992
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.9992"}
+	title = tgcw.9992.t #Heer Victory
+	desc = tgcw.9992.d
+	picture = GFX_report_event_heer_victory
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.9992.a #hurrah
+		add_stability = 0.1
+		add_political_power = 100
+		add_timed_idea = {
+		idea = GER_Counting_Our_Losses
+		days = 180
+		}		
+		set_capital = { state = 855 }
+		set_cosmetic_tag = GER_VICTORY
+		add_ideas = GER_Natives_Unrest
+		hidden_effect = {
+			clr_global_flag = german_civil_war_started
+			set_global_flag = german_civil_war_over
+			news_event = tgcw.9999
+			every_state = { 
+				remove_core_of = HSS
+				remove_core_of = GER
+				remove_core_of = DDR
+			}
+			remove_ideas = {
+				GCW_corrupted_bureaucracy
+				GCW_corrupted_army
+				GCW_bavarian_crisis
+				GCW_heer_staff_defiance
+				GCW_mild_SS_discontent
+				GCW_SS_escalation
+				GCW_SS_purged
+				SS_Cliques
+				GCW_dug_in
+				GCW_german_civil_war
+				GCW_volunteer_army
+				GCW_ss_volks
+				GCW_emergency_army
+				GCW_pushing
+				GCW_last_defence
+				GCW_human_wave
+				GCW_equipment_productions
+				GCW_to_the_skies
+				GCW_carpet_bomb
+				GCW_political_chaos
+			}
+			delete_unit_template_and_units = {
+    		division_template = "Volunteer Brigade"
+    		disband = yes
+				}
+			delete_unit_template_and_units = {
+    		division_template = "Volunteer Division"
+    		disband = yes
+				}
+			set_division_template_lock  = {
+    		division_template = "Reservearmee"
+    		is_locked = no
+				}
+			delete_unit_template_and_units = {
+    		division_template = "Küstenwache Division"
+    		disband = yes
+				}
+			add_timed_idea = {
+		    idea = GER_restarting_the_army
+		    days = 365
+				}
+			if = {
+			limit = {
+			ITA = {
+			has_country_flag = ITA_DIRECT_SUPPORT_UNLOCKED_HGR
+			is_fascist = yes
+				}
+			}
+			ITA = {
+			country_event = { id = twritalyforeign.72 days = 2 }
+					}
+				}
+			}
+		}
+	}
+	country_event = {
+	id = tgcw.9993
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.9993"}
+	title = tgcw.9993.t #SS Victory
+	desc = tgcw.9993.d
+	picture = GFX_report_event_ss_victory
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.9993.a #hurrah
+		add_stability = 0.1
+		add_political_power = 100
+		add_timed_idea = {
+		idea = GER_Counting_Our_Losses
+		days = 180
+		}
+		set_cosmetic_tag = GER_VICTORY
+		add_ideas = GER_Natives_Unrest
+		hidden_effect = {
+			clr_global_flag = german_civil_war_started
+			set_global_flag = german_civil_war_over
+			set_capital = { state = 855 }
+			news_event = tgcw.9999
+			every_state = { 
+				remove_core_of = HGR
+				remove_core_of = GER
+				remove_core_of = DDR
+			}
+			remove_ideas = {
+				GCW_corrupted_bureaucracy
+				GCW_corrupted_army
+				GCW_bavarian_crisis
+				GCW_heer_staff_defiance
+				GCW_mild_SS_discontent
+				GCW_SS_escalation
+				GCW_SS_purged
+				SS_Cliques
+				GCW_dug_in
+				GCW_german_civil_war
+				GCW_volunteer_army
+				GCW_ss_volks
+				GCW_emergency_army
+				GCW_pushing
+				GCW_last_defence
+				GCW_human_wave
+				GCW_equipment_productions
+				GCW_to_the_skies
+				GCW_carpet_bomb
+				GCW_political_chaos
+			}
+			delete_unit_template_and_units = {
+    		division_template = "SS-Volunteer Brigade"
+    		disband = yes
+				}
+			delete_unit_template_and_units = {
+    		division_template = "SS-Volunteer Division"
+    		disband = yes
+				}
+			delete_unit_template_and_units = {
+    		division_template = "Allgemeine SS Division"
+    		disband = yes
+				}
+			set_division_template_lock  = {
+    		division_template = "Reservearmee"
+    		is_locked = no
+				}
+			delete_unit_template_and_units = {
+    		division_template = "Küstenwache Division"
+    		disband = yes
+				}
+			delete_unit_template_and_units = {
+    		division_template = "Allgemeine SS Division"
+    		disband = yes
+				}
+			add_timed_idea = {
+		    idea = GER_restarting_the_army
+		    days = 365
+				}
+			}
+		}
+	}
+	country_event = {
+	id = tgcw.9994
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.9994"}
+	title = tgcw.9994.t #Peoples Victory
+	desc = tgcw.9994.d
+	picture = GFX_report_event_peoples_germany_victory
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.9994.a #hurrah
+		add_stability = 0.1
+		add_political_power = 100
+		add_timed_idea = {
+		idea = GER_Counting_Our_Losses
+		days = 180
+		}
+		add_ideas = {
+		DDR_Reconstruction
+		DDR_Nazi_Leftovers
+		DDR_Political_Confusion
+		DDR_Austrian_Problem
+		}
+		hidden_effect = {
+			clr_global_flag = german_civil_war_started
+			set_global_flag = german_civil_war_over
+			every_state = { 
+				remove_core_of = HGR
+				remove_core_of = GER
+				remove_core_of = HSS
+			}
+		remove_ideas = {
+		DDR_Idea_Volksheer
+		DDR_Idea_Free_Germany
+		DDR_Idea_Emergency_Factories
+			}
+		}
+		hidden_effect = {
+		news_event = tgcw.99991
+		CAN = {
+		country_event = { id = twrddr.3 hours = 7 }
+		}
+		country_event = { id= tgcw.99941 days = 5 }
+			LUX = {
+				country_event = { id= tgcw.99941 days = 5 }
+			}
+			SWI = {
+				country_event = { id= tgcw.99941 days = 5 }
+			}
+			CZE = {
+				country_event = { id= tgcw.99941 days = 5 }
+				clr_country_flag = CZE_SUCCESSFUL_REBELLION_INSECURITY
+			}
+			if = {
+				limit = {
+					country_exists = FRA
+				}
+				FRA = {
+					country_event = { id= tgcw.99941 days = 5 }
+				}		
+			}
+			if = {
+				limit = {
+					NOT = {
+						country_exists = FRA
+					}
+					country_exists = FFR
+				}
+				FFR = {
+					country_event = { id= tgcw.99941 days = 5 }
+				}		
+			}
+		}
+	}
+	}
+	country_event = {
+	id = tgcw.99941
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.99941"}
+	title = tgcw.99941.t #Giving up unlawful land
+	desc = tgcw.99941.d
+	picture = GFX_report_event_german_map
+	is_triggered_only = yes
+	fire_only_once = no
+	option = {
+		name = tgcw.99941.a #A new order
+		trigger = {
+			tag = DDR
+		}
+		add_stability = 0.05
+		hidden_effect = {
+			DDR = {
+				set_country_flag = NEW_BORDERS
+				transfer_state = 28
+				transfer_state = 807
+				transfer_state = 42
+				transfer_state = 806
+				transfer_state = 51
+				transfer_state = 809
+				transfer_state = 50
+				transfer_state = 808
+				transfer_state = 57
+				transfer_state = 56
+				transfer_state = 153
+				transfer_state = 774
+				transfer_state = 4
+				transfer_state = 152
+				transfer_state = 53
+				transfer_state = 54
+				transfer_state = 55
+				transfer_state = 60
+				transfer_state = 65
+				transfer_state = 64
+				transfer_state = 59
+				transfer_state = 58
+				transfer_state = 804
+				transfer_state = 61
+				transfer_state = 68
+				transfer_state = 62
+				transfer_state = 66
+				transfer_state = 67
+				transfer_state = 766
+				transfer_state = 87
+				transfer_state = 98
+				transfer_state = 810
+				transfer_state = 768
+				transfer_state = 5
+				transfer_state = 188
+				transfer_state = 85
+				transfer_state = 798
+				transfer_state = 86	
+				transfer_state = 97
+				transfer_state = 52
+				transfer_state = 63		
+				drop_cosmetic_tag = yes
+				country_event = { id = tgcw.99942 days = 2 }
+			}
+			LUX = {
+				transfer_state = 8
+				transfer_state = 6
+				transfer_state = 34
+				transfer_state = 7
+				transfer_state = 36
+				transfer_state = 35
+				transfer_state = 802
+			}
+			SWI = {
+				transfer_state = 3
+				transfer_state = 151
+				drop_cosmetic_tag = yes
+				clr_country_flag = SWI_SUCCESSFUL_REBELLION_INSECURITY
+			}
+			CZE = {
+				transfer_state = 9
+				transfer_state = 75
+				transfer_state = 72
+				transfer_state = 74
+				transfer_state = 69
+				drop_cosmetic_tag = yes
+				clr_country_flag = CZE_SUCCESSFUL_REBELLION_INSECURITY
+			}
+			if = {
+				limit = {
+					country_exists = FRA
+				}
+				FRA = {
+					transfer_state = 17
+					transfer_state = 28
+					transfer_state = 763
+					transfer_state = 762
+				}		
+			}
+			if = {
+				limit = {
+					NOT = {
+						country_exists = FRA
+					}
+					country_exists = FFR
+				}
+				FFR = {
+					transfer_state = 17
+					transfer_state = 28
+					transfer_state = 763
+					transfer_state = 762
+				}		
+			}
+		}
+	}
+	option = {
+		name = tgcw.99941.b
+		trigger = {
+			NOT = {
+				tag = DDR
+			}
+		}
+		add_stability = 0.15
+		add_political_power = 50
+		}
+	}
+	country_event = {
+	id = tgcw.99942
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.99942"}
+	title = tgcw.99942.t #Polish Border Question
+	desc = tgcw.99942.d
+	picture = GFX_report_event_german_border_problem
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tgcw.99942.a #Weimar borders
+		ai_chance = {
+			factor = 50
+		}
+		add_stability = 0.1
+		POL = {
+			transfer_state = 766
+			transfer_state = 87
+			transfer_state = 98
+			transfer_state = 97
+			transfer_state = 810
+			transfer_state = 85
+			transfer_state = 798
+			transfer_state = 86
+		}
+		DEN = { transfer_state = 804 }
+		reverse_add_opinion_modifier = {
+			target = POL
+			modifier = medium_increase 
+		}
+		hidden_effect = {
+			clr_country_flag = NEW_BORDERS
+		}
+	}
+	option = {
+		name = tgcw.99942.b #Keep the germanic parts
+		ai_chance = {
+			factor = 10
+		}
+		POL = {
+			transfer_state = 87
+			transfer_state = 98
+			transfer_state = 97
+			transfer_state = 810
+		}
+		798 = { add_core_of = DDR }
+		85 = { add_core_of = DDR }
+		86 = { add_core_of = DDR }
+		766 = { add_core_of = DDR }
+		
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.15
+		}
+		reverse_add_opinion_modifier = {
+			target = POL
+			modifier = large_decrease
+		}
+		hidden_effect = {
+			clr_country_flag = NEW_BORDERS
+		}
+	}
+	option = {
+		name = tgcw.99942.c #Keep only danzig and west prussia
+		ai_chance = {
+			factor = 90
+		}
+		add_stability = 0.1
+		POL = {
+			transfer_state = 766
+			transfer_state = 87
+			transfer_state = 98
+			transfer_state = 97
+			transfer_state = 810
+			transfer_state = 86
+		}
+		798 = { add_core_of = DDR }
+		85 = { add_core_of = DDR }
+		
+		DEN = { transfer_state = 804 }
+		add_stability = 0.05
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.05
+		}
+		reverse_add_opinion_modifier = {
+			target = POL
+			modifier = small_decrease 
+		}
+		hidden_effect = {
+			clr_country_flag = NEW_BORDERS
+		}
+	}
+	}
+	news_event = {
+	id = tgcw.9999
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.9999"}
+	title = tgcw.9999.t #GCW Over
+	desc = tgcw.9999.d
+	picture = GFX_news_event_gcw_ends
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes
+	option = {
+		name = tgcw.9999.a #reaction
+	}
+	}
+	news_event = {
+	id = tgcw.99991
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tgcw.9999"}
+	title = tgcw.99991.t #GCW Revolution
+	desc = tgcw.99991.d
+	picture = GFX_news_event_german_revolution
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes
+	option = {
+		name = tgcw.99991.a #reaction
+		}
+	}
+
+	#GCW TRUCE CONFERENCE
+
+	#Lets talk
+	country_event = {
+	id = gcwextraaa.1010
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcwextraaa.1010"}
+	title = gcwextra.1.t
+	desc = gcwextra.1.d
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+
+	option = {
+		name = gcwextra.1.a #yes
+		ai_chance = {
+			factor = 1
+			modifier = {
+			factor = 4.0
+			tag = GER			
+			}
+			modifier = {
+			factor = 6.0
+			tag = HGR			
+			}
+			modifier = {
+			factor = 2.0
+			tag = HSS			
+			}
+		}
+		add_stability = 0.05
+		hidden_effect = {
+		set_country_flag = gcw_accepted_ceasefire_state
+		FROM = {
+		country_event = { id = gcwextraaa.2020 hours = 9 random = 50 }
+			}
+		set_country_flag = agreed_to_gcw_ceasefire
+		}
+	}
+	option = {
+		name = gcwextra.1.b #no
+		ai_chance = {
+			factor = 1
+			modifier = {
+			factor = 6.0
+			tag = GER			
+			}
+			modifier = {
+			factor = 4.0
+			tag = HGR			
+			}
+			modifier = {
+			factor = 8.0
+			tag = HSS			
+			}
+		}
+		custom_effect_tooltip = WE_HAVE_REJECTED_PEACE_TALKS
+		add_war_support = 0.15
+		add_stability = -0.15
+		hidden_effect = {
+		set_country_flag = REJECTED_TALKS_GCW
+		FROM = {
+		country_event = { id = gcwextraaa.21 hours = 9 }
+				}
+			}
+		}
+	}
+
+	#Reaction they accepted
+	country_event = {
+	id = gcwextraaa.2020
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcwextraaa.2020"}
+	title = gcwextra.2.t
+	desc = gcwextra.2.d
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+
+	option = {
+		name = gcwextra.2.a #yee
+		trigger = {
+		NOT = {
+		has_global_flag = UNITED_FRONT_TALK_GCW
+			}
+		}
+		add_stability = 0.05
+		country_event = { id = gcwextraaa.3030 days = 3 }
+		FROM = {
+		white_peace = ROOT
+			}
+		every_country = {
+		limit = { is_puppet_of = FROM }
+		white_peace = ROOT
+		}
+		hidden_effect = {
+		set_global_flag = UNITED_FRONT_TALK_GCW
+			}
+		}
+	option = {
+		name = gcwextra.2.a #yee
+		trigger = {
+		has_global_flag = UNITED_FRONT_TALK_GCW
+		}
+		add_stability = 0.05
+		FROM = {
+		white_peace = ROOT
+			}
+		every_country = {
+		limit = { is_puppet_of = FROM }
+		white_peace = ROOT
+			}
+		}
+	}
+
+	#Reaction they refused
+	country_event = {
+	id = gcwextraaa.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcwextraaa.21"}
+	title = gcwextra.21.t
+	desc = gcwextra.21.d
+	picture = GFX_report_event_announced_nazi
+	is_triggered_only = yes
+
+	option = {
+		name = gcwextra.21.a #their loss
+		add_political_power = -50
+		}
+	}
+
+	#United Front Talks
+	country_event = {
+	id = gcwextraaa.3030
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcwextraaa.3030"}
+	title = gcwextra.3.t
+	desc = gcwextra.3.d
+	picture = GFX_report_event_announced_nazi
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		ai_chance = {
+			factor = 1
+		}
+		name = gcwextra.3.a #Lets form a united front
+		create_faction = "German United Front"
+		news_event = gcwextraaa.5050
+		hidden_effect = {
+		set_country_flag = GCW_GERMAN_UNITED_FRONT
+		every_country = {
+			limit = { has_country_flag = gcw_accepted_ceasefire_state }
+			country_event = { id = gcwextraaa.4040 hours = 5 }
+			}
+		clr_global_flag = ONGOING_CONFERENCE_GCW
+			}
+		}
+	option = {
+		ai_chance = {
+			factor = 0
+		}
+		name = gcwextra.3.a #Theres no need
+		add_political_power = 150
+		clr_global_flag = ONGOING_CONFERENCE_GCW
+		}
+	}
+
+	#United Front
+	country_event = {
+	id = gcwextraaa.4040
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcwextraaa.4040"}
+	title = gcwextraaa.4.t
+	desc = gcwextraaa.4.d
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+	
+	option = {
+		name = gcwextra.4.a #join them
+		ai_chance = {
+			factor = 50
+		}	
+		add_political_power = 150
+		FROM = {
+		add_to_faction = ROOT
+			}
+		}
+	}
+
+	news_event = {
+	id = gcwextraaa.5050
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gcwextraaa.5050"}
+	title = gcwextra.5.t #GCW United Front
+	desc = gcwextra.5.d
+	picture = GFX_news_event_german_unity
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes
+	option = {
+	trigger = {
+	has_country_flag = agreed_to_gcw_ceasefire
+	}
+	name = gcwextra.5.a #good
+		}
+	option = {
+	trigger = {
+	NOT = {
+	has_country_flag = agreed_to_gcw_ceasefire
+		}
+	}
+	name = gcwextra.5.b #oh
+		}
+	}

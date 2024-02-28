@@ -1,0 +1,456 @@
+ENG_Malayan_Emergency = {
+	malayan_emergency_eng_men = {                           
+        	allowed = { tag = ENG }                 
+         	available = {                           
+               CMA = {
+                    has_war_with = MAL
+               }             
+          }
+          visible = {                    
+               CMA = {
+                    has_war_with = MAL
+               }                    
+          }
+          days_re_enable = 60
+          complete_effect = {
+               log = "[GetDateText]: [Root.GetName]: Decision malayan_emergency_eng"
+               ENG = {
+                    add_manpower = -10000
+               }
+               MAL = {
+                    add_manpower = 10000
+               }
+     	}
+          ai_will_do = {
+               factor = 30
+          }
+     }
+	malayan_emergency_eng_arms = {                           
+     	allowed = { tag = ENG }                 
+     	available = {                           
+               CMA = {
+                    has_war_with = MAL
+               }            
+               ENG = {
+                    has_equipment = { infantry_equipment > 4999 }
+               }
+          }
+          visible = {                    
+               CMA = {
+                    has_war_with = MAL
+               }                    
+          }
+          days_re_enable = 60
+          complete_effect = {
+               log = "[GetDateText]: [Root.GetName]: Decision malayan_emergency_eng"
+               send_equipment = { target = MAL type = infantry_equipment amount = 5000 }
+          }
+          ai_will_do = {
+               factor = 30
+          }
+	}
+}
+
+ENG_National_Debt = {
+     pay_off_debt_1 = {
+          allowed = { tag = ENG }                 
+          available = {                           
+               has_completed_focus = ENG_workshop_of_the_world
+          }
+          visible = {
+          }
+          cost = 100
+          fire_only_once = yes
+          complete_effect = {
+               log = "[GetDateText]: [Root.GetName]: Decision pay_off_debt_1"
+               swap_ideas = {
+                    remove_idea = ENG_high_national_debt
+                    add_idea = ENG_medium_national_debt
+               }
+               add_timed_idea = { idea = ENG_paying_off_debt days = 100 }
+               set_country_flag = ENG_debt_paid_1
+          }
+          ai_will_do = {
+               factor = 50
+          }
+     }
+     pay_off_debt_2 = {
+          allowed = { tag = ENG }                 
+          available = {
+               has_country_flag = {
+                   flag = ENG_debt_paid_1
+                   days > 200
+               }
+          }
+          visible = {
+               has_country_flag = ENG_debt_paid_1
+          }
+          cost = 100
+          fire_only_once = yes
+          complete_effect = {
+               log = "[GetDateText]: [Root.GetName]: Decision pay_off_debt_1"
+               swap_ideas = {
+                    remove_idea = ENG_medium_national_debt
+                    add_idea = ENG_low_national_debt
+               }
+               add_timed_idea = { idea = ENG_paying_off_debt days = 100 }
+               set_country_flag = ENG_debt_paid_2
+          }
+          ai_will_do = {
+               factor = 50
+          }
+     }
+}
+
+ENG_Decolonisation = {
+     ENG_Madagascar_Timer = {
+          allowed = { tag = ENG }
+          selectable_mission = yes
+          is_good = no
+          activation = {
+               has_war = no
+               date > 1954.6.10
+               MAD = { exists = no }
+               owns_state = 953
+               owns_state = 543
+          }
+          days_mission_timeout = 100
+          fire_only_once = yes
+          cost = freedec?0
+          timeout_effect = {
+               country_event = twrbritaindecol.32
+          }
+          complete_effect = {
+               country_event = twrbritaindecol.32
+          }
+     }
+	ENG_Sudan_Timer = {
+		allowed = { tag = ENG }
+		selectable_mission = yes
+		is_good = no
+          activation = {
+               always = no
+          }
+		days_mission_timeout = 100
+		fire_only_once = yes
+		cost = freedec?0
+		timeout_effect = {
+			country_event = africa.10
+		}
+		complete_effect = {
+			country_event = africa.10
+		}
+	}
+     ENG_Ghana_Timer = {
+          allowed = { tag = ENG }
+          selectable_mission = yes
+          is_good = no
+          activation = {
+               date > 1955.1.5
+               has_war = no
+               GHA = { exists = no }
+          }
+          days_mission_timeout = 60
+          fire_only_once = yes
+          cost = freedec?0
+          timeout_effect = {
+               country_event = twrbritain.2
+          }
+          complete_effect = {
+               country_event = twrbritain.2
+          }
+     }
+     ENG_Nigeria_Timer = {
+          allowed = { tag = ENG }
+          selectable_mission = yes
+          is_good = no
+          activation = {
+               date > 1956.10.5
+               has_war = no
+               NGA = { exists = no }
+          }
+          days_mission_timeout = 100
+          fire_only_once = yes
+          cost = freedec?0
+          timeout_effect = {
+               country_event = twrbritaindecol.2
+          }
+          complete_effect = {
+               country_event = twrbritaindecol.2
+          }
+     }
+     ENG_Sierra_Leone = {
+          allowed = { tag = ENG }
+          selectable_mission = yes
+          is_good = no
+          activation = {
+               date > 1957.4.27
+               has_war = no
+               SIE = { exists = no }
+          }
+          days_mission_timeout = 100
+          fire_only_once = yes
+          cost = freedec?0
+          timeout_effect = {
+               country_event = twrbritaindecol.1
+          }
+          complete_effect = {
+               country_event = twrbritaindecol.1
+          }
+     }
+     ENG_Tananyika_Timer = {
+          allowed = { tag = ENG }
+          selectable_mission = yes
+          is_good = no
+          activation = {
+               date > 1957.5.27
+               has_war = no
+               TZN = { exists = no }
+          }
+          days_mission_timeout = 100
+          fire_only_once = yes
+          cost = freedec?0
+          timeout_effect = {
+               country_event = twrbritaindecol.4
+          }
+          complete_effect = {
+               country_event = twrbritaindecol.4
+          }
+     }
+     ENG_Uganda_Timer = {
+          allowed = { tag = ENG }
+          selectable_mission = yes
+          is_good = no
+          activation = {
+               date > 1958.8.27
+               has_war = no
+               UGA = { exists = no }
+          }
+          days_mission_timeout = 100
+          fire_only_once = yes
+          cost = freedec?0
+          timeout_effect = {
+               country_event = twrbritaindecol.5
+          }
+          complete_effect = {
+               country_event = twrbritaindecol.5
+          }
+     }
+     ENG_Kenya_Timer = {
+          allowed = { tag = ENG }
+          selectable_mission = yes
+          is_good = no
+          activation = {
+               date > 1960.2.27
+               has_war = no
+               KEN = { exists = no }
+          }
+          days_mission_timeout = 100
+          fire_only_once = yes
+          cost = freedec?0
+          timeout_effect = {
+               country_event = twrbritaindecol.6
+          }
+          complete_effect = {
+               country_event = twrbritaindecol.6
+          }
+     }
+     ENG_Zanzibar_Timer = {
+          allowed = { tag = ENG }
+          selectable_mission = yes
+          is_good = no
+          activation = {
+               date > 1960.3.27
+               has_war = no
+               ZAN = { exists = no }
+          }
+          days_mission_timeout = 100
+          fire_only_once = yes
+          cost = freedec?0
+          timeout_effect = {
+               country_event = twrbritaindecol.7
+          }
+          complete_effect = {
+               country_event = twrbritaindecol.7
+          }
+     }
+}
+
+ENG_Keeping_The_Empire = {
+     ENG_Stabilise_Nigeria = {
+          allowed = { tag = ENG }
+          available = {
+               check_variable = {
+                   eng_unrest_nigeria > 0
+               }
+               NOT = {
+                    has_country_flag = rebellion_nigeria
+               }
+          }
+          days_re_enable = 30
+          visible = {
+          }
+          cost = 50
+          fire_only_once = no
+          complete_effect = {
+               ENG = {
+                    add_manpower = -500
+               }
+               random_list = {
+                    60 = {
+                         country_event = {
+                              id = twrbritaindecol.12
+                              days = 5
+                         }
+                    }
+                    30 = {
+                         country_event = {
+                              id = twrbritaindecol.13
+                              days = 5
+                         }
+                    }
+                    10 = {
+                         country_event = {
+                              id = twrbritaindecol.14
+                              days = 5
+                         }
+                    }
+               }
+          }
+          ai_will_do = {
+               factor = 40
+          }
+     }
+     ENG_Stabilise_East_Africa = {
+          allowed = { tag = ENG }
+          available = {
+               check_variable = {
+                   eng_unrest_east_africa > 0
+               }
+               NOT = {
+                    has_country_flag = rebellion_east_africa
+               }
+          }
+          days_re_enable = 30
+          visible = {
+          }
+          cost = 50
+          fire_only_once = no
+          complete_effect = {
+               ENG = {
+                    add_manpower = -500
+               }
+               random_list = {
+                    60 = {
+                         country_event = {
+                              id = twrbritaindecol.17
+                              days = 5
+                         }
+                    }
+                    30 = {
+                         country_event = {
+                              id = twrbritaindecol.18
+                              days = 5
+                         }
+                    }
+                    10 = {
+                         country_event = {
+                              id = twrbritaindecol.19
+                              days = 5
+                         }
+                    }
+               }
+          }
+          ai_will_do = {
+               factor = 40
+          }
+     }
+     ENG_Stabilise_West_Africa = {
+          allowed = { tag = ENG }
+          available = {
+               check_variable = {
+                   eng_unrest_west_africa > 0
+               }
+               NOT = {
+                    has_country_flag = rebellion_west_africa
+               }
+          }
+          days_re_enable = 30
+          visible = {
+          }
+          cost = 50
+          fire_only_once = no
+          complete_effect = {
+               ENG = {
+                    add_manpower = -500
+               }
+               random_list = {
+                    60 = {
+                         country_event = {
+                              id = twrbritaindecol.22
+                              days = 5
+                         }
+                    }
+                    30 = {
+                         country_event = {
+                              id = twrbritaindecol.23
+                              days = 5
+                         }
+                    }
+                    10 = {
+                         country_event = {
+                              id = twrbritaindecol.24
+                              days = 5
+                         }
+                    }
+               }
+          }
+          ai_will_do = {
+               factor = 40
+          }
+     }
+     ENG_Stabilise_Southern_Africa = {
+          allowed = { tag = ENG }
+          available = {
+               check_variable = {
+                   eng_unrest_rhodesia > 0
+               }
+               NOT = {
+                    has_country_flag = rebellion_rhodesia
+               }
+          }
+          days_re_enable = 30
+          visible = {
+          }
+          cost = 50
+          fire_only_once = no
+          complete_effect = {
+               ENG = {
+                    add_manpower = -500
+               }
+               random_list = {
+                    60 = {
+                         country_event = {
+                              id = twrbritaindecol.27
+                              days = 5
+                         }
+                    }
+                    30 = {
+                         country_event = {
+                              id = twrbritaindecol.28
+                              days = 5
+                         }
+                    }
+                    10 = {
+                         country_event = {
+                              id = twrbritaindecol.29
+                              days = 5
+                         }
+                    }
+               }
+          }
+          ai_will_do = {
+               factor = 40
+          }
+     }
+}

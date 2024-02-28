@@ -1,0 +1,1016 @@
+﻿add_namespace = twriraq
+
+country_event = { #Iraq Intro
+	id = twriraq.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.0"}
+	title = twriraq.0.t
+	desc = twriraq.0.d
+	picture = GFX_report_event_IRQ_baghdad
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.0.a
+	}
+}
+
+country_event = { #Federation with Jordan
+	id = twriraq.1
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twriraq.1"
+		hidden_effect = {
+			set_global_flag = IRAQ_FEDERATION_CHAIN_STARTED
+		}
+	}
+	title = twriraq.1.t
+	desc = twriraq.1.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.1.a #Propose the Federation
+		JOR = {
+			country_event = { id = twriraq.2 days = 1 }
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = twriraq.1.b #No
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = { #Jordan - accept or refuse?
+	id = twriraq.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.2"}
+	title = twriraq.2.t
+	desc = twriraq.2.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.2.a #Accept
+		ai_chance = {
+			factor = 5
+		}
+		IRQ = {
+			country_event = { id = twriraq.3 days = 1 }
+		}
+	}
+	option = {
+		name = twriraq.2.b #Refuse
+		IRQ = {
+			country_event = { id = twriraq.4 days = 1 }
+		}
+	}
+}
+
+country_event = { #Jordan Accepted
+	id = twriraq.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.3"}
+	title = twriraq.3.t
+	desc = twriraq.3.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.3.a
+		annex_country = {
+    		target = JOR
+    		transfer_troops = yes
+		}
+		add_ideas = IRQ_Unstable_Union
+		set_cosmetic_tag = IRQ_FEDERATION
+		set_global_flag = iraq_federation
+		create_country_leader = {
+			name = "Hashemite Dual Monarchy"
+			desc = ""
+			picture = "hashemites.dds"
+			expire = "1985.1.1"
+			ideology = monarchism
+			traits = {
+			}
+		}
+		add_state_core = 455
+		news_event = { days = 1 id = twrnews.90 }
+	}
+}
+
+country_event = { #Jordan refused
+	id = twriraq.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.4"}
+	title = twriraq.4.t
+	desc = twriraq.4.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.4.a #Propose the Federation
+	}
+}
+
+country_event = { #Civil Unrest
+	id = twriraq.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.5"}
+	title = twriraq.5.t
+	desc = twriraq.5.d
+	picture = GFX_report_event_IRQ_revolution
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.5.a
+		add_stability = -0.05
+		complete_national_focus = IRQ_Iraqi_Politics
+		hidden_effect = {
+		country_event = { id = twriraq.6 days = 14 random = 300 }
+		}
+	}
+}
+
+country_event = { #Revolution
+	id = twriraq.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.6"}
+	title = twriraq.6.t
+	desc = twriraq.6.d
+	picture = GFX_report_event_IRQ_revolution
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.6.a
+		trigger = {
+			NOT = { has_cosmetic_tag = IRQ_FEDERATION }
+		}
+		complete_national_focus = IRQ_Kingdom
+		random_unit_leader = {
+           	limit = { 
+               	has_id = 6001
+           	}
+           	retire = yes
+       	}
+       	custom_effect_tooltip = KILL_QASIM
+		ai_chance = { 
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_IRQ_BAATH
+					has_global_flag = COUNTRY_PATH_IRQ_JUNTA
+					has_global_flag = COUNTRY_PATH_IRQ_SQUARE
+				}
+			}
+		}
+	}
+	option = {
+		name = twriraq.6.b
+		trigger = {
+			NOT = { has_cosmetic_tag = IRQ_FEDERATION }
+		}
+		ai_chance = { 
+			factor = 3
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_IRQ_REFORM
+					has_global_flag = COUNTRY_PATH_IRQ_REACTION
+				}
+			}
+		}
+		complete_national_focus = IRQ_Revolution
+		create_country_leader = {
+			name = "Abd al-Karim Qasim"
+			desc = ""
+			picture = "IRQ_qasim.dds"
+			expire = "1985.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+			}
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat
+			long_name = "Military Junta"
+			name = "Military Junta"
+		}
+		set_cosmetic_tag = IRQ_REPUBLIC
+		add_ideas = IRQ_Revolutionary_Instability
+		hidden_effect = {
+			news_event = { days = 1 id = twrnews.108 }
+			country_event = { days = 30 id = twriraq.7 }
+			set_country_flag = republican_iraq
+		}
+		remove_ideas = IRQ_Unpopular_Monarchy
+	}
+	option = {
+		name = twriraq.6.a1
+		trigger = {
+			has_cosmetic_tag = IRQ_FEDERATION
+		}
+		ai_chance = { 
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_IRQ_BAATH
+					has_global_flag = COUNTRY_PATH_IRQ_JUNTA
+					has_global_flag = COUNTRY_PATH_IRQ_SQUARE
+				}
+			}
+		}
+		complete_national_focus = IRQ_Kingdom
+		complete_national_focus = IRQ_Dual_State
+	}
+	option = {
+		name = twriraq.6.b1
+		trigger = {
+			has_cosmetic_tag = IRQ_FEDERATION
+		}
+		ai_chance = { 
+			factor = 3
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_IRQ_REFORM
+					has_global_flag = COUNTRY_PATH_IRQ_REACTION
+				}
+			}
+		}
+		complete_national_focus = IRQ_Revolution
+		complete_national_focus = IRQ_Dual_State
+		create_country_leader = {
+			name = "Abd al-Karim Qasim"
+			desc = ""
+			picture = "IRQ_qasim.dds"
+			expire = "1985.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+			}
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat
+			long_name = "Military Junta"
+			name = "Military Junta"
+		}
+		set_cosmetic_tag = IRQ_FEDERATION_REPUBLIC
+		add_ideas = IRQ_Revolutionary_Instability
+		hidden_effect = {
+			news_event = { days = 1 id = twrnews.109 }
+			country_event = { days = 30 id = twriraq.7 }
+		}
+		remove_ideas = IRQ_Unpopular_Monarchy
+	}
+}
+
+country_event = { # Golden Square Coup
+	id = twriraq.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.7"}
+	title = twriraq.7.t
+	desc = twriraq.7.d
+	picture = GFX_report_event_IRQ_revolution
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.7.a
+		ai_chance = { 
+			factor = 65
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_IRQ_JUNTA
+			}
+		}
+		add_stability = -0.05
+		create_country_leader = {
+			name = "Rashid Ali al-Gaylani"
+			desc = ""
+			picture = "IRQ_gaylani.dds"
+			expire = "1985.1.1"
+			ideology = reactionary_nationalism
+			traits = {
+			}
+		}
+		random_unit_leader = {
+           	limit = { 
+               	has_id = 6001
+           	}
+           	retire = yes
+       	}
+       	custom_effect_tooltip = KILL_QASIM
+		set_party_name = { 
+			ideology = paternal_autocrat
+			long_name = "al-Murabbaʿ al-dhahabi (The Golden Square)"
+			name = "Golden Square"
+		}
+		hidden_effect = {
+			USA = { country_event = { days = 3 id = twriraq.8 } }
+			news_event = { days = 1 id = twrnews.110 }
+		}
+	}
+	option = {
+		name = twriraq.7.b
+		add_stability = 0.02
+		complete_national_focus = IRQ_Military_Government
+		ai_chance = { 
+			factor = 35
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_IRQ_BAATH
+					has_global_flag = COUNTRY_PATH_IRQ_SQUARE
+				}
+			}
+		}
+	}
+}
+
+country_event = { # For US - Coup Iraq?
+	id = twriraq.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.8"}
+	title = twriraq.8.t
+	desc = twriraq.8.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.8.a
+		ai_chance = { 
+			factor = 100
+		}
+		hidden_effect = {
+			IRQ = { country_event = { days = 3 id = twriraq.9 } }
+		}
+	}
+	option = {
+		name = twriraq.8.b
+		trigger = {
+			IRQ = {
+				is_ai = no
+			}
+		}
+		ai_chance = { 
+			factor = 0
+		}
+		IRQ = {
+			complete_national_focus = IRQ_Golden_Square
+		}
+	}
+}
+
+country_event = { # Iraq coup successful?
+	id = twriraq.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.9"}
+	title = twriraq.9.t
+	desc = twriraq.9.d
+	picture = GFX_report_event_IRQ_revolution
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.9.a
+		ai_chance = { 
+			factor = 50
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_IRQ_SQUARE
+			}
+		}
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+		}
+		complete_national_focus = IRQ_Baath
+		hidden_effect = {
+			news_event = { days = 1 id = twrnews.111 }
+		}
+	}
+	option = {
+		name = twriraq.9.b
+		ai_chance = { 
+			factor = 50
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_IRQ_BAATH
+			}
+		}
+		complete_national_focus = IRQ_Golden_Square
+	}
+}
+
+country_event = { #Secret Police
+	id = twriraq.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.10"}
+	title = twriraq.10.t
+	desc = twriraq.10.d
+	picture = GFX_report_event_IRQ_baghdad
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.10.a
+	}
+}
+
+country_event = { #Press Control
+	id = twriraq.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.11"}
+	title = twriraq.11.t
+	desc = twriraq.11.d
+	picture = GFX_report_event_iraqi_newspaper
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.11.a
+	}
+}
+
+country_event = { #Iraqi Election
+	id = twriraq.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.12"}
+	title = twriraq.12.t
+	desc = twriraq.12.d
+	picture = GFX_report_event_IRQ_baghdad
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.12.a
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.15
+		}
+		set_country_flag = has_symbolic_figurehead
+		set_country_flag = king_faisal
+		swap_ideas = {
+    		remove_idea = authoritarian_system
+    		add_idea = facade_democracy
+		}
+		remove_ideas = IRQ_Instability
+	}
+}
+
+country_event = { #Road to Reform
+	id = twriraq.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.13"}
+	title = twriraq.13.t
+	desc = twriraq.13.d
+	picture = GFX_report_event_IRQ_baghdad
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.13.a
+		add_political_power = 50
+	}
+}
+
+country_event = { #New Constitution
+	id = twriraq.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.14"}
+	title = twriraq.14.t
+	desc = twriraq.14.d
+	picture = GFX_report_event_IRQ_baghdad
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.14.a
+		add_political_power = 50
+	}
+}
+
+country_event = { #Royal Tour
+	id = twriraq.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.15"}
+	title = twriraq.15.t
+	desc = twriraq.15.d
+	picture = GFX_report_event_iraq_tour
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.15.a
+		add_political_power = 50
+		swap_ideas = {
+    		remove_idea = IRQ_Unpopular_Monarchy_2
+    		add_idea = IRQ_Unpopular_Monarchy_3
+		}
+	}
+}
+
+country_event = { #Dissolve Parliament
+	id = twriraq.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.16"}
+	title = twriraq.16.t
+	desc = twriraq.16.d
+	picture = GFX_report_event_IRQ_baghdad
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.16.a
+	}
+}
+
+country_event = { #Crush the Saudis
+	id = twriraq.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.17"}
+	title = twriraq.17.t
+	desc = twriraq.17.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.17.a
+		declare_war_on = {
+    		target = SAU
+    		type = annex_everything
+		}
+		ai_chance = {
+			factor = 3
+		}
+	}
+	option = {
+		name = twriraq.17.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = { #Take Jordan
+	id = twriraq.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.18"}
+	title = twriraq.18.t
+	desc = twriraq.18.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.18.a
+		declare_war_on = {
+    		target = JOR
+    		type = annex_everything
+		}
+		ai_chance = {
+			factor = 4
+		}
+	}
+	option = {
+		name = twriraq.18.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = { #Create Pan-Arab State
+	id = twriraq.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.19"}
+	title = twriraq.19.t
+	desc = twriraq.19.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.19.a
+		set_cosmetic_tag = IRQ_FEDERATION_REPUBLIC
+		set_global_flag = iraq_federation
+		add_state_core = 455
+		add_state_core = 292
+		add_state_core = 678
+		add_state_core = 679
+		complete_national_focus = IRQ_Dual_State
+		news_event = { days = 1 id = twrnews.112 }
+	}
+}
+
+country_event = { #Ties with Germany
+	id = twriraq.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.20"}
+	title = twriraq.20.t
+	desc = twriraq.20.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.20.a
+		GER = { 
+			country_event = { id = twriraq.21 days = 1 } 
+			add_opinion_modifier = {
+				target = IRQ
+				modifier = large_increase
+			}
+		}
+		add_opinion_modifier = {
+			target = GER
+			modifier = large_increase
+		}
+	}
+	option = {
+		name = twriraq.20.b
+	}
+}
+
+country_event = { #Ties with Germany - German side
+	id = twriraq.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.21"}
+	title = twriraq.21.t
+	desc = twriraq.21.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.21.a
+	}
+}
+
+country_event = { #Join Italy? (Mediterranean Pact)
+	id = twriraq.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.22"}
+	title = twriraq.22.t
+	desc = twriraq.22.d
+	picture = GFX_report_event_italian_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.22.a
+		ai_chance = {
+			factor = 2
+		}
+		ITA = { 
+			country_event = { id = twriraq.23 days = 1 }
+		}
+	}
+	option = {
+		name = twriraq.22.b
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = { #Italy - accept Iraq?
+	id = twriraq.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.23"}
+	title = twriraq.23.t
+	desc = twriraq.23.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.23.a
+		ai_chance = {
+			factor = 3
+		}
+		add_to_faction = IRQ
+	}
+	option = {
+		name = twriraq.23.b
+		ai_chance = {
+			factor = 1
+		}
+		IRQ = { 
+			country_event = { id = twriraq.24 days = 1 }
+		}
+	}
+}
+
+country_event = { #Italy refused
+	id = twriraq.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.24"}
+	title = twriraq.24.t
+	desc = twriraq.24.d
+	picture = GFX_report_event_italian_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.24.a
+	}
+}
+
+country_event = { #Seize Kuwait?
+	id = twriraq.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.18"}
+	title = twriraq.25.t
+	desc = twriraq.25.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.25.a
+		set_state_owner = 656
+		set_state_controller = 656
+		ENG = {
+			country_event = { id = twriraq.26 days = 1 }
+		}
+	}
+	option = {
+		name = twriraq.25.b
+	}
+}
+
+country_event = { #British reaction to Kuwait seizure
+	id = twriraq.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.26"}
+	title = twriraq.26.t
+	desc = twriraq.26.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.26.a
+		declare_war_on = {
+    		target = IRQ
+    		type = annex_everything
+		}
+		TWR_nojoinwar_on = yes
+		set_global_flag = anglo_iraq_war
+	}
+	option = {
+		name = twriraq.26.b
+		IRQ = {
+			country_event = { id = twriraq.27 days = 1 }
+		}
+		if = {
+			limit = {
+				owns_state = 658
+			}
+			656 = {
+				teleport_armies = {
+					to_province = 7960
+					limit = {
+						OR = {
+							tag = ENG
+							is_in_faction_with = ENG
+						}
+					}
+				}
+			}
+		}
+		656 = {
+			teleport_armies = {
+				limit = {
+					OR = {
+						tag = ENG
+						is_in_faction_with = ENG
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Western Sanctions
+	id = twriraq.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.27"}
+	title = twriraq.27.t
+	desc = twriraq.27.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.27.a
+		add_ideas = IRQ_western_sanctions
+	}
+}
+
+#### WAR EVENTS ####
+
+country_event = { #Iraqi Victory against Iran
+	id = twriraq.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.28"}
+	title = twriraq.28.t
+	desc = twriraq.28.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.28.a
+		release = PER
+		transfer_state = 421
+		transfer_state = 413
+		PER = {
+		white_peace_with_ROOT = yes
+			country_event = { id = twriraq.29 days = 0 }
+		}
+	}
+}
+
+country_event = { #Iraqi Victory against Iran - Iran's side
+	id = twriraq.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.29"}
+	title = twriraq.29.t
+	desc = twriraq.29.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.29.a
+		IRQ = {
+			country_event = { id = twriraq.30 days = 1 }
+		}
+	}
+}
+
+country_event = { #Victory
+	id = twriraq.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.30"}
+	title = twriraq.30.t
+	desc = twriraq.30.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.30.a
+	}
+}
+
+country_event = { #Victory in Kuwait
+	id = twriraq.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.31"}
+	title = twriraq.31.t
+	desc = twriraq.31.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.31.a
+		ENG = {
+		white_peace_with_ROOT = yes
+			country_event = { id = twriraq.32 days = 1 }
+			TWR_nojoinwar_off = yes
+		}
+		USA = {
+		white_peace_with_ROOT = yes
+		TWR_nojoinwar_off = yes
+		}
+	}
+}
+
+country_event = { #Britain loses Kuwait
+	id = twriraq.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.32"}
+	title = twriraq.32.t
+	desc = twriraq.32.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.32.a
+	}
+}
+
+country_event = { #Victory against Saudi Arabia
+	id = twriraq.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.33"}
+	title = twriraq.33.t
+	desc = twriraq.33.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.33.a
+		hidden_effect = {
+		USA = { white_peace_with_ROOT = yes TWR_nojoinwar_off = yes }
+		ENG = { white_peace_with_ROOT = yes TWR_nojoinwar_off = yes }
+		}
+	}
+}
+
+country_event = { #Kurdish Resistance
+	id = twriraq.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.34"}
+	title = twriraq.34.t
+	desc = twriraq.34.d
+	picture = GFX_report_event_IRQ_baghdad
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.34.a
+		676 = {  damage_building = { type = infrastructure damage = 2 } }
+		swap_ideas = {
+    		remove_idea = IRQ_kurdish_resistance
+    		add_idea = IRQ_kurdish_resistance_more
+		}
+	}
+}
+
+country_event = { # Generic Form Arabia
+	id = twriraq.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriraq.35"}
+	title = twriraq.35.t
+	desc = twriraq.35.d
+	picture = GFX_report_event_arabia_map
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriraq.35.a
+		set_cosmetic_tag = IRQ_FEDERATION_REPUBLIC
+		add_state_core = 455
+	}
+}

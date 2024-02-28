@@ -1,0 +1,3489 @@
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_modernize_the_canary_islands
+		icon = GFX_SPA_canary_investment
+		x = 44
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = { has_full_control_of_state = 178 }
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			178 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_subsidize_tropical_agriculture
+		icon = GFX_SPA_bananas
+available = { has_full_control_of_state = 178 }
+		x = 45
+		y = 1
+		ai_will_do = {
+			factor = 1
+		} 
+                prerequisite = { focus = SPA_modernize_the_canary_islands }
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+178 = { add_extra_state_shared_building_slots = 3 }
+add_stability = 0.03			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_expand_tourist_capacity
+		icon = GFX_ITA_Luxury_Hotels
+		available = { has_full_control_of_state = 178 }
+		x = 43
+		y = 1
+		ai_will_do = {
+			factor = 1
+		} 
+                prerequisite = { focus = SPA_modernize_the_canary_islands }
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+				178 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+   					instant_build = yes
+				}
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_greater_dockyards
+		icon = GFX_GENERIC_dockyards
+		available = { has_full_control_of_state = 178 }
+		x = 43
+		y = 2
+		ai_will_do = {
+			factor = 1
+		} 
+                prerequisite = { focus = SPA_expand_tourist_capacity }
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			178 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = dockyard
+				    level = 1
+				    instant_build = yes
+				}
+			}		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_spanish_army
+		icon = GFX_SPA_el_ejercito_de_franco
+		x = 30
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+		add_war_support = 0.05
+                army_experience = 20	
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_spanish_armada
+		icon = GFX_SPA_invest_in_navantia
+		x = 38
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+		navy_experience = 25
+	random_owned_state = {
+  limit = { is_coastal = yes }
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = dockyard
+    level = 1
+    instant_build = yes
+}
+}	
+add_ideas = { SPA_armada }
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_coastal_defensive_effort
+		icon = GFX_focus_generic_coastal_fort
+		x = 37
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_spanish_armada
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+	custom_effect_tooltip = SPA_ALLOWS_DEC_ATLANTIC_WALL
+set_country_flag = SPA_ATLANTIK		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_recover_the_navy
+		icon = GFX_GENERIC_divert_into_navy
+		x = 39
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_spanish_armada
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+	random_owned_state = {
+  limit = { is_coastal = yes }
+add_extra_state_shared_building_slots = 2
+add_building_construction = {
+    type = dockyard
+    level = 2
+    instant_build = yes
+}
+}	
+		swap_ideas = { remove_idea = SPA_armada add_idea = SPA_armada_2 }	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_embrace_the_old_german_doctrine
+		icon = GFX_goal_generic_navy_submarine
+		x = 36
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_coastal_defensive_effort focus = SPA_recover_the_navy
+                }
+                mutually_exclusive = { 
+                   focus = SPA_embrace_the_american_doctrine
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+			add_tech_bonus = {
+				name = ss_tech
+				bonus = 0.5
+				uses = 1
+				category = ss_tech
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_embrace_the_american_doctrine
+		icon = GFX_SPA_adopt_american_doctrine
+		x = 40
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_coastal_defensive_effort focus = SPA_recover_the_navy
+                }
+                mutually_exclusive = { 
+                   focus = SPA_embrace_the_old_german_doctrine
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+			add_tech_bonus = {
+				name = cv_tech
+				bonus = 0.5
+				uses = 1
+				category = cv_tech
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_transport_and_trade_benefits
+		icon = GFX_GENERIC_navy_agreement
+		x = 38
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_embrace_the_american_doctrine focus = SPA_embrace_the_old_german_doctrine
+                }
+available = { has_idea = SPA_armada_2 }
+		cost = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+		swap_ideas = { remove_idea = SPA_armada_2 add_idea = SPA_armada_3 }
+	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_submarine_warfare
+		icon = GFX_USA_submarine_warfare
+		x = 37
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+ focus = SPA_embrace_the_old_german_doctrine
+                }
+                prerequisite = { 
+ focus = SPA_transport_and_trade_benefits
+                }
+                mutually_exclusive = { 
+ focus = SPA_copy_plan_Z
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			add_tech_bonus = {
+				name = ss_tech
+				bonus = 0.75
+				uses = 1
+				category = ss_tech
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_copy_plan_Z
+		icon = GFX_GENERIC_naval_academy
+		x = 35
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+ focus = SPA_embrace_the_old_german_doctrine
+                }
+
+                mutually_exclusive = { 
+ focus = SPA_submarine_warfare
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			add_tech_bonus = {
+				name = cl_tech
+				bonus = 0.75
+				uses = 1
+				category = cl_tech
+			}				
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_small_ships_long_reach
+		icon = GFX_focus_generic_destroyer
+		x = 40
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+ focus = SPA_embrace_the_american_doctrine
+                }
+
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+		add_timed_idea = { idea = SPA_reach_of_spain days = 200 }	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_colonial_naval_cooperation_plan
+		icon = GFX_SPA_colonial_effort
+		x = 40
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+available = { any_owned_state = { NOT = { is_on_continent = africa } } }
+                prerequisite = { 
+ focus = SPA_small_ships_long_reach
+                }
+                prerequisite = { 
+ focus = SPA_transport_and_trade_benefits
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+	random_owned_state = {
+limit = { if = { is_on_continent = africa } }
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = dockyard
+    level = 1
+    instant_build = yes
+}
+}
+	random_owned_state = {
+limit = { if = { is_on_continent = africa } }
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = dockyard
+    level = 1
+    instant_build = yes
+}
+}
+		}
+	}
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_push_for_modernization
+		icon = GFX_GENERIC_tank_warfare
+		x = 29
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_spanish_army 
+                }
+              mutually_exclusive = { 
+                   focus = SPA_buy_old_german_equipment
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			add_ideas = { SPA_modern_army }
+            army_experience = 10	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_expand_the_armed_forces
+		icon = GFX_GENERIC_Coalition_Army
+		x = 27
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_push_for_modernization focus = SPA_buy_old_german_equipment
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+	add_ideas = { SPA_increase_army_conscription }		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_nationalize_arms_factories
+		icon = GFX_GENERIC_Urban_Warfare
+		x = 27
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_expand_the_armed_forces
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+	random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = arms_factory
+    level = 2
+    instant_build = yes
+}
+}
+random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = arms_factory
+    level = 1
+    instant_build = yes
+}
+}		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_artillery_innovation
+		icon = GFX_GENERIC_heavy_artillery
+		x = 25
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_nationalize_arms_factories
+                }
+		cost = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			add_tech_bonus = {
+				name = artillery
+				bonus = 0.5
+				uses = 1
+				category = artillery
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Finalize_the_Verdeja_Program
+		icon = GFX_SPA_Verdeja
+		x = 25
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_artillery_innovation
+                }
+		cost = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			add_tech_bonus = {
+				name = cat_heavy_armor
+				bonus = 0.75
+				uses = 1
+				category = cat_heavy_armor
+			}		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_learn_from_the_moroccan_conflict
+		icon = GFX_GENERIC_Desert_Warfare
+		x = 27
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_nationalize_arms_factories
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"	
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}		
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_expand_colonial_divisions
+		icon = GFX_GENERIC_Colonial_Expeditions
+		x = 27
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+                available = { any_owned_state = { NOT = { is_on_continent = africa } } } 
+                prerequisite = { 
+                   focus = SPA_learn_from_the_moroccan_conflict
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+                        add_war_support = 0.05
+			swap_ideas = { remove_idea = SPA_increase_army_conscription add_idea = SPA_increase_army_conscription_1 }
+
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_surpression_tactics
+		icon = GFX_GENERIC_authoritarian_fist
+		x = 29
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_support_the_military_police
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+		swap_ideas = { remove_idea = SPA_brigada_politico_social_1 add_idea = SPA_brigada_politico_social_2 }	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_keep_the_media_quiet
+		icon = GFX_GENERIC_Press_Control
+		x = 29
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_surpression_tactics
+                }
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			swap_ideas = { remove_idea = SPA_brigada_politico_social_2 add_idea = SPA_brigada_politico_social_3 }
+                        add_political_power = 100	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_support_the_military_police
+		icon = GFX_GENERIC_mobilize_police
+		x = 29
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_expand_the_armed_forces
+                }
+                prerequisite = { 
+                   focus = SPA_secret_service_expansion
+                }
+                mutually_exclusive = { 
+                   focus = SPA_foreign_espionage
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			swap_ideas = { remove_idea = SPA_quality_intelligence_service add_idea = SPA_brigada_politico_social_1 }
+                        add_manpower = -1000
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_foreign_espionage
+		icon = GFX_GENERIC_spy_meeting
+		x = 31
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_expand_the_air_force
+                }
+                prerequisite = { 
+                   focus = SPA_secret_service_expansion
+                }
+                mutually_exclusive = { 
+                   focus = SPA_support_the_military_police
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			swap_ideas = { remove_idea = SPA_quality_intelligence_service add_idea = SPA_foreign_espionage_department_1 }
+add_political_power = -50			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_behind_lines_doctrine
+		icon = GFX_GENERIC_paradrop
+		x = 31
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_foreign_espionage
+                }
+
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			swap_ideas = { remove_idea = SPA_foreign_espionage_department_1 add_idea = SPA_foreign_espionage_department_2 }			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_expand_the_air_force
+		icon = GFX_GENERIC_fighters_and_bombers
+		x = 33
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_push_for_modernization focus = SPA_buy_old_german_equipment
+                }
+
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+				add_tech_bonus = {
+				name = artillery
+				bonus = 0.5
+				uses = 1
+				category = helicopter
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_german_example
+		icon = GFX_SPA_german_bombers
+		x = 33
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_expand_the_air_force 
+                }
+
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+				add_tech_bonus = {
+				name = artillery
+				bonus = 0.5
+				uses = 1
+				category = jet_strat_bomber
+			}	
+air_experience = 15		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_fire_bombing_runs
+		icon = GFX_GENERIC_Firebombing
+		x = 33
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_german_example
+                }
+
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+				add_tech_bonus = {
+				name = artillery
+				bonus = 0.5
+				uses = 1
+				category = chemical_tech
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_rocket_based_fighters
+		icon = GFX_GENERIC_Jet_Fighters
+		x = 33
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_fire_bombing_runs
+                }
+
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+				add_tech_bonus = {
+				name = artillery
+				bonus = 0.5
+				uses = 1
+				category = jet_fighter
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_armed_forces_sabotage
+		icon = GFX_GENERIC_rally_men
+		x = 31
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_behind_lines_doctrine
+                }
+
+
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			swap_ideas = { remove_idea = SPA_foreign_espionage_department_2 add_idea = SPA_foreign_espionage_department_3 }			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_secret_service_expansion
+		icon = GFX_GENERIC_infiltrate
+		x = 30
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_push_for_modernization focus = SPA_buy_old_german_equipment
+                }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+		add_ideas = { SPA_quality_intelligence_service }
+                	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_buy_old_german_equipment
+		icon = GFX_GENERIC_Weapons
+		x = 31
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+                prerequisite = { 
+                   focus = SPA_spanish_army 
+                }
+              mutually_exclusive = { 
+                   focus = SPA_push_for_modernization
+}
+		cost = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+	add_ideas = { SPA_traditional_army }	
+        army_experience = 15	
+		}
+	}
+
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_acknowledge_economic_stagnation
+		icon = GFX_SPA_Economic_Stagnation
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+	SPA_economic_stagnation_improved = yes		
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_sort_out_our_bureaucracy
+		icon = GFX_GENERIC_government_power
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_acknowledge_economic_stagnation
+		}
+		relative_position_id = SPA_acknowledge_economic_stagnation
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_sort_out_our_bureaucracy"
+add_political_power = 50
+add_stability = 0.05			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_fresh_young_falangists
+		icon = GFX_SPA_young_falangists
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = SPA_sort_out_our_bureaucracy
+		}
+		available = {
+has_country_flag = SPR_MOR_WIN
+		}
+		relative_position_id = SPA_sort_out_our_bureaucracy
+		mutually_exclusive = { focus = SPA_wise_veterans }
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_SPA_V_MILITARY
+			}
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_fresh_young_falangists"
+                add_popularity = { ideology = fascist popularity = 0.1 }
+                add_political_power = -100
+		swap_ideas = { remove_idea = SPA_old_shirt_falangists add_idea = SPA_young_blood_falangists }	
+
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_propagate_conflict_economics
+		icon = GFX_GENERIC_Rally_the_People
+		x = -2
+		y = 1
+		available = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+		prerequisite = {
+			focus = SPA_fresh_young_falangists
+		}
+		relative_position_id = SPA_fresh_young_falangists
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 15
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_propagate_conflict_economics"
+swap_ideas = { remove_idea = SPA_young_blood_falangists add_idea = SPA_young_blood_falangists_1 }
+	SPA_economic_stagnation_improved = yes				
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_virtues_of_welfare
+		icon = GFX_GENERIC_buy_equipment
+		x = 0
+		y = 1
+		available = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+		prerequisite = {
+			focus = SPA_propagate_conflict_economics
+		}
+		relative_position_id = SPA_propagate_conflict_economics
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 15
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_virtues_of_welfare"
+swap_ideas = { remove_idea = SPA_young_blood_falangists_1 add_idea = SPA_young_blood_falangists_2 }
+
+	SPA_economic_stagnation_improved = yes				
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_veteran_syndicates
+		icon = GFX_GENERIC_Volunteer
+		x = 0
+		y = 1
+		available = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+		prerequisite = {
+			focus = SPA_virtues_of_welfare
+		}
+		relative_position_id = SPA_virtues_of_welfare
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_veteran_syndicates"
+        add_stability = 0.05
+        add_popularity = { ideology = fascist popularity = 0.1 }
+	SPA_end_of_economics = yes				
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_true_national_syndicalism
+		icon = GFX_SPA_nat_syn_2
+		x = 0
+		y = 1
+		available = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+		prerequisite = {
+			focus = SPA_fresh_young_falangists
+		}
+		relative_position_id = SPA_fresh_young_falangists
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_true_national_syndicalism"
+		add_popularity = { ideology = fascist popularity = 0.1 }
+                country_event = { id = twrspain.38 days = 0 }	
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_servitude_to_the_state
+		icon = GFX_GENERIC_capital_region
+		x = 0
+		y = 1
+		available = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+		prerequisite = {
+			focus = SPA_propagate_conflict_economics
+		}
+		prerequisite = {
+			focus = SPA_true_national_syndicalism
+		}
+		relative_position_id = SPA_true_national_syndicalism
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_servitude_to_the_state"
+		add_stability = 0.1
+                add_war_support = 0.1	
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_placate_the_fet_y_de_la_jons
+		icon = GFX_ENG_gov_gen_conference
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = SPA_fresh_young_falangists
+			focus = SPA_wise_veterans
+		}
+		available = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+                bypass = { 
+		NOT = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+                }
+		relative_position_id = SPA_fresh_young_falangists
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_placate_the_fet_y_de_la_jons"
+			add_political_power = -50
+                        add_popularity = { ideology = paternal_autocrat popularity = 0.05 }
+                        add_stability = 0.02
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_wise_veterans
+		icon = GFX_GENERIC_Military_Science
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = SPA_sort_out_our_bureaucracy
+		}
+                available = { 
+OR = { has_country_flag = SPR_MOR_WIN has_country_flag = SPR_MOR_LOSS }
+                }
+		relative_position_id = SPA_sort_out_our_bureaucracy
+		mutually_exclusive = { focus = SPA_fresh_young_falangists }
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_SPA_V_FALANGIST
+			}
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_wise_veterans"
+                add_popularity = { ideology = fascist popularity = -0.05 }
+                add_popularity = { ideology = paternal_autocrat popularity = -0.05 }
+                add_political_power = 150
+swap_ideas = { remove_idea = SPA_old_shirt_falangists add_idea = SPA_old_shirt_veterans }			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_stick_to_autarky
+		icon = GFX_SPA_autarkic_gambles
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_wise_veterans
+		}
+		relative_position_id = SPA_wise_veterans
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_stick_to_autarky"
+		add_stability = -0.05
+                add_popularity = { ideology = paternal_autocrat popularity = 0.05 }
+  	SPA_economic_stagnation_improved = yes	              	
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_conservative_economic_policies
+		icon = GFX_GENERIC_christian_economy
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = SPA_wise_veterans
+		}
+		relative_position_id = SPA_wise_veterans
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_conservative_economic_policies"
+                add_popularity = { ideology = paternal_autocrat popularity = 0.05 }
+                add_popularity = { ideology = conservative popularity = 0.05 }	
+		SPA_economic_stagnation_improved = yes	
+	
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_stimulate_national_industry
+		icon = GFX_GENERIC_state_economy
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_stick_to_autarky
+		}
+		prerequisite = {
+			focus = SPA_conservative_economic_policies
+		}
+		relative_position_id = SPA_stick_to_autarky
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_stimulate_national_industry"
+random_owned_state = {
+add_extra_state_shared_building_slots = 2
+add_building_construction = {
+    type = industrial_complex 
+    level = 2
+    instant_build = yes
+}
+}
+random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = arms_factory
+    level = 1
+    instant_build = yes
+}
+}	
+	SPA_economic_stagnation_improved = yes			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_appoint_more_falangists
+		icon = GFX_GENERIC_doctrine
+		x = -1
+		y = 2
+		prerequisite = {
+			focus = SPA_servitude_to_the_state
+		}
+		prerequisite = {
+			focus = SPA_placate_the_fet_y_de_la_jons
+		}
+		available = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+		relative_position_id = SPA_placate_the_fet_y_de_la_jons
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_appoint_more_falangists"
+	add_popularity = { ideology = fascist popularity = 0.15 }
+		
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_isolate_the_carlists
+		icon = GFX_GENERIC_Anti_Monarchism
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_appoint_more_falangists
+		}
+		relative_position_id = SPA_appoint_more_falangists
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		OR = {
+                has_government = fascist
+                has_government = national_socialist
+                has_government = paternal_autocrat 
+                }
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+	add_popularity = { ideology = paternal_autocrat popularity = -0.1 }
+        add_ideas = { SPA_political_hegemony }			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_after_franco
+		icon = GFX_SPA_Funeral_for_a_Caudillo
+		x = 1
+		y = 1
+                available = { 
+ NOT = { has_country_leader = { name = "Francisco Franco" ruling_only = yes }}
+                }
+		prerequisite = {
+			focus = SPA_isolate_the_carlists focus = SPA_puppets_tied_by_power
+		}
+		relative_position_id = SPA_isolate_the_carlists
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+			add_stability = -0.1
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_continue_the_falangist_course
+		icon = GFX_SPA_nat_syn
+		x = -2
+		y = 1
+                available = { 
+                has_country_flag = SPR_MOR_WIN 
+                }
+		prerequisite = {
+			focus = SPA_after_franco
+		}
+		relative_position_id = SPA_after_franco
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+add_ideas = { SPA_Century_Falangism }
+add_popularity = { ideology = fascist popularity = 0.05 }
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_modern_idealism_of_military_service
+		icon = GFX_GENERIC_MECH
+		x = -1
+		y = 1
+
+		prerequisite = {
+			focus = SPA_continue_the_falangist_course
+		}
+
+		relative_position_id = SPA_continue_the_falangist_course
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+	add_ideas = { SPA_Idiolized_Soldier }
+        add_war_support = 0.05		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_support_local_farmers
+		icon = GFX_GENERIC_agricultural_subsidies
+		x = 0
+		y = 2
+available = { has_political_power > 50 }
+		prerequisite = {
+			focus = SPA_continue_the_falangist_course
+		}
+
+		relative_position_id = SPA_continue_the_falangist_course
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+		add_popularity = { ideology = fascist popularity = 0.1 }
+                add_stability = 0.02
+                add_political_power = -50	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_criticize_the_revisionists
+		icon = GFX_SPA_search_for_revisionists
+		x = -1
+		y = 2
+
+		prerequisite = {
+			focus = SPA_modern_idealism_of_military_service focus = SPA_support_local_farmers
+		}
+
+		relative_position_id = SPA_modern_idealism_of_military_service
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+add_popularity = { ideology = paternal_autocrat popularity = -0.1 }
+add_popularity = { ideology = national_socialist popularity = -0.1 }			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_claim_catalan_sabotage
+		icon = GFX_GENERIC_catalonia
+		x = 1
+		y = 2
+
+		prerequisite = {
+			focus = SPA_support_local_farmers
+		}
+
+		relative_position_id = SPA_modern_idealism_of_military_service
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+		add_stability = -0.05
+                add_political_power = 100	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_modernize_the_secret_police
+		icon = GFX_GENERIC_spying_on_nazis
+		x = 1
+		y = 1
+
+		prerequisite = {
+			focus = SPA_claim_catalan_sabotage
+		}
+		prerequisite = {
+			focus = SPA_television_in_every_hous
+		}
+		relative_position_id = SPA_claim_catalan_sabotage
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+				add_tech_bonus = {
+				name = decryption_tech
+				bonus = 0.5
+				uses = 1
+				category = decryption_tech
+			}		
+				add_tech_bonus = {
+				name = encryption_tech
+				bonus = 0.5
+				uses = 1
+				category = encryption_tech
+			}		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_promote_castillian_spanish
+		icon = GFX_goal_generic_propaganda
+		x = -1
+		y = 1
+
+		prerequisite = {
+			focus = SPA_claim_catalan_sabotage
+		}
+
+		relative_position_id = SPA_claim_catalan_sabotage
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+				add_tech_bonus = {
+				name = radar_tech
+				bonus = 0.75
+				uses = 1
+				category = radar_tech
+			}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_electrify_the_countryside
+		icon = GFX_SPA_electrify
+		x = 0
+		y = 2
+
+
+		prerequisite = {
+			 focus = SPA_change_of_course focus = SPA_continue_the_falangist_course
+		}
+		relative_position_id = SPA_after_franco
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+	add_stability = 0.05
+ random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex 
+    level = 1
+    instant_build = yes
+}
+}       		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_change_of_course
+		icon = GFX_GENERIC_Trading
+		x = 2
+		y = 1
+
+		prerequisite = {
+			focus = SPA_after_franco
+		}
+
+		relative_position_id = SPA_after_franco
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+	add_ideas = { SPA_Liberalized_System }		
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_search_for_international_partners
+		icon = GFX_goal_generic_intelligence_exchange
+		x = 1
+		y = 1
+
+		prerequisite = {
+			focus = SPA_change_of_course
+		}
+                
+		relative_position_id = SPA_change_of_course
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+		add_popularity = { ideology = paternal_autocrat popularity = -0.02 }	
+		add_popularity = { ideology = national_socialist popularity = -0.02 }	
+		add_popularity = { ideology = fascist popularity = -0.02 }
+                add_political_power = 100
+                add_stability = 0.15	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_privatize_government_branches
+		icon = GFX_GENERIC_Factory_Planning
+		x = 0
+		y = 2
+
+		prerequisite = {
+			focus = SPA_change_of_course
+		}
+
+		relative_position_id = SPA_change_of_course
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+ random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex 
+    level = 1
+    instant_build = yes
+}
+}  
+ random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = arms_factory
+    level = 1
+    instant_build = yes
+}
+}  			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_start_ocean_oil_drilling
+		icon = GFX_GENERIC_oil_drilling
+		x = 1
+		y = 2
+available = { owns_state = 177 owns_state = 178 }
+		prerequisite = {
+			focus = SPA_search_for_international_partners focus = SPA_privatize_government_branches
+		}
+
+		relative_position_id = SPA_search_for_international_partners
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+177 = { 
+add_resource = {
+    type = oil
+    amount = 7
+}
+}
+178 = { 
+add_resource = {
+    type = oil
+    amount = 4
+}
+}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_control_inflation
+		icon = GFX_GENERIC_Hyperinfli
+		x = 0
+		y = 1
+
+		prerequisite = {
+			focus = SPA_privatize_government_branches
+		}
+
+		relative_position_id = SPA_privatize_government_branches
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+		add_stability = 0.1	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_tourist_economy
+		icon = GFX_GENERIC_deport_people
+		x = -1
+		y = 2
+
+		prerequisite = {
+			focus = SPA_control_inflation
+		}
+		prerequisite = {
+			focus = SPA_television_in_every_hous
+		}
+		relative_position_id = SPA_privatize_government_branches
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+ random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex
+    level = 1
+    instant_build = yes
+}
+}  			
+add_political_power = 50			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_expand_barcelona_sectors
+		icon = GFX_GENERIC_mining
+		x = 1
+		y = 2
+
+		prerequisite = {
+			focus = SPA_control_inflation
+		}
+available = { owns_state = 165 }
+		relative_position_id = SPA_privatize_government_branches
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+ 165 = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex
+    level = 2
+    instant_build = yes
+}
+}  
+			
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_television_in_every_hous
+		icon = GFX_GENERIC_television_set
+		x = 0
+		y = 2
+
+		prerequisite = {
+			focus = SPA_electrify_the_countryside
+		}
+
+		relative_position_id = SPA_electrify_the_countryside
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 10
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+			add_stability = 0.05
+                        add_political_power = -20
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_centralize_industry_in_madrid
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 2
+available = { owns_state = 41 }
+		prerequisite = {
+			focus = SPA_television_in_every_hous
+		}
+		relative_position_id = SPA_television_in_every_hous
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 15
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_isolate_the_carlists"
+ 41 = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex
+    level = 2
+    instant_build = yes
+}
+}  
+ 41 = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = arms_factory
+    level = 1
+    instant_build = yes
+}
+}  			
+		}
+	}
+
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_abandon_falangist_principles
+		icon = GFX_SPA_abandon_falangism
+		x = 1
+		y = 2
+
+		prerequisite = {
+			focus = SPA_placate_the_fet_y_de_la_jons
+		}
+		prerequisite = {
+			focus = SPA_stimulate_national_industry
+		}
+		relative_position_id = SPA_placate_the_fet_y_de_la_jons
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_abandon_falangist_principles"
+		add_popularity = { ideology = fascist popularity = -0.15 }
+                add_stability = -0.05
+                custom_effect_tooltip = SPA_ANGERY	
+hidden_effect = { 
+random_list = {
+70 = { country_event = { id = twrspain.40 days = 5 } }
+30 = { country_event = { id = twrspain.39 days = 5 } }
+}
+}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_puppets_tied_by_power
+		icon = GFX_focus_CZE_german_puppet
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_abandon_falangist_principles
+		}
+		relative_position_id = SPA_abandon_falangist_principles
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_puppets_tied_by_power"
+			add_political_power = -100
+                        add_stability = 0.05
+                        add_war_support = 0.05
+ random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex 
+    level = 1
+    instant_build = yes
+}
+}                       
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_control_the_universities
+		icon = GFX_GENERIC_Education
+		x = 0
+		y = 1
+
+		prerequisite = {
+			focus = SPA_placate_the_fet_y_de_la_jons
+		}
+
+		relative_position_id = SPA_placate_the_fet_y_de_la_jons
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_control_the_universities"
+		add_political_power = 150
+                add_research_slot = 1
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_open_up_to_the_west
+		icon = GFX_USA_capitol
+		x = 12
+		y = 0
+		mutually_exclusive = { focus = SPA_open_up_to_germany focus = SPA_open_up_to_italy }
+		ai_will_do = {
+			factor = 1
+		}
+available = { 
+is_democratic = yes
+NOT = { has_war_with = USA }
+NOT = { 
+OR = { 
+has_idea = SPA_economic_stagnation 
+has_idea = SPA_economic_stagnation_1
+has_idea = SPA_economic_stagnation_2
+has_idea = SPA_economic_stagnation_3
+}
+}
+}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_open_up_to_the_west"
+			country_event = {
+				id = twrspain.44
+			}
+                        add_ideas = SPA_TA_influence
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_open_up_to_germany
+		icon = GFX_GENERIC_Volkshalle
+		x = 16
+		y = 0
+		mutually_exclusive = { focus = SPA_open_up_to_the_west focus = SPA_open_up_to_italy }
+		ai_will_do = {
+			factor = 1
+		}
+available = { 
+is_democratic = no
+is_communist = no
+NOT = { has_war_with = GER }
+NOT = { 
+OR = { 
+has_idea = SPA_economic_stagnation 
+has_idea = SPA_economic_stagnation_1
+has_idea = SPA_economic_stagnation_2
+has_idea = SPA_economic_stagnation_3
+}
+}
+}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_open_up_to_germany"
+		add_ideas = { SPA_GER_influence }	
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_guests_from_washington
+		icon = GFX_GENERIC_Internationalism
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = SPA_open_up_to_the_west
+		}
+		relative_position_id = SPA_open_up_to_the_west
+		ai_will_do = {
+			factor = 1
+		}
+available = { 
+has_idea = SPA_TA_influence_2
+NOT = { has_war_with = USA }
+}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_guests_from_washington"
+remove_ideas = { SPA_cherry_picking_policy }
+add_political_power = 100
+add_opinion_modifier = {
+    target = USA
+    modifier = SPA_US_friendship 
+}
+USA = { 
+add_opinion_modifier = {
+    target = SPA
+    modifier = SPA_US_friendship 
+}
+}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_liberalise_the_economy
+		icon = GFX_GENERIC_gold_trade
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_guests_from_washington
+		}
+		relative_position_id = SPA_guests_from_washington
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_liberalise_the_economy"
+add_stability = 0.05
+			add_ideas = {
+				free_trade
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_sell_military_bases
+		icon = GFX_SPA_spain_military_base
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = SPA_open_up_to_the_west
+		}
+		relative_position_id = SPA_open_up_to_the_west
+		ai_will_do = {
+			factor = 1
+		}
+available = { 
+NOT = { has_war_with = USA }
+}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_sell_military_bases"
+swap_ideas = { remove_idea = SPA_TA_influence add_idea = SPA_TA_influence_1 }
+USA = { country_event = { id = twrspain.66 days = 0 } }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_accept_us_loans
+		icon = GFX_USA_expand_welfare
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_sell_military_bases
+		}
+		relative_position_id = SPA_sell_military_bases
+		ai_will_do = {
+			factor = 1
+		}
+available = { 
+NOT = { has_war_with = USA }
+}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_accept_us_loans"
+swap_ideas = { remove_idea = SPA_TA_influence_1 add_idea = SPA_TA_influence_2 }
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_fortress_iberia
+		icon = GFX_focus_generic_coastal_fort
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = SPA_liberalise_the_economy
+		}
+		prerequisite = {
+			focus = SPA_accept_us_loans
+		}
+		relative_position_id = SPA_liberalise_the_economy
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_accept_us_loans"
+add_ideas = { SPA_TA_defensive_doctrine }
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_modernize_the_airforce
+		icon = GFX_GENERIC_Jet_Fighters
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_liberalise_the_economy
+		}
+		relative_position_id = SPA_liberalise_the_economy
+		ai_will_do = {
+			factor = 1
+		}
+available = { 
+NOT = { has_war_with = USA }
+}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_accept_us_loans"
+		add_ideas = { SPA_TA_military_cooperation }
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_apply_for_membership
+		icon = GFX_ENG_USA_atlantic_union
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = SPA_modernize_the_airforce
+		}
+		prerequisite = {
+			focus = SPA_fortress_iberia
+		}
+		relative_position_id = SPA_modernize_the_airforce
+		ai_will_do = {
+			factor = 1
+		}
+available = { 
+NOT = { has_war_with = USA }
+NOT = { has_war_with = ENG }
+}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_accept_us_loans"
+		USA = { country_event = { id = twrspain.69 days = 0 } }	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_reinforce_the_pyrenees_garrison
+		icon = GFX_GENERIC_frontlines
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_apply_for_membership
+		}
+		relative_position_id = SPA_apply_for_membership
+		ai_will_do = {
+			factor = 1
+		}
+available = {
+OR = { 
+AND = {
+SPA = { is_neighbor_of = FRA }
+OR = { 
+FRA = { has_government = fascist }
+FRA = { has_government = national_socialist }
+FRA = { has_government = paternal_autocrat }
+}
+}
+SPA = { is_neighbor_of = GER }
+}
+}
+		cost = 15
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_accept_us_loans"
+			add_political_power = 100
+                        
+custom_effect_tooltip = SPA_BORDER_REINFORCED
+hidden_effect = { 
+172 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 3737
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 3931
+				}
+			}
+			166 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 11838
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 915
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 899
+				}
+			}
+			165 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 3899
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 3898
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 11779
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 9824
+				}
+			}
+}
+		}
+	}
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_treaty_of_hamburg
+		icon = GFX_GER_Economic_Reform
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = SPA_open_up_to_germany
+		}
+		relative_position_id = SPA_open_up_to_germany
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_treaty_of_hamburg"
+		swap_ideas = { remove_idea = SPA_GER_influence add_idea = SPA_GER_influence_1 }	
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_ideas_of_an_european_community
+		icon = GFX_GER_Nazi_Trade
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = SPA_treaty_of_hamburg focus = SPA_closer_economic_ties
+		}
+		relative_position_id = SPA_treaty_of_hamburg
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_ideas_of_an_european_community"
+			if = {
+				limit = {
+OR = { 
+                                 has_idea = SPA_GER_influence
+                                 has_idea = SPA_GER_influence_1
+}
+}
+remove_ideas = { SPA_GER_influence }
+remove_ideas = { SPA_GER_influence_1 }
+add_ideas = { SPA_GER_influence_2 }
+}
+			if = {
+				limit = {
+OR = { 
+                                 has_idea = SPA_Italian_Influence
+                                 has_idea = SPA_Italian_Influence_1
+}
+}
+remove_ideas = { SPA_Italian_Influence }
+remove_ideas = { SPA_Italian_Influence_1 }
+add_ideas = { SPA_Italian_Influence_2 }
+}
+
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_demilitarise_the_pyrenees
+		icon = GFX_GENERIC_static_defense
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = SPA_ideas_of_an_european_community
+		}
+		prerequisite = {
+			focus = SPA_allow_german_submarines
+		}
+		relative_position_id = SPA_ideas_of_an_european_community
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_demilitarise_the_pyrenees"
+GER = { country_event = { id = twrspain.71 days = 0 } }			
+		}
+	}
+	
+
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_deescalate_spanish_axis_relations
+		icon = GFX_goal_generic_dangerous_deal
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = SPA_open_up_to_germany
+		}
+		relative_position_id = SPA_open_up_to_germany
+		ai_will_do = {
+			factor = 1
+		}
+available = { has_political_power > 50 }
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_deescalate_spanish_axis_relations"
+add_stability = 0.05
+add_political_power = -50
+	add_opinion_modifier = {
+    target = GER
+    modifier = SPA_GER_friendship 
+}
+GER = { 
+add_opinion_modifier = {
+    target = SPA
+    modifier = SPA_GER_friendship 
+}
+}		
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_allow_german_submarines
+		icon = GFX_GENERIC_nuclear_submarines
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_deescalate_spanish_axis_relations
+		}
+		relative_position_id = SPA_deescalate_spanish_axis_relations
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_allow_german_submarines"
+add_political_power = 100
+		diplomatic_relation = {
+    country = GER
+    relation = docking_rights
+    active = yes
+}	
+		}
+	}
+	
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_join_the_new_order
+		icon = GFX_GER_order_reestablished
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_demilitarise_the_pyrenees
+		}
+		relative_position_id = SPA_demilitarise_the_pyrenees
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_the_andorra_question"
+		GER = { country_event = { id = twrspain.87 days = 0 } }
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_open_up_to_italy
+		icon = GFX_SPA_close_to_italy
+		x = 20
+		y = 0
+		mutually_exclusive = { focus = SPA_open_up_to_the_west focus = SPA_open_up_to_germany }
+		ai_will_do = {
+			factor = 1
+		}
+available = { 
+is_democratic = no
+is_communist = no
+NOT = { has_war_with = ITA }
+NOT = { 
+OR = { 
+has_idea = SPA_economic_stagnation 
+has_idea = SPA_economic_stagnation_1
+has_idea = SPA_economic_stagnation_2
+has_idea = SPA_economic_stagnation_3
+}
+}
+}
+		cost = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_open_up_to_germany"
+	add_ideas = { SPA_Italian_Influence }		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_closer_economic_ties
+		icon = GFX_GENERIC_Loans
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = SPA_open_up_to_italy
+		}
+		relative_position_id = SPA_open_up_to_italy
+	
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+			
+		swap_ideas = { remove_idea = SPA_Italian_Influence add_idea = SPA_Italian_Influence_1 }	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_praise_italian_volunteers
+		icon = GFX_GENERIC_Army_Cooperation
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = SPA_open_up_to_italy
+		}
+		relative_position_id = SPA_open_up_to_italy
+	
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 5
+		completion_reward = {
+	add_opinion_modifier = {
+    target = ITA
+    modifier = SPA_ITA_friendship
+}
+ITA = { 
+add_opinion_modifier = {
+    target = SPA
+    modifier = SPA_ITA_friendship
+}
+}			
+add_popularity = { ideology = fascist popularity = 0.1 }
+add_war_support = 0.05			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_statue_to_il_duce
+		icon = GFX_ITA_Viva_Mussolini
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_praise_italian_volunteers
+		}
+		relative_position_id = SPA_praise_italian_volunteers
+	
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 5
+		completion_reward = {
+	add_opinion_modifier = {
+    target = ITA
+    modifier = SPA_ITA_friendship_complete
+}
+ITA = { 
+add_opinion_modifier = {
+    target = SPA
+    modifier = SPA_ITA_friendship_complete
+}
+}			
+	country_event = { id = twrspain.85 days = 0 }		
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_coordinate_with_the_mediterranean_pact
+		icon = GFX_ITA_Med_Pact
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = SPA_statue_to_il_duce
+		}
+		prerequisite = {
+			focus = SPA_ideas_of_an_european_community
+		}
+		relative_position_id = SPA_ideas_of_an_european_community
+	
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+	add_ideas = { SPA_Med_Pact_Coordination }		
+		ITA = { country_event = { id = twrspain.88 days = 0 } }			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_fire_suner
+		icon = GFX_SPA_fire_nazi
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SPA_coordinate_with_the_mediterranean_pact
+		}
+
+		relative_position_id = SPA_coordinate_with_the_mediterranean_pact
+	
+		ai_will_do = {
+			factor = 1
+		}
+		cost = 8
+		completion_reward = {
+add_popularity = { ideology = national_socialist popularity = -0.1 }			
+	country_event = { id = twrspain.86 days = 0 }					
+		}
+	}
+
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_Prince_Xavier
+		icon = GFX_SPA_Xavier
+		mutually_exclusive = { focus = SPA_Don_Juan }
+		mutually_exclusive = { focus = SPA_Anton }
+available = { 
+SPA = { has_country_flag = SPA_CHOSEN_MONARCH }
+SPA = { has_country_flag = SPA_XAVIER }
+}
+		x = 49
+		y = 0
+		cost = 0
+		completion_reward = {
+		add_ideas = { SPA_Carlism }	
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Clarify_the_Line_of_Succession
+		icon = GFX_SPA_Royal_Line
+		x = 0
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = SPA_Prince_Xavier
+		}
+		relative_position_id = SPA_Prince_Xavier
+		completion_reward = {
+	country_event = { id = twrspain.72 days = 1 }	
+swap_ideas = { remove_idea = SPA_Carlism add_idea = SPA_Carlism_1 }	
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Counter-Revolutionary_Movement
+		icon = GFX_SPA_Counter_Revolutionary
+		x = -2
+		y = 1
+		cost = 8
+		prerequisite = {
+			focus = SPA_Clarify_the_Line_of_Succession
+		}
+		relative_position_id = SPA_Clarify_the_Line_of_Succession
+		completion_reward = {
+	add_popularity = { ideology = liberal popularity = -0.05 }
+	add_popularity = { ideology = social_democrat popularity = -0.05 }   
+
+	add_popularity = { ideology = socialist popularity = -0.05 }      
+     		
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Crackdown_against_Alfonists
+		icon = GFX_GENERIC_weapons_cuffs
+		x = 2
+		y = 1
+		cost = 8
+		prerequisite = {
+			focus = SPA_Clarify_the_Line_of_Succession
+		}
+		relative_position_id = SPA_Clarify_the_Line_of_Succession
+		completion_reward = {
+swap_ideas = { remove_idea = SPA_Carlism_1 add_idea = SPA_Carlism_2 }				
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Denounce_Western_Liberalism
+		icon = GFX_SPA_infiltrate_republican_circles
+		x = -1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Counter-Revolutionary_Movement
+		}
+		relative_position_id = SPA_Counter-Revolutionary_Movement
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_End_all_Francoist_Institutions
+		icon = GFX_GENERIC_Burn_the_Parliament
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Denounce_Western_Liberalism
+		}
+		relative_position_id = SPA_Denounce_Western_Liberalism
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Reuse_Old_Administrative_Boundaries
+		icon = GFX_GENERIC_draw_borders
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_End_all_Francoist_Institutions
+		}
+		relative_position_id = SPA_End_all_Francoist_Institutions
+		completion_reward = {
+			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_Get_Rid_of_the_Old_Movement
+		icon = GFX_GENERIC_a_boot
+		x = 2
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Counter-Revolutionary_Movement
+		}
+		prerequisite = {
+			focus = SPA_Crackdown_against_Alfonists
+		}
+		relative_position_id = SPA_Counter-Revolutionary_Movement
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Non_Ideological_State
+		icon = GFX_focus_generic_support_the_left_right
+		x = 2
+		y = 2
+		cost = 10
+
+		prerequisite = {
+			focus = SPA_Get_Rid_of_the_Old_Movement
+		}
+		relative_position_id = SPA_Counter-Revolutionary_Movement
+		completion_reward = {
+		add_popularity = { ideology = paternal_autocrat popularity = 1 }
+	custom_effect_tooltip = SPA_BAN_PARTIES
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Award_the_Basques_wtih_Autonomy
+		icon = GFX_GENERIC_victory_liberty
+		x = 1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Counter-Revolutionary_Movement
+		}
+		prerequisite = {
+			focus = SPA_Crackdown_against_Alfonists
+		}
+		relative_position_id = SPA_Crackdown_against_Alfonists
+		completion_reward = {
+		
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Hunt_Far-Right_Terrorists
+		icon = GFX_GENERIC_authoritarian_fist
+		x = 1
+		y = 2
+		cost = 0
+		prerequisite = {
+			focus = SPA_Non_Ideological_State
+		}
+
+		relative_position_id = SPA_Get_Rid_of_the_Old_Movement
+		completion_reward = {
+		add_stability = 0.02 add_popularity = { ideology = fascist popularity = -0.05 }
+              	
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Crush_Far_Left_Unions
+		icon = GFX_GENERIC_socialist_uprising
+		x = -1
+		y = 2
+		cost = 0
+		prerequisite = {
+			focus = SPA_Non_Ideological_State
+		}
+
+		relative_position_id = SPA_Get_Rid_of_the_Old_Movement
+		completion_reward = {
+		add_stability = 0.02 add_popularity = { ideology = socialist popularity = -0.05 }	
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Christian_Monarchy
+		icon = GFX_SPA_christian_monarchy
+		x = 1
+		y = 2
+		cost = 0
+		prerequisite = {
+            focus = SPA_Award_the_Basques_wtih_Autonomy
+        }
+		relative_position_id = SPA_Crackdown_against_Alfonists
+		completion_reward = {
+	swap_ideas = { remove_idea = SPA_Carlism_2 add_idea = SPA_Carlism_3 }		
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Unite_the_Carlists
+		icon = GFX_goal_generic_national_unity
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Christian_Monarchy
+		}
+		relative_position_id = SPA_Christian_Monarchy
+		completion_reward = {
+		swap_ideas = { remove_idea = SPA_Carlism_3 add_idea = SPA_Carlism_4 }			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_The_New_Elite
+		icon = GFX_GENERIC_state_economy
+		x = 1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Reuse_Old_Administrative_Boundaries
+		}
+		relative_position_id = SPA_Reuse_Old_Administrative_Boundaries
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Spain_rises_from_the_ashes_of_fascism
+		icon = GFX_SPA_defensive_stratagems
+		x = 0
+		y = 3
+		cost = 0
+		prerequisite = {
+			focus = SPA_Reuse_Old_Administrative_Boundaries
+		}
+		prerequisite = {
+			focus = SPA_Hunt_Far-Right_Terrorists
+		}
+		prerequisite = {
+			focus = SPA_Crush_Far_Left_Unions
+		}
+		prerequisite = {
+			focus = SPA_Unite_the_Carlists
+		}
+		relative_position_id = SPA_Get_Rid_of_the_Old_Movement
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Continue_the_Military_Junta
+		icon = GFX_SPA_el_ejercito_de_franco
+		x = 0
+		y = 1
+		cost = 0
+		mutually_exclusive = { focus = SPA_The_Red_King_Uprising }
+		mutually_exclusive = { focus = SPA_Neo_Feudal_Government }
+		prerequisite = {
+			focus = SPA_Spain_rises_from_the_ashes_of_fascism
+		}
+		relative_position_id = SPA_Spain_rises_from_the_ashes_of_fascism
+		completion_reward = {
+			
+		}
+	}
+
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Neo_Feudal_Government
+		icon = GFX_GENERIC_friends_in_high_places
+		x = 0
+		y = 1
+		cost = 0
+		mutually_exclusive = { focus = SPA_The_Red_King_Uprising }
+		mutually_exclusive = { focus = SPA_Continue_the_Military_Junta }
+		prerequisite = {
+			focus = SPA_The_New_Elite
+		}
+		relative_position_id = SPA_The_New_Elite
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Corruption_Strategy
+		icon = GFX_GENERIC_corruption_money
+		x = 1
+		y = 1
+		cost = 0
+	        prerequisite = {
+			focus = SPA_Neo_Feudal_Government
+		}
+		relative_position_id = SPA_Neo_Feudal_Government
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Regional_Autonomy
+		icon = GFX_GENERIC_Fake_Democracy
+		x = -1
+		y = 1
+		cost = 0
+	        prerequisite = {
+			focus = SPA_Neo_Feudal_Government
+		}
+		relative_position_id = SPA_Neo_Feudal_Government
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Cooperate_with_the_King
+		icon = GFX_focus_generic_home_defense
+		x = 0
+		y = 2
+		cost = 0
+	        prerequisite = {
+			focus = SPA_Corruption_Strategy focus = SPA_Regional_Autonomy
+		}
+		relative_position_id = SPA_Neo_Feudal_Government
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Groom_the_Successor
+		icon = GFX_SPA_heir_groomed
+		x = -1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Unite_the_Carlists
+		}
+		relative_position_id = SPA_Unite_the_Carlists
+		completion_reward = {
+			
+		}
+	}
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_The_Red_King_Uprising
+		icon = GFX_GENERIC_socialism_cross
+		x = 0
+		y = 1
+		cost = 0
+		mutually_exclusive = { focus = SPA_Continue_the_Military_Junta }
+		mutually_exclusive = { focus = SPA_Neo_Feudal_Government }
+		prerequisite = {
+			focus = SPA_Groom_the_Successor
+		}
+		relative_position_id = SPA_Groom_the_Successor
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Federalize_Spain
+		icon = GFX_GENERIC_left_wing_victory
+		x = 1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_The_Red_King_Uprising
+		}
+		relative_position_id = SPA_The_Red_King_Uprising
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Purge_Francoist_Remnants
+		icon = GFX_GENERIC_Inquisition
+		x = -1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_The_Red_King_Uprising
+		}
+		relative_position_id = SPA_The_Red_King_Uprising
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Workers_Rights
+		icon = GFX_GENERIC_democratic_socialists
+		x = 0
+		y = 2
+		cost = 0
+		prerequisite = {
+			focus = SPA_Purge_Francoist_Remnants focus = SPA_Federalize_Spain
+		}
+		relative_position_id = SPA_The_Red_King_Uprising
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Don_Juan
+		icon = GFX_SPA_don_juan
+		x = 56
+		y = 0
+		cost = 0
+available = { 
+SPA = { has_country_flag = SPA_CHOSEN_MONARCH }
+SPA = { has_country_flag = SPA_DON_JUAN }
+}
+		mutually_exclusive = { focus = SPA_Prince_Xavier }
+		mutually_exclusive = { focus = SPA_Anton }
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Puppet_of_the_Movement
+		icon = GFX_SPA_form_aragonese_countermilitias
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Don_Juan
+		}
+		relative_position_id = SPA_Don_Juan
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Use_his_Charisma
+		icon = GFX_GENERIC_television_set
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Puppet_of_the_Movement
+		}
+		relative_position_id = SPA_Puppet_of_the_Movement
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Attend_Military_Parades
+		icon = GFX_SPA_create_oj_pe
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Use_his_Charisma
+		}
+		relative_position_id = SPA_Use_his_Charisma
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Meeting_With_the_Oligarchs
+		icon = GFX_GENERIC_industrial_grey
+		x = -1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Attend_Military_Parades
+		}
+		relative_position_id = SPA_Attend_Military_Parades
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Legitimize_His_Rule
+		icon = GFX_SPA_Legit
+		x = 1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Attend_Military_Parades
+		}
+		relative_position_id = SPA_Attend_Military_Parades
+		completion_reward = {
+			
+		}
+	}
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Fears_of_Liberalism
+		icon = GFX_SPA_liberal_fear
+		x = -2
+		y = 2
+		cost = 0
+		mutually_exclusive = { focus = SPA_Juan_is_clearly_an_aristocrat }
+		prerequisite = {
+			focus = SPA_Attend_Military_Parades      
+		}
+		prerequisite = {
+			focus = SPA_Meeting_With_the_Oligarchs
+		}
+		relative_position_id = SPA_Attend_Military_Parades
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Crownn_Jaime_Instead
+		icon = GFX_focus_rom_abdicate
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Fears_of_Liberalism
+		}
+		relative_position_id = SPA_Fears_of_Liberalism
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Juan_is_clearly_an_aristocrat
+		icon = GFX_GENERIC_business
+		x = 2
+		y = 2
+		cost = 0
+		mutually_exclusive = { focus = SPA_Fears_of_Liberalism }
+		prerequisite = {
+			focus = SPA_Attend_Military_Parades
+		}
+		prerequisite = {
+			focus = SPA_Legitimize_His_Rule 
+		}
+		relative_position_id = SPA_Attend_Military_Parades
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Continue_the_Coronation
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Juan_is_clearly_an_aristocrat
+		}
+		relative_position_id = SPA_Juan_is_clearly_an_aristocrat
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Restoration_of_the_Monarchy
+		icon = GFX_focus_rom_royal_dictatorship
+		x = 2
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Continue_the_Coronation
+			focus = SPA_Crownn_Jaime_Instead
+                        focus = SPA_placate_the_carlist_opposition
+		}
+		relative_position_id = SPA_Crownn_Jaime_Instead
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_What_Now
+		icon = GFX_GENERIC_Whats_The_Plan
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Restoration_of_the_Monarchy
+		}
+		relative_position_id = SPA_Restoration_of_the_Monarchy
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Anton
+		icon = GFX_SPA_Anton
+		x = 62
+		y = 0
+		cost = 0
+available = { 
+SPA = { has_country_flag = SPA_CHOSEN_MONARCH }
+SPA = { has_country_flag = SPA_ANTON }
+}
+		mutually_exclusive = { focus = SPA_Prince_Xavier }
+		mutually_exclusive = { focus = SPA_Don_Juan }
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_German_War_Hero
+		icon = GFX_GER_yellow_eagle
+		x = 0
+		y = 2
+		cost = 0
+		prerequisite = {
+			focus = SPA_Anton
+		}
+		relative_position_id = SPA_Anton
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Habsburg_Identity
+		icon = GFX_SPA_monarchists
+		x = 1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_German_War_Hero
+		}
+		mutually_exclusive = {
+			focus = SPA_Spanish_Citizen
+		}
+		relative_position_id = SPA_German_War_Hero
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Spanish_Citizen
+		icon = GFX_SPA_overcome_mediterranean_economic_divisions
+		x = -1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_German_War_Hero
+		}
+		mutually_exclusive = {
+			focus = SPA_Habsburg_Identity
+		}
+		relative_position_id = SPA_German_War_Hero
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_RTVE_interview
+		icon = GFX_GENERIC_investigation
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Spanish_Citizen
+		}
+		relative_position_id = SPA_Spanish_Citizen
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_abandon_our_german_heritage
+		icon = GFX_GER_burn_the_blacklist
+		x = 0
+		y = 3
+		cost = 0
+		prerequisite = {
+			focus = SPA_Habsburg_Identity focus = SPA_Spanish_Citizen
+		}
+
+		relative_position_id = SPA_German_War_Hero
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_pride_in_catholic_christianity
+		icon = GFX_KRA_shield_of_christ
+		x = -1
+		y = 1
+		cost = 0
+		prerequisite = {
+		 focus = SPA_RTVE_interview
+		}
+
+		relative_position_id = SPA_RTVE_interview
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_placate_the_carlist_opposition
+		icon = GFX_SPA_Placate_Carlists
+		x = 1
+		y = 2
+		cost = 0
+		prerequisite = {
+		 focus = SPA_Legitimize_His_Rule focus = SPA_Meeting_With_the_Oligarchs
+		}
+
+		relative_position_id = SPA_Meeting_With_the_Oligarchs
+		completion_reward = {
+			
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = SPA_friends_with_the_local_elite
+		icon = GFX_GENERIC_elite_party
+		x = 0
+		y = 2
+		cost = 0
+		prerequisite = {
+		 focus = SPA_RTVE_interview 
+		}
+
+		relative_position_id = SPA_RTVE_interview
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_invite_the_whole_family
+		icon = GFX_SPA_habsburg_exile
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+		 focus = SPA_Habsburg_Identity
+		}
+
+		relative_position_id = SPA_Habsburg_Identity
+		completion_reward = {
+			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = SPA_life_of_an_emperor
+		icon = GFX_GENERIC_Bank
+		x = 0
+		y = 2
+		cost = 0
+		prerequisite = {
+		 focus = SPA_invite_the_whole_family
+		}
+
+		relative_position_id = SPA_invite_the_whole_family
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_non_political_figurehead
+		icon = GFX_FIN_karelia_crown
+		x = -1
+		y = 1
+		cost = 0
+		prerequisite = {
+		 focus = SPA_life_of_an_emperor focus = SPA_friends_with_the_local_elite
+		}
+		prerequisite = {
+		 focus = SPA_abandon_our_german_heritage
+		}
+		relative_position_id = SPA_life_of_an_emperor
+		completion_reward = {
+			
+		}
+	}
+
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_meet_with_the_union
+		icon = GFX_GENERIC_meet_trade_unions
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Continue_the_Coronation
+		}
+		relative_position_id = SPA_Continue_the_Coronation
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_western_style_democracy
+		icon = GFX_GENERIC_liberation
+		x = 0
+		y = 2
+		cost = 0
+		prerequisite = {
+			focus = SPA_meet_with_the_union
+		}
+
+		relative_position_id = SPA_Continue_the_Coronation
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Amend_Succesion_Laws
+		icon = GFX_GENERIC_elite_party
+		x = 0
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_Crownn_Jaime_Instead 
+		}
+		relative_position_id = SPA_Crownn_Jaime_Instead
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Continue_the_Labourcamps
+		icon = GFX_GENERIC_imprison_opposition
+		x = 0
+		y = 2
+		cost = 0
+		prerequisite = {
+			focus = SPA_Amend_Succesion_Laws
+		}
+		relative_position_id = SPA_Crownn_Jaime_Instead
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Continue_Francoism
+		icon = GFX_GENERIC_old_guard
+		x = -1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_What_Now
+		}
+		prerequisite = {
+			focus = SPA_Amend_Succesion_Laws
+		}
+		mutually_exclusive = {
+			focus = SPA_Liberalize_the_System
+		}
+		relative_position_id = SPA_What_Now
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Liberalize_the_System
+		icon = GFX_GENERIC_Trading
+		x = 1
+		y = 1
+		cost = 0
+		prerequisite = {
+			focus = SPA_What_Now
+		}
+		prerequisite = {
+			focus = SPA_western_style_democracy
+		}
+		mutually_exclusive = {
+			focus = SPA_Continue_Francoism
+		}
+		relative_position_id = SPA_What_Now
+		completion_reward = {
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Moroccan_independence_war_lost
+		icon = GFX_SPA_moroccan_guerillas
+		x = 50
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+                available = { has_country_flag = SPR_MOR_LOSS }
+                
+		cost = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SPA_acknowledge_economic_stagnation"
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_Moroccan_independence_war_victory
+		icon = GFX_SPA_morocco_conquered
+		x = 52
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+                available = { has_country_flag = SPR_MOR_WIN }
+		cost = 0
+		completion_reward = {
+			
+			
+		}
+	}
+}

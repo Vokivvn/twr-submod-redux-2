@@ -1,0 +1,393 @@
+# Modifiers you can use to increase/decrease various variables:
+# fissile_material_production_modifier: modifier for fissile material production
+# nuclear_research_speed_modifier: modifier for Nuclear research speed in GUI
+# moderator_research_speed_modifier: modifier for Moderator research speed
+# nuclear_assembly_speed_modifier: modifier for Nuclear assembly speed
+# use as add_to_variable = { nuclear_research_speed_modifier = 0.1 }, this will be a 10% increase
+
+remove_scientist = {
+	custom_effect_tooltip = "Will decrease our number of available Scientists by one."
+	if = {
+		limit = { has_researcher = yes }
+		if = {
+			limit = { check_variable = { researcher_array^num > 0 } }
+			remove_from_array = { array = researcher_array }
+		}
+		else_if = {
+			limit = { has_nuclear_researcher = yes }
+			remove_from_array = { array = nuclear_research_researcher_array }
+		}
+		else_if = {
+			limit = { has_moderator_researcher = yes }
+			remove_from_array = { array = moderator_researcher_array }
+		}
+		else_if = {
+			limit = { has_fissile_material_researcher = yes }
+			remove_from_array = { array = create_fissile_material_researcher_array }
+		}
+		else_if = {
+			limit = { has_fissile_material_plutonium_researcher = yes }
+			remove_from_array = { array = create_fissile_material_plutonium_researcher_array }
+		}
+		else_if = {
+			limit = { has_nuclear_bomb_assembly_researcher = yes }
+			remove_from_array = { array = nuclear_bomb_assembly_researcher_array }
+		}
+	}
+}
+
+#Calculates how many scientists should be added or removed to your pool
+set_scientist_level = {
+	set_variable = { amount_of_scientists_required = researcher_array^num }
+	#If your researcher array is under the amount of nuclear reactors you have, add 1
+	while_loop_effect  = {
+		limit = { check_variable = { amount_of_scientists_required < modifier@nuclear_scientist_production_modifier } }
+		add_to_variable = { amount_of_scientists_required = 1 }
+	}
+	clamp_variable = { var = amount_of_scientists_required min = -6 max = 6 }
+
+	#Just to be sure its not over
+	while_loop_effect  = {
+		limit = { check_variable = { amount_of_scientists_required > modifier@nuclear_scientist_production_modifier } }
+		subtract_from_variable = { amount_of_scientists_required = 1 }
+	}
+	clamp_variable = { var = amount_of_scientists_required min = -6 max = 6 }
+
+	#Subtract all the other researchers
+	subtract_from_variable = { amount_of_scientists_required = researcher_array^num }
+	subtract_from_variable = { amount_of_scientists_required = nuclear_research_researcher_array^num }
+	subtract_from_variable = { amount_of_scientists_required = moderator_researcher_array^num }
+	subtract_from_variable = { amount_of_scientists_required = create_fissile_material_researcher_array^num }
+	subtract_from_variable = { amount_of_scientists_required = create_fissile_material_plutonium_researcher_array^num }
+	subtract_from_variable = { amount_of_scientists_required = nuclear_bomb_assembly_researcher_array^num }
+
+	#Maximum of 6 scientists, and a minimum subtraction of 6 since the max you can have is 6
+	clamp_variable = { var = amount_of_scientists_required min = -6 max = 6 }
+
+	#For every scientist required, add scientist
+	while_loop_effect = {
+		limit = { check_variable = { amount_of_scientists_required > 0 } }
+		add_scientist = yes
+		subtract_from_variable = { amount_of_scientists_required = 1 }
+	}
+
+	#For every scientist too many remove scientist
+	while_loop_effect = {
+		limit = { check_variable = { amount_of_scientists_required < 0 } }
+		remove_scientist = yes
+		add_to_variable = { amount_of_scientists_required = 1 }
+	}
+}
+
+add_scientist = {
+	custom_effect_tooltip = "Will increase our number of available Scientists by one."
+	add_to_array = { researcher_array = 1 }
+	log = "Added scientist to [?ROOT.GetName]"
+}
+
+add_nuclear_research_idea = {
+	if = {
+		limit = { has_nuclear_researcher = yes }
+		if = {
+			limit = { check_variable = { nuclear_research_researcher_array^num = 1 } }
+			add_ideas = nuclear_research_1
+			remove_ideas = nuclear_research_2
+			remove_ideas = nuclear_research_3
+		}
+		else_if = {
+			limit = { check_variable = { nuclear_research_researcher_array^num = 2 } }
+			add_ideas = nuclear_research_2
+			remove_ideas = nuclear_research_1
+			remove_ideas = nuclear_research_3
+		}
+		else = {
+			add_ideas = nuclear_research_3
+			remove_ideas = nuclear_research_1
+			remove_ideas = nuclear_research_2
+		}
+	}
+	else = {
+		remove_ideas = nuclear_research_1
+		remove_ideas = nuclear_research_2
+		remove_ideas = nuclear_research_3
+	}
+}
+
+add_fissile_material_idea = {
+	if = {
+		limit = { has_fissile_material_researcher = yes }
+		if = {
+			limit = { check_variable = { create_fissile_material_researcher_array^num = 1 } }
+			add_ideas = fissile_material_uranium_1
+			remove_ideas = fissile_material_uranium_2
+		}
+		else = {
+			add_ideas = fissile_material_uranium_2
+			remove_ideas = fissile_material_uranium_1
+		}
+	}
+	else = {
+		remove_ideas = fissile_material_uranium_1
+		remove_ideas = fissile_material_uranium_2
+	}
+
+	if = {
+		limit = { has_fissile_material_plutonium_researcher = yes }
+		add_ideas = fissile_material_plutonium_1
+	}
+	else = {
+		remove_ideas = fissile_material_plutonium_1
+	}
+}
+
+add_moderator_research_idea = {
+	if = {
+		limit = { has_moderator_researcher = yes }
+		if = {
+			limit = { check_variable = { moderator_researcher_array^num = 1 } }
+			add_ideas = moderator_research_1
+			remove_ideas = moderator_research_2
+			remove_ideas = moderator_research_3
+		}
+		else_if = {
+			limit = { check_variable = { moderator_researcher_array^num = 2 } }
+			add_ideas = moderator_research_2
+			remove_ideas = moderator_research_1
+			remove_ideas = moderator_research_3
+		}
+		else = {
+			add_ideas = moderator_research_3
+			remove_ideas = moderator_research_1
+			remove_ideas = moderator_research_2
+		}
+	}
+	else = {
+		remove_ideas = moderator_research_1
+		remove_ideas = moderator_research_2
+		remove_ideas = moderator_research_3
+	}
+}
+
+add_nuclear_assembly_research_idea = {
+	if = {
+		limit = { has_nuclear_bomb_assembly_researcher = yes }
+		if = {
+			limit = { check_variable = { nuclear_bomb_assembly_researcher_array^num = 1 } }
+			add_ideas = nuclear_assembly_1
+			remove_ideas = nuclear_assembly_2
+			remove_ideas = nuclear_assembly_3
+		}
+		else_if = {
+			limit = { check_variable = { nuclear_bomb_assembly_researcher_array^num = 2 } }
+			add_ideas = nuclear_assembly_2
+			remove_ideas = nuclear_assembly_1
+			remove_ideas = nuclear_assembly_3
+		}
+		else = {
+			add_ideas = nuclear_assembly_3
+			remove_ideas = nuclear_assembly_1
+			remove_ideas = nuclear_assembly_2
+		}
+	}
+	else = {
+		remove_ideas = nuclear_assembly_1
+		remove_ideas = nuclear_assembly_2
+		remove_ideas = nuclear_assembly_3
+	}
+}
+
+update_hidden_ideas = {
+	add_nuclear_research_idea = yes
+	add_fissile_material_idea = yes
+	add_moderator_research_idea = yes
+	add_nuclear_assembly_research_idea = yes
+}
+
+update_research_speed_nuclear = {
+	if = {
+		limit = { has_idea = nuclear_research_1 }
+		set_variable = { add_to_nuclear_research_var = 0.3 }
+	}
+	else_if = {
+		limit = { has_idea = nuclear_research_2 }
+		set_variable = { add_to_nuclear_research_var = 0.6 }
+	}
+	else = {
+		set_variable = { add_to_nuclear_research_var = 0.9 }
+	}
+
+	multiply_variable = { add_to_nuclear_research_var = nuclear_research_speed_modifier }
+}
+
+update_research_speed_fissile_material = {
+	if = {
+		limit = { has_idea = fissile_material_uranium_1 }
+		set_variable = { add_to_fissile_material_uranium_var = 0.25 }
+	}
+	else_if = {
+		limit = { has_idea = fissile_material_uranium_2 }
+		set_variable = { add_to_fissile_material_uranium_var = 0.50 }
+	}
+	else = {
+		set_variable = { add_to_fissile_material_uranium_var = 0 }
+	}
+
+	if = {
+		limit = { has_idea = fissile_material_plutonium_1 }
+		set_variable = { add_to_fissile_material_plutonium_var = 1 }
+	}
+	else = {
+		set_variable = { add_to_fissile_material_plutonium_var = 0 }
+	}
+
+	add_to_variable = { add_to_fissile_material_uranium_var = add_to_fissile_material_plutonium_var }
+	multiply_variable = { add_to_fissile_material_uranium_var = fissile_material_production_modifier }
+}
+
+update_research_speed_moderator = {
+	if = {
+		limit = { has_idea = moderator_research_1 }
+		set_variable = { add_to_moderator_research_var = 0.5 }
+	}
+	else_if = {
+		limit = { has_idea = moderator_research_2 }
+		set_variable = { add_to_moderator_research_var = 1 }
+	}
+	else = {
+		set_variable = { add_to_moderator_research_var = 1.5 }
+	}
+	multiply_variable = { add_to_moderator_research_var = moderator_research_speed_modifier }
+}
+
+update_research_speed_nuclear_assembly = {
+	if = {
+		limit = { has_idea = nuclear_assembly_1 }
+		set_variable = { add_to_nuclear_assembly_var = 1 }
+		set_variable = { subtract_from_fissile_material_var = 1 }
+	}
+	else_if = {
+		limit = { has_idea = nuclear_assembly_2 }
+		set_variable = { add_to_nuclear_assembly_var = 2 }
+		set_variable = { subtract_from_fissile_material_var = 2 }
+	}
+	else = {
+		set_variable = { add_to_nuclear_assembly_var = 3 }
+		set_variable = { subtract_from_fissile_material_var = 3 }
+	}
+	multiply_variable = { add_to_nuclear_assembly_var = nuclear_assembly_speed_modifier }
+}
+
+add_nuclear_variable = {
+	if = {
+		limit = {
+			check_variable = { nuclear_research_var > 99.9 }
+			NOT = { has_country_flag = nuclear_research_done }
+		}
+		set_country_flag = nuclear_research_done
+		add_ideas = nuclear_research_completed
+
+		for_each_loop = {
+			array = nuclear_research_researcher_array
+			remove_from_array = { array = nuclear_research_researcher_array }
+			add_scientist = yes
+		}
+	}
+	if = {
+		limit = {
+			has_nuclear_researcher = yes
+		}
+
+		add_to_variable = { nuclear_research_var = add_to_nuclear_research_var }
+		clamp_variable = { var = nuclear_research_var min = 0 max = 100 }
+	}
+}
+
+add_fissile_material_variable = {
+	if = {
+		limit = { has_fissile_material_researcher_total = yes }
+
+		add_to_variable = { fissile_material_var = add_to_fissile_material_uranium_var }
+		clamp_variable = { var = fissile_material_var min = 0 max = 100 }
+	}
+
+	if = {
+		limit = { check_variable = { fissile_material_var > 99.9 } }
+
+		for_each_loop = {
+			array = create_fissile_material_researcher_array
+			remove_from_array = { array = create_fissile_material_researcher_array }
+			add_scientist = yes
+		}
+		for_each_loop = {
+			array = create_fissile_material_plutonium_researcher_array
+			remove_from_array = { array = create_fissile_material_plutonium_researcher_array }
+			add_scientist = yes
+		}
+	}
+}
+
+add_moderator_research_variable = {
+	if = {
+		limit = {
+			check_variable = { moderator_research_var > 99.9 }
+			NOT = { has_country_flag = has_graphite_moderator }
+		}
+		set_country_flag = has_graphite_moderator
+		add_to_variable = { fissile_material_production_modifier = 0.5 }
+		update_research_speed_fissile_material = yes
+
+		for_each_loop = {
+			array = moderator_researcher_array
+			remove_from_array = { array = moderator_researcher_array }
+			add_scientist = yes
+		}
+	}
+	if = {
+		limit = { has_moderator_researcher = yes }
+
+		add_to_variable = { moderator_research_var = add_to_moderator_research_var }
+		clamp_variable = { var = moderator_research_var min = 0 max = 100 }
+	}
+}
+
+add_nuclear_assembly_variable = {
+	if = {
+		limit = { has_nuclear_bomb_assembly_researcher = yes }
+
+		if = {
+			limit = { has_enough_fissile_material = yes }
+			add_to_variable = { nuclear_assembly_var = add_to_nuclear_assembly_var }
+			subtract_from_variable = { fissile_material_var = subtract_from_fissile_material_var }
+		}
+
+		if = {
+			limit = { check_variable = { nuclear_assembly_var > 99.9 } }
+
+			for_each_loop = {
+				array = nuclear_bomb_assembly_researcher_array
+				remove_from_array = { array = nuclear_bomb_assembly_researcher_array }
+				add_scientist = yes
+			}
+		}
+
+		clamp_variable = { var = fissile_material_var min = 0 max = 100 }
+		clamp_variable = { var = nuclear_assembly_var min = 0 max = 100 }
+	}
+}
+
+ai_add_nuke_progress = {
+	set_variable = { ai_nuclear_progress_modifier = researcher_array^num }
+	multiply_variable = { ai_nuclear_progress_modifier = 0.125 } #This is about as fast as you normally research nukes
+	multiply_variable = { ai_nuclear_progress_modifier = 30 } #This is a balance factor cause its 30 days in a month
+	add_to_variable = { ai_nuclear_progress = ai_nuclear_progress_modifier }
+	clamp_variable = { var = ai_nuclear_progress min = 0 max = 100 }
+	add_nuke_ai = yes
+}
+
+add_nuke_ai = {
+	if = {
+		limit = { check_variable = { ai_nuclear_progress > 99 } }
+		add_nuclear_bombs = 1
+		set_variable = { ai_nuclear_progress = 0 }
+	}
+}

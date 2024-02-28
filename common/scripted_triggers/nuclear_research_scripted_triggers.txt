@@ -1,0 +1,52 @@
+has_free_researcher = {
+	custom_trigger_tooltip = {
+		tooltip = "Has a free researcher"
+		check_variable = { ROOT.researcher_array^num > 0 }
+	}
+}
+
+has_completed_nuke = {
+	check_variable = { nuclear_assembly_var = 100 }
+	has_country_flag = nuclear_research_done
+}
+
+has_enough_fissile_material = {
+	custom_trigger_tooltip = {
+		tooltip = "Has enough Fissile Material to Proceed"
+		if = {
+			limit = { has_idea = nuclear_assembly_1 }
+			check_variable = { fissile_material_var > 1 }
+		}
+		else_if = {
+			limit = { has_idea = nuclear_assembly_2 }
+			check_variable = { fissile_material_var > 2 }
+		}
+		else_if = {
+			limit = { has_idea = nuclear_assembly_3 }
+			check_variable = { fissile_material_var > 3 }
+		}
+	}
+}
+
+has_researcher = {
+	OR = {
+		check_variable = { researcher_array^num > 0 }
+		has_nuclear_researcher = yes
+		has_moderator_researcher = yes
+		has_fissile_material_researcher = yes
+		has_fissile_material_plutonium_researcher = yes
+		has_nuclear_bomb_assembly_researcher = yes
+	}
+}
+
+has_nuclear_researcher = { check_variable = { nuclear_research_researcher_array^num > 0 } }
+has_moderator_researcher = { check_variable = { moderator_researcher_array^num > 0 } }
+has_fissile_material_researcher_total = {
+	OR = {
+		has_fissile_material_researcher = yes
+		has_fissile_material_plutonium_researcher = yes
+	}
+}
+has_fissile_material_researcher = { check_variable = { create_fissile_material_researcher_array^num > 0 } }
+has_fissile_material_plutonium_researcher = { check_variable = { create_fissile_material_plutonium_researcher_array^num > 0 } }
+has_nuclear_bomb_assembly_researcher = { check_variable = { nuclear_bomb_assembly_researcher_array^num > 0 } }

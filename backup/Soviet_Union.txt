@@ -1,0 +1,94 @@
+focus_tree = {
+	id = SOV_Sov
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = SOV
+		}
+	}
+	default = no
+	
+	focus = {
+		cancelable = no
+		id = SOV_beria_begin_de_socialization
+		icon = GFX_GENERIC_peaceful_socialism
+		cost = 10
+		x = 8
+		y = 0
+		available = {
+			NOT = {
+				has_global_flag = beria_is_dead
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_beria_begin_de_socialization"
+			add_stability = -0.15
+			add_political_power = -150
+			add_popularity = {
+				ideology = bolshevik_leninist
+				popularity = -0.2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = SOV_beria_privitization_preparations
+		icon = GFX_SOV_denationalization
+		cost = 10
+		prerequisite = { focus = SOV_beria_begin_de_socialization }
+		relative_position_id = SOV_beria_begin_de_socialization
+		x = -1
+		y = 1
+		available = {
+			NOT = {
+				has_global_flag = beria_is_dead
+			}
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = SOV_beria_disbanding_nkvd
+		icon = GFX_SOV_NKVD_remain
+		cost = 10
+		prerequisite = { focus = SOV_beria_begin_de_socialization }
+		relative_position_id = SOV_beria_begin_de_socialization
+		x = 1
+		y = 1
+		available = {
+			NOT = {
+				has_global_flag = beria_is_dead
+			}
+		}
+		completion_reward = {
+			remove_ideas = SOV_the_nkvd_idea
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = SOV_Berias_Death
+		icon = GFX_SOV_total_collapse
+		cost = 10
+		prerequisite = { focus = SOV_beria_disbanding_nkvd }
+		prerequisite = { focus = SOV_beria_privitization_preparations }
+		relative_position_id = SOV_beria_disbanding_nkvd
+		x = -1
+		y = 1
+		available = {
+			NOT = {
+				has_global_flag = beria_is_dead
+			}
+		}
+		completion_reward = {
+			add_ideas = facade_democracy
+		}
+	}
+	
+	
+}
+ 

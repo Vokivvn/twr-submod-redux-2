@@ -1,0 +1,987 @@
+goebbels_project = {
+	GOEBBELS_Hourly_Broadcasts = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_completed_focus = GER_A_Fanatic_Nation
+		}
+
+		cost = 40
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 25
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Hourly_Broadcasts"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Hourly_Broadcasts"
+			custom_effect_tooltip = GOEBBELS_DRUM_UP_SUPPORT_FOR_TOTAL_WAR
+			hidden_effect = {
+				add_to_variable = {
+					var = totalwarsupport
+					value = 1
+				} 
+			}
+
+		}
+	}
+	GOEBBELS_Hitler_Godhood = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_completed_focus = GER_A_Fanatic_Nation
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Hitler_Godhood"
+			country_event = twrgoebbels.10
+		}
+	}
+	GOEBBELS_Nordic_Question = {
+		icon = ger_reichskommissariats
+
+		cost = 15
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Hitler_Godhood"
+			country_event = twrgeroccupation.32
+		}
+	}
+	GOEBBELS_stabilization_propaganda_effort = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_completed_focus = GER_A_New_Agency
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 45
+		fire_only_once = no
+
+		modifier = {
+			political_power_cost = 0.10
+			stability_weekly = 0.01
+		}
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_stabilization_propaganda_effort"
+			}
+		}
+	GOEBBELS_enforce_stricter_workshifts = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_completed_focus = GER_A_New_Agency
+		has_war = yes
+		}
+		visible = {
+		has_war = yes
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 45
+		fire_only_once = no
+
+		modifier = {
+			political_power_cost = 0.10
+			production_factory_efficiency_gain_factor = 0.05
+			production_speed_buildings_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_enforce_stricter_workshifts"
+			}
+		}
+	GOEBBELS_conscription_operation = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_completed_focus = GER_A_New_Agency
+		has_war = yes
+		}
+		visible = {
+		has_war = yes
+		}
+
+		cost = 45
+		days_remove = 30
+		days_re_enable = 45
+		fire_only_once = no
+
+		modifier = {
+			political_power_cost = 0.10
+			conscription_factor = 0.1
+		}
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_conscription_operation"
+			}
+		}
+	GOEBBELS_Rally_Citizen_Troopers = {
+		icon = ger_reichskommissariats
+		visible = {
+		has_completed_focus = GER_A_New_Agency
+		}
+		available = {
+		has_war = yes
+			custom_trigger_tooltip = {
+				tooltip = enough_total_war_support		
+				check_variable = {
+					var = totalwarsupport
+					value = 3
+					compare = greater_than_or_equals
+				}
+			}
+		}
+
+		cost = 30
+		days_remove = 30
+		fire_only_once = no
+
+		ai_will_do = {
+			factor = 50
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Hitler_Godhood"
+			custom_effect_tooltip = GOEBBELS_LOSES_SUPPORT_FOR_TOTAL_WAR
+			hidden_effect = {
+				subtract_from_variable = {
+					var = totalwarsupport
+					value = 1
+				} 
+			}
+		}
+		remove_effect = {
+		custom_effect_tooltip = GAIN_3_MILITIA_IN_RANDOM_STATE
+			hidden_effect = {
+			if = {
+			limit = {
+			NOT = {
+			has_template = "Zivilschutzarmee"
+				}
+			}
+			division_template = {
+				name = "Zivilschutzarmee"
+				regiments = {
+				militia = { x = 0 y = 0 }
+				militia = { x = 0 y = 1 }
+				militia = { x = 0 y = 2 }
+				militia = { x = 1 y = 0 }
+				militia = { x = 1 y = 1 }
+				militia = { x = 1 y = 2 }
+				}
+				support = {
+				engineer = { x = 0 y = 0 }
+				}
+				is_locked = yes
+					}
+				}
+				random_owned_state = {
+				create_unit = {
+    			division = "division_template = \"Zivilschutzarmee\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = GER
+				}
+				create_unit = {
+    			division = "division_template = \"Zivilschutzarmee\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = GER
+				}
+				create_unit = {
+    			division = "division_template = \"Zivilschutzarmee\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+    			owner = GER
+					}
+				}
+			}
+		}
+	}
+    GOEBBELS_auto_mission_1 = {                           # This is our mission id
+        allowed = { always = no }
+        available = { always = no }   
+          is_good = no                           # This mission is color coded to be a positive thing (not a crisis)
+          days_mission_timeout = 50              # How many days before the mission fails?
+          complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_auto_mission_1"
+        }
+          timeout_effect = {                      # What happens when we fail the mission?
+          add_manpower = -50000
+          activate_mission = GOEBBELS_auto_mission_2
+          }
+    }
+    GOEBBELS_auto_mission_2 = {                           # This is our mission id
+        allowed = { always = no }
+        available = { always = no }   
+          is_good = no                           # This mission is color coded to be a positive thing (not a crisis)
+          days_mission_timeout = 50              # How many days before the mission fails?
+          complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_auto_mission_2"
+        }
+          timeout_effect = {                      # What happens when we fail the mission?
+          855 = {
+          add_manpower = -10000
+          }
+          64 = {
+          add_manpower = 10000
+          }
+          activate_mission = GOEBBELS_auto_mission_3
+          }
+    }
+    GOEBBELS_auto_mission_3 = {                           # This is our mission id
+        allowed = { always = no }
+        available = { always = no }   
+          is_good = no                           # This mission is color coded to be a positive thing (not a crisis)
+          days_mission_timeout = 50              # How many days before the mission fails?
+          complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_auto_mission_3"
+        }
+        timeout_effect = {                      # What happens when we fail the mission?
+        random_owned_controlled_state = {
+        remove_building = {
+        type = industrial_complex
+        level = 2
+                }
+            }
+        }
+    }
+	GOEBBELS_Animation_Wing = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_completed_focus = GER_A_Future
+		}
+
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Animation_Wing"
+		}
+		remove_effect = {
+		add_war_support = 0.05
+		country_event = twrgoebbels.7
+			custom_effect_tooltip = GOEBBELS_DRUM_UP_SUPPORT_FOR_TOTAL_WAR
+			hidden_effect = {
+				add_to_variable = {
+					var = totalwarsupport
+					value = 1
+				} 
+			}
+
+		}
+	}	
+	GOEBBELS_Child_Soldiers = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_country_flag = HITLER_YOUTH_MILITARY
+		}
+
+		cost = 50
+		days_remove = 100
+		fire_only_once = yes
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Child_Soldiers"
+			add_war_support = -0.05
+		}
+		remove_effect = {
+		country_event = twrgoebbels.8
+		}
+	}	
+	GOEBBELS_Fully_Militarize_Youth = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_completed_focus = GER_A_Future
+		}
+
+		cost = 30
+		days_remove = 50
+		fire_only_once = yes
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Fully_Militarize_Youth"
+		}
+		remove_effect = {
+		country_event = twrgoebbels.9
+		army_experience = 15
+		hidden_effect = {
+		set_country_flag = HITLER_YOUTH_MILITARY
+		}
+		}
+	}	
+	GOEBBELS_Break_the_Reichskonkordat = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_completed_focus = GER_Finger_Pointing
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Break_the_Reichskonkordat"
+			custom_effect_tooltip = GOEBBELS_WILL_BREAK_THE_ACCORD
+			hidden_effect = {
+			set_country_flag = BREAKING_THE_Reichskonkordat
+			}
+		}
+	}
+	GOEBBELS_Crack_the_Catholics = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_country_flag = BREAKING_THE_Reichskonkordat
+		}
+
+		cost = 25
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_Crack_the_Catholics"
+			add_timed_idea = {
+    		idea = GER_rampant_prosecution_on_catholics
+    		days = 90
+			}
+			custom_effect_tooltip = GOEBBELS_DRUM_UP_SUPPORT_FOR_TOTAL_WAR
+			hidden_effect = {
+			country_event = { id = twrgoebbels.15 days = 7 random = 300 }
+				add_to_variable = {
+					var = totalwarsupport
+					value = 1
+				} 
+			}
+		}
+	}
+	GOEBBELS_End_Diplomatic_Ties_With_Vatican = {
+		icon = ger_reichskommissariats
+
+		available = {
+		has_country_flag = BREAKING_THE_Reichskonkordat
+		NOT = {
+		has_global_flag = VATICAN_IS_YEETED
+		}
+		}
+
+		cost = 30
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_End_Diplomatic_Ties_With_Vatican"
+			add_stability = -0.05
+			country_event = twrgoebbels.12
+		}
+	}	
+	GOEBBELS_ITA_WAR = {
+		icon = ger_reichskommissariats
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			tag = ITA
+				NOT = {
+				has_war_with = ROOT
+				}
+				is_subject = no
+				exists = yes
+			}
+		}
+		available = {
+		has_completed_focus =  GER_Start_The_Struggle
+		has_country_flag = RUS_CRUSADE_ACCOMPLISHED
+		}
+		visible = {
+		has_completed_focus = GER_Start_The_Struggle
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+				}
+		is_subject = no
+			}
+		}
+		cost = 30
+		fire_only_once = yes
+		days_remove = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_ITA_WAR"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = ITA
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = ITA
+    	type = annex_everything
+			}
+		}
+	}
+	GOEBBELS_RUS_WAR = {
+		icon = ger_reichskommissariats
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			OR = {
+			tag = SOV 
+			tag = TRV 
+			tag = IDE 
+			tag = TRK
+			tag = KAZ
+			tag = TRA
+			tag = UZB
+			tag = TJK
+			tag = KYR
+			tag = SIS
+			tag = RUS
+			original_tag = TRK
+			}
+			NOT = {
+			is_subject_of = ROOT
+			has_war_with = ROOT
+			}
+			exists = yes
+
+			}
+		}
+		visible = {
+		has_completed_focus = GER_Start_The_Struggle
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+				}
+		is_subject = no
+			}
+		}
+		available = {
+		has_completed_focus =  GER_Start_The_Struggle
+		}
+		cost = 30
+		fire_only_once = yes
+		days_remove = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_RUS_WAR"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = FROM
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = FROM
+    	type = annex_everything
+			}
+		}
+	}
+	GOEBBELS_RUS_SIBERIA = {
+		icon = ger_reichskommissariats
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			OR = {
+			tag = KRA 
+			tag = NOV 
+			tag = NRI 
+			tag = TAN 
+			tag = BRY
+			tag = RFP
+			tag = SBR
+			}
+				NOT = {
+				is_subject_of = ROOT
+				has_war_with = ROOT
+				}
+				exists = yes
+			}
+		}
+		visible = {
+		has_completed_focus = GER_Start_The_Struggle
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+				}
+		is_subject = no
+			}
+		}
+		available = {
+		has_completed_focus =  GER_Start_The_Struggle
+		NOT = {
+		country_exists = SOV
+			}
+		}
+		cost = 30
+		fire_only_once = yes
+		days_remove = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		visible = {
+		has_completed_focus =  GER_Start_The_Struggle
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_RUS_SIBERIA"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = FROM
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = FROM
+    	type = annex_everything
+			}
+		}
+	}
+	GOEBBELS_FFR_WAR = {
+		icon = ger_reichskommissariats
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			OR = {
+			tag = FFR
+			tag = FRA
+			}
+			NOT = {
+			is_in_faction_with = ROOT
+			has_war_with = ROOT
+			}
+			is_subject = no
+			exists = yes
+			controls_vichy_french_state = yes
+			}
+		}
+		visible = {
+		has_completed_focus =  GER_Start_The_Struggle
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+				}
+		is_subject = no
+			}
+		}
+		available = {
+		has_completed_focus =  GER_Start_The_Struggle
+		has_country_flag = RUS_CRUSADE_ACCOMPLISHED
+		}
+
+		cost = 30
+		fire_only_once = yes
+		days_remove = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_FFR_WAR"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = FROM
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = FROM
+    	type = annex_everything
+			}
+		}
+	}
+	GOEBBELS_balkan_conquest = {
+		icon = ger_reichskommissariats
+		visible = {
+		has_completed_focus = GER_Start_The_Struggle
+		}
+		available = {
+		has_completed_focus = GER_Start_The_Struggle
+		has_war = no
+		}
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			OR = {
+			tag = ROM
+			tag = HUN
+			tag = CRO
+			tag = ALB
+			tag = GRE
+			tag = BOS
+			tag = BUL
+			tag = BLC
+			tag = SER
+			tag = CKR
+			tag = MOL
+			tag = NUK
+			tag = WCH
+			}
+			NOT = {
+			is_in_faction_with = ROOT
+			has_war_with = ROOT
+			}
+			is_subject = no
+			exists = yes
+			}
+		}
+		visible = {
+		has_completed_focus = GER_Start_The_Struggle
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+		has_country_flag = GERMAN_COOPERATION_NATION
+		has_government = national_socialist
+				}
+		is_subject = no
+			}
+		}
+		cost = 35
+		fire_only_once = yes
+		days_remove = 50
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 20
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_balkan_conquest"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = FROM
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = FROM
+    	type = annex_everything
+			}
+		}
+	}	
+	GOEBBELS_IBERIA_INVADE = {
+		icon = ger_reichskommissariats
+		available = {
+		has_completed_focus =  GER_Start_The_Struggle
+		has_country_flag = RUS_CRUSADE_ACCOMPLISHED
+		}
+		visible = {
+		has_completed_focus =  GER_Start_The_Struggle
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+				}
+		is_subject = no
+			}
+		}
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			OR = {
+			tag = SPA
+			tag = POR
+			tag = BQC
+			tag = SPR
+			}
+			is_subject = no
+			NOT = {
+			is_in_faction_with = USA
+			}
+			exists = yes
+			}
+		}
+		cost = 35
+		fire_only_once = yes
+		days_remove = 50
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 20
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_NORDIC_CONQUEST"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = FROM
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		create_wargoal = {
+    	type = annex_everything
+    	target = FROM
+			}
+		}
+	}
+	GOEBBELS_NORDIC_CONQUEST = {
+		icon = ger_reichskommissariats
+		available = {
+		has_completed_focus = GER_Start_The_Struggle
+		OR = {
+		any_allied_country = {
+		owns_state = 110
+				}
+		owns_state = 110
+			}
+		}
+		visible = {
+		has_completed_focus =  GER_Start_The_Struggle
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+				}
+		is_subject = no
+			}
+		}
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			OR = {
+			tag = SWE
+			tag = FIN
+			}
+			is_subject = no
+			exists = yes
+			}
+		}
+
+		fire_only_once = yes
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_NORDIC_CONQUEST"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = FROM
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		create_wargoal = {
+    	type = annex_everything
+    	target = FROM
+			}
+		}
+	}
+	GOEBBELS_END_WAR = {
+		icon = ger_reichskommissariats
+		visible = {
+		has_completed_focus =  GER_Start_The_Struggle
+		NOT = {
+		has_war_with = USA
+			}
+		}
+		available = {
+		has_completed_focus =  GER_Start_The_Struggle
+		has_country_flag = RUS_CRUSADE_ACCOMPLISHED
+		NOT = {
+		has_war_with = USA
+			}
+		}
+		war_with_target_on_timeout = yes
+		cost = 100
+		fire_only_once = yes
+		days_remove = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_END_WAR"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = USA
+                value = 100
+            	}
+			add_ai_strategy = {
+                type = conquer
+                id = ENG
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = USA
+    	type = annex_everything
+			}
+		declare_war_on = {
+    	target = ENG
+    	type = annex_everything
+			}
+		}
+	}
+}

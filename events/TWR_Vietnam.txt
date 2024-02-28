@@ -1,0 +1,251 @@
+﻿add_namespace = twrvietnam
+#VIETNAM#
+
+country_event = {#American weapons
+	id = twrvietnam.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrvietnam.1"}
+	title = twrvietnam.1.t
+	desc = twrvietnam.1.d
+	picture = GFX_report_event_american_weapons
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrvietnam.1.a
+		add_war_support = 0.02
+	}
+}
+
+country_event = {#Chinese volunteers
+	id = twrvietnam.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrvietnam.2"}
+	title = twrvietnam.2.t
+	desc = twrvietnam.2.d
+	picture = GFX_report_event_sino_volunteers
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrvietnam.2.a
+
+		create_field_marshal = {
+			name = "Ye Jianying"
+			portrait_path = "gfx/leaders/VIN/Ye_Jianying.dds"
+			traits = { defensive_doctrine inspirational_leader politically_connected war_hero }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 4
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Yang Chengwu"
+			portrait_path = "gfx/leaders/VIN/Yang_Chengwu.dds"
+			traits = { career_officer trickster }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Song Shilun"
+			portrait_path = "gfx/leaders/VIN/Song_Shilun.dds"
+			traits = { ranger }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		hidden_effect = {
+			division_template = {
+				name = "Chinese Volunteers"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+				}
+				support = { 
+					recon = { x = 0 y = 0 }
+				}
+				priority = 2 
+				is_locked = yes
+			}
+
+		}
+		random_owned_controlled_state = {
+			create_unit = {
+				division = "name = \"Chinese Liberation Brigade\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0 start_equipment_factor = 0.7"
+				owner = VIN
+			}
+			create_unit = {
+				division = "name = \"Chinese-Vietnamese 'Long March' Brigade\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0 start_equipment_factor = 0.7"
+				owner = VIN
+			}
+		}		
+	}
+	
+}
+country_event = {#American volunteers
+	id = twrvietnam.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrvietnam.2"}
+	title = twrvietnam.3.t
+	desc = twrvietnam.3.d
+	picture = GFX_report_event_lincoln_brigade
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrvietnam.3.a
+		create_corps_commander = {
+			name = "Milton Wolff"
+			portrait_path = "gfx/leaders/VIN/Milton_Wolff.dds"
+			traits = { urban_assault_specialist trickster career_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 1
+			planning_skill = 3
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Steve Nelson"
+			portrait_path = "gfx/leaders/VIN/Steve_Nelson.dds"
+			traits = { harsh_leader }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		add_manpower = 598
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0 
+			amount = 100
+			producer = USA
+		}		
+		add_equipment_to_stockpile = {
+			type = support_equipment_1  
+			amount = 150
+			producer = USA
+		}	
+	}
+}
+
+country_event = {# Merge with Indian faction
+	id = twrvietnam.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrvietnam.4"}
+	title = twrvietnam.4.t
+	desc = twrvietnam.4.d
+	picture = GFX_report_event_indian_commie_flag
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrvietnam.4.a
+		ai_chance = { 
+			factor = 2
+		}
+	}
+	option = {
+		name = twrvietnam.4.b
+		ai_chance = { 
+			factor = 3
+		}
+		RAJ = {
+			country_event = { id = twrvietnam.5 days = 2 }
+		}
+	}
+}
+
+country_event = {# Merge with Indian faction - India's side
+	id = twrvietnam.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrvietnam.5"}
+	title = twrvietnam.5.t
+	desc = twrvietnam.5.d
+	picture = GFX_report_event_indian_commie_flag
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrvietnam.5.a
+		ai_chance = { 
+			factor = 1
+		}
+		VIN = {
+			country_event = { id = twrvietnam.6 days = 2 }
+		}
+	}
+	option = {
+		name = twrvietnam.5.b
+		ai_chance = { 
+			factor = 4
+		}
+		news_event = { days = 1 id = twrnews.127 }
+		if = {
+			limit = {
+				KOR = {
+					is_in_faction_with = VIN
+				}
+			}
+			RAJ = {
+				add_to_faction = KOR
+			}
+		}
+		if = {
+			limit = {
+				CMA = {
+					is_in_faction_with = VIN
+				}
+			}
+			RAJ = {
+				add_to_faction = CMA
+			}
+		}
+		add_to_faction = VIN
+	}
+}
+
+country_event = {# India refuses
+	id = twrvietnam.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrvietnam.6"}
+	title = twrvietnam.6.t
+	desc = twrvietnam.6.d
+	picture = GFX_report_event_indian_commie_flag
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrvietnam.6.a
+	}
+}
+
+country_event = {# Vietnam War resolution
+	id = twrvietnam.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrvietnam.7"}
+	title = twrvietnam.7.t
+	desc = twrvietnam.7.d
+	picture = GFX_report_event_sino_volunteers
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrvietnam.7.a
+		add_war_support = 0.2
+	}
+}

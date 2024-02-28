@@ -1,0 +1,1466 @@
+
+ 	#continuous_focus_position = { x = 50 y = 2000 }
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Albanian_Army
+		icon = GFX_ALB_Army
+		cost = 6
+		x = 3
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			army_experience = 10
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Purchase_Italian_Guns
+		icon = GFX_GENERIC_Holding_Gun
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Albanian_Army
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Army
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 1000
+			producer = ITA
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Italian_Officers_in_our_Army
+		icon = GFX_ITA_Reinforcements_Into_East
+		cost = 6
+		x = -1
+		y = 1
+		available = {
+		  is_puppet_of = ITA 
+		}
+		prerequisite = {
+			focus = ALB_Purchase_Italian_Guns
+		}
+		mutually_exclusive = {
+				focus = ALB_Albanian_Officers_in_our_Army
+			}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Purchase_Italian_Guns
+		completion_reward = {
+			add_ideas = ALB_Italian_Officers_in_our_Army
+			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Albanian_Officers_in_our_Army
+		icon = GFX_GENERIC_Officer_Army
+		cost = 6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = ALB_Purchase_Italian_Guns
+		}
+		mutually_exclusive = {
+				focus = ALB_Italian_Officers_in_our_Army
+			}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Purchase_Italian_Guns
+		completion_reward = {
+			add_ideas = ALB_Albanian_Officers_in_our_Army
+			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Learn_from_the_Greek_Invasion
+		icon = GFX_ITA_Greek_Problems
+		cost = 6
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = ALB_Italian_Officers_in_our_Army
+			focus = ALB_Albanian_Officers_in_our_Army
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Italian_Officers_in_our_Army
+		completion_reward = {
+			add_tech_bonus = {
+				name = special_forces_bonus
+				bonus = 0.5
+				uses = 1
+				category = mountaineers_tech
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Expand_the_Albanian_Fascist_Militia
+		icon = GFX_GENERIC_old_guard
+		cost = 6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = ALB_Italian_Officers_in_our_Army
+			focus = ALB_Albanian_Officers_in_our_Army
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Italian_Officers_in_our_Army
+		completion_reward = {
+			add_manpower = 7000
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Children_of_Skanderberg
+		icon = GFX_ALB_Children_of_Skanderbeg
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Expand_the_Albanian_Fascist_Militia
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Expand_the_Albanian_Fascist_Militia
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Albanian_Tank_Regiment 
+		icon = GFX_goal_generic_army_tanks
+		cost = 6
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = ALB_Italian_Officers_in_our_Army
+			focus = ALB_Albanian_Officers_in_our_Army
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Italian_Officers_in_our_Army
+		completion_reward = {
+		add_equipment_to_stockpile = {
+		type = light_tank_equipment_3
+		amount = 40
+		producer = ITA
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Albanian_Navy
+		icon = GFX_ALB_Albanian_Navy 
+		cost = 6
+		x = 10
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			navy_experience = 10
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Restore_the_Boats_of_the_Royal_Navy
+		icon = GFX_GENERIC_Naval_Industry
+		cost = 11
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Albanian_Navy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Navy
+		completion_reward = {
+		custom_effect_tooltip = ALBANIAN_ROYAL_NAVY
+		hidden_effect = {
+		if = {
+		limit = {
+		not = { has_dlc = "Man the Guns" }
+		}
+		load_oob = ALB_1952_naval_legacy
+		}
+		if = {
+		limit = {
+		 has_dlc = "Man the Guns"
+		}
+		create_equipment_variant = {
+		name = "Albanian Patrol"				
+		type = ship_hull_light_1
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_1
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = empty
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_1
+			fixed_ship_torpedo_slot = empty
+			mid_1_custom_slot = empty
+			rear_1_custom_slot = empty
+		}
+	}
+		load_oob = ALB_1952_naval_MTG
+		}
+		}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Recruit_More_Sailors
+		icon = GFX_GENERIC_naval_academy
+		cost = 6
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = ALB_Restore_the_Boats_of_the_Royal_Navy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Restore_the_Boats_of_the_Royal_Navy
+		completion_reward = {
+			add_manpower = 1000
+			navy_experience = 50
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Protect_Our_Coast
+		icon = GFX_focus_generic_coastal_fort
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Recruit_More_Sailors
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Recruit_More_Sailors
+		completion_reward = {
+		44 = {
+			add_building_construction = {
+			type = coastal_bunker
+			level = 1
+			instant_build = yes
+			province = 11767
+				}
+			add_building_construction = {
+			type = coastal_bunker
+			level = 1
+			instant_build = yes
+			province = 9914
+				}
+			add_building_construction = {
+			type = coastal_bunker
+			level = 1
+			instant_build = yes
+			province = 9780
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Construct_the_Pashaliman_Naval_Base
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Restore_the_Boats_of_the_Royal_Navy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Restore_the_Boats_of_the_Royal_Navy
+		completion_reward = {
+		44 = {	
+			add_building_construction = {
+			type = dockyard
+			level = 1
+			instant_build = yes
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Patrolmen_of_the_Adriatic
+		icon = GFX_GENERIC_Cruiseliner
+		cost = 6 
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Construct_the_Pashaliman_Naval_Base
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Construct_the_Pashaliman_Naval_Base
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Albanian_Air_Corp
+		icon = GFX_ALB_Air_Force
+		cost = 6
+		x = 15
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			air_experience = 10
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Purchase_Italian_Planes
+		icon = GFX_USA_overtures_to_italy
+		cost = 6
+		x = -1
+		y = 1
+		available = {
+		  is_puppet_of = ITA 
+		}
+		prerequisite = {
+			focus = ALB_The_Albanian_Air_Corp
+		}
+		mutually_exclusive = {
+			focus = ALB_Purchase_German_Planes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Air_Corp
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			type = fighter_equipment_0
+			amount = 25
+			producer = ITA
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Purchase_German_Planes
+		icon = GFX_SPA_german_bombers
+		cost = 6
+		x = 1
+		y = 1
+		available = {
+		  is_subject_of = ITA 
+		}
+		prerequisite = {
+			focus = ALB_The_Albanian_Air_Corp
+		}
+		mutually_exclusive = {
+			focus = ALB_Purchase_Italian_Planes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Air_Corp
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			type = fighter_equipment_0
+			amount = 25
+			producer = GER
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Set_Up_Anti_Air_Defenses
+		icon = GFX_GENERIC_Air_Defense
+		cost = 6
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = ALB_Purchase_Italian_Planes
+			focus = ALB_Purchase_German_Planes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Purchase_Italian_Planes
+		completion_reward = {
+			44 = {
+			add_building_construction = {
+			type = anti_air_building
+			level = 1
+			instant_build = yes
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Recruit_More_Pilots
+		icon = GFX_GENERIC_rapid_strike
+		cost = 6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = ALB_Purchase_Italian_Planes
+			focus = ALB_Purchase_German_Planes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Purchase_Italian_Planes
+		completion_reward = {
+
+			add_manpower = 1000
+			
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Send_Pilots_for_Training_to_Italy
+		icon = GFX_GENERIC_skilled_fighters
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Recruit_More_Pilots
+			focus = ALB_Purchase_German_Planes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Recruit_More_Pilots
+		completion_reward = {
+			add_ace = {
+			name = "Driton"
+			surname = "Troshani"
+			callsign = "Double-Headed Eagle"
+			type = fighter_genius
+			is_female = no
+				}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Flying_Eagles_of_Albania
+		icon = GFX_GENERIC_Imperial_Eagle
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Send_Pilots_for_Training_to_Italy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Send_Pilots_for_Training_to_Italy
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Expand_the_Tirana_Airport 
+		icon = GFX_GENERIC_air_construction
+		cost = 6
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = ALB_Purchase_Italian_Planes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Purchase_Italian_Planes
+		completion_reward = {
+			44 = {
+			add_building_construction = {
+			type = air_base
+			level = 2
+			instant_build = yes
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Albanian_Economy
+		icon = GFX_SOV_backwards_economy
+		cost = 6
+		x = 23
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_political_power = 50
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Second_Land_Reform
+		icon = GFX_GENERIC_land_redistribution
+		cost = 6
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Albanian_Economy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Economy
+		completion_reward = {
+		random_owned_state = {	
+			add_extra_state_shared_building_slots = 1
+			}
+		random_owned_state = {	
+			add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Modernise_Agricultural_Production
+		icon = GFX_GENERIC_agricultural_subsidies
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Second_Land_Reform
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Second_Land_Reform
+		completion_reward = {
+			add_ideas = ALB_Modernised_Agriculture
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Finance_the_Livestock_Sector
+		icon = GFX_GENERIC_cow
+		cost = 6
+		x = -2
+		y = 1
+		mutually_exclusive = {
+			focus = ALB_Focus_on_the_Tobacco_Industry
+		}
+		prerequisite = {
+			focus = ALB_Modernise_Agricultural_Production
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Modernise_Agricultural_Production
+		completion_reward = {
+			add_stability = 0.05
+			44 = {
+			add_building_construction = {
+			type = industrial_complex
+			level = 1
+			instant_build = yes
+			}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Focus_on_the_Tobacco_Industry
+		icon = GFX_GENERIC_Smoke
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Modernise_Agricultural_Production
+		}
+		mutually_exclusive = {
+			focus = ALB_Finance_the_Livestock_Sector
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Modernise_Agricultural_Production
+		completion_reward = {
+		44 = {
+			add_building_construction = {
+			type = industrial_complex
+			level = 2
+			instant_build = yes
+			}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Albanian_Italian_Oil_Agreement
+		icon = GFX_GENERIC_ITA_Diplomat
+		cost = 6
+		x = 0
+		y = 1
+		available = {
+		  is_puppet_of = ITA 
+		}
+		prerequisite = {
+			focus = ALB_The_Albanian_Economy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Economy
+		completion_reward = {
+			add_resource = {
+			type = oil
+			amount = 8
+			state = 44
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Increase_Exports_to_Italy
+		icon = GFX_GENERIC_Market_Liberal
+		cost = 6
+		x = 0
+		y = 1
+		available = {
+		  is_puppet_of = ITA 
+		}
+		prerequisite = {
+			focus = ALB_Albanian_Italian_Oil_Agreement
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Albanian_Italian_Oil_Agreement
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Expand_the_National_Road_Network
+		icon = GFX_GENERIC_highway
+		cost = 6
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Albanian_Economy
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Economy
+		completion_reward = {
+			44 = {	
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			818 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			build_railway = { #Tirana to Pristina
+				level = 1
+				path = { 9914 9780 3896 9849 6940 }
+			}
+			build_railway = { #Tirana to Saranda
+				level = 1
+				path = { 9914 3884 3448 914 }
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Albanian_Steel
+		icon = GFX_focus_generic_steel
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Expand_the_National_Road_Network
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Expand_the_National_Road_Network
+		completion_reward = {
+			
+			add_resource = {
+			type = steel
+			amount = 10
+			state = 44
+				}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Introduce_Italian_Industries_in_Albania
+		icon = GFX_GENERIC_industry_agreement
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Albanian_Steel
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Albanian_Steel
+		completion_reward = {
+		818 = {
+			add_building_construction = {
+			type = arms_factory
+			level = 1
+			instant_build = yes
+				}
+			}
+		44 = {
+			add_building_construction = {
+			type = industrial_complex
+			level = 1
+			instant_build = yes
+			}
+		}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Expand_Gold_Mining_Operations
+		icon = GFX_USA_reestablish_the_gold_standard
+		cost = 6
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = ALB_Albanian_Steel
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Albanian_Steel
+		completion_reward = {
+			add_ideas = ALB_Albanian_Gold
+		}
+	}
+	
+	###COMMUNIST TREE###
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Albanian_Revolution
+		icon = GFX_GENERIC_TotSoc
+		cost = 6
+		x = 9
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_stability = 0.05
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_A_Pickaxe_in_One_Hand
+		icon = GFX_GENERIC_Pickaxe_Hand
+		cost = 6
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Albanian_Revolution
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Revolution
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Albanian_Agrarianism
+		icon = GFX_GENERIC_Hammer_Sickle
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_A_Pickaxe_in_One_Hand
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_A_Pickaxe_in_One_Hand
+		completion_reward = {
+			add_ideas = ALB_Albanian_Agrarianism
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Light_Industrial_Capabilities
+		icon = GFX_GENERIC_central_industry
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Albanian_Agrarianism
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Albanian_Agrarianism
+		completion_reward = {
+		44 = {
+			add_building_construction = {
+			type = industrial_complex
+			level = 1
+			instant_build = yes
+				}
+			}
+		818 = {
+			add_building_construction = {
+			type = industrial_complex
+			level = 1
+			instant_build = yes
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Exploit_Our_Mining_Potential
+		icon = GFX_GENERIC_mining
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Light_Industrial_Capabilities
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Light_Industrial_Capabilities
+		completion_reward = {
+			add_ideas = ALB_Albanian_Mining
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Tirana_Power_Plant
+		icon = GFX_GENERIC_Power_Plant
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Exploit_Our_Mining_Potential
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Exploit_Our_Mining_Potential
+		completion_reward = {
+			add_ideas = ALB_The_Tirana_Power_Plant
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Peoples_Courts_Against_Fascism
+		icon = GFX_GENERIC_Communist_Congress
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Albanian_Revolution
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Revolution
+		completion_reward = {
+			add_ideas = ALB_Peoples_Courts
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Clear_out_Nationalist_Elements
+		icon = GFX_GEN_German_Lapdog
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Peoples_Courts_Against_Fascism
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Peoples_Courts_Against_Fascism
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_National_Unitary_Government
+		icon = GFX_GENERIC_Unionize
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Clear_out_Nationalist_Elements
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Clear_out_Nationalist_Elements
+		completion_reward = {
+			add_ideas = ALB_National_Unitary_Government
+		}
+	}
+
+	shared_focus = {
+		cancelable = no
+		id = ALB_Improve_What_Was_Destroyed
+		icon = GFX_GENERIC_Infrastructure_Projects
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_National_Unitary_Government
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_National_Unitary_Government
+		completion_reward = {
+		44 = {	
+			add_building_construction = {
+			type = infrastructure
+			level = 2
+			instant_build = yes
+				}
+			}
+		818 = {	
+			add_building_construction = {
+			type = infrastructure
+			level = 1
+			instant_build = yes
+				}
+			}
+		980 = {	
+			add_building_construction = {
+			type = infrastructure
+			level = 1
+			instant_build = yes
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Establish_Public_Services
+		icon = GFX_SOV_duumvirist_senate
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Improve_What_Was_Destroyed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Improve_What_Was_Destroyed
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_A_Rifle_in_the_Other
+		icon = GFX_GENERIC_Holding_Gun
+		cost = 6
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Albanian_Revolution
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Albanian_Revolution
+		completion_reward = {
+			army_experience = 25
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Our_Equipment_Now
+		icon = GFX_GENERIC_secret_rearmament_red
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_A_Rifle_in_the_Other
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_A_Rifle_in_the_Other
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 800
+			producer = ITA
+			}
+			add_equipment_to_stockpile = {
+			type = motorized_equipment_0
+			amount = 50
+			producer = ITA
+			}
+			add_equipment_to_stockpile = {
+			type = light_tank_equipment_3
+			amount = 10
+			producer = ITA
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Reorganise_the_Militia
+		icon = GFX_REM_Liberation_Army
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Our_Equipment_Now
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Our_Equipment_Now
+		completion_reward = {
+			add_ideas = ALB_National_Militia
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Establish_the_Sigurimi
+		icon = GFX_GENERIC_another_spy
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Reorganise_the_Militia
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Reorganise_the_Militia
+		completion_reward = {
+			add_ideas = ALB_Sigurimi
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Bunkerizimi
+		icon = GFX_GENERIC_Conservative
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Establish_the_Sigurimi
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_Establish_the_Sigurimi
+		completion_reward = {
+		44 = {
+			add_building_construction = {
+			type = bunker
+			level = 1
+			instant_build = yes
+			province = {
+			all_provinces = yes
+			limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+	
+	#shared_focus = {
+	#cancelable = no
+	#	id = ALB_Equip_Our_Yugoslav_Comrades
+	#	icon = GFX_GENERIC_Rally_the_People
+	#	cost = 6
+	#	x = 2
+	#	y = 1
+	#	prerequisite = {
+	#		focus = ALB_Our_Equipment_Now
+	#	}
+	#	available = {
+	#		country_exists = YUG
+	#	}
+	#	ai_will_do = {
+	#		factor = 1
+	#	}
+	#	relative_position_id = ALB_Our_Equipment_Now
+	#	completion_reward = {
+	#	send_equipment = {
+	#		equipment = infantry_equipment_1
+	#		amount = 150
+	#		target = YUG
+	#			}
+	#	}
+	#}
+	
+	#shared_focus = {
+	#cancelable = no
+	#	id = ALB_Propose_the_Belgrade_Pact
+	#	icon = GFX_ALB_YUG_Pact
+	#	cost = 6
+	#	x = 0
+	#	y = 1
+	#	prerequisite = {
+	#		focus = ALB_Equip_Our_Yugoslav_Comrades
+	#	}
+	#	available = {
+	#		country_exists = YUG
+	#	}
+	#	ai_will_do = {
+	#		factor = 1
+	#	}
+	#	relative_position_id = ALB_Equip_Our_Yugoslav_Comrades
+	#	completion_reward = {
+	#		country_event = {
+	#		id = twrbelgradepact.1
+	#		}
+	#	}
+	#}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_A_Liberated_Albania
+		icon = GFX_ALB_Liberated_Albania
+		cost = 6
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Tirana_Power_Plant
+		}
+		prerequisite = {
+			focus = ALB_Bunkerizimi
+		}
+		prerequisite = {
+			focus = ALB_Establish_Public_Services
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = ALB_The_Tirana_Power_Plant
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+	
+	###REORGANISED EPIROTI STATE###
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Reorganised_Epiroti_State
+		icon = GFX_ALB_Reorganised_Epiroti_State
+		cost = 7.2
+		x = 38
+		y = 0
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALB_The_Reorganised_Epiroti_State"
+			add_political_power = 25
+			add_stability = -0.05
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Operation_Black_Plague
+		icon = GFX_MCD_Operation_Black_Plague
+		cost = 7.2
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Reorganised_Epiroti_State
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		relative_position_id = ALB_The_Reorganised_Epiroti_State
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALB_Operation_Black_Plague"
+			add_ideas = ALB_Death_to_the_Chetniks
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Aryan_Sons_of_Skandenberg
+		icon = GFX_ALB_Children_of_Skanderbeg
+		cost = 7.2
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Operation_Black_Plague
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		relative_position_id = ALB_Operation_Black_Plague
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALB_Aryan_Sons_of_Skandenberg"
+			add_ideas = ALB_Epiroti_Soldiers
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Epirot_Calls_its_Sons
+		icon = GFX_ALB_Epriot_Calls_Its_Sons
+		cost = 7.2
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Reorganised_Epiroti_State
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		relative_position_id = ALB_The_Reorganised_Epiroti_State
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALB_Epirot_Calls_its_Sons"
+			add_manpower = 10000
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_In_the_Steps_of_SS_Skandenberg
+		icon = GFX_ALB_In_the_Steps_of_SS_Skanderbeg
+		cost = 7.2
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Epirot_Calls_its_Sons
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		relative_position_id = ALB_Epirot_Calls_its_Sons
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALB_In_the_Steps_of_SS_Skandenberg"
+			add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = mountaineers_tech
+			}
+			custom_effect_tooltip = SBAlbaniaMountains
+			hidden_effect = {
+			division_template = {
+				name = "SS Skandenberg"
+				regiments = {
+					mountaineers = { x = 0 y = 0 }
+					mountaineers = { x = 0 y = 1 }
+					mountaineers = { x = 0 y = 2 }
+					mountaineers = { x = 1 y = 0 }
+					mountaineers = { x = 1 y = 1 }
+					mountaineers = { x = 1 y = 2 }
+					}
+				}
+			44 = {
+			create_unit = {
+                        division = "name = \"SS Skenderbeu\" division_template = \"SS Skandenberg\" start_experience_factor = 0.1 start_equipment_factor = 1"
+                        owner = ROOT
+                    }
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Seize_Italian_Arms_Factories
+		icon = GFX_GENERIC_Military_Equipment
+		cost = 7.2
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = ALB_The_Reorganised_Epiroti_State
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		relative_position_id = ALB_The_Reorganised_Epiroti_State
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALB_Seize_Italian_Arms_Factories"
+			44 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_Every_Epirot_A_Rifle
+		icon = GFX_GENERIC_Holding_Gun
+		cost = 7.2
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Seize_Italian_Arms_Factories
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		relative_position_id = ALB_Seize_Italian_Arms_Factories
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALB_Every_Epirot_A_Rifle"
+			add_ideas = ALB_Mass_Arms_Production
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = ALB_The_Ever_Fighting_People
+		icon = GFX_ALB_The_Ever_Fighting_People
+		cost = 7.2
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ALB_Aryan_Sons_of_Skandenberg
+		}
+		prerequisite = {
+			focus = ALB_In_the_Steps_of_SS_Skandenberg
+		}
+		prerequisite = {
+			focus = ALB_Every_Epirot_A_Rifle
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		relative_position_id = ALB_In_the_Steps_of_SS_Skandenberg
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALB_The_Ever_Fighting_People"
+			add_war_support = 0.1
+			add_political_power = 50
+			GRE = {
+			add_ideas = ALB_Gifts_for_Our_Greek_Benefactors
+			}
+		}
+	}
+	

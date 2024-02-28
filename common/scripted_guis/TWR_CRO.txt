@@ -1,0 +1,114 @@
+scripted_gui = { #NDH Starting GUI
+	CRO_gui_open_button = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "CRO_gui_open_button_window"
+
+		visible = {
+			tag = CRO
+			has_government = national_socialist
+			NOT = { has_country_flag = disable_ndh_gui_flag }
+			OR = {
+			has_country_leader = { name = "Ante Pavelić" ruling_only = yes }
+			has_country_leader = { name = "Supreme Ustaša Council" ruling_only = yes }
+			has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+			has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+			has_country_leader = { name = "Mladen Lorković" ruling_only = yes }
+			}
+		}
+
+		effects = {
+			politicsview_CRO_button_click = {
+				if = {
+					limit = { has_country_flag = CRO_starting_gui_open }
+					clr_country_flag = CRO_starting_gui_open
+				}
+				else = {
+					set_country_flag = CRO_starting_gui_open
+				}
+			}
+		}
+	}
+	
+	CRO_ustase_administration_gui = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "CRO_ua_screen_window"
+
+		visible = {
+			has_country_flag = CRO_starting_gui_open
+			
+		}
+
+		effects = {
+			CRO_close_gui_button_click = {
+				clr_country_flag = CRO_starting_gui_open
+			}
+		}
+		
+		properties = {
+			CRO_poglavnik_leader = {
+				image = "[CRO_get_poglavnik_leader]"
+			}
+			CRO_second_in_command = {
+				image = "[CRO_get_sic_leader]"
+			}
+			CRO_Lorkovic_inner_circle = {
+				image = "[CRO_get_lorkovic_circle]"
+			}
+			CRO_Artukovic_inner_circle = {
+				image = "[CRO_get_artukovic_circle]"
+			}
+			CRO_Francetic_inner_circle = {
+				image = "[CRO_get_francetic_circle]"
+			}
+		}
+	}
+}
+
+scripted_gui = { #Homeguard gui
+	CRO_gui_homeguard_open_button = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "CRO_homeguard_gui_open_button_window"
+
+		visible = {
+			tag = CRO
+			NOT = { has_country_flag = CRO_military_influence_disabled }
+		}
+
+		effects = {
+			politicsview_CRO_button_click = {
+				if = {
+					limit = { has_country_flag = CRO_homeguard_gui_open }
+					clr_country_flag = CRO_homeguard_gui_open
+				}
+				else = {
+					set_country_flag = CRO_homeguard_gui_open
+				}
+			}
+		}
+	}
+	CRO_homeguard_gui = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "CRO_homeguard_screen_window"
+
+		visible = {
+			has_country_flag = CRO_homeguard_gui_open
+			
+		}
+
+		effects = {
+			CRO_close_gui_button_click = {
+				clr_country_flag = CRO_homeguard_gui_open
+			}
+		}
+		
+		properties = {
+			CRO_homeguard_leader = {
+				image = "[CRO_get_homeguard_leader]"
+			}
+		}
+	}
+}

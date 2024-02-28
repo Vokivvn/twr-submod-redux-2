@@ -1,0 +1,2391 @@
+###########################
+# Finland Events
+###########################
+
+add_namespace = finland
+
+country_event = { #Situation of Finland
+	id = finland.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.1"}
+	title = finland.1.t
+	desc = finland.1.d
+	picture = GFX_report_event_greater_finland
+	is_triggered_only = yes
+
+	option = {
+		name = finland.1.a
+		country_event = { id = finland.2 days = 5 }
+		set_variable = {
+			var = karvikko_points
+			value = 0
+		}
+		set_variable = {
+			var = kekkonen_points
+			value = 3
+		}
+		set_variable = {
+			var = paasikivi_points
+			value = 1
+		}
+		set_variable = {
+			var = susitaival_points
+			value = 2
+		}
+		clr_country_flag = kekkonen_in_race
+		clr_country_flag = karvikko_in_race
+		clr_country_flag = susitaival_in_race
+		clr_country_flag = paasikivi_in_race
+	}
+}
+country_event = { #Elections
+	id = finland.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.2"}
+	title = finland.2.t
+	desc = finland.2.d
+	picture = GFX_report_event_ryti
+	is_triggered_only = yes
+
+	option = { #Karvikko vs Susitaival
+		name = finland.2.a
+		ai_chance = { 
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+					has_global_flag = COUNTRY_PATH_FIN_CON
+					has_global_flag = COUNTRY_PATH_FIN_FASCIST
+				}
+			}
+		}
+		set_country_flag = karvikko_in_race
+		set_country_flag = susitaival_in_race
+		set_country_flag = elections_on
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = finland.3 days = 7 }
+			country_event = { id = finland.4 days = 14 }
+			country_event = { id = finland.5 days = 21 }
+			country_event = { id = finland.6 days = 28 }
+			country_event = { id = finland.7 days = 35 }
+			country_event = { id = finland.8 days = 50 }
+		}
+	}
+	option = { #Karvikko vs Kekkonen
+		ai_chance = { 
+			factor = 40
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+					has_global_flag = COUNTRY_PATH_FIN_FASCIST
+				}
+			}
+		}
+		name = finland.2.b
+		set_country_flag = karvikko_in_race
+		set_country_flag = kekkonen_in_race
+		set_country_flag = elections_on
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = finland.3 days = 7 }
+			country_event = { id = finland.4 days = 14 }
+			country_event = { id = finland.5 days = 21 }
+			country_event = { id = finland.6 days = 28 }
+			country_event = { id = finland.7 days = 35 }
+			country_event = { id = finland.8 days = 50 }
+		}
+	}
+	option = { #Kekkonen vs Susitaival
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+					has_global_flag = COUNTRY_PATH_FIN_LIB
+				}
+			}
+		}
+		set_country_flag = kekkonen_in_race
+		set_country_flag = susitaival_in_race
+		set_country_flag = elections_on
+		name = finland.2.c
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = finland.3 days = 7 }
+			country_event = { id = finland.4 days = 14 }
+			country_event = { id = finland.5 days = 21 }
+			country_event = { id = finland.6 days = 28 }
+			country_event = { id = finland.7 days = 35 }
+			country_event = { id = finland.8 days = 50 }
+		}
+	}
+	option = { #Kekkonen vs Paasikivi
+		ai_chance = { 
+			factor = 50
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_LIB
+					has_global_flag = COUNTRY_PATH_FIN_FASCIST
+				}
+			}
+		}
+		set_country_flag = kekkonen_in_race
+		set_country_flag = paasikivi_in_race
+		set_country_flag = elections_on
+		name = finland.2.e
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = finland.3 days = 7 }
+			country_event = { id = finland.4 days = 14 }
+			country_event = { id = finland.5 days = 21 }
+			country_event = { id = finland.6 days = 28 }
+			country_event = { id = finland.7 days = 35 }
+			country_event = { id = finland.8 days = 50 }
+		}
+	}
+}
+country_event = { #Economic Policy
+	id = finland.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.3"}
+	title = finland.3.t
+	desc = finland.3.d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+
+	option = { #Agriculture is our Strength
+		name = finland.3.a
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_LIB
+					has_global_flag = COUNTRY_PATH_FIN_FASCIST
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = kekkonen_in_race }
+			add_to_variable = {
+				var = kekkonen_points
+				value = 7
+			}
+		}
+		if = {
+			limit = { has_country_flag = paasikivi_in_race }
+			add_to_variable = {
+				var = paasikivi_points
+				value = 5
+			}
+		}
+	}
+	option = { #We must aim to modernise
+		name = finland.3.b
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+					has_global_flag = COUNTRY_PATH_FIN_CON
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = karvikko_in_race }
+			add_to_variable = {
+				var = karvikko_points
+				value = 7
+			}
+		}
+		if = {
+			limit = { has_country_flag = susitaival_in_race }
+			add_to_variable = {
+				var = susitaival_points
+				value = 5
+			}
+		}
+	}
+}
+country_event = { #Karelian Policy
+	id = finland.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.4"}
+	title = finland.4.t
+	desc = finland.4.d
+	picture = GFX_report_event_greater_finland
+	is_triggered_only = yes
+
+	option = { #Karelia must be Finnish!
+		name = finland.4.a
+		ai_chance = { 
+			factor = 30
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+					has_global_flag = COUNTRY_PATH_FIN_LIB
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = susitaival_in_race }
+			add_to_variable = {
+				var = susitaival_points
+				value = 7
+			}
+		}
+		if = {
+			limit = { has_country_flag = kekkonen_in_race }
+			add_to_variable = {
+				var = kekkonen_points
+				value = 5
+			}
+		}
+	}
+	option = { #We can't be inhumane
+	name = finland.4.b
+	ai_chance = { 
+		factor = 20
+		modifier = {
+			factor = 0
+			OR = {
+				has_global_flag = COUNTRY_PATH_FIN_CON
+				has_global_flag = COUNTRY_PATH_FIN_FASCIST
+			}
+		}
+	}
+	if = {
+		limit = { has_country_flag = karvikko_in_race }
+		add_to_variable = {
+			var = karvikko_points
+			value = 7
+		}
+	}
+	if = {
+		limit = { has_country_flag = paasikivi_in_race }
+		add_to_variable = {
+			var = paasikivi_points
+			value = 7
+		}
+	}
+	if = {
+		limit = { has_country_flag = karvikko_in_race }
+		add_to_variable = {
+			var = karvikko_points
+			value = 5
+		}
+	}
+}
+}
+country_event = { #Foreign Policy
+	id = finland.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.5"}
+	title = finland.5.t
+	desc = finland.5.d
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = yes
+
+	option = { #Germany is our ally
+		name = finland.5.a
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+					has_global_flag = COUNTRY_PATH_FIN_LIB
+					has_global_flag = COUNTRY_PATH_FIN_CON
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = susitaival_in_race }
+			add_to_variable = {
+				var = susitaival_points
+				value = 5
+			}
+		}
+	}
+	option = { #Germany cannot be trusted
+		name = finland.5.b
+		ai_chance = { 
+			factor = 30
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_FASCIST
+					has_global_flag = COUNTRY_PATH_FIN_LIB
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = paasikivi_in_race }
+			add_to_variable = {
+				var = paasikivi_points
+				value = 5
+			}
+		}
+		if = {
+			limit = { has_country_flag = kekkonen_in_race }
+			add_to_variable = {
+				var = kekkonen_points
+				value = 5
+			}
+		}
+	}
+	option = { #Germany is our enemy
+		name = finland.5.c
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+					has_global_flag = COUNTRY_PATH_FIN_CON
+					has_global_flag = COUNTRY_PATH_FIN_FASCIST
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = karvikko_in_race }
+			add_to_variable = {
+				var = karvikko_points
+				value = 5
+			}
+		}
+	}
+}
+country_event = { #Political direction
+	id = finland.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.6"}
+	title = finland.6.t
+	desc = finland.6.d
+	picture = GFX_report_event_fascist_speech
+	is_triggered_only = yes
+
+	option = { #Finland is a Democracy
+		name = finland.6.a
+		ai_chance = { 
+			factor = 40
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_CON
+					has_global_flag = COUNTRY_PATH_FIN_FASCIST
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = karvikko_in_race }
+			add_to_variable = {
+				var = karvikko_points
+				value = 7
+			}
+		}
+		if = {
+			limit = { has_country_flag = paasikivi_in_race }
+			add_to_variable = {
+				var = paasikivi_points
+				value = 5
+			}
+		}
+	}
+	option = { #Democracy isn't always the best choice
+	name = finland.6.b
+	ai_chance = { 
+		factor = 20
+		modifier = {
+			factor = 0
+			OR = {
+				has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+				has_global_flag = COUNTRY_PATH_FIN_LIB
+			}
+		}
+	}
+	if = {
+		limit = { has_country_flag = susitaival_in_race }
+		add_to_variable = {
+			var = susitaival_points
+			value = 7
+		}
+	}
+	if = {
+		limit = { has_country_flag = kekkonen_in_race }
+		add_to_variable = {
+			var = kekkonen_points
+			value = 5
+		}
+	}
+}
+}
+country_event = { #Military Direction
+	id = finland.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.7"}
+	title = finland.7.t
+	desc = finland.7.d
+	picture = GFX_report_event_finnish_soldiers_snow
+	is_triggered_only = yes
+
+	option = { #Active defense got us through the winter war
+		name = finland.7.a
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_LIB
+					has_global_flag = COUNTRY_PATH_FIN_FASCIST
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = kekkonen_in_race }
+			add_to_variable = {
+				var = kekkonen_points
+				value = 7
+			}
+		}
+		if = {
+			limit = { has_country_flag = paasikivi_in_race }
+			add_to_variable = {
+				var = paasikivi_points
+				value = 5
+			}
+		}
+	}
+	option = { #We need an army of attack
+		name = finland.7.b
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_FIN_SOCDEM
+					has_global_flag = COUNTRY_PATH_FIN_CON
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = susitaival_in_race }
+			add_to_variable = {
+				var = susitaival_points
+				value = 5
+			}
+		}
+		if = {
+			limit = { has_country_flag = karvikko_in_race }
+			add_to_variable = {
+				var = karvikko_points
+				value = 5
+			}
+		}
+	}
+}
+country_event = { #Election last event
+	id = finland.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.8"}
+	title = finland.8.t
+	desc = finland.8.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+
+	option = {
+		name = finland.8.a
+		if = {
+			limit = { 
+				AND = {
+					check_variable = {
+						var = karvikko_points
+						value = susitaival_points
+						compare = greater_than
+					}
+					check_variable = {
+						var = karvikko_points
+						value = paasikivi_points
+						compare = greater_than
+					}
+					check_variable = {
+						var = karvikko_points
+						value = kekkonen_points
+						compare = greater_than
+					}
+				}
+			}
+			hidden_effect = { country_event = { id = finland.13 days = 1 } }
+		}
+		else_if = {
+			limit = { 
+				AND = {
+					check_variable = {
+						var = paasikivi_points
+						value = susitaival_points
+						compare = greater_than
+					}
+					check_variable = {
+						var = paasikivi_points
+						value = karvikko_points
+						compare = greater_than
+					}
+					check_variable = {
+						var = paasikivi_points
+						value = kekkonen_points
+						compare = greater_than
+					}
+				}
+			}
+			hidden_effect = { country_event = { id = finland.12 days = 1 } }
+		}
+		else_if = {
+			limit = { 
+				AND = {
+					check_variable = {
+						var = kekkonen_points
+						value = susitaival_points
+						compare = greater_than
+					}
+					check_variable = {
+						var = kekkonen_points
+						value = paasikivi_points
+						compare = greater_than
+					}
+					check_variable = {
+						var = kekkonen_points
+						value = karvikko_points
+						compare = greater_than
+					}
+				}
+			}
+			hidden_effect = { country_event = { id = finland.11 days = 1 } }
+		}
+		else_if = {
+			limit = { 
+				AND = {
+					check_variable = {
+						var = susitaival_points
+						value = karvikko_points
+						compare = greater_than
+					}
+					check_variable = {
+						var = susitaival_points
+						value = paasikivi_points
+						compare = greater_than
+					}
+					check_variable = {
+						var = susitaival_points
+						value = kekkonen_points
+						compare = greater_than
+					}
+				}
+			}
+			hidden_effect = { country_event = { id = finland.10 days = 1 } }
+		}
+		clr_country_flag = kekkonen_in_race
+		clr_country_flag = paasikivi_in_race
+		clr_country_flag = karvikko_in_race
+		clr_country_flag = susitaival_in_race
+		clr_country_flag = elections_on
+		clear_variable = karvikko_points
+		clear_variable = kekkonen_points
+		clear_variable = paasikivi_points
+		clear_variable = susitaival_points
+	}
+}
+country_event = { #Susitaival
+	id = finland.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.10"}
+	title = finland.10.t
+	desc = finland.10.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+
+	option = {
+		name = finland.10.a
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.1
+		}
+		complete_national_focus = FIN_elections_1952
+		complete_national_focus = FIN_elections_susitaival_victory
+		hold_election = ROOT
+	}
+}
+country_event = { #Kekkonen
+	id = finland.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.11"}
+	title = finland.11.t
+	desc = finland.11.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+
+	option = {
+		name = finland.11.a
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.1
+		}
+		complete_national_focus = FIN_elections_1952
+		complete_national_focus = FIN_elections_kekkonen_victory
+		hold_election = ROOT
+	}
+}
+country_event = { #Paasikivi
+	id = finland.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.12"}
+	title = finland.12.t
+	desc = finland.12.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+
+	option = {
+		name = finland.12.a
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.1
+		}
+		complete_national_focus = FIN_elections_1952
+		complete_national_focus = FIN_elections_paasikivi_victory
+		hold_election = ROOT
+	}
+}
+
+country_event = { #Karvikko
+	id = finland.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.13"}
+	title = finland.13.t
+	desc = finland.13.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+
+	option = {
+		name = finland.13.a
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.1
+		}
+		complete_national_focus = FIN_elections_1952
+		complete_national_focus = FIN_elections_karvikko_victory
+		hold_election = ROOT
+	}
+}
+country_event = { #Swedish angery
+	id = finland.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.14"}
+	title = finland.14.t
+	desc = finland.14.d
+	picture = GFX_report_event_generic_riot
+	is_triggered_only = yes
+
+	option = {
+		name = finland.14.a
+		trigger = {
+			tag = FIN
+		}
+		add_political_power = -10
+		hidden_effect = { country_event = { id = finland.15 days = 4 } }
+	}
+	option = {
+		name = finland.14.b
+		trigger = {
+			tag = SWE
+		}
+		ai_chance = {
+			factor = 20
+		}
+		add_political_power = -5
+	}
+	option = {
+		name = finland.14.c
+		trigger = {
+			tag = SWE
+		}
+		ai_chance = {
+			factor = 80
+		}
+		add_opinion_modifier = {
+			target = FIN
+			modifier = denounce_swede_mistreatment
+		}
+		reverse_add_opinion_modifier = {
+			target = FIN
+			modifier = denounce_swede_mistreatment
+		}
+		FIN = {
+			country_event = { id = finland.16 days = 6 }
+		}
+	}
+}
+country_event = { #SSP / RSP capitalises
+	id = finland.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.15"}
+	title = finland.15.t
+	desc = finland.15.d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+
+	option = {
+		name = finland.15.a
+		trigger = {
+			tag = FIN
+		}
+		add_popularity = {
+			ideology = national_socialist
+			popularity = 0.04
+		}
+		add_political_power = -20
+		hidden_effect = { country_event = { id = finland.17 days = 33 } }
+	}
+}
+country_event = { #Sweden angery
+	id = finland.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.16"}
+	title = finland.16.t
+	desc = finland.16.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+
+	option = {
+		name = finland.16.a
+		effect_tooltip = {
+			reverse_add_opinion_modifier = {
+				target = SWE
+				modifier = denounce_swede_mistreatment
+			}
+			add_opinion_modifier = {
+				target = SWE
+				modifier = denounce_swede_mistreatment
+			}
+		}
+	}
+}
+country_event = { #Swedish speakers strike
+	id = finland.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.17"}
+	title = finland.17.t
+	desc = finland.17.d
+	picture = GFX_report_event_generic_riot
+	is_triggered_only = yes
+
+	option = {
+		name = finland.17.a   #let them fuckers
+		add_ideas = FIN_svedu_strike
+		hidden_effect = {
+			country_event = {
+				id = finland.18 days = 55
+			}
+		}
+	}
+}
+country_event = { #Swedish speakers stop strike
+	id = finland.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.18"}
+	title = finland.18.t
+	desc = finland.18.d
+	picture = GFX_report_event_generic_sign_treaty2
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = finland.18.a   #bitch ass
+		remove_ideas = FIN_svedu_strike
+		add_political_power = 5
+	}
+}
+country_event = { #Finland calls us gay
+	id = finland.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.19"}
+	title = finland.19.t
+	desc = finland.19.d
+	picture = GFX_report_event_greater_finland
+	is_triggered_only = yes
+
+	option = {
+		name = finland.19.a   #fuckem
+		add_opinion_modifier = {
+			target = FIN
+			modifier = finland_was_mean
+		}
+	}
+}
+country_event = { #german ties germany
+	id = finland.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.20"}
+	title = finland.20.t
+	desc = finland.20.d
+	picture = GFX_report_event_greater_finland
+	is_triggered_only = yes
+
+	option = {
+		name = finland.20.a   #cool
+		reverse_add_opinion_modifier = {
+			target = FIN
+			modifier = german_ties
+		}
+		FIN = { add_ideas = FIN_german_influence }
+	}
+}
+country_event = { #Night of the cudgels start planning
+	id = finland.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.30"}
+	title = finland.30.t
+	desc = finland.30.d
+	picture = GFX_report_event_ikl
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = finland.30.a #start organizing the black-blues
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = { country_event = { id = finland.31 days = 7 } }
+	}
+}
+country_event = { #Our plan in danger?
+	id = finland.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.31"}
+	title = finland.31.t
+	desc = finland.31.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+
+	option = {
+		name = finland.31.a #rumours are rumours
+		ai_chance = {
+			factor = 70
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FIN_FASCIST
+			}
+		}
+		set_country_flag = not_bribed_military
+	}
+	option = {
+		name = finland.31.b #approach the military to bribe them
+		ai_chance = {
+			factor = 30
+		}
+		add_political_power = -30
+		set_country_flag = bribed_military
+	}
+}
+country_event = { #Night of the Cudgels
+	id = finland.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.32"}
+	title = finland.32.t
+	desc = finland.32.d
+	picture = GFX_report_event_generic_riot
+	is_triggered_only = yes
+
+	option = {
+		name = finland.32.a #Storm government buildings and declare seizure of power
+		ai_chance = {
+			factor = 55
+			modifier = {
+				factor = 2
+				has_country_flag = bribed_military
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = bribed_military
+				}
+				random_list = {
+					90 = {
+						country_event = { id = finland.33 hours = 6 }
+					}
+					10 = {
+						modifier = {
+							factor = 0
+							has_global_flag = COUNTRY_PATH_FIN_FASCIST
+						}
+						country_event = { id = finland.34 hours = 6 }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					60 = {
+						country_event = { id = finland.33 hours = 6 }
+					}
+					40 = {
+						country_event = { id = finland.34 hours = 6 }
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = finland.32.b #Lay siege to the parliament house
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FIN_FASCIST
+			}
+		}
+		hidden_effect = {
+			country_event = { id = finland.34 hours = 6 }
+		}
+	}
+	option = {
+		name = finland.32.c #Infiltrate the parliament house and act when darkness sets
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FIN_FASCIST
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = bribed_military
+				}
+				random_list = {
+					75 = {
+						country_event = { id = finland.33 hours = 6 }
+					}
+					25 = {
+						country_event = { id = finland.34 hours = 6 }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					70 = {
+						country_event = { id = finland.33 hours = 6 }
+					}
+					30 = {
+						country_event = { id = finland.34 hours = 6 }
+					}
+				}
+			}
+		}
+	}
+}
+country_event = { #Coup succeeds! aka Dawn event
+	id = finland.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.33"}
+	title = finland.33.t
+	desc = finland.33.d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+
+	option = {
+		name = finland.33.a
+		clr_country_flag = bribed_military
+		clr_country_flag = not_bribed_military
+		set_politics = {				
+			ruling_party = fascist
+			elections_allowed = no
+		}
+
+		add_stability = -0.2
+		add_political_power = -150
+		drop_cosmetic_tag = yes
+		country_event = { id = finland.35 days = 3 }
+		add_ideas = dictatorship
+		news_event = finland.78
+	}
+}
+country_event = { #Greater Finland
+	id = finland.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.35"}
+	title = finland.35.t
+	desc = finland.35.d
+	picture = GFX_report_event_greater_finland
+	is_triggered_only = yes
+
+	option = {
+		name = finland.35.a
+		complete_national_focus = FIN_declare_greater_finland
+		add_political_power = 20
+		news_event = finland.80
+	}
+}
+country_event = { #Fight breaks out between jägers and stuff
+	id = finland.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.34"}
+	title = finland.34.t
+	desc = finland.34.d
+	picture = GFX_report_event_generic_battle
+	is_triggered_only = yes
+
+	option = {
+		name = finland.34.a
+		hidden_effect = { country_event = { id = finland.36 hours = 3 } }
+	}
+}
+country_event = { #Dawn, people flee
+	id = finland.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.36"}
+	title = finland.36.t
+	desc = finland.36.d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+
+	option = {
+		name = finland.36.a #the military steps in
+		ai_chance = {
+			factor = 95
+		}
+		set_country_flag = finnish_military_in_charge
+		complete_national_focus = FIN_defense_forces_intervention
+		hidden_effect = { country_event = { id = finland.37 days = 1 } }
+		add_stability = -0.05
+		add_political_power = -100
+		news_event = finland.79
+	}
+}
+country_event = { #IKL members abdicate and leave helsinki
+	id = finland.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.37"}
+	title = {
+		text = finland.37.t_1
+		trigger = { 
+			has_country_flag = finnish_military_in_charge
+		}
+	}
+	title = {
+		text = finland.37.t_2
+		trigger = { 
+			has_country_flag = finnish_military_not_in_charge
+		}
+	}
+	desc = {
+		text = finland.37.d_1
+		trigger = { 
+			has_country_flag = finnish_military_in_charge
+		}
+	}
+	desc = {
+		text = finland.37.d_2
+		trigger = { 
+			has_country_flag = finnish_military_not_in_charge
+		}
+	}
+	picture = GFX_report_event_ikl
+	is_triggered_only = yes
+
+	option = {
+		name = finland.37.a
+		ai_chance = {
+			factor = 30
+		}
+		set_country_flag = ikl_people_off
+		add_political_power = -20
+	}
+	option = {
+		name = finland.37.b
+		ai_chance = {
+			factor = 100
+		}
+		set_country_flag = ikl_people_off
+		set_country_flag = outlawed_ikl
+		add_political_power = -40
+		custom_effect_tooltip = fascism_banned
+		hidden_effect = {
+		set_political_party = {
+    	ideology = fascist
+    	popularity = 0
+    		}
+		}
+	}
+}
+country_event = { #Fascists organizing
+	id = finland.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.38"}
+	title = finland.38.t
+	desc = finland.38.d
+	picture = GFX_report_event_ikl
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		tag = FIN
+		OR = {
+			has_country_flag = finnish_military_in_charge
+			has_country_flag = finnish_military_not_in_charge
+		}
+		NOT = { has_country_flag = bases_sweeped }
+	}
+	mean_time_to_happen = {
+		days = 80
+		modifier = {
+			factor = 0.5
+			has_country_flag = ikl_people_off
+		}
+	}
+
+	option = {
+		name = finland.38.a
+		set_country_flag = finnish_fascists_organizing
+	}
+}
+country_event = { #Weapon caches?
+	id = finland.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.39"}
+	title = finland.39.t
+	desc = finland.39.d
+	picture = GFX_report_event_generic_weapon_cache
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		tag = FIN
+		has_country_flag = finnish_fascists_organizing
+		NOT = { has_country_flag = bases_sweeped }
+	}
+	mean_time_to_happen = {
+		days = 50
+		modifier = {
+			factor = 0.5
+			has_country_flag = ikl_people_off
+		}
+	}
+
+	option = {
+		name = finland.39.a
+		clr_country_flag = finnish_fascists_organizing
+		set_country_flag = finnish_weapon_cache
+	}
+}
+country_event = { #Threat of war...
+	id = finland.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.40"}
+	title = finland.40.t
+	desc = finland.40.d
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		tag = FIN
+		has_country_flag = finnish_weapon_cache
+		NOT = { has_country_flag = bases_sweeped }
+	}
+	mean_time_to_happen = {
+		days = 25
+	}
+
+	option = {
+		name = finland.40.a
+		clr_country_flag = finnish_weapon_cache
+		set_country_flag = finnish_danger_of_war
+		hidden_effect = { country_event = { id = finland.44 days = 15 } }
+	}
+}
+country_event = { #Bases sweeped
+	id = finland.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.41"}
+	title = finland.41.t
+	desc = finland.41.d
+	picture = GFX_report_event_generic_weapon_cache
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = finnish_danger_of_war }
+		tag = FIN
+		has_completed_focus = FIN_martial_law
+	}
+	mean_time_to_happen = {
+		days = 20
+	}
+
+	option = {
+		name = finland.41.a
+		set_country_flag = bases_sweeped
+		add_political_power = 20
+	}
+}
+country_event = { #IKL leaders arrested
+	id = finland.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.42"}
+	title = finland.42.t
+	desc = finland.42.d
+	picture = GFX_report_event_ikl
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		OR = { has_country_flag = outlawed_ikl has_country_flag = finnish_military_in_charge }
+		has_country_flag = ikl_people_off
+		tag = FIN
+	}
+	mean_time_to_happen = {
+		days = 60
+		modifier = {
+			factor = 0.5
+			ELS = {
+				has_political_power > 70
+			}
+		}
+		modifier = {
+			factor = 1.3
+			PAN = {
+				has_political_power < 70
+			}
+		}
+	}
+
+	option = {
+		name = finland.42.a
+		clr_country_flag = ikl_people_off
+	}
+}
+country_event = { #Danger over
+	id = finland.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.43"}
+	title = finland.43.t
+	desc = finland.43.d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+
+	option = {
+		name = finland.43.a
+		clr_country_flag = finnish_fascists_organizing
+		clr_country_flag = finnish_weapon_cache
+		if = {
+			limit = { NOT = { has_country_flag = outlawed_ikl } }
+			custom_effect_tooltip = fascism_banned
+			hidden_effect = {
+				set_politics = {	
+					ruling_party = paternal_autocrat
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					fascist = 5
+				}
+			}
+		}
+	}
+}
+country_event = { #The Kurikka Rebellion
+	id = finland.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.44"}
+	title = finland.44.t
+	desc = finland.44.d
+	picture = GFX_report_event_generic_battle
+	is_triggered_only = yes
+
+	option = {
+		name = finland.44.a
+		news_event = finland.81
+		hidden_effect = {
+			start_civil_war = {
+				ideology = fascist
+				size = 0.2
+				capital = 149
+				states = { 
+					149 148
+				}
+			}
+			clr_country_flag = finnish_danger_of_war
+			set_country_flag = kurikka_rebellion
+			random_country = {
+				limit = {
+					original_tag = FIN
+					NOT = { tag = FIN }
+				}
+				load_oob = "FIN_FASC_REVOLT"
+				set_country_flag = kurikka_rebellion
+			}
+			load_oob = "FIN_NOSTO_1"
+		}
+	}
+}
+country_event = { #Finland wins
+	id = finland.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.45"}
+	title = finland.45.t
+	desc = finland.45.d
+	picture = GFX_report_event_finnish_soldiers_snow
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		tag = FIN
+		has_country_flag = kurikka_rebellion
+		exists = yes
+		has_civil_war = no
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = finland.45.a #god
+		news_event = finland.82
+		ai_chance = {
+			factor = 100
+		}
+		delete_unit_template_and_units = {
+			division_template = "Nostoväkiprikaati"
+		}
+	}
+}
+country_event = { #Revolt wins
+	id = finland.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.46"}
+	title = finland.46.t
+	desc = finland.46.d
+	picture = GFX_report_event_finnish_soldiers_snow
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		original_tag = FIN
+		NOT = { tag = FIN }
+		has_country_flag = kurikka_rebellion
+		exists = yes
+		has_civil_war = no
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = finland.46.a #god
+		news_event = finland.82
+		ai_chance = {
+			factor = 100
+		}
+		#hidden_effect = {
+		set_division_template_lock = {
+			division_template = "Miliisi"
+			is_locked = no
+		}
+		#}
+		set_cosmetic_tag = FIN_greater
+		set_capital = { state = 111 }
+	}
+}
+country_event = { #talian visit
+	id = finland.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.47"}
+	title = finland.47.t
+	desc = finland.47.d
+	picture = GFX_report_event_rome
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		add_political_power = 50
+		name = finland.47.a
+	}
+}
+country_event = { #german mutual cooperation
+	id = finland.48
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.47"}
+	title = finland.48.t
+	desc = finland.48.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.48.a #accepted
+		ai_chance = {
+			factor = 50
+		}
+		diplomatic_relation = {
+			country = FIN
+			relation = non_aggression_pact
+			active = yes
+		}
+		hidden_effect = {
+			set_global_flag = GERMAN_FIN_TREATY
+			FIN = {
+				country_event = finland.49
+			}
+		}
+	}
+	option = {
+		name = finland.48.b #rejected
+		ai_chance = {
+			factor = 50
+		}
+		add_stability = 0.01
+		hidden_effect = {
+			FIN = {
+				country_event = finland.50
+			}
+		}
+	}
+}
+country_event = { #Finnish-German Treaty
+	id = finland.49
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.49"}
+	title = finland.49.t
+	desc = finland.49.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.49.a
+		give_military_access = GER
+		diplomatic_relation = {
+			country = GER
+			relation = docking_rights
+			active = yes
+		}
+		add_ideas = deterrence
+		hidden_effect = { 
+			news_event = { id = finland.51 days = 2 }
+		}
+	}
+}
+country_event = { #Pity
+	id = finland.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.50"}
+	title = finland.50.t
+	desc = finland.50.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.50.a
+		add_political_power = -50
+	}
+}
+news_event = {#Finno-German News
+	id = finland.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.51"}
+	title = finland.51.t
+	desc = finland.51.d
+	picture = GFX_news_event_finnish_german_pact
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.51.a
+		trigger = {
+			NOT = {
+				OR = {
+					TAG = GER
+					TAG = FIN
+				}
+			}
+		}
+	}
+	option = {
+		name = finland.51.b
+		trigger = {
+				OR = {
+					TAG = GER
+					TAG = FIN
+				}
+		}
+	}
+}
+news_event = {#Commie Legalized
+	id = finland.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.52"}
+	title = finland.52.t
+	desc = finland.52.d
+	picture = GFX_news_event_socialism
+
+	is_triggered_only = yes
+	major = no
+	
+	option = {
+		name = finland.52.b
+	}
+}
+country_event = { #Ask to join the German faction
+	id = finland.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.56"}
+	title = finland.56.t
+	desc = finland.56.d
+	picture = GFX_report_event_sign_paper
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.56.a #Accept
+		ai_chance = {
+			factor = 85
+		}
+		add_to_faction = FIN
+		FIN = {
+			country_event = { id = finland.57 }
+		}
+	}
+	
+	option = {
+		name = finland.56.b #Decline
+		ai_chance = {
+			factor = 15
+		}
+		FIN = {
+			country_event = { id = finland.58 }
+			effect_tooltip = {
+				add_opinion_modifier = { target = GER modifier = medium_decrease }
+			}
+		}
+	}
+}
+country_event = { #Germany accepts
+	id = finland.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.57"}
+	title = finland.57.t
+	desc = finland.57.d
+	picture = GFX_report_event_sign_paper
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.57.a #Great
+		effect_tooltip = {
+			GER = {
+				add_to_faction = FIN
+			}
+		}
+	}
+}
+country_event = { #Germany refuses
+	id = finland.58
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.58"}
+	title = finland.58.t
+	desc = finland.58.d
+	picture = GFX_report_event_sign_paper
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.58.a #ok
+		FIN = {
+			add_opinion_modifier = { target = GER modifier = medium_decrease }
+		}
+	}
+}
+country_event = { #Ask Allies for Guarantees
+	id = finland.59
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.59"}
+	title = finland.59.t
+	desc = finland.59.d
+	picture = GFX_report_event_usa_power
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.59.a #Accept
+		ai_chance = {
+			factor = 70
+			modifier = {
+				factor = 90
+				has_opinion = {
+					target = FIN
+					value = 50
+				}
+			}
+		}
+		ROOT = {
+			give_guarantee = FIN
+		}
+		FIN = {
+			country_event = { id = finland.60 }
+		}
+	}
+	
+	option = {
+		name = finland.59.b #Decline
+		ai_chance = {
+			factor = 15
+		}
+		FIN = {
+			country_event = { id = finland.61 }
+			effect_tooltip = {
+				add_opinion_modifier = { target = ROOT modifier = medium_decrease }
+			}
+		}
+	}
+}
+country_event = { #Allies accepts
+	id = finland.60
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.60"}
+	title = finland.60.t
+	desc = finland.60.d
+	picture = GFX_report_event_usa_speaker
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.60.a #Great
+		effect_tooltip = {
+			FROM = {
+				give_guarantee = FIN
+			}
+		}
+	}
+}
+country_event = { #Allies refuses
+	id = finland.61
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.61"}
+	title = finland.61.t
+	desc = finland.61.d
+	picture = GFX_report_event_usa_power
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.61.a #ok
+		FIN = {
+			add_opinion_modifier = { target = FROM modifier = medium_decrease }
+		}
+	}
+}
+country_event = { #Removal of People
+	id = finland.62
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.62"}
+	title = finland.62.t
+	desc = finland.62.d
+	picture = GFX_report_event_gulag
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.62.a #They have no place in our country!
+		add_stability = -0.05
+		216 = {
+			add_manpower = -5670
+		}
+		215 = {
+			add_manpower = -2349
+		}
+		213 = {
+			add_manpower = -4789
+		}
+	}
+}
+country_event = { #Ostland: Finland expels Jews
+	id = finland.63
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.63"}
+	title = finland.63.t
+	desc = finland.63.d
+	picture = GFX_report_event_gulag
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.63.a #Time to exterminate :3
+		add_stability = -0.02
+		add_political_power = 50
+	}
+}
+country_event = { #Finland announces its ambitions
+	id = finland.64
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.64"}
+	title = finland.64.t
+	desc = finland.64.d
+	picture = GFX_report_event_greater_finland
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.64.a #We should be ready for anything
+		add_opinion_modifier = {
+			target = FIN
+			modifier = finish_ambitions 
+		}
+		FIN = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = finish_ambitions 
+			}
+		}
+	}
+}
+country_event = { #Democracy Returns
+	id = finland.65
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.65"}
+	title = finland.65.t
+	desc = finland.65.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.65.a #Long live the Republic!
+		set_cosmetic_tag = FIN_statesflag
+		add_ideas = facade_democracy
+		set_politics = {	
+			ruling_party = liberal
+			elections_allowed = yes
+		}
+	}
+}
+country_event = { #Dictatorship takes Over
+	id = finland.66
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.66"}
+	title = finland.66.t
+	desc = finland.66.d
+	picture = GFX_report_event_finnish_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.66.a #Kaarlo won't fail us!
+		set_cosmetic_tag = FIN_paternal_autocrat
+		add_ideas = dictatorship
+		add_stability = 0.05
+		add_war_support = 0.05
+	}
+}
+country_event = { #Envoy from Finland
+	id = finland.67
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.67"}
+	title = finland.67.t
+	desc = finland.67.d
+	picture = GFX_report_event_uk_rationing
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.67.a #Ties with the Finns are Better
+		add_opinion_modifier = {
+			target = FIN
+			modifier = finnish_envoy 
+		}
+		FIN = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = soviet_envoy 
+			}
+		}
+	}
+}
+country_event = { #Kekkonen's Coup
+	id = finland.68
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.68"}
+	title = finland.68.t
+	desc = finland.68.d
+	picture = GFX_report_event_finnish_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.68.a #Time for change has come!
+		set_cosmetic_tag = FIN_paternal_autocrat
+		set_politics = {	
+			ruling_party = paternal_autocrat
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Urho Kaleva Kekkonen"
+			desc = ""
+			picture = "Urho_Kaleva_Kekkonen.dds"
+			expire = "1980.1.1"
+			ideology = authoritarian_democracy
+			traits = {}
+		}
+		add_stability = -0.1
+		add_political_power = -100
+	}
+}
+country_event = { #Soviet Union: Finland proposes The White Pact
+	id = finland.69
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.69"}
+	title = finland.69.t
+	desc = finland.69.d
+	picture = GFX_report_event_finnish_soviet_pact
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.69.a #Excellent idea!
+		ai_chance = {
+			factor = 70
+			modifier = {
+				factor = 90
+				has_opinion = {
+					target = FIN
+					value = 50
+				}
+			}
+		}
+		set_global_flag = fin_and_soviet_assistance
+		add_opinion_modifier = {
+			target = FIN
+			modifier = the_white_pact 
+		}
+		FIN = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = the_white_pact 
+			}
+		}
+		give_military_access = FIN
+		FIN = {
+			country_event = { id = finland.70 }
+		}
+	}
+	option = {
+		name = finland.69.b #We cannot trust the Finns!
+		ai_chance = {
+			factor = 30
+			modifier = {
+				factor = 10
+				has_opinion = {
+					target = FIN
+					value = 50
+				}
+			}
+		}
+		FIN = {
+			country_event = { id = finland.71 }
+		}
+		add_opinion_modifier = {
+			target = FIN
+			modifier = medium_decrease 
+		}
+		FIN = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = medium_decrease 
+			}
+		}
+	}
+}
+country_event = { #Finland: Soviets accept The White Pact
+	id = finland.70
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.70"}
+	title = finland.70.t
+	desc = finland.70.d
+	picture = GFX_report_event_finnish_soviet_pact
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.70.a #Excellent!
+		give_military_access = SOV
+		effect_tooltip = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = the_white_pact 
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = the_white_pact 
+				}
+			}
+		}
+	}
+}
+country_event = { #Finland: Soviets refuse The White Pact
+	id = finland.71
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.71"}
+	title = finland.71.t
+	desc = finland.71.d
+	picture = GFX_report_event_finnish_soviet_pact
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.71.a #Too bad
+		effect_tooltip = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = medium_decrease 
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = medium_decrease 
+				}
+			}
+		}
+	}
+}
+country_event = { #Peace Deal for Ostland
+	id = finland.72
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.72"}
+	title = finland.72.t
+	desc = finland.72.d
+	picture = GFX_report_event_finnish_soldiers
+	fire_only_once = yes
+	hidden = yes
+	trigger = {
+		tag = FIN
+		is_subject = no
+		has_war_with = ROS
+		OR = {
+			FIN = {
+				controls_state = 13
+				controls_state = 191
+				controls_state = 209
+				controls_state = 208
+				#controls_state = 266
+			}
+			ROS = {
+				surrender_progress > 0.6
+			}
+		}
+	}
+	immediate = {
+		white_peace = ROS
+		transfer_state = 13
+		transfer_state = 191
+		transfer_state = 209
+		transfer_state = 208
+		#transfer_state = 266
+	}
+
+	option = {
+		name = finland.72.a #We have emerged victorious!
+	}
+}
+country_event = { #Peace Deal for RK Moscow Land
+	id = finland.73
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.73"}
+	title = finland.73.t
+	desc = finland.73.d
+	picture = GFX_report_event_finnish_soldiers
+	fire_only_once = yes
+	hidden = yes
+	trigger = {
+		tag = FIN
+		is_subject = no
+		OR = {
+			has_war_with = RMO 
+			has_war_with = SMO
+			has_war_with = WRM
+			has_war_with = RMD
+		}
+		
+		OR = {
+			RMO = {
+				surrender_progress > 0.4
+			}
+			SMO = {
+				surrender_progress > 0.4
+			}
+			WRM = {
+				surrender_progress > 0.4
+			}
+			RMD = {
+				surrender_progress > 0.4
+			}
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				has_war_with = RMO
+			}
+			white_peace = RMO
+			transfer_state = 999
+			transfer_state = 1001
+			transfer_state = 1004
+			transfer_state = 244
+			transfer_state = 264
+		}
+		if = {
+			limit = {
+				has_war_with = SMO
+			}
+			white_peace = SMO
+			transfer_state = 999
+			transfer_state = 1001
+			transfer_state = 1004
+			transfer_state = 244
+			transfer_state = 264
+		}
+		if = {
+			limit = {
+				has_war_with = WRM
+			}
+			white_peace = WRM
+			transfer_state = 999
+			transfer_state = 1001
+			transfer_state = 1004
+			transfer_state = 244
+			transfer_state = 264
+		}
+		if = {
+			limit = {
+				has_war_with = RMD
+			}
+			white_peace = RMD
+			transfer_state = 999
+			transfer_state = 1001
+			transfer_state = 1004
+			transfer_state = 244
+			transfer_state = 264
+		}
+	}
+
+	option = {
+		name = finland.73.a #We have emerged victorious!
+	}
+}
+
+news_event = {#Susitaival Elected
+	id = finland.74
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.74"}
+	title = finland.74.t
+	desc = finland.74.d
+	picture = GFX_news_event_Susitaival_elected
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.74.a
+	}
+}
+news_event = {#Kekkonen Elected
+	id = finland.75
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.75"}
+	title = finland.75.t
+	desc = finland.75.d
+	picture = GFX_news_event_Kekkonen_elected
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.75.a
+	}
+}
+news_event = {#Paasikivi Elected
+	id = finland.76
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.76"}
+	title = finland.76.t
+	desc = finland.76.d
+	picture = GFX_news_event_Paasikivi_elected
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.76.a
+	}
+}
+news_event = {#Karvikko Elected
+	id = finland.77
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.77"}
+	title = finland.77.t
+	desc = finland.77.d
+	picture = GFX_news_event_Karvikko_elected
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.77.a
+	}
+}
+news_event = {#Fascist Coup
+	id = finland.78
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.78"}
+	title = finland.78.t
+	desc = finland.78.d
+	picture = GFX_news_event_finnish_fascist_coup
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.78.a
+	}
+}
+news_event = {#Military Coup
+	id = finland.79
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.79"}
+	title = finland.79.t
+	desc = finland.79.d
+	picture = GFX_news_event_finnish_military_coup
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.79.a
+	}
+}
+news_event = {#Greater Finland
+	id = finland.80
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.80"}
+	title = finland.80.t
+	desc = finland.80.d
+	picture = GFX_news_event_greater_finland_declared
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.80.a
+	}
+}
+news_event = {#Kurikka Rebellion
+	id = finland.81
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.81"}
+	title = finland.81.t
+	desc = finland.81.d
+	picture = GFX_news_event_finnish_rebellion
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = finland.81.a
+	}
+}
+news_event = {#Rebellion Crushed
+	id = finland.82
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.82"}
+	title = finland.82.t
+	desc = finland.82.d
+	picture = GFX_news_event_generic_finland
+
+	is_triggered_only = yes
+	major = no
+	
+
+	option = {
+		name = finland.82.a
+	}
+}
+news_event = {#Rebellion Wins
+	id = finland.83
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.83"}
+	title = finland.83.t
+	desc = finland.83.d
+	picture = GFX_news_event_generic_finland
+
+	is_triggered_only = yes
+	major = no
+	
+
+	option = {
+		name = finland.83.a
+	}
+}
+news_event = {#Sitting Pres Dies Paasikivi
+	id = finland.84
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.84"}
+	title = finland.84.t
+	desc = finland.84.d
+	picture = GFX_news_event_death_of_Paasikivi
+
+	is_triggered_only = yes
+	major = no
+	
+
+	option = {
+		name = finland.84.a
+	}
+}
+country_event = { #Ryti is dead
+	id = finland.85
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.85"}
+	title = finland.85.t
+	desc = finland.85.d
+	picture = GFX_report_event_ryti
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.85.a #Rest in peace
+		add_political_power = -10
+		hidden_effect = {
+		set_country_flag = Risto_Ryti_unavailable
+		}
+	}
+}
+country_event = { #Paasikivi is dead
+	id = finland.86
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.86"}
+	title = finland.86.t
+	desc = {
+		text = finland.86.d_1
+		trigger = { 
+		NOT = {
+		has_country_leader = {
+    		name = "Juho Kusti Paasikivi"
+    		ruling_only = yes
+				}
+			}
+		}
+	}
+	desc = {
+		text = finland.86.d_2
+		trigger = { 
+		has_country_leader = {
+    		name = "Juho Kusti Paasikivi"
+    		ruling_only = yes
+				}
+		}
+	}
+	picture = GFX_report_event_generic_funeral
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.86.a #Rest in peace
+		trigger = {
+		NOT = {
+		has_country_leader = {
+    			name = "Juho Kusti Paasikivi"
+    			ruling_only = yes
+					}
+			}
+		}
+		add_political_power = -10
+		kill_ideology_leader = social_democrat
+		create_country_leader = {
+		name = "Karl-August Fagerholm"
+		desc = ""
+		picture = "Karl-August_Fagerholm.dds"
+		expire = "1956.9.9"
+		ideology = social_democracy
+		traits = {}
+		}
+		hidden_effect = {
+		set_country_flag = Juho_Kusti_Paasikivi_unavailable
+		}
+	}
+	option = {
+		name = finland.86.b #Rest in peace, president
+		trigger = {
+		has_country_leader = {
+    			name = "Juho Kusti Paasikivi"
+    			ruling_only = yes
+			}
+		}
+		add_political_power = -10
+		kill_country_leader = yes
+		create_country_leader = {
+		name = "Karl-August Fagerholm"
+		desc = ""
+		picture = "Karl-August_Fagerholm.dds"
+		expire = "1956.9.9"
+		ideology = social_democracy
+		traits = {}
+		}
+		add_ideas = {
+		FIN_HoG_Emil_Skog
+		}
+		news_event = finland.84
+		hidden_effect = {
+		set_country_flag = Juho_Kusti_Paasikivi_unavailable
+		}
+	}
+}
+
+country_event = { # 1952 olympics
+	id = finland.87
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.87"}
+	title = finland.87.t
+	desc = finland.87.d
+	picture = GFX_report_event_helsinki_olympics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = finland.87.a #hold the games
+		news_event = { days = 1 id = twrnews.177 }
+		add_political_power = 50
+		add_stability = 0.03
+		add_war_support = 0.03
+		add_opinion_modifier = { target = GER modifier = small_increase }
+		add_opinion_modifier = { target = ITA modifier = small_increase }
+		add_opinion_modifier = { target = USA modifier = small_decrease }
+		add_opinion_modifier = { target = ENG modifier = small_decrease }
+	}
+}
+
+unit_leader_event = { #Leader Resigns
+	id = finland.27000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.27000"}
+	title = finland.27000.t
+	desc = {
+		text = finland.27000.d
+		trigger = {
+			FROM = {
+				NOT = {
+					OR = {
+						has_id = 2701
+						has_id = 2700
+					}
+				} 
+			}
+		}
+	}
+	desc = {
+		text = finland.27000.d_0
+		trigger = { 
+			FROM = { has_id = 2700 }
+		}
+	}
+	desc = {
+		text = finland.27000.d_1
+		trigger = { 
+			FROM = { has_id = 2701 }
+		}
+	}
+	
+	picture = GFX_report_event_military_planning
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = finland.27000.a
+		PREV = { retire = yes }
+	}
+}
+unit_leader_event = { #Airplane accident
+	id = finland.27001
+	immediate = {log = "[GetDateText]: [Root.GetName]: event finland.27001"}
+	title = finland.27001.t
+	desc = finland.27001.d
+	
+	picture = GFX_report_event_military_planning
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = finland.27001.a
+		custom_effect_tooltip = dietl_dies
+		hidden_effect = { FROM = { retire = yes } }
+	}
+}

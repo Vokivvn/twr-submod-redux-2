@@ -1,0 +1,343 @@
+shared_focus = {
+	id = CAN_Auth_Start
+	icon = GFX_GENERIC_Purge_SocDem
+	x = 4
+	y = 0
+	
+	available = {
+		has_country_flag = CAN_COUP
+	}
+	bypass = {
+		has_country_flag = CAN_COUP
+	}
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+	
+}
+
+shared_focus = {
+	id = CAN_Auth_Restore
+	icon = GFX_ENG_monarchy
+	prerequisite = { focus = CAN_Auth_Start }
+	relative_position_id = CAN_Auth_Start
+	x = 0
+	y = 1
+	cost = 1
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		country_event = {
+			id = twrcanada_auth.6
+			days = 1
+		}
+		set_variable = {
+			var = auth_conscript
+			value = 0
+		}
+		set_variable = {
+			var = auth_pp
+			value = 0
+		}
+		set_variable = {
+			var = auth_st
+			value = 0
+		}
+		set_variable = {
+			var = auth_ws
+			value = 0
+		}
+		set_variable = {
+			var = auth_ws_wk
+			value = 0
+		}
+		set_variable = {
+			var = auth_export
+			value = 0
+		}
+		set_variable = {
+			var = auth_morale
+			value = 0
+		}
+		set_variable = {
+			var = auth_org
+			value = 0
+		}
+		set_variable = {
+			var = auth_mob
+			value = 0
+		}
+		set_variable = {
+			var = auth_sub
+			value = 0
+		}
+		set_variable = {
+			var = auth_gar
+			value = 0
+		}
+		add_dynamic_modifier = {
+			modifier = CAN_Auth_Idea
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_1
+	icon = GFX_GENERIC_Police_Equipment
+	prerequisite = { focus = CAN_Auth_Restore }
+	relative_position_id = CAN_Auth_Start
+	x = -2
+	y = 2
+	cost = 10
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_Auth_1_effect
+		add_to_variable = {
+			var = auth_sub
+			value = -0.50
+		}
+		add_to_variable = {
+			var = auth_gar
+			value = -0.35
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_2
+	icon = GFX_GENERIC_spy_meeting
+	prerequisite = { focus = CAN_Auth_1 }
+	relative_position_id = CAN_Auth_Start
+	x = -2
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_Auth_2_effect
+		add_to_variable = {
+			var = auth_pp
+			value = 0.5
+		}
+		add_stability = -0.075
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_3
+	icon = GFX_GENERIC_Death_To_The_Workers
+	prerequisite = { focus = CAN_Auth_Restore }
+	relative_position_id = CAN_Auth_Start
+	x = 0
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_Auth_3_effect
+		add_to_variable = {
+			var = auth_pp
+			value = 0.5
+		}
+		add_stability = -0.075
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.25
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.10
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_4
+	icon = GFX_GENERIC_secure_trade
+	prerequisite = { focus = CAN_Auth_3 }
+	relative_position_id = CAN_Auth_Start
+	x = 0
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_Auth_4_effect
+		add_to_variable = {
+			var = auth_pp
+			value = 0.5
+		}
+		add_to_variable = {
+			var = auth_export
+			value = -0.20
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_5
+	icon = GFX_GENERIC_Military_Equipment
+	prerequisite = { focus = CAN_Auth_Restore }
+	relative_position_id = CAN_Auth_Start
+	x = 2
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		every_owned_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_6
+	icon = GFX_CAN_Suppress_Quebec
+	prerequisite = { focus = CAN_Auth_5 }
+	relative_position_id = CAN_Auth_Start
+	x = 2
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		remove_ideas = CAN_quebec_regionalism
+		add_stability = -0.30
+		add_war_support = -0.30
+		466 = {
+			remove_core_of = CAN
+			add_core_of = QUE
+		}
+		468 = {
+			remove_core_of = CAN
+			add_core_of = QUE
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_7
+	icon = GFX_GENERIC_Paternal_Autocrat
+	prerequisite = { focus = CAN_Auth_2 }
+	prerequisite = { focus = CAN_Auth_4 }
+	prerequisite = { focus = CAN_Auth_6 }
+	relative_position_id = CAN_Auth_Start
+	x = 0
+	y = 4
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_Auth_7_effect
+		add_to_variable = {
+			var = auth_morale
+			value = 0.075
+		}
+		add_to_variable = {
+			var = auth_mob
+			value = 0.15
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_8
+	icon = GFX_GENERIC_Auth_Dem
+	prerequisite = { focus = CAN_Auth_7 }
+	relative_position_id = CAN_Auth_Start
+	x = -1
+	y = 5
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_9
+	icon = GFX_ENG_queen
+	prerequisite = { focus = CAN_Auth_7 }
+	relative_position_id = CAN_Auth_Start
+	x = 1
+	y = 5
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_Auth_9_effect
+		add_to_variable = {
+			var = auth_morale
+			value = 0.075
+		}
+		add_to_variable = {
+			var = auth_org
+			value = 0.15
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_Auth_10
+	icon = GFX_GENERIC_elite_party
+	prerequisite = { focus = CAN_Auth_8 }
+	prerequisite = { focus = CAN_Auth_9 }
+	relative_position_id = CAN_Auth_Start
+	x = 0
+	y = 6
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_Auth_10_effect
+		set_variable = {
+			var = auth_conscript
+			value = 0.03
+		}
+		set_variable = {
+			var = auth_ws_wk
+			value = 0.01
+		}
+	}
+}

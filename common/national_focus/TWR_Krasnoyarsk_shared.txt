@@ -1,0 +1,6876 @@
+#############################
+#### STARTING FOCUS TREE ####
+#############################
+shared_focus = {
+	cancelable = no
+	id = KRA_Russian_Truest_Son_Alone_in_the_Cold
+	icon = GFX_focus_KRA_Russian_Truest_Son_Alone_in_the_Cold
+	x = 8
+	y = 0
+	cost = 1
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Russian_Truest_Son_Alone_in_the_Cold"
+		country_event = { hours = 2 id = twrkrasnoyarsk.1 }
+		hidden_effect = {
+			country_event = { id = twrkrasnoyarskflavour.2 }
+		}
+	}
+}
+	
+shared_focus = {
+	cancelable = no
+	id = KRA_Friends_in_This_Dark_Hour
+	icon = GFX_focus_KRA_Friends_in_This_Dark_Hour
+	prerequisite = { focus = KRA_Russian_Truest_Son_Alone_in_the_Cold }
+	relative_position_id = KRA_Russian_Truest_Son_Alone_in_the_Cold
+	x = 0
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Friends_in_This_Dark_Hour"
+		custom_effect_tooltip = KRA_DESERTERS
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 50
+			producer = ROOT
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 100
+			producer = ROOT
+		}
+		hidden_effect = {
+			division_template = {
+				name = "Soviet Volunteer Division"
+				is_locked = yes
+				regiments = {
+					light_infantry = { x = 0 y = 0 }
+					light_infantry = { x = 0 y = 1 }
+					light_infantry = { x = 1 y = 0 }
+					light_infantry = { x = 1 y = 1 }
+					light_infantry = { x = 2 y = 0 }
+					light_infantry = { x = 2 y = 1 }
+					light_infantry = { x = 3 y = 0 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }   
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+					division = "name = \"Sovetskaya brigada Natsionl Iskupleniya\" division_template = \"Soviet Volunteer Division\" start_experience_factor = 1.0 start_equipment_factor = 0.5"
+					owner = ROOT
+				}	
+			}
+			country_event = { id = twrkrasnoyarskflavour.3 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Addressing_The_Militaries_Factions
+	icon = GFX_focus_KRA_Addressing_The_Militaries_Factions
+	prerequisite = { focus = KRA_Friends_in_This_Dark_Hour }
+	relative_position_id = KRA_Friends_in_This_Dark_Hour
+	x = -2
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_TUVAN_DEALT_WITH
+			NOT = {
+				has_idea = KRA_The_Tuvan_Insurgency
+				has_idea = KRA_The_Tuvan_Insurgency_2
+				has_idea = KRA_The_Tuvan_Insurgency_ve
+				has_idea = KRA_The_Tuvan_Insurgency_ve_2
+				has_idea = KRA_The_Tuvan_Insurgency_is
+				has_idea = KRA_The_Tuvan_Insurgency_bm
+				has_idea = KRA_The_Tuvan_Insurgency_bm_2
+				has_idea = KRA_The_Tuvan_Insurgency_bm_3
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Addressing_The_Militaries_Factions"
+		swap_ideas = {
+			remove_idea = KRA_Red_Army_Political_Factionalism
+			add_idea = KRA_Red_Army_Political_Factionalism_2
+		}
+		swap_ideas = {
+			remove_idea = KRA_Marshalls_Red_Army
+			add_idea = KRA_Marshalls_Red_Army_2
+		}
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Meeting_With_The_Plurinational_Committee
+	icon = GFX_focus_KRA_Meeting_With_The_Plurinational_Committee
+	prerequisite = { focus = KRA_Addressing_The_Militaries_Factions }
+	relative_position_id = KRA_Addressing_The_Militaries_Factions
+	x = -2
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Meeting_With_The_Plurinational_Committee"
+		country_event = { hours = 5 id = twrkrasnoyarsk.2 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Plurination_Unification_Plan
+	icon = GFX_focus_KRA_The_Plurination_Unification_Plan
+	prerequisite = { focus = KRA_Meeting_With_The_Plurinational_Committee }
+	mutually_exclusive = { focus = KRA_The_Traditionalist_Unification_Plan }
+	relative_position_id = KRA_Meeting_With_The_Plurinational_Committee
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Plurination_Unification_Plan"
+		custom_effect_tooltip = KRA_Committee_Favoured
+		add_to_variable = {
+			var = KRA_committe_influence
+			value = 1
+		}
+		custom_effect_tooltip = KRA_zhukov_control_lowered_slightly
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+		set_country_flag = KRA_Has_Committee_Favoured
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Emphasize_The_Red_Armys_Diversity
+	icon = GFX_focus_KRA_Emphasize_The_Red_Armys_Diversity
+	prerequisite = { focus = KRA_The_Plurination_Unification_Plan }
+	relative_position_id = KRA_The_Plurination_Unification_Plan
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Plurination_Unification_Plan"
+		swap_ideas = {
+			remove_idea = KRA_Marshalls_Red_Army_2
+			add_idea = KRA_Marshalls_Red_Army_committee
+		}
+		army_experience = 10
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Zaytsevs_Traditionalist_Socialists
+	icon = GFX_SOV_zaytsev_unity
+	prerequisite = { focus = KRA_Addressing_The_Militaries_Factions }
+	relative_position_id = KRA_Addressing_The_Militaries_Factions
+	x = 2
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Zaytsevs_Traditionalist_Socialists"
+		country_event = { hours = 5 id = twrkrasnoyarsk.3 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Traditionalist_Unification_Plan
+	icon = GFX_focus_KRA_The_Traditionalist_Unification_Plan
+	prerequisite = { focus = KRA_Zaytsevs_Traditionalist_Socialists }
+	mutually_exclusive = { focus = KRA_The_Plurination_Unification_Plan }
+	relative_position_id = KRA_Zaytsevs_Traditionalist_Socialists
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Traditionalist_Unification_Plan"
+		custom_effect_tooltip = KRA_TradSocs_Favoured
+		add_to_variable = {
+			var = KRA_sniper_clique_influence
+			value = 1
+		}
+		custom_effect_tooltip = KRA_zhukov_control_lowered_slightly
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+		set_country_flag = KRA_Has_TradSocs_Favoured
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Red_Army_Protected_By_God
+	icon = GFX_focus_KRA_Red_Army_Protected_By_God
+	prerequisite = { focus = KRA_The_Traditionalist_Unification_Plan }
+	relative_position_id = KRA_The_Traditionalist_Unification_Plan
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Red_Army_Protected_By_God"
+		swap_ideas = {
+			remove_idea = KRA_Marshalls_Red_Army_2
+			add_idea = KRA_Marshalls_Red_Army_tradsoc
+		}
+		add_political_power = -20
+		army_experience = 10
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Contacting_Our_Supporters_In_Novosibirsk
+	icon = GFX_GENERIC_soviet_advisors
+	prerequisite = { focus = KRA_The_Traditionalist_Unification_Plan focus = KRA_The_Plurination_Unification_Plan }
+	relative_position_id = KRA_The_Traditionalist_Unification_Plan
+	x = -2
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Contacting_Our_Supporters_In_Novosibirsk"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = ROOT
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 100
+			producer = ROOT
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 100
+			producer = ROOT
+		}
+		add_manpower = 5000
+		NOV = {
+			add_stability = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = twrkrasnoyarskflavour.4 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Prioritizing_The_Motorized_Corps
+	icon = GFX_GENERIC_Motorized
+	prerequisite = { focus = KRA_Emphasize_The_Red_Armys_Diversity }
+	prerequisite = { focus = KRA_Contacting_Our_Supporters_In_Novosibirsk }
+	relative_position_id = KRA_Contacting_Our_Supporters_In_Novosibirsk
+	x = -1
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Prioritizing_The_Motorized_Corps"
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 500
+			producer = ROOT
+		}
+		add_tech_bonus = {
+			uses = 1
+			bonus = 0.75
+			category = motorized_equipment
+			category = cat_mechanized_equipment
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Prioritizing_The_Infantry_Corps
+	icon = GFX_GENERIC_Soviet_Soldier
+	prerequisite = { focus = KRA_The_Red_Army_Protected_By_God }
+	prerequisite = { focus = KRA_Contacting_Our_Supporters_In_Novosibirsk }
+	relative_position_id = KRA_Contacting_Our_Supporters_In_Novosibirsk
+	x = 1
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Prioritizing_The_Infantry_Corps"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1200
+			producer = ROOT
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 200
+			producer = ROOT
+		}
+		add_tech_bonus = {
+			uses = 2
+			bonus = 0.75
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_MKPSs_Chinese_Connections
+	icon = GFX_GENERIC_Unionize
+	prerequisite = { focus = KRA_Prioritizing_The_Motorized_Corps }
+	relative_position_id = KRA_Prioritizing_The_Motorized_Corps
+	x = -1
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_MKPSs_Chinese_Connections"
+		create_corps_commander = {
+			name = "Mao Anying"
+			picture = "Mao_Anying.dds"
+			traits = { trait_reckless trickster organizer }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Kim Il-sung"
+			picture = "Kim_Il_Sung.dds"
+			traits = { commando }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Erich Honecker"
+			picture = "Erich_Honecker.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		swap_ideas = {
+			remove_idea = KRA_Red_Army_Political_Factionalism_2
+			add_idea = KRA_Red_Army_Political_Factionalism_committee
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expanding_The_Krasnoyarsk_Factories
+	icon = GFX_goal_generic_soviet_construction
+	prerequisite = { focus = KRA_Prioritizing_The_Motorized_Corps focus = KRA_Prioritizing_The_Infantry_Corps }
+	relative_position_id = KRA_Prioritizing_The_Motorized_Corps
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expanding_The_Krasnoyarsk_Factories"
+		568 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expanding_Recruitment_To_Every_Village
+	icon = GFX_GENERIC_TotSoc
+	prerequisite = { focus = KRA_Prioritizing_The_Infantry_Corps }
+	relative_position_id = KRA_Prioritizing_The_Infantry_Corps
+	x = 1
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expanding_Recruitment_To_Every_Village"
+		swap_ideas = {
+			remove_idea = KRA_Marshalls_Red_Army_tradsoc
+			add_idea = KRA_Marshalls_Red_Army_tradsoc_2
+		}
+		hidden_effect = {
+			country_event = { id = twrkrasnoyarskflavour.5 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Smuggling_In_Outdated_Armor
+	icon = GFX_GENERIC_tank_and_gun
+	prerequisite = { focus = KRA_Expanding_The_Krasnoyarsk_Factories }
+	prerequisite = { focus = KRA_The_MKPSs_Chinese_Connections focus = KRA_Expanding_Recruitment_To_Every_Village }
+	relative_position_id = KRA_Expanding_The_Krasnoyarsk_Factories
+	x = 0
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Smuggling_In_Outdated_Armor"
+		custom_effect_tooltip = KRA_tank_div_tt
+		add_equipment_to_stockpile = {
+			type = MBT_1950_equipment_1
+			amount = 50
+			producer = ROOT
+		}
+		add_tech_bonus = {
+			uses = 1
+			bonus = 0.50
+			category = armor
+		}
+		hidden_effect = {
+			division_template = {
+				name = "Ustarevshaya Tankovaya Diviziya"
+				is_locked = no
+				regiments = {
+					medium_armor = { x = 0 y = 0 }
+					medium_armor = { x = 0 y = 1 }
+       				medium_armor = { x = 1 y = 0 }
+					medium_armor = { x = 1 y = 1 }
+					motorized = { x = 2 y = 0 }
+					motorized = { x = 2 y = 1 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }   
+				}
+			}
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"Sovetskaya Tankovaya Diviziya\" division_template = \"Ustarevshaya Tankovaya Diviziya\" start_experience_factor = 1.0 start_equipment_factor = 0.5"
+					owner = ROOT
+				}	
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Our_More_Loathsome_Allies
+	icon = GFX_focus_KRA_Our_More_Loathsome_Allies
+	prerequisite = { focus = KRA_Friends_in_This_Dark_Hour }
+	relative_position_id = KRA_Friends_in_This_Dark_Hour
+	x = 2
+	y = 1
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Our_More_Loathsome_Allies"
+		country_event = { hours = 5 id = twrkrasnoyarsk.4 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Ivan_Serovs_Little_NKVD
+	icon = GFX_focus_KRA_Ivan_Serovs_Little_NKVD
+	prerequisite = { focus = KRA_Our_More_Loathsome_Allies }
+	relative_position_id = KRA_Our_More_Loathsome_Allies
+	x = 2
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Ivan_Serovs_Little_NKVD"
+		add_ideas = KRA_The_Little_NKVD
+		add_ideas = KRA_MoS_Ivan_Serov
+		hidden_effect = {
+			country_event = { id = twrkrasnoyarskflavour.6 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Vastly_Expanding_the_NKVDs_Budget
+	icon = GFX_SOV_konev_Expanding_The_NKVDs_Role
+	prerequisite = { focus = KRA_Ivan_Serovs_Little_NKVD }
+	mutually_exclusive = { focus = KRA_Token_Increases_To_Serovs_Resources focus = KRA_Give_Serov_Only_The_Bare_Minimum }
+	relative_position_id = KRA_Ivan_Serovs_Little_NKVD
+	x = -2
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Vastly_Expanding_the_NKVDs_Budget"
+		custom_effect_tooltip = KRA_vastly_expand_consenquences_tt
+		swap_ideas = {
+			remove_idea = KRA_The_Little_NKVD
+			add_idea = KRA_The_Little_NKVD_ve
+		}
+		custom_effect_tooltip = KRA_lighten_tuvan_insurgency_tt
+		hidden_effect = {
+			set_country_flag = KRA_zhukov_will_die_flag
+			swap_ideas = {
+				remove_idea = KRA_The_Tuvan_Insurgency_2
+				add_idea = KRA_The_Tuvan_Insurgency_ve
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_MKPS_Voices_Its_Disproval
+	icon = GFX_GENERIC_Communist_Discourse
+	prerequisite = { focus = KRA_Vastly_Expanding_the_NKVDs_Budget }
+	relative_position_id = KRA_Vastly_Expanding_the_NKVDs_Budget
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_MKPS_Voices_Its_Disproval"
+		add_political_power = -100
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Aggressive_Pacification_Patrols
+	icon = GFX_SOV_konev_NKVD_youth_squads
+	prerequisite = { focus = KRA_The_MKPS_Voices_Its_Disproval }
+	relative_position_id = KRA_The_MKPS_Voices_Its_Disproval
+	x = 0
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Aggressive_Pacification_Patrols"
+		custom_effect_tooltip = KRA_dramatically_lighten_tuvan_insurgency_tt
+		add_political_power = -35
+		army_experience = 5
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = KRA_The_Tuvan_Insurgency_ve
+				add_idea = KRA_The_Tuvan_Insurgency_ve_2
+			}
+			country_event = { id = twrkrasnoyarskflavour.7 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Token_Increases_To_Serovs_Resources
+	icon = GFX_SOV_NKVD_remain
+	prerequisite = { focus = KRA_Ivan_Serovs_Little_NKVD }
+	mutually_exclusive = { focus = KRA_Vastly_Expanding_the_NKVDs_Budget focus = KRA_Give_Serov_Only_The_Bare_Minimum }
+	relative_position_id = KRA_Ivan_Serovs_Little_NKVD
+	x = 0
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Token_Increases_To_Serovs_Resources"
+		swap_ideas = {
+			remove_idea = KRA_The_Little_NKVD
+			add_idea = KRA_The_Little_NKVD_is
+		}
+		add_political_power = 50
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+		custom_effect_tooltip = KRA_zhukov_control_increased_slightly
+		add_to_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Setting_The_NKVDs_Legal_Limits
+	icon = GFX_SOV_intact_nkvd
+	prerequisite = { focus = KRA_Token_Increases_To_Serovs_Resources }
+	relative_position_id = KRA_Token_Increases_To_Serovs_Resources
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Setting_The_NKVDs_Legal_Limits"
+		add_stability = 0.1
+		swap_ideas = {
+			remove_idea = KRA_The_Little_NKVD_is
+			add_idea = KRA_The_Little_NKVD_is_2
+		}
+		country_event = { id = twrkrasnoyarsk.5 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_Slow_Burn_Through_The_Altai
+	icon = GFX_GENERIC_Socialist_Revolution
+	prerequisite = { focus = KRA_Setting_The_NKVDs_Legal_Limits }
+	relative_position_id = KRA_Setting_The_NKVDs_Legal_Limits
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_Slow_Burn_Through_The_Altai"
+		custom_effect_tooltip = KRA_lighten_tuvan_insurgency_tt
+		add_political_power = 35
+		country_event = { id = twrkrasnoyarsk.6 }
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = KRA_The_Tuvan_Insurgency_2
+				add_idea = KRA_The_Tuvan_Insurgency_is
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Give_Serov_Only_The_Bare_Minimum
+	icon = GFX_SOV_shattered_nkvd
+	prerequisite = { focus = KRA_Ivan_Serovs_Little_NKVD }
+	mutually_exclusive = { focus = KRA_Vastly_Expanding_the_NKVDs_Budget focus = KRA_Token_Increases_To_Serovs_Resources }
+	relative_position_id = KRA_Ivan_Serovs_Little_NKVD
+	x = 2
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 15
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Give_Serov_Only_The_Bare_Minimum"
+		swap_ideas = {
+			remove_idea = KRA_The_Little_NKVD
+			add_idea = KRA_The_Little_NKVD_bm
+		}
+		custom_effect_tooltip = KRA_Tuvan_Insurgency_worsens_more
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = KRA_The_Tuvan_Insurgency_2
+				add_idea = KRA_The_Tuvan_Insurgency_bm
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Curtail_The_NKVDs_Extrajudiciality
+	icon = GFX_SOV_NKVD_crackdown
+	prerequisite = { focus = KRA_Give_Serov_Only_The_Bare_Minimum }
+	relative_position_id = KRA_Give_Serov_Only_The_Bare_Minimum
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Curtail_The_NKVDs_Extrajudiciality"
+		add_stability = -0.1
+		add_war_support = -0.1
+		swap_ideas = {
+			remove_idea = KRA_The_Little_NKVD_bm
+			add_idea = KRA_The_Little_NKVD_bm_2
+		}
+		custom_effect_tooltip = KRA_Tuvan_Insurgency_worsens_more
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = KRA_The_Tuvan_Insurgency_bm
+				add_idea = KRA_The_Tuvan_Insurgency_bm_2
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Tuvan_Insurgency_Worsens
+	icon = GFX_GENERIC_resistance
+	prerequisite = { focus = KRA_Curtail_The_NKVDs_Extrajudiciality }
+	relative_position_id = KRA_Curtail_The_NKVDs_Extrajudiciality
+	x = 0
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Tuvan_Insurgency_Worsens"
+		custom_effect_tooltip = KRA_Tuvan_Insurgency_worsens_drastically
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = KRA_The_Tuvan_Insurgency_bm_2
+				add_idea = KRA_The_Tuvan_Insurgency_bm_3
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Forgive_Me_Mother_Russia_I_Have_Failed_You
+	icon = GFX_GENERIC_Salvation
+	prerequisite = { focus = KRA_The_Tuvan_Insurgency_Worsens }
+	relative_position_id = KRA_The_Tuvan_Insurgency_Worsens
+	x = 0
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Forgive_Me_Mother_Russia_I_Have_Failed_You"
+		country_event = { id = twrkrasnoyarsk.8 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Amnesty_Talks_With_The_Tuvans
+	icon = GFX_GENERIC_Commie_Government
+	prerequisite = { focus = KRA_Aggressive_Pacification_Patrols focus = KRA_A_Slow_Burn_Through_The_Altai }
+	relative_position_id = KRA_Aggressive_Pacification_Patrols
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Amnesty_Talks_With_The_Tuvans"
+		country_event = { id = twrkrasnoyarsk.7 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Beginning_The_Great_Unification_War
+	icon = GFX_KRA_focus_Beginning_The_Great_Unification_War
+	prerequisite = { focus = KRA_Smuggling_In_Outdated_Armor }
+	prerequisite = { focus = KRA_Amnesty_Talks_With_The_Tuvans }
+	relative_position_id = KRA_Smuggling_In_Outdated_Armor
+	will_lead_to_war_with = NOV
+	x = 3
+	y = 1
+	cost = 5
+	bypass = {
+		OR = {
+			has_war_with = NOV
+			NOV = {
+				exists = no
+			}
+		}
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Beginning_The_Great_Unification_War"
+		declare_war_on = {
+			target = NOV
+			type = annex_everything
+		}
+		add_timed_idea = {
+			idea = KRA_The_Great_Unification_War
+			days = 1095
+		}
+		hidden_effect = {
+            NOV = {
+                add_timed_idea = {
+                    idea = NOV_The_Great_Unification_War
+                    days = 1095
+                }
+            }
+        }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Attempting_To_Locate_Rokossovsky
+	icon = GFX_KRA_focus_Attempting_To_Locate_Rokossovsky
+	prerequisite = { focus = KRA_Beginning_The_Great_Unification_War }
+	relative_position_id = KRA_Beginning_The_Great_Unification_War
+	x = -1
+	y = 1
+	cost = 6
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = controls_novosibirsk
+			KRA_controls_novosibirsk = yes
+		}
+		has_idea = KRA_The_Issue_Of_The_Marshal
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Attempting_To_Locate_Rokossovsky"
+		random_list = {
+			65 = {
+				custom_effect_tooltip = KRA_Rokossovsky_caught_tt2
+				hidden_effect = {
+					country_event = { days = 2 id = twrkrasnoyarskflavour.8 }
+				}
+			}
+			35 = {
+				custom_effect_tooltip = KRA_Rokossovsky_escapes_tt
+				hidden_effect = {
+					country_event = { days = 4 id = twrkrasnoyarsk.10 }
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Integrate_Vigdorovas_Planning_Bureau
+	icon = GFX_GENERIC_SOV_To_Get_Rich
+	prerequisite = { focus = KRA_Beginning_The_Great_Unification_War }
+	relative_position_id = KRA_Beginning_The_Great_Unification_War
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = controls_novosibirsk
+			KRA_controls_novosibirsk = yes
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Integrate_Vigdorovas_Planning_Bureau"
+		add_ideas = KRA_The_Novosibirsk_Planning_Bureau
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Kosygins_Solution
+	icon = GFX_KRA_focus_Kosygins_Solution
+	prerequisite = { focus = KRA_Attempting_To_Locate_Rokossovsky }
+	prerequisite = { focus = KRA_Integrate_Vigdorovas_Planning_Bureau }
+	mutually_exclusive = { focus = KRA_Zhukovs_Solution }
+	relative_position_id = KRA_Attempting_To_Locate_Rokossovsky
+	x = -1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+		has_country_flag = KRA_Rokossovsky_escaped
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Kosygins_Solution"
+		add_political_power = 50
+		remove_ideas = KRA_The_Issue_Of_The_Marshal
+		custom_effect_tooltip = KRA_zhukov_control_lowered_slightly
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Zhukovs_Solution
+	icon = GFX_KRA_focus_Zhukovs_Solution
+	prerequisite = { focus = KRA_Attempting_To_Locate_Rokossovsky }
+	prerequisite = { focus = KRA_Integrate_Vigdorovas_Planning_Bureau }
+	mutually_exclusive = { focus = KRA_Kosygins_Solution }
+	relative_position_id = KRA_Integrate_Vigdorovas_Planning_Bureau
+	x = 1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+		has_country_flag = KRA_Rokossovsky_caught
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Serovs_Solution"
+		add_political_power = -50
+		remove_ideas = KRA_The_Issue_Of_The_Marshal
+		custom_effect_tooltip = KRA_zhukov_control_increased_slightly
+		add_to_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Inviting_Rokossovsky_Onto_The_MKPS
+	icon = GFX_SOV_placating_rokossovsky
+	prerequisite = { focus = KRA_Kosygins_Solution }
+	relative_position_id = KRA_Kosygins_Solution
+	x = -1
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Inviting_Rokossovsky_Onto_The_MKPS"
+		add_stability = 0.02
+		add_political_power = -15
+		hidden_effect = {
+			country_event = { id = twrkrasnoyarskflavour.10 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Merging_The_Former_High_Commands
+	icon = GFX_KRA_focus_Merging_The_Former_High_Commands
+	prerequisite = { focus = KRA_Kosygins_Solution }
+	relative_position_id = KRA_Kosygins_Solution
+	x = 1
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Merging_The_Former_High_Commands"
+		army_experience = 30
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+		create_corps_commander = {
+			name = "Mikhail Malinin"
+			picture = "Mikhail_Malinin.dds"
+			traits = { }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Andrey Yeryomenko"
+			picture = "Andrey_Yeryomenko.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Adapting_Zhdanovs_Legacy_to_Our_Needs
+	icon = GFX_KRA_focus_Adapting_Zhdanovs_Legacy_to_Our_Needs
+	prerequisite = { focus = KRA_Inviting_Rokossovsky_Onto_The_MKPS }
+	prerequisite = { focus = KRA_Merging_The_Former_High_Commands }
+	relative_position_id = KRA_Inviting_Rokossovsky_Onto_The_MKPS
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Adapting_Zhdanovs_Legacy_to_Our_Needs"
+		country_event = { hours = 10 id = twrkrasnoyarsk.12 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Re_Integrating_The_Armies
+	icon = GFX_KRA_focus_Re_Integrating_The_Armies
+	prerequisite = { focus = KRA_Zhukovs_Solution }
+	relative_position_id = KRA_Zhukovs_Solution
+	x = -1
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Re_Integrating_The_Armies"
+		if = {
+			limit = {
+				has_idea = KRA_Marshalls_Red_Army_committee
+			}
+			swap_ideas = {
+				remove_idea = KRA_Marshalls_Red_Army_committee
+				add_idea = KRA_Marshalls_Red_Army_committee_2
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KRA_Marshalls_Red_Army_tradsoc_2
+					add_idea = KRA_Marshalls_Red_Army_tradsoc_3
+				}
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = ROOT
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 200
+			producer = ROOT
+		}
+		remove_ideas = KRA_Red_Army_Political_Factionalism_2
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Purging_Rokossovskys_High_Command
+	icon = GFX_KRA_focus_Purging_Rokossovskys_High_Command
+	prerequisite = { focus = KRA_Zhukovs_Solution }
+	relative_position_id = KRA_Zhukovs_Solution
+	x = 1
+	y = 1
+	cost = 4
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Purging_Rokossovskys_High_Command"
+		add_political_power = 45
+		hidden_effect = {
+			country_event = { id = twrkrasnoyarskflavour.9 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Officially_Condemn_Zhdanovshchina
+	icon = GFX_KRA_focus_Officially_Condemn_Zhdanovshchina
+	prerequisite = { focus = KRA_Re_Integrating_The_Armies }
+	prerequisite = { focus = KRA_Purging_Rokossovskys_High_Command }
+	relative_position_id = KRA_Re_Integrating_The_Armies
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Officially_Condemn_Zhdanovshchina"
+		country_event = { hours = 10 id = twrkrasnoyarsk.11 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reclaiming_The_Resources_Of_Norilsk
+	icon = GFX_KRA_focus_Reclaiming_The_Resources_Of_Norilsk
+	prerequisite = { focus = KRA_Adapting_Zhdanovs_Legacy_to_Our_Needs focus = KRA_Officially_Condemn_Zhdanovshchina }
+	relative_position_id = KRA_Adapting_Zhdanovs_Legacy_to_Our_Needs
+	will_lead_to_war_with = NRI
+	x = 2
+	y = 1
+	cost = 5
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = KRA_STABLE
+			NOT = {
+				has_country_flag = KRA_COLLAPSE
+			}
+		}
+	}
+	bypass = {
+	NOT = {
+	country_exists = NRI
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reclaiming_The_Resources_Of_Norilsk"
+		declare_war_on = {
+			target = NRI
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reunification_Epico_CEN_KRA
+	icon = GFX_SOV_socdem_cripple_military
+	prerequisite = { focus = KRA_Reclaiming_The_Resources_Of_Norilsk }
+	relative_position_id = KRA_Reclaiming_The_Resources_Of_Norilsk
+	will_lead_to_war_with = NRI
+	x = 0
+	y = 1
+	cost = 1
+	available = {
+	NOT = {
+	country_exists = NOV
+	country_exists = NRI
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reunification_Epico_CEN_KRA"
+		load_focus_tree = KRA_central_unification_focus
+	}
+}
+
+##########################################
+#### CENTRAL SIBERIA UNIFICATION TREE ####
+##########################################
+shared_focus = {
+	cancelable = no
+	id = KRA_Central_Siberia_Unified
+	icon = GFX_GENERIC_socialist_announcement
+	x = 8
+	y = 0
+	cost = 1
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Central_Siberia_Unified"
+		custom_effect_tooltip = KRA_central_siberia_cores_tt
+		remove_ideas = KRA_Memories_of_the_Second_Union
+		remove_ideas = KRA_A_Limping_Army
+		if = {
+			limit = {
+				has_idea = KRA_Marshalls_Red_Army_tradsoc_3
+			}
+			swap_ideas = {
+				remove_idea = KRA_Marshalls_Red_Army_tradsoc_3
+				add_idea = KRA_Marshalls_Red_Army_tradsoc_4
+			}
+			else_if = {
+				limit = {
+					has_idea = KRA_Marshalls_Red_Army_tradsoc_2
+				}
+				swap_ideas = {
+					remove_idea = KRA_Marshalls_Red_Army_tradsoc_2
+					add_idea = KRA_Marshalls_Red_Army_tradsoc_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KRA_Marshalls_Red_Army_committee
+				}
+				swap_ideas = {
+					remove_idea = KRA_Marshalls_Red_Army_committee
+					add_idea = KRA_Marshalls_Red_Army_committee_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KRA_Marshalls_Red_Army_committee_2
+					add_idea = KRA_Marshalls_Red_Army_committee_3
+				}
+			}
+		}
+		custom_effect_tooltip = KRA_The_New_Socialist_State_tt
+		KRA = {
+			add_dynamic_modifier = {
+				modifier = KRA_The_New_Socialist_State
+			}
+		}
+		set_variable = { KRA_Socialist_State_political_power_gain = -0.25 }
+		set_variable = { KRA_Socialist_State_stability_factor = -0.25 }
+		set_variable = { KRA_Socialist_State_war_support_factor = -0.20 }
+		set_variable = { KRA_Socialist_State_consumer_goods = 0 }
+		hidden_effect = {
+			KRA = {
+				every_owned_state = {
+					add_core_of = PREV
+				}
+			}
+			country_event = { days = 2 id = twrkrasnoyarsk.13 }
+			country_event = { days = 3 id = twrkrasnoyarsk.14 }
+		}
+		add_research_slot = 1
+		set_cosmetic_tag = KRA_SIB_SOV
+	}
+}
+	
+shared_focus = {
+	cancelable = no
+	id = KRA_Handling_the_State
+	icon = GFX_GENERIC_Adapt_Constitution
+	prerequisite = { focus = KRA_Central_Siberia_Unified }
+	relative_position_id = KRA_Central_Siberia_Unified
+	x = -4
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Handling_the_State"
+		country_event = { id = twrkrasnoyarsk.15 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Advice_from_Stalin
+	icon = GFX_GENERIC_Stalin
+	prerequisite = { focus = KRA_Handling_the_State }
+	mutually_exclusive = { focus = KRA_Advice_from_Kalinin }
+	relative_position_id = KRA_Handling_the_State
+	x = -1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = always_available_no
+			has_country_flag = chosen_stalin
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Advice_from_Stalin"
+		custom_effect_tooltip = KRA_NSS_advice_from_stalin
+		add_to_variable = {
+			var = KRA_Socialist_State_stability_factor
+			value = 0.05
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+		add_political_power = -100
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Rule_By_the_Consensus_of_One
+	icon = GFX_GENERIC_authoritarian_fist
+	prerequisite = { focus = KRA_Advice_from_Stalin }
+	relative_position_id = KRA_Advice_from_Stalin
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Rule_By_the_Consensus_of_One"
+		custom_effect_tooltip = KRA_zhukov_control_increased_significantly
+		add_to_variable = {
+			var = KRA_zhukov_control
+			value = 15
+		}
+		add_political_power = -50
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Advice_from_Kalinin
+	icon = GFX_GENERIC_Kalinin
+	prerequisite = { focus = KRA_Handling_the_State }
+	mutually_exclusive = { focus = KRA_Advice_from_Stalin }
+	relative_position_id = KRA_Handling_the_State
+	x = 1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = always_available_no
+			has_country_flag = chosen_kalinin
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Advice_from_Kalinin"
+		custom_effect_tooltip = KRA_NSS_advice_from_kalinin
+		add_to_variable = {
+			var = KRA_Socialist_State_political_power_gain
+			value = 0.05
+		}
+		add_to_variable = {
+			var = KRA_Socialist_State_stability_factor
+			value = 0.05
+		}
+		add_political_power = 25
+		custom_effect_tooltip = KRA_kosygin_influence_increased
+		add_to_variable = {
+			var = KRA_kosygin_influence2
+			value = 10
+		}
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Rule_By_the_Consensus_of_Many
+	icon = GFX_GENERIC_General_Staff_Meeting
+	prerequisite = { focus = KRA_Advice_from_Kalinin }
+	relative_position_id = KRA_Advice_from_Kalinin
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Rule_By_the_Consensus_of_Many"
+		custom_effect_tooltip = KRA_zhukov_control_lowered_significantly
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 15
+		}
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Grand_Marshall_Premier_Zhukov
+	icon = GFX_KRA_A_Premier_in_Name_Only
+	prerequisite = { focus = KRA_Rule_By_the_Consensus_of_One focus = KRA_Rule_By_the_Consensus_of_Many }
+	relative_position_id = KRA_Rule_By_the_Consensus_of_One
+	x = 1
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Grand_Marshall_Premier_Zhukov"
+		custom_effect_tooltip = KRA_NSS_marshall_zhukov
+		add_to_variable = {
+			var = KRA_Socialist_State_stability_factor
+			value = 0.05
+		}
+		add_to_variable = {
+			var = KRA_Socialist_State_war_support_factor
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Handling_the_Industrial_Base
+	icon = GFX_GENERIC_industrial_grey
+	prerequisite = { focus = KRA_Central_Siberia_Unified }
+	relative_position_id = KRA_Central_Siberia_Unified
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Handling_the_Industrial_Base"
+		country_event = { id = twrkrasnoyarsk.16 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Favoring_Antonovs_Reforms
+	icon = GFX_KRA_Favouring_Antonovs_Reforms
+	prerequisite = { focus = KRA_Handling_the_Industrial_Base }
+	mutually_exclusive = { focus = KRA_Favoring_Kosygins_Reforms }
+	relative_position_id = KRA_Handling_the_Industrial_Base
+	x = -1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = always_available_no
+			has_country_flag = chosen_anton
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Favoring_Antonovs_Reforms"
+		custom_effect_tooltip = KRA_zhukov_control_increased_slightly
+		add_to_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+		custom_effect_tooltip = KRA_NSS_antonovs_reforms
+		add_to_variable = {
+			var = KRA_Socialist_State_war_support_factor
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Emphasizing_the_Needs_of_Unification
+	icon = GFX_GENERIC_iron_t34
+	prerequisite = { focus = KRA_Favoring_Antonovs_Reforms }
+	relative_position_id = KRA_Favoring_Antonovs_Reforms
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Emphasizing_the_Needs_of_Unification"
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 100
+			producer = ROOT
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Favoring_Kosygins_Reforms
+	icon = GFX_KRA_Favouring_Kosygins_Reforms
+	prerequisite = { focus = KRA_Handling_the_Industrial_Base }
+	mutually_exclusive = { focus = KRA_Favoring_Antonovs_Reforms }
+	relative_position_id = KRA_Handling_the_Industrial_Base
+	x = 1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = always_available_no
+			has_country_flag = chosen_kosygin
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Favoring_Kosygins_Reforms"
+		custom_effect_tooltip = KRA_kosygin_influence_increased_significantly
+		add_to_variable = {
+			var = KRA_kosygin_influence2
+			value = 15
+		}
+		custom_effect_tooltip = KRA_NSS_kosygins_reforms
+		add_to_variable = {
+			var = KRA_Socialist_State_stability_factor
+			value = 0.10
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Prioritizing_the_Civilian_Industry
+	icon = GFX_GENERIC_computer
+	prerequisite = { focus = KRA_Favoring_Kosygins_Reforms }
+	relative_position_id = KRA_Favoring_Kosygins_Reforms
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Prioritizing_the_Civilian_Industry"
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		add_political_power = 75
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Restore_Decrepit_Sovkhozes
+	icon = GFX_GENERIC_Land_Reform
+	prerequisite = { focus = KRA_Emphasizing_the_Needs_of_Unification focus = KRA_Prioritizing_the_Civilian_Industry }
+	relative_position_id = KRA_Emphasizing_the_Needs_of_Unification
+	x = 1
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Restore_Decrepit_Sovkhozes"
+		custom_effect_tooltip = KRA_kosygin_influence_increased_slightly
+		add_to_variable = {
+			var = KRA_kosygin_influence2
+			value = 5
+		}
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+		custom_effect_tooltip = KRA_NSS_restore_sovkhozes
+		add_to_variable = {
+			var = KRA_Socialist_State_consumer_goods
+			value = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Handling_the_Disparate_Factions
+	icon = GFX_focus_KRA_Addressing_The_Militaries_Factions
+	prerequisite = { focus = KRA_Central_Siberia_Unified }
+	relative_position_id = KRA_Central_Siberia_Unified
+	x = 4
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Handling_the_Disparate_Factions"
+		country_event = { id = twrkrasnoyarsk.17 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Conformity_In_the_Name_of_Security
+	icon = GFX_KRA_Conformity_in_the_Name_of_Security
+	prerequisite = { focus = KRA_Handling_the_Disparate_Factions }
+	mutually_exclusive = { focus = KRA_Zhukovist_Pluralism }
+	relative_position_id = KRA_Handling_the_Disparate_Factions
+	x = -1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = always_available_no
+			has_country_flag = chosen_zhukov
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Conformity_In_the_Name_of_Security"
+		custom_effect_tooltip = KRA_NSS_advice_from_stalin
+		add_to_variable = {
+			var = KRA_Socialist_State_stability_factor
+			value = 0.05
+		}
+		add_political_power = 55
+		add_stability = -0.02
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Party_Army_and_State_in_One
+	icon = GFX_GENERIC_Commissars_Red
+	prerequisite = { focus = KRA_Conformity_In_the_Name_of_Security }
+	relative_position_id = KRA_Conformity_In_the_Name_of_Security
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Party_Army_and_State_in_One"
+		custom_effect_tooltip = KRA_zhukov_control_increased
+		add_to_variable = {
+			var = KRA_zhukov_control
+			value = 10
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Zhukovist_Pluralism
+	icon = GFX_KRA_Zhukovist_Pluralism
+	prerequisite = { focus = KRA_Handling_the_Disparate_Factions }
+	mutually_exclusive = { focus = KRA_Conformity_In_the_Name_of_Security }
+	relative_position_id = KRA_Handling_the_Disparate_Factions
+	x = 1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = always_available_no
+			has_country_flag = chosen_ideological_pluralism
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Zhukovist_Pluralism"
+		custom_effect_tooltip = KRA_NSS_zhukovist_pluralism
+		add_to_variable = {
+			var = KRA_Socialist_State_political_power_gain
+			value = 0.15
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.02
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Integrate_Compatible_Groups_Into_the_MKPS
+	icon = GFX_RUS_Encourage_minority_enlistment
+	prerequisite = { focus = KRA_Zhukovist_Pluralism }
+	relative_position_id = KRA_Zhukovist_Pluralism
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Integrate_Compatible_Groups_Into_the_MKPS"
+		custom_effect_tooltip = KRA_kosygin_influence_increased
+		add_to_variable = {
+			var = KRA_kosygin_influence2
+			value = 10
+		}
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.1
+		}
+		add_political_power = -50
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Vicious_Anti_Republican_Purges
+	icon = GFX_KRA_Vicious_Anti_Republican_Purges
+	prerequisite = { focus = KRA_The_Party_Army_and_State_in_One focus = KRA_Integrate_Compatible_Groups_Into_the_MKPS }
+	relative_position_id = KRA_The_Party_Army_and_State_in_One
+	x = 1
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Vicious_Anti_Republican_Purges"
+		add_ideas = KRA_Death_to_Republicanism
+		custom_effect_tooltip = KRA_NSS_anti_republican_purges
+		add_to_variable = {
+			var = KRA_Socialist_State_stability_factor
+			value = 0.05
+		}
+		add_to_variable = {
+			var = KRA_Socialist_State_war_support_factor
+			value = 0.10
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Preparing_for_the_Push_West
+	icon = GFX_KRA_Preparing_to_March_West
+	prerequisite = { focus = KRA_Grand_Marshall_Premier_Zhukov }
+	prerequisite = { focus = KRA_Restore_Decrepit_Sovkhozes }
+	prerequisite = { focus = KRA_Vicious_Anti_Republican_Purges }
+	relative_position_id = KRA_Restore_Decrepit_Sovkhozes
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Preparing_for_the_Push_West"
+		add_ideas = KRA_Preparing_For_The_Push_West_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Establishing_Fortified_Positions_on_the_Border
+	icon = GFX_GENERIC_heavy_artillery
+	prerequisite = { focus = KRA_Preparing_for_the_Push_West }
+	relative_position_id = KRA_Preparing_for_the_Push_West
+	x = -2
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Establishing_Fortified_Positions_on_the_Border"
+		custom_effect_tooltip = KRA_soviet_forts_tt
+		hidden_effect = {
+			1021 = {
+				add_building_construction = {
+					type = bunker
+					province = 2972
+					level = 1
+					instant_build = yes
+				}
+			}
+			516 = {
+				add_building_construction = {
+					type = bunker
+					province = 10607
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 10635
+					level = 1
+					instant_build = yes
+				}
+			}
+			578 = {
+				add_building_construction = {
+					type = bunker
+					province = 1679
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 7849
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 4827
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 10529
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 12679
+					level = 1
+					instant_build = yes
+				}
+			}
+			40 = {
+				add_building_construction = {
+					type = bunker
+					province = 1797
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 11410
+					level = 1
+					instant_build = yes
+				}
+			}
+			654 = {
+				add_building_construction = {
+					type = bunker
+					province = 10713
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Forming_Zhukovist_Cells_Around_Perm
+	icon = GFX_GENERIC_Partisans
+	prerequisite = { focus = KRA_Preparing_for_the_Push_West }
+	relative_position_id = KRA_Preparing_for_the_Push_West
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Forming_Zhukovist_Cells_Around_Perm"
+		custom_effect_tooltip = KRA_sov_war_milita_tt
+		set_country_flag = KRA_sov_war_milita
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Begin_Sending_in_Zhukovist_Partisans
+	icon = GFX_GENERIC_conflict
+	prerequisite = { focus = KRA_Preparing_for_the_Push_West }
+	relative_position_id = KRA_Preparing_for_the_Push_West
+	x = 2
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Begin_Sending_in_Zhukovist_Partisans"
+		custom_effect_tooltip = KRA_zhukov_control_lowered_slightly
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 5
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = ROOT
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 200
+			producer = ROOT
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 50
+			producer = ROOT
+		}
+		SOV = {
+			add_timed_idea = {
+				idea = KRA_Zhukovist_Partisans
+				days = 150
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reclaiming_the_Ural_Mountains
+	icon = GFX_GENERIC_Mountain_Warfare
+	prerequisite = { focus = KRA_Establishing_Fortified_Positions_on_the_Border }
+	prerequisite = { focus = KRA_Forming_Zhukovist_Cells_Around_Perm }
+	prerequisite = { focus = KRA_Begin_Sending_in_Zhukovist_Partisans }
+	relative_position_id = KRA_Forming_Zhukovist_Cells_Around_Perm
+	will_lead_to_war_with = SOV
+	will_lead_to_war_with = TRV
+	will_lead_to_war_with = KAZ
+	x = 0
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reclaiming_the_Ural_Mountains"
+		if = {
+        	limit = {
+        		SOV = {
+        			exists = yes
+        		}
+        	}
+	        declare_war_on = {
+				target = SOV
+				type = civil_war
+			}
+            SOV = {
+                country_event = { id = russianreconquest.3 }
+                hidden_effect = {
+                	add_ideas = SOV_oh_no_not_perm
+                }
+            }
+        }
+        if = {
+        	limit = {
+        		TRV = {
+        			exists = yes
+        		}
+        	}
+        	declare_war_on = {
+				target = TRV
+				type = civil_war
+			}
+            TRV = {
+                country_event = { id = russianreconquest.3 }
+            }
+        }
+        if = {
+			limit = {
+				KAZ = {
+					exists = yes
+				}
+			}
+        	declare_war_on = {
+				target = KAZ
+				type = civil_war
+			}
+            KAZ = {
+                country_event = { id = russianreconquest.3 }
+            }
+        }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reforming_the_Unions_Government
+	icon = GFX_GENERIC_Soviet_Seal
+	prerequisite = { focus = KRA_Reclaiming_the_Ural_Mountains }
+	relative_position_id = KRA_Reclaiming_the_Ural_Mountains
+	x = 0
+	y = 1
+	cost = 3
+	available = {
+		SOV = {
+			exists = no
+		}
+		owns_state = 398
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reforming_the_Unions_Government"
+		set_cosmetic_tag = KRA_PERM
+		hidden_effect = {
+			KRA = {
+				every_owned_state = {
+					add_core_of = PREV #SPEC
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Marshall_Retains_His_Power
+	icon = GFX_KRA_focus_Zhukovs_Solution
+	prerequisite = { focus = KRA_Reforming_the_Unions_Government }
+	mutually_exclusive = { focus = KRA_The_Shadow_Secretary }
+	relative_position_id = KRA_Reforming_the_Unions_Government
+	x = -1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = zhukov_has_more_influence
+			check_variable = {
+				KRA_zhukov_control > KRA_kosygin_influence2
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Marshall_Retains_His_Power"
+		custom_effect_tooltip = KRA_kosygin_influence_lowered_drastically
+		subtract_from_variable = {
+			var = KRA_kosygin_influence2
+			value = 20
+		}
+		add_stability = 0.1
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Shadow_Secretary
+	icon = GFX_KRA_focus_Kosygins_Solution
+	prerequisite = { focus = KRA_Reforming_the_Unions_Government }
+	mutually_exclusive = { focus = KRA_The_Marshall_Retains_His_Power }
+	relative_position_id = KRA_Reforming_the_Unions_Government
+	x = 1
+	y = 1
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = kosygin_has_more_influence
+			check_variable = {
+				KRA_zhukov_control < KRA_kosygin_influence2
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Shadow_Secretary"
+		custom_effect_tooltip = KRA_zhukov_control_lowered_drastically
+		subtract_from_variable = {
+			var = KRA_zhukov_control
+			value = 20
+		}
+		add_stability = -0.1
+		add_political_power = -50
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Politburo_Convenes
+	icon = GFX_SOV_Politburo_Meeting
+	prerequisite = { focus = KRA_The_Marshall_Retains_His_Power focus = KRA_The_Shadow_Secretary }
+	relative_position_id = KRA_The_Marshall_Retains_His_Power
+	x = 1
+	y = 1
+	cost = 3
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Politburo_Convenes"
+		custom_effect_tooltip = KRA_SOV_unified
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_focus = KRA_The_Shadow_Secretary
+				}
+				set_country_leader_portrait = {
+					ideology = socialist
+					portrait = GFX_Georgy_Zhukov_puppet
+				}
+				load_focus_tree = KRA_kosygin_tree
+				else_if = {
+					limit = {
+						check_variable = {
+							KRA_committe_influence > KRA_sniper_clique_influence
+						}
+					}
+					set_country_leader_portrait = {
+						ideology = socialist
+						portrait = GFX_Georgy_Zhukov_committee
+					}
+					clr_country_flag = secretary_of_the_party
+					clr_country_flag = sp_Kosygin
+					set_country_flag = secretary_of_the_party_committee
+					set_country_flag = sp_Orudzhev
+					swap_ideas = {
+						remove_idea = KRA_Kosygin_hos
+						add_idea = KRA_Orudzhev_hos
+					}
+					load_focus_tree = KRA_zhukov_maintains_power_tree
+					country_event = { id = twrkrasnoyarskflavour.21 days = 240 random = 260 }
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							KRA_sniper_clique_influence > KRA_committe_influence
+						}
+					}
+					set_country_leader_portrait = {
+						ideology = socialist
+						portrait = GFX_Georgy_Zhukov_Trad_Soc
+					}
+					clr_country_flag = secretary_of_the_party
+					clr_country_flag = sp_Kosygin
+					set_country_flag = secretary_of_the_party_trad_soc
+					set_country_flag = sp_Alexander
+					swap_ideas = {
+						remove_idea = KRA_Kosygin_hos
+						add_idea = KRA_Alexander_hos
+					}
+					load_focus_tree = KRA_zhukov_maintains_power_tree
+					country_event = { id = twrkrasnoyarskflavour.19 days = 153 random = 200 }
+					country_event = { id = twrkrasnoyarskflavour.20 days = 268 random = 300 }
+				}
+			}
+			set_country_flag = KRA_regional_tree_complete
+		}
+	}
+}
+
+######################
+#### KOSYGIN TREE ####
+######################
+shared_focus = {
+	cancelable = no
+	id = KRA_Kosygins_Hour
+	icon = GFX_GENERIC_socialist_announcement
+	x = 8
+	y = 0
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Kosygins_Hour"
+		country_event = { id = twrkrasnoyarsk_kosygin.1 }
+		custom_effect_tooltip = UNLOCK_LIBERATE_RUSSIA
+		hidden_effect = {
+			set_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+			set_country_flag = CENTRAL_ASIA_REUNIFICATION
+			set_country_flag = WESTERN_RUSSIA_UNIFICATION
+        	set_country_flag = CENTRAL_RUSSIA_REUNIFICATION
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_Premier_in_Name_Only
+	icon = GFX_KRA_A_Premier_in_Name_Only
+	prerequisite = { focus = KRA_Kosygins_Hour }
+	relative_position_id = KRA_Kosygins_Hour
+	x = -8
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_Premier_in_Name_Only"
+		add_political_power = -200
+		add_stability = -0.15
+		country_event = { id = twrkrasnoyarsk_kosygin.2 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Placating_The_Riotous_Army
+	icon = GFX_GENERIC_army_agreement
+	prerequisite = { focus = KRA_A_Premier_in_Name_Only }
+	relative_position_id = KRA_A_Premier_in_Name_Only
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Placating_The_Riotous_Army"
+		country_event = { id = twrkrasnoyarsk_kosygin.3 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Halving_Conscription
+	icon = GFX_GENERIC_recruitment
+	prerequisite = { focus = KRA_Placating_The_Riotous_Army }
+	relative_position_id = KRA_Placating_The_Riotous_Army
+	x = -2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Halving_Conscription"
+		decrease_conscription = yes
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Encuraging_Professionalism_In_Schools
+	icon = GFX_GENERIC_School
+	prerequisite = { focus = KRA_Halving_Conscription }
+	relative_position_id = KRA_Halving_Conscription
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Encuraging_Professionalism_In_Schools"
+		if = {
+			limit = {
+				has_idea = KRA_Marshalls_Red_Army_committee_3
+			}
+			swap_ideas = {
+				remove_idea = KRA_Marshalls_Red_Army_committee_3
+				add_idea = KRA_Marshalls_Red_Army_committee_4
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KRA_Marshalls_Red_Army_tradsoc_4
+					add_idea = KRA_Marshalls_Red_Army_tradsoc_5
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Making_The_Marshals_Role_Symbolic
+	icon = GFX_KRA_Making_the_Marshals_Role_Symbolic
+	prerequisite = { focus = KRA_Placating_The_Riotous_Army }
+	relative_position_id = KRA_Placating_The_Riotous_Army
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Making_The_Marshals_Role_Symbolic"
+		custom_effect_tooltip = KRA_remove_zhukov_generals_tt
+		remove_unit_leader = 1010
+		remove_unit_leader = 1014
+		remove_unit_leader = 1012
+		remove_unit_leader = 1013
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Re_Shuffling_The_General_Staff
+	icon = GFX_GENERIC_General_Staff_Meeting
+	prerequisite = { focus = KRA_Making_The_Marshals_Role_Symbolic }
+	relative_position_id = KRA_Making_The_Marshals_Role_Symbolic
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Re_Shuffling_The_General_Staff"
+		create_field_marshal = {
+			name = "Nestor Kozin"
+			picture = "Nestor_Kozin.dds"
+			traits = { war_hero offensive_doctrine }
+			skill = 4
+			attack_skill = 5
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Vasily Koptsov"
+			picture = "Vasily_Koptsov.dds"
+			traits = { armor_officer panzer_leader }
+			skill = 5
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Vasily Shugayev"
+			picture = "Vasily_Shugayev.dds"
+			traits = { trait_reckless trait_engineer fortress_buster }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Simplifying_Our_Logistical_Network
+	icon = GFX_GENERIC_Red_Army_Overhaul
+	prerequisite = { focus = KRA_Placating_The_Riotous_Army }
+	relative_position_id = KRA_Placating_The_Riotous_Army
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Simplifying_Our_Logistical_Network"
+		406 = {
+			add_building_construction = {
+				type = supply_node
+				province = 464
+				level = 1
+				instant_build = yes
+			}
+		}
+		build_railway = {
+			level = 1
+			start_province = 12691
+			target_province = 464
+		}
+		1019 = {
+			add_building_construction = {
+				type = supply_node
+				province = 4333
+				level = 1
+				instant_build = yes
+			}
+		}
+		build_railway = {
+			level = 1
+			start_province = 12691
+			target_province = 4333
+		}
+		397 = {
+			add_building_construction = {
+				type = supply_node
+				province = 3155
+				level = 1
+				instant_build = yes
+			}
+		}
+		build_railway = {
+			level = 1
+			start_province = 12691
+			target_province = 3155
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Converting_Old_Bases_To_New_Towns
+	icon = GFX_GENERIC_house
+	prerequisite = { focus = KRA_Simplifying_Our_Logistical_Network }
+	relative_position_id = KRA_Simplifying_Our_Logistical_Network
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Converting_Old_Bases_To_New_Towns"
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Merging_The_Guards_Back_Into_The_Army
+	icon = GFX_focus_KRA_Emphasize_The_Red_Armys_Diversity
+	prerequisite = { focus = KRA_Encuraging_Professionalism_In_Schools }
+	prerequisite = { focus = KRA_Re_Shuffling_The_General_Staff }
+	prerequisite = { focus = KRA_Converting_Old_Bases_To_New_Towns }
+	relative_position_id = KRA_Re_Shuffling_The_General_Staff
+	x = 0
+	y = 2
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Merging_The_Guards_Back_Into_The_Army"
+		if = {
+			limit = {
+				has_idea = KRA_Marshalls_Red_Army_committee_4
+			}
+			swap_ideas = {
+				remove_idea = KRA_Marshalls_Red_Army_committee_4
+				add_idea = KRA_Marshalls_Red_Army_committee_5
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KRA_Marshalls_Red_Army_tradsoc_5
+					add_idea = KRA_Marshalls_Red_Army_tradsoc_6
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Secretarys_Illuminous_Vision
+	icon = GFX_KRA_focus_Kosygins_Solution
+	prerequisite = { focus = KRA_Kosygins_Hour }
+	relative_position_id = KRA_Kosygins_Hour
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Secretarys_Illuminous_Vision"
+		country_event = { id = twrkrasnoyarsk_kosygin.4 }
+		custom_effect_tooltip = KRA_Koysginomics_tt
+		hidden_effect = {
+			KRA = {
+				add_dynamic_modifier = {
+					modifier = KRA_Koysginomics
+				}
+			}
+			set_variable = { KRA_Koysginomics_political_power_gain = 0 }
+			set_variable = { KRA_Koysginomics_stability_factor = 0 }
+			set_variable = { KRA_Koysginomics_stability_weekly = 0 }
+			set_variable = { KRA_Koysginomics_war_support_factor = 0 }
+			set_variable = { KRA_Koysginomics_consumer_goods = 0 }
+			set_variable = { KRA_Koysginomics_production_speed = 0 }
+			set_variable = { KRA_Koysginomics_production_efficiency_gain = 0 }
+			set_variable = { KRA_Koysginomics_socialist_drift = 0 }
+			set_variable = { KRA_Koysginomics_marxist_leninist_acceptance = 0 }
+			set_variable = { KRA_Koysginomics_bolshevik_leninist_acceptance = 0 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Approaching_Western_Investors
+	icon = GFX_focus_chi_mission_to_the_us
+	prerequisite = { focus = KRA_The_Secretarys_Illuminous_Vision }
+	relative_position_id = KRA_The_Secretarys_Illuminous_Vision
+	x = -3
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Approaching_Western_Investors"
+		country_event = { id = twrkrasnoyarsk_kosygin.5 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Selling_Bonds_In_New_State_Ventures
+	icon = GFX_GENERIC_Trading
+	prerequisite = { focus = KRA_Approaching_Western_Investors }
+	mutually_exclusive = { focus = KRA_Exporting_Products_On_Low_Margins }
+	relative_position_id = KRA_Approaching_Western_Investors
+	x = -1
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_focus_on_bonds
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Selling_Bonds_In_New_State_Ventures"
+		custom_effect_tooltip = KRA_Koysginomics_Selling_Bonds_tt
+		add_opinion_modifier = {
+			target = USA
+			modifier = medium_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = USA
+			modifier = medium_increase
+		}
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_consumer_goods
+				value = -0.05
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Exporting_Products_On_Low_Margins
+	icon = GFX_GENERIC_economic_prosperity
+	prerequisite = { focus = KRA_Approaching_Western_Investors }
+	mutually_exclusive = { focus = KRA_Selling_Bonds_In_New_State_Ventures }
+	relative_position_id = KRA_Approaching_Western_Investors
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_focus_on_exports
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Exporting_Products_On_Low_Margins"
+		custom_effect_tooltip = KRA_Koysginomics_Exporting_Products_tt
+		add_opinion_modifier = {
+			target = USA
+			modifier = long_term_trade_partner
+		}
+		add_opinion_modifier = {
+			target = ENG
+			modifier = long_term_trade_partner
+		}
+		add_opinion_modifier = {
+			target = JAP
+			modifier = long_term_trade_partner
+		}
+		add_opinion_modifier = {
+			target = ITA
+			modifier = long_term_trade_partner
+		}
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_consumer_goods
+				value = 0.05
+			}
+			add_to_variable = {
+				var = KRA_Koysginomics_production_efficiency_gain
+				value = -0.06
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Building_Western_Oriented_Resorts
+	icon = GFX_GENERIC_Tourism
+	prerequisite = { focus = KRA_Selling_Bonds_In_New_State_Ventures focus = KRA_Exporting_Products_On_Low_Margins }
+	relative_position_id = KRA_Selling_Bonds_In_New_State_Ventures
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Exporting_Products_On_Low_Margins"
+		custom_effect_tooltip = KRA_Koysginomics_Building_Resorts_tt
+		country_event = { id = twrkrasnoyarsk_kosygin.6 }
+		566 = {
+			add_building_construction = {
+				type = supply_node
+				province = 7828
+				level = 1
+				instant_build = yes
+			}
+		}
+		build_railway = {
+			level = 1
+			start_province = 12691
+			target_province = 7828
+		}
+		516 = {
+			add_building_construction = {
+				type = supply_node
+				province = 9224
+				level = 1
+				instant_build = yes
+			}
+		}
+		build_railway = {
+			level = 1
+			start_province = 12691
+			target_province = 9224
+		}
+		build_railway = {
+			level = 1
+			start_province = 12691
+			target_province = 2972
+		}
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_stability_weekly
+				value = 0.01
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Adapting_To_The_Unions_Base
+	icon = GFX_GENERIC_ussr_map
+	prerequisite = { focus = KRA_The_Secretarys_Illuminous_Vision }
+	relative_position_id = KRA_The_Secretarys_Illuminous_Vision
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Adapting_To_The_Unions_Base"
+		custom_effect_tooltip = KRA_Koysginomics_Adapting_The_Unions_Base_tt
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_production_efficiency_gain
+				value = 0.05
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Emphasizing_Intelligent_Reconstruction
+	icon = GFX_GENERIC_Teaching
+	prerequisite = { focus = KRA_Adapting_To_The_Unions_Base }
+	relative_position_id = KRA_Adapting_To_The_Unions_Base
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Emphasizing_Intelligent_Reconstruction"
+		custom_effect_tooltip = KRA_Koysginomics_Intelligent_Reconstruction_tt
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_production_speed
+				value = 0.10
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expanding_Worker_Cooperatives
+	icon = GFX_GENERIC_industry_agreement
+	prerequisite = { focus = KRA_Emphasizing_Intelligent_Reconstruction }
+	relative_position_id = KRA_Emphasizing_Intelligent_Reconstruction
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expanding_Worker_Cooperatives"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Introducing_Technology_Into_Planning
+	icon = GFX_GENERIC_Tech_Planning
+	prerequisite = { focus = KRA_The_Secretarys_Illuminous_Vision }
+	relative_position_id = KRA_The_Secretarys_Illuminous_Vision
+	x = 3
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Introducing_Technology_Into_Planning"
+		country_event = { id = twrkrasnoyarsk_kosygin.7 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Devolution_of_GOSPLAN
+	icon = GFX_GENERIC_Factory_Complex
+	prerequisite = { focus = KRA_Introducing_Technology_Into_Planning }
+	mutually_exclusive = { focus = KRA_Evolution_of_GOSPLAN }
+	relative_position_id = KRA_Introducing_Technology_Into_Planning
+	x = -1
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_devolve_the_gosplan
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Devolution_of_GOSPLAN"
+		custom_effect_tooltip = KRA_Koysginomics_Devolve_the_GOSPLAN_tt
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_production_speed
+				value = -0.05
+			}
+		}
+		add_tech_bonus = {
+			uses = 1
+			bonus = 0.75
+			category = dispersed_industry
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Evolution_of_GOSPLAN
+	icon = GFX_GENERIC_Factory_Planning
+	prerequisite = { focus = KRA_Introducing_Technology_Into_Planning }
+	mutually_exclusive = { focus = KRA_Devolution_of_GOSPLAN }
+	relative_position_id = KRA_Introducing_Technology_Into_Planning
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_evolve_the_gosplan
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Evolution_of_GOSPLAN"
+		custom_effect_tooltip = KRA_Koysginomics_Evolve_the_GOSPLAN_tt
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_production_speed
+				value = 0.05
+			}
+		}
+		add_tech_bonus = {
+			uses = 1
+			bonus = 0.75
+			category = concentrated_industry
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Attempt_To_Produce_More_Commodities
+	icon = GFX_GENERIC_television_set
+	prerequisite = { focus = KRA_Devolution_of_GOSPLAN focus = KRA_Evolution_of_GOSPLAN }
+	relative_position_id = KRA_Devolution_of_GOSPLAN
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Attempt_To_Produce_More_Commodities"
+		custom_effect_tooltip = KRA_Koysginomics_Produce_More_Commodities_tt
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_consumer_goods
+				value = 0.06
+			}
+			add_to_variable = {
+				var = KRA_Koysginomics_stability_factor
+				value = 0.15
+			}
+			add_to_variable = {
+				var = KRA_Koysginomics_war_support_factor
+				value = 0.05
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Attempting_To_Copy_Foreign_Research
+	icon = GFX_GENERIC_Research_Buff
+	prerequisite = { focus = KRA_Building_Western_Oriented_Resorts }
+	prerequisite = { focus = KRA_Expanding_Worker_Cooperatives }
+	mutually_exclusive = { focus = KRA_The_New_Socialist_Bureau }
+	relative_position_id = KRA_Building_Western_Oriented_Resorts
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Attempting_To_Copy_Foreign_Research"
+		custom_effect_tooltip = KRA_Koysginomics_Copy_Foreign_Research_tt
+		add_tech_bonus = {
+			uses = 2
+			bonus = 0.75
+			category = electronics
+		}
+		USA = {	
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = large_decrease
+			}
+		}
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_political_power_gain
+				value = -0.20
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_New_Socialist_Bureau
+	icon = GFX_GENERIC_Revolutionary_Student
+	prerequisite = { focus = KRA_Attempt_To_Produce_More_Commodities }
+	prerequisite = { focus = KRA_Expanding_Worker_Cooperatives }
+	mutually_exclusive = { focus = KRA_Attempting_To_Copy_Foreign_Research }
+	relative_position_id = KRA_Expanding_Worker_Cooperatives
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_New_Socialist_Bureau"
+		add_tech_bonus = {
+			uses = 1
+			bonus = 0.45
+			category = electronics
+		}
+		add_tech_bonus = {
+			uses = 3
+			bonus = 0.60
+			category = industry
+		}
+		add_research_slot = 1
+		country_event = { id = twrkrasnoyarsk_kosygin.8 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Formally_Renovating_Marxist_Economics
+	icon = GFX_KRA_Formally_Renovating_Marxist_Economics
+	prerequisite = { focus = KRA_Attempting_To_Copy_Foreign_Research focus = KRA_The_New_Socialist_Bureau }
+	relative_position_id = KRA_Attempting_To_Copy_Foreign_Research
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Formally_Renovating_Marxist_Economics"
+		custom_effect_tooltip = KRA_Koysginomics_Renovating_Marxist_Economics_tt
+		capital_scope = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+		hidden_effect = {
+			add_to_variable = {
+				var = KRA_Koysginomics_socialist_drift
+				value = 0.04
+			}
+			add_to_variable = {
+				var = KRA_Koysginomics_marxist_leninist_acceptance
+				value = -75
+			}
+			add_to_variable = {
+				var = KRA_Koysginomics_bolshevik_leninist_acceptance
+				value = -75
+			}
+			add_to_variable = {
+				var = KRA_Koysginomics_stability_weekly
+				value = -0.01
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Saving_A_Malformed_State
+	icon = GFX_GENERIC_brick_out_fire
+	prerequisite = { focus = KRA_Kosygins_Hour }
+	relative_position_id = KRA_Kosygins_Hour
+	x = 9
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Saving_A_Malformed_State"
+		country_event = { id = twrkrasnoyarsk_kosygin.9 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Liberalizing_The_Party
+	icon = GFX_focus_KRA_Meeting_With_The_Plurinational_Committee
+	prerequisite = { focus = KRA_Saving_A_Malformed_State }
+	relative_position_id = KRA_Saving_A_Malformed_State
+	x = -2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Liberalizing_The_Party"
+		add_stability = 0.1
+		hidden_effect = {
+		set_country_flag = STALIN_INVESTIGATION_UNLOCKED
+		}
+		unlock_decision_category_tooltip  = SOV_stalin_investigation
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Retiring_The_Oldest_Of_The_Old
+	icon = GFX_KRA_Retiring_the_Oldest_of_the_Old
+	prerequisite = { focus = KRA_Liberalizing_The_Party }
+	relative_position_id = KRA_Liberalizing_The_Party
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Retiring_The_Oldest_Of_The_Old"
+		add_political_power = 80
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Elevating_The_Komsomol
+	icon = GFX_SOV_Kosomol_Corps
+	prerequisite = { focus = KRA_Liberalizing_The_Party }
+	relative_position_id = KRA_Liberalizing_The_Party
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Elevating_The_Komsomol"
+		add_ideas = KRA_New_Komsomol
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Vastly_Exanding_Ministries
+	icon = GFX_GENERIC_Bank
+	prerequisite = { focus = KRA_Retiring_The_Oldest_Of_The_Old }
+	prerequisite = { focus = KRA_Elevating_The_Komsomol }
+	relative_position_id = KRA_Retiring_The_Oldest_Of_The_Old
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Vastly_Exanding_Ministries"
+		swap_ideas = {
+			remove_idea = KRA_New_Komsomol
+			add_idea = KRA_New_Komsomol_2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Maintaining_Some_Vestige_Of_Control
+	icon = GFX_GENERIC_Police
+	prerequisite = { focus = KRA_Vastly_Exanding_Ministries }
+	mutually_exclusive = { focus = KRA_Shifting_Policing_To_A_Decentral_Form }
+	relative_position_id = KRA_Vastly_Exanding_Ministries
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Maintaining_Some_Vestige_Of_Control"
+		country_event = { id = twrkrasnoyarsk_kosygin.10 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Attempting_To_Rid_Ourselves_Of_Serov
+	icon = GFX_focus_KRA_Ivan_Serovs_Little_NKVD
+	prerequisite = { focus = KRA_Saving_A_Malformed_State }
+	relative_position_id = KRA_Saving_A_Malformed_State
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Attempting_To_Rid_Ourselves_Of_Serov"
+		add_political_power = 40
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Preparing_An_Adequate_Alternative
+	icon = GFX_GENERIC_Secret_Meeting
+	prerequisite = { focus = KRA_Attempting_To_Rid_Ourselves_Of_Serov }
+	relative_position_id = KRA_Attempting_To_Rid_Ourselves_Of_Serov
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Preparing_An_Adequate_Alternative"
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Quietly_Disappearing_Troublesome_Agents
+	icon = GFX_GENERIC_Political_Purge
+	prerequisite = { focus = KRA_Attempting_To_Rid_Ourselves_Of_Serov }
+	relative_position_id = KRA_Attempting_To_Rid_Ourselves_Of_Serov
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Quietly_Disappearing_Troublesome_Agents"
+		add_stability = -0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Making_Our_Move
+	icon = GFX_GENERIC_secret_service
+	prerequisite = { focus = KRA_Preparing_An_Adequate_Alternative }
+	prerequisite = { focus = KRA_Quietly_Disappearing_Troublesome_Agents }
+	relative_position_id = KRA_Preparing_An_Adequate_Alternative
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Making_Our_Move"
+		custom_effect_tooltip = Ivan_Serov_Purged
+		hidden_effect = {
+			remove_ideas = KRA_MoS_Ivan_Serov
+			set_country_flag = Ivan_Serov_unavailable
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Shifting_Policing_To_A_Decentral_Form
+	icon = GFX_SOV_Politburo_Meeting
+	prerequisite = { focus = KRA_Making_Our_Move }
+	mutually_exclusive = { focus = KRA_Maintaining_Some_Vestige_Of_Control }
+	relative_position_id = KRA_Making_Our_Move
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Shifting_Policing_To_A_Decentral_Form"
+		country_event = { id = twrkrasnoyarsk_kosygin.11 }
+		add_ideas = KRA_The_People_Are_Not_Afraid
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reuniting_A_Broken_Russia
+	icon = GFX_focus_KRA_The_Plurination_Unification_Plan
+	prerequisite = { focus = KRA_Maintaining_Some_Vestige_Of_Control focus = KRA_Shifting_Policing_To_A_Decentral_Form }
+	relative_position_id = KRA_Maintaining_Some_Vestige_Of_Control
+	will_lead_to_war_with = RUS
+	will_lead_to_war_with = RFP
+	will_lead_to_war_with = SBR
+	x = 1
+	y = 1
+	cost = 5
+	bypass = {
+		AND = {
+			OR = {
+				RUS = {
+					exists = no
+				}
+				has_war_with = RUS
+			}
+			OR = {
+				SBR = {
+					exists = no
+				}
+				has_war_with = SBR
+			}
+			OR = {
+				RFP = {
+					exists = no
+				}
+				has_war_with = RFP
+			}
+		}
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Shifting_Policing_To_A_Decentral_Form"
+		declare_war_on = {
+			target = RUS
+			type = annex_everything
+		}
+		if = {
+            limit = { country_exists = RFP }
+            declare_war_on = {
+            	type = annex_everything
+            	target = RFP
+            }
+        }
+        if = {
+            limit = { country_exists = SBR }
+            declare_war_on = {
+            	type = annex_everything
+            	target = SBR
+            }
+        }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_Nation_Made_Whole_Again #AFTER REUNIF
+	icon = GFX_GENERIC_Soviet_Seal
+	prerequisite = { focus = KRA_Merging_The_Guards_Back_Into_The_Army }
+	prerequisite = { focus = KRA_Formally_Renovating_Marxist_Economics }
+	prerequisite = { focus = KRA_Reuniting_A_Broken_Russia }
+	relative_position_id = KRA_Formally_Renovating_Marxist_Economics
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_Nation_Made_Whole_Again"
+		country_event = { id = twrkrasnoyarsk_kosygin.12 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Soviet_Spring_Period
+	icon = GFX_KRA_Soviet_Spring
+	prerequisite = { focus = KRA_A_Nation_Made_Whole_Again }
+	relative_position_id = KRA_A_Nation_Made_Whole_Again
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Soviet_Spring_Period"
+		country_event = { id = twrkrasnoyarsk_kosygin.13 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Great_Technological_Component
+	icon = GFX_KRA_The_Great_Technological_Component
+	prerequisite = { focus = KRA_The_Soviet_Spring_Period }
+	relative_position_id = KRA_The_Soviet_Spring_Period
+	x = -6
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Great_Technological_Component"
+		country_event = { id = twrkrasnoyarsk_kosygin.14 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_An_Inherently_Soviet_Approach
+	icon = GFX_SOV_Old_Worker
+	prerequisite = { focus = KRA_The_Great_Technological_Component }
+	mutually_exclusive = { focus = KRA_Adapting_Advances_In_Western_Technology }
+	relative_position_id = KRA_The_Great_Technological_Component
+	x = -2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_An_Inherently_Soviet_Approach"
+		add_tech_bonus = {
+			bonus = 0.25
+			uses = 1
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Adapting_Advances_In_Western_Technology
+	icon = GFX_KRA_Adapt_to_Western_Advances
+	prerequisite = { focus = KRA_The_Great_Technological_Component }
+	mutually_exclusive = { focus = KRA_An_Inherently_Soviet_Approach }
+	relative_position_id = KRA_The_Great_Technological_Component
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Adapting_Advances_In_Western_Technology"
+		add_tech_bonus = {
+			bonus = 0.25
+			uses = 1
+			category = electronics
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Focus_On_Heavy_Industry
+	icon = GFX_SOV_backwards_economy
+	prerequisite = { focus = KRA_An_Inherently_Soviet_Approach }
+	mutually_exclusive = { focus = KRA_Focus_On_Proletarian_Needs focus = KRA_Focus_On_Consumer_Goods }
+	relative_position_id = KRA_An_Inherently_Soviet_Approach
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Focus_On_Heavy_Industry"
+		add_ideas = KRA_Focusing_on_Heavy_Industry_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reconstruction_Of_Out_of_Date_Facilities
+	icon = GFX_GENERIC_Cogs_For_Factory
+	prerequisite = { focus = KRA_Focus_On_Heavy_Industry }
+	relative_position_id = KRA_Focus_On_Heavy_Industry
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reconstruction_Of_Out_of_Date_Facilities"
+		add_timed_idea = {
+			idea = KRA_Factory_Reconstruction
+			days = 720
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Focus_On_Proletarian_Needs
+	icon = GFX_GENERIC_Clogs_Socialist
+	prerequisite = { focus = KRA_An_Inherently_Soviet_Approach focus = KRA_Adapting_Advances_In_Western_Technology }
+	mutually_exclusive = { focus = KRA_Focus_On_Heavy_Industry focus = KRA_Focus_On_Consumer_Goods }
+	relative_position_id = KRA_An_Inherently_Soviet_Approach
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Focus_On_Proletarian_Needs"
+		add_ideas = KRA_Focusing_on_Proletarian_Needs_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_New_Mass_Production_Housing_Methods
+	icon = GFX_SOV_Commie_Housing
+	prerequisite = { focus = KRA_Focus_On_Heavy_Industry focus = KRA_Focus_On_Proletarian_Needs }
+	relative_position_id = KRA_Focus_On_Heavy_Industry
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_New_Mass_Production_Housing_Methods"
+		add_ideas = KRA_Kosyginka_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_New_Planned_Cities
+	icon = GFX_GENERIC_urbanization1
+	prerequisite = { focus = KRA_Reconstruction_Of_Out_of_Date_Facilities focus = KRA_New_Mass_Production_Housing_Methods }
+	mutually_exclusive = { focus = KRA_The_Possibility_Of_Computers }
+	relative_position_id = KRA_Reconstruction_Of_Out_of_Date_Facilities
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_New_Planned_Cities"
+		country_event = { id = twrkrasnoyarsk_kosygin.15 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Focus_On_Consumer_Goods
+	icon = GFX_goal_generic_consumer_goods
+	prerequisite = { focus = KRA_Adapting_Advances_In_Western_Technology }
+	mutually_exclusive = { focus = KRA_Focus_On_Proletarian_Needs focus = KRA_Focus_On_Heavy_Industry }
+	relative_position_id = KRA_Adapting_Advances_In_Western_Technology
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Focus_On_Consumer_Goods"
+		add_ideas = KRA_Focusing_on_Consumer_Goods_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Bring_A_Radio_To_Every_Home
+	icon = GFX_GENERIC_Radio_Towers
+	prerequisite = { focus = KRA_Focus_On_Consumer_Goods focus = KRA_Focus_On_Proletarian_Needs }
+	relative_position_id = KRA_Focus_On_Proletarian_Needs
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Bring_A_Radio_To_Every_Home"
+		country_event = { id = twrkrasnoyarsk_kosygin.16 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_New_Soviet_Automobile
+	icon = GFX_KRA_A_New_Soviet_Automobile
+	prerequisite = { focus = KRA_Focus_On_Consumer_Goods }
+	relative_position_id = KRA_Focus_On_Consumer_Goods
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_New_Soviet_Automobile"
+		country_event = { id = twrkrasnoyarsk_kosygin.17 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Possibility_Of_Computers
+	icon = GFX_GENERIC_computer
+	prerequisite = { focus = KRA_Bring_A_Radio_To_Every_Home focus = KRA_A_New_Soviet_Automobile }
+	mutually_exclusive = { focus = KRA_New_Planned_Cities }
+	relative_position_id = KRA_Bring_A_Radio_To_Every_Home
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Possibility_Of_Computers"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = electronics
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Applying_Our_Reforms_To_Western_Russia
+	icon = GFX_KRA_applying_our_reforms_to_western_russia
+	prerequisite = { focus = KRA_The_Soviet_Spring_Period }
+	relative_position_id = KRA_The_Soviet_Spring_Period
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Applying_Our_Reforms_To_Western_Russia"
+		country_event = { id = twrkrasnoyarsk_kosygin.18 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Soviet_Peoples_Relief_Fund
+	icon = GFX_RUS_The_Social_Security_Act
+	prerequisite = { focus = KRA_The_Soviet_Spring_Period }
+	relative_position_id = KRA_The_Soviet_Spring_Period
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Soviet_Peoples_Relief_Fund"
+		add_timed_idea = {
+			idea = KRA_Soviet_Peoples_Relief_Fund_idea
+			days = 720
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Futher_Relegating_The_Marhsals_Role
+	icon = GFX_GENERIC_Crosses
+	prerequisite = { focus = KRA_Applying_Our_Reforms_To_Western_Russia }
+	prerequisite = { focus = KRA_Soviet_Peoples_Relief_Fund }
+	relative_position_id = KRA_Applying_Our_Reforms_To_Western_Russia
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Futher_Relegating_The_Marhsals_Role"
+		country_event = { id = twrkrasnoyarsk_kosygin.19 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Time_To_Address_The_German_Question
+	icon = GFX_GER_Germany_Once_More
+	prerequisite = { focus = KRA_Futher_Relegating_The_Marhsals_Role }
+	relative_position_id = KRA_Futher_Relegating_The_Marhsals_Role
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Time_To_Address_The_German_Question"
+		country_event = { id = twrkrasnoyarsk_kosygin.20 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_Policy_Of_Relucant_Acceptance
+	icon = GFX_GER_Diplomacy_Suitcase
+	prerequisite = { focus = KRA_Time_To_Address_The_German_Question }
+	mutually_exclusive = { focus = KRA_An_Incredibly_Cold_War }
+	relative_position_id = KRA_Time_To_Address_The_German_Question
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_Policy_Of_Relucant_Acceptance"
+		GER = {
+			country_event = { id = twrkrasnoyarsk_kosygin.21 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_An_Incredibly_Cold_War
+	icon = GFX_GENERIC_Anti-Nazi_Propaganda
+	prerequisite = { focus = KRA_Time_To_Address_The_German_Question }
+	mutually_exclusive = { focus = KRA_A_Policy_Of_Relucant_Acceptance }
+	relative_position_id = KRA_Time_To_Address_The_German_Question
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_An_Incredibly_Cold_War"
+		add_ideas = KRA_Preparing_for_War_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Rebuilding_A_Shattered_Landscape
+	icon = GFX_GENERIC_Village_Road
+	prerequisite = { focus = KRA_A_Policy_Of_Relucant_Acceptance focus = KRA_An_Incredibly_Cold_War }
+	relative_position_id = KRA_A_Policy_Of_Relucant_Acceptance
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Rebuilding_A_Shattered_Landscape"
+		add_ideas = KRA_Russian_Reconstruction_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expanding_The_Reach
+	icon = GFX_GENERIC_global_propaganda
+	prerequisite = { focus = KRA_The_Soviet_Spring_Period }
+	relative_position_id = KRA_The_Soviet_Spring_Period
+	x = 4
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expanding_The_Reach"
+		country_event = { id = twrkrasnoyarsk_kosygin.22 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Orienting_Towards_Washington
+	icon = GFX_GENERIC_USA_Diplomat
+	prerequisite = { focus = KRA_Expanding_The_Reach }
+	mutually_exclusive = { focus = KRA_Orienting_Towards_China }
+	relative_position_id = KRA_Expanding_The_Reach
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Orienting_Towards_Washington"
+		USA = { country_event = { id = twrkrasnoyarsk_kosygin.23 } }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Orienting_Towards_China
+	icon = GFX_CHI_Victory_Vietnam
+	prerequisite = { focus = KRA_Expanding_The_Reach }
+	mutually_exclusive = { focus = KRA_Orienting_Towards_Washington }
+	relative_position_id = KRA_Expanding_The_Reach
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Orienting_Towards_China"
+		CHI = { country_event = { id = twrkrasnoyarsk_kosygin.24 } }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expelling_Chinese_Capitalists_From_The_East
+	icon = GFX_CHI_Committee_in_Shambles
+	prerequisite = { focus = KRA_Orienting_Towards_Washington }
+	relative_position_id = KRA_Orienting_Towards_Washington
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expelling_Chinese_Capitalists_From_The_East"
+		CHI = { country_event = { id = twrkrasnoyarsk_kosygin.25 } }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Inheriting_Vladivostoks_Commitments
+	icon = GFX_RUS_Civil_Nationalism
+	prerequisite = { focus = KRA_Orienting_Towards_Washington focus = KRA_Orienting_Towards_China }
+	relative_position_id = KRA_Orienting_Towards_Washington
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Inheriting_Vladivostoks_Commitments"
+		add_timed_idea = {
+			idea = KRA_Inherited_Commitments_idea
+			days = 180
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Recognizing_Chinese_Rights_To_Mongolia
+	icon = GFX_CHI_Greater_China
+	prerequisite = { focus = KRA_Orienting_Towards_China }
+	relative_position_id = KRA_Orienting_Towards_China
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Recognizing_Chinese_Rights_To_Mongolia"
+		CHI = { country_event = { id = twrkrasnoyarsk_kosygin.26 } }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Securing_The_Mongol_Frontier
+	icon = GFX_GENERIC_deport_people
+	prerequisite = { focus = KRA_Expelling_Chinese_Capitalists_From_The_East }
+	prerequisite = { focus = KRA_Inheriting_Vladivostoks_Commitments }
+	relative_position_id = KRA_Expelling_Chinese_Capitalists_From_The_East
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Securing_The_Mongol_Frontier"
+		329 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Demanding_The_Kuril_Islands_Return
+	icon = GFX_JAP_First_LDP_Crisis
+	prerequisite = { focus = KRA_Recognizing_Chinese_Rights_To_Mongolia }
+	prerequisite = { focus = KRA_Inheriting_Vladivostoks_Commitments }
+	relative_position_id = KRA_Inheriting_Vladivostoks_Commitments
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Demanding_The_Kuril_Islands_Return"
+		IF = {
+			limit = {
+				USA = { owns_state = 555 }
+			}
+			USA = { country_event = { id = twrkrasnoyarsk_kosygin.27 } }
+		}
+		else_if = {
+			limit = {
+				JAP = { owns_state = 555 }
+			}
+			JAP = { country_event = { id = twrkrasnoyarsk_kosygin.27 } }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_Most_Risky_Proposal
+	icon = GFX_KRA_Invade_Afghanistan
+	prerequisite = { focus = KRA_Securing_The_Mongol_Frontier focus = KRA_Demanding_The_Kuril_Islands_Return }
+	relative_position_id = KRA_Securing_The_Mongol_Frontier
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_Most_Risky_Proposal"
+		country_event = { id = twrkrasnoyarsk_kosygin.30 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reviewing_The_Results_Of_The_Spring
+	icon = GFX_SOV_Advance_USSR
+	prerequisite = { focus = KRA_New_Planned_Cities focus = KRA_The_Possibility_Of_Computers }
+	prerequisite = { focus = KRA_Rebuilding_A_Shattered_Landscape }
+	prerequisite = { focus = KRA_A_Most_Risky_Proposal }
+	relative_position_id = KRA_Rebuilding_A_Shattered_Landscape
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reviewing_The_Results_Of_The_Spring"
+		country_event = { id = twrkrasnoyarsk_kosygin.33 }
+	}
+}
+
+################################
+#### COMMITTEE/TRADSOC TREE ####
+################################
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Marshal_Retains_His_Power
+	icon = GFX_focus_KRA_Russian_Truest_Son_Alone_in_the_Cold
+	x = 8
+	y = 0
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Marshal_Retains_His_Power"
+		custom_effect_tooltip = UNLOCK_LIBERATE_RUSSIA
+		add_research_slot = 1
+		hidden_effect = {
+			set_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+			set_country_flag = CENTRAL_ASIA_REUNIFICATION
+			set_country_flag = WESTERN_RUSSIA_UNIFICATION
+        	set_country_flag = CENTRAL_RUSSIA_REUNIFICATION
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Matters_Of_State
+	icon = GFX_SOV_Homefront
+	prerequisite = { focus = KRA_The_Marshal_Retains_His_Power }
+	relative_position_id = KRA_The_Marshal_Retains_His_Power
+	x = -6
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Matters_Of_State"
+		country_event = { id = twrkrasnoyarsk.22 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Inspiration_From_Theory
+	icon = GFX_GENERIC_Red_Thick_Book
+	prerequisite = { focus = KRA_Matters_Of_State }
+	mutually_exclusive = { focus = KRA_Inspiration_From_Tradition }
+	relative_position_id = KRA_Matters_Of_State
+	x = -1
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_Has_Committee_Favoured
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Inspiration_From_Theory"
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Inspiration_From_Tradition
+	icon = GFX_GENERIC_Christian_Socialism
+	prerequisite = { focus = KRA_Matters_Of_State }
+	mutually_exclusive = { focus = KRA_Inspiration_From_Theory }
+	relative_position_id = KRA_Matters_Of_State
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_Has_TradSocs_Favoured
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Inspiration_From_Tradition"
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Modifying_Vanguard_Thought
+	icon = GFX_GENERIC_Lenin_Lives
+	prerequisite = { focus = KRA_Inspiration_From_Theory }
+	relative_position_id = KRA_Inspiration_From_Theory
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Modifying_Vanguard_Thought"
+		add_timed_idea = {
+			idea = KRA_New_Vanguard_Thought_idea
+			days = 180
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Attributing_The_Role_To_The_Military
+	icon = GFX_focus_KRA_Emphasize_The_Red_Armys_Diversity
+	prerequisite = { focus = KRA_Modifying_Vanguard_Thought }
+	relative_position_id = KRA_Modifying_Vanguard_Thought
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Attributing_The_Role_To_The_Military"
+		army_experience = 5
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.05
+		}
+		load_oob = KRA_PLURINATIONAL_COUNCIL_OOB
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reinstating_The_GULAG_System
+	icon = GFX_SOV_gulag_labour
+	prerequisite = { focus = KRA_Inspiration_From_Theory focus = KRA_Inspiration_From_Tradition }
+	relative_position_id = KRA_Inspiration_From_Theory
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reinstating_The_GULAG_System"
+		add_ideas = KRA_New_GULAG_System_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Acknowledging_Serovs_Importance
+	icon = GFX_focus_KRA_Ivan_Serovs_Little_NKVD
+	prerequisite = { focus = KRA_Reinstating_The_GULAG_System }
+	relative_position_id = KRA_Reinstating_The_GULAG_System
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Acknowledging_Serovs_Importance"
+		country_event = { id = twrkrasnoyarsk.23 }
+		hidden_effect = {
+		set_country_flag = STALIN_INVESTIGATION_UNLOCKED
+		}
+		unlock_decision_category_tooltip  = SOV_stalin_investigation
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Role_Of_Proletarian_Autocracy
+	icon = GFX_GENERIC_worker
+	prerequisite = { focus = KRA_Inspiration_From_Tradition }
+	relative_position_id = KRA_Inspiration_From_Tradition
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Role_Of_Proletarian_Autocracy"
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Ending_The_Sanction_On_The_Church
+	icon = GFX_GENERIC_socialism_cross
+	prerequisite = { focus = KRA_The_Role_Of_Proletarian_Autocracy }
+	relative_position_id = KRA_The_Role_Of_Proletarian_Autocracy
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Ending_The_Sanction_On_The_Church"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_New_Soviet_Constitution
+	icon = GFX_GENERIC_Pass_Legislation
+	prerequisite = { focus = KRA_Acknowledging_Serovs_Importance }
+	prerequisite = { focus = KRA_Attributing_The_Role_To_The_Military focus = KRA_Ending_The_Sanction_On_The_Church }
+	relative_position_id = KRA_Acknowledging_Serovs_Importance
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_New_Soviet_Constitution"
+		country_event = { id = twrkrasnoyarsk.24 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Matters_Of_Economics
+	icon = GFX_GENERIC_Gold_Growth
+	prerequisite = { focus = KRA_The_Marshal_Retains_His_Power }
+	relative_position_id = KRA_The_Marshal_Retains_His_Power
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Matters_Of_Economics"
+		country_event = { id = twrkrasnoyarsk.25 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Looking_To_The_Future
+	icon = GFX_GENERIC_urban
+	prerequisite = { focus = KRA_Matters_Of_Economics }
+	mutually_exclusive = { focus = KRA_Looking_To_The_Past }
+	relative_position_id = KRA_Matters_Of_Economics
+	x = -2
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_Has_Committee_Favoured
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Looking_To_The_Future"
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Invesetigating_Our_Autarky_Potential
+	icon = GFX_Encourage_autarky
+	prerequisite = { focus = KRA_Matters_Of_Economics }
+	relative_position_id = KRA_Matters_Of_Economics
+	x = -1
+	y = 2
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Invesetigating_Our_Autarky_Potential"
+		country_event = { id = twrkrasnoyarsk.26 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Rejecting_Kosygins_Western_Strategy
+	icon = GFX_KRA_Kosygins_Hour
+	prerequisite = { focus = KRA_Matters_Of_Economics }
+	relative_position_id = KRA_Matters_Of_Economics
+	x = 1
+	y = 2
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Rejecting_Kosygins_Western_Strategy"
+		country_event = { id = twrkrasnoyarsk.27 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Adopting_New_Power_Sources
+	icon = GFX_GENERIC_Oil_Wells
+	prerequisite = { focus = KRA_Invesetigating_Our_Autarky_Potential }
+	prerequisite = { focus = KRA_Rejecting_Kosygins_Western_Strategy }
+	relative_position_id = KRA_Invesetigating_Our_Autarky_Potential
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Adopting_New_Power_Sources"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = fuel_silo
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Focusing_On_The_Urban_Sector
+	icon = GFX_GENERIC_urbanization1
+	prerequisite = { focus = KRA_Looking_To_The_Future }
+	prerequisite = { focus = KRA_Invesetigating_Our_Autarky_Potential }
+	relative_position_id = KRA_Looking_To_The_Future
+	x = 0
+	y = 2
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Focusing_On_The_Urban_Sector"
+		add_timed_idea = {
+			idea = KRA_Urban_Focus_idea
+			days = 720
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Looking_To_The_Past
+	icon = GFX_GENERIC_FARMER
+	prerequisite = { focus = KRA_Matters_Of_Economics }
+	mutually_exclusive = { focus = KRA_Looking_To_The_Future }
+	relative_position_id = KRA_Matters_Of_Economics
+	x = 2
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_Has_TradSocs_Favoured
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Looking_To_The_Past"
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Focusing_On_The_Agrarian_Sector
+	icon = GFX_GENERIC_Strong_Farming
+	prerequisite = { focus = KRA_Looking_To_The_Past }
+	prerequisite = { focus = KRA_Rejecting_Kosygins_Western_Strategy }
+	relative_position_id = KRA_Looking_To_The_Past
+	x = 0
+	y = 2
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Focusing_On_The_Agrarian_Sector"
+		add_timed_idea = {
+			idea = KRA_Agrarian_Focus_idea
+			days = 720
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_New_Soviet_Bus
+	icon = GFX_GENERIC_Crosses
+	prerequisite = { focus = KRA_Focusing_On_The_Urban_Sector }
+	prerequisite = { focus = KRA_Adopting_New_Power_Sources }
+	relative_position_id = KRA_Focusing_On_The_Urban_Sector
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_New_Soviet_Bus"
+		country_event = { id = twrkrasnoyarsk.28 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_New_Soviet_Tractor
+	icon = GFX_GENERIC_Modernize_The_Farmers
+	prerequisite = { focus = KRA_Focusing_On_The_Agrarian_Sector }
+	prerequisite = { focus = KRA_Adopting_New_Power_Sources }
+	relative_position_id = KRA_Adopting_New_Power_Sources
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_New_Soviet_Tractor"
+		country_event = { id = twrkrasnoyarsk.29 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Matters_Of_The_Military
+	icon = GFX_GENERIC_RED_army_manpower
+	prerequisite = { focus = KRA_The_Marshal_Retains_His_Power }
+	relative_position_id = KRA_The_Marshal_Retains_His_Power
+	x = 6
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Matters_Of_The_Military"
+		country_event = { id = twrkrasnoyarsk.30 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_An_Army_Of_All_Soviet_Peoples
+	icon = GFX_SOV_devolving_the_army
+	prerequisite = { focus = KRA_Matters_Of_The_Military }
+	mutually_exclusive = { focus = KRA_A_Russian_Oriented_Army }
+	relative_position_id = KRA_Matters_Of_The_Military
+	x = -1
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_Has_Committee_Favoured
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_An_Army_Of_All_Soviet_Peoples"
+		add_ideas = KRA_Plurinational_Military_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Emphasizing_Multi_Ethnic_Units
+	icon = GFX_RUS_Encourage_minority_enlistment
+	prerequisite = { focus = KRA_An_Army_Of_All_Soviet_Peoples }
+	relative_position_id = KRA_An_Army_Of_All_Soviet_Peoples
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Emphasizing_Multi_Ethnic_Units"
+		random_owned_state = {
+			create_unit = {
+				division = "name = \"Ukrayins'ka Dobrovol'cha Bryhada\" division_template = \"Soviet Volunteer Division\" start_experience_factor = 1.0 start_equipment_factor = 0.5"
+				owner = ROOT
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_Russian_Oriented_Army
+	icon = GFX_GENERIC_Russofication
+	prerequisite = { focus = KRA_Matters_Of_The_Military }
+	mutually_exclusive = { focus = KRA_An_Army_Of_All_Soviet_Peoples }
+	relative_position_id = KRA_Matters_Of_The_Military
+	x = 1
+	y = 1
+	cost = 5
+	available = {
+		has_country_flag = KRA_Has_TradSocs_Favoured
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_Russian_Oriented_Army"
+		add_ideas = KRA_Russian_Military_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Red_Army_Orthodox_Chaplains
+	icon = GFX_SOV_Subordinate_The_Orthodox_Church
+	prerequisite = { focus = KRA_A_Russian_Oriented_Army }
+	relative_position_id = KRA_A_Russian_Oriented_Army
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Red_Army_Orthodox_Chaplains"
+		swap_ideas = {
+			remove_idea = KRA_Russian_Military_idea
+			add_idea = KRA_Army_Chaplains_Restored_idea
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Subject_Of_Women_In_The_Army
+	icon = GFX_GENERIC_Russian_Female_Troops
+	prerequisite = { focus = KRA_An_Army_Of_All_Soviet_Peoples focus = KRA_A_Russian_Oriented_Army }
+	relative_position_id = KRA_An_Army_Of_All_Soviet_Peoples
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Subject_Of_Women_In_The_Army"
+		country_event = { id = twrkrasnoyarsk.31 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Working_With_Local_Siberians
+	icon = GFX_RUS_Natives_Status
+	prerequisite = { focus = KRA_Emphasizing_Multi_Ethnic_Units }
+	prerequisite = { focus = KRA_The_Subject_Of_Women_In_The_Army }
+	relative_position_id = KRA_Emphasizing_Multi_Ethnic_Units
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Working_With_Local_Siberians"
+		add_ideas = KRA_Native_Siberian_Recruitment_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Unofficially_Blacklist_Ukrainian_Officers
+	icon = GFX_KRA_Unofficially_Blacklist_Ukrainian_Officers
+	prerequisite = { focus = KRA_Red_Army_Orthodox_Chaplains }
+	prerequisite = { focus = KRA_The_Subject_Of_Women_In_The_Army }
+	relative_position_id = KRA_Red_Army_Orthodox_Chaplains
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Unofficially_Blacklist_Ukrainian_Officers"
+		add_stability = -0.05
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expanding_Conscription
+	icon = GFX_GENERIC_recruitment
+	prerequisite = { focus = KRA_Unofficially_Blacklist_Ukrainian_Officers focus = KRA_Working_With_Local_Siberians }
+	relative_position_id = KRA_Working_With_Local_Siberians
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expanding_Conscription"
+		IF = {
+			limit = { has_idea = KRA_Native_Siberian_Recruitment_idea }
+			swap_ideas = {
+				remove_idea = KRA_Native_Siberian_Recruitment_idea
+				add_idea = KRA_Expanded_Conscription_Zhukov_idea1
+			}
+		}
+		else = {
+			add_ideas = KRA_Expanded_Conscription_Zhukov_idea
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Our_Time_To_Move_East
+	icon = GFX_GENERIC_RED_army_manpower
+	prerequisite = { focus = KRA_A_New_Soviet_Constitution }
+	prerequisite = { focus = KRA_The_New_Soviet_Bus focus = KRA_The_New_Soviet_Tractor }
+	prerequisite = { focus = KRA_Expanding_Conscription }
+	relative_position_id = KRA_The_New_Soviet_Bus
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Our_Time_To_Move_East"
+		add_ideas = KRA_Moving_Eastwards_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Aiding_In_Serovs_Agents
+	icon = GFX_SOV_konev_Expanding_The_NKVDs_Role
+	prerequisite = { focus = KRA_Our_Time_To_Move_East }
+	relative_position_id = KRA_Our_Time_To_Move_East
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Aiding_In_Serovs_Agents"
+		RUS = {
+			country_event = { id = twrkrasnoyarsk.32 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Contacting_Sympathetic_Groups
+	icon = GFX_NOV_SR_vets
+	prerequisite = { focus = KRA_Our_Time_To_Move_East }
+	relative_position_id = KRA_Our_Time_To_Move_East
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Contacting_Sympathetic_Groups"
+		country_event = { id = twrkrasnoyarsk.33 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Operation_FEBRUARY
+	icon = GFX_KRA_Vicious_Anti_Republican_Purges
+	prerequisite = { focus = KRA_Aiding_In_Serovs_Agents }
+	prerequisite = { focus = KRA_Contacting_Sympathetic_Groups }
+	relative_position_id = KRA_Aiding_In_Serovs_Agents
+	will_lead_to_war_with = RFP
+	will_lead_to_war_with = RUS
+	will_lead_to_war_with = SBR
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Operation_FEBRUARY"
+		declare_war_on = {
+			target = RUS
+			type = civil_war
+		}
+		if = {
+            limit = { country_exists = RFP }
+            declare_war_on = {
+            type = annex_everything
+            target = RFP
+            }
+        }
+        if = {
+            limit = { country_exists = SBR }
+            declare_war_on = {
+            type = annex_everything
+            target = SBR
+            }
+        }
+		hidden_effect = {
+			load_focus_tree = {
+				tree = KRA_zhukov_maintains_power_tree2
+				keep_completed = yes
+			}
+			complete_national_focus = KRA_Operation_FEBRUARY1
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Operation_FEBRUARY1
+	icon = GFX_KRA_Vicious_Anti_Republican_Purges
+	relative_position_id = KRA_The_Marshal_Retains_His_Power
+	x = 0
+	y = 8
+	cost = 5
+	bypass = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Operation_FEBRUARY1"
+		hidden_effect = { remove_ideas = KRA_Moving_Eastwards_idea1 }
+		effect_tooltip = {
+			declare_war_on = {
+				target = RUS
+				type = civil_war
+			}
+			if = {
+				limit = { country_exists = RFP }
+				declare_war_on = {
+				type = annex_everything
+				target = RFP
+				}
+			}
+			if = {
+				limit = { country_exists = SBR }
+				declare_war_on = {
+				type = annex_everything
+				target = SBR
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Handling_The_Republics_Remains #AFTER REUNIF
+	icon = GFX_SOV_Charge_Whites
+	prerequisite = { focus = KRA_Operation_FEBRUARY1 }
+	relative_position_id = KRA_Operation_FEBRUARY1
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		RUS = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Handling_The_Republics_Remains"
+		add_ideas = KRA_Republican_Insurgency_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Purging_White_Sympathizers
+	icon = GFX_GENERIC_Purge_Paper
+	prerequisite = { focus = KRA_Handling_The_Republics_Remains }
+	relative_position_id = KRA_Handling_The_Republics_Remains
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Purging_White_Sympathizers"
+		country_event = { id = twrkrasnoyarsk.34 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expelling_TA_Citizens_From_The_Far_East
+	icon = GFX_GENERIC_deport_people
+	prerequisite = { focus = KRA_Purging_White_Sympathizers }
+	mutually_exclusive = { focus = KRA_Expelling_Non_Orthodox_Churches }
+	relative_position_id = KRA_Purging_White_Sympathizers
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expelling_TA_Citizens_From_The_Far_East"
+		swap_ideas = {
+			remove_idea = KRA_Republican_Insurgency_idea1
+			add_idea = KRA_Republican_Insurgency_idea2
+		}
+		add_timed_idea = {
+			idea = KRA_American_Businesses_Expelled_idea
+			days = 365
+		}
+		USA = {
+			country_event = { id = twrkrasnoyarsk.35 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Re_Collectivizing_Private_Land
+	icon = GFX_SOV_Dekulak
+	prerequisite = { focus = KRA_Handling_The_Republics_Remains }
+	relative_position_id = KRA_Handling_The_Republics_Remains
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Re_Collectivizing_Private_Land"
+		add_ideas = KRA_Collectivisation_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expelling_Non_Orthodox_Churches
+	icon = GFX_GENERIC_Catholic_Secular
+	prerequisite = { focus = KRA_Re_Collectivizing_Private_Land }
+	mutually_exclusive = { focus = KRA_Expelling_TA_Citizens_From_The_Far_East }
+	relative_position_id = KRA_Re_Collectivizing_Private_Land
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expelling_Non_Orthodox_Churches"
+		swap_ideas = {
+			remove_idea = KRA_Republican_Insurgency_idea1
+			add_idea = KRA_Republican_Insurgency_idea2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Preparing_For_the_Final_Patriotic_War
+	icon = GFX_GENERIC_Anti-Nazi_Propaganda
+	prerequisite = { focus = KRA_Expelling_TA_Citizens_From_The_Far_East focus = KRA_Expelling_Non_Orthodox_Churches }
+	relative_position_id = KRA_Expelling_TA_Citizens_From_The_Far_East
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Preparing_For_the_Final_Patriotic_War"
+		remove_ideas = KRA_Republican_Insurgency_idea2
+		add_ideas = KRA_The_Final_Patriotic_War_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Contacting_Those_Under_The_Jackboot
+	icon = GFX_GENERIC_a_boot
+	prerequisite = { focus = KRA_Preparing_For_the_Final_Patriotic_War }
+	relative_position_id = KRA_Preparing_For_the_Final_Patriotic_War
+	x = -2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Contacting_Those_Under_The_Jackboot"
+		country_event = { id = twrkrasnoyarsk.36 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Addressing_The_Nuclear_Concern
+	icon = GFX_GENERIC_nuclear_hellfire
+	prerequisite = { focus = KRA_Preparing_For_the_Final_Patriotic_War }
+	relative_position_id = KRA_Preparing_For_the_Final_Patriotic_War
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Addressing_The_Nuclear_Concern"
+		country_event = { id = twrkrasnoyarsk.37 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Begin_Assisting_Slave_Revolts
+	icon = GFX_GENERIC_Revolutionary_Anarchism
+	prerequisite = { focus = KRA_Contacting_Those_Under_The_Jackboot }
+	relative_position_id = KRA_Contacting_Those_Under_The_Jackboot
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		ROS = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Begin_Assisting_Slave_Revolts"
+		ROS = {
+			country_event = { id = twrkrasnoyarsk.38 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Infiltrate_German_Nuclear_Facilities
+	icon = GFX_GENERIC_infiltrate
+	prerequisite = { focus = KRA_Contacting_Those_Under_The_Jackboot }
+	prerequisite = { focus = KRA_Addressing_The_Nuclear_Concern }
+	relative_position_id = KRA_Contacting_Those_Under_The_Jackboot
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Infiltrate_German_Nuclear_Facilities"
+		random_list = {
+			50 = {
+			}
+			50 = {
+				country_event = { id = twrkrasnoyarsk.39 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Promising_The_Poles_Freedom
+	icon = GFX_POL_Revolution
+	prerequisite = { focus = KRA_Begin_Assisting_Slave_Revolts }
+	prerequisite = { focus = KRA_Infiltrate_German_Nuclear_Facilities }
+	mutually_exclusive = { focus = KRA_The_Polish_ASSR_Concept }
+	relative_position_id = KRA_Begin_Assisting_Slave_Revolts
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		POL = { exists = yes }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Promising_The_Poles_Freedom"
+		custom_effect_tooltip = KRA_free_poland_tt
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Polish_ASSR_Concept
+	icon = GFX_GENERIC_Soviet_Poland
+	prerequisite = { focus = KRA_Begin_Assisting_Slave_Revolts }
+	prerequisite = { focus = KRA_Infiltrate_German_Nuclear_Facilities }
+	mutually_exclusive = { focus = KRA_Promising_The_Poles_Freedom }
+	relative_position_id = KRA_Begin_Assisting_Slave_Revolts
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		POL = { exists = yes }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Polish_ASSR_Concept"
+		custom_effect_tooltip = KRA_polish_ssr_tt
+		set_country_flag = KRA_polish_ssr_be_made_flag
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Peoples_Of_Europe_Stand_And_Fight
+	icon = GFX_GENERIC_Socialist_Revolution
+	prerequisite = { focus = KRA_Promising_The_Poles_Freedom focus = KRA_The_Polish_ASSR_Concept }
+	mutually_exclusive = { focus = KRA_By_The_Will_Of_The_Rus_You_Will_Be_Saved }
+	relative_position_id = KRA_Promising_The_Poles_Freedom
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Peoples_Of_Europe_Stand_And_Fight"
+		swap_ideas = {
+			remove_idea = KRA_The_Final_Patriotic_War_idea
+			add_idea = KRA_The_Final_Patriotic_War_idea_committee
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Preparing_The_Home_Front
+	icon = GFX_GENERIC_Soldiers_Defense
+	prerequisite = { focus = KRA_Preparing_For_the_Final_Patriotic_War }
+	relative_position_id = KRA_Preparing_For_the_Final_Patriotic_War
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Preparing_The_Home_Front"
+		load_oob = KRA_EMERGENCY_UNITS_OOB
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Building_Fallout_Shelters_In_Key_Cities
+	icon = GFX_KRA_Building_Fallout_Shelters_in_Key_Cities
+	prerequisite = { focus = KRA_Preparing_The_Home_Front }
+	prerequisite = { focus = KRA_Addressing_The_Nuclear_Concern }
+	relative_position_id = KRA_Addressing_The_Nuclear_Concern
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Building_Fallout_Shelters_In_Key_Cities"
+		398 = {
+			add_building_construction = {
+				type = bunker
+				province = 7375
+				level = 1
+				instant_build = yes
+			}
+		}
+		408 = {
+			add_building_construction = {
+				type = bunker
+				province = 957
+				level = 1
+				instant_build = yes
+			}
+		}
+		568 = {
+			add_building_construction = {
+				type = bunker
+				province = 4724
+				level = 1
+				instant_build = yes
+			}
+		}
+		570 = {
+			add_building_construction = {
+				type = bunker
+				province = 7274
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Prepare_For_Intense_Rationing
+	icon = GFX_GENERIC_rations
+	prerequisite = { focus = KRA_Preparing_The_Home_Front }
+	relative_position_id = KRA_Preparing_The_Home_Front
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Prepare_For_Intense_Rationing"
+		add_ideas = KRA_Rationing_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Tout_The_Exiles_As_An_Alternative
+	icon = GFX_SOV_ivanov
+	prerequisite = { focus = KRA_Building_Fallout_Shelters_In_Key_Cities }
+	prerequisite = { focus = KRA_Prepare_For_Intense_Rationing }
+	mutually_exclusive = { focus = KRA_Have_The_Church_Condemn_Germany }
+	relative_position_id = KRA_Building_Fallout_Shelters_In_Key_Cities
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Tout_The_Exiles_As_An_Alternative"
+		country_event = { id = twrkrasnoyarsk.40 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Have_The_Church_Condemn_Germany
+	icon = GFX_GENERIC_socialist_announcement
+	prerequisite = { focus = KRA_Building_Fallout_Shelters_In_Key_Cities }
+	prerequisite = { focus = KRA_Prepare_For_Intense_Rationing }
+	mutually_exclusive = { focus = KRA_Tout_The_Exiles_As_An_Alternative }
+	relative_position_id = KRA_Prepare_For_Intense_Rationing
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Have_The_Church_Condemn_Germany"
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_By_The_Will_Of_The_Rus_You_Will_Be_Saved
+	icon = GFX_GENERIC_ussr_map
+	prerequisite = { focus = KRA_Tout_The_Exiles_As_An_Alternative focus = KRA_Have_The_Church_Condemn_Germany }
+	mutually_exclusive = { focus = KRA_Peoples_Of_Europe_Stand_And_Fight }
+	relative_position_id = KRA_Tout_The_Exiles_As_An_Alternative
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_By_The_Will_Of_The_Rus_You_Will_Be_Saved"
+		swap_ideas = {
+			remove_idea = KRA_The_Final_Patriotic_War_idea
+			add_idea = KRA_The_Final_Patriotic_War_idea_tradsoc
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Their_Land_Their_People_Their_Blood
+	icon = GFX_SOV_Deport_All_New_Germans
+	prerequisite = { focus = KRA_Peoples_Of_Europe_Stand_And_Fight focus = KRA_By_The_Will_Of_The_Rus_You_Will_Be_Saved }
+	relative_position_id = KRA_By_The_Will_Of_The_Rus_You_Will_Be_Saved
+	will_lead_to_war_with = GER
+	will_lead_to_war_with = HGR
+	will_lead_to_war_with = HSS
+	x = -3
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		GER = {
+			OR = {
+				has_government = marxist_leninist
+				has_government = bolshevik_leninist
+				has_government = socialist
+				has_government = social_democrat
+				has_government = liberal
+				has_government = conservative
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Their_Land_Their_People_Their_Blood"
+		IF = {
+			limit = {
+				GER = { exists = yes }
+			}
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+		}
+		IF = {
+			limit = {
+				HGR = { exists = yes }
+			}
+			declare_war_on = {
+				target = HGR
+				type = annex_everything
+			}
+		}
+		IF = {
+			limit = {
+				HSS = { exists = yes }
+			}
+			declare_war_on = {
+				target = HSS
+				type = annex_everything
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Soviet_Power_Now_And_Forever
+	icon = GFX_SOV_Deutschland_Forever_In_Ashes
+	prerequisite = { focus = KRA_Their_Land_Their_People_Their_Blood }
+	relative_position_id = KRA_Their_Land_Their_People_Their_Blood
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		GER = { exists = no }
+		HGR = { exists = no }
+		HSS = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Soviet_Power_Now_And_Forever"
+		custom_effect_tooltip = KRA_zhukov_die_tt
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = KRA_zhukov_will_die_flag
+				}
+				country_event = { id = twrkrasnoyarsk.59 }
+			}
+			else = {
+				country_event = { id = twrkrasnoyarsk.60 }
+			}
+		}
+	}
+}
+
+###########################
+#### ZHUKOV DEATH TREE ####
+###########################
+shared_focus = {
+	cancelable = no
+	id = KRA_Zhukov_Cannot_be_Killed
+	icon = GFX_GENERIC_socialist_announcement
+	mutually_exclusive = { focus = KRA_A_Nation_in_Uproar }
+	x = 5
+	y = 0
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Zhukov_Cannot_be_Killed"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Demolishing_the_Volkshalle
+	icon = GFX_GENERIC_Volkshalle
+	prerequisite = { focus = KRA_Zhukov_Cannot_be_Killed }
+	relative_position_id = KRA_Zhukov_Cannot_be_Killed
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Demolishing_the_Volkshalle"
+		SMO = {
+			country_event = { id = twrkrasnoyarsk.48 }
+			destroy_entity = 100
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reviving_the_Palace_of_the_Soviets
+	icon = GFX_GENERIC_The_Hall_Of_The_Soviets
+	prerequisite = { focus = KRA_Demolishing_the_Volkshalle }
+	relative_position_id = KRA_Demolishing_the_Volkshalle
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reviving_the_Palace_of_the_Soviets"
+		country_event = { id = twrkrasnoyarsk.49 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Marxstadt_as_the_Location
+	icon = GFX_GENERIC_socialist_announcement
+	prerequisite = { focus = KRA_Reviving_the_Palace_of_the_Soviets }
+	mutually_exclusive = { focus = KRA_Palace_in_Moscow }
+	relative_position_id = KRA_Reviving_the_Palace_of_the_Soviets
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Marxstadt_as_the_Location"
+		SMO = {
+			country_event = { id = twrkrasnoyarsk.50 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Palace_in_Moscow
+	icon = GFX_KRA_A_Palace_in_Moscow
+	prerequisite = { focus = KRA_Reviving_the_Palace_of_the_Soviets }
+	mutually_exclusive = { focus = KRA_Marxstadt_as_the_Location }
+	relative_position_id = KRA_Reviving_the_Palace_of_the_Soviets
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Palace_in_Moscow"
+		219 = {
+			add_province_modifier = {
+				static_modifiers = { terrain_berlin_soviet }
+				province = { id = 6380 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Use_Captured_Wehrmacht_Labour
+	icon = GFX_GENERIC_Slavery
+	prerequisite = {
+		focus = KRA_Marxstadt_as_the_Location
+		focus = KRA_Palace_in_Moscow
+	}
+	relative_position_id = KRA_Marxstadt_as_the_Location
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Use_Captured_Wehrmacht_Labour"
+		add_ideas = KRA_Wehrmacht_Labour_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Thousand_Year_Occupation
+	icon = GFX_GENERIC_Introduce_Political_Commissars
+	prerequisite = { focus = KRA_Use_Captured_Wehrmacht_Labour }
+	prerequisite = { focus = KRA_Roving_Extrajudicial_Squads }
+	relative_position_id = KRA_Use_Captured_Wehrmacht_Labour
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Thousand_Year_Occupation"
+		SMO = { add_ideas = SMO_Thousand_Year_Occupation_idea }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_They_Have_Erred_for_the_Last_Time
+	icon = GFX_GENERIC_Political_Purge
+	prerequisite = {
+		focus = KRA_Zhukov_Cannot_be_Killed
+		focus = KRA_A_Nation_in_Uproar
+	}
+	x = 8
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_They_Have_Erred_for_the_Last_Time"
+		SMO = {
+			country_event = { id = twrkrasnoyarsk.51 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Execute_the_Berlin_Cell
+	icon = GFX_GENERIC_Execution
+	prerequisite = { focus = KRA_They_Have_Erred_for_the_Last_Time }
+	relative_position_id = KRA_They_Have_Erred_for_the_Last_Time
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Execute_the_Berlin_Cell"
+		SMO = {
+			country_event = { id = twrkrasnoyarsk.52 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Expand_Occupational_Forces
+	icon = GFX_GENERIC_Officer_Army
+	prerequisite = { focus = KRA_Execute_the_Berlin_Cell }
+	relative_position_id = KRA_Execute_the_Berlin_Cell
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Expand_Occupational_Forces"
+		SMO = {
+			country_event = { id = twrkrasnoyarsk.53 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Roving_Extrajudicial_Squads
+	icon = GFX_GENERIC_sniper_defense
+	prerequisite = { focus = KRA_Expand_Occupational_Forces }
+	relative_position_id = KRA_Expand_Occupational_Forces
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Roving_Extrajudicial_Squads"
+		SMO = {
+			country_event = { id = twrkrasnoyarsk.54 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_A_Nation_in_Uproar
+	mutually_exclusive = { focus = KRA_Zhukov_Cannot_be_Killed }
+	icon = GFX_NOV_Zhukov_Purge_Again
+	x = 11
+	y = 0
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_A_Nation_in_Uproar"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_An_Immediate_Investigation
+	icon = GFX_GENERIC_investigation
+	prerequisite = { focus = KRA_A_Nation_in_Uproar }
+	relative_position_id = KRA_A_Nation_in_Uproar
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_An_Immediate_Investigation"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Blood_Leads_to_Blood
+	icon = GFX_GENERIC_Pacification
+	prerequisite = { focus = KRA_An_Immediate_Investigation }
+	relative_position_id = KRA_An_Immediate_Investigation
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Blood_Leads_to_Blood"
+		country_event = { id = twrkrasnoyarsk.55 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Blame_the_Germans
+	icon = GFX_GER_tame_hand
+	prerequisite = { focus = KRA_Blood_Leads_to_Blood }
+	mutually_exclusive = { focus = KRA_The_Horrors_Among_Us }
+	relative_position_id = KRA_Blood_Leads_to_Blood
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Blame_the_Germans"
+		SMO = {
+			country_event = { days = 1 id = twrkrasnoyarsk.56 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Horrors_Among_Us
+	icon = GFX_focus_KRA_Ivan_Serovs_Little_NKVD
+	prerequisite = { focus = KRA_Blood_Leads_to_Blood }
+	mutually_exclusive = { focus = KRA_Blame_the_Germans }
+	relative_position_id = KRA_Blood_Leads_to_Blood
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Horrors_Among_Us"
+		country_event = { days = 1 id = twrkrasnoyarsk.57 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Appoint_a_Loyal_Secretary
+	icon = GFX_SOV_Politburo_Meeting
+	prerequisite = {
+		focus = KRA_Blame_the_Germans
+		focus = KRA_The_Horrors_Among_Us
+	}
+	relative_position_id = KRA_Blame_the_Germans
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Appoint_a_Loyal_Secretary"
+		country_event = { id = twrkrasnoyarsk.58 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Zhukov_Marxstadt_Memorial_Complex
+	icon = GFX_SOV_Palace_of_the_Soviets
+	prerequisite = { focus = KRA_Roving_Extrajudicial_Squads }
+	prerequisite = { focus = KRA_Appoint_a_Loyal_Secretary }
+	relative_position_id = KRA_Appoint_a_Loyal_Secretary
+	x = -2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Zhukov_Marxstadt_Memorial_Complex"
+		add_stability = 0.1
+	}
+}
+
+#########################
+#### MALINOVSKY TREE ####
+#########################
+shared_focus = {
+	cancelable = no
+	id = KRA_Remembering_the_Unions_Martyr
+	icon = GFX_focus_KRA_Russian_Truest_Son_Alone_in_the_Cold
+	x = 9
+	y = 0
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Legitimate_Government"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Time_to_Wait_Has_Ended
+	icon = GFX_GENERIC_Martial_Law_Ends
+	prerequisite = { focus = KRA_Remembering_the_Unions_Martyr }
+	relative_position_id = KRA_Remembering_the_Unions_Martyr
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		KCS = { exists = no }
+		IRK = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Time_to_Wait_Has_Ended"
+		add_ideas = KRA_Fight_the_Pretenders_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Unification_Begins_Today
+	icon = GFX_SOV_Rebirth
+	prerequisite = { focus = KRA_The_Time_to_Wait_Has_Ended }
+	relative_position_id = KRA_The_Time_to_Wait_Has_Ended
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Unification_Begins_Today"
+		create_wargoal = {
+			target = NOV
+			type = annex_everything
+		}
+		create_wargoal = {
+			target = NRI
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Absorbing_Rokossovskys_Forces
+	icon = GFX_SOV_placating_rokossovsky
+	prerequisite = { focus = KRA_Unification_Begins_Today }
+	relative_position_id = KRA_Unification_Begins_Today
+	x = -2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		NOV = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Absorbing_Rokossovskys_Forces"
+		load_oob = KRA_ROKOSSOVSKY_ARMY_OOB
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Opening_the_CCP_Pipeline
+	icon = GFX_GENERIC_Maoism
+	prerequisite = { focus = KRA_Unification_Begins_Today }
+	relative_position_id = KRA_Unification_Begins_Today
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		NOV = { exists = no }
+		NRI = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Opening_the_CCP_Pipeline"
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Adapting_Peoples_War
+	icon = GFX_GENERIC_Maoist_Stuff
+	prerequisite = { focus = KRA_Unification_Begins_Today }
+	relative_position_id = KRA_Unification_Begins_Today
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		NOV = { exists = no }
+		NRI = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Adapting_Peoples_War"
+		add_ideas = KRA_New_Peoples_War_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reclaiming_the_Mines
+	icon = GFX_GENERIC_socialist_announcement
+	prerequisite = { focus = KRA_Absorbing_Rokossovskys_Forces }
+	prerequisite = { focus = KRA_Opening_the_CCP_Pipeline }
+	relative_position_id = KRA_Opening_the_CCP_Pipeline
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reclaiming_the_Mines"
+		569 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Returning_to_the_Provisional_Capital
+	icon = GFX_GENERIC_Communist_Congress
+	prerequisite = { focus = KRA_Opening_the_CCP_Pipeline }
+	prerequisite = { focus = KRA_Adapting_Peoples_War }
+	relative_position_id = KRA_Opening_the_CCP_Pipeline
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Returning_to_the_Provisional_Capital"
+		country_event = { id = twrkrasnoyarsk.41 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reactionaries_Dead_at_Our_Feet
+	icon = GFX_KRA_Vicious_Anti_Republican_Purges
+	prerequisite = { focus = KRA_Reclaiming_the_Mines }
+	prerequisite = { focus = KRA_Returning_to_the_Provisional_Capital }
+	relative_position_id = KRA_Reclaiming_the_Mines
+	will_lead_to_war_with = RUS
+	will_lead_to_war_with = SBR
+	will_lead_to_war_with = RFP
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reactionaries_Dead_at_Our_Feet"
+		declare_war_on = {
+			target = RUS
+			type = annex_everything
+		}
+		if = {
+            limit = { country_exists = RFP }
+            declare_war_on = {
+            type = annex_everything
+            target = RFP
+            }
+        }
+        if = {
+            limit = { country_exists = SBR }
+            declare_war_on = {
+            type = annex_everything
+            target = SBR
+            }
+        }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Socialism_in_One_Sphere
+	icon = GFX_SOV_Angel
+	prerequisite = { focus = KRA_Reactionaries_Dead_at_Our_Feet }
+	relative_position_id = KRA_Reactionaries_Dead_at_Our_Feet
+	will_lead_to_war_with = SOV
+	will_lead_to_war_with = KAZ
+	will_lead_to_war_with = TRV
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = { AND = { RUS = { exists = no } RFP = { exists = no } SBR = { exists = no} } }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Socialism_in_One_Sphere"
+		declare_war_on = {
+			target = SOV
+			type = annex_everything
+		}
+		SOV = {
+		hidden_effect = {
+        	add_ideas = SOV_oh_no_not_perm
+        	}
+        }
+		if = {
+            limit = { country_exists = TRV }
+            declare_war_on = {
+            type = annex_everything
+            target = TRV
+            }
+			TRV = {
+			hidden_effect = {
+        	add_ideas = SOV_oh_no_not_perm
+        		}
+        	}
+        }
+        if = {
+            limit = { country_exists = KAZ }
+            declare_war_on = {
+            type = annex_everything
+            target = KAZ
+            }
+			KAZ = {
+			hidden_effect = {
+        	add_ideas = SOV_oh_no_not_perm
+        		}
+        	}
+        }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Declare_the_Soviet_Peoples_Republic
+	icon = GFX_SOV_Advance_USSR
+	prerequisite = { focus = KRA_Socialism_in_One_Sphere }
+	relative_position_id = KRA_Socialism_in_One_Sphere
+	x = -7
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = { owns_state = 398 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Declare_the_Soviet_Peoples_Republic"
+		country_event = { id = twrkrasnoyarsk.42 }
+		add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Mao_and_Zaytsevs_Demands
+	icon = GFX_focus_KRA_Addressing_The_Militaries_Factions
+	prerequisite = { focus = KRA_Declare_the_Soviet_Peoples_Republic }
+	relative_position_id = KRA_Declare_the_Soviet_Peoples_Republic
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Mao_and_Zaytsevs_Demands"
+		country_event = { id = twrkrasnoyarsk.47 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Peoples_Doctors_Campaign
+	icon = GFX_GENERIC_Hospital
+	prerequisite = { focus = KRA_Mao_and_Zaytsevs_Demands }
+	relative_position_id = KRA_Mao_and_Zaytsevs_Demands
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Peoples_Doctors_Campaign"
+		IF = {
+			limit = {
+				has_idea = KRA_Peoples_Chaplains_idea
+			}
+			swap_ideas = {
+				remove_idea = KRA_Peoples_Chaplains_idea
+				add_idea = KRA_Peoples_Campaign_idea
+			}
+		}
+		else = {
+			add_ideas = KRA_Peoples_Doctors_idea
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Peoples_Chaplains_Campaign
+	icon = GFX_GENERIC_Christian_Socialism
+	prerequisite = { focus = KRA_Mao_and_Zaytsevs_Demands }
+	relative_position_id = KRA_Mao_and_Zaytsevs_Demands
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Peoples_Chaplains_Campaign"
+		IF = {
+			limit = {
+				has_idea = KRA_Peoples_Doctors_idea
+			}
+			swap_ideas = {
+				remove_idea = KRA_Peoples_Doctors_idea
+				add_idea = KRA_Peoples_Campaign_idea
+			}
+		}
+		else = {
+			add_ideas = KRA_Peoples_Chaplains_idea
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Marshal_and_Premier_as_One
+	icon = GFX_GENERIC_Commie_Government
+	prerequisite = { focus = KRA_The_Peoples_Doctors_Campaign }
+	prerequisite = { focus = KRA_The_Peoples_Chaplains_Campaign }
+	relative_position_id = KRA_The_Peoples_Doctors_Campaign
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Marshal_and_Premier_as_One"
+		add_country_leader_trait = KRA_Marshal_and_Premier_trait
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Reorganising_Our_Army
+	icon = GFX_SOV_Oath_of_Reclamation
+	prerequisite = { focus = KRA_Socialism_in_One_Sphere }
+	relative_position_id = KRA_Socialism_in_One_Sphere
+	x = -3
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Reorganising_Our_Army"
+		army_experience = 15
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Pruning_Non_Zhukovite_Officials
+	icon = GFX_GENERIC_Purge_Paper
+	prerequisite = { focus = KRA_Reorganising_Our_Army }
+	relative_position_id = KRA_Reorganising_Our_Army
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Pruning_Non_Zhukovite_Officials"
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Georgy_Zhukov_Military_Academy
+	icon = GFX_GENERIC_School
+	prerequisite = { focus = KRA_Pruning_Non_Zhukovite_Officials }
+	relative_position_id = KRA_Pruning_Non_Zhukovite_Officials
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Georgy_Zhukov_Military_Academy"
+		add_ideas = KRA_GK_Zhukov_Military_Academy_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_International_Peoples_Legion
+	icon = GFX_GENERIC_Commissars_Red
+	prerequisite = { focus = KRA_Reorganising_Our_Army }
+	relative_position_id = KRA_Reorganising_Our_Army
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_International_Peoples_Legion"
+		load_oob = KRA_PEOPLES_LEGION_OOB
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Formalising_the_Exiled_Officers_Ranks
+	icon = GFX_GENERIC_Red_Army_Overhaul
+	prerequisite = { focus = KRA_The_International_Peoples_Legion }
+	relative_position_id = KRA_The_International_Peoples_Legion
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Formalising_the_Exiled_Officers_Ranks"
+		create_corps_commander = {
+			name = "Fyodor Ivanov"
+			picture = "Fyodor_Ivanov.dds"
+			traits = { armor_officer }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 3
+			planning_skill = 1
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Erich Honecker"
+			picture = "Erich_Honecker.dds"
+			traits = { armor_officer }
+			skill = 2
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Integrating_the_Partisans
+	icon = GFX_GENERIC_Partisans
+	prerequisite = { focus = KRA_The_Georgy_Zhukov_Military_Academy }
+	prerequisite = { focus = KRA_Formalising_the_Exiled_Officers_Ranks }
+	relative_position_id = KRA_The_Georgy_Zhukov_Military_Academy
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Integrating_the_Partisans"
+		add_ideas = KRA_Partisan_Warfare_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Rebuilding_the_Means_of_Production
+	icon = GFX_GENERIC_Factory_Planning
+	prerequisite = { focus = KRA_Socialism_in_One_Sphere }
+	relative_position_id = KRA_Socialism_in_One_Sphere
+	x = 4
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Rebuilding_the_Means_of_Production"
+		add_timed_idea = {
+			idea = KRA_Rebuilding_the_Means_of_Production_idea
+			days = 180
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Exile_Economic_Plan
+	icon = GFX_focus_KRA_The_Plurination_Unification_Plan
+	prerequisite = { focus = KRA_Rebuilding_the_Means_of_Production }
+	mutually_exclusive = { focus = KRA_The_Zaytsev_Proposal }
+	relative_position_id = KRA_Rebuilding_the_Means_of_Production
+	x = -2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Exile_Economic_Plan"
+		add_ideas = KRA_Exile_Economic_Plan_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Intertwine_the_Communes
+	icon = GFX_SOV_duumvirist_senate
+	prerequisite = { focus = KRA_The_Exile_Economic_Plan }
+	relative_position_id = KRA_The_Exile_Economic_Plan
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Intertwine_the_Communes"
+		swap_ideas = {
+			remove_idea = KRA_Exile_Economic_Plan_idea
+			add_idea = KRA_Exile_Economic_Plan_idea1
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Prioritise_the_Industrial_Sector
+	icon = GFX_GENERIC_Clogs_Socialist
+	prerequisite = { focus = KRA_Intertwine_the_Communes }
+	prerequisite = { focus = KRA_Soliciting_Orthodox_Donations }
+	relative_position_id = KRA_Intertwine_the_Communes
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Prioritise_the_Industrial_Sector"
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Soliciting_Orthodox_Donations
+	icon = GFX_GENERIC_Orthodoxy
+	prerequisite = {
+		focus = KRA_The_Exile_Economic_Plan
+		focus = KRA_The_Zaytsev_Proposal
+	}
+	relative_position_id = KRA_The_Exile_Economic_Plan
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Soliciting_Orthodox_Donations"
+		add_timed_idea = {
+			idea = KRA_Orthodox_Church_Donations_idea
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Zaytsev_Proposal
+	icon = GFX_focus_KRA_The_Traditionalist_Unification_Plan
+	prerequisite = { focus = KRA_Rebuilding_the_Means_of_Production }
+	mutually_exclusive = { focus = KRA_The_Exile_Economic_Plan }
+	relative_position_id = KRA_Rebuilding_the_Means_of_Production
+	x = 2
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Zaytsev_Proposal"
+		add_ideas = KRA_Zaytsev_Plan_idea
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Emphasising_Self_Reliance
+	icon = GFX_GENERIC_worker
+	prerequisite = { focus = KRA_The_Zaytsev_Proposal }
+	relative_position_id = KRA_The_Zaytsev_Proposal
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Emphasising_Self_Reliance"
+		swap_ideas = {
+			remove_idea = KRA_Zaytsev_Plan_idea
+			add_idea = KRA_Zaytsev_Plan_idea1
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Prioritise_the_Agricultural_Sector
+	icon = GFX_GENERIC_Workers_Paradise
+	prerequisite = { focus = KRA_Soliciting_Orthodox_Donations }
+	prerequisite = { focus = KRA_Emphasising_Self_Reliance }
+	relative_position_id = KRA_Emphasising_Self_Reliance
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Prioritise_the_Agricultural_Sector"
+		swap_ideas = {
+			remove_idea = KRA_Zaytsev_Plan_idea1
+			add_idea = KRA_Zaytsev_Plan_idea2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Our_Limited_Global_Obligations
+	icon = GFX_GENERIC_global_propaganda
+	prerequisite = { focus = KRA_Socialism_in_One_Sphere }
+	relative_position_id = KRA_Socialism_in_One_Sphere
+	x = 10
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Our_Limited_Global_Obligations"
+		country_event = { id = twrkrasnoyarsk.43 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Addressing_the_UN_Question
+	icon = GFX_GENERIC_United_Nations
+	prerequisite = { focus = KRA_Our_Limited_Global_Obligations }
+	relative_position_id = KRA_Our_Limited_Global_Obligations
+	x = -1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Addressing_the_UN_Question"
+		country_event = { id = twrkrasnoyarsk.44 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Take_an_Anti_TA_Stance
+	icon = GFX_GENERIC_socialist_announcement
+	prerequisite = { focus = KRA_Addressing_the_UN_Question }
+	mutually_exclusive = { focus = KRA_The_Chinese_Peril }
+	relative_position_id = KRA_Addressing_the_UN_Question
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Take_an_Anti_TA_Stance"
+		USA = {
+			country_event = { id = twrkrasnoyarsk.45 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Missions_to_the_Vietnamese_CCP
+	icon = GFX_GENERIC_vietnam
+	prerequisite = { focus = KRA_Our_Limited_Global_Obligations }
+	relative_position_id = KRA_Our_Limited_Global_Obligations
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		VIN = { exists = yes }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Missions_to_the_Vietnamese_CCP"
+		VIN = {
+			country_event = { id = twrkrasnoyarsk.46 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_The_Chinese_Peril
+	icon = GFX_CHI_Committee_in_Shambles
+	prerequisite = { focus = KRA_Missions_to_the_Vietnamese_CCP }
+	mutually_exclusive = { focus = KRA_Take_an_Anti_TA_Stance }
+	relative_position_id = KRA_Missions_to_the_Vietnamese_CCP
+	x = 0
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_The_Chinese_Peril"
+		CHI = {
+			country_event = { id = twrkrasnoyarsk.45 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Mongolia_Under_Our_Wing
+	icon = GFX_GENERIC_deport_people
+	prerequisite = {
+		focus = KRA_Take_an_Anti_TA_Stance
+		focus = KRA_The_Chinese_Peril
+	}
+	relative_position_id = KRA_Take_an_Anti_TA_Stance
+	will_lead_to_war_with = MON
+	x = 1
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Mongolia_Under_Our_Wing"
+		declare_war_on = {
+			target = MON
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = KRA_Zhukovs_Spectre_Haunts_Russia
+	icon = GFX_KRA_zhukovs_spectre_haunts_russia
+	prerequisite = { focus = KRA_Marshal_and_Premier_as_One }
+	prerequisite = { focus = KRA_Integrating_the_Partisans }
+	prerequisite = {
+		focus = KRA_Prioritise_the_Industrial_Sector
+		focus = KRA_Prioritise_the_Agricultural_Sector
+	}
+	prerequisite = { focus = KRA_Mongolia_Under_Our_Wing }
+	relative_position_id = KRA_Integrating_the_Partisans
+	will_lead_to_war_with = RMO
+	x = 3
+	y = 1
+	cost = 5
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KRA_Zhukovs_Spectre_Haunts_Russia"
+		declare_war_on = {
+			target = RMO
+			type = annex_everything
+		}
+	}
+}

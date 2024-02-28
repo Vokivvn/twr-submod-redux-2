@@ -1,0 +1,1644 @@
+add_namespace = twrrusoccupation
+
+country_event = { # Russian Occupation of Romania
+	id = twrrusoccupation.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.1"}
+	title = twrrusoccupation.1.t
+	desc = twrrusoccupation.1.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release romania
+		name = twrrusoccupation.1.a
+		ROM = {
+			set_politics = {
+				ruling_party = liberal
+				elections_allowed = no
+			}
+		}
+		release_puppet = ROM
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				release = ROM
+			}
+			ROM = {
+				load_focus_tree = generic
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					ROM_wolf_of_balkans
+					ROM_against_hungary #probably shouldn't have it in any case
+				}
+				set_politics = {
+					ruling_party = liberal
+					elections_allowed = no
+				}
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 838
+						state = 839
+					}
+				}
+				ROM = {
+					transfer_state = PREV
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 76
+					state = 80
+					state = 192
+					state = 198
+					state = 838
+					state = 839
+				}
+				is_owned_by = ROM
+			}
+			ROOT = {
+				transfer_state = PREV
+			}
+			add_core_of = ROOT
+			remove_core_of = ROM
+		}
+		if = {
+			limit = {
+				ROM = {
+					owns_state = 80
+				}
+			}
+			UKR = { transfer_state = 80 }
+		}
+		if = {
+			limit = {
+				ROM = {
+					owns_state = 192
+				}
+			}
+			UKR = { transfer_state = 192 }
+		}
+		if = {
+			limit = {
+				ROM = {
+					owns_state = 198
+				}
+			}
+			UKR = { transfer_state = 198 }
+		}
+		if = {
+			limit = {
+				owns_state = 76
+			}
+			ROM = { transfer_state = 76 }
+		}
+		if = {
+			limit = {
+				owns_state = 838
+			}
+			ROM = { transfer_state = 838 }
+		}
+		if = {
+			limit = {
+				owns_state = 839
+			}
+			ROM = { transfer_state = 839 }
+		}
+		
+	}
+	option = {
+		name = twrrusoccupation.1.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_ROM
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Bulgaria
+	id = twrrusoccupation.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.2"}
+	title = twrrusoccupation.2.t
+	desc = twrrusoccupation.2.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release bulgaria
+		name = twrrusoccupation.2.a
+		BUL = {
+			set_politics = {
+				ruling_party = liberal
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = BUL
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 211
+						state = 212
+						state = 48
+					}
+				}
+				BUL = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 77
+				}
+				BUL = {
+					transfer_state = 77
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 184
+				}
+				BUL = {
+					transfer_state = 184
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 106
+				}
+				BUL = {
+					transfer_state = 106
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 980
+				}
+				BUL = {
+					transfer_state = 980
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 979
+				}
+				BUL = {
+					transfer_state = 979
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 1009
+				}
+				BUL = {
+					transfer_state = 1009
+				}
+			}
+			puppet = BUL
+			BUL = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					BUL_balkan_prussia
+					BUL_ukraine_refugees
+					BUL_greek_unrest
+					BUL_hated_regent #should be gone anyways
+					BUL_puppet_regent
+					BUL_bulgarian_turmoil
+					BUL_Formalise_the_Greyshirts
+					BUL_Aftermath_of_Officer_Purge
+					BUL_The_Chaos
+					BUL_The_Chaos1
+					BUL_The_Chaos2
+					BUL_The_Chaos3
+					BUL_The_Chaos4
+					BUL_The_Chaos5
+					BUL_The_Crisis_of_52
+					BUL_Shrinked_Down_Greyshirts
+				}
+				set_politics = {
+					ruling_party = liberal
+					elections_allowed = no
+				}
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.2.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_BUL
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Greece
+	id = twrrusoccupation.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.3"}
+	title = twrrusoccupation.3.t
+	desc = twrrusoccupation.3.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release greece
+		name = twrrusoccupation.3.a
+		GRE = {
+			set_politics = {
+				ruling_party = liberal
+				elections_allowed = no
+			}
+		}
+		release_puppet = GRE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				release = GRE
+			}
+			GRE = {
+				load_focus_tree = generic
+				clr_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK
+				clr_country_flag = GRE_MILITARY_THREAT_TOOLTIP
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					GRE_low_legitimacy
+					GRE_ruined_economy
+					GRE_ruined_economy1
+					GRE_ruined_economy2
+					GRE_national_crisis
+					GRE_idea_Popular_Uprising
+					GRE_Defenders_Aegean
+					GRE_Italian_Troops_in_Greek_Soil
+					GRE_Greco_Italian_Base_Against_Bulgaria
+					GRE_Death_to_Guerillas
+					GRE_Rearmament
+					GRE_Peoples_Army_of_Greece
+					GRE_National_Army_of_Greece
+					GRE_Corporatism
+				}
+				set_politics = {
+					ruling_party = liberal
+					elections_allowed = no
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = OCCUPATION_THRACE_IS_GREEK
+					}
+					GRE = {
+						owns_state = 184
+					}
+				}
+				transfer_state = 184
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.3.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_GRE
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Albania
+	id = twrrusoccupation.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.4"}
+	title = twrrusoccupation.4.t
+	desc = twrrusoccupation.4.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release albania
+		name = twrrusoccupation.4.a
+		ALB = {
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = no
+			}
+		}
+		release_puppet = ALB
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				release = ALB
+			}
+			ALB = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					ALB_Italian_Officers_in_our_Army
+					ALB_Albanian_Officers_in_our_Army
+					ALB_Italian_Protectorate
+				}
+				set_politics = {
+					ruling_party = conservative
+					elections_allowed = no
+				}
+				drop_cosmetic_tag = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = OCCUPATION_KOSOVO_IS_ALBANIAN
+					}
+					ALB = {
+						owns_state = 818
+					}
+				}
+				transfer_state = 818
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.4.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_ALB
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Hungary
+	id = twrrusoccupation.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.5"}
+	title = twrrusoccupation.5.t
+	desc = twrrusoccupation.5.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release hungary
+		name = twrrusoccupation.5.a
+		HUN = {
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = HUN
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 155
+						state = 154
+						state = 43
+					}
+				}
+				HUN = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					SLO = {
+						is_subject_of = ROOT
+					}
+					owns_state = 664
+				}
+				SLO = {
+					transfer_state = 664
+				}
+				else = {
+					if = {
+						limit = {
+							CZE = {
+								is_subject_of = ROOT
+								owns_state = 70
+							}
+							owns_state = 664
+						}
+						transfer_state = 664
+					}
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 45
+				}
+				SER = {
+					transfer_state = 45
+				}
+			}
+			puppet = HUN
+			HUN = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					HUN_the_prospect_times
+					HUN_against_romania #cheater
+				}
+				set_politics = {
+					ruling_party = social_democrat
+					elections_allowed = no
+				}
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.5.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_HUN
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Czechoslovakia
+	id = twrrusoccupation.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.6"}
+	title = twrrusoccupation.6.t
+	desc = twrrusoccupation.6.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release czechoslovakia
+		name = twrrusoccupation.6.a
+		CZE = {
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = no
+			}
+		}
+		release_puppet = CZE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				release = CZE
+			}
+			CZE = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = social_democrat
+					elections_allowed = no
+				}
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.6.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_CZE
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Macedonia
+	id = twrrusoccupation.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.7"}
+	title = twrrusoccupation.7.t
+	desc = twrrusoccupation.7.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #transfer to YUG
+		name = twrrusoccupation.7.a
+		trigger = {
+			NOT = {
+				has_country_flag = OCCUPATION_YUGO_IS_SERBIA
+			}
+		}
+		set_country_flag = OCCUPIED_MCD
+		set_country_flag = OCCUPATION_MACEDONIA_IS_YUGOSLAVIAN
+		if = {
+			limit = {
+				country_exists = SER
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = MCD
+				}
+				SER = {
+					transfer_state = PREV
+				}
+			}
+		}
+		
+	}
+	option = { #Partition
+		name = twrrusoccupation.7.b
+		set_country_flag = OCCUPIED_MCD
+		set_country_flag = OCCUPATION_WEST_MACEDONIA_IS_ALBANIAN
+		set_country_flag = OCCUPATION_MACEDONIA_IS_BULGARIAN
+		if = {
+			limit = {
+				SER = {
+					OR = {
+						is_in_faction_with = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				owns_state = 980
+			}
+			SER = {
+				transfer_state = 980
+			}
+		}
+		if = {
+			limit = {
+				BUL = {
+					OR = {
+						is_in_faction_with = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				owns_state = 106
+			}
+			BUL = {
+				transfer_state = 106
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.7.c
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_MCD
+		add_political_power = -50
+	}
+}
+
+country_event = { # Russian Occupation of Montenegro
+	id = twrrusoccupation.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.8"}
+	title = twrrusoccupation.8.t
+	desc = twrrusoccupation.8.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #transfer to YUG
+		name = twrrusoccupation.8.a
+		trigger = {
+			NOT = {
+				has_country_flag = OCCUPATION_YUGO_IS_SERBIA
+			}
+		}
+		set_country_flag = OCCUPIED_MNT
+		set_country_flag = OCCUPATION_MONTENEGRO_IS_YUGOSLAVIAN
+		if = {
+			limit = {
+				country_exists = SER
+			}
+			SER = {
+				transfer_state = 105
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.8.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_MNT
+		add_political_power = -50
+	}
+}
+
+country_event = { # Russian Occupation of Slovenia
+	id = twrrusoccupation.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.9"}
+	title = twrrusoccupation.9.t
+	desc = twrrusoccupation.9.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #transfer to SER
+		name = twrrusoccupation.9.a
+		trigger = {
+			NOT = {
+				has_country_flag = OCCUPATION_YUGO_IS_SERBIA
+			}
+		}
+		set_country_flag = OCCUPIED_SLV
+		set_country_flag = OCCUPATION_SLOVENIA_IS_YUGOSLAVIAN
+		if = {
+			limit = {
+				country_exists = SER
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = SLV
+				}
+				SER = {
+					transfer_state = PREV
+				}
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.9.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_SLV
+		add_political_power = -50
+	}
+}
+
+country_event = { # Russian Occupation of Yugoslavia
+	id = twrrusoccupation.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.10"}
+	title = twrrusoccupation.10.t
+	desc = twrrusoccupation.10.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release yugoslavia, transfer all held territory
+		name = twrrusoccupation.10.a
+		SER = {
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = no
+			}
+		}
+		release_puppet = SER
+		hidden_effect = {
+			SER = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					SER_in_ruins
+				}
+				set_politics = {
+					ruling_party = social_democrat
+					elections_allowed = no
+				}
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.10.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_YUG
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Switzerland
+	id = twrrusoccupation.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.11"}
+	title = twrrusoccupation.11.t
+	desc = twrrusoccupation.11.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release switzerland
+		name = twrrusoccupation.11.a
+		SWI = {
+			set_politics = {
+				ruling_party = liberal
+				elections_allowed = no
+			}
+		}
+		release_puppet = SWI
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				release = SWI
+			}
+			SWI = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				clr_country_flag = SWI_SUCCESSFUL_REBELLION_INSECURITY
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = liberal
+					elections_allowed = no
+				}
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.11.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_SWI
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of the Netherlands
+	id = twrrusoccupation.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.12"}
+	title = twrrusoccupation.12.t
+	desc = twrrusoccupation.12.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = { #release netherlands
+		name = twrrusoccupation.12.a
+		effect_tooltip = {
+			HOL = {
+				set_politics = {
+					ruling_party = liberal
+					elections_allowed = no
+				}
+			}
+			release_puppet = HOL
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 36
+						state = 7
+						state = 35
+					}
+				}
+				add_core_of = RKN
+				RKN = {
+					transfer_state = PREV
+				}
+			}
+			puppet = RKN
+			RKN = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					GER_RK_repression
+				}
+				set_politics = {
+					ruling_party = liberal
+					elections_allowed = no
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = HOL_paternal_autocrat_party
+					long_name = HOL_paternal_autocrat_party_long
+				}
+				set_party_name = {
+					ideology = conservative
+					name = HOL_conservative_party
+					long_name = HOL_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = HOL_liberal_party
+					long_name = HOL_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = HOL_social_democrat_party
+					long_name = HOL_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = HOL_SOV_party
+					long_name = HOL_SOV_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = HOL_SOV_party
+					long_name = HOL_SOV_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = HOL_SOV_party
+					long_name = HOL_SOV_party_long
+				}
+				set_cosmetic_tag = HOL_RUS_OCUP
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.12.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_HOL
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Luxembourg
+	id = twrrusoccupation.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.13"}
+	title = twrrusoccupation.13.t
+	desc = twrrusoccupation.13.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release LUX
+		name = twrrusoccupation.13.a
+		LUX = {
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = LUX
+		}
+		hidden_effect = {
+			LUX = {
+				transfer_state = 8
+			}
+			puppet = LUX
+			LUX = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					POR_no_opposition
+					POR_hotbed_of_spies
+					POR_status_of_africa
+					Iberia_Pact
+				}
+				set_politics = {
+					ruling_party = conservative
+					elections_allowed = no
+				}
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.13.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_LUX
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Belgium
+	id = twrrusoccupation.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.14"}
+	title = twrrusoccupation.14.t
+	desc = twrrusoccupation.14.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = { #release belgium
+		name = twrrusoccupation.14.a
+		effect_tooltip = {
+			BEL = {
+				set_politics = {
+					ruling_party = conservative
+					elections_allowed = no
+				}
+			}
+			release_puppet = BEL
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 6
+						state = 34
+						state = 802
+					}
+				}
+				add_core_of = RKB
+				RKB = {
+					transfer_state = PREV
+				}
+			}
+			puppet = RKB
+			RKB = {
+			    set_cosmetic_tag = BEL_RUS_OCUP
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					GER_RK_repression
+				}
+				set_politics = {
+					ruling_party = conservative
+					elections_allowed = no
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = BEL_paternal_autocrat_party
+					long_name = BEL_paternal_autocrat_party_long
+				}
+				set_party_name = {
+					ideology = conservative
+					name = BEL_conservative_party
+					long_name = BEL_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = BEL_liberal_party
+					long_name = BEL_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = BEL_social_democrat_party
+					long_name = BEL_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = BEL_socialist_party
+					long_name = BEL_socialist_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = BEL_bolshevik_leninist_party
+					long_name = BEL_bolshevik_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = BEL_marxist_leninist_party
+					long_name = BEL_marxist_leninist_party_long
+				}
+				create_country_leader = {
+					name = "Paul van Zeeland"
+					desc = ""
+					picture = "Paul_Van_Zeeland.dds"
+					expire = "1965.1.1"
+					ideology = paternalistic_conservatism
+					traits = {}
+				}
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.14.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_BEL
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Poland
+	id = twrrusoccupation.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.15"}
+	title = twrrusoccupation.15.t
+	desc = twrrusoccupation.15.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release poland
+		name = twrrusoccupation.15.a
+		POL = {
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = POL
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					is_core_of = POL
+					NOT = {
+						is_core_of = LIT
+						is_core_of = UKR
+						is_core_of = BLR
+					}
+				}
+			
+			   	POL = {
+					transfer_state = 63
+					transfer_state = 89
+					transfer_state = 91
+					transfer_state = 768
+					transfer_state = 798
+					transfer_state = 86
+					transfer_state = 87
+					transfer_state = 766
+					transfer_state = 90
+					transfer_state = 10
+					transfer_state = 92
+					transfer_state = 98
+					transfer_state = 85
+					transfer_state = 88
+					transfer_state = 67
+					transfer_state = 97
+				}
+			   
+			}
+			puppet = POL
+			POL = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					POL_Home_Army
+					POL_UPR_conflict #Shouldn't have this, but ok console annexers
+				}
+				set_politics = {
+					ruling_party = social_democrat
+					elections_allowed = no
+				}
+				#set_cosmetic_tag = POL_SOV
+			}
+		}
+	}
+	option = {
+		name = twrrusoccupation.15.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_POL
+		add_political_power = -150
+	}
+}
+
+country_event = { # Russian Occupation of Germany
+	id = twrrusoccupation.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.16"}
+	title = twrrusoccupation.16.t
+	desc = twrrusoccupation.16.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.16.a
+		hidden_effect = {
+		SMO = { set_cosmetic_tag = SMO_RUS_OCUP }
+		 	
+
+               AUS = {
+                 every_core_state = {
+                 transfer_state_to = SMO
+                      }
+               }
+		
+			every_state = {
+				limit = {
+					is_core_of = SMO
+				}
+				remove_core_of = SMO
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						region = 6
+						region = 7
+						region = 8
+					}
+					NOT = {
+						state = 67
+						state = 63
+						is_core_of = DEN
+					#	state = 58
+					}
+				}
+				add_core_of = SMO
+				SMO = {
+				    set_country_flag = occupied_germany
+					transfer_state = PREV
+					
+				}
+				
+				DEN = {
+					transfer_state = 804
+				}
+				set_building_level = {
+					type = arms_factory
+					level = 0
+					instant_build = yes
+				}
+				set_building_level = {
+					type = industrial_complex
+					level = 0
+					instant_build = yes
+				}
+				set_building_level = {
+					type = dockyard
+					level = 0
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = {
+					DEN = {
+						NOT = {
+							OR = {
+								has_government = national_socialist
+								has_government = fascist
+							}
+						}
+					}
+					owns_state = 58
+				}
+				#DEN = {
+				#	transfer_state = 58
+				#}
+				#58 = {
+				#	add_core_of = DEN
+				#}
+			}
+			puppet = SMO
+			SMO = {
+				load_focus_tree = generic_empty
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = undisturbed_isolation
+				add_ideas = closed_economy
+				add_ideas = disarmed_nation
+				add_ideas = agrarian_nation
+				add_ideas = fanatical_dictatorship
+				remove_ideas = {
+					RK_eastern_spring
+					RK_red_army_revolt
+					GEN_economic_reform
+					GEN_protectionism
+					GEN_harsh_tax
+					GEN_inner_market
+					GEN_trading_market
+					GEN_global_trading
+					GEN_european_armour
+					GEN_heavy_plated
+					GEN_greater_power_equipment
+					GEN_reformed_military_system
+					GEN_lighting_warfare
+					GEN_union_agreement
+					GEN_welfare_reforms
+					GEN_small_country_nuke_development1
+					GEN_small_country_nuke_development2
+					GEN_small_country_nuke_development3
+					GEN_small_country_nuke_development_final
+					GEN_Extensive_Draft
+					GEN_Isolation
+					GEN_Cooperation
+					GEN_Diplomatic_Relations
+					GEN_Structured_Bureaucracy
+					GEN_Entrenched_Politics
+					GEN_Effective_Bureaucracy
+					GEN_Openness
+				}
+				set_politics = {
+					ruling_party = paternal_autocrat
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 35
+					fascist = 10
+					paternal_autocrat = 55
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = national_socialist
+					name = PGR_national_socialist_party
+					long_name = PGR_national_socialist_party
+				}
+				set_party_name = {
+					ideology = fascist
+					name = PGR_national_socialist_party
+					long_name = PGR_national_socialist_party
+				}
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = ROG_occupational_gov_party
+					long_name = ROG_occupational_gov_party_long
+				}
+				set_party_name = {
+					ideology = conservative
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = liberal
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = socialist
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				create_country_leader = {
+					name = "Vladimir Vitkovsky"
+					desc = "Vladimir_Vitkovsky_GERMANY_DESC"
+					picture = "Vladimir_Vitkovsky.dds"
+					expire = "1965.1.1"
+					ideology = transitional_regime
+					traits = {}
+				}
+				set_country_flag = IS_RUSSIAN_OCCUPATION
+			}
+		}
+	}
+}
+
+
+country_event = { #Return French Territories
+	id = twrrusoccupation.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.17"}
+	title = twrrusoccupation.17.t
+	desc = twrrusoccupation.17.d
+	picture = GFX_report_event_france_map
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_global_flag = nazis_gone
+		}
+	}
+	
+	option = {
+		name = twrrusoccupation.17.a
+		if = {
+			limit = {
+				FRA = {
+				has_country_flag = controls_french_proper
+				exists = yes
+				}
+			}
+			FRA = {
+				transfer_state = 762
+				transfer_state = 763
+				transfer_state = 28
+				transfer_state = 17
+			}
+		}
+		if = {
+			limit = {
+				FFR = {
+					has_country_flag = controls_french_proper
+					exists = yes
+				}
+			}
+			FFR = {
+				transfer_state = 762
+				transfer_state = 763
+				transfer_state = 28
+				transfer_state = 17
+			}
+		}
+	}
+}
+
+country_event = { #Release Armenia
+	id = twrrusoccupation.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.18"}
+	title = twrrusoccupation.18.t
+	desc = twrrusoccupation.18.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.18.a
+		effect_tooltip = {
+			release_puppet = ARM
+		}
+		hidden_effect = {
+			ARM = {
+				transfer_state = 230
+				transfer_state = 965
+				set_cosmetic_tag = BLR_PUPPET_RUS
+			}
+			puppet = ARM
+		}
+	}
+}
+
+country_event = { #Release Georgia
+	id = twrrusoccupation.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.19"}
+	title = twrrusoccupation.19.t
+	desc = twrrusoccupation.19.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.19.a
+		effect_tooltip = {
+			release_puppet = GEO
+		}
+		hidden_effect = {
+			GEO = {
+				transfer_state = 231
+				transfer_state = 963
+				transfer_state = 962
+				transfer_state = 964
+				set_cosmetic_tag = GEO_PUPPET_RUS
+			}
+			puppet = GEO
+		}
+	}
+}
+
+country_event = { #Release Lithuania
+	id = twrrusoccupation.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.20"}
+	title = twrrusoccupation.20.t
+	desc = twrrusoccupation.20.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.20.a
+		effect_tooltip = {
+			release_puppet = LIT
+		}
+		hidden_effect = {
+			LIT = {
+				transfer_state = 11
+				transfer_state = 188
+				transfer_state = 189
+				transfer_state = 805
+				set_cosmetic_tag = BLR_PUPPET_RUS
+			}
+			puppet = LIT
+		}
+	}
+}
+
+country_event = { #Release Latvia
+	id = twrrusoccupation.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.21"}
+	title = twrrusoccupation.21.t
+	desc = twrrusoccupation.21.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.21.a
+		effect_tooltip = {
+			release_puppet = LAT
+		}
+		hidden_effect = {
+			LAT = {
+				transfer_state = 12
+				transfer_state = 190
+				transfer_state = 1017
+				set_cosmetic_tag = BLR_PUPPET_RUS
+			}
+			puppet = LAT
+		}
+	}
+}
+
+country_event = { #Release Estonia
+	id = twrrusoccupation.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.22"}
+	title = twrrusoccupation.22.t
+	desc = twrrusoccupation.22.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.22.a
+		effect_tooltip = {
+			release_puppet = EST
+		}
+		hidden_effect = {
+			EST = {
+				transfer_state = 13
+				transfer_state = 191
+				set_cosmetic_tag = BLR_PUPPET_RUS
+			}
+			puppet = EST
+		}
+	}
+}
+
+country_event = { #Release Uzbekistan
+	id = twrrusoccupation.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.23"}
+	title = twrrusoccupation.23.t
+	desc = twrrusoccupation.23.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.23.a
+		effect_tooltip = {
+			release_puppet = UZB
+		}
+		hidden_effect = {
+			UZB = {
+				transfer_state = 405
+				transfer_state = 585
+				transfer_state = 995
+				transfer_state = 998
+				set_cosmetic_tag = BLR_PUPPET_RUS
+			}
+			puppet = UZB
+		}
+	}
+}
+
+country_event = { #Release Turkmenistan
+	id = twrrusoccupation.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.24"}
+	title = twrrusoccupation.24.t
+	desc = twrrusoccupation.24.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.24.a
+		effect_tooltip = {
+			release_puppet = TRA
+		}
+		hidden_effect = {
+			TRA = {
+				transfer_state = 584
+				transfer_state = 997
+				set_cosmetic_tag = BLR_PUPPET_RUS
+			}
+			puppet = TRA
+		}
+	}
+}
+
+country_event = { #Release Kyrgyzstan
+	id = twrrusoccupation.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.25"}
+	title = twrrusoccupation.25.t
+	desc = twrrusoccupation.25.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.25.a
+		effect_tooltip = {
+			release_puppet = KYR
+		}
+		hidden_effect = {
+			KYR = {
+				transfer_state = 732
+				transfer_state = 994
+				set_cosmetic_tag = BLR_PUPPET_RUS
+			}
+			puppet = KYR
+		}
+	}
+}
+
+country_event = { #Release Tajikistan
+	id = twrrusoccupation.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrrusoccupation.26"}
+	title = twrrusoccupation.26.t
+	desc = twrrusoccupation.26.d
+	picture = GFX_report_event_russian_flag
+	
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrrusoccupation.26.a
+		effect_tooltip = {
+			release_puppet = TAJ
+		}
+		hidden_effect = {
+			TAJ = {
+				transfer_state = 742
+				transfer_state = 996
+				set_cosmetic_tag = BLR_PUPPET_RUS
+			}
+			puppet = TAJ
+		}
+	}
+}

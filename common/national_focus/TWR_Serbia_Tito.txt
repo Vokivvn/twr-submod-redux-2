@@ -1,0 +1,247 @@
+##################################################
+###==============| SERBIA TITO |===============###
+###======| Made by Canadian Lizard  |==========###
+####=========| Coded by GreyShadow |==========####
+##################################################
+
+    shared_focus = {
+		cancelable = no
+		id = SER_The_League_of_Communists
+		icon = GFX_SER_focus_tito_victory
+		x = 3
+		y = 0
+		cost = 0
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_League_of_Communists"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+			hidden_effect = {
+				country_event = { hours = 6 id = twrserbiaflavour.30 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Purge_the_UDBA
+		icon = GFX_SER_focus_purge_udba
+		prerequisite = { focus = SER_The_League_of_Communists }
+		x = -2
+		y = 1
+		relative_position_id = SER_The_League_of_Communists
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Purge_the_UDBA"
+			add_timed_idea = {
+				days = 90
+				idea = SER_UDBA_Purged
+			}
+			hidden_effect = {
+				country_event = { days = 7 id = twrserbiaflavour.31 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Youth_Volunteers
+		icon = GFX_SER_focus_youth_volunteers
+		prerequisite = { focus = SER_The_League_of_Communists }
+		x = 0
+		y = 1
+		relative_position_id = SER_The_League_of_Communists
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Youth_Volunteers"
+			add_ideas = SER_The_Youth_Volunteers
+			hidden_effect = {
+				country_event = { days = 1 id = twrserbiaflavour.32 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Illyrian_Model
+		icon = GFX_SER_focus_illyrian_model
+		prerequisite = { focus = SER_The_League_of_Communists }
+		x = 2
+		y = 1
+		relative_position_id = SER_The_League_of_Communists
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		available = {
+			owns_state = 109
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Illyrian_Model"
+			swap_ideas = {
+				remove_idea = SER_recovering_from_civil_war
+				add_idea = SER_recovering_from_civil_war_2
+			}
+			country_event = { days = 1 id = twrserbiaflavour.33 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Reluctant_secularism
+		icon = GFX_SER_focus_reluctant_secularism
+		prerequisite = { focus = SER_Purge_the_UDBA }
+		prerequisite = { focus = SER_The_Youth_Volunteers }
+		x = 1
+		y = 1
+		relative_position_id = SER_Purge_the_UDBA
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reluctant_secularism"
+			add_popularity = {
+				ideology = bolshevik_leninist
+				popularity = 0.1
+			}
+			add_political_power = 50
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Principals_of_Unity
+		icon = GFX_GENERIC_peaceful_socialism
+		prerequisite = { focus = SER_The_Illyrian_Model }
+		prerequisite = { focus = SER_The_Youth_Volunteers }
+		x = 1
+		y = 1
+		relative_position_id = SER_The_Youth_Volunteers
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		available = {
+			owns_state = 45
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Principals_of_Unity"
+			add_stability = 0.15
+			45 = {
+				add_dynamic_modifier = { modifier = autonomous_state }
+			}
+			hidden_effect = {
+				country_event = { days = 1 id = twrserbiaflavour.34 }
+				country_event = { days = 2 id = twrserbiaflavour.35 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Yugoslav_Five_Year_Plan
+		icon = GFX_SER_focus_the_yugoslavian_reconstruction_initiative
+		prerequisite = { focus = SER_Reluctant_secularism }
+		prerequisite = { focus = SER_The_Principals_of_Unity }
+		x = -1
+		y = 1
+		relative_position_id = SER_Reluctant_secularism
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Yugoslav_Five_Year_Plan"
+			add_ideas = SER_yugo_five_year_plan
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Theory_of_Associated_Labour
+		icon = GFX_GENERIC_Clogs_Socialist
+		prerequisite = { focus = SER_Reluctant_secularism }
+		prerequisite = { focus = SER_The_Principals_of_Unity }
+		x = 1
+		y = 1
+		relative_position_id = SER_Reluctant_secularism
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Theory_of_Associated_Labour"
+			swap_ideas = {
+				remove_idea = SER_recovering_from_civil_war_2
+				add_idea = SER_Associated_Labour
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Ending_Nationalist_Sentimentality
+		icon = GFX_focus_CDA_end_bourg_nationalism
+		prerequisite = { focus = SER_The_Principals_of_Unity }
+		prerequisite = { focus = SER_Reluctant_secularism }
+		x = 1
+		y = 1
+		relative_position_id = SER_The_Principals_of_Unity
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Ending_Nationalist_Sentimentality"
+			add_timed_idea = {
+				days = 60
+				idea = SER_No_Nationalist_Sentimentality
+			}
+			hidden_effect = {
+				country_event = { days = 1 id = twrserbiaflavour.36 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Ensrine_Marhsal_Tito
+		icon = GFX_SER_focus_enshrine_marshal_tito
+		prerequisite = { focus = SER_The_Yugoslav_Five_Year_Plan }
+		prerequisite = { focus = SER_Theory_of_Associated_Labour }
+		prerequisite = { focus = SER_Ending_Nationalist_Sentimentality }
+		x = 0
+		y = 1
+		available = {
+			has_completed_focus = SER_Resource_Nationalization
+			has_completed_focus = SER_Consolidate_Socialist_Yugoslavia
+			has_completed_focus = SER_Sloboda_svim_Narodima
+			has_completed_focus = SER_Defenders_of_the_Revolution
+			has_completed_focus = SER_Defence_of_the_Adriatic
+			has_completed_focus = SER_The_New_Balkan_Tiger
+		}
+		relative_position_id = SER_Theory_of_Associated_Labour
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Ensrine_Marhsal_Tito"
+			add_country_leader_trait = marshal
+			country_event = { hours = 6 id = twrserbiaflavour.37 }
+			hidden_effect = {
+				set_country_leader_portrait = {
+					ideology = bolshevik_leninist
+					portrait = GFX_portrait_Josip_Broz_Tito_1960
+				}
+			}
+		}
+	}

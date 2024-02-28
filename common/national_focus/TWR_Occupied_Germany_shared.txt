@@ -1,0 +1,599 @@
+shared_focus = {
+	id = SMO_Forming_a_Civilian_Transitional_Cabinet
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 4
+	y = 0
+	ai_will_do = {
+		base = 20	
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Forming_a_Civilian_Transitional_Cabinet"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = SMO_Placing_Ivanov_in_Charge
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_Forming_a_Civilian_Transitional_Cabinet
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Forming_a_Civilian_Transitional_Cabinet
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Placing_Ivanov_in_Charge"
+		create_country_leader = {
+			name = "Fyodor Ivanov" 
+			desc = "FYODOR_IVANOV_DESC" 
+			picture = "gfx/leaders/SMO/Occupied_Germany/Fyodor_Ivanov.dds" 
+			expire = "1973.5.3" 
+			ideology = zhukovism
+			traits = { }
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Integrating_the_Exiles_into_the_Government
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = -2
+	y = 1
+	relative_position_id = SMO_Placing_Ivanov_in_Charge
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Placing_Ivanov_in_Charge
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Integrating_the_Exiles_into_the_Government"
+		create_field_marshal = {
+			name = "Erich Honecker"
+			picture = "gfx/leaders/SMO/Occupied_Germany/Erich_Honecker.dds"
+			traits = { inspirational_leader }
+			skill = 2
+			attack_skill = 3
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Token_Reconstruction_Assistance
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_Placing_Ivanov_in_Charge
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Placing_Ivanov_in_Charge
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Token_Reconstruction_Assistance"
+		RUZ = {
+			country_event = {
+				id = occupiedgermany.1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Bar_Former_Nazis_from_Leadership
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = SMO_Integrating_the_Exiles_into_the_Government
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Integrating_the_Exiles_into_the_Government
+	}
+	prerequisite = {
+		focus = SMO_Token_Reconstruction_Assistance
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Bar_Former_Nazis_from_Leadership"
+		add_popularity = {
+			ideology = national_socialist
+			popularity = -0.15
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Sign_Treaties_of_Perpetual_Disarmament
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = SMO_Placing_Ivanov_in_Charge
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Placing_Ivanov_in_Charge
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Sign_Treaties_of_Perpetual_Disarmament"
+		add_ideas = SMO_Treaty_of_Disarmament_idea
+	}
+}
+
+shared_focus = {
+	id = SMO_A_System_of_Peoples_Militias
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = SMO_Token_Reconstruction_Assistance
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Token_Reconstruction_Assistance
+	}
+	prerequisite = {
+		focus = SMO_Sign_Treaties_of_Perpetual_Disarmament
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_A_System_of_Peoples_Militias"
+		load_oob = SMO_GER_Peoples_Militias
+	}
+}
+
+shared_focus = {
+	id = SMO_The_Great_Apology
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = SMO_Bar_Former_Nazis_from_Leadership
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Bar_Former_Nazis_from_Leadership
+	}
+	prerequisite = {
+		focus = SMO_A_System_of_Peoples_Militias
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_The_Great_Apology"
+		RUZ = {
+			country_event = {
+				id = occupiedgermany.4
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_The_Formation_of_IMAGE
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = -2
+	y = 1
+	relative_position_id = SMO_The_Great_Apology
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_The_Great_Apology
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_The_Formation_of_IMAGE"
+		add_ideas = SMO_IMAGE_idea
+	}
+}
+
+shared_focus = {
+	id = SMO_Declare_Racial_Supremacy_Unconstitutional
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_The_Formation_of_IMAGE
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_The_Formation_of_IMAGE
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Declare_Racial_Supremacy_Unconstitutional"
+		add_popularity = {
+			ideology = national_socialist
+			popularity = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Request_Observers_from_All_Nations
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = SMO_Declare_Racial_Supremacy_Unconstitutional
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Declare_Racial_Supremacy_Unconstitutional
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Request_Observers_from_All_Nations"
+		USA = {
+			country_event = {
+				id = occupiedgermany.5
+			}
+		}
+		ENG = {
+			country_event = {
+				id = occupiedgermany.5
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_The_Reichs_Forgotten_Children
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = SMO_Declare_Racial_Supremacy_Unconstitutional
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Declare_Racial_Supremacy_Unconstitutional
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_The_Reichs_Forgotten_Children"
+		POL = {
+			country_event = {
+				id = occupiedgermany.6
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Enshrining_Reparations_in_the_Constitution
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = SMO_Request_Observers_from_All_Nations
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Request_Observers_from_All_Nations
+	}
+	prerequisite = {
+		focus = SMO_The_Reichs_Forgotten_Children
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Enshrining_Reparations_in_the_Constitution"
+		add_ideas = SMO_Reparations_idea
+	}
+}
+
+shared_focus = {
+	id = SMO_Monument_to_the_Victims_of_the_East
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_Enshrining_Reparations_in_the_Constitution
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Enshrining_Reparations_in_the_Constitution
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Monuments_to_the_Victims_of_the_East"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = SMO_Foundation_of_the_DVSP
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 3
+	y = 1
+	relative_position_id = SMO_The_Great_Apology
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_The_Great_Apology
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Foundation_of_the_DVSP"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = SMO_Soviet_Assisted_Collectivisation
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = -2
+	y = 1
+	relative_position_id = SMO_Foundation_of_the_DVSP
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Foundation_of_the_DVSP
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Soviet_Assisted_Collectivisation"
+		add_ideas = SMO_Agricultural_Collectivisation_idea
+	}
+}
+
+shared_focus = {
+	id = SMO_Liquidating_All_Known_Nazi_Estates
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_Soviet_Assisted_Collectivisation
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Soviet_Assisted_Collectivisation
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Liquidating_All_Known_Nazi_Estates"
+		swap_ideas = {
+			remove_idea = SMO_Agricultural_Collectivisation_idea
+			add_idea = SMO_Agricultural_Collectivisation_idea1
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_The_Looming_Famine
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_Liquidating_All_Known_Nazi_Estates
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Liquidating_All_Known_Nazi_Estates
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_The_Looming_Famine"
+		swap_ideas = {
+			remove_idea = SMO_Agricultural_Collectivisation_idea1
+			add_idea = SMO_Agricultural_Collectivisation_idea2
+		}
+		hidden_effect = {
+			random_list = {
+				50 = {
+				}
+				50 = {
+					every_country = {
+						news_event = {
+							id = twrnews.178
+						}
+					}
+					swap_ideas = {
+						remove_idea = SMO_Agricultural_Collectivisation_idea2
+						add_idea = SMO_Famine_idea
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Favouring_the_New_Militia_Commands
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_Foundation_of_the_DVSP
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Foundation_of_the_DVSP
+	}
+	mutually_exclusive = {
+		focus = SMO_Favouring_the_Urbanist_Wing
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Favouring_the_New_Militia_Commands"
+		add_tech_bonus = {
+			bonus = 0.25
+			uses = 1
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Orienting_Towards_Agrarianism
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_Favouring_the_New_Militia_Commands
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Favouring_the_New_Militia_Commands
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Orienting_Towards_Agrarianism"
+		add_ideas = SMO_Agrarian_Policies_idea
+	}
+}
+
+shared_focus = {
+	id = SMO_United_by_Necessity
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = SMO_Orienting_Towards_Agrarianism
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Orienting_Towards_Agrarianism
+		focus = SMO_Attempting_to_Gain_More_Soviet_Aid
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_United_by_Necessity"
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Favouring_the_Urbanist_Wing
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = SMO_Foundation_of_the_DVSP
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Foundation_of_the_DVSP
+	}
+	mutually_exclusive = {
+		focus = SMO_Favouring_the_New_Militia_Commands
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Favouring_the_Urbanist_Wing"
+		add_tech_bonus = {
+			bonus = 0.25
+			uses = 1
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Attempting_to_Gain_More_Soviet_Aid
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = SMO_Favouring_the_Urbanist_Wing
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Favouring_the_Urbanist_Wing
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Attempting_to_Gain_More_Soviet_Aid"
+		add_ideas = SMO_Reconstruction_Aid_idea
+	}
+}
+
+shared_focus = {
+	id = SMO_Handling_Known_Werwolf_Associates
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = SMO_The_Looming_Famine
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_The_Looming_Famine
+	}
+	prerequisite = {
+		focus = SMO_United_by_Necessity
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Handling_Known_Werwolf_Associates"
+		add_timed_idea = {
+			idea = SMO_Antifascist_Purges_idea
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_The_Dawn_of_Nihilo_Marxism
+	#icon = GFX_
+	cost = 5
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = SMO_Monument_to_the_Victims_of_the_East
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = SMO_Monument_to_the_Victims_of_the_East
+	}
+	prerequisite = {
+		focus = SMO_Handling_Known_Werwolf_Associates
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_The_Dawn_of_Nihilo_Marxism"
+	}
+}

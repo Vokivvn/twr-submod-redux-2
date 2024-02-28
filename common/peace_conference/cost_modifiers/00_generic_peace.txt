@@ -1,0 +1,172 @@
+# Scripted cost modifiers for peace actions.
+# See documentation.info file for more detailed scripting information.
+
+peace_action_modifiers = {
+    dont_force_government = {
+        category = ideology
+        peace_action_type = force_government
+        enable = {
+        always = yes
+        }
+        cost_multiplier = 999
+    }
+    dont_liberate = {
+        category = ideology
+        peace_action_type = liberate
+        enable = {
+        always = yes
+        }
+        cost_multiplier = 999
+    }
+    dont_puppet = {
+        category = occupation
+        peace_action_type = puppet
+        enable = {
+        always = yes
+        }
+        cost_multiplier = 999
+    }
+    ### Take States
+
+    # Is Core of Taker, and taker is not Puppet of someone
+    generic_is_core = {
+        category = is_core
+        peace_action_type = take_states
+
+        enable = {
+            FROM.FROM.FROM = { is_core_of = ROOT.FROM }
+            OR = {
+                FROM = { pc_is_puppeted = no } # Taker is free
+                FROM = { tag = ROOT } # Taker might be subject but negotiating for itself
+            }
+        }
+
+        cost_multiplier = 0.05
+    }
+
+
+    generic_is_core_of_puppet = {
+        category = is_core
+        peace_action_type = take_states
+
+        enable = {
+            FROM.FROM.FROM = { is_core_of = ROOT.FROM }
+            ROOT.FROM = { pc_is_puppeted = yes } # Taker is puppet or will be
+        }
+
+        cost_multiplier = 0.8
+    }
+
+    # State isn't Core of losing country - cheaper to take colonies
+    generic_is_not_losers_core = {
+        category = is_core
+        peace_action_type = take_states
+
+        enable = {
+            FROM.FROM.FROM = { is_core_of = ROOT.FROM }
+            NOT = { FROM.FROM.FROM = { is_core_of = ROOT.FROM.FROM } }
+        }
+
+        cost_multiplier = 0.8 # Reduced by 5%
+    }
+
+
+    # Is Claimed by Taker
+    generic_has_claim = {
+        category = has_claim
+        peace_action_type = take_states
+
+        enable = {
+            FROM.FROM.FROM = { is_claimed_by = ROOT.FROM }
+            ROOT.FROM = {
+                is_subject = no
+                pc_is_puppeted = no
+            }
+        }
+
+        cost_multiplier = 0.4
+    }
+
+
+    # Control
+    generic_occupies_state = {
+        category = occupation
+        peace_action_type = { take_states puppet liberate }
+
+        enable = {
+            FROM.FROM.FROM = { is_controlled_by = ROOT }
+        }
+        cost_multiplier = 0.8
+    }
+
+    generic_major_participant_has_core = {
+        category = core_of_ally
+        peace_action_type = { take_states }
+        enable = {
+            any_country = {
+                NOT = { tag = ROOT.FROM }
+                pc_is_on_same_side_as = ROOT
+                pc_is_liberated = no
+                pc_is_puppeted = no
+                is_major = yes
+                ROOT.FROM.FROM.FROM = {
+                    is_core_of = PREV
+                }
+            }
+        }
+        cost_multiplier = 3.0
+    }
+
+    generic_participant_has_core = {
+        category = core_of_ally
+        peace_action_type = { take_states }
+        enable = {
+            any_country = {
+                NOT = { tag = ROOT.FROM }
+                pc_is_on_same_side_as = ROOT
+                pc_is_liberated = no
+                pc_is_puppeted = no
+                ROOT.FROM.FROM.FROM = {
+                    is_core_of = PREV
+                }
+            }
+        }
+        cost_multiplier = 2.0
+    }
+
+    ### Other
+
+    belonged_to_someone_else = {
+        category = belonged_to_someone_else
+        peace_action_type = { take_states puppet force_government }
+
+        enable = {
+            any_country = {
+                NOT = { tag = ROOT.FROM }
+                ROOT.FROM.FROM.FROM = {
+                    is_core_of = PREV
+                    NOT = {
+                        is_owned_by = PREV
+                    }
+                }
+            }
+        }
+
+        cost_multiplier = 0.7
+    }
+
+
+    eat_the_rich = {
+        category = ideology
+        peace_action_type = { take_states }
+
+        enable = {
+            ROOT = { is_major = yes }
+            ROOT.FROM = { tag = ROOT }
+            ROOT.FROM.FROM = {
+                is_major = yes
+            }
+        }
+        cost_multiplier = 0.7
+    }
+}

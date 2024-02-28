@@ -1,0 +1,1086 @@
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Iraqi_Politics
+	icon = GFX_IRQ_Iraqi_Politics
+	cost = 7
+	x = 46
+	y = 0
+	ai_will_do = {
+	factor = 3
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Dual_State
+	icon = GFX_IRQ_dual_state
+	cost = 10
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = IRQ_Iraqi_Politics
+	}
+	mutually_exclusive = {
+		focus = IRQ_Kingdom
+		focus = IRQ_Revolution
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Uniting_The_Union
+	icon = GFX_IRQ_union
+	cost = 15
+	x = 0
+	y = 2
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+	}
+	prerequisite = {
+		focus = IRQ_Dual_State
+	}
+
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		swap_ideas = {
+    		remove_idea = IRQ_Unstable_Union
+    		add_idea = IRQ_Young_Union
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Connect_The_States
+	icon = GFX_goal_generic_construct_infrastructure
+	cost = 15
+	x = -1
+	y = 3
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+	}
+	prerequisite = {
+		focus = IRQ_Uniting_The_Union
+	}
+
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		675 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		455 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		417 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Promote_Arab_Unity
+	icon = GFX_GENERIC_Arab_Unity
+	cost = 10
+	x = 1
+	y = 3
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+	}
+	prerequisite = {
+		focus = IRQ_Uniting_The_Union
+	}
+
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Kingdom
+	icon = GFX_IRQ_Maintain_The_Kingdom
+	cost = 10
+	x = -6
+	y = 1
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = IRQ_Iraqi_Politics
+	}
+	mutually_exclusive = {
+		focus = IRQ_Dual_State
+		focus = IRQ_Revolution
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Reaction
+	icon = GFX_focus_generic_strike_at_democracy1
+	cost = 10
+	x = -9
+	y = 2
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Kingdom
+	}
+	mutually_exclusive = {
+		focus = IRQ_Reform
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Hunt_Down_Traitors
+	icon = GFX_GENERIC_Skull_Torn_Treaty
+	cost = 15
+	x = -9
+	y = 3
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Reaction
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_manpower = -3000
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.05
+		}
+		country_event = { days = 5 id = twriraq.16 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Secret_Police
+	icon = GFX_GENERIC_secret_service
+	cost = 10
+	x = -10
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Hunt_Down_Traitors
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_ideas = IRQ_police_state
+		country_event = {
+			id = twriraq.10
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Control_Press
+	icon = GFX_GENERIC_Press_Control
+	cost = 10
+	x = -8
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Hunt_Down_Traitors
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_ideas = IRQ_controlled_press
+		country_event = {
+			id = twriraq.11
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Stability_Through_Strength
+	icon = GFX_SOV_deport_officers
+	cost = 15
+	x = -9
+	y = 5
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Control_Press
+	}
+	prerequisite = {
+		focus = IRQ_Secret_Police
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		remove_ideas = IRQ_Instability
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Reform
+	icon = GFX_GENERIC_Government
+	cost = 10
+	x = -3
+	y = 2
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Kingdom
+	}
+	mutually_exclusive = {
+		focus = IRQ_Reaction
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Road_To_Reform
+	icon = GFX_ITA_Support_the_Monarchists
+	cost = 12
+	x = -3
+	y = 3
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Reform
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		country_event = {
+			id = twriraq.13
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Political_Freedoms
+	icon = GFX_goal_support_democracy
+	cost = 10
+	x = -5
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Road_To_Reform
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_stability = 0.05
+		add_political_power = -50
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Cut_Down_Corruption
+	icon = GFX_GENERIC_Stamp_Out_Corruption
+	cost = 10
+	x = -1
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Road_To_Reform
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_ideas = IRQ_reduce_corruption
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Draft_Constitution
+	icon = GFX_focus_generic_treaty
+	cost = 10
+	x = -3
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Road_To_Reform
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		country_event = {
+			id = twriraq.14
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Controlled_Elections
+	icon = GFX_GENERIC_Fake_Democracy
+	cost = 10
+	x = -3
+	y = 5
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Draft_Constitution
+	}
+	prerequisite = {
+		focus = IRQ_Cut_Down_Corruption
+	}
+	prerequisite = {
+		focus = IRQ_Political_Freedoms
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		remove_ideas = IRQ_Instability
+		country_event = {
+			id = twriraq.12
+		}
+		swap_ideas = {
+    		remove_idea = authoritarian_system
+    		add_idea = facade_democracy
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Rehabilitate_The_Monarchy
+	icon = GFX_goal_tfv_strengthen_commonwealth_ties
+	cost = 20
+	x = -6
+	y = 3
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Kingdom
+	}
+	prerequisite = {
+		focus = IRQ_Reform
+		focus = IRQ_Reaction
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		swap_ideas = {
+    		remove_idea = IRQ_Unpopular_Monarchy
+    		add_idea = IRQ_Unpopular_Monarchy_2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Royal_Tour
+	icon = GFX_SPA_monarchists
+	cost = 20
+	x = -6
+	y = 5
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Rehabilitate_The_Monarchy
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		country_event = {
+			id = twriraq.15
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Revolution
+	icon = GFX_IRQ_Revolution
+	cost = 10
+	x = 6
+	y = 1
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = IRQ_Iraqi_Politics
+	}
+	mutually_exclusive = {
+		focus = IRQ_Dual_State
+		focus = IRQ_Kingdom
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Military_Government
+	icon = GFX_KOR_coup
+	cost = 10
+	x = 6
+	y = 2
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = IRQ_Revolution
+	}
+	mutually_exclusive = {
+		focus = IRQ_Golden_Square
+		focus = IRQ_Baath
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Baath
+	icon = GFX_IRQ_Baath
+	cost = 10
+	x = 3
+	y = 2
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = IRQ_Revolution
+	}
+	mutually_exclusive = {
+		focus = IRQ_Golden_Square
+		focus = IRQ_Military_Government
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Golden_Square
+	icon = GFX_IRQ_Golden_Square
+	cost = 10
+	x = 9
+	y = 2
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = IRQ_Revolution
+	}
+	mutually_exclusive = {
+		focus = IRQ_Military_Government
+		focus = IRQ_Baath
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Restabilise_Country
+	icon = GFX_focus_generic_diplomatic_treaty
+	cost = 20
+	x = 6
+	y = 3
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Golden_Square
+		focus = IRQ_Baath
+		focus = IRQ_Military_Government
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		remove_ideas = IRQ_Revolutionary_Instability
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Nationalise_Oil
+	icon = GFX_focus_CDA_our_oil
+	cost = 12
+	x = 6
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Restabilise_Country
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_resource = {
+		    type = oil
+		    amount = 8
+		    state = 291
+		}
+		hidden_effect = {
+			USA = {
+				country_event = { id = twrusaflavour.47 days = 3 }
+			}
+			news_event = {
+				id = twrnews.146
+			}
+   		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Purge_Enemies
+	icon = GFX_GENERIC_death_officer
+	cost = 12
+	x = 3
+	y = 3
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Baath
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_popularity = {
+			ideology = conservative
+			popularity = -0.08
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.08
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = -0.08
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.03
+		}
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Social_Projects
+	icon = GFX_GENERIC_industry_agreement
+	cost = 12
+	x = 2
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Purge_Enemies
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_ideas = IRQ_social_projects
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_State_Controlled_Economy
+	icon = GFX_GENERIC_state_economy
+	cost = 12
+	x = 4
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Purge_Enemies
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_ideas = IRQ_centralised_economy
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Pan_Arab_Foreign_Policy
+	icon = GFX_GENERIC_middle_east_fist
+	cost = 8
+	x = 3
+	y = 5
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_State_Controlled_Economy
+	}
+	prerequisite = {
+		focus = IRQ_Social_Projects
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Suppress_Baathists
+	icon = GFX_KOR_destroy_opposition
+	cost = 12
+	x = 9
+	y = 3
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Golden_Square
+		focus = IRQ_Military_Government
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.1
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Ties_With_Germany
+	icon = GFX_GER_two_rifles
+	cost = 12
+	x = 8
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		has_completed_focus = IRQ_Golden_Square
+		country_exists = GER
+		GER = {
+			has_war = no
+		}
+	}
+	prerequisite = {
+		focus = IRQ_Suppress_Baathists
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		country_event = { days = 1 id = twriraq.20 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Join_Italy
+	icon = GFX_USA_attack_italy
+	cost = 12
+	x = 10
+	y = 4
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		has_completed_focus = IRQ_Golden_Square
+		country_exists = ITA
+		ITA = {
+			is_faction_leader = yes
+		}
+	}
+	prerequisite = {
+		focus = IRQ_Suppress_Baathists
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		country_event = { days = 1 id = twriraq.22 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Challenge_Britain
+	icon = GFX_GENERIC_Scatter_Tommies
+	cost = 12
+	x = 9
+	y = 5
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		has_war = no
+		ENG = {
+			owns_state = 656
+			controls_state = 656
+		}
+	}
+	prerequisite = {
+		focus = IRQ_Ties_With_Germany
+		focus = IRQ_Join_Italy
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		country_event = { days = 1 id = twriraq.25 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Iraqi_Nationalism
+	icon = GFX_IRQ_Iraqi_Nationalism
+	cost = 12
+	x = 7
+	y = 5
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Nationalise_Oil
+	}
+	mutually_exclusive = {
+		focus = IRQ_Arab_Nationalism
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		remove_ideas = IRQ_Instability
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Arab_Nationalism
+	icon = GFX_IRQ_Arab_Nationalism
+	cost = 12
+	x = 5
+	y = 5
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Nationalise_Oil
+	}
+	mutually_exclusive = {
+		focus = IRQ_Iraqi_Nationalism
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		remove_ideas = IRQ_Instability
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Claim_Khuzestan
+	icon = GFX_IRQ_Claim_Khuzestan
+	cost = 10
+	x = 6
+	y = 6
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Arab_Nationalism
+		focus = IRQ_Iraqi_Nationalism
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_state_claim = 413
+		create_wargoal = {
+		    type = take_claimed_state
+		    target = PER
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Claim_Kuwait
+	icon = GFX_IRQ_Claim_Kuwait
+	cost = 10
+	x = 6
+	y = 7
+	ai_will_do = {
+		factor = 5
+		modifier = {
+		    factor = 0
+		    is_in_faction_with = ITA
+		}
+	}
+	prerequisite = {
+		focus = IRQ_Claim_Khuzestan
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_state_claim = 656
+		create_wargoal = {
+		    type = take_claimed_state
+		    target = ENG
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Crush_The_Saudis
+	icon = GFX_IRQ_Crush_Saudis
+	cost = 10
+	x = 2
+	y = 6
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		country_exists = SAU
+	}
+	prerequisite = {
+		focus = IRQ_Pan_Arab_Foreign_Policy
+		focus = IRQ_Arab_Nationalism
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		country_event = { days = 1 id = twriraq.17 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Take_Jordan
+	icon = GFX_IRQ_Take_Jordan
+	cost = 10
+	x = 4
+	y = 6
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		country_exists = JOR
+		NOT = {
+			owns_state = 455
+		}
+	}
+	prerequisite = {
+		focus = IRQ_Arab_Nationalism
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		country_event = { days = 1 id = twriraq.18 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Promote_Iraq_Unity
+	icon = GFX_IRQ_Unity
+	cost = 10
+	x = 8
+	y = 6
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Iraqi_Nationalism
+	}
+	relative_position_id = IRQ_Iraqi_Politics
+	completion_reward = {
+		add_stability = 0.03
+		add_war_support = 0.03
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Sectarian_Issues
+	icon = GFX_IRQ_Sectarian_Issues
+	cost = 10
+	x = 60
+	y = 0
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		has_completed_focus = IRQ_Nationalise_Oil
+	}
+	completion_reward = {
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Arab_Kurdish_Partnership
+	icon = GFX_IRQ_Partnership
+	cost = 15
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 7
+	}
+	mutually_exclusive = {
+		focus = IRQ_Suppress_Kurds
+	}
+	prerequisite = {
+		focus = IRQ_Sectarian_Issues
+	}
+	available = {
+		has_completed_focus = IRQ_Promote_Iraq_Unity
+	}
+	relative_position_id = IRQ_Sectarian_Issues
+	completion_reward = {
+		add_political_power = -100
+		remove_ideas = IRQ_kurdish_resistance
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Suppress_Kurds
+	icon = GFX_GENERIC_Crush_the_Workers
+	cost = 25
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 5
+	}
+	mutually_exclusive = {
+		focus = IRQ_Arab_Kurdish_Partnership
+	}
+	prerequisite = {
+		focus = IRQ_Sectarian_Issues
+	}
+	relative_position_id = IRQ_Sectarian_Issues
+	select_effect = {
+		country_event = { days = 5 id = twriraq.34 }
+	}
+	completion_reward = {
+		remove_ideas = IRQ_kurdish_resistance
+		remove_ideas = IRQ_kurdish_resistance_more
+		add_ideas = IRQ_reduced_kurdish_resistance
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = IRQ_Healing_Sunni_Shia_Rift
+	icon = GFX_GENERIC_Islamic_Government
+	cost = 15
+	x = 0
+	y = 2
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = IRQ_Arab_Kurdish_Partnership
+		focus = IRQ_Suppress_Kurds
+	}
+	relative_position_id = IRQ_Sectarian_Issues
+	completion_reward = {
+		swap_ideas = {
+    		remove_idea = IRQ_sunni_shia_division
+    		add_idea = IRQ_reduced_sunni_shia_division
+		}
+	}
+}

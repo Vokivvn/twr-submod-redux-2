@@ -1,0 +1,54 @@
+scripted_gui = {
+	KRA_ps_open_button = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "KRA_ps_open_button_window"
+
+		visible = {
+			tag = KRA
+			NOT = {
+				has_country_flag = KRA_ps_gui_disabled_flag
+			}
+		}
+
+		effects = {
+			politicsview_KRA_button_click = {
+				if = {
+					limit = { has_country_flag = KRA_powerstruggle_open }
+					clr_country_flag = KRA_powerstruggle_open
+				}
+				else = {
+					set_country_flag = KRA_powerstruggle_open
+				}
+			}
+		}
+	}
+	
+	KRA_power_struggle_gui = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "KRA_ps_screen_window"
+
+		visible = {
+			has_country_flag = KRA_powerstruggle_open
+			NOT = {
+				has_country_flag = KRA_ps_gui_disabled_flag
+			}
+		}
+
+		effects = {
+			KRA_close_ps_button_click = {
+				clr_country_flag = KRA_powerstruggle_open
+			}
+		}
+		
+		properties = {
+			KRA_tradsoc_leader = {
+				image = "[KRA_get_tradsoc_leader]"
+			}
+			KRA_plurinational_leader = {
+				image = "[KRA_get_plurinational_leader]"
+			}
+		}
+	}
+}

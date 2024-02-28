@@ -1,0 +1,698 @@
+add_namespace = twrspeercities
+add_namespace = twrspeerpolitics
+add_namespace = twrspeerdiplo
+country_event = {
+	id = twrspeerpolitics.1 #Coalition
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.1"}
+	title = twrspeerpolitics.1.t
+	desc = twrspeerpolitics.1.d
+	picture = GFX_report_event_albert_speer
+	is_triggered_only = yes
+
+	option = {
+		name = twrspeerpolitics.1.a
+		add_stability = 0.1
+		add_timed_idea = {
+			idea = SPEER_coalition
+			days = 180
+		}
+	}
+}
+country_event = {
+	id = twrspeerpolitics.2 #Hitler Mindset
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.2"}
+	title = twrspeerpolitics.2.t
+	desc = twrspeerpolitics.2.d
+	picture = GFX_report_event_hitler_speech
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.2.a #Loyal Follower of Hitlerist
+		custom_effect_tooltip = FINISH_WHAT_HE_STARTED
+		hidden_effect = {
+			set_country_flag = LOYALIST_SPEER
+		}
+	}
+	option = {
+		name = twrspeerpolitics.2.b #Reforms
+		trigger = {
+			NOT = {
+				has_idea = GER_HoG_Joseph_Goebbels
+			}
+		}
+		custom_effect_tooltip = NEW_GENERATION
+		hidden_effect = {
+			set_country_flag = REFORMIST_SPEER
+		}
+	}
+}
+news_event = {
+	id = twrspeerpolitics.3 #Speer reforms
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.3"}
+	title = twrspeerpolitics.3.t
+	desc = twrspeerpolitics.3.d
+	picture = GFX_news_event_speer_reform
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeerpolitics.3.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeerpolitics.3.b
+	}
+}
+news_event = {
+	id = twrspeerpolitics.4 #Speer declares free trade
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.4"}
+	title = twrspeerpolitics.4.t
+	desc = twrspeerpolitics.4.d
+	picture = GFX_news_event_nazi_free_trade
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeerpolitics.4.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeerpolitics.4.b
+	}
+}
+country_event = {
+	id = twrspeerpolitics.5 #The Value of Slave Labour
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.5"}
+	title = twrspeerpolitics.5.t
+	desc = twrspeerpolitics.5.d
+	picture = GFX_report_event_slave_labour_nazis
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.5.a #Slaves are useful
+		add_political_power = 50
+	}
+}
+country_event = {
+	id = twrspeerpolitics.6 #Speer Clique
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.6"}
+	title = twrspeerpolitics.6.t
+	desc = twrspeerpolitics.6.d
+	picture = GFX_report_event_speer_hi
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.6.a #Gather the supporters
+		custom_effect_tooltip = speer_support_increases
+		add_political_power = 90
+		hidden_effect = {
+				add_to_variable = {
+					var = speerssupport
+					value = 1
+				} 
+			}
+	}
+}
+country_event = {
+	id = twrspeerpolitics.7 #Speer Company
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.7"}
+	title = twrspeerpolitics.7.t
+	desc = twrspeerpolitics.7.d
+	picture = GFX_report_event_speer_company
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.7.a #Gather the supporters
+		add_political_power = 50
+		add_ideas = Alldeutsche_Baufirma
+		hidden_effect = {
+		set_country_flag = speer_company_formed
+			}
+	}
+}
+country_event = {
+	id = twrspeerpolitics.8 #Speer divides the SSB
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.8"}
+	title = twrspeerpolitics.8.t
+	desc = twrspeerpolitics.8.d
+	picture = GFX_report_event_the_ss_meetings
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.8.a #SSB division
+		add_stability = -0.15
+		add_war_support = -0.15
+	}
+}
+country_event = {
+	id = twrspeerpolitics.9 #Nationalsozialistischer Kodex
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.9"}
+	title = twrspeerpolitics.9.t
+	desc = twrspeerpolitics.9.d
+	picture = GFX_report_event_national_socialist_codex
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.9.a #yes
+		add_political_power = 50
+	}
+}
+country_event = {
+	id = twrspeerpolitics.10 #Abwehr Supremacy
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.10"}
+	title = twrspeerpolitics.10.t
+	desc = twrspeerpolitics.10.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.10.a 
+		add_ideas = GER_centralized_intelligence_agency
+	}
+}
+country_event = {
+	id = twrspeerpolitics.11 #Defining Germany
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.11"}
+	title = twrspeerpolitics.11.t
+	desc = twrspeerpolitics.11.d
+	picture = GFX_report_event_german_map
+	is_triggered_only = yes
+	
+	option = {
+		ai_chance = {
+			factor = 50
+		}
+		name = twrspeerpolitics.11.a #maintain metropolitan and colonial
+		add_stability = 0.1
+	}
+	option = {
+		ai_chance = {
+			factor = 30
+		}
+		name = twrspeerpolitics.11.b #all should be defined as germany
+		add_stability = -0.15
+		custom_effect_tooltip = SPEER_AFFECT_FUTURE_POLICIES
+		hidden_effect = {
+		set_country_flag = SPEER_ALL_GERMANY
+		}
+	}
+}
+country_event = {
+	id = twrspeerpolitics.12 #NSDAP reforms
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.12"}
+	title = twrspeerpolitics.12.t
+	desc = twrspeerpolitics.12.d
+	picture = GFX_report_event_german_mayday
+	is_triggered_only = yes
+	
+	option = {
+		ai_chance = {
+			factor = 50
+		}
+		name = twrspeerpolitics.12.a #make more wings
+		add_stability = 0.1
+		add_political_power = -200
+		hidden_effect = {
+		set_country_flag = ESTABLISH_NEW_GROUPS
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 50
+		}
+		name = twrspeerpolitics.12.b #solidfy the amount of wings
+		add_political_power = 150
+		add_stability = -0.1
+	}
+}
+country_event = {
+	id = twrspeerpolitics.13 #Nationalsozialistische Architektenkammer
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.13"}
+	title = twrspeerpolitics.13.t
+	desc = twrspeerpolitics.13.d
+	picture = GFX_report_event_architecutre_nazi
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.13.a #building brrr
+		add_tech_bonus = {
+    	bonus = 0.5
+    	uses = 1
+    	category = construction_tech
+		}
+		custom_effect_tooltip = speer_support_increases
+		hidden_effect = {
+				add_to_variable = {
+					var = speerssupport
+					value = 1
+				} 
+			}
+	}
+}
+country_event = {
+	id = twrspeerpolitics.14 #Public servants
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.14"}
+	title = twrspeerpolitics.14.t
+	desc = twrspeerpolitics.14.d
+	picture = GFX_report_event_german_mayday
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.14.a #more funds
+		add_political_power = 150
+		add_offsite_building = { type = industrial_complex level = 2 }
+	}
+}
+
+news_event = {
+	id = twrspeerpolitics.15 #Speer Charter
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.15"}
+	title = twrspeerpolitics.15.t
+	desc = twrspeerpolitics.15.d
+	picture = GFX_news_event_speer_heil
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+		OR = {
+			tag = GER
+		}
+		}
+		name = twrspeerpolitics.15.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeerpolitics.15.b
+	}
+}
+country_event = {
+	id = twrspeerpolitics.16 #Devolve the RK Ost
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.16"}
+	title = twrspeerpolitics.16.t
+	desc = twrspeerpolitics.16.d
+	picture = GFX_report_event_eastern_germans
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.16.a #Rosenberg has failed his job
+		add_political_power = 50
+		add_stability = 0.05
+		ROS = {
+		country_event = { id = twrspeerpolitics.17 days = 5 }
+		}
+	}
+}
+country_event = {
+	id = twrspeerpolitics.17 #Devolution
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.17"}
+	title = twrspeerpolitics.17.t
+	desc = twrspeerpolitics.17.d
+	picture = GFX_report_event_eastern_germans
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerpolitics.17.a #more funds
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = OSTEUROPA_DEFORMED
+		remove_ideas = {
+		ROST_MONSTER_STATE
+		}
+		add_ideas = {
+		RK_decentralized_body
+		}
+		news_event = twrspeerpolitics.18
+	}
+}
+news_event = {
+	id = twrspeerpolitics.18 #No more Osteuropa
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerpolitics.18"}
+	title = twrspeerpolitics.18.t
+	desc = twrspeerpolitics.18.d
+	picture = GFX_news_event_rosenberg_is_dumb
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		name = twrspeerpolitics.18.a
+	}
+}
+
+country_event = {
+	id = twrspeerdiplo.1 #German diplomats arrived
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerdiplo.1"}
+	title = twrspeerdiplo.1.t
+	desc = twrspeerdiplo.1.d
+	picture = GFX_report_event_china_german
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerdiplo.1.a #we will talk
+		ai_chance = {
+		factor = 50
+		}
+		trigger = {
+		OR = {
+		has_government = paternal_autocrat
+		has_government = fascist
+			}
+		}
+		add_tech_bonus = {
+    	bonus = 0.1
+    	uses = 1
+    	category = armor
+		}
+		add_opinion_modifier = {
+    	target = GER
+    	modifier = freetrade
+		}
+		GER = {
+		country_event = twrspeerdiplo.2
+		}
+		add_stability = -0.1
+		hidden_effect = {
+		if = {
+		limit = {
+		GER = {
+		has_country_leader = {
+    	name = "Albert Speer"
+    	ruling_only = yes
+				}
+			}
+		}
+		set_country_flag = speer_company_allowed
+		}
+		set_country_flag = GERMAN_CHINESE_SIGNED
+		}
+		give_resource_rights = { receiver = GER state = 593 }
+	}
+	option = {
+		ai_chance = {
+		factor = 30
+		}
+		name = twrspeerdiplo.1.b #refuse
+		add_stability = 0.1
+		GER = {
+		country_event = twrspeerdiplo.3
+		}
+	}
+}
+
+country_event = {
+	id = twrspeerdiplo.2 #German diplomats arrived
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerdiplo.2"}
+	title = twrspeerdiplo.2.t
+	desc = twrspeerdiplo.2.d
+	picture = GFX_report_event_china_german
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerdiplo.2.a #we will talk
+		send_equipment = {
+    	equipment = infantry_equipment
+    	amount = 2000
+    	target = CHI
+		}
+		add_offsite_building = { type = industrial_complex level = 2 }
+		add_opinion_modifier = {
+    	target = CHI
+    	modifier = freetrade 
+		}
+		hidden_effect = {
+		news_event = { id = twrspeerdiplo.101 hours = 5 }
+		}
+	}
+}
+country_event = {
+	id = twrspeerdiplo.3 #German diplomats refused
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerdiplo.3"}
+	title = twrspeerdiplo.3.t
+	desc = twrspeerdiplo.3.d
+	picture = GFX_report_event_china_german
+	is_triggered_only = yes
+	
+	option = {
+		name = twrspeerdiplo.3.a #we will talk
+		add_political_power = -90
+	}
+}
+
+news_event = {
+	id = twrspeerdiplo.101 #Nazi-Sino Ties
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeerdiplo.101"}
+	title = twrspeerdiplo.101.t
+	desc = twrspeerdiplo.101.d
+	picture = GFX_news_event_sino_german_renewal
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+		OR = {
+			tag = GER
+			tag = CHI
+		}
+		}
+		name = twrspeerdiplo.101.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+				tag = CHI
+			}
+		}
+		name = twrspeerdiplo.101.b
+	}
+}
+news_event = {
+	id = twrspeercities.1 #Germania expansion
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.1"}
+	title = twrspeercities.1.t
+	desc = twrspeercities.1.d
+	picture = GFX_news_event_germania_expansion
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeercities.1.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeercities.1.b
+	}
+}
+news_event = {
+	id = twrspeercities.101 #Germania expansion completed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.101"}
+	title = twrspeercities.101.t
+	desc = twrspeercities.101.d
+	picture = GFX_news_event_hitler_eyes
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeercities.101.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeercities.101.b
+	}
+}
+news_event = {
+	id = twrspeercities.2 #Hamburg Expansion
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.2"}
+	title = twrspeercities.2.t
+	desc = twrspeercities.2.d
+	picture = GFX_news_event_hamburg_expansion
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeercities.2.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeercities.2.b
+	}
+}
+news_event = {
+	id = twrspeercities.202 #Hamburg Expansion completed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.202"}
+	title = twrspeercities.202.t
+	desc = twrspeercities.202.d
+	picture = GFX_news_event_nazi_dockyards
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeercities.202.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeercities.202.b
+	}
+}
+country_event = {
+	id = twrspeercities.3 #Führermuseum
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.3"}
+	title = twrspeercities.3.t
+	desc = twrspeercities.3.d
+	picture = GFX_report_event_hitler_museum
+	is_triggered_only = yes
+
+	option = {
+		name = twrspeercities.3.a
+		add_stability = 0.15
+		add_war_support = 0.15
+	}
+}
+
+news_event = {
+	id = twrspeercities.4 #The Capital of the Movement and Art
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.4"}
+	title = twrspeercities.4.t
+	desc = twrspeercities.4.d
+	picture = GFX_news_event_nazi_dockyards
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeercities.4.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeercities.4.b
+	}
+}
+
+news_event = {
+	id = twrspeercities.5 #Pabst Plan
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.5"}
+	title = twrspeercities.5.t
+	desc = twrspeercities.5.d
+	picture = GFX_news_event_pabst_plan
+	is_triggered_only = yes
+	major = yes	
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeercities.5.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeercities.5.b
+	}
+}
+
+news_event = {
+	id = twrspeercities.6 #German Stadium
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.6"}
+	title = twrspeercities.6.t
+	desc = twrspeercities.6.d
+	picture = GFX_news_event_german_stadium
+	is_triggered_only = yes
+	major = yes	
+
+
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = twrspeercities.6.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+		}
+		name = twrspeercities.6.b
+	}
+}
+country_event = {
+	id = twrspeercities.7 #Nordstern
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.7"}
+	title = twrspeercities.7.t
+	desc = twrspeercities.7.d
+	picture = GFX_report_event_Nordstern
+	is_triggered_only = yes
+
+	option = {
+		name = twrspeercities.7.a
+		add_ideas = GER_nordstern
+	}
+}
+country_event = {
+	id = twrspeercities.71 #Nordstern destroyed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrspeercities.71"}
+	title = twrspeercities.71.t
+	desc = twrspeercities.71.d
+	picture = GFX_report_event_Nordstern
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrspeercities.71.a
+		remove_ideas = GER_nordstern
+	}
+}

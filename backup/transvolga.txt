@@ -1,0 +1,675 @@
+focus_tree = {
+		id = TRV_focus
+
+		country = {
+		factor = 0
+
+		modifier = {
+			add = 10
+			tag = TRV
+		}
+	}
+
+	default = no
+
+	focus = {
+	cancelable = no 
+		id = TRV_bulganin_offer
+		icon = GFX_TRV_Premier_Bulganins_Offer
+		x = 3
+		y = 0
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+		always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = TransBulgarin
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_idel_assistance
+		icon = GFX_SOV_Idel_Ural
+		prerequisite = { focus = TRV_bulganin_offer }
+		relative_position_id = TRV_bulganin_offer
+		x = -1
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			IDE = {
+			country_event = { id = twrTransvolgaNew.0 }
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_red_army_traitors
+		icon = GFX_GENERIC_peaceful_socialism
+		prerequisite = { focus = TRV_bulganin_offer }
+		relative_position_id = TRV_bulganin_offer
+		x = 1
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = TransSovietMutinies
+			SOV = {
+			country_event = { id = twrTransvolgaNew.3 }
+			}
+			hidden_effect = {
+				division_template = {
+				name = "Strelkovaya Diviziya"
+				regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+				infantry = { x = 2 y = 0 }
+				infantry = { x = 2 y = 1 }
+				infantry = { x = 2 y = 2 }
+				}
+				support = { 
+				artillery = { x = 0 y = 0 }
+					} 
+				}
+				division_template = {
+				name = "Mekhanizirovaniy Korpus" 										
+				regiments = {
+				medium_armor = { x = 0 y = 0 }
+				medium_armor = { x = 0 y = 1 }
+				medium_armor = { x = 1 y = 0 }
+				medium_armor = { x = 1 y = 1 }
+				medium_armor = { x = 1 y = 2 }
+				motorized = { x = 2 y = 0 }
+				motorized = { x = 2 y = 1 }
+				motorized = { x = 2 y = 2 }
+				motorized = { x = 2 y = 3 }
+					}
+				}
+				407 = {	
+				create_unit = {
+				division = "name = \"1-Ya Myatezhnaya Sovetskaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1 start_equipment_factor = 0.8"
+				owner = TRV
+					}
+				create_unit = {
+				division = "name = \"2-Ya Myatezhnaya Sovetskaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1 start_equipment_factor = 0.8"
+				owner = TRV
+					}
+				create_unit = {
+				division = "name = \"3-Ya Myatezhnaya Sovetskaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1 start_equipment_factor = 0.8"
+				owner = TRV
+					}
+				create_unit = {
+				division = "name = \"1-y Myatezhnyy Sovetskiy Tankovyy Korpus\" division_template = \"Mekhanizirovaniy Korpus\" start_experience_factor = 0.1 start_equipment_factor = 0.7"
+				owner = TRV
+					}
+				}
+				
+				406 = {	
+				create_unit = {
+				division = "name = \"4-Ya Myatezhnaya Sovetskaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1 start_equipment_factor = 0.8"
+				owner = TRV
+					}
+				create_unit = {
+				division = "name = \"5-Ya Myatezhnaya Sovetskaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1 start_equipment_factor = 0.8"
+				owner = TRV
+					}
+				create_unit = {
+				division = "name = \"2-y Myatezhnyy Sovetskiy Tankovyy Korpus\" division_template = \"Mekhanizirovaniy Korpus\" start_experience_factor = 0.1 start_equipment_factor = 0.7"
+				owner = TRV
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_ending_the_ussr
+		icon = GFX_SOV_kuznetsov_uprising
+		prerequisite = { focus = TRV_idel_assistance }
+		prerequisite = { focus = TRV_red_army_traitors }
+		relative_position_id = TRV_idel_assistance
+		x = 1
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			country_event = { id = twrTransvolgaNew.4 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_provisional_military_government
+		icon = GFX_TRV_The_Provisional_Military_Government
+		prerequisite = { focus = TRV_ending_the_ussr }
+		relative_position_id = TRV_ending_the_ussr
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+		has_country_flag = TRV_Union
+		}
+		completion_reward = {
+			country_event = { id = twrTransvolgaNew.6 } 
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_uniting_russia
+		icon = GFX_TRV_Premier_Bulganins_Offer
+		x = 17
+		y = 0
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+		always = no
+		}
+		
+		completion_reward = {
+			custom_effect_tooltip = TransUnited
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_the_west
+		icon = GFX_GER_revolution
+		prerequisite = { focus = TRV_uniting_russia }
+		relative_position_id = TRV_uniting_russia
+		x = -3
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_contacting_partisans
+		icon = GFX_SOV_surveillance_squads
+		prerequisite = { focus = TRV_the_west }
+		relative_position_id = TRV_the_west
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = TRV_Partisan_Connections
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_moskowien
+		icon = GFX_SOV_attack_moskowien
+		prerequisite = { focus = TRV_contacting_partisans }
+		relative_position_id = TRV_contacting_partisans
+		x = -1
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		bypass = {
+		owns_state = 214
+		owns_state = 999
+		owns_state = 1002
+		owns_state = 351
+		owns_state = 1000
+		owns_state = 253
+		owns_state = 248
+		owns_state = 1001
+		owns_state = 264
+		owns_state = 1004
+		owns_state = 244
+		owns_state = 247
+		owns_state = 1005
+		owns_state = 1006
+		owns_state = 246
+		owns_state = 242
+		owns_state = 243
+		owns_state = 205
+		owns_state = 219
+		owns_state = 1007
+		owns_state = 1003
+		owns_state = 223
+		owns_state = 254
+		}
+		completion_reward = {
+		custom_effect_tooltip = MOSKOWIEN_RECLAIM
+		set_country_flag = TRV_RECLAIM_DECISION_UNLOCKED
+		set_country_flag = TRV_RECLAIM_MOSKOW
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_kaukasus
+		icon = GFX_SOV_attack_kaukasus
+		prerequisite = { focus = TRV_contacting_partisans }
+		relative_position_id = TRV_contacting_partisans
+		x = 1
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		bypass = {
+		owns_state = 236
+		owns_state = 977
+		owns_state = 217
+		owns_state = 265
+		owns_state = 245
+		owns_state = 237
+		owns_state = 238
+		owns_state = 976
+		owns_state = 218
+		owns_state = 234
+		owns_state = 971
+		owns_state = 235
+		owns_state = 972
+		owns_state = 237
+		owns_state = 973
+		owns_state = 970
+		owns_state = 233
+		owns_state = 974
+		owns_state = 232
+		owns_state = 975
+		owns_state = 967
+		owns_state = 229
+		owns_state = 854
+		owns_state = 964
+		owns_state = 968
+		owns_state = 969
+		}
+		completion_reward = {
+		set_country_flag = TRV_RECLAIM_SOUTH
+		custoM_effect_tooltip = SOUTH_RECLAIM_TRV
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_karelia
+		icon = GFX_FIN_karelia
+		prerequisite = { focus = TRV_moskowien }
+		prerequisite = { focus = TRV_kaukasus }
+		relative_position_id = TRV_moskowien
+		x = 1
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			FIN = {
+			country_event = { id = twrTransvolgaNew.7 }
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_the_east
+		icon = GFX_SOV_Konev_Siberia_Will_Run_Red
+		prerequisite = { focus = TRV_uniting_russia }
+		relative_position_id = TRV_uniting_russia
+		x = 3
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_novosibirsk
+		icon = GFX_NOV_flag_icon
+		prerequisite = { focus = TRV_the_east }
+		relative_position_id = TRV_the_east
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		bypass = {
+		NOT = {
+		country_exists = NOV
+			}
+		}
+		available = {
+		country_exists = NOV
+		}
+		completion_reward = {
+			create_wargoal = {
+			type = annex_everything
+			target = NOV
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_altai
+		icon = GFX_SOV_attack_altai
+		prerequisite = { focus = TRV_novosibirsk }
+		relative_position_id = TRV_novosibirsk
+		x = -2
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		bypass = {
+		NOT = {
+		country_exists = TAN
+			}
+		}
+		available = {
+		country_exists = TAN
+		}
+		completion_reward = {
+			create_wargoal = {
+			type = annex_everything
+			target = TAN
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_krasnoyarsk
+		icon = GFX_SOV_attack_krasnoyarsk
+		prerequisite = { focus = TRV_novosibirsk }
+		relative_position_id = TRV_novosibirsk
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		bypass = {
+		NOT = {
+		country_exists = KRA
+			}
+		}
+		available = {
+		country_exists = KRA
+		}
+		completion_reward = {
+			create_wargoal = {
+			type = annex_everything
+			target = KRA
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_norilsk
+		icon = GFX_SOV_attack_norilsk
+		prerequisite = { focus = TRV_novosibirsk }
+		relative_position_id = TRV_novosibirsk
+		x = 2
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+		country_exists = NRI
+		}
+		bypass = {
+		NOT = {
+		country_exists = NRI
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+			type = annex_everything
+			target = NRI
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_buryatia
+		icon = GFX_SOV_attack_buryatia
+		prerequisite = { focus = TRV_norilsk }
+		prerequisite = { focus = TRV_altai }
+		prerequisite = { focus = TRV_krasnoyarsk }
+		relative_position_id = TRV_krasnoyarsk
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+		country_exists = BRY
+		}
+		bypass = {
+		NOT = {
+		country_exists = BRY
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+			type = annex_everything
+			target = BRY
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_republic
+		icon = GFX_SOV_attack_republic
+		prerequisite = { focus = TRV_buryatia }
+		relative_position_id = TRV_buryatia
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+		country_exists = RUS
+		}
+		bypass = {
+		NOT = {
+		country_exists = RUS
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+			type = annex_everything
+			target = RUS
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_bagramyan_dead
+		icon = GFX_TRV_bagramyan_dead
+		x = 8
+		y = 0
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+		always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = TransDead
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_altunin
+		icon = GFX_TRV_altunin_takes_command
+		prerequisite = { focus = TRV_bagramyan_dead }
+		relative_position_id = TRV_bagramyan_dead
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = TransAltunin
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_eternal_junta
+		icon = GFX_TRV_The_Eternal_Junta
+		prerequisite = { focus = TRV_altunin }
+		relative_position_id = TRV_altunin
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = TRV_Eternal_Junta
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_junta_agriculture
+		icon = GFX_TRV_The_junta_agriculture
+		prerequisite = { focus = TRV_eternal_junta }
+		relative_position_id = TRV_eternal_junta
+		x = -2
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = TRV_Our_Agriculture
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_junta_industry
+		icon = GFX_TRV_The_Juntas_Industry
+		prerequisite = { focus = TRV_eternal_junta }
+		relative_position_id = TRV_eternal_junta
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = TRV_Our_Industry
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_junta_finances
+		icon = GFX_TRV_The_Juntas_Economy
+		prerequisite = { focus = TRV_eternal_junta }
+		relative_position_id = TRV_eternal_junta
+		x = 2
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = TRV_Our_Finances
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = TRV_new_russian_army
+		icon = GFX_TRV_The_New_Russian_Army
+		prerequisite = { focus = TRV_junta_agriculture }
+		prerequisite = { focus = TRV_junta_industry }
+		prerequisite = { focus = TRV_junta_finances }
+		relative_position_id = TRV_junta_industry
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = TRV_New_Russian_Army
+		}
+	}
+
+}

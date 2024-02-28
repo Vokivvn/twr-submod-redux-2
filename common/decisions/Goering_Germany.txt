@@ -1,0 +1,388 @@
+GOERING_DECISIONS = {
+	open_the_goering_museum = {
+		icon = generic_construction
+		visible = {
+			has_completed_focus = GGR_The_Cultural_Masters
+		}
+		available = {
+		NOT = {
+		has_global_flag = GA_SUMMIT_IN_PROGRESS
+		}
+		}		
+		cost = 15
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 70
+		}
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+		days_remove = 25
+		remove_effect = {
+			news_event = twrgoeringflavour.1
+			add_stability = 0.15
+			hidden_effect = {
+			set_global_flag = CARINHALL_OPENED
+			}
+		}
+	}	
+	public_exhibition = {
+		icon = generic_construction
+		visible = {
+			has_global_flag = CARINHALL_OPENED
+			has_completed_focus = GGR_The_Cultural_Masters
+		}
+		cost = 15
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+		NOT = {
+		has_global_flag = GA_SUMMIT_IN_PROGRESS
+		}
+		}
+		modifier = {
+			political_power_factor = 0.25
+		}
+		days_re_enable = 60
+		days_remove = 30
+		fire_only_once = no
+		remove_effect = {
+			add_stability = 0.01
+		}
+	}
+	fighting_the_addiction = {
+		icon = ger_reichskommissariats
+		cost = 70
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+		has_completed_focus = GGR_Man_Of_The_People
+		has_country_leader_with_trait = substance_abuser
+		has_country_flag = WILLING_TO_FIGHT_THE_ADDICTION
+		}
+		modifier = {
+		political_power_factor = -0.25
+		}
+		days_re_enable = 60
+		days_remove = 30
+		fire_only_once = no
+		remove_effect = {
+		random_list = {
+		60 = { country_event = twrgoeringflavour.2 }
+		40 = { country_event = twrgoeringflavour.3 }
+			}
+		}
+	}
+	GOE_national_socialist_codex_generic = {
+		visible = {
+			has_completed_focus = GER_Cooperation_Of_Leaders
+		}
+		icon = generic_construction
+		cost = 35
+		available = {
+			has_completed_focus = GGR_And_Hitlers
+		}
+		complete_effect = {
+
+		}  
+		modifier = {
+			consumer_goods_factor = 0.01
+		}
+		days_remove = 65
+		fire_only_once = yes
+		remove_effect = {
+		country_event = { id = twrspeerpolitics.9 hours = 5 }
+		}
+	}
+}
+goering_project = {
+	invite_lindbergh = {
+		icon = generic_construction
+		visible = {
+			has_completed_focus = GGR_The_Deeskalation
+		}
+		available = {
+		NOT = {
+		has_global_flag = AGENDA_CLEAR
+		}
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision occupation_MON_RUS"
+			country_event = twrgoering.6
+		}
+	}
+	reaching_out_to_us = {
+		icon = generic_construction
+		visible = {
+			has_completed_focus = GGR_The_Deeskalation
+		}
+		available = {
+		has_global_flag = AGENDA_CLEAR
+		}
+		cost = 25
+		ai_will_do = {
+			factor = 100
+		}
+		modifier = {
+			political_power_factor = 0.25
+		}
+		days_remove = 30
+		fire_only_once = yes
+		remove_effect = {
+			USA = {
+			country_event = twrgoering.5
+			}
+		}
+	}	
+	GOR_chinese_card = {
+		icon = generic_operation
+		visible = {
+			has_completed_focus = GGR_Eastward_Focus
+		}
+		available = {
+		CHI = {
+		has_war = no
+			}
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOR_chinese_card"
+		}
+		days_remove = 30
+		fire_only_once = yes
+		remove_effect = {
+		CHI = {
+		country_event = { id = twrspeerdiplo.1 hours = 5 }
+		}
+		}
+	}
+	GOR_chinese_branch = {
+		icon = generic_operation
+		visible = {
+			has_completed_focus = GGR_Eastward_Focus
+		}
+		available = {
+		has_country_flag = GERMAN_CHINESE_SIGNED
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOR_chinese_branch"
+		}
+		days_remove = 50
+		fire_only_once = yes
+		remove_effect = {
+		add_offsite_building = { type = industrial_complex level = 2 }
+		CHI = {
+		country_event = { id = twrgoering.18 hours = 5 }
+		set_country_flag = goering_company_allowed_expansion
+			}
+		}
+	}
+	GGR_diplomacy_with_fash_europe = {
+		icon = ger_reichskommissariats
+		available = {
+		has_war = no
+		NOT = {
+		has_idea = GER_grand_power_struggles
+			}
+		}
+		visible = {
+		has_war = no
+		NOT = {
+		has_idea = GER_grand_power_struggles
+			}
+		FROM = {
+		exists = yes
+		OR = {
+		is_fascist = yes
+		has_government = paternal_autocrat
+		}
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+		has_country_flag = GERMAN_COOPERATION_NATION
+				}
+		is_subject = no
+			}
+		}
+		target_trigger = {
+			FROM = {
+			AND = {
+			capital_scope = {
+			is_on_continent = europe
+			}
+			OR = {
+			is_fascist = yes
+			has_government = paternal_autocrat
+			is_democratic = yes
+			}
+			is_subject = no
+			NOT = {
+			is_in_faction_with = USA
+			has_country_flag = GERMAN_COOPERATION_NATION
+			tag = ITA
+			}
+			exists = yes
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision GGR_diplomacy_with_fash_europe"
+		FROM = {
+		country_event = { id = twrgoering.19 hours = 5 }
+			}
+		}
+	}
+	GGR_conquest_of_the_greater_reich = {
+		icon = ger_reichskommissariats
+		available = {
+		has_war = no
+		RUK = {
+		is_subject_of = ROOT
+			}
+		ROS = {
+		is_subject_of = ROOT
+			}
+		RMO = {
+		is_subject_of = ROOT
+			}
+		RKA = {
+		is_subject_of = ROOT
+			}
+		NOT = {
+		has_idea = GER_grand_power_struggles
+			}
+		has_completed_focus = GGR_Eastward_Focus
+		}
+		visible = {
+		has_war = no
+		RUK = {
+		is_subject_of = ROOT
+			}
+		ROS = {
+		is_subject_of = ROOT
+			}
+		RMO = {
+		is_subject_of = ROOT
+			}
+		RKA = {
+		is_subject_of = ROOT
+			}
+		NOT = {
+		has_idea = GER_grand_power_struggles
+			}
+		has_completed_focus = GGR_Eastward_Focus
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+		has_country_flag = GERMAN_COOPERATION_NATION
+			is_in_faction_with = USA
+			is_in_faction_with = ITA
+				}
+		is_fascist = no
+		is_subject = no
+			}
+		}
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			AND = {
+			OR = {
+			tag = ROM
+			tag = HUN
+			tag = CRO
+			tag = ALB
+			tag = GRE
+			tag = BOS
+			tag = BUL
+			tag = BLC
+			tag = SER
+			tag = CKR
+			tag = MOL
+			tag = NUK
+			tag = WCH
+			}
+			is_subject = no
+			NOT = {
+			OR = {
+			is_in_faction_with = USA
+			is_in_faction_with = ITA
+				}
+			}
+			exists = yes
+				}
+			}
+		}
+		war_with_target_on_timeout = yes
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 500
+			modifier = { #Only attack neighboring countries
+				factor = 0
+				NOT = {
+					FROM = {
+						any_neighbor_country = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+								is_in_faction_with = ROOT
+							}
+						}
+					}
+				}
+			}
+		}
+
+		cost = 70
+		days_remove = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BGR_conquest_of_the_greater_reich"
+		}
+		remove_effect = {
+		create_wargoal = {
+    	type = annex_everything
+    	target = FROM
+			}
+		}
+	}	
+}

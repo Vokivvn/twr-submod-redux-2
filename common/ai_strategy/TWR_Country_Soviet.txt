@@ -1,0 +1,694 @@
+####################################################
+## Soviet Union
+#####################################################
+
+# air_factory_balance
+# alliance
+# antagonize
+# area_priority
+# befriend
+# build_army
+# build_building
+# build_ship
+# conquer
+# contain
+# equipment_production_factor
+# equipment_stockpile
+# garrison
+# ignore
+# influence
+# invade
+# pp_spend_priority
+# protect
+# research_tech
+# role_ratio
+# send_volunteers_desire
+# support
+# template_prio
+# template_xp_reserve 
+# unit_ratio
+
+## ------------------ Foreign Relations -------------------------------------------------------------
+# Soviet-US Relations
+Soviet_US_Relations = {
+	enable = {
+		original_tag = SOV
+		SOV = { is_communist = yes }
+	}
+	abort = {
+		USA = { is_communist = yes }	
+	}
+
+	ai_strategy = {
+		type = antagonize
+		id = "USA"
+		value = 50
+	}
+	ai_strategy = {
+		type = alliance
+		id = "USA"
+		value = -150
+	}		
+	ai_strategy = {
+		type = ignore
+		id = "USA"
+		value = -200
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "USA"
+		value = -200
+	}		
+	ai_strategy = {
+		type = support
+		id = "USA"
+		value = -200
+	}
+	ai_strategy = {
+		type = protect
+		id = "USA"
+		value = -200
+	}	
+}
+
+# Soviet-British Relations
+Soviet_British_Relations = {
+	enable = {
+		original_tag = SOV
+
+		SOV = { is_fascist = no }
+		ENG = { is_democratic = yes }		
+	}
+	abort = {
+		SOV = { is_fascist = yes }		
+	}
+
+	ai_strategy = {
+		type = befriend
+		id = "ENG"
+		value = 50
+	}
+	ai_strategy = {
+		type = alliance
+		id = "ENG"
+		value = -150
+	}		
+	ai_strategy = {
+		type = ignore
+		id = "ENG"
+		value = 200
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "ENG"
+		value = -200
+	}		
+	ai_strategy = {
+		type = support
+		id = "ENG"
+		value = 10
+	}
+	ai_strategy = {
+		type = protect
+		id = "ENG"
+		value = 25
+	}	
+}
+
+## ------------------ Region Priorities -------------------------------------------------------------
+## Soviet Region Priorities
+Soviet_area_priority = {
+	enable = {
+	OR = {
+		original_tag = SOV
+		original_tag = TRV
+		original_tag = KAZ
+		}
+	}
+	ai_strategy = {
+		type = area_priority
+		id = europe
+		value = 200
+	}
+	ai_strategy = {
+		type = area_priority
+		id = north_america
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = south_america
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = 25
+	}
+	ai_strategy = {
+		type = area_priority
+		id = pacific
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = oceania
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 75
+	}
+	ai_strategy = {
+		type = area_priority
+		id = africa
+		value = 50
+	}
+}
+
+## Help the SMO
+SOV_help_SMO = {
+	enable = {
+		tag = SOV
+		SOV = { is_communist = yes }
+		has_war = no
+
+		SMO = {
+		has_war = yes
+		}
+		SMO = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			SOV = {
+			has_war_with = SMO
+			}
+			SMO = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "SMO"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "SMO"
+		value = 100
+	}		
+}
+
+SOV_fuck_the_okrug = {
+    enable = {
+        tag = SOV
+        AND = {
+        	has_country_flag = GONNA_KILL_OKRUG
+        	OR = {
+        	country_exists = TRV
+        	country_exists = KAZ
+        	}
+        }
+    }
+    
+    abort = {
+    	AND = {
+    		KAZ = {	exists = no }
+    		TRV = { exists = no }
+    	}
+    }
+    
+    ai_strategy = {
+        type = prepare_for_war
+        id = "TRV"
+        value = 100
+    }
+    ai_strategy = {
+        type = prepare_for_war
+        id = "KAZ"
+        value = 100
+    }
+    ai_strategy = {
+		type = conquer
+		id = "TRV"
+		value = 100
+	}
+	ai_strategy = {
+		type = conquer
+		id = "KAZ"
+		value = 100
+	}
+	ai_strategy = {
+		type = ignore
+		id = "RMO"
+		value = 900
+	}
+	ai_strategy = {
+		type = ignore
+		id = "GER"
+		value = 900
+	}
+}
+
+## Help the RAC
+SOV_help_RAC = {
+	enable = {
+		tag = SOV
+		SOV = { is_communist = yes }
+		has_war = no
+
+		RAC = {
+		has_war = yes
+		}
+		RAC = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			SOV = {
+			has_war_with = SMO
+			}
+			RAC = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "RAC"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "RAC"
+		value = 100
+	}		
+}
+
+## Help the SUK
+SOV_help_SUK = {
+	enable = {
+		tag = SOV
+		SOV = { is_communist = yes }
+		has_war = no
+
+		SUK = {
+		has_war = yes
+		}
+		SUK = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			SOV = {
+			has_war_with = SMO
+			}
+			SUK = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "SUK"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "SUK"
+		value = 100
+	}		
+}
+
+## Help the CDA
+SOV_help_CDA = {
+	enable = {
+		tag = SOV
+		SOV = { is_communist = yes }
+		has_war = no
+
+		CDA = {
+		has_war = yes
+		}
+		CDA = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			SOV = {
+			has_war_with = CDA
+			}
+			CDA = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "CDA"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "CDA"
+		value = 100
+	}		
+}
+
+## Help the BLR
+SOV_help_BLR = {
+	enable = {
+		tag = SOV
+		SOV = { is_communist = yes }
+		has_war = no
+
+		BLR = {
+		has_war = yes
+		}
+		BLR = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			SOV = {
+			has_war_with = BLR
+			}
+			BLR = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "BLR"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "BLR"
+		value = 100
+	}		
+}
+
+## Help the AZR
+SOV_help_AZR = {
+	enable = {
+		tag = SOV
+		SOV = { is_communist = yes }
+		has_war = no
+
+		AZR = {
+		has_war = yes
+		}
+		AZR = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			SOV = {
+			has_war_with = AZR
+			}
+			AZR = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "AZR"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "AZR"
+		value = 100
+	}		
+}
+
+
+## Help the SMO
+TRV_help_SMO = {
+	enable = {
+		tag = TRV
+		TRV = { is_communist = yes }
+		has_war = no
+
+		SMO = {
+		has_war = yes
+		}
+		SMO = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			TRV = {
+			is_communist = no
+			}
+			TRV = {
+			has_war_with = SMO
+			}
+			SMO = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "SMO"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "SMO"
+		value = 100
+	}		
+}
+
+## Help the RAC
+TRV_help_RAC = {
+	enable = {
+		tag = TRV
+		TRV = { is_communist = yes }
+		has_war = no
+
+		RAC = {
+		has_war = yes
+		}
+		RAC = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			TRV = {
+			is_communist = no
+			}
+			TRV = {
+			has_war_with = SMO
+			}
+			RAC = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "RAC"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "RAC"
+		value = 100
+	}		
+}
+
+## Help the SUK
+TRV_help_SUK = {
+	enable = {
+		tag = TRV
+		TRV = { is_communist = yes }
+		has_war = no
+
+		SUK = {
+		has_war = yes
+		}
+		SUK = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			TRV = {
+			is_communist = no
+			}
+			TRV = {
+			has_war_with = SMO
+			}
+			SUK = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "SUK"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "SUK"
+		value = 100
+	}		
+}
+
+## Help the CDA
+TRV_help_CDA = {
+	enable = {
+		tag = TRV
+		TRV = { is_communist = yes }
+		has_war = no
+
+		CDA = {
+		has_war = yes
+		}
+		CDA = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			TRV = {
+			is_communist = no
+			}
+			TRV = {
+			has_war_with = CDA
+			}
+			CDA = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "CDA"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "CDA"
+		value = 100
+	}		
+}
+
+## Help the BLR
+TRV_help_BLR = {
+	enable = {
+		tag = TRV
+		TRV = { is_communist = yes }
+		has_war = no
+
+		BLR = {
+		has_war = yes
+		}
+		BLR = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			TRV = {
+			is_communist = no
+			}
+			TRV = {
+			has_war_with = BLR
+			}
+			BLR = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "BLR"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "BLR"
+		value = 100
+	}		
+}
+
+## Help the AZR
+TRV_help_AZR = {
+	enable = {
+		tag = TRV
+		TRV = { is_communist = yes }
+		has_war = no
+
+		TRV = {
+		has_war = yes
+		}
+		TRV = {
+			is_communist = yes
+		}
+	}
+	abort = {
+		OR = {
+			TRV = {
+			is_communist = no
+			}
+			TRV = {
+			has_war_with = AZR
+			}
+			AZR = {	
+			has_war = no
+			is_communist = no
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "AZR"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "AZR"
+		value = 100
+	}		
+}

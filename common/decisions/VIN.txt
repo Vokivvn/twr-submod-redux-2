@@ -1,0 +1,142 @@
+#########################################################################
+#  Vietnam
+#########################################################################
+VIN_proletarian_front = {
+	VIN_send_weapons_to_malayan_communists = {
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			CMA = {
+            	has_war_with = MAL
+            } 
+            VIN = {
+            	has_equipment = { infantry_equipment > 999 }
+          	}
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		visible = {
+			has_global_flag = vietnam_survived
+		}
+
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision VIN_send_weapons_to_malayan_communists"
+			send_equipment = { target = CMA type = infantry_equipment amount = 1000 }
+		}
+	}
+	VIN_send_volunteers_to_malayan_communists = {
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			CMA = {
+            	has_war_with = MAL
+            }
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			has_global_flag = vietnam_survived
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision VIN_send_volunteers_to_malayan_communists"
+			VIN = {
+            	add_manpower = -1000
+          	}
+          	CMA = {
+          	    add_manpower = 1000
+          	    add_timed_idea = {
+				    idea = VIN_CMA_Vietnamese_Volunteers
+				    days = 180
+				}
+				country_event = { id = malaya.23 days = 0 }
+				set_country_flag = VIETNAMESE_PLEDGED_SUPPORT
+          	}
+		}
+	}
+	VIN_invite_communist_malaya = {
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			country_exists = CMA
+			is_faction_leader = yes
+			NOT =  {
+				CMA = {
+	            	has_war_with = MAL
+	            }
+	        }
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			has_global_flag = vietnam_survived
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision VIN_invite_communist_malaya"
+          	CMA = {
+				country_event = { id = malaya.24 days = 0 }
+          	}
+		}
+	}
+	VIN_invite_laos = {
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			country_exists = LAO
+			is_faction_leader = yes
+			LAO = {
+			is_in_faction = no
+			is_communist = yes
+			has_opinion = {
+			    target = VIN
+			    value = 50
+				}
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			has_global_flag = vietnam_survived
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision VIN_invite_communist_malaya"
+          	LAO = {
+				country_event = { id = malaya.24 days = 0 }
+          	}
+		}
+	}
+}

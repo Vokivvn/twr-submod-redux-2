@@ -1,0 +1,202 @@
+on_actions = {
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						has_country_flag = BUL_WTL
+						has_war_with = ROOT
+						surrender_progress > 0.55
+					}
+				}
+				FROM = { 
+					country_event = {
+						id = twrGreeceReworkMerkourism.404
+						days = 1
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						has_country_flag = BUL_WTL_Exhausted
+						has_war_with = ROOT
+						surrender_progress > 0.75
+					}
+				}
+				FROM = { 
+					country_event = {
+						id = twrGreeceReworkMerkourism.409
+						days = 1
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						has_country_flag = GRE_WTL
+						has_war_with = ROOT
+					}
+					TLA = {
+						exists = no
+					}
+					731 = {
+						is_controlled_by = ROOT
+					}
+				}
+				FROM = { 
+					country_event = {
+						id = twrGreeceReworkMerkourism.410
+						days = 1
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						has_country_flag = GRE_WTL_Exhausted
+						has_war_with = ROOT
+						surrender_progress > 0.65
+					}
+				}
+				FROM = { 
+					country_event = {
+						id = twrGreeceReworkMerkourism.413
+						days = 1
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						has_country_flag = GRE_LCR
+						has_war_with = ROOT
+						surrender_progress > 0.65
+					}
+				}
+				FROM = { 
+					country_event = {
+						id = twrGreeceReworkMerkourism.423
+						days = 1
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						has_country_flag = BUL_LCR
+						has_war_with = ROOT
+						surrender_progress > 0.65
+					}
+				}
+				FROM = { 
+					country_event = {
+						id = twrGreeceReworkMerkourism.424
+						days = 1
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						has_country_flag = GRE_anarchist_insurrection
+					}
+					877 = {
+						is_fully_controlled_by = ROOT
+					}
+					47 = {
+						is_controlled_by = ROOT
+					}
+				}
+				GRE = {
+					country_event = {
+						id = twrGreeceReworkACA.8
+						days = 1
+					}
+					set_country_flag = GRE_anarchist_compromise
+				}
+			}
+		}
+	}
+	on_peaceconference_ended = {
+		effect = {
+			if = {
+				limit = {
+					TLA = {
+						exists = no
+					}
+					GRE = {
+						has_country_flag = GRE_Indirect_Intervention
+					}
+				}
+				GRE = {
+					country_event = {
+						id = twrGreeceReworkMerkourism.421
+						days = 1
+					}
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #ROOT = Winner, FROM = Loser
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						tag = ACA
+					}
+					ROOT = {
+						original_tag = GRE
+						NOT = {
+							has_country_flag = GRE_anarchist_compromise
+						}
+					}
+				}
+				GRE = {
+					country_event = {
+						id = twrGreeceReworkACA.7
+						days = 1
+					}
+				}
+			}
+		}
+	}
+	on_daily_GRE = {
+		effect = {
+			if = {
+				limit = {
+				check_variable = {
+				var = GRE_MIL_BARB
+				value = 100
+				compare = greater_than_or_equals
+					}	
+				has_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK			
+				}
+				GRE = {
+					country_event = twrGreeceRework.206
+					clr_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK
+				}
+			}
+		}
+	}
+	on_startup = {
+		effect = {
+		GRE = {
+		country_event = twrGreeceRework.25
+		country_event = { id = twrGreeceRework.26 days = 35 random = 500 }
+			}
+		}
+	}
+}

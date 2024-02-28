@@ -1,0 +1,6847 @@
+#########################################################################
+#  Actions
+#########################################################################
+SOV_stalin_investigation = {
+	SOV_launch_the_investigation = {
+		icon = eng_trade_unions_support
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		cost = 50
+		days_remove = 100
+		remove_effect = {
+		custom_effect_tooltip = REPORT_SUBMITTED_STALIN
+		hidden_effect = {
+		country_event = STALINFATE.1
+			}
+		}
+	}	
+}
+political_actions = {
+	SOV_affordable_civilian_goods = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+		has_completed_focus = SOV_Berias_Thaw
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 60
+		days_remove = 25
+		modifier = {
+		consumer_goods_factor = 0.03
+		}
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		add_stability = 0.15
+		}
+	}
+	SOV_new_housing_projects = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+		has_completed_focus = SOV_Berias_Thaw
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 60
+		days_remove = 70
+		modifier = {
+		consumer_goods_factor = 0.05
+		}
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		capital_scope = {
+		add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	SOV_new_research_efforts = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+		has_completed_focus = SOV_Berias_Thaw
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 150
+		days_remove = 70
+		modifier = {
+		consumer_goods_factor = 0.05
+		}
+		remove_effect = {
+		add_research_slot = 1
+		}
+	}
+}
+economy_decisions = {
+	SOV_restore_any_cities_targeted_decision = {
+		allowed = { tag = SOV }
+		icon = eng_trade_unions_support
+		target_root_trigger = { has_country_flag = RESTORE_OTHER_SOV_CITIES }
+		state_target = yes 
+		targets = { 
+			219 #Moscow
+			195 #Leningrad
+			206 #Minsk
+			202 #Kiev
+			218 #Rostov
+			137 #Sevastopol
+			217 #Stalingrad
+			#Add more here as needed, or remove some, this is the only part of the code that needs maintenance :) 
+		}
+		target_trigger = {
+			FROM = {
+				is_owned_and_controlled_by = SOV 
+			}
+		}
+		fire_only_once = yes 
+		on_map_mode = map_and_decisions_view
+		cost = var:CONSTRUCTION_COST_SOV
+		days_remove = 70 
+		modifier = { consumer_goods_factor = 0.03 }
+		remove_effect = { 
+			FROM = {
+				
+				add_manpower = 25000
+				add_extra_state_shared_building_slots = 2
+
+				add_building_construction = {
+	    			type = arms_factory
+	   				level = 1
+	   				instant_build = yes
+				}
+
+				add_building_construction = {
+	  		  	type = industrial_complex
+	    		level = 1
+	    		instant_build = yes
+				}
+
+				add_building_construction = {
+	    		type = infrastructure
+	    		level = 2
+	    		instant_build = yes
+				}
+			}
+		}
+	}
+	SOV_restore_vladivostok = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+		has_country_flag = RESTORE_EAST_SOV
+		}
+		available = {
+		owns_state = 408
+		}
+
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = var:CONSTRUCTION_COST_SOV
+		days_remove = 70
+		modifier = {
+		consumer_goods_factor = 0.03
+		}
+		remove_effect = {
+		408 = {
+		add_manpower = 25000
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+	    type = arms_factory
+	    level = 1
+	    instant_build = yes
+		}
+		add_building_construction = {
+	    type = industrial_complex
+	    level = 1
+	    instant_build = yes
+		}
+		add_building_construction = {
+	    type = infrastructure
+	    level = 2
+	    instant_build = yes
+		}
+			}
+		}
+	}
+	SOV_restart_eastern_dockyards = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+		has_country_flag = RESTORE_EAST_SOV
+		}
+		available = {
+		owns_state = 409
+		owns_state = 408
+		owns_state = 560
+		}
+
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = var:CONSTRUCTION_COST_SOV
+		days_remove = 100
+		modifier = {
+		consumer_goods_factor = 0.03
+		}
+		remove_effect = {
+		409 = {
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+	    type = dockyard
+	    level = 2
+	    instant_build = yes
+		}
+			}
+		408 = {
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+	    type = dockyard
+	    level = 2
+	    instant_build = yes
+		}
+			}
+		560 = {
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+	    type = dockyard
+	    level = 2
+	    instant_build = yes
+		}
+			}
+		}
+	}
+	SOV_rebuilding_the_pacific_fleet = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+		has_country_flag = RESTORE_EAST_SOV
+		}
+		available = {
+		owns_state = 409
+		owns_state = 408
+		owns_state = 560
+		}
+
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = var:CONSTRUCTION_COST_SOV
+		days_remove = 300
+		modifier = {
+		consumer_goods_factor = 0.03
+		industrial_capacity_dockyard = 0.1
+		ai_focus_naval_factor = 0.5
+		repair_speed_factor = 0.15
+		}
+		remove_effect = {
+		}
+	}
+}
+SOV_megaproject_decisions = {
+	#RAIL HERE NSB
+	SOV_rebuild_kremlin = {
+		icon = generic_construction
+		visible = {
+			#has_completed_focus = SOV_State_Megaprojects
+		}
+		cost = var:CONSTRUCTION_COST_SOV
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 70
+		}
+		available = {
+			has_manpower > 500
+			owns_state = 219
+			has_war = no
+			219 = {
+			is_core_of = ROOT
+			}
+			NOT = { has_country_flag = CURRENT_SOV_PROJECT_CONSTRUCTION }
+		}
+		complete_effect = {
+			add_manpower = -500
+		}  
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+		days_remove = 30
+		remove_effect = {
+		set_country_flag = MOSCOW_RENOVATED_FLAG
+		add_manpower = 500
+		add_political_power = 100
+		219 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+		    type = bunker
+		    level = 2
+		    instant_build = yes
+		    province = 6380
+			}
+			add_building_construction = {
+		    type = industrial_complex
+		    level = 1
+		    instant_build = yes
+				}
+			}
+		}
+	}
+	SOV_great_northern_rail = {
+		icon = generic_construction
+		visible = {
+			has_completed_focus = SOV_State_Megaprojects
+		}
+		cost = var:CONSTRUCTION_COST_SOV
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 70
+		}
+		available = {
+			has_manpower > 10000
+			owns_state = 398
+			owns_state = 397
+			owns_state = 262
+			owns_state = 400
+			has_war = no
+			NOT = { has_country_flag = CURRENT_SOV_PROJECT_CONSTRUCTION }
+		}
+		complete_effect = {
+			add_manpower = -10000
+		}  
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+		days_remove = 200
+		remove_effect = {
+		build_railway = {
+			level = 2
+			path = { 7375 1336 6025 9283 189 6274 88 1307 11203 6121 99 108 3155 11200 6016 9099 6192 }
+		}
+		clr_country_flag = CURRENT_SOV_PROJECT_CONSTRUCTION
+		}
+	}
+	SOV_worker_palace_1 = {
+		icon = generic_construction
+		visible = {
+			has_completed_focus = SOV_State_Megaprojects
+		}
+		cost = var:CONSTRUCTION_COST_SOV
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 70
+		}
+		available = {
+			has_manpower > 7000
+			owns_state = 219
+			has_war = no
+			219 = {
+			is_core_of = ROOT
+			}
+			NOT = { has_country_flag = CURRENT_SOV_PROJECT_CONSTRUCTION }
+		}
+		complete_effect = {
+			add_manpower = -7000
+			#news_event = twrspeercities.1 #Construction begins
+		}  
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+		days_remove = 100
+		remove_effect = {
+		custom_effect_tooltip = FIRST_PHASE_PALACE_SOVIETS
+		set_country_flag = PALACE_SOVIETS_FIRST
+		add_stability = 0.05
+		219 = {
+			add_extra_state_shared_building_slots = 6
+			}
+		clr_country_flag = CURRENT_SOV_PROJECT_CONSTRUCTION
+		}
+	}
+	SOV_worker_palace_2 = {
+		icon = generic_construction
+		visible = {
+			has_country_flag = PALACE_SOVIETS_FIRST
+		}
+		cost = 100
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 70
+		}
+		available = {
+			has_manpower > 150000
+			owns_state = 219
+			has_war = no
+			219 = {
+			is_core_of = ROOT
+			}
+			has_country_flag = MOSCOW_RENOVATED_FLAG
+			NOT = { has_country_flag = CURRENT_SOV_PROJECT_CONSTRUCTION }
+			NOT = { has_global_flag = moscow_rebuilt }
+		}
+		complete_effect = {
+			add_manpower = -150000
+			set_country_flag = CURRENT_SOV_PROJECT_CONSTRUCTION
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+		
+	
+		news_event = twrnews.180
+		219 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+		    type = bunker
+		    level = 5
+		    instant_build = yes
+		    province = {
+		        all_provinces = yes
+		        limit_to_border = no
+		    }
+		}
+	 		remove_province_modifier = {
+			static_modifiers = { terrain_moscow_healed }
+			province = { id = 6380 }	
+			}
+ 			add_province_modifier = {
+			static_modifiers = { terrain_moscow_soviet }
+			province = { id = 6380 }	
+			}
+			
+ 
+		}
+		clr_country_flag = CURRENT_SOV_PROJECT_CONSTRUCTION
+		set_country_flag = palace_of_sovs_built
+		country_event = twrmakebuilding.3
+		
+		}
+	}
+}
+operations = {
+	KAZ_race_to_perm = {
+	allowed = {
+	tag = KAZ
+	}
+        available = {
+            398 = { is_controlled_by = ROOT }
+        }
+        activation = {
+        	OR = {
+        	has_war_with = SOV
+            has_war_with = TRV
+            }
+        }
+        is_good = no
+        selectable_mission = no
+        days_mission_timeout = 100
+        timeout_effect = {
+        add_war_support = -0.3
+        add_stability = -0.3
+        }
+        complete_effect = {
+        add_war_support = 0.1
+        if = {
+        limit = {
+       	has_war_with = SOV
+        country_exists = SOV
+        NOT = {
+        SOV = {
+        has_idea = SOV_unwilling_civil_war
+        }
+        	}
+        }
+        SOV = {
+		add_timed_idea = {
+	    idea = SOV_unwilling_civil_war
+	    days = 180
+	    }
+		add_war_support = -0.15
+		add_stability = -0.1
+			}
+        }
+        if = {
+        limit = {
+        has_war_with = SOV
+        country_exists = SOV
+        SOV = {
+        has_idea = SOV_unwilling_civil_war
+        	}
+        }
+        SOV = {
+		modify_timed_idea = {
+	    idea = SOV_unwilling_civil_war
+	    days = 180
+	    }
+		add_war_support = -0.15
+		add_stability = -0.1
+			}
+    	}
+        if = {
+        limit = {
+        has_war_with = TRV
+        country_exists = TRV
+        }
+        TRV = {
+		add_timed_idea = {
+	    idea = SOV_unwilling_civil_war
+	    days = 180
+	    }
+		add_war_support = -0.15
+		add_stability = -0.1
+				}
+        	}
+        }
+    }
+	SOV_fight_vlasov_fail_safe = {
+		allowed = {
+		tag = SOV
+		}
+		icon = generic_nationalism
+		activation = {
+		NOT = {
+		has_country_flag = KONEV_REKTED_PERM_CHECK
+		}	
+		NOT = {
+		country_exists = TRV
+		}
+		country_exists = KAZ
+		owns_state = 407
+		has_war = no
+        }
+
+		visible = {
+		NOT = {
+		has_country_flag = KONEV_REKTED_PERM_CHECK
+		}	
+		NOT = {
+		country_exists = TRV
+		}
+		country_exists = KAZ
+		owns_state = 407
+		has_war = no
+		}
+
+		available = {
+		hidden_trigger = {
+		NOT = {
+		has_country_flag = KONEV_REKTED_PERM_CHECK
+			}
+		}	
+		NOT = {
+		country_exists = TRV
+		}
+		country_exists = KAZ
+		owns_state = 407
+		has_war = no
+		}	
+
+		selectable_mission = yes
+		days_mission_timeout = 7
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		cost = freedec?0
+		complete_effect = {
+		KAZ = { country_event = { id = twrUSSR.24 days = 3 } }
+		country_event = { id = twrkazan.10 }
+		}
+		timeout_effect = {
+		KAZ = { country_event = { id = twrUSSR.24 days = 3 } }
+		country_event = { id = twrkazan.10 }
+		}
+	}
+	TRV_fight_vlasov_fail_safe = {
+		allowed = {
+		tag = TRV
+		}
+		icon = generic_nationalism
+		activation = {
+		NOT = {
+		country_exists = SOV
+		}
+		country_exists = KAZ
+		owns_state = 407
+		has_war = no
+        }
+
+		visible = {	
+		NOT = {
+		country_exists = SOV
+		}
+		country_exists = KAZ
+		owns_state = 407
+		has_war = no
+		}
+
+		available = {
+		NOT = {
+		country_exists = SOV
+		}
+		country_exists = KAZ
+		owns_state = 407
+		has_war = no
+		}	
+
+		selectable_mission = yes
+		days_mission_timeout = 7
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		cost = freedec?0
+		complete_effect = {
+		KAZ = { country_event = { id = twrUSSR.24 days = 3 } }
+		}
+		timeout_effect = {
+		KAZ = { country_event = { id = twrUSSR.24 days = 3 } }
+		}
+	}		
+}
+SOV_suslov_decisions = {
+	SOV_increase_military_political_representation = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_increase_budget
+		}
+		visible = {
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 10
+		compare = less_than
+				}			
+		}
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 30
+		ai_will_do = {
+			factor = 50
+		}
+		modifier = {
+		political_power_factor = -0.1
+		}
+		cost = 85
+		remove_effect = {
+		custom_effect_tooltip = SUSLOV_RA_FAVOUR_INCREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 1
+				}
+ 			}
+		}
+	}	
+	SOV_rotate_suspected_populations = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_rootless_cosmopolitanism
+		}
+		visible = {
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 10
+		compare = less_than
+				}			
+		}
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 35
+		ai_will_do = {
+			factor = 50
+		}
+		modifier = {
+		stability_weekly = -0.02
+		}
+		cost = 85
+		remove_effect = {
+		custom_effect_tooltip = SUSLOV_AGI_FAVOUR_INCREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_AGITROP_VAR
+		value = 1
+				}
+ 			}
+		}
+	}
+	SOV_adjust_diplomatic_policies = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_to_hell_with_internationale
+		}
+		visible = {
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 10
+		compare = less_than
+				}			
+		}
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 35
+		ai_will_do = {
+			factor = 50
+		}
+		modifier = {
+		war_support_weekly = -0.02
+		}
+		cost = 85
+		remove_effect = {
+		custom_effect_tooltip = SUSLOV_FM_FAVOUR_INCREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_FM_VAR
+		value = 1
+				}
+ 			}
+		}
+	}
+	SOV_deploy_soldiers_for_facility_construction = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = RA_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_tenfold_initiative
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_RA_POWER_ENOUGH_2		
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 2
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 45
+		days_remove = 45
+		ai_will_do = {
+			base = 30
+		}
+		modifier = {
+		training_time_factor = -0.05
+		production_speed_infrastructure_factor = 0.15
+		production_speed_bunker_factor = 0.15
+		production_speed_fuel_silo_factor = 0.15
+		production_speed_anti_air_building_factor = 0.15
+		}
+		cost = 85
+		complete_effect = {
+		set_country_flag = RA_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = RA_DECISION_IP
+		}
+	}	
+	SOV_deploy_soldiers_for_complex_construction = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = RA_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_tenfold_initiative
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_RA_POWER_ENOUGH_4	
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 4
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 45
+		days_remove = 45
+		ai_will_do = {
+			base = 30
+		}
+		modifier = {
+		training_time_factor = -0.1
+		production_speed_arms_factory_factor = 0.15
+		production_speed_nuclear_reactor_factor = 0.15
+		production_speed_rocket_site_factor = 0.15
+		production_speed_radar_station_factor = 0.15
+		}
+		cost = 100
+		complete_effect = {
+		set_country_flag = RA_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = RA_DECISION_IP
+		}
+	}
+	SOV_deploy_armies_to_public_works = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = RA_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_mass_proletarian_defense
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_RA_POWER_ENOUGH_6
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 6
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 35
+		ai_will_do = {
+			base = 30
+		}
+		modifier = {
+		training_time_factor = -0.1
+		stability_weekly = 0.02
+		}
+		cost = 85
+		complete_effect = {
+		set_country_flag = RA_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = RA_DECISION_IP
+		}
+	}
+	SOV_all_female_division = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = RA_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_female_conscription
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_RA_POWER_ENOUGH_8
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 8
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = yes
+		days_remove = 100
+		ai_will_do = {
+			base = 30
+		}
+		cost = 100
+		complete_effect = {
+		set_country_flag = RA_DECISION_IP
+		custom_effect_tooltip = SUSLOV_RA_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = -1
+				}
+ 			}
+		}
+		remove_effect = {
+		clr_country_flag = RA_DECISION_IP
+		hidden_effect = {
+		division_template = {
+		    name = "Zhenskiy Gvardeyskiy Divizion"
+		    is_locked = yes
+		    division_names_group = SOV_INF_01
+		    priority = 2
+		    regiments = {
+			infantry = { x = 0 y = 0 }
+			infantry = { x = 0 y = 1 }
+			infantry = { x = 0 y = 2 }
+			infantry = { x = 1 y = 0 }
+			infantry = { x = 1 y = 1 }
+			infantry = { x = 1 y = 2 }
+			infantry = { x = 2 y = 0 }
+			artillery_brigade = { x = 2 y = 1 }
+			artillery_brigade = { x = 2 y = 2 }
+		    }
+		    support = { 
+			engineer = { x = 0 y = 0 } 		# Engineer bn
+			artillery = { x = 0 y = 1 } 	# Heavy Arty Regiment had 2x 122mm bn
+			mot_recon = { x = 0 y = 2 }
+					}
+		    	} 
+			}
+		capital_scope = {
+		create_unit = {
+	    division = "name = \"1-ya Zhenskaya Gvardeyskaya Diviziya\" division_template = \"Zhenskiy Gvardeyskiy Divizion\" start_experience_factor = 1.0 start_equipment_factor = 1.0"
+	    owner = SOV
+				}
+			}
+		}
+	}
+	SOV_summon_reserve_division = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = RA_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_tenfold_initiative
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_RA_POWER_ENOUGH_8
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 8
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_remove = 95
+		days_re_enable = 95
+		ai_will_do = {
+			base = 30
+		}
+		cost = 95
+		complete_effect = {
+		set_country_flag = RA_DECISION_IP
+		custom_effect_tooltip = SUSLOV_RA_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = -1
+				}
+ 			}
+		}
+		remove_effect = {
+		clr_country_flag = RA_DECISION_IP
+		hidden_effect = {
+		if = {
+		limit = { NOT = { has_template = "Rezervnyy Divizion" } }
+		division_template = {
+		    name = "Rezervnyy Divizion"
+		    is_locked = yes
+		    division_names_group = SOV_GAR_01
+		    priority = 1
+		    regiments = {
+			light_infantry = { x = 0 y = 0 }
+			light_infantry = { x = 0 y = 1 }
+			light_infantry = { x = 0 y = 2 }
+			light_infantry = { x = 1 y = 0 }
+			light_infantry = { x = 1 y = 1 }
+			light_infantry = { x = 1 y = 2 }
+		    }
+		    support = { 
+			engineer = { x = 0 y = 0 } 		# Engineer bn
+					}
+		    	} 
+			}
+		}
+		capital_scope = {
+		create_unit = {
+	    division = "name = \"1-ya Zhenskaya Gvardeyskaya Diviziya\" division_template = \"Zhenskiy Gvardeyskiy Divizion\" start_experience_factor = 0.2 start_equipment_factor = 0.5"
+	    owner = SOV
+	    		}
+			}
+		}
+	}
+
+	SOV_purchase_black_market_small_arms = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = FM_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_increase_budget
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_FM_POWER_ENOUGH_2		
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 2
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 30
+		ai_will_do = {
+			base = 30
+		}
+		cost = 85
+		complete_effect = {
+		set_country_flag = FM_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = FM_DECISION_IP
+		random_list = {
+		50 = {
+		add_equipment_to_stockpile = {
+    	type = infantry_equipment
+    	amount = 500
+    	producer = GER
+			}
+		}
+		50 = {
+		add_equipment_to_stockpile = {
+    	type = infantry_equipment
+    	amount = 500
+    	producer = CHI
+			}
+		}
+			}
+		}
+	}
+
+	SOV_purchase_black_market_guns = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = FM_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_increase_budget
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_FM_POWER_ENOUGH_4		
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 4
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 30
+		ai_will_do = {
+			base = 30
+		}
+		cost = 85
+		complete_effect = {
+		set_country_flag = FM_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = FM_DECISION_IP
+		random_list = {
+		50 = {
+		add_equipment_to_stockpile = {
+    	type = artillery_equipment
+    	amount = 100
+    	producer = GER
+			}
+		}
+		50 = {
+		add_equipment_to_stockpile = {
+    	type = artillery_equipment
+    	amount = 100
+    	producer = CHI
+			}
+		}
+			}
+		}
+	}
+
+	SOV_tech_studying = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = FM_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_increase_budget
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_FM_POWER_ENOUGH_5	
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 5
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 60
+		days_remove = 60
+		ai_will_do = {
+			base = 30
+		}
+		cost = 85
+		modifier = {
+		research_speed_factor = 0.05
+		}
+		complete_effect = {
+		set_country_flag = FM_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = FM_DECISION_IP
+		}
+	}
+
+	SOV_purchase_black_market_tanks = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = FM_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_increase_budget
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_FM_POWER_ENOUGH_8		
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 8
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 30
+		ai_will_do = {
+			base = 30
+		}
+		cost = 90
+		complete_effect = {
+		set_country_flag = FM_DECISION_IP
+		custom_effect_tooltip = SUSLOV_FM_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_FM_VAR
+		value = -1
+				}
+ 			}
+		}
+		remove_effect = {
+		clr_country_flag = FM_DECISION_IP
+		random_list = {
+		50 = {
+		add_equipment_to_stockpile = {
+    	type = MBT_equipment
+    	amount = 25
+    	producer = GER
+			}
+		}
+		50 = {
+		add_equipment_to_stockpile = {
+    	type = MBT_equipment
+    	amount = 25
+    	producer = USA
+			}
+		}
+			}
+		}
+	}
+
+	SOV_purchase_black_market_jets = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = FM_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_increase_budget
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_FM_POWER_ENOUGH_8		
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 8
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 30
+		ai_will_do = {
+			base = 30
+		}
+		cost = 90
+		complete_effect = {
+		set_country_flag = FM_DECISION_IP
+		custom_effect_tooltip = SUSLOV_FM_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_FM_VAR
+		value = -1
+				}
+ 			}
+		}
+		remove_effect = {
+		clr_country_flag = FM_DECISION_IP
+		random_list = {
+		50 = {
+		add_equipment_to_stockpile = {
+    	type = jet_fighter_equipment_1
+    	amount = 5
+    	producer = GER
+			}
+		}
+		50 = {
+		add_equipment_to_stockpile = {
+    	type = jet_fighter_equipment_1
+    	amount = 5
+    	producer = USA
+			}
+		}
+			}
+		}
+	}
+
+	SOV_gather_political_capital = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = AGI_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_righting_wrongs
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_AGI_POWER_ENOUGH_2		
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 2
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 35
+		ai_will_do = {
+			base = 30
+		}
+		modifier = {
+		stability_weekly = -0.01
+		}
+		cost = freedec?0
+		complete_effect = {
+		set_country_flag = AGI_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = AGI_DECISION_IP
+		add_political_power = 55
+		}
+	}	
+
+	SOV_SUS_propaganda_offensive = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = AGI_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_righting_wrongs
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_AGI_POWER_ENOUGH_4	
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 4
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 35
+		ai_will_do = {
+			base = 30
+		}
+		modifier = {
+		stability_factor = 0.1
+		}
+		cost = 65
+		complete_effect = {
+		set_country_flag = AGI_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = AGI_DECISION_IP
+		}
+	}
+
+	SOV_workplace_propaganda_drive = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = AGI_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_pumping_the_first_department
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_AGI_POWER_ENOUGH_7
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 7
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 35
+		ai_will_do = {
+			base = 30
+		}
+		modifier = {
+		production_factory_efficiency_gain_factor = 0.05
+		}
+		cost = 85
+		complete_effect = {
+		set_country_flag = AGI_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = AGI_DECISION_IP
+		}
+	}
+
+	SOV_public_resource_initiative = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 1
+		compare = greater_than
+			}
+		NOT = {
+		has_country_flag = AGI_DECISION_IP
+			}			
+		}
+		available = {
+		has_completed_focus = SOV_dekulakization
+		custom_trigger_tooltip = {
+	    tooltip = SUSLOV_AGI_POWER_ENOUGH_8
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 8
+		compare = greater_than_or_equals
+				}	
+			}
+		}		
+
+		fire_only_once = no
+		days_re_enable = 120
+		days_remove = 100
+		ai_will_do = {
+			base = 30
+		}
+		modifier = {
+		country_resource_steel = 25
+		country_resource_oil = 10
+		}
+		cost = 90
+		complete_effect = {
+		set_country_flag = AGI_DECISION_IP
+		}
+		remove_effect = {
+		clr_country_flag = AGI_DECISION_IP
+		}
+	}
+	SOV_curb_military_influence = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = 1
+		compare = greater_than
+				}			
+		}
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 30
+		ai_will_do = {
+			base = 1
+			modifier = {
+			factor = 100
+			has_idea = SOV_SUSLOVE_too_much_RA
+			}
+		}
+		modifier = {
+		army_morale_factor = -0.1
+		}
+		cost = 40
+		remove_effect = {
+		custom_effect_tooltip = SUSLOV_RA_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_RED_ARMY_VAR
+		value = -1
+				}
+ 			}
+		}
+	}	
+	SOV_curb_agitrop_influence = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_AGITROP_VAR
+		value = 1
+		compare = greater_than
+				}			
+		}
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 30
+		ai_will_do = {
+			base = 1
+			modifier = {
+			factor = 100
+			has_idea = SOV_SUSLOVE_too_much_AGI
+			}
+		}
+		modifier = {
+		war_support_factor = -0.15
+		}
+		cost = 40
+		remove_effect = {
+		custom_effect_tooltip = SUSLOV_AGI_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_AGITROP_VAR
+		value = -1
+				}
+ 			}
+		}
+	}
+	SOV_curb_foreign_min_influence = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		visible = {
+	    check_variable = {
+		var = SUS_FM_VAR
+		value = 1
+		compare = greater_than
+				}			
+		}
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 30
+		ai_will_do = {
+			base = 1
+			modifier = {
+			factor = 100
+			has_idea = SOV_SUSLOVE_too_much_FM
+			}
+		}
+		modifier = {
+		stability_factor = -0.15
+		}
+		cost = 40
+		remove_effect = {
+		custom_effect_tooltip = SUSLOV_FM_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		SOV_clamp_variables_ps = yes
+ 		add_to_variable = {
+		var = SUS_FM_VAR
+		value = -1
+				}
+ 			}
+		}
+	}
+}
+SOV_bulganin_decisions = {
+	SOV_lessen_regulations_on_rural = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_left_right_forward
+		custom_trigger_tooltip = {
+	    tooltip = BULGANIN_BC_FAVOUR_ENOUGH
+	    check_variable = {
+		var = SOV_BC_VAR
+		value = 1
+		compare = greater_than_or_equals
+				}		
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = BULGANIN_FAVOUR_USE_COST #95 at start
+		complete_effect = {
+		add_offsite_building = { type = industrial_complex level = 1 }
+		random_owned_state = {
+		add_extra_state_shared_building_slots = 2
+		}
+		custom_effect_tooltip = BULGANIN_R_FAVOUR_INCREASE
+		custom_effect_tooltip = BULGANIN_BC_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		add_to_variable = {
+		var = SOV_RURAL_VAR
+		value = 1
+				}
+ 		add_to_variable = {
+		var = SOV_BC_VAR
+		value = -1
+				}
+		BULGANIN_clamp_var = yes
+ 			}
+		}
+	}
+	SOV_rural_conscription = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_left_right_forward
+		custom_trigger_tooltip = {
+	    tooltip = BULGANIN_R_FAVOUR_ENOUGH
+	    check_variable = {
+		var = SOV_RURAL_VAR
+		value = 1
+		compare = greater_than_or_equals
+				}		
+			}		
+		}
+
+		fire_only_once = no
+		days_re_enable = 100
+		days_remove = 100
+		ai_will_do = {
+			factor = 35
+		}
+
+		cost = BULGANIN_FAVOUR_USE_COST #95 at start
+		modifier = {
+		conscription_factor = 0.05
+		mobilization_speed = 0.05
+		}
+		complete_effect = {
+		custom_effect_tooltip = BULGANIN_R_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		add_to_variable = {
+		var = SOV_RURAL_VAR
+		value = -1
+				}
+		BULGANIN_clamp_var = yes
+ 			}
+		}
+	}
+	SOV_favourable_business_contracts = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_left_right_forward
+		custom_trigger_tooltip = {
+	    tooltip = BULGANIN_BC_FAVOUR_ENOUGH
+	    check_variable = {
+		var = SOV_BC_VAR
+		value = 1
+		compare = greater_than_or_equals
+				}		
+			}		
+		}
+
+		fire_only_once = no
+		days_re_enable = 45
+		days_remove = 45
+		ai_will_do = {
+			factor = 35
+		}
+		modifier = {
+		production_speed_buildings_factor = 0.1
+		production_factory_max_efficiency_factor = 0.05		
+		}
+		cost = BULGANIN_FAVOUR_USE_COST #95 at start
+		complete_effect = {
+		custom_effect_tooltip = BULGANIN_BC_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		add_to_variable = {
+		var = SOV_BC_VAR
+		value = -1
+				}
+		BULGANIN_clamp_var = yes
+ 			}
+		}
+	}
+	SOV_improve_national_defense = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_left_right_forward
+		custom_trigger_tooltip = {
+	    tooltip = BULGANIN_NS_FAVOUR_ENOUGH
+	    check_variable = {
+		var = SOV_NATSEC_VAR
+		value = 1
+		compare = greater_than_or_equals
+				}		
+			}		
+		}
+
+		fire_only_once = no
+		days_re_enable = 50
+		days_remove = 50
+		ai_will_do = {
+			factor = 35
+		}
+
+		cost = BULGANIN_FAVOUR_USE_COST #95 at start
+		modifier = {
+		training_time_factor = 0.1
+		resistance_growth = -0.15
+		}
+		complete_effect = {
+		custom_effect_tooltip = BULGANIN_NS_FAVOUR_DECREASE
+ 		hidden_effect = {
+ 		add_to_variable = {
+		var = SOV_NATSEC_VAR
+		value = -1
+				}
+		BULGANIN_clamp_var = yes
+ 			}
+		}
+	}
+	SOV_introduce_conservative_policies = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_left_right_forward
+		}
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 30
+		ai_will_do = {
+			factor = 35
+		}
+
+		cost = 80
+		modifier = {
+		political_power_factor = -0.1
+		}
+		remove_effect = {
+		custom_effect_tooltip = BULGANIN_R_FAVOUR_INCREASE
+ 		hidden_effect = {
+ 		add_to_variable = {
+		var = SOV_RURAL_VAR
+		value = 1
+				}
+		BULGANIN_clamp_var = yes
+		if = {
+		limit = { NOT = { has_completed_focus = SOV_We_Get_Rich_Together } }
+		random_list = {
+		45 = { country_event = { id = twrBULGANIN.29 days = 14 random = 600 } }
+		45 = { country_event = { id = twrBULGANIN.30 days = 14 random = 600 } }
+		10 = {}
+		}
+				}
+ 			}
+		}
+	}
+	SOV_subsidise_businesses = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_left_right_forward
+		}
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 30
+		ai_will_do = {
+			factor = 35
+		}
+
+		cost = 80
+		modifier = {
+		consumer_goods_factor = 0.03
+		}
+		remove_effect = {
+		custom_effect_tooltip = BULGANIN_BC_FAVOUR_INCREASE
+ 		hidden_effect = {
+ 		add_to_variable = {
+		var = SOV_BC_VAR
+		value = 1
+				}
+		BULGANIN_clamp_var = yes
+		if = {
+		limit = { NOT = { has_completed_focus = SOV_We_Get_Rich_Together } }
+		random_list = {
+		45 = { country_event = { id = twrBULGANIN.30 days = 14 random = 600 } }
+		45 = { country_event = { id = twrBULGANIN.28 days = 14 random = 600 } }
+		10 = {}
+		}
+				}
+ 			}
+		}
+	}
+	SOV_security_checkups = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_left_right_forward
+		}
+
+		fire_only_once = no
+		days_re_enable = 35
+		days_remove = 30
+		ai_will_do = {
+			factor = 35
+		}
+
+		cost = 80
+		modifier = {
+		research_speed_factor = -0.1
+		}
+		remove_effect = {
+		custom_effect_tooltip = BULGANIN_NS_FAVOUR_INCREASE
+ 		hidden_effect = {
+ 		add_to_variable = {
+		var = SOV_NATSEC_VAR
+		value = 1
+				}
+		BULGANIN_clamp_var = yes
+		if = {
+		limit = { NOT = { has_completed_focus = SOV_We_Get_Rich_Together } }
+		random_list = {
+		45 = { country_event = { id = twrBULGANIN.29 days = 14 random = 600 } }
+		45 = { country_event = { id = twrBULGANIN.28 days = 14 random = 600 } }
+		10 = {}
+		}
+				}
+ 			}
+		}
+	}
+	SOV_BULGANIN_coup_commie_tags = {
+	allowed = {
+	tag = SOV
+	}
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = AZR
+					tag = RAC
+					tag = SUK 
+					tag = SMO
+					tag = CDA
+					tag = BLR
+					tag = BLG
+				}
+			}
+		}
+		icon = generic_nationalism
+		available = {
+		has_completed_focus = SOV_convincing_pragmatists
+		FROM = {
+		is_communist = yes 
+		has_war = no
+		NOT = {
+		has_government = paternal_autocrat
+		has_country_flag = DEFIANT_AGAINST_SOVIET
+				}
+			}
+		has_war = no
+		has_government = paternal_autocrat
+		}
+
+		visible = {
+			FROM = {
+			is_communist = yes 
+			has_war = no
+			NOT = {
+			has_government = paternal_autocrat
+				}	
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 70
+		}
+		custom_cost_trigger = {
+			has_political_power > 60
+			has_manpower > 3000
+		}
+		custom_cost_text = SOV_PARTISAN_COUP_EM
+		modifier = {
+		consumer_goods_factor = 0.01
+		political_power_factor = -0.1
+		}
+		complete_effect = {
+		add_manpower = -3000
+		add_political_power = -60
+		}
+		remove_effect = {
+		FROM = {
+		country_event = twrBULGANIN.17
+			}
+		}
+		days_remove = 60
+	}	
+}
+SOV_ASSR_decisions = {
+	SOV_Nenets_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 262
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            262 = {
+                custom_effect_tooltip = setup_assr_here
+            }
+            hidden_effect = {
+            if = {
+            limit = { tag = SBR }
+            262 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+                }            
+            else = {
+            262 = {
+                add_dynamic_modifier = { modifier = nenets_assr_i }
+                		}
+                	}
+                }
+            }
+            262 = { add_extra_state_shared_building_slots = 2 add_manpower = 5000 }
+		}
+	}
+	SOV_Novaya_Zemlya_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 961
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            961 = {
+                custom_effect_tooltip = setup_assr_here
+            }
+            hidden_effect = {
+            if = {
+            limit = { tag = SBR }
+            961 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+                }            
+            else = {
+            961 = {
+                add_dynamic_modifier = { modifier = novaya_zemlya_i }
+                		}
+                	}
+                }
+            }
+            961 = { add_extra_state_shared_building_slots = 1 }
+            navy_experience = 25
+		}
+	}
+	SOV_Tartar_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 249
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            249 = {
+                custom_effect_tooltip = setup_assr_here
+            }
+            249 = { add_extra_state_shared_building_slots = 1 }
+	        create_corps_commander = {
+	            name = "Pyotr Gavrilov"
+	            portrait_path = "gfx/leaders/NOV/Pyotr_Gavrilov.dds"
+	            traits = { }
+	            skill = 2
+	            attack_skill = 1
+	            defense_skill = 2
+	            planning_skill = 2
+	            logistics_skill = 1
+	        }
+	        hidden_effect = {
+	        if = {
+	        limit = { tag = SBR }
+	        249 = {
+            add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+	        else = {
+	        249 = {
+            add_dynamic_modifier = { modifier = tartar_assr_i }
+                		}
+                	}
+	        	}
+	        }
+		}
+	}
+	SOV_Komi_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 397
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 80
+		complete_effect = {
+            397 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+			    type = fuel_silo
+			    level = 1
+			    instant_build = yes
+				}
+                add_building_construction = {
+			    type = infrastructure
+			    level = 2
+			    instant_build = yes
+				}
+            }
+            hidden_effect = {
+            if = {
+            limit = { tag = SBR }
+            397 = {
+            add_dynamic_modifier = { modifier = SBR_assrs }
+            }            
+            else = {
+            397 = {
+            add_dynamic_modifier = { modifier = komi_assr_flag_i }
+            			}
+            		}
+            	}
+            }
+			add_resource = {
+			    type = oil
+			    amount = 15
+			    state = 397
+			}
+		}
+	}
+	SOV_Udmurt_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 399
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 95
+		complete_effect = {
+            399 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+			    type = arms_factory
+			    level = 1
+			    instant_build = yes
+				}
+            }
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            399 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+		else = {
+            399 = {
+                add_dynamic_modifier = { modifier = udmurt_assr_flag_i }
+                	}
+                }
+            }
+        }	
+            add_equipment_to_stockpile = {
+		    type = infantry_equipment_0
+		    amount = 2000
+		    producer = SOV
+			}
+		}
+	}
+	SOV_Kabardian_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 972
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            972 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 2
+            }
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            972 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+		else = {
+            972 = {
+                add_dynamic_modifier = { modifier = kabardian_assr_flag_i }
+                	}
+                	}
+            	}
+        	}	
+		}
+	}
+	SOV_Chuvash_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 256
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            256 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 1
+                add_resource = {
+				    type = steel
+				    amount = 10
+				}
+            }
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            256 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+		else = {
+            256 = {
+                add_dynamic_modifier = { modifier = chuvash_assr_flag_i }
+                	}
+                	}
+            	}
+        	}	
+		}
+	}
+	SOV_Mari_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 1028
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            1028 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = infrastructure
+				    level = 1
+				    instant_build = yes
+				}                
+            }
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            1028 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+		else = {
+            1028 = {
+                add_dynamic_modifier = { modifier = mari_assr_flag_i }
+                	}
+                	}
+            	}
+        	}	
+		}
+	}
+	SOV_Mordovian_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 1029
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            1029 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = infrastructure
+				    level = 1
+				    instant_build = yes
+				}                
+            }
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            1029 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+		else = {
+            1029 = {
+                add_dynamic_modifier = { modifier = mordovian_assr_flag_i }
+                	}
+                	}
+            	}
+        	}	
+		}
+	}
+	SOV_Bashkir_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 651
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            651 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = infrastructure
+				    level = 1
+				    instant_build = yes
+				} 
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}               
+            }
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            651 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+		else = {
+            651 = {
+                add_dynamic_modifier = { modifier = bashkir_assr_flag_i }
+                	}
+                	}
+            	}
+        	}	
+		}
+	}
+	SOV_Karelian_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 215
+		owns_state = 722
+		owns_state = 216
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		army_experience = 50
+            215 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = infrastructure
+				    level = 2
+				    instant_build = yes
+				}
+            }
+            722 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = infrastructure
+				    level = 2
+				    instant_build = yes
+				}
+            }
+            216 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = infrastructure
+				    level = 2
+				    instant_build = yes
+				}
+            }
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            215 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+            722 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+            216 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+		else = {
+            215 = {
+                add_dynamic_modifier = { modifier = karelian_assr_flag_i }
+            }
+            722 = {
+                add_dynamic_modifier = { modifier = karelian_assr_flag_i }
+            }
+            216 = {
+                add_dynamic_modifier = { modifier = karelian_assr_flag_i }
+                		}
+                	}
+            	}
+        	}	
+		}
+	}
+	SOV_Crimean_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 137
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+		army_experience = 50
+            137 = {
+            	custom_effect_tooltip = setup_assr_here
+                add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = dockyard
+				    level = 2
+				    instant_build = yes
+				}
+            }
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            137 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+		else = {
+            137 = {
+                add_dynamic_modifier = { modifier = crimean_assr_flag_i }
+            }
+                	}
+            	}
+        	}	
+		}
+	}
+	SOV_North_Ossetian_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 970
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 80
+		complete_effect = {
+		970 = {
+		custom_effect_tooltip = setup_assr_here
+		}
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            970 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }		
+		else = {
+            970 = {
+                add_dynamic_modifier = { modifier = north_ossetian_assr_flag_i }
+                	}
+                }
+            }
+        }	
+			create_field_marshal = {
+				name = "Georgy Khetagurov"
+				portrait_path = "gfx/leaders/ZHU/Georgy_Khetagurov.dds"
+				traits = { }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Ivan Valukhov"
+				portrait_path = "gfx/leaders/ZHU/Ivan_Valukhov.dds"
+				traits = {  }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Konstantin Khodov"
+				portrait_path = "gfx/leaders/ZHU/Konstantin_Khodov.dds"
+				traits = { cavalry_officer }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+ 		hidden_effect = {
+ 		division_template = {
+		name = "Osetinskiy Pekhotnaya Diviziya"
+		regiments = {
+			light_infantry = { x = 0 y = 0 }
+			light_infantry = { x = 0 y = 1 }
+			light_infantry = { x = 0 y = 2 }
+			light_infantry = { x = 1 y = 0 }
+			light_infantry = { x = 1 y = 1 }
+			light_infantry = { x = 1 y = 2 }
+		}
+		support = {
+			engineer = { x = 0 y = 0 } 	# (mot) Engineer bn
+				}
+			}
+		}
+ 		588 = {
+ 		create_unit = {
+	    division = "name = \"1-ya Osetinskiy Pekhotnaya Diviziya\" division_template = \"Osetinskiy Pekhotnaya Diviziya\" start_experience_factor = 1.0 start_equipment_factor = 0.6"
+	    owner = ROOT
+	    		}
+	    	}
+		}
+	}
+	SOV_Dagestan_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 232
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 70
+		complete_effect = {
+		232 = {
+		custom_effect_tooltip = setup_assr_here
+		}
+		hidden_effect = {
+		if = {
+		limit = { tag = SBR }
+            232 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+                }
+		else = {
+            232 = {
+                add_dynamic_modifier = { modifier = dagestan_assr_flag_i }
+                	}
+                }
+            }
+        }
+			create_field_marshal = {
+				name = "Mahmud Abilov"
+				portrait_path = "gfx/leaders/LZG/Mahmud_Abilov.dds"
+				traits = { }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Araz Aliyev"
+				portrait_path = "gfx/leaders/LZG/Araz_Aliyev.dds"
+				traits = {  }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Gasret Aliev"
+				portrait_path = "gfx/leaders/LZG/Gasret_Aliev.dds"
+				traits = {  }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Isa Sultanov"
+				portrait_path = "gfx/leaders/LZG/Isa_Sultanov.dds"
+				traits = { }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Akayev Abdulabekovich"
+				portrait_path = "gfx/leaders/LZG/Akayev_Abdulabekovich.dds"
+				traits = { war_hero  }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+	}
+	SOV_Kalmyk_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 237
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 70
+		complete_effect = {
+            237 = {
+            custom_effect_tooltip = setup_assr_here
+            }
+ 		hidden_effect = {
+ 		if = {
+ 		limit = { tag = SBR }
+  		237 = {
+ 		add_dynamic_modifier = { modifier = SBR_assrs }
+ 				}		
+ 		else = {
+ 		237 = {
+ 		add_dynamic_modifier = { modifier = kalmyk_assr_flag_i }
+ 				}
+ 			}
+ 		}
+		division_template = {
+			name = "Kalmytskaya Kavaleriyskaya Diviziya"				# Cavalry Division	
+			# Note: Divisions were nowhere near full strength until mobilized
+			regiments = {
+				cavalry = { x = 0 y = 0 }
+				cavalry = { x = 0 y = 1 }
+				cavalry = { x = 0 y = 2 }
+				cavalry = { x = 1 y = 0 }
+				cavalry = { x = 1 y = 1 }
+				cavalry = { x = 1 y = 2 }
+				}
+			}
+		}
+ 		237 = {
+ 		create_unit = {
+	    division = "name = \"1-ya Kalmytskaya Kavaleriyskaya Diviziya\" division_template = \"Kalmytskaya Kavaleriyskaya Diviziya\" start_experience_factor = 1.0 start_equipment_factor = 0.5"
+	    owner = ROOT
+	    		}
+ 		create_unit = {
+	    division = "name = \"2-ya Kalmytskaya Kavaleriyskaya Diviziya\" division_template = \"Kalmytskaya Kavaleriyskaya Diviziya\" start_experience_factor = 1.0 start_equipment_factor = 0.5"
+	    owner = ROOT
+	    		}
+	    	}
+		}
+	}
+	SOV_Checheno_Ingush_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 233
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 70
+		complete_effect = {
+            233 = {
+            custom_effect_tooltip = setup_assr_here
+            }
+ 		hidden_effect = {
+ 		if = {
+ 		limit = { tag = SBR }
+            233 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+                } 		
+ 		else = {
+            233 = {
+                add_dynamic_modifier = { modifier = chechen_ingush_assr_flag_i }
+                }
+            }
+        }
+		division_template = {
+		name = "Chechenskaya Pekhotnaya Diviziya"
+		# Note: Divisions were nowhere near full strength until mobilized
+		regiments = {
+			mountaineers = { x = 0 y = 0 }
+			mountaineers = { x = 0 y = 1 }
+			mountaineers = { x = 0 y = 2 }
+			mountaineers = { x = 1 y = 0 }
+			mountaineers = { x = 1 y = 1 }
+			mountaineers = { x = 1 y = 2 }
+			cavalry = { x = 2 y = 0 }
+			cavalry = { x = 2 y = 1 }
+		}
+		support = {
+		engineer = { x = 0 y = 0 } 	# (mot) Engineer bn
+				}
+			}
+		}
+ 		233 = {
+ 		create_unit = {
+	    division = "name = \"1-ya Chechenskaya Pekhotnaya Diviziya\" division_template = \"Chechenskaya Pekhotnaya Diviziya\" start_experience_factor = 1.0 start_equipment_factor = 0.5"
+	    owner = ROOT
+	    		}
+	    	}
+		}
+	}
+	SOV_Buryat_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 565
+		owns_state = 564
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 80
+		complete_effect = {
+			add_stability = 0.05
+            565 = {
+            custom_effect_tooltip = setup_assr_here
+	            add_building_construction = {
+			    type = arms_factory
+			    level = 1
+			    instant_build = yes
+				}
+	            add_building_construction = {
+			    type = infrastructure
+			    level = 2
+			    instant_build = yes
+				}
+            }
+            564 = {
+            custom_effect_tooltip = setup_assr_here
+	            add_building_construction = {
+			    type = arms_factory
+			    level = 1
+			    instant_build = yes
+				}
+	            add_building_construction = {
+			    type = infrastructure
+			    level = 2
+			    instant_build = yes
+				}
+            }
+ 		hidden_effect = {
+ 		if = {
+ 		limit = { tag = SBR }
+            565 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+            564 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            } 		
+ 		else = {
+            565 = {
+                add_dynamic_modifier = { modifier = buryat_assr_flag_i }
+            }
+            564 = {
+                add_dynamic_modifier = { modifier = buryat_assr_flag_i }
+                		}
+                	}
+                }
+            }
+		}
+	}
+	SOV_Yakut_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 574
+		owns_state = 644
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 80
+		complete_effect = {
+            574 = {
+            custom_effect_tooltip = setup_assr_here
+            add_extra_state_shared_building_slots = 1
+	            add_building_construction = {
+			    type = arms_factory
+			    level = 1
+			    instant_build = yes
+				}
+	            add_building_construction = {
+			    type = infrastructure
+			    level = 3
+			    instant_build = yes
+				}
+            }
+            644 = {
+            custom_effect_tooltip = setup_assr_here
+            add_extra_state_shared_building_slots = 1
+	            add_building_construction = {
+			    type = industrial_complex
+			    level = 1
+			    instant_build = yes
+				}
+	            add_building_construction = {
+			    type = infrastructure
+			    level = 3
+			    instant_build = yes
+				}
+            }
+ 		hidden_effect = {
+ 		if = {
+ 		limit = { tag = SBR }
+            574 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+            644 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            } 		
+ 		else = {
+            574 = {
+                add_dynamic_modifier = { modifier = yakut_assr_i }
+            }
+            644 = {
+                add_dynamic_modifier = { modifier = yakut_assr_i }
+                		}
+                	}
+                }
+            }
+		}
+	}
+	SOV_Tuvan_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 329
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 70
+		complete_effect = {
+            329 = {
+            custom_effect_tooltip = setup_assr_here
+            add_extra_state_shared_building_slots = 1
+	            add_building_construction = {
+			    type = industrial_complex
+			    level = 1
+			    instant_build = yes
+				}
+	            add_building_construction = {
+			    type = infrastructure
+			    level = 3
+			    instant_build = yes
+				}
+            }
+ 		hidden_effect = {
+ 		if = {
+ 		limit = { tag = SBR }
+            329 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            } 		
+ 		else = {
+            329 = {
+                add_dynamic_modifier = { modifier = tuva_i }
+                		}
+                	}
+            	}
+            }
+		}
+	}
+	SOV_Abkhaz_ASSR = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 962
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+            962 = {
+            custom_effect_tooltip = setup_assr_here
+            add_extra_state_shared_building_slots = 2
+            }
+ 		hidden_effect = {
+ 		if = {
+ 		limit = { tag = SBR }
+            962 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+                }		
+ 		else = {
+            962 = {
+                add_dynamic_modifier = { modifier = abkhaz_assr_flag_i }
+                		}
+                	}
+            	}
+            }
+		}
+	}
+	SOV_Jewish_ASSR = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 870
+		has_completed_focus = SOV_kalinist_revival
+		}
+		visible = {
+		has_completed_focus = SOV_turkenich_leadership
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 80
+		complete_effect = {
+		add_manpower = 7000
+        870 = {
+        custom_effect_tooltip = setup_assr_here
+        add_extra_state_shared_building_slots = 1
+            add_building_construction = {
+		    type = industrial_complex
+		    level = 1
+		    instant_build = yes
+			}
+            add_building_construction = {
+		    type = infrastructure
+		    level = 3
+		    instant_build = yes
+			}
+        }
+ 		hidden_effect = {
+ 		870 = {
+		add_dynamic_modifier = {
+	    modifier = jewish_assr_i
+	    			}
+	    		}
+            }
+		}
+	}
+	SOV_Fate_of_Belarus = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 96
+		owns_state = 95
+		owns_state = 94
+		owns_state = 928
+		owns_state = 241
+		owns_state = 206
+		owns_state = 207
+		owns_state = 204
+		owns_state = 194
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		if = {
+		limit = { tag = SBR }
+ 		207 = { custom_effect_tooltip = setup_assr_here }
+ 		206 = { custom_effect_tooltip = setup_assr_here }
+ 		204 = { custom_effect_tooltip = setup_assr_here }
+ 		928 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+ 		207 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		206 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		204 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		928 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		}
+		else = {
+		country_event = twrSSRS.1
+				}
+			}
+		}
+	}
+	SOV_Fate_of_Ukraine = {
+	
+		icon = eng_trade_unions_support
+		available = {
+		controls_ruk = yes
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+		if = {
+		limit = { tag = SBR }
+ 		226 = { custom_effect_tooltip = setup_assr_here }
+ 		197 = { custom_effect_tooltip = setup_assr_here }
+ 		203 = { custom_effect_tooltip = setup_assr_here }
+ 		202 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+ 		226 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		197 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		203 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		202 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		}
+		else = {
+		country_event = twrSSRS.2
+				}
+			}
+		}
+	}
+	SOV_Fate_of_Geogria = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 963
+		owns_state = 964
+		owns_state = 231
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		if = {
+		limit = { tag = SBR }
+ 		963 = { custom_effect_tooltip = setup_assr_here }
+ 		964 = { custom_effect_tooltip = setup_assr_here }
+ 		231 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+ 		963 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		964 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		231 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		}
+		else = {
+		country_event = twrSSRS.3
+				}
+			}
+		}
+	}
+	SOV_Fate_of_Armenia = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 230
+		owns_state = 965
+		owns_state = 968
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		if = {
+		limit = { tag = SBR }
+ 		230 = { custom_effect_tooltip = setup_assr_here }
+		965 = { custom_effect_tooltip = setup_assr_here }
+		968 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+ 		230 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		965 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		968 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		}
+		else = {
+		country_event = twrSSRS.4
+				}
+			}
+		}
+	}
+	SOV_Fate_of_Azerbaijan = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 969
+		owns_state = 967
+		owns_state = 229
+		owns_state = 966
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		if = {
+		limit = { tag = SBR }
+		969 = { custom_effect_tooltip = setup_assr_here }
+		967 = { custom_effect_tooltip = setup_assr_here }
+		229 = { custom_effect_tooltip = setup_assr_here }
+		966 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+		969 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+		967 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+		229 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+		966 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		}
+		else = {
+		country_event = twrSSRS.5
+				}
+			}
+		}
+	}
+	SOV_Fate_of_Kazakhstan = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 588
+		owns_state = 1019
+		owns_state = 404
+		owns_state = 1018
+		owns_state = 589
+		owns_state = 993
+		owns_state = 586
+		owns_state = 1020
+		owns_state = 590
+		owns_state = 583
+		owns_state = 402
+		owns_state = 587
+		owns_state = 407
+		owns_state = 406
+		owns_state = 995
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+ 		if = {
+ 		limit = { tag = SBR }
+        588 = {
+            custom_effect_tooltip = setup_assr_here
+        }
+        1019 = {
+            custom_effect_tooltip = setup_assr_here
+        }
+        404 = {
+            custom_effect_tooltip = setup_assr_here
+        }
+        1018 = {
+            custom_effect_tooltip = setup_assr_here
+        }
+        create_corps_commander = {
+            name = "Talgat Bigeldinov"
+            portrait_path = "gfx/leaders/NOV/Talgat_Bigeldinov.dds"
+            traits = { war_hero }
+            skill = 2
+            attack_skill = 2
+            defense_skill = 2
+            planning_skill = 1
+            logistics_skill = 1
+        }
+ 		division_template = {
+		name = "Kazakhskaya Pekhotnaya Diviziya"
+		regiments = {
+			infantry = { x = 0 y = 0 }
+			infantry = { x = 0 y = 1 }
+			infantry = { x = 0 y = 2 }
+			infantry = { x = 1 y = 0 }
+			infantry = { x = 1 y = 1 }
+			infantry = { x = 1 y = 2 }
+		}
+		support = {
+			recon = { x = 0 y = 0 } 		# Recon bn had 16x L tanks, 45 ACs #Eng and recon removed and they seem rather OP. Could revisit if balance changes
+			engineer = { x = 0 y = 1 } 	# (mot) Engineer bn
+				}
+			}
+ 		588 = {
+ 		create_unit = {
+	    division = "name = \"1-ya Kazakhskaya Pekhotnaya Diviziya\" division_template = \"Kazakhskaya Pekhotnaya Diviziya\" start_experience_factor = 0.5 start_equipment_factor = 0.6"
+	    owner = ROOT
+	    		}
+ 		create_unit = {
+	    division = "name = \"2-ya Kazakhskaya Pekhotnaya Diviziya\" division_template = \"Kazakhskaya Pekhotnaya Diviziya\" start_experience_factor = 0.5 start_equipment_factor = 0.6"
+	    owner = ROOT
+	    		}
+ 		create_unit = {
+	    division = "name = \"3-ya Kazakhskaya Pekhotnaya Diviziya\" division_template = \"Kazakhskaya Pekhotnaya Diviziya\" start_experience_factor = 0.5 start_equipment_factor = 0.6"
+	    owner = ROOT
+	    		}
+	    	}
+ 		hidden_effect = {
+            588 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+            1019 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+            404 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+            }
+            1018 = {
+                add_dynamic_modifier = { modifier = SBR_assrs }
+                	}
+                }
+        else = {
+        country_event = twrSSRS.10
+       			}
+        	}
+		}
+	}	
+	SOV_Fate_of_Kirghizstan = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 994
+		owns_state = 732
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		if = {
+		limit = { tag = SBR }
+		994 = { custom_effect_tooltip = setup_assr_here }
+		732 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+		994 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+		732 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		}
+		else = {
+		country_event = twrSSRS.6
+				}
+			}
+		}
+	}
+	SOV_Fate_of_Turkmenistan = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 584
+		owns_state = 997
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		if = {
+		limit = { tag = SBR }
+		584 = { custom_effect_tooltip = setup_assr_here }
+		997 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+		584 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+		997 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		}
+		else = {
+		country_event = twrSSRS.7
+				}
+			}
+		}
+	}
+	SOV_Fate_of_Uzbekistan = {
+
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 405
+		owns_state = 585
+		owns_state = 998
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		if = {
+		limit = { tag = SBR }
+		405 = { custom_effect_tooltip = setup_assr_here }
+		585 = { custom_effect_tooltip = setup_assr_here }
+		998 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+		405 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+		585 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+		998 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 		}
+		else = {
+		country_event = twrSSRS.8
+				}
+			}
+		}
+	}
+	SOV_Fate_of_Tajikistan = {
+
+		icon = eng_trade_unions_support
+		available = {
+		count_triggers = {
+    	amount = 1
+		owns_state = 742
+		owns_state = 996
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		if = {
+		limit = { 
+		tag = SBR 
+		owns_state = 742
+		}
+		742 = { custom_effect_tooltip = setup_assr_here }
+ 		hidden_effect = {
+		742 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+ 			}
+		}
+		if = {
+		limit = { 
+		tag = SBR 
+		owns_state = 996
+		}
+		996 = { custom_effect_tooltip = setup_assr_here }
+		hidden_effect = {
+		996 = { add_dynamic_modifier = { modifier = SBR_assrs } }
+			}		
+		}
+		if = {
+		limit = { NOT = { tag = SBR } }
+		country_event = twrSSRS.9
+			}
+		}
+	}
+}
+SOV_turkenich_decisions = {
+	SOV_edcuating_the_rural = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_kalinist_revival
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		days_remove = 70
+		modifier = {
+		consumer_goods_factor = 0.02
+		}
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		country_event = twrTURKENICH.18
+		}
+	}
+	SOV_officially_adopt_kalinism = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_kalinist_revival
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 70
+		days_remove = 50
+		modifier = {
+		political_power_cost = 0.1
+		}
+		remove_effect = {
+		SOV_leadership_distrust_effect = yes
+		country_event = twrTURKENICH.19
+		set_country_flag = ADOPTED_KALINIST_AS_PARTY_IDEOLOGY_TURKENICH
+		}
+	}
+	SOV_factory_for_all_project = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_promoting_soviet_patriotism
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		days_remove = 100
+		modifier = {
+		production_speed_industrial_complex_factor = 0.1
+		}
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		}
+	}
+	SOV_family_of_nations = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_preach_self_determination
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 80
+		days_remove = 70
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		add_stability = 0.05
+		}
+	}
+	SOV_stabilize_the_party = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		OR = {
+		has_completed_focus = SOV_young_radical_ideas
+		has_completed_focus = SOV_old_reliable_techniques
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 80
+		complete_effect = {
+		SOV_leadership_distrust_effect = yes
+		}
+	}
+	SOV_purge_suslov = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		OR = {
+		has_completed_focus = SOV_dreams_of_internationale
+		has_completed_focus = SOV_better_perfect_union
+			}
+		has_country_flag = ADOPTED_KALINIST_AS_PARTY_IDEOLOGY_TURKENICH
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		SOV_leadership_distrust_effect = yes
+		country_event = twrTURKENICH.20
+		}
+	}
+	SOV_Mikhail_Kalinin_Institute = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_bread_for_masses
+		has_country_flag = ADOPTED_KALINIST_AS_PARTY_IDEOLOGY_TURKENICH
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+		SOV_beria_thaw_effect = yes
+		add_research_slot = 1
+		}
+	}
+	SOV_Issuing_the_Komsomol_Direction = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_war = no
+		}
+		fire_only_once = no
+		days_remove = 32
+
+		days_re_enable = 50
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		visible = {
+		NOT = { has_country_flag = KOMSOMOL_PURGED }
+		}
+
+		cost = 50
+		complete_effect = {
+		add_manpower = -10000
+		if = {
+		limit = { NOT = { has_country_flag = YOUNG_GUARD_PURGED has_country_flag = SOV_FEATURE_DISABLED } }
+	 	custom_effect_tooltip = Komsomol_INFLUENCE_GROWS
+		hidden_effect = {
+		SOV_KOS_add_1 = yes
+		SOV_clamp_variables_TURKENICH = yes
+				}
+			}
+		}
+		modifier = {
+		production_speed_buildings_factor = 0.25
+		}
+		remove_effect = {
+		add_manpower = 10000
+		}
+	}
+	SOV_Young_Guard_Propaganda_Drive = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_war = no
+		}
+		fire_only_once = no
+		days_remove = 32
+
+		days_re_enable = 50
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		visible = {
+		NOT = { has_country_flag = YOUNG_GUARD_PURGED }
+		}
+
+		cost = 50
+		complete_effect = {
+		if = {
+		limit = { NOT = { has_country_flag = KOMSOMOL_PURGED has_country_flag = SOV_FEATURE_DISABLED } }
+	 	custom_effect_tooltip = YG_INFLUENCE_GROWS
+		hidden_effect = {
+		SOV_YG_add_1 = yes
+		SOV_clamp_variables_TURKENICH = yes
+				}
+			}
+		}
+		modifier = {
+		mobilization_speed = 0.3
+		compliance_growth = 0.15
+		}
+	}
+}
+political_actions = {
+}
+russian_reconquest = {
+	SOV_restore_order = {
+		icon = generic_nationalism
+		allowed = {
+		NOT = {
+		tag = TRV
+			}
+		}
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = DON
+					tag = MTR
+					tag = ZHU
+					tag = UKR
+					tag = KAM
+					tag = NOG
+					tag = LZG
+					tag = KMY
+					tag = UIA
+					tag = UKW
+					tag = WRM
+					tag = RMD 
+					tag = LAT 
+					tag = EST 
+					tag = LIT
+					tag = RUK 
+					tag = ROS 
+					tag = RMO 
+					tag = RKA
+					tag = BKU 
+					tag = PET 
+					tag = STR 
+					tag = WSP 
+					tag = BGS
+					tag = GEO
+					tag = ARM
+					tag = AZR
+					tag = RAC
+					tag = SUK 
+					tag = SMO
+					tag = CDA
+					tag = BLR
+					tag = RSB
+					tag = RMD
+					tag = ARM
+					tag = GEO
+					tag = SOV
+					tag = TRV
+					tag = KAZ
+					tag = NOV
+					tag = KRA
+					tag = IRK
+					tag = KCS
+					tag = TAN
+					tag = RFP
+					tag = SBR
+					tag = RUS
+					tag = BLG
+				}
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+		available = {
+		    OR = {
+		        any_neighbor_country = {
+		            tag = FROM
+		        }
+		        any_other_country = {
+		            is_subject_of = ROOT
+		            any_neighbor_country = {
+		                tag = FROM
+		            }
+		        }
+		    }
+		}
+		visible = {
+			has_country_flag = WESTERN_RUSSIA_UNIFICATION
+			FROM = {
+				NOT = { is_subject_of = ROOT }
+				exists = yes	
+				NOT = {
+				tag = ROOT
+				}
+				NOT = {
+				has_country_flag = NOT_INTERESTED_LMAO_SOV
+				}
+			}
+		}
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+		war_with_target_on_timeout = yes
+		cost = 65
+		days_remove = 15
+		remove_effect = {
+			declare_war_on = {
+				type = annex_everything
+				target = FROM
+			}
+		}
+	}
+	TRV_restore_order = {
+		icon = generic_nationalism
+
+		allowed = {
+		tag = TRV
+		}
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = DON
+					tag = MTR
+					tag = ZHU
+					tag = UKR
+					tag = KAM
+					tag = NOG
+					tag = LZG
+					tag = KMY
+					tag = UIA
+					tag = UKW
+					tag = WRM
+					tag = RMD 
+					tag = LAT 
+					tag = EST 
+					tag = LIT 
+					tag = RGO 
+					tag = RUK 
+					tag = ROS 
+					tag = RMO 
+					tag = RKA
+					tag = BKU 
+					tag = PET 
+					tag = STR 
+					tag = WSP 
+					tag = BGS
+					tag = GEO
+					tag = ARM
+					tag = AZR
+					tag = RAC
+					tag = SUK 
+					tag = SMO
+					tag = CDA
+					tag = BLR
+					tag = RSB
+					tag = RMD
+					tag = ARM
+					tag = GEO
+					tag = SOV
+					tag = KAZ
+					tag = NOV
+					tag = KRA
+					tag = IRK
+					tag = KCS
+					tag = TAN
+					tag = BLG
+				}
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+		available = {
+		    has_war = no
+		    OR = {
+		        any_neighbor_country = {
+		            tag = FROM
+		        }
+		        any_other_country = {
+		            is_subject_of = ROOT
+		            any_neighbor_country = {
+		                tag = FROM
+		            }
+		        }
+		    }
+		}
+		visible = {
+			has_country_flag = WESTERN_RUSSIA_UNIFICATION
+			FROM = {
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				is_subject = no	
+				NOT = {
+				tag = ROOT
+				}
+				NOT = {
+				has_country_flag = NOT_INTERESTED_LMAO_SOV
+				}
+			}
+		}
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+		war_with_target_on_timeout = yes
+		cost = 65
+		days_remove = 15
+		remove_effect = {
+			declare_war_on = {
+				type = annex_everything
+				target = FROM
+			}
+		}
+	}
+	SOV_restore_RK_order = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = ROS
+					tag = RGO
+					tag = RMO
+					tag = RKA
+					tag = RUK
+					tag = STR
+					tag = WSP
+					tag = STR
+					tag = PET
+					tag = BGS
+				}
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+		available = {
+		    has_war = no
+		    OR = {
+		        any_neighbor_country = {
+		            tag = FROM
+		        }
+		        any_other_country = {
+		            is_subject_of = ROOT
+		            any_neighbor_country = {
+		                tag = FROM
+		            }
+		        }
+		    }
+		}
+		visible = {
+			has_country_flag = WESTERN_RUSSIA_UNIFICATION
+			FROM = {
+				NOT = { is_subject_of = ROOT }
+				has_war = no
+				exists = yes
+				is_subject = no	
+				NOT = {
+				tag = ROOT
+				}
+				NOT = {
+				has_country_flag = NOT_INTERESTED_LMAO_SOV
+				}
+			}
+		}
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+		war_with_target_on_timeout = yes
+		cost = 65
+		days_remove = 15
+		remove_effect = {
+			declare_war_on = {
+				type = annex_everything
+				target = FROM
+			}
+		}
+	}
+	SOV_restore_order_POLAND_zhukov = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				tag = POL
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT
+			}
+		}
+		available = {
+			has_war = no
+			FROM = {
+				tag = POL
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT
+			}
+		}
+		visible = {
+			has_country_flag = WESTERN_RUSSIA_UNIFICATION
+			has_country_leader = {
+				name = "Georgy Zhukov"
+				ruling_only = yes
+			}
+			FROM = {
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT			
+			}
+		}
+
+		fire_only_once = yes
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 0
+		}
+
+		cost = 100
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_restore_order"
+		}
+		remove_effect = {
+			declare_war_on = {
+				type = annex_everything
+				target = FROM
+			}
+			add_war_support = -0.1
+			add_stability = -0.1
+			add_political_power = -50
+		}
+	}
+	SOV_restore_order_POLAND_konev = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				tag = POL
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT
+			}
+		}
+		available = {
+			has_war = no
+			FROM = {
+				tag = POL
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT
+			}
+		}
+		visible = {
+			has_country_flag = WESTERN_RUSSIA_UNIFICATION
+			has_country_leader = {
+				name = "Ivan Konev"
+				ruling_only = yes
+			}
+			FROM = {
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT			
+			}
+		}
+
+		fire_only_once = yes
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 100
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_restore_order"
+		}
+		remove_effect = {
+			declare_war_on = {
+				type = annex_everything
+				target = FROM
+			}
+			add_war_support = -0.1
+			add_stability = -0.1
+			add_political_power = -50
+		}
+	}
+	SOV_restore_russian_order_SPEC = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = SOV 
+					tag = TRV 
+					tag = KAZ 
+					tag = RUS
+				}
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+		available = {
+		    has_war = no
+		    OR = {
+		        any_neighbor_country = {
+		            tag = FROM
+		        }
+		        any_other_country = {
+		            is_subject_of = ROOT
+		            any_neighbor_country = {
+		                tag = FROM
+		            }
+		        }
+		    }
+		}
+		visible = {
+			has_country_flag = SPEC_RUSSIA_REUNIFICATION
+			FROM = {
+				NOT = {
+				is_subject_of = ROOT
+				}
+				exists = yes
+				is_subject = no	
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+
+		fire_only_once = yes
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 60
+		}
+
+		cost = 50
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_restore_russian_order_SPEC"
+		}
+		remove_effect = {
+			declare_war_on = {
+				type = annex_everything
+				target = FROM
+			}
+		}
+	}
+	SOV_restore_central_russian_order = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = NRI 
+					tag = BRY 
+					tag = NOV 
+					tag = TAN 
+					tag = FAR 
+					tag = KRA
+					tag = IRK
+					tag = RFP
+					tag = KCS
+					tag = TAN
+					tag = SBR
+				}
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+		available = {
+		    has_war = no
+		    OR = {
+		        any_neighbor_country = {
+		            tag = FROM
+		        }
+		        any_other_country = {
+		            is_subject_of = ROOT
+		            any_neighbor_country = {
+		                tag = FROM
+		            }
+		        }
+		    }
+		}
+		visible = {
+			has_country_flag = CENTRAL_RUSSIA_REUNIFICATION
+			FROM = {
+				NOT = {
+				is_subject_of = ROOT
+				}
+				exists = yes
+				is_subject = no	
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+
+		fire_only_once = yes
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 60
+		}
+
+		cost = 50
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_restore_central_russian_order"
+		}
+		remove_effect = {
+			declare_war_on = {
+				type = annex_everything
+				target = FROM
+			}
+		}
+	}
+	SOV_restore_central_asian_order = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = TRK
+					tag = TRA 
+					tag = UZB 
+					tag = KYR 
+					tag = TAJ 
+				}
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+		available = {
+		    has_war = no
+		    OR = {
+		        any_neighbor_country = {
+		            tag = FROM
+		        }
+		        any_other_country = {
+		            is_subject_of = ROOT
+		            any_neighbor_country = {
+		                tag = FROM
+		            }
+		        }
+		    }
+		}
+		visible = {
+			has_country_flag = CENTRAL_ASIA_REUNIFICATION
+			FROM = {
+				NOT = {
+				is_subject_of = ROOT
+				}
+				exists = yes
+				is_subject = no
+				NOT = {
+				tag = ROOT
+				}
+				NOT = {
+				has_country_flag = NOT_INTERESTED_LMAO_SOV
+				}
+			}
+		}
+
+		fire_only_once = yes
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_restore_central_russian_order"
+		}
+		remove_effect = {
+			declare_war_on = {
+				type = annex_everything
+				target = FROM
+			}
+		}
+	}
+	SOV_com_to_com_demands = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = AZR
+					tag = RAC
+					tag = SUK 
+					tag = SMO
+					tag = CDA
+					tag = BLR
+					tag = GEO
+					tag = ARM
+					tag = BLG
+				}
+				NOT = { is_subject_of = ROOT }
+				NOT = {
+				tag = ROOT
+				}
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT
+			}
+		}
+		available = {
+			has_war = no
+			is_communist = yes
+			FROM = {
+			is_neighbor_of = ROOT	
+			has_government = ROOT
+				NOT = {
+				tag = ROOT
+				}
+			}
+			NOT = {
+			has_country_flag = IN_PROGRESS_PREVENT_BREAK
+			}
+		}
+		visible = {
+			is_communist = yes
+			owns_state = 398
+			NOT = {
+			has_country_leader = {
+		    name = "Ivan Turkenich"
+		    ruling_only = yes
+				}
+			tag = KAZ
+			tag = NOV
+			}
+			FROM = {
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				is_subject = no
+				is_neighbor_of = ROOT	
+				is_communist = yes		
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 30
+		days_remove = 7
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_com_to_com_demands"
+			set_country_flag = IN_PROGRESS_PREVENT_BREAK
+		}
+		remove_effect = {
+			FROM = {
+				country_event = twrrusreconquest.1
+			}
+			clr_country_flag = IN_PROGRESS_PREVENT_BREAK
+		}
+	}
+	SOV_com_to_com_demands_SPEC = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = AZR
+					tag = RAC
+					tag = SUK 
+					tag = SMO
+					tag = CDA
+					tag = BLR
+					tag = GEO
+					tag = ARM
+					tag = BLG
+				}
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+		available = {
+			has_war = no
+			is_communist = yes
+			FROM = {
+			is_neighbor_of = ROOT	
+			is_communist = yes
+			}
+			NOT = {
+			has_country_flag = IN_PROGRESS_PREVENT_BREAK
+			}
+		}
+		visible = {
+			is_communist = yes
+			owns_state = 398
+			OR = {
+			has_country_leader = {
+		    name = "Ivan Turkenich"
+		    ruling_only = yes
+				}
+			AND = {
+			has_country_leader = {
+		    name = "Vasily Rakov"
+		    ruling_only = yes
+				}
+			has_completed_focus = KAZ_crimson_union_rises
+				}
+			tag = NOV
+			}
+			FROM = {
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				is_subject = no
+				is_neighbor_of = ROOT	
+				is_communist = yes	
+				NOT = {
+				tag = ROOT
+				}	
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 30
+		days_remove = 7
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_com_to_com_demands_SPEC"
+			set_country_flag = IN_PROGRESS_PREVENT_BREAK
+		}
+		remove_effect = {
+			FROM = {
+				country_event = twrrusreconquest.1
+			}
+			clr_country_flag = IN_PROGRESS_PREVENT_BREAK
+		}
+	}
+	SOV_com_to_com_demands_BULGANIN = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = AZR
+					tag = RAC
+					tag = SUK 
+					tag = SMO
+					tag = CDA
+					tag = BLR
+					tag = BLG
+				}
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+		available = {
+			has_war = no
+			has_country_flag = IN_PROGRESS_PREVENT_BREAK
+			FROM = {
+			is_neighbor_of = ROOT
+			has_government = paternal_autocrat
+			}
+		}
+		visible = {
+			has_government = paternal_autocrat
+			owns_state = 398
+			OR = {
+			has_country_leader = {
+		    name = "Nikolai Bulganin"
+		    ruling_only = yes
+				}
+			AND = {
+			has_country_leader = {
+		    name = "Andrey Vlasov"
+		    ruling_only = yes
+		    		}
+		    has_completed_focus = KAZ_crimson_union_rises
+				}
+			}
+			FROM = {
+				NOT = { is_subject_of = ROOT }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT	
+				has_government = paternal_autocrat	
+				NOT = {
+				tag = ROOT
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 30
+		days_remove = 7
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_com_to_com_demands_BULGANIN"
+			set_country_flag = IN_PROGRESS_PREVENT_BREAK
+		}
+		remove_effect = {
+			FROM = {
+				country_event = twrrusreconquest.1
+			}
+			clr_country_flag = IN_PROGRESS_PREVENT_BREAK
+		}
+	}
+	SOV_zhukov_attack_prison_germany = {
+		icon = generic_nationalism
+		available = {
+			has_war = no
+		}
+		visible = {
+			has_country_flag = WESTERN_RUSSIA_UNIFICATION
+			has_country_flag = ZHUKOV_ATTACK_PEOPLES_GERMANY
+			country_exists = PGR
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 0 #keep it like this, AI will never do
+		}
+
+		cost = 50
+		days_remove = 15
+		war_with_target_on_timeout = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_zhukov_attack_prison_germany"
+		}
+		remove_effect = {
+			declare_war_on = {
+			    target = PGR
+			    type = annex_everything
+			}
+			custom_effect_tooltip = WAR_WITH_TA_TT
+		}
+	}
+	SOV_konev_strike_west = {
+		icon = generic_nationalism
+		available = {
+			has_war = no
+		}
+		visible = {
+			has_country_flag = WESTERN_RUSSIA_UNIFICATION
+			has_country_flag = KONEV_ATTACK_WEST
+			country_exists = PGR
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 0 #keep it like this, AI will never do
+		}
+
+		cost = 50
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_konev_strike_west"
+		}
+		remove_effect = {
+			declare_war_on = {
+			    target = PGR
+			    type = annex_everything
+			}
+			declare_war_on = {
+			    target = USA
+			    type = annex_everything
+			}
+			custom_effect_tooltip = WAR_WITH_TA_TT
+		}
+	}
+	SOV_reintegrate_norilsk = {
+		icon = infiltrate_state
+		fire_only_once = yes
+
+		available = { 
+			owns_state = 516
+			owns_state = 1021
+			owns_state = 576
+			owns_state = 575
+		}
+		visible = {
+		NOT = {
+		516 = {
+		is_core_of = ROOT
+		}
+		576 = {
+		is_core_of = ROOT
+		}
+		575 = {
+		is_core_of = ROOT
+		}
+		1021 = {
+		is_core_of = ROOT
+		}
+			}
+		}
+		highlight_states = {
+			state = 516
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 40
+		cost = 50
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision reintegrate_norilsk"
+			516 = { add_core_of = ROOT }
+			576 = { add_core_of = ROOT }
+			575 = { add_core_of = ROOT }
+			1021 = { add_core_of = ROOT }
+		}
+	}
+
+	SOV_reintegrate_krasnoyarsk = {
+		icon = infiltrate_state
+		fire_only_once = yes
+
+		available = { 
+		count_triggers = {
+	    amount = 5
+				owns_state = 568
+				owns_state = 875
+				owns_state = 329
+				owns_state = 567
+				owns_state = 566
+				owns_state = 978
+		}
+		}
+		visible = {
+		NOT = {
+		568 = {
+		is_core_of = ROOT
+		}
+		875 = {
+		is_core_of = ROOT
+		}
+		329 = {
+		is_core_of = ROOT
+		}
+		567 = {
+		is_core_of = ROOT
+		}
+		566 = {
+		is_core_of = ROOT
+		}
+		978 = {
+		is_core_of = ROOT
+		}
+			}
+		}
+		highlight_states = {
+			state = 568
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 50
+		cost = 50
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision reintegrate_krasnoyarsk"
+			568 = { add_core_of = ROOT }
+			875 = { add_core_of = ROOT }
+			329 = { add_core_of = ROOT }
+			567 = { add_core_of = ROOT }
+			566 = { add_core_of = ROOT }
+			978 = { add_core_of = ROOT }
+		}
+	}
+
+	SOV_reintegrate_novosibirsk = {
+		icon = infiltrate_state
+		fire_only_once = yes
+
+		available = { 
+			owns_state = 570
+			owns_state = 578
+			owns_state = 569
+			owns_state = 40
+			owns_state = 654
+		}
+		visible = {
+		NOT = {
+		570 = {
+		is_core_of = ROOT
+		}
+		578 = {
+		is_core_of = ROOT
+		}
+		569 = {
+		is_core_of = ROOT
+		}
+		40 = {
+		is_core_of = ROOT
+		}
+		654 = {
+		is_core_of = ROOT
+		}
+			}
+		}
+		highlight_states = {
+			state = 570
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 50
+		cost = 50
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision reintegrate_novosibirsk"
+			570 = { add_core_of = ROOT }
+			578 = { add_core_of = ROOT }
+			569 = { add_core_of = ROOT }
+			40 = { add_core_of = ROOT }
+			654 = { add_core_of = ROOT }
+		}
+	}
+	SPEC_SOV_reintegrate_sovet_remnants = {
+		icon = infiltrate_state
+		fire_only_once = yes
+		available = { 
+			owns_state = 398
+		}
+		highlight_states = {
+			state = 398
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		days_remove = 80
+		cost = 150
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		visible = {
+		NOT = {
+			398 = { is_core_of = ROOT }
+			651 = { is_core_of = ROOT }
+			582 = { is_core_of = ROOT }
+			402 = { is_core_of = ROOT }
+			587 = { is_core_of = ROOT }
+			583 = { is_core_of = ROOT }
+			590 = { is_core_of = ROOT }
+			1019 = { is_core_of = ROOT }
+			571 = { is_core_of = ROOT }
+			577 = { is_core_of = ROOT }
+			579 = { is_core_of = ROOT }
+			580 = { is_core_of = ROOT }
+			403 = { is_core_of = ROOT }
+			653 = { is_core_of = ROOT }
+			581 = { is_core_of = ROOT }
+			262 = { is_core_of = ROOT }
+			961 = { is_core_of = ROOT }
+			397 = { is_core_of = ROOT }
+			400 = { is_core_of = ROOT }
+			256 = { is_core_of = ROOT }
+			252 = { is_core_of = ROOT }
+			255 = { is_core_of = ROOT }
+			250 = { is_core_of = ROOT }
+			1028 = { is_core_of = ROOT }
+			1029 = { is_core_of = ROOT }
+			399 = { is_core_of = ROOT }
+			249 = { is_core_of = ROOT }
+			251 = { is_core_of = ROOT }
+			652 = { is_core_of = ROOT }
+			407 = { is_core_of = ROOT }
+			406 = { is_core_of = ROOT }
+			401 = { is_core_of = ROOT }
+			239 = { is_core_of = ROOT }
+			404 = { is_core_of = ROOT }
+			1018 = { is_core_of = ROOT }
+			588 = { is_core_of = ROOT }
+			573 = { is_core_of = ROOT }
+			572 = { is_core_of = ROOT }
+			1020 = { is_core_of = ROOT }
+			589 = { is_core_of = ROOT }		
+			}
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SPEC_SOV_reintegrate_sovet_remnants"
+			398 = { add_core_of = ROOT }
+			651 = { add_core_of = ROOT }
+			582 = { add_core_of = ROOT }
+			402 = { add_core_of = ROOT }
+			587 = { add_core_of = ROOT }
+			583 = { add_core_of = ROOT }
+			590 = { add_core_of = ROOT }
+			1019 = { add_core_of = ROOT }
+			571 = { add_core_of = ROOT }
+			577 = { add_core_of = ROOT }
+			579 = { add_core_of = ROOT }
+			580 = { add_core_of = ROOT }
+			403 = { add_core_of = ROOT }
+			653 = { add_core_of = ROOT }
+			581 = { add_core_of = ROOT }
+			262 = { add_core_of = ROOT }
+			961 = { add_core_of = ROOT }
+			397 = { add_core_of = ROOT }
+			400 = { add_core_of = ROOT }
+			256 = { add_core_of = ROOT }
+			252 = { add_core_of = ROOT }
+			255 = { add_core_of = ROOT }
+			250 = { add_core_of = ROOT }
+			399 = { add_core_of = ROOT }
+			249 = { add_core_of = ROOT }
+			251 = { add_core_of = ROOT }
+			652 = { add_core_of = ROOT }
+			407 = { add_core_of = ROOT }
+			406 = { add_core_of = ROOT }
+			401 = { add_core_of = ROOT }
+			239 = { add_core_of = ROOT }
+			404 = { add_core_of = ROOT }
+			1018 = { add_core_of = ROOT }
+			588 = { add_core_of = ROOT }
+			573 = { add_core_of = ROOT }
+			572 = { add_core_of = ROOT }
+			1020 = { add_core_of = ROOT }
+			589 = { add_core_of = ROOT }
+			1028 = { add_core_of = ROOT }
+			1029 = { add_core_of = ROOT }
+		}
+	}
+	SOV_reintegrate_buryatia = {
+		icon = infiltrate_state
+		fire_only_once = yes
+		allowed = {
+		NOT = {
+		tag = RFP
+		tag = SBR
+		tag = BRY
+			}
+		}
+		visible = {
+		NOT = {
+		565 = {
+		is_core_of = ROOT
+		}
+		564 = {
+		is_core_of = ROOT
+		}
+		563 = {
+		is_core_of = ROOT
+		}
+			}
+		}
+		available = { 
+			owns_state = 565
+		}
+		highlight_states = {
+			state = 565
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 20
+		cost = 50
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_reintegrate_buryatia"
+			565 = { add_core_of = ROOT }
+			564 = { add_core_of = ROOT }
+			563 = { add_core_of = ROOT }
+		}
+	}
+	SOV_reintegrate_rus = {
+		icon = infiltrate_state
+		fire_only_once = yes
+		available = { 
+		count_triggers = {
+    	amount = 4
+		owns_state = 408
+		owns_state = 657
+		owns_state = 644
+		owns_state = 637
+		owns_state = 574
+		owns_state = 562
+		owns_state = 561
+		owns_state = 560
+		owns_state = 409
+		owns_state = 408
+		owns_state = 655
+		owns_state = 555
+		owns_state = 537
+		}
+		}
+		highlight_states = {
+			state = 408
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 80
+		cost = 60
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		visible = {
+		NOT = {
+			408 = { is_core_of = ROOT }
+			657 = { is_core_of = ROOT }
+			644 = { is_core_of = ROOT }
+			637 = { is_core_of = ROOT }
+			574 = { is_core_of = ROOT }
+			562 = { is_core_of = ROOT }
+			561 = { is_core_of = ROOT }
+			560 = { is_core_of = ROOT }
+			409 = { is_core_of = ROOT }
+			408 = { is_core_of = ROOT }
+			655 = { is_core_of = ROOT }
+			555 = { is_core_of = ROOT }
+			537 = { is_core_of = ROOT }		
+			870 = { is_core_of = ROOT }
+			}
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_reintegrate_rus"
+			408 = { add_core_of = ROOT }
+			657 = { add_core_of = ROOT }
+			644 = { add_core_of = ROOT }
+			637 = { add_core_of = ROOT }
+			574 = { add_core_of = ROOT }
+			562 = { add_core_of = ROOT }
+			561 = { add_core_of = ROOT }
+			560 = { add_core_of = ROOT }
+			409 = { add_core_of = ROOT }
+			408 = { add_core_of = ROOT }
+			655 = { add_core_of = ROOT }
+			555 = { add_core_of = ROOT }
+			537 = { add_core_of = ROOT }
+			870 = { add_core_of = ROOT }
+		}
+	}
+	SOV_reintegrate_moskowein = {
+		icon = infiltrate_state
+		fire_only_once = yes
+		available = { 
+			owns_state = 219
+		}
+		visible = {
+		NOT = {
+		219 = { is_core_of = ROOT }
+		247 = { is_core_of = ROOT }
+		1004 = { is_core_of = ROOT }
+		1001 = { is_core_of = ROOT }
+		264 = { is_core_of = ROOT }
+		244 = { is_core_of = ROOT }
+		1006 = { is_core_of = ROOT }
+		242 = { is_core_of = ROOT }
+		243 = { is_core_of = ROOT }
+		205 = { is_core_of = ROOT }
+		223 = { is_core_of = ROOT }
+		254 = { is_core_of = ROOT }
+		1007 = { is_core_of = ROOT }
+		253 = { is_core_of = ROOT }
+		1000 = { is_core_of = ROOT }
+		351 = { is_core_of = ROOT }
+		1002 = { is_core_of = ROOT }
+		214 = { is_core_of = ROOT }
+		999 = { is_core_of = ROOT }
+		195 = { is_core_of = ROOT }
+		224 = { is_core_of = ROOT }
+		248 = { is_core_of = ROOT }
+		220 = { is_core_of = ROOT }
+		260 = { is_core_of = ROOT }
+		257 = { is_core_of = ROOT }
+		258 = { is_core_of = ROOT }
+		222 = { is_core_of = ROOT }
+			}
+		}
+		highlight_states = {
+			state = 219
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 80
+		cost = 150
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision reintegrate_moskowein"
+			219 = { add_core_of = ROOT }
+			247 = { add_core_of = ROOT }
+			1004 = { add_core_of = ROOT }
+			1001 = { add_core_of = ROOT }
+			264 = { add_core_of = ROOT }
+			244 = { add_core_of = ROOT }
+			1006 = { add_core_of = ROOT }
+			242 = { add_core_of = ROOT }
+			243 = { add_core_of = ROOT }
+			205 = { add_core_of = ROOT }
+			223 = { add_core_of = ROOT }
+			254 = { add_core_of = ROOT }
+			1007 = { add_core_of = ROOT }
+			253 = { add_core_of = ROOT }
+			1000 = { add_core_of = ROOT }
+			351 = { add_core_of = ROOT }
+			1002 = { add_core_of = ROOT }
+			214 = { add_core_of = ROOT }
+			999 = { add_core_of = ROOT }
+			195 = { add_core_of = ROOT }
+			224 = { add_core_of = ROOT }
+			248 = { add_core_of = ROOT }
+			220 = { add_core_of = ROOT }
+			260 = { add_core_of = ROOT }
+			257 = { add_core_of = ROOT }
+			258 = { add_core_of = ROOT }
+			222 = { add_core_of = ROOT }
+			if = {
+				limit = {
+					AND = {
+						controls_state = 216
+						controls_state = 722
+						controls_state = 215
+						controls_state = 213
+					}
+				}
+				216 = { add_core_of = ROOT }
+				722 = { add_core_of = ROOT }
+				215 = { add_core_of = ROOT }
+				213 = { add_core_of = ROOT }
+			}
+		}
+	}
+	SOV_reintegrate_caucasus = {
+		icon = infiltrate_state
+		fire_only_once = yes
+		available = { 
+			owns_state = 217
+		}
+		highlight_states = {
+			state = 217
+		}
+		visible = {
+		NOT = {
+		217 = { is_core_of = ROOT }
+		265 = { is_core_of = ROOT }
+		245 = { is_core_of = ROOT }
+		218 = { is_core_of = ROOT }
+		234 = { is_core_of = ROOT }
+		971 = { is_core_of = ROOT }
+		235 = { is_core_of = ROOT }
+		237 = { is_core_of = ROOT }
+		236 = { is_core_of = ROOT }
+		974 = { is_core_of = ROOT }
+		233 = { is_core_of = ROOT }
+		232 = { is_core_of = ROOT }
+		975 = { is_core_of = ROOT }
+		970 = { is_core_of = ROOT }
+		972 = { is_core_of = ROOT }
+		962 = { is_core_of = ROOT }
+		963 = { is_core_of = ROOT }
+		231 = { is_core_of = ROOT }
+		964 = { is_core_of = ROOT }
+		230 = { is_core_of = ROOT }
+		965 = { is_core_of = ROOT }
+		966 = { is_core_of = ROOT }
+		968 = { is_core_of = ROOT }
+		229 = { is_core_of = ROOT }
+		969 = { is_core_of = ROOT }
+		967 = { is_core_of = ROOT }
+		854 = { is_core_of = ROOT }
+			}
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 80
+		cost = 150
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision reintegrate_caucasus"
+			217 = { add_core_of = ROOT }
+			265 = { add_core_of = ROOT }
+			245 = { add_core_of = ROOT }
+			218 = { add_core_of = ROOT }
+			234 = { add_core_of = ROOT }
+			971 = { add_core_of = ROOT }
+			235 = { add_core_of = ROOT }
+			237 = { add_core_of = ROOT }
+			236 = { add_core_of = ROOT }
+			974 = { add_core_of = ROOT }
+			233 = { add_core_of = ROOT }
+			232 = { add_core_of = ROOT }
+			975 = { add_core_of = ROOT }
+			970 = { add_core_of = ROOT }
+			972 = { add_core_of = ROOT }
+			962 = { add_core_of = ROOT }
+			963 = { add_core_of = ROOT }
+			231 = { add_core_of = ROOT }
+			964 = { add_core_of = ROOT }
+			230 = { add_core_of = ROOT }
+			965 = { add_core_of = ROOT }
+			966 = { add_core_of = ROOT }
+			968 = { add_core_of = ROOT }
+			229 = { add_core_of = ROOT }
+			969 = { add_core_of = ROOT }
+			967 = { add_core_of = ROOT }
+			854 = { add_core_of = ROOT }
+			973 = { add_core_of = ROOT }
+			976 = { add_core_of = ROOT }
+			977 = { add_core_of = ROOT }
+			238 = { add_core_of = ROOT }
+		}
+	}
+	SOV_reintegrate_ostland = {
+		icon = infiltrate_state
+		fire_only_once = yes
+		available = { 
+			AND = {
+				owns_state = 206
+			}
+		}
+		highlight_states = {
+			state = 206
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 50
+		cost = 50
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision reintegrate_ostland"
+			if = {
+				limit = {
+					AND = {
+						208 = { is_core_of = ROOT }
+						263 = { is_core_of = ROOT }
+						209 = { is_core_of = ROOT }
+						210 = { is_core_of = ROOT }
+						95 = { is_core_of = ROOT }
+						204 = { is_core_of = ROOT }
+						206 = { is_core_of = ROOT }
+						207 = { is_core_of = ROOT }
+						96 = { is_core_of = ROOT }
+					}
+				}
+				1017 = { add_core_of = ROOT }
+				12 = { add_core_of = ROOT }
+				190 = { add_core_of = ROOT }
+				11 = { add_core_of = ROOT }
+				189 = { add_core_of = ROOT }
+				805 = { add_core_of = ROOT }
+				13 = { add_core_of = ROOT }
+				191 = { add_core_of = ROOT }
+			}
+			else = {
+				208 = { add_core_of = ROOT }
+				263 = { add_core_of = ROOT }
+				209 = { add_core_of = ROOT }
+				210 = { add_core_of = ROOT }
+				95 = { add_core_of = ROOT }
+				204 = { add_core_of = ROOT }
+				206 = { add_core_of = ROOT }
+				207 = { add_core_of = ROOT }
+				96 = { add_core_of = ROOT }
+				1017 = { add_core_of = ROOT }
+				12 = { add_core_of = ROOT }
+				190 = { add_core_of = ROOT }
+				11 = { add_core_of = ROOT }
+				189 = { add_core_of = ROOT }
+				805 = { add_core_of = ROOT }
+				13 = { add_core_of = ROOT }
+				191 = { add_core_of = ROOT }
+			}
+		}
+	}
+	SOV_reintegrate_ukraine = {
+		icon = infiltrate_state
+		fire_only_once = yes
+		available = { 
+			owns_state = 202
+		}
+		highlight_states = {
+			state = 202
+		}
+		visible = {
+		NOT = {
+		992 = { is_core_of = ROOT }
+		990 = { is_core_of = ROOT }
+		991 = { is_core_of = ROOT }
+		989 = { is_core_of = ROOT }
+		987 = { is_core_of = ROOT }
+		988 = { is_core_of = ROOT }
+		986 = { is_core_of = ROOT }
+		94 = { is_core_of = ROOT }
+		93 = { is_core_of = ROOT }
+		259 = { is_core_of = ROOT }
+		241 = { is_core_of = ROOT }
+		227 = { is_core_of = ROOT }
+		228 = { is_core_of = ROOT }
+		225 = { is_core_of = ROOT }
+		226 = { is_core_of = ROOT }
+		221 = { is_core_of = ROOT }
+		202 = { is_core_of = ROOT }
+		203 = { is_core_of = ROOT }
+		201 = { is_core_of = ROOT }
+		199 = { is_core_of = ROOT }
+		197 = { is_core_of = ROOT }
+		193 = { is_core_of = ROOT }
+		194 = { is_core_of = ROOT }
+		240 = { is_core_of = ROOT }
+			}
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 60
+		cost = 50
+		modifier = {
+			stability_weekly = -0.0003
+			political_power_factor = -0.03
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision reintegrate_ukraine"
+			992 = { add_core_of = ROOT }
+			990 = { add_core_of = ROOT }
+			991 = { add_core_of = ROOT }
+			989 = { add_core_of = ROOT }
+			987 = { add_core_of = ROOT }
+			988 = { add_core_of = ROOT }
+			986 = { add_core_of = ROOT }
+			94 = { add_core_of = ROOT }
+			93 = { add_core_of = ROOT }
+			259 = { add_core_of = ROOT }
+			241 = { add_core_of = ROOT }
+			227 = { add_core_of = ROOT }
+			228 = { add_core_of = ROOT }
+			225 = { add_core_of = ROOT }
+			226 = { add_core_of = ROOT }
+			221 = { add_core_of = ROOT }
+			202 = { add_core_of = ROOT }
+			203 = { add_core_of = ROOT }
+			201 = { add_core_of = ROOT }
+			199 = { add_core_of = ROOT }
+			197 = { add_core_of = ROOT }
+			193 = { add_core_of = ROOT }
+			194 = { add_core_of = ROOT }
+			240 = { add_core_of = ROOT }
+			if = {
+			limit = { NOT = { 196 = { is_core_of = ROOT } } }
+			196 = { add_core_of = ROOT }
+			}
+			if = {
+			limit = { NOT = { 137 = { is_core_of = ROOT } } }
+			137 = { add_core_of = ROOT }
+			}
+			if = {
+			limit = { NOT = { 200 = { is_core_of = ROOT } } }
+			200 = { add_core_of = ROOT }
+			}
+		}
+	}
+
+	SOV_reintegrate_turkestan = {
+		icon = infiltrate_state
+		fire_only_once = yes
+		available = { 
+			owns_state = 998
+		}
+		highlight_states = {
+			state = 998
+		}
+		visible = {
+		has_country_flag = CENTRAL_ASIA_REUNIFICATION
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 60
+		cost = 50
+		modifier = {
+			stability_weekly = -0.005
+			political_power_factor = -0.5
+		}
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision reintegrate_turkestan"
+			993 = { add_core_of = ROOT }
+			732 = { add_core_of = ROOT }
+			586 = { add_core_of = ROOT }
+			994 = { add_core_of = ROOT }
+			405 = { add_core_of = ROOT }
+			995 = { add_core_of = ROOT }
+			585 = { add_core_of = ROOT }
+			998 = { add_core_of = ROOT }
+			742 = { add_core_of = ROOT }
+			996 = { add_core_of = ROOT }
+			584 = { add_core_of = ROOT }
+			997 = { add_core_of = ROOT }
+		}
+	}
+
+	SOV_karelia_or_war = {
+		icon = generic_ignite_civil_war
+		fire_only_once = yes
+		available = { 
+			controls_state = 219
+			controls_state = 408
+			has_political_power > 50
+			NOT = {
+			has_global_flag = ISSUE_RESOLVED_PEACEFULLY_FIN
+			}
+		}
+		highlight_states = {
+			state = 213
+		}
+		visible = {
+		OR = {
+		AND = {
+			has_country_flag = CENTRAL_ASIA_REUNIFICATION
+			NOT = { tag = KCS }
+			NOT = {
+				controls_state = 213
+			}
+				}
+		has_country_flag = FUNNY_KCS_SHIT_FLAG_KRA
+			}
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		cost = 50
+		is_good = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision karelia_or_war"
+			FIN = {
+				country_event = { id = karelia.1 }
+			}
+		}
+	}
+}
+operations = {
+	SUK_ukrainian_civil_war = {
+	allowed = {
+	tag = SUK
+	}
+		icon = generic_nationalism
+		available = {
+			has_war = no
+			country_exists = UKR
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = 5
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SUK_ukrainian_civil_war"
+			declare_war_on = {
+    		target = UKR
+    		type = annex_everything
+			}
+			if = {
+			limit = { country_exists = UKW }
+			declare_war_on = {
+    		target = UKW
+    		type = annex_everything
+				}
+			}
+			news_event = germannews.506
+		}
+	}
+	UKR_ukrainian_civil_war = {
+	allowed = {
+	tag = UKR
+	}
+		icon = generic_nationalism
+		available = {
+			has_war = no
+			country_exists = SUK
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = 5
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision UKR_ukrainian_civil_war"
+			declare_war_on = {
+    		target = SUK
+    		type = annex_everything
+			}
+			if = {
+			limit = { country_exists = UKW }
+			SUK = {
+			declare_war_on = {
+    		target = UKW
+    		type = annex_everything
+    				}
+				}
+			}
+			news_event = germannews.506
+		}
+	}
+	UKR_WEST_UNITE = {
+	allowed = {
+	tag = UKR
+	}
+		icon = generic_nationalism
+		available = {
+		country_exists = UKW
+		NOT = {
+			country_exists = RUK
+			country_exists = BGS
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = 5
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision UKR_WEST_UNITE"
+			UKW = {
+			country_event = twrukraineuprisings.13
+			}
+		}
+	}
+}
+SOV_beria_thaw = {
+	SOV_issue_new_censor_guidelines = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		OR = {
+		has_completed_focus = SOV_Berias_Thaw
+
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+
+		complete_effect = {
+		SOV_beria_thaw_effect = yes
+		hidden_effect = {
+		country_event = { id = twrBERIA.17 days = 7 random = 300 }
+		set_country_flag = LESSENED_CENSORSHIP_BERIA_POGG
+			}
+		}
+	}	
+	SOV_reform_the_propiska = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_Berias_Thaw
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+
+		complete_effect = {
+		SOV_beria_thaw_effect = yes
+		}
+	}	
+	SOV_allow_foreign_publications = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_Berias_Thaw
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+
+		complete_effect = {
+		SOV_beria_thaw_effect = yes
+		add_popularity = {
+	    ideology = bolshevik_leninist
+	    popularity = -0.1
+			}
+		add_to_variable = {
+		var = beria_thaw
+		value = 1
+			}
+		}
+	}	
+	SOV_foreign_exchanges_and_study = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_Berias_Thaw
+		has_country_flag = LESSENED_CENSORSHIP_BERIA_POGG
+		}
+
+		fire_only_once = no
+
+		ai_will_do = {
+			factor = 50
+		}
+		days_remove = 30
+		days_re_enable = 30
+		cost = 75
+		modifier = {
+		research_speed_factor = 0.02
+		line_change_production_efficiency_factor = 0.02
+		}
+		complete_effect = {
+		add_to_variable = {
+		var = beria_thaw
+		value = 1
+			}
+		}
+	}	
+	SOV_support_cultural_projects = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_Berias_Thaw
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		days_remove = 60
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		}
+		modifier = {
+		consumer_goods_factor = 0.02
+		}
+	}
+	SOV_organize_the_cultural_exhibition = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_Berias_Thaw
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 60
+		days_remove = 25
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		hidden_effect = {
+		country_event = twrBERIA.19
+			}
+		}
+	}
+}
+SOV_destroy_oppositions = {
+	SOV_summon_suslov = {
+	allowed = {
+	tag = SOV
+	}
+		icon = generic_nationalism
+		available = {
+		has_completed_focus = SOV_Room_7
+		}
+		visible = {
+		has_completed_focus = SOV_Room_7
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = 100
+
+		days_remove = 10
+		remove_effect = {
+		country_event = twrBERIA.12
+		}
+	}	
+	SOV_partisan_purge = {
+	allowed = {
+	tag = SOV
+	}
+		icon = generic_nationalism
+		available = {
+		has_completed_focus = SOV_Room_7
+		}
+		visible = {
+		has_completed_focus = SOV_Room_7
+		}
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = 85
+
+		days_remove = 25
+		remove_effect = {
+			country_event = twrBERIA.13
+		}
+	}
+	SOV_bulganin_summoned = {
+	allowed = {
+	tag = SOV
+	}
+		icon = generic_nationalism
+		available = {
+		has_completed_focus = SOV_Room_7
+		}
+		visible = {
+		has_completed_focus = SOV_Room_7
+		}
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = 50
+
+		days_remove = 5
+		remove_effect = {
+			country_event = twrBERIA.14
+		}
+	}
+	SOV_fighting_corruption = {
+	allowed = {
+	tag = SOV
+	}
+		icon = generic_nationalism
+		available = {
+		OR = {
+		has_completed_focus = SOV_Room_7
+		has_completed_focus = SOV_speak_against_corruption
+			}
+		}
+
+		fire_only_once = no
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 65
+		modifier = {
+		consumer_goods_factor = -0.05
+		political_power_factor = -0.1
+		stability_factor = -0.05
+		}
+		remove_effect = {
+		add_manpower = -1000
+		}
+		days_remove = 30
+		days_re_enable = 30
+	}
+	SOV_coup_commie_tags = {
+	allowed = {
+	tag = SOV
+	}
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = AZR
+					tag = RAC
+					tag = SUK 
+					tag = SMO
+					tag = CDA
+					tag = BLR
+				}
+			}
+		}
+		icon = generic_nationalism
+		available = {
+		OR = {
+		has_completed_focus = SOV_Merge_the_Agencies
+		has_completed_focus = SOV_protect_national_security
+		}
+		FROM = {
+		is_communist = yes 
+		has_war = no
+		NOT = {
+		has_government = bolshevik_leninist
+		has_country_flag = DEFIANT_AGAINST_SOVIET
+				}
+			}
+		has_war = no
+		has_government = bolshevik_leninist
+		}
+
+		visible = {
+			has_completed_focus = SOV_Room_7
+			FROM = {
+			is_communist = yes 
+			has_war = no
+			NOT = {
+			has_government = bolshevik_leninist
+				}	
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 70
+		}
+		custom_cost_trigger = {
+			has_political_power > 60
+			has_manpower > 3000
+		}
+		custom_cost_text = SOV_PARTISAN_COUP_EM
+		modifier = {
+		consumer_goods_factor = 0.01
+		political_power_factor = -0.1
+		}
+		complete_effect = {
+		add_manpower = -3000
+		add_political_power = -60
+		}
+		remove_effect = {
+		FROM = {
+		country_event = twrBERIA.18
+			}
+		}
+		days_remove = 60
+	}
+}
+SOV_krugo_decisions = {
+	KRU_SOV_reform_the_propiska = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_new_age_reformism
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+
+		complete_effect = {
+		SOV_beria_thaw_effect = yes
+		}
+	}	
+	KRU_SOV_allow_foreign_publications = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_new_age_reformism
+		NOT = {
+		has_completed_focus = SOV_Emergency_Committee_Declared
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+
+		complete_effect = {
+		SOV_beria_thaw_effect = yes
+		add_popularity = {
+	    ideology = bolshevik_leninist
+	    popularity = -0.05
+			}
+		}
+	}	
+	KRU_SOV_support_cultural_projects = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_new_age_reformism
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		days_remove = 60
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		}
+		modifier = {
+		consumer_goods_factor = 0.02
+		}
+	}
+	KRU_SOV_affordable_civilian_goods = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_new_age_reformism
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 60
+		days_remove = 25
+		modifier = {
+		consumer_goods_factor = 0.03
+		}
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		add_stability = 0.15
+		}
+	}
+	KRU_SOV_new_housing_projects = {
+	allowed = {
+	tag = SOV
+	}
+		icon = eng_trade_unions_support
+		available = {
+		has_completed_focus = SOV_new_age_reformism
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 60
+		days_remove = 70
+		modifier = {
+		consumer_goods_factor = 0.05
+		}
+		remove_effect = {
+		SOV_beria_thaw_effect = yes
+		capital_scope = {
+		add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+}
+KAZ_special_couping = {
+	SOV_KAZ_coup_commie_tags = {
+	allowed = {
+	tag = SOV
+	}
+		target_trigger = {
+			FROM = {
+				OR = {
+					tag = AZR
+					tag = RAC
+					tag = SUK 
+					tag = SMO
+					tag = CDA
+					tag = BLR
+					tag = BLG
+				}
+			}
+		}
+		icon = generic_nationalism
+		available = {
+		has_completed_focus = KAZ_crimson_union_rises
+		FROM = {
+		has_war = no
+		NOT = {
+		has_government = ROOT
+		has_country_flag = DEFIANT_AGAINST_SOVIET
+				}
+			}
+		has_war = no
+		}
+
+		visible = {
+			KAZ = {
+			has_government = paternal_autocrat
+			}
+			FROM = {
+			is_communist = yes 
+			has_war = no
+			NOT = {
+			has_government = ROOT
+				}	
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 70
+		}
+		custom_cost_trigger = {
+			has_political_power > 60
+			has_manpower > 3000
+		}
+		custom_cost_text = SOV_PARTISAN_COUP_EM
+		modifier = {
+		consumer_goods_factor = 0.01
+		political_power_factor = -0.1
+		}
+		complete_effect = {
+		add_manpower = -3000
+		add_political_power = -60
+		}
+		remove_effect = {
+		if = {
+		limit = { is_communist = yes }
+		FROM = {
+		country_event = twrBULGANIN.17
+				}
+			}
+		if = {
+		limit = { has_government = paternal_autocrat }
+		FROM = {
+		country_event = KAZ.52
+				}
+			}
+		}
+		days_remove = 60
+	}	
+}
+
+SOV_diplo_decisions = {
+	# Bulganin, Beria and Kruglov Specific
+	SOV_diplo_negotiate_trade_deal = {
+		visible = {
+			country_exists = FROM
+			FROM = {
+				OR = {
+					has_government = social_democrat
+					has_government = liberal
+					has_government = conservative
+					has_government = paternal_autocrat
+				}
+				NOT = { has_opinion_modifier = SOV_soviet_trade_deal }
+			}
+		}
+
+		target_root_trigger = {
+			OR = {
+				AND = {
+					has_country_leader = { name = "Nikolai Bulganin" ruling_only = yes }
+					has_government = paternal_autocrat
+				}
+				has_country_leader = { name = "Lavrentiy Beria" ruling_only = yes }
+				has_country_leader = { name = "Sergei Kruglov" ruling_only = yes }
+				has_country_leader = { name = "Andrey Vlasov" ruling_only = yes}
+				is_democratic = yes
+			}
+		}
+
+		target_trigger = {
+			country_exists = FROM
+			FROM = {
+				OR = {
+					has_government = social_democrat
+					has_government = liberal
+					has_government = conservative
+					has_government = paternal_autocrat
+				}
+				NOT = { has_opinion_modifier = SOV_soviet_trade_deal }
+			}
+		}
+
+		cost = 35
+		days_remove = 10
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_negotiate_trade_deals target: [From.GetName]"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_negotiate_trade_deals target: [From.GetName]"
+			reverse_add_opinion_modifier = { target = FROM modifier = SOV_soviet_trade_deal }
+		}
+	}
+	SOV_diplo_negotiate_arms_deal = {
+		visible = {
+			country_exists = FROM
+			FROM = {
+				OR = {
+					has_government = social_democrat
+					has_government = liberal
+					has_government = conservative
+					has_government = paternal_autocrat
+				}
+				is_major = no
+			}
+		}
+
+		target_root_trigger = {
+			OR = {
+				AND = {
+					has_country_leader = { name = "Nikolai Bulganin" ruling_only = yes }
+					has_government = paternal_autocrat
+				}
+				has_country_leader = { name = "Lavrentiy Beria" ruling_only = yes }
+				has_country_leader = { name = "Sergei Kruglov" ruling_only = yes }
+				has_country_leader = { name = "Andrey Vlasov" ruling_only = yes}
+			}
+		}
+
+		target_trigger = {
+			country_exists = FROM
+			FROM = {
+				OR = {
+					has_government = social_democrat
+					has_government = liberal
+					has_government = conservative
+					has_government = paternal_autocrat
+				}
+				is_major = no
+			}
+		}
+
+		cost = 35
+		days_remove = 10
+
+		fire_only_once = yes
+
+		available = {
+			has_equipment = { infantry_equipment > 2499 }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_negotiate_arms_deal target: [From.GetName]"
+			add_offsite_building = { type = industrial_complex level = 1 }
+			send_equipment = { target = FROM type = infantry_equipment amount = 2500 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_negotiate_arms_deal target: [From.GetName]"
+			add_offsite_building = { type = industrial_complex level = -1 }
+		}
+	}
+	SOV_diplo_organise_state_visit = {
+		visible = {
+			country_exists = FROM
+		}
+
+		targets = { CHI ENG }
+
+		target_root_trigger = {
+			has_country_leader = { name = "Nikolai Bulganin" ruling_only = yes }
+			has_government = paternal_autocrat
+		}
+
+		target_trigger = {
+			country_exists = FROM
+		}
+
+		cost = 50
+		days_remove = 5
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_organise_state_visit target: [From.GetName]"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_organise_state_visit target: [From.GetName]"
+			if = {
+				limit = {
+					FROM = { tag = CHI }
+				}
+				CHI = { country_event = twrsovdiplo.8 }
+			}
+			else_if = {
+				limit = {
+					FROM = { tag = ENG }
+				}
+				ENG = { country_event = twrsovdiplo.9 }
+			}
+		}
+	}
+	SOV_diplo_petition_to_join_the_un = {
+		visible = {
+			OR = {
+				AND = {
+					has_country_leader = { name = "Nikolai Bulganin" ruling_only = yes }
+					has_government = paternal_autocrat
+				}
+				has_country_leader = { name = "Lavrentiy Beria" ruling_only = yes }
+				has_country_leader = { name = "Sergei Kruglov" ruling_only = yes }
+				has_country_leader = { name = "Andrey Vlasov" ruling_only = yes}
+				has_government = paternal_autocrat
+				is_democratic = yes
+			}
+		}
+
+		cost = 50
+		days_remove = 5
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_petition_to_join_the_un"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_petition_to_join_the_un"
+			custom_effect_tooltip = SOV_diplo_petition_to_join_the_un_tt
+			TWR_add_to_un = yes
+		}
+	}
+	# Sus man Specific
+	SOV_diplo_invade_afghanistan = {
+		visible = {
+			has_focus_tree = RUS_suslov_tree_2
+			has_country_leader = { name = "Ivan Konev" ruling_only = yes}
+			can_declare_war_on = AFG
+		}
+
+		available = {
+			has_war = no
+		}
+
+		cost = 90
+		days_remove = 30
+
+		fire_only_once = yes
+		war_with_on_remove = AFG
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_invade_afghanistan"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_invade_afghanistan"
+			declare_war_on = { target = AFG type = annex_everything }
+			news_event = twrsovdiplonews.3
+			hidden_effect = {
+				activate_mission = SOV_diplo_invade_afghanistan_timer
+			}
+		}
+	}
+	SOV_diplo_invade_iran = {
+		visible = {
+			has_focus_tree = RUS_suslov_tree_2
+			has_country_leader = { name = "Ivan Konev" ruling_only = yes}
+			can_declare_war_on = PER
+		}
+
+		available = {
+			has_war = no
+		}
+
+		cost = 90
+		days_remove = 30
+
+		fire_only_once = yes
+		war_with_on_remove = PER
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_invade_iran"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_invade_iran"
+			declare_war_on = { target = PER type = annex_everything }
+			news_event = twrsovdiplonews.4
+			hidden_effect = {
+				activate_mission = SOV_diplo_invade_iran_timer
+			}
+		}
+	}
+	SOV_diplo_invade_afghanistan_timer = {
+		allowed = { always = no }
+
+		available = {
+			AFG = {
+				OR = {
+					has_capitulated = yes
+					exists = no
+				}
+			}
+		}
+
+		cancel_trigger = {
+			surrender_progress > 0.04
+		}
+
+		days_mission_timeout = 150
+		is_good = no
+
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled SOV_diplo_invade_afghanistan_timer"
+			white_peace = AFG
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_invade_afghanistan_timer"
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout SOV_diplo_invade_afghanistan_timer"
+			white_peace = AFG
+		}
+	}
+	SOV_diplo_invade_iran_timer = {
+		allowed = { always = no }
+
+		available = {
+			PER = {
+				OR = {
+					has_capitulated = yes
+					exists = no
+				}
+			}
+		}
+
+		cancel_trigger = {
+			surrender_progress > 0.04
+		}
+
+		days_mission_timeout = 150
+		is_good = no
+
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled SOV_diplo_invade_iran_timer"
+			white_peace = PER
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_invade_iran_timer"
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout SOV_diplo_invade_iran_timer"
+			white_peace = PER
+		}
+	}
+	# Turkenich Specific
+	SOV_diplo_host_ccp_exiles = {
+		visible = {
+			has_country_leader = { name = "Ivan Turkenich" ruling_only = yes }
+			has_country_leader = { name = "Ivan Konev" ruling_only = yes }
+			country_exists = CHI
+		}
+
+		available = {
+			has_war = no
+		}
+
+		cost = 50
+		days_remove = 5
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_host_ccp_exiles"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_host_ccp_exiles"
+			country_event = twrsovdiplo.1
+			hidden_effect = {
+				CHI = { country_event = twrsovdiplo.2 }
+			}
+		}
+	}
+	SOV_diplo_invite_mongolia = {
+		visible = {
+			is_faction_leader = yes
+			country_exists = MON
+			MON = {
+				OR = {
+					has_government = socialist
+					has_government = bolshevik_leninist
+					has_government = marxist_leninist
+				}
+			}
+		}
+
+		available = {
+			has_war = no
+		}
+
+		cost = 50
+		days_remove = 15
+
+		fire_only_once = yes
+		war_with_target_on_remove = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_invite_mongolia"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_invite_mongolia"
+			MON = { country_event = twrsovdiplo.3 }
+		}
+	}
+	SOV_diplo_start_civil_war_in_afghanistan = {
+		visible = {
+			has_country_leader = { name = "Ivan Turkenich" ruling_only = yes }
+			country_exists = AFG
+			AFG = {
+				NOT = {
+					OR = {
+						has_government = socialist
+						has_government = bolshevik_leninist
+						has_government = marxist_leninist
+					}
+				}
+			}
+		}
+
+		available = {
+			has_war = no
+			AFG = { has_war = no }
+		}
+
+		cost = 90
+		days_remove = 30
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_start_civil_war_in_afghanistan"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_start_civil_war_in_afghanistan"
+			AFG = { country_event = twrsovdiplo.6 }
+		}
+	}
+	# Generic
+	SOV_diplo_form_communist_tech_sharing_sphere = {
+		cost = 50
+		days_remove = 30
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_form_communist_tech_sharing_sphere"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_form_communist_tech_sharing_sphere"
+			add_to_tech_sharing_group = SOV_communist_tech_sharing_sphere
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	SOV_diplo_send_military_equipment = {
+		visible = {
+			country_exists = FROM
+			FROM = {
+				OR = {
+					has_government = socialist
+					has_government = bolshevik_leninist
+					has_government = marxist_leninist
+				}
+				has_war = yes
+			}
+		}
+
+		target_trigger = {
+			country_exists = FROM
+			FROM = {
+				OR = {
+					has_government = socialist
+					has_government = bolshevik_leninist
+					has_government = marxist_leninist
+				}
+				has_war = yes
+			}
+		}
+
+		available = {
+			has_equipment = { infantry_equipment > 2499 }
+		}
+
+		cost = 50
+		days_remove = 20
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_send_military_equipment target: [From.GetName]"
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 producer = SOV }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_send_military_equipment target: [From.GetName]"
+			FROM = { country_event = twrsovdiplo.7 }
+		}
+	}
+	SOV_diplo_declare_war_on_germany = {
+		visible = {
+			GRM = {
+			OR = {
+			is_fascist = yes
+			has_government = paternal_autocrat
+				}
+			}
+			NOT = {
+			has_completed_focus = KAZ_german_ceasefire
+			}
+		}
+
+		available = {
+			can_declare_war_on = GRM
+		}
+
+		cost = 10
+		days_remove = 30
+
+		fire_only_once = yes
+		war_with_on_remove = GRM
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_declare_war_on_germany"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_declare_war_on_germany"
+			declare_war_on = { target = GRM type = annex_everything }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	SOV_diplo_reform_comintern = {
+		visible = {
+		OR = {
+		has_focus_tree = RUS_suslov_tree_2
+		has_completed_focus = SOV_Old_Diplomatic_Corps
+			}
+		}
+
+		available = {
+		NOT = {
+		has_country_leader = { name = "Mikhail Suslov" ruling_only = yes }
+			}
+		}
+
+		cost = 90
+		days_remove = 30
+
+		fire_only_once = yes
+		war_with_on_remove = ROM
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_reform_comintern"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_reform_comintern"
+			set_country_flag = NEW_COMINTERN_FLAG
+			create_faction = NEW_COMINTERN
+			news_event = twrTURKENICH.25
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	SOV_diplo_declare_war_on_romania = {
+	#demand land
+		visible = {
+			ROM = {
+			OR = {
+			is_fascist = yes
+			has_government = paternal_autocrat
+				}
+			}
+		}
+
+		available = {
+			can_declare_war_on = ROM
+		}
+
+		cost = 50
+		days_remove = 30
+
+		fire_only_once = yes
+		war_with_on_remove = ROM
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_declare_war_on_romania"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_declare_war_on_romania"
+			declare_war_on = { target = ROM type = annex_everything }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	SOV_diplo_odessa_or_war = {
+	#demand land
+		visible = {
+			ROM = {
+			NOT = {
+			is_fascist = yes
+			has_government = paternal_autocrat
+				}
+			}
+		}
+
+		available = {
+			can_declare_war_on = ROM
+		}
+
+		cost = 50
+		days_remove = 30
+
+		fire_only_once = yes
+		war_with_on_remove = ROM
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_declare_war_on_romania"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_declare_war_on_romania"
+			ROM = { country_event = twrsovdiplo.12 }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	SOV_diplo_invite_poland = {
+		visible = {
+		is_faction_leader = yes
+		is_communist = yes
+		NOT = { has_government = marxist_leninist }
+		country_exists = POL
+			POL = {
+			is_communist = yes
+			}
+		}
+
+		available = {
+			can_declare_war_on = POL
+		}
+
+		cost = 50
+		days_remove = 30
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_invite_poland"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_invite_poland"
+			POL = { country_event = twrsovdiplo.3 }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	SOV_diplo_invite_bul = {
+		visible = {
+		is_faction_leader = yes
+		is_communist = yes
+		country_exists = BUL
+			BUL = {
+			is_communist = yes
+			}
+		}
+
+		available = {
+			can_declare_war_on = BUL
+		}
+
+		cost = 50
+		days_remove = 30
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_invite_bul"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_invite_bul"
+			BUL = { country_event = twrsovdiplo.3 }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	SOV_diplo_invite_alb = {
+		visible = {
+		is_faction_leader = yes
+		has_government = marxist_leninist
+		country_exists = ALB
+			ALB = {
+			has_government = marxist_leninist
+			}
+		}
+
+		available = {
+		country_exists = ALB
+			ALB = {
+			has_government = marxist_leninist
+			is_in_faction = no
+			}		
+			can_declare_war_on = ALB
+		}
+
+		cost = 50
+		days_remove = 30
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_invite_alb"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_invite_alb"
+			ALB = { country_event = twrsovdiplo.3 }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	SOV_diplo_declare_war_on_poland = {
+		visible = {
+		country_exists = POL
+		OR = {
+			POL = {
+			is_communist = no
+			}
+		has_country_leader = { name = "Mikhail Suslov" ruling_only = yes }
+			}
+		}
+
+		available = {
+			can_declare_war_on = POL
+		}
+
+		cost = 50
+		days_remove = 30
+
+		fire_only_once = yes
+		war_with_on_remove = POL
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_diplo_declare_war_on_poland"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_diplo_declare_war_on_poland"
+			declare_war_on = { target = POL type = annex_everything }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+}
+
+SOV_yugo_diplo_decisions = {
+	SOV_deliver_yugo_guns = {
+		visible = {
+			country_exists = SER
+			SER = {
+				is_subject = no
+				has_completed_focus = SER_Buy_from_Russia
+				is_communist = yes
+			}
+			has_country_flag = RUS_Yugo_Relations
+		}
+
+		cost = 35
+		days_remove = 10
+
+		fire_only_once = no
+
+		ai_will_do = {
+			factor = 35
+		}
+
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+
+		modifier = {
+			consumer_goods_factor = -0.02
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_deliver_yugo_guns target: [From.GetName]"
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 2000
+				target = SER
+			}
+			SER = {
+				country_event = { days = 1 id = twrserbia.37 }
+			}
+		}
+	}
+	SOV_invite_yugo_into_faction = {
+		visible = {
+			country_exists = SER
+			SER = {
+				is_subject = no
+				is_communist = yes
+			}
+			has_country_flag = RUS_Yugo_Relations
+			is_faction_leader = yes
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			base = 100
+		}
+
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_invite_yugo_into_faction target: [From.GetName]"
+			SER = {
+				country_event = { days = 1 id = twrserbia.377 }
+			}
+		}
+	}
+}

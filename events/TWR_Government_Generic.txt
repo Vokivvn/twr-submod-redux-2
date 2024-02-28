@@ -1,0 +1,197 @@
+﻿###########################
+# Democracies
+###########################
+
+add_namespace = twrdemocratic
+add_namespace = twrinvitetofac
+
+country_event = { #Union Leaders - successful meeting
+	id = twrdemocratic.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdemocratic.1"}
+	title = twrdemocratic.1.t
+	desc = twrdemocratic.1.d
+	picture = GFX_report_event_industry
+	
+	is_triggered_only = yes	
+	option = { #Yes
+		name = twrdemocratic.1.a
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			add_political_power = 100
+			add_timed_idea = {
+				idea = GEN_union_agreement
+				days = 90
+		}
+	}
+}
+country_event = { #Union Leaders - failed meeting
+	id = twrdemocratic.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdemocratic.2"}
+	title = twrdemocratic.2.t
+	desc = twrdemocratic.2.d
+	picture = GFX_report_event_industry
+	
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = twrdemocratic.2.a
+		add_political_power = -50
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.05
+			}
+	}
+}
+
+country_event = { #Welfare reformed
+	id = twrdemocratic.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdemocratic.3"}
+	title = twrdemocratic.3.t
+	desc = twrdemocratic.3.d
+	picture = GFX_report_event_industry
+	
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = twrdemocratic.3.a
+		if = {
+			limit = {
+				has_government = social_democrat
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.1
+			}			
+			add_political_power = 50
+			add_timed_idea = {
+				idea = GEN_welfare_reforms
+				days = 150
+			}
+		}
+		else_if = {
+			limit = {
+				has_government = liberal
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.1
+			}			
+			add_political_power = 50
+			add_timed_idea = {
+				idea = GEN_welfare_reforms
+				days = 150
+			}			
+		}
+		else_if = {
+			limit = {
+				has_government = socialist
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.1
+			}			
+			add_political_power = 50
+			add_timed_idea = {
+				idea = GEN_welfare_reforms
+				days = 150
+			}			
+		}
+	}
+}
+country_event = { #Welfare shot down
+	id = twrdemocratic.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdemocratic.4"}
+	title = twrdemocratic.4.t
+	desc = twrdemocratic.4.d
+	picture = GFX_report_event_industry
+	
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = twrdemocratic.4.a
+		if = {
+			limit = {
+				has_government = social_democrat
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.1
+			}			
+		add_political_power = -50
+		add_stability = -0.05
+		}
+		else_if = {
+			limit = {
+				has_government = liberal
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.1
+			}			
+		add_political_power = -50
+		add_stability = -0.05		
+		}
+		else_if = {
+			limit = {
+				has_government = socialist
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.1
+			}			
+		add_political_power = -50
+		add_stability = -0.05		
+		}
+	}
+}
+
+country_event = { #Invitation
+	id = twrinvitetofac.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrinvitetofac.1"}
+	title = twrinvitetofac.1.t
+	desc = twrinvitetofac.1.d
+	picture = GFX_report_event_generic_handshake
+	
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = twrdemocratic.1.a
+		ai_chance = {
+		factor = 50
+			}
+		FROM = {
+		add_to_faction = ROOT
+			}
+		}
+	option = { #No
+		name = twrdemocratic.1.a
+		ai_chance = {
+		factor = 30
+			}
+		FROM = { country_event = twrinvitetofac.2 }
+	}
+}
+
+country_event = { #Invitation
+	id = twrinvitetofac.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrinvitetofac.2"}
+	title = twrinvitetofac.2.t
+	desc = twrinvitetofac.2.d
+	picture = GFX_report_event_generic_handshake
+	
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = twrdemocratic.2.a
+	}
+}

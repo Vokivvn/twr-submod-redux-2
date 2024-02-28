@@ -1,0 +1,480 @@
+focus_tree = {
+	id = Occupied_Japan
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = JAP
+		}
+	}
+	default = no
+	focus = {
+	cancelable = no
+		id = OJP_Under_The_Boot
+		icon = GFX_JAP_US_Stomp
+		cost = 2.00
+		x = 5
+		y = 0
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Under_The_Boot"
+			add_stability = -0.1
+			country_event = {
+				id = twrjapan.2
+				days = 0
+			}
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = OJP_International_Aid
+		icon = GFX_JAP_International_Aid
+		cost = 7.00
+		x = 9
+		y = 0
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_International_Aid"
+			add_offsite_building = { type = industrial_complex  level = 3 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Convince_The_Community
+		icon = GFX_GENERIC_liberation
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Under_The_Boot
+		}
+		x = 5
+		y = 1
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Convince_The_Community"
+			remove_state_claim = 537
+			remove_state_claim = 655
+			hidden_effect = {
+			set_truce = {
+				target = CHI
+				days = 730
+			}
+
+			set_truce = {
+				target = USA
+				days = 730
+			}
+
+			set_truce = {
+				target = RUS
+				days = 730
+			}
+
+			set_truce = {
+				target = KOR
+				days = 730
+			}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Make_Promises
+		icon = GFX_GER_trip_to_argentina
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Convince_The_Community
+		}
+		x = 4
+		y = 2
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Make_Promises"
+			add_stability = 0.05
+			add_war_support = -0.1
+			set_rule = {
+				can_join_factions = no
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Occupation_Zones_Treaties
+		icon = GFX_JAP_Occupation
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Make_Promises
+		}
+		x = 3
+		y = 3
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Occupation_Zones_Treaties"
+			country_event = { id = twrjapan.7 days = 0 }
+			AST = { country_event = { id = twrjapan.71 days = 0 } }
+			CAN = { country_event = { id = twrjapan.71 days = 0 } }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Sign_The_New_Drafts
+		icon = GFX_focus_generic_treaty
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Convince_The_Community
+		}
+		x = 6
+		y = 2
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Sign_The_New_Drafts"
+			set_rule = {
+				can_not_declare_war = yes
+			}
+			hidden_effect = { news_event = { id = twrjapan.990 days = 3 } }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Finish_The_Eastern_Tribunal
+		icon = GFX_GENERIC_government_supression
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Make_Promises
+		}
+		prerequisite = {
+			focus = OJP_Sign_The_New_Drafts
+		}
+		x = 5
+		y = 3
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Finish_The_Eastern_Tribunal"
+			country_event = {
+				id = twrjapan.6
+				days = 0
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Chinese_Deal
+		icon = GFX_focus_chi_cooperation_with_the_nationalists
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Finish_The_Eastern_Tribunal
+		}
+		prerequisite = {
+			focus = OJP_Occupation_Zones_Treaties
+		}
+		x = 5
+		y = 4
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Chinese_Deal"
+			add_stability = -0.05
+			add_political_power = -150
+			CHI = { country_event = { id = twrjapan.71 days = 0 } }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Formal_Lend
+		icon = GFX_GENERIC_frontlines
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Sign_The_New_Drafts
+		}
+		x = 7
+		y = 3
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Formal_Lend"
+			add_war_support = -0.01
+			add_political_power = -150
+			add_stability = -0.05
+			add_popularity = {
+    		ideology = conservative
+    		popularity = -0.15
+				}
+			add_offsite_building = { type = industrial_complex  level = 3 }
+			remove_state_core = 645 #Iwo Jimta
+			remove_state_core = 526 #Okinawa
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_American_Deal
+		icon = GFX_focus_chi_mission_to_the_us
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Formal_Lend
+		}
+		x = 7
+		y = 4
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_American_Deal"
+			add_stability = -0.01
+			USA = { country_event = { id = twrjapan.71 days = 0 } }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_The_MacArthur_Plan
+		icon = GFX_JAP_American_Brotherhood
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_International_Aid
+		}
+		x = 9
+		y = 1
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_The_MacArthur_Plan"
+			282 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			hidden_effect = {
+				country_event = { id = twrjapan.14 days = 20 random = 500 }
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_British_Funds
+		icon = GFX_ENG_monarchy
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_The_MacArthur_Plan
+		}
+		x = 9
+		y = 2
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_British_Funds"
+			ENG = { add_offsite_building = { type = industrial_complex  level = 1 } }
+			880 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Industrial_Limitations
+		icon = GFX_GENERIC_industrial_quota
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_British_Funds
+		}
+		x = 9
+		y = 3
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Industrial_Limitations"
+			add_ideas = JAP_industrial_limits
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Revisit_The_System
+		icon = GFX_GENERIC_loosen_regulations
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_The_MacArthur_Plan
+		}
+		x = 11
+		y = 2
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Revisit_The_System"
+			add_stability = 0.05
+			add_political_power = -250
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_The_Relief_Scheme
+		icon = GFX_goal_generic_construction2
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Revisit_The_System
+		}
+		x = 11
+		y = 3
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_The_Relief_Scheme"
+			swap_ideas = {
+				remove_idea = JAP_supplies_issues
+				add_idea = JAP_eased_supplies_issues
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_British_Deal
+		icon = GFX_focus_chi_british_cooperation
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Occupation_Zones_Treaties
+		}
+		x = 3
+		y = 4
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_British_Deal"
+			ENG = { country_event = { id = twrjapan.71 days = 0 } }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_A_Changed_Nation
+		icon = GFX_focus_jap_pacific_guardian
+		cost = 7.00
+		prerequisite = {
+			focus = OJP_Industrial_Limitations
+		}
+		prerequisite = {
+			focus = OJP_The_Relief_Scheme
+		}
+		x = 10
+		y = 4
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_A_Changed_Nation"
+			add_ideas = JAP_unfair_treaties
+		}
+	}
+	focus = {
+	cancelable = no
+		id = OJP_Treaty_Of_Freedom
+		icon = GFX_JAP_Democracy
+		cost = 3.00
+		prerequisite = {
+			focus = OJP_British_Deal
+		}
+		prerequisite = {
+			focus = OJP_Chinese_Deal
+		}
+		prerequisite = {
+			focus = OJP_American_Deal
+		}
+		prerequisite = {
+			focus = OJP_A_Changed_Nation
+		}
+		available = {
+			has_global_flag = mayday_suppressed
+		}
+		x = 7
+		y = 5
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus OJP_Treaty_Of_Freedom"
+			USA = {
+			end_puppet = JAP
+			}
+			leave_faction = yes
+			remove_ideas = JAP_occupation_command
+			news_event = twrjapan.1945111
+			drop_cosmetic_tag = yes
+			give_military_access = USA
+			custom_effect_tooltip = TREESWITCHOCCUPATION
+			hidden_effect = {
+			activate_decision = JAP_tree_switch
+			diplomatic_relation = {
+				country = USA
+				relation = docking_rights
+				active = yes
+			}
+			TWR_add_to_un = yes
+			}
+		}
+	}
+}

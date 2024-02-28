@@ -1,0 +1,847 @@
+focus_tree = {
+		id = BRY_focus
+
+		country = {
+		factor = 0
+
+		modifier = {
+			add = 0
+			tag = BRY
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_no_nobles #Future of the Garrison
+		icon = GFX_USA_military_advisors
+		x = 3
+		y = 0
+		cost = 5
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_no_nobles"
+			country_event = { id = twrburyatia.1 }
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_find_nobles #Extending the Occupation
+		icon = GFX_USA_coup
+		prerequisite = { focus = BRY_no_nobles }
+		relative_position_id = BRY_no_nobles
+		mutually_exclusive = { focus = BRY_dont_find_nobles }
+		x = -1
+		y = 1
+		cost = 0
+		ai_will_do = {
+			factor = 12
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_find_nobles"
+			add_political_power = -250
+			add_stability = -0.1
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_tsarists #Reinforcing the Garrisons
+		icon = GFX_GENERIC_Military_Equipment
+		prerequisite = { focus = BRY_find_nobles }
+		relative_position_id = BRY_find_nobles
+		x = -1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_tsarists"
+				add_manpower = 5000
+				add_equipment_to_stockpile = {
+		    	type = infantry_equipment
+		    	amount = 1000
+		    	producer = USA
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_cossacks #Bringer of Stability
+		icon = GFX_USA_real_democracy
+		prerequisite = { focus = BRY_tsarists}
+		relative_position_id = BRY_tsarists
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_cossacks"
+		add_stability = 0.05
+		add_ideas = BRY_Cossacks_in_Cabinet
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_crown_officers #Training Our Officers
+		icon = GFX_GENERIC_Officer_Army
+		prerequisite = { focus = BRY_cossacks}
+		relative_position_id = BRY_cossacks
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_crown_officers"
+		army_experience = 25
+		every_army_leader = {
+		add_skill_level = 1
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_wheres_palace #Reconstruction Scheme
+		icon = GFX_GENERIC_Major_City
+		prerequisite = { focus = BRY_find_nobles focus = BRY_dont_find_nobles}
+		relative_position_id = BRY_find_nobles
+		x = 1
+		y = 1
+		cost = 6.5
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_wheres_palace"
+			add_ideas = BRY_Royal_Construction
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_build_palace #Empowering Local Industries
+		icon = GFX_GENERIC_Construction_Engineering
+		prerequisite = { focus = BRY_wheres_palace}
+		relative_position_id = BRY_wheres_palace
+		x = 0
+		y = 1
+		cost = 14.3
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_build_palace"
+		566 = {	
+			add_building_construction = {
+			type = industrial_complex
+			level = 1
+			instant_build = yes
+				}
+			add_building_construction = {
+			type = arms_factory
+			level = 1
+			instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_palace_guards #American Supplies
+		icon = GFX_USA_logistics
+		prerequisite = { focus = BRY_build_palace}
+		relative_position_id = BRY_build_palace
+		x = 0
+		y = 1
+		cost = 4.3
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_palace_guards" #swap ideas
+		add_manpower = 5000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1500
+			producer = USA
+			}
+			add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = 200
+			producer = USA
+			}
+			add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 75
+			producer = USA
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_dont_find_nobles #We Are Pulling Out!
+		icon = GFX_GENERIC_kill_with_fire
+		prerequisite = { focus = BRY_no_nobles }
+		relative_position_id = BRY_no_nobles
+		mutually_exclusive = { focus = BRY_find_nobles }
+		x = 1
+		y = 1
+		cost = 0
+		ai_will_do = {
+			factor = 12
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_dont_find_nobles"
+		add_political_power = 25
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_rulings_hard #Increasing Russian Influence
+		icon = GFX_RUS_Volunteers
+		prerequisite = { focus = BRY_dont_find_nobles}
+		relative_position_id = BRY_dont_find_nobles
+		x = 1
+		y = 1
+		cost = 3.6
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_rulings_hard"
+			swap_ideas = {
+		    	remove_idea = BRY_Ostensible_Republican_Oversight
+		    	add_idea = BRY_Lone_Ruler
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_get_help #Withdrawing from Buryatia
+		icon = GFX_GEN_good_airport
+		prerequisite = { focus = BRY_rulings_hard}
+		relative_position_id = BRY_rulings_hard
+		x = 0
+		y = 1
+		cost = 7.9
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_get_help"
+		delete_unit_template_and_units = {
+    	division_template = "USFB Garrisons"
+			}
+			remove_ideas = BRY_Atrocious_Morale
+			add_stability = 0.15
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_book_people #The Local Security Forces
+		icon = GFX_GENERIC_two_officers
+		prerequisite = { focus = BRY_get_help}
+		relative_position_id = BRY_get_help
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_book_people"
+		remove_ideas = BRY_Policy_of_Non_Intervention
+		add_ideas = limited_conscription 
+		custom_effect_tooltip = CREATE_SECURITY_UNITS
+		hidden_effect = {
+		division_template = {
+    	name = "Buryat Security Forces"
+    	division_names_group = RUS_GAR_01
+    	regiments = {
+        militia = { x = 0 y = 0 }
+        militia = { x = 0 y = 1 }
+    	}
+    	support = { 
+        military_police = { x = 0 y = 0 }
+    	} 
+	}
+		566 = {	
+		create_unit = {
+    	division = "name = \"1st Buryat Security Brigade\" division_template = \"Buryat Security Forces\" start_experience_factor = 0.1 start_equipment_factor = 0.3"
+    	owner = BRY
+			}
+		create_unit = {
+    	division = "name = \"2nd Buryat Security Brigade\" division_template = \"Buryat Security Forces\" start_experience_factor = 0.1 start_equipment_factor = 0.3"
+    	owner = BRY
+			}
+		create_unit = {
+    	division = "name = \"3rd Buryat Security Brigade\" division_template = \"Buryat Security Forces\" start_experience_factor = 0.1 start_equipment_factor = 0.3"
+    	owner = BRY
+			}
+		create_unit = {
+    	division = "name = \"4th Buryat Security Brigade\" division_template = \"Buryat Security Forces\" start_experience_factor = 0.1 start_equipment_factor = 0.3"
+    	owner = BRY
+			}
+		create_unit = {
+    	division = "name = \"5th Buryat Security Brigade\" division_template = \"Buryat Security Forces\" start_experience_factor = 0.1 start_equipment_factor = 0.3"
+    	owner = BRY
+					}
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_throw_party #A Russo-American Agreement
+		icon = GFX_GENERIC_Stolen_Papers
+		prerequisite = { focus = BRY_book_people focus = BRY_crown_officers}
+		prerequisite = { focus = BRY_palace_guards }
+		relative_position_id = BRY_palace_guards
+		x = 0
+		y = 1
+		cost = 14.3
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_throw_party"
+			country_event = { id = twrburyatia.10 }
+		}
+
+	}
+	
+	
+	#####setting up party path#####
+	
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_supplies #The Irkutsk Incident
+		icon = GFX_GENERIC_Burn_the_Parliament
+		relative_position_id = BRY_no_nobles
+		x = 11
+		y = 0
+		cost = 0
+		available = { always = no }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_supplies"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_food #America's Grip
+		icon = GFX_JAP_American_Dog
+		prerequisite = { focus = BRY_party_supplies }
+		relative_position_id = BRY_party_supplies
+		mutually_exclusive = { focus = BRY_party_entertainment } 
+		mutually_exclusive = { focus = BRY_party_drink } 
+		x = -3
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_food"
+#		country_event = { id = twrburyatia.2 }
+		add_political_power = 50
+		add_stability = -0.05
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_food_animals #Indoctrinatation by Food
+		icon = GFX_GENERIC_Canned_Fish
+		prerequisite = { focus = BRY_party_food }
+		relative_position_id = BRY_party_food
+		x = -2
+		y = 1
+		cost = 7.5
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_food_animals"
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.05
+			}
+			add_stability = 0.025
+			add_political_power = 100
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_food_fruits_and_cheese #Lessening Restrictions on GIs
+		icon = GFX_GENERIC_Yankee_Style_Soldier
+		prerequisite = { focus = BRY_party_food }
+		relative_position_id = BRY_party_food
+		x = 0
+		y = 1
+		cost = 7.5
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_food_fruits_and_cheese"
+			add_political_power = -100
+			add_stability = 0.1
+			swap_ideas = {
+		    	remove_idea = BRY_Atrocious_Morale
+		    	add_idea = BRY_Poor_Morale
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_drink_french_champagne #Employment Opportunities for Locals
+		icon = GFX_GENERIC_workers
+		prerequisite = { focus = BRY_party_food }
+		relative_position_id = BRY_party_food
+		x = 2
+		y = 1
+		cost = 7.5
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_drink_french_champagne"
+			add_ideas = BRY_Local_Production
+		}
+
+	}
+		
+	focus = {
+	cancelable = no
+		id = BRY_party_food_storage #Operation Siberian Freedom
+		icon = GFX_USA_recruit_the_free_corps
+		prerequisite = { focus = BRY_party_food_animals }
+		prerequisite = { focus = BRY_party_food_fruits_and_cheese }
+		prerequisite = { focus = BRY_party_drink_french_champagne }
+		relative_position_id = BRY_party_food_animals
+		x = 2
+		y = 1
+		cost = 7.9
+		ai_will_do = {
+			factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_food_storage"
+			country_event = twrburyatia.3
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = BRY_wrap_it_up #Wrap it Up!
+		icon = GFX_USA_recruit_the_free_corps
+		prerequisite = { focus = BRY_party_food_storage }
+		relative_position_id = BRY_party_food_storage
+		mutually_exclusive = { focus = BRY_party_guest_list }
+		x = 0
+		y = 1
+		cost = 7.9
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+		has_country_flag = OPERATION_COMPLETED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_wrap_it_up"
+			country_event = { id = twrburyatia.11 }
+			hidden_effect = {
+			remove_ideas = central_russian_famine
+			}
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = BRY_building_an_independent_buryatia
+		icon = GFX_BRY_flag_icon
+		prerequisite = { focus = BRY_wrap_it_up }
+		relative_position_id = BRY_party_food_storage
+		mutually_exclusive = { focus = BRY_authority_to_russia }
+		x = 1
+		y = 3
+		available = { always = no }
+		cost = 10
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_building_an_independent_buryatia"
+			country_event = twrburyatia.9
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = BRY_authority_to_russia
+		icon = GFX_RUS_russian_spirit
+		prerequisite = { focus = BRY_wrap_it_up }
+		relative_position_id = BRY_party_food_storage
+		mutually_exclusive = { focus = BRY_building_an_independent_buryatia }
+		x = -1
+		y = 3
+		available = { always = no }
+		cost = 3
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_authority_to_russia"
+			RUS = {
+			annex_country = {
+    		target = BRY
+    		transfer_troops = yes
+				}
+			add_state_core = 565
+			add_state_core = 566
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_drink #Return to Russia
+		icon = GFX_GENERIC_Align_Russia
+		prerequisite = { focus = BRY_party_supplies }
+		mutually_exclusive = { focus = BRY_party_food } 
+		mutually_exclusive = { focus = BRY_party_entertainment } 
+		available = {
+		has_completed_focus = BRY_throw_party
+		has_completed_focus = BRY_dont_find_nobles
+		}
+		relative_position_id = BRY_party_supplies
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_drink"
+			RUS = {
+			annex_country = {
+    		target = BRY
+    		transfer_troops = yes
+				}
+			add_state_core = 565
+			add_state_core = 566
+			}		
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = BRY_party_drink_finnish_champagne #Execute the Tyrants
+		icon = GFX_GENERIC_Arrests
+		prerequisite = { focus = BRY_party_entertainment }
+		relative_position_id = BRY_party_drink
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_drink_finnish_champagne"
+			add_political_power = 150
+			add_stability = -0.10
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_entertainment #An Enigma Rises
+		icon = GFX_BRY_Solzhenitsyn
+		prerequisite = { focus = BRY_party_supplies }
+		mutually_exclusive = { focus = BRY_party_food } 
+		mutually_exclusive = { focus = BRY_party_drink } 
+		relative_position_id = BRY_party_supplies
+		x = 3
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_entertainment"
+			every_unit_leader = {
+				retire = yes
+			}
+			remove_ideas = BRY_VNS_Partisan_Front
+			retire_country_leader = yes
+			set_politics = {
+				ruling_party = fascist
+				elections_allowed = no
+			}
+			create_field_marshal = {
+				name = "Aleksandr Solzhenitsyn"
+				picture = "Aleksandr_Solzhenitsyn.dds"
+				traits = { inspirational_leader trait_reckless }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			hidden_effect = {
+			remove_ideas = {
+			BRY_Policy_of_Non_Intervention
+			BRY_US_Forces_in_Buryatia
+			BRY_Atrocious_Morale
+			BRY_Ostensible_Republican_Oversight
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_entertainment_american #American Weapon Caches
+		icon = GFX_GENERIC_Holding_Gun
+		prerequisite = { focus = BRY_party_entertainment }
+		relative_position_id = BRY_party_entertainment
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_entertainment_american"
+			add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1000
+			producer = USA
+			}
+			add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = 100
+			producer = USA
+			}
+			add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 75
+			producer = USA
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_entertainment_italian #Establish Ethnic Communes
+		icon = GFX_FRA_French_Fascists
+		prerequisite = { focus = BRY_party_entertainment }
+		relative_position_id = BRY_party_entertainment
+		x = 2
+		y = 1
+		cost = 9
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_entertainment_italian"
+			add_stability = 0.01
+			create_corps_commander = {
+			name = "Buryat Commune"
+			picture = "Buryat_Commune.dds"
+			traits = { trait_commune cavalry_officer skilled_staffer }
+			skill = 2
+    		attack_skill = 1
+    		defense_skill = 1
+   			planning_skill = 1
+    		logistics_skill = 1
+		}
+
+		create_corps_commander = {
+			name = "Russian Commune"
+			picture = "Russian_Commune.dds"
+			traits = { trait_commune infantry_officer skilled_staffer }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_entertainment_monitoring #A Stateless Fatherland
+		icon = GFX_GENERIC_Gasmask_Person
+		prerequisite = { focus = BRY_party_entertainment_american }
+		prerequisite = { focus = BRY_party_entertainment_italian }
+		prerequisite = { focus = BRY_party_drink_finnish_champagne }
+		relative_position_id = BRY_party_entertainment_american
+		x = 0
+		y = 1
+		cost = 7.9
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_entertainment_monitoring"
+			add_ideas = BRY_Fighters_with_no_State
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_guest_list #Our Might is Unstoppable!
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = BRY_party_entertainment_monitoring focus = BRY_party_food_storage  }
+		mutually_exclusive = { focus = BRY_wrap_it_up }
+		relative_position_id = BRY_party_drink
+		x = 0
+		y = 3
+		cost = 10
+		available = {
+		OR = {
+		has_country_flag = OPERATION_INCOMPLETED
+		has_government = fascist
+		}
+		}
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_guest_list"
+			hidden_effect = {
+			remove_ideas = central_russian_famine
+			}
+			custom_effect_tooltip = BuryatianConquest
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_guest_list_neighbors #Post-Struggle Non-Nation States
+		icon = GFX_KRA_pale_rider
+		prerequisite = { focus = BRY_party_guest_list }
+		relative_position_id = BRY_party_guest_list
+		mutually_exclusive = { focus = BRY_party_guest_list_strangers }
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 12
+		}
+		available = {
+		has_government = fascist
+		custom_trigger_tooltip = {
+		tooltip = this_state_controls_central_siberia
+		controls_central_siberia = yes
+		}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_guest_list_neighbors"
+			add_stability = 0.1
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_guest_list_strangers #An American Bulwark Against Bolshevism
+		icon = GFX_focus_ger_bulwark_against_bolshevism
+		prerequisite = { focus = BRY_party_guest_list }
+		relative_position_id = BRY_party_guest_list
+		mutually_exclusive = { focus = BRY_party_guest_list_neighbors }
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 12
+		}
+		available = {
+		has_government = paternal_autocrat
+		custom_trigger_tooltip = {
+		tooltip = this_state_controls_central_siberia
+		controls_central_siberia = yes
+		}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_guest_list_strangers"
+			add_ideas = BRY_Bulwark_Against_Bolshevism
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = BRY_party_final_prep #Cementing Our Legacy
+		icon = GFX_GENERIC_Cutting_Ties
+		prerequisite = { focus = BRY_party_guest_list_neighbors focus = BRY_party_guest_list_strangers}
+		relative_position_id = BRY_party_guest_list_neighbors
+		x = 1
+		y = 1
+		cost = 9.4
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BRY_party_final_prep"
+		country_event = { id = twrburyatia.8 } 
+		}
+
+	}
+	
+	}

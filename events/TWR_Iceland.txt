@@ -1,0 +1,337 @@
+﻿add_namespace = twriceland
+
+country_event = {
+	id = twriceland.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriceland.1"}
+	title = twriceland.1.t
+	desc = twriceland.1.d
+	picture = GFX_report_event_iceland_election
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriceland.1.a #Historic Outcome
+		retire_country_leader = yes
+		add_political_power = 50
+		add_stability = 0.1
+		ai_chance = { 
+			factor = 50
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ICE_NEUTRALITY
+					has_global_flag = COUNTRY_PATH_ICE_OCCUPATION
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = conservative
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.1
+		}
+		create_country_leader = {
+			name = "Hermann Jónasson"
+			desc = "Hermann_Jonasson_DESC"
+			picture = "Hermann_Jonasson.dds"
+			expire = "1965.1.1"
+			ideology = conservative_liberalism
+			traits = {
+
+			}
+		}
+	}
+	option = {
+		name = twriceland.1.b #Progressive Victory
+		retire_country_leader = yes
+		add_political_power = 30
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+		ai_chance = { 
+			factor = 40
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ICE_NEUTRALITY
+					has_global_flag = COUNTRY_PATH_ICE_OCCUPATION
+				}
+			}
+		}
+		create_country_leader = {
+			name = "Hermann Jónasson"
+			desc = "Hermann_Jonasson_DESC"
+			picture = "Hermann_Jonasson.dds"
+			expire = "1965.1.1"
+			ideology = conservative_liberalism
+			traits = {
+
+			}
+		}
+	}
+	option = {
+		name = twriceland.1.c #Sociliast Victory
+		retire_country_leader = yes
+		add_political_power = -50
+		add_stability = -0.1
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.3
+		}
+		set_politics = {
+			ruling_party = socialist
+		}
+		hidden_effect = {
+		every_country = {
+		limit = {
+		NOT = { tag = ICE } 
+		is_in_faction_with = USA 
+		}
+			news_event = twrnews.32
+			}
+		}
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_ICE_DEMOCRACY
+			}
+		}
+		create_country_leader = {
+			name = "Hermann Jónasson"
+			desc = "Hermann_Jonasson_DESC"
+			picture = "Hermann_Jonasson.dds"
+			expire = "1965.1.1"
+			ideology = conservative_liberalism
+			traits = {
+
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twriceland.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriceland.2"}
+	title = twriceland.2.t #Death of the President
+	desc = twriceland.2.d
+	picture = GFX_report_event_death_sveinn
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriceland.2.a #Mourning
+		add_political_power = -15
+		#news_event = twrnews.31
+		hidden_effect = {
+		country_event = { days = 156 id = twriceland.3 } #President elected
+			clr_country_flag = pres_Sveinn_Bjornsson
+			set_country_flag = pres_Interim_Government
+			remove_ideas = hos_popular_figurehead
+			add_ideas = hos_mediocre
+		}
+	}
+}
+
+country_event = {
+	id = twriceland.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriceland.3"}
+	title = twriceland.3.t #President election
+	desc = twriceland.3.d
+	picture = GFX_report_event_death_sveinn
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriceland.3.a #President elected
+		add_political_power = 40
+		hidden_effect = {
+			clr_country_flag = pres_Interim_Government
+			set_country_flag = pres_Asgeir_Asgeirsson
+		}
+	}
+}
+
+country_event = {
+	id = twriceland.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriceland.4"}
+	title = twriceland.4.t #socialists promise
+	desc = twriceland.4.d
+	picture = GFX_report_event_iceland_election
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriceland.4.a #leaving the toronto accord
+		add_political_power = 50
+		leave_faction = yes
+		white_peace_with_all = yes
+		hidden_effect = {
+			news_event = twriceland.5
+			USA = {
+				country_event = {
+					id = twriceland.6
+					days = 1
+				}
+			}
+		}
+	}
+}
+news_event = { # Iceland leaves
+	id = twriceland.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriceland.5"}
+	title = twriceland.5.t
+	desc = twriceland.5.d
+	picture = GFX_news_event_toronto_accord
+	
+	major = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		trigger = { NOT = { tag = ICE } }
+		name = twriceland.5.a
+	}
+	option = {
+		trigger = { tag = ICE }
+		name = twriceland.5.a
+	}
+}
+country_event = {
+	id = twriceland.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriceland.6"}
+	title = twriceland.6.t #gunboat time
+	desc = twriceland.6.d
+	picture = GFX_report_event_occupied_iceland
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriceland.6.a #occupy iceland
+		add_political_power = -50
+		add_manpower = -1000
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_ICE_NEUTRALITY
+			}
+		}
+		hidden_effect = {
+			ICE = {
+				country_event = {
+					id = twriceland.7
+					days = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = twriceland.6.b #ignore it
+		add_political_power = -200
+		ai_chance = {
+			factor = 90
+			modifier = {
+				factor = 0
+				has_government = paternal_autocrat
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_ICE_OCCUPATION
+			}
+		}
+	}
+}
+country_event = {
+	id = twriceland.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriceland.7"}
+	title = twriceland.7.t #gunboat time iceland
+	desc = twriceland.7.d
+	picture = GFX_report_event_occupied_iceland
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twriceland.7.a #occupy iceland
+		add_stability = -0.1
+		create_country_leader = {
+			name = "George Davis Webster"
+			desc = "George_Davis_Webster_DESC"
+			picture = "George_Davis_Webster.dds"
+			expire = "1965.1.1"
+			ideology = transitional_regime
+			traits = {
+
+			}
+		}	
+		USA = {
+			puppet = ICE
+			set_autonomy = {
+				target = ICE
+				autonomy_state = autonomy_USA_Sponsored_Regime
+			}
+		}	
+		set_politics = {
+			ruling_party = paternal_autocrat
+		}	
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.3
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.3
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = TA_MILITARY_PARTY_LONG 
+			name = TA_MILITARY_PARTY
+		}
+		hidden_effect = {
+			add_ideas = facade_democracy
+			add_ideas = ICE_passive_resistance
+			news_event = twriceland.8
+			set_cosmetic_tag = ICE_TA
+		}
+	}
+}
+news_event = { #Iceland occupied
+	id = twriceland.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twriceland.5"}
+	title = twriceland.8.t
+	desc = twriceland.8.d
+	picture = GFX_news_event_us_occupies_iceland
+	
+	major = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		trigger = {
+			NOT = {
+				tag = ICE
+			}
+		}
+		name = twriceland.8.a
+	}
+	option = {
+		trigger = {
+			tag = ICE
+		}
+		name = twriceland.8.b
+	}
+}

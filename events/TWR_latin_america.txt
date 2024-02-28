@@ -1,0 +1,179 @@
+﻿add_namespace = twrlatinamerica
+
+country_event = { # Coup Failed (USA)
+	id = twrlatinamerica.0
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrlatinamerica.0"
+	}
+	title = twrlatinamerica.0.t
+	desc = twrlatinamerica.0.d
+	picture = GFX_report_event_cia
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	
+	option = {
+		name = twrlatinamerica.0.a
+	}
+}
+
+country_event = { # Dominican Republic Coup
+	id = twrlatinamerica.1
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrlatinamerica.1"
+		hidden_effect = {
+			remove_ideas = US_covert_activies
+		}
+	}
+	title = twrlatinamerica.1.t
+	desc = twrlatinamerica.1.d
+	picture = GFX_report_event_us_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrlatinamerica.1.a #coup
+		ai_chance = { 
+			factor = 3
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_DOM_COUP_NO
+			}
+		}
+		set_politics = {
+			ruling_party = social_democrat
+		}
+		remove_ideas = CENTRAL_drifting_apart
+		remove_ideas = DOM_a_brutal_dictatorship
+		add_ideas = CENTRAL_american_ties
+		news_event = {
+			id = twrnews.113
+			days = 1
+		}
+	}
+	option = {
+		name = twrlatinamerica.1.b #no coup
+		ai_chance = { 
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_DOM_COUP_YES
+			}
+		}
+		USA = {
+			country_event = {
+				id = twrlatinamerica.0
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { # Cuba Coup
+	id = twrlatinamerica.2
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrlatinamerica.2"
+		hidden_effect = {
+			remove_ideas = US_covert_activies
+		}
+	}
+	title = twrlatinamerica.2.t
+	desc = twrlatinamerica.2.d
+	picture = GFX_report_event_us_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrlatinamerica.2.a #coup
+		ai_chance = { 
+			factor = 2
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_CUB_COUP_NO
+			}
+		}
+		set_politics = {
+			ruling_party = paternal_autocrat
+		}
+		remove_ideas = CENTRAL_drifting_apart
+		add_ideas = CENTRAL_american_ties
+		news_event = {
+			id = twrnews.114
+			days = 1
+		}
+	}
+	option = {
+		name = twrlatinamerica.2.b #no coup
+		ai_chance = { 
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_CUB_COUP_YES
+			}
+		}
+		USA = {
+			country_event = {
+				id = twrlatinamerica.0
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { # Guatamala Coup
+	id = twrlatinamerica.3
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrlatinamerica.3"
+		hidden_effect = {
+			remove_ideas = US_covert_activies
+		}
+	}
+	title = twrlatinamerica.3.t
+	desc = twrlatinamerica.3.d
+	picture = GFX_report_event_us_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrlatinamerica.3.a #coup
+		ai_chance = { 
+			factor = 2
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_GUA_COUP_NO
+			}
+		}
+		set_politics = {
+			ruling_party = conservative
+		}
+		remove_ideas = CENTRAL_drifting_apart
+		add_ideas = CENTRAL_american_ties
+		news_event = {
+			id = twrnews.115
+			days = 1
+		}
+	}
+	option = {
+		name = twrlatinamerica.3.b #no coup
+		ai_chance = { 
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_GUA_COUP_YES
+			}
+		}
+		USA = {
+			country_event = {
+				id = twrlatinamerica.0
+				days = 1
+			}
+		}
+	}
+}

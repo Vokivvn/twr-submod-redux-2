@@ -1,0 +1,529 @@
+###############################
+## Socialist Buryatia/Russia ##
+###############################
+add_namespace = sbr
+add_namespace = sbrnews
+add_namespace = sbrsavinkov
+add_namespace = sbrreunification
+
+news_event = {
+	id = sbrnews.1 #Shalamov wins vs Russia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rfpnews.1"}
+	title = sbrnews.1.t
+	desc = sbrnews.1.d
+	picture = GFX_news_event_srco_win
+	
+	major = yes
+	hidden = no
+	
+	is_triggered_only = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            SBR = {
+                is_ai = no
+            }
+        }
+    SBR = {
+        sound_effect = SBR_SBR_agrsocs
+        }
+        	}
+        }
+    }
+	
+	option = {
+		name = sbrnews.1.a
+
+	}
+	option = {
+		name = sbrnews.1.b
+		trigger = {
+			NOT = {
+				TAG = SBR
+			}
+		}
+	}
+}
+
+news_event = {
+	id = sbrnews.2 #Trot Shalamov wins vs Russia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rfpnews.2"}
+	title = sbrnews.2.t
+	desc = sbrnews.2.d
+	picture = GFX_news_event_thotsky
+	
+	major = yes
+	hidden = no
+	
+	is_triggered_only = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            SBR = {
+                is_ai = no
+            }
+        }
+    SBR = {
+        sound_effect = SBR_SBR_trots
+        }
+        	}
+        }
+    }
+	
+	option = {
+		name = sbrnews.2.a
+
+	}
+	option = {
+		name = sbrnews.2.b
+		trigger = {
+			NOT = {
+				TAG = SBR
+			}
+		}
+	}
+}
+
+country_event = { # Victory in Buryatia
+	id = sbr.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.1"}
+	title = sbr.1.t
+	desc = sbr.1.d
+	picture = GFX_report_event_soc_partisans 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.1.a
+		load_focus_tree = SBR_Reunification
+		RUS = {
+			country_event = { id = russia.227 }
+		}
+		hidden_effect = {
+			remove_ideas = { SBR_End_The_District_idea SBR_Freedom_Or_Death_idea SBR_Disrupted_Supplies_idea SBR_Freedom_Rings_idea }
+		}
+	}
+}
+country_event = { # Russia - SBR Saboteur Campaign
+	id = sbr.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SBR.7"}
+	title = sbr.2.t
+	desc = sbr.2.d
+	picture = GFX_report_event_siberian_conscripts 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.2.a
+		add_timed_idea = {
+			idea = SBR_Saboteur_Campaign_idea
+			days = 150
+		}
+		#set_equipment_fraction = 0.4
+		add_manpower = -6500
+		SBR = {
+
+		}
+		hidden_effect = {
+		add_ideas = TWR_SECRET_AGGRESSIVE_WACK
+		#	SBR = {
+		#		add_equipment_to_stockpile = {
+		#			type = infantry_equipment
+		#			amount = 1200
+		#			producer = USA
+		#		}
+		#	}
+			set_temp_variable = { temp_seat_change = 7 }
+			RUS_duma_add_seat = yes
+		}
+	}
+}
+
+country_event = { # Proclamation of the Russian Socialist Federative Republic
+	id = sbr.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.3"}
+	title = sbr.3.t
+	desc = sbr.3.d
+	picture = GFX_report_event_srco_win 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.3.a
+		add_ideas = {
+			SBR_Shoddy_Legitimacy_idea
+			SBR_Army_In_Tattars_idea
+			SBR_Unruly_Duma_idea
+		}
+	}
+}
+
+country_event = { # Convening of the Russian Socialist Revolutionary Council
+	id = sbr.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.4"}
+	title = sbr.4.t
+	desc = sbr.4.d
+	picture = GFX_report_event_srco_politburo 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.4.a
+		hidden_effect = {
+			country_event = {
+				id = sbr.5
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { # Foreign Policy
+	id = sbr.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.5"}
+	title = sbr.5.t
+	desc = sbr.5.d
+	picture = GFX_report_event_srco_politburo 
+ 
+	is_triggered_only = yes
+	
+	option = { #trots
+		custom_effect_tooltip = SBR_trot_army_tt
+		name = sbr.5.a
+		add_to_variable = {  SBR_trot_var = 1 } 
+		hidden_effect = {
+			country_event = {
+				id = sbr.6
+				days = 2
+			}
+		}
+	}
+	option = { #agrsocs
+		name = sbr.5.b
+		custom_effect_tooltip = SBR_agrsoc_army_tt
+		add_to_variable = { SBR_agrsoc_var = 1 }
+		hidden_effect = {
+			country_event = {
+				id = sbr.6
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { # State Security
+	id = sbr.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.6"}
+	title = sbr.6.t
+	desc = sbr.6.d
+	picture = GFX_report_event_srco_politburo 
+ 
+	is_triggered_only = yes
+
+	option = { #trots
+		name = sbr.6.a
+		custom_effect_tooltip = SBR_trot_army_tt
+		add_to_variable = {  SBR_trot_var = 1 } 
+		hidden_effect = {
+			country_event = {
+				id = sbr.7
+				days = 2
+			}
+		}
+	}
+	option = { #agrsocs
+		name = sbr.6.b
+		custom_effect_tooltip = SBR_agrsoc_army_tt
+		add_to_variable = { SBR_agrsoc_var = 1 }
+		hidden_effect = {
+			country_event = {
+				id = sbr.7
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { # The National Anthem
+	id = sbr.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.7"}
+	title = sbr.7.t
+	desc = sbr.7.d
+	picture = GFX_report_event_srco_politburo 
+ 
+	is_triggered_only = yes
+	
+	option = { #trots
+		name = sbr.7.a
+		custom_effect_tooltip = SBR_trot_army_tt
+		add_to_variable = { SBR_trot_var = 1 }
+		hidden_effect = {
+			if = {
+			limit = {
+					check_variable = { SBR_trot_var > SBR_agrsoc_var }
+				}
+				country_event = {
+					id = sbr.9
+					days = 1
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { SBR_agrsoc_var > SBR_trot_var }
+				}
+				country_event = {
+					id = sbr.10
+					days = 1
+				}
+			}
+		}
+	}
+	option = { #agrsocs
+		name = sbr.7.b
+		add_to_variable = { SBR_agrsoc_var = 1 }
+		custom_effect_tooltip = SBR_agrsoc_army_tt
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { SBR_trot_var > SBR_agrsoc_var }
+				}
+				country_event = {
+					id = sbr.9
+					days = 1
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { SBR_agrsoc_var > SBR_trot_var }
+				}
+				country_event = {
+					id = sbr.10
+					days = 1
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Trotskyists Win
+	id = sbr.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.9"}
+	title = sbr.9.t
+	desc = sbr.9.d
+	picture = GFX_report_event_trot_meeting 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.9.a
+		set_politics = {
+		ruling_party = bolshevik_leninist
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.15
+		}
+		load_focus_tree = SBR_Trotskyist
+		hidden_effect = {
+			add_ideas = { SBR_HoG_Alexander_Bezymensky SBR_FM_Georgi_Andreichin SBR_AM_Vadim_Rogvin }
+		}
+		
+	}
+}
+
+country_event = { #Agrarian Socialists Win
+	id = sbr.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.10"}
+	title = sbr.10.t
+	desc = sbr.10.d
+	picture = GFX_report_event_trad_agrsocs 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.10.a
+		load_focus_tree = SBR_Agrsoc
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.1
+		}
+		
+	}
+}
+
+country_event = { # Savinkov statue goes up
+	id = sbrsavinkov.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbrsavinkov.1"}
+	title = sbrsavinkov.1.t
+	desc = sbrsavinkov.1.d
+	picture = GFX_report_event_savinkov
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbrsavinkov.1.a
+	}
+}
+
+country_event = { # local elections where the only parties available are ones in the united front hmmm very sussy
+	id = sbr.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.11"}
+	title = sbr.11.t
+	desc = sbr.11.d
+	picture = GFX_report_event_election_vote
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.11.a
+	}
+}
+
+country_event = { # CPSU reborn
+	id = sbr.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.12"}
+	title = sbr.12.t
+	desc = sbr.12.d
+	picture = GFX_report_event_big_man_lenin
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.12.a
+		set_cosmetic_tag = BRY_TROT
+		set_party_name = {
+			ideology = bolshevik_leninist
+			name = "KPSS - T"
+			long_name = "Kommunisticheskaya Partiya Sovetskogo Soyuza - Tsentr (Communist Party of the Soviet Union - Centre)"
+		}
+		set_party_name = {
+			ideology = marxist_leninist
+			name = "KPSS - T"
+			long_name = "Kommunisticheskaya Partiya Sovetskogo Soyuza - Sleva (Communist Party of the Soviet Union - Left)"
+		}
+		set_party_name = {
+			ideology = socialist
+			name = "KPSS - P"
+			long_name = "Kommunisticheskaya Partiya Sovetskogo Soyuza - Pravaya (Communist Party of the Soviet Union - Right)"
+		}
+	}
+}
+
+country_event = { # great purge more like great gay
+	id = sbr.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.13"}
+	title = sbr.13.t
+	desc = sbr.13.d
+	picture = GFX_report_event_stalin_01
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.13.a
+	}
+}
+
+country_event = { # how to deal with reLIEgion? reddit atheism or wholsum laicity
+	id = sbr.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.14"}
+	title = sbr.14.t
+	desc = sbr.14.d
+	picture = GFX_report_event_soviet_fuck_god
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.14.a
+		complete_national_focus = SBR_Snuffing_Out_Masses_Opium #atheism
+	}
+
+	option = {
+		name = sbr.14.b
+		complete_national_focus = SBR_Reconcile_With_Religion #laicity
+	}
+	
+}
+
+country_event = { # reconciliation is cool
+	id = sbr.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.15"}
+	title = sbr.15.t
+	desc = sbr.15.d
+	#picture = 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbr.15.a
+		add_stability = 0.05
+		add_political_power = 50
+	}
+	
+}
+
+country_event = { # Norilsk - Reunited with SBR?
+	id = sbr.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbr.16"}
+	title = sbr.16.t
+	desc = sbr.16.d
+	picture = GFX_report_event_big_man_lenin
+ 
+	is_triggered_only = yes
+	
+	option = { #ok
+		ai_chance = {
+			factor = 80
+		}
+		name = sbr.16.a
+		NRI = {
+			every_unit_leader = {
+				set_nationality = SBR
+			}
+			every_owned_state = {
+				add_core_of = SBR
+			}
+		}
+		SBR = {
+			annex_country = {
+				target = NRI
+				transfer_troops = yes
+			}
+		}
+	}
+
+	option = { #no
+		ai_chance = {
+			factor = 20
+		}
+		name = sbr.16.b
+		declare_war_on = {
+			target = SBR
+			type = civil_war
+		}
+	}
+	
+}
+
+country_event = { # SBR Partisans oh no
+	id = sbrreunification.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sbrreunification.1"}
+	title = sbrreunification.1.t
+	desc = sbrreunification.1.d
+	picture = GFX_report_event_soc_partisans 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = sbrreunification.1.a
+		add_timed_idea = {
+			idea = SBR_partisans_idea
+			days = 250
+		}
+	}
+}

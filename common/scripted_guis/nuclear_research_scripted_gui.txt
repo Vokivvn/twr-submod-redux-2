@@ -1,0 +1,212 @@
+scripted_gui = {
+
+	nuclear_research = {
+		context_type = player_context
+		window_name = "nuclear_research_container"
+		parent_window_token = technology_tab
+
+		visible = {
+            always = yes
+		}
+
+		effects = {
+			nuclear_research_button_click = {
+				set_temp_variable = { show = 1 }
+				subtract_from_temp_variable = { show = show_nuclear_research }
+				set_variable = { show_nuclear_research = show }
+			}
+		}
+
+		triggers = {
+			nuclear_research_button_click_enabled = {
+				has_tech = atomic_research
+			}
+		}
+	}
+
+	nuclear_research_options = {
+		context_type = player_context
+
+		window_name = "nuclear_research_options_container"
+
+		visible = {
+            is_ai = no
+			check_variable = { show_nuclear_research > 0.0 }
+		}
+
+		effects = {
+			close_button_click = {
+				set_variable = { show_nuclear_research = 0 }
+			}
+			nuclear_creation_active_button_click = {
+				add_nuclear_bombs = 1
+				set_variable = { nuclear_assembly_var = 0 }
+			}
+
+			### Add Scientists ###
+				nuclear_research_slot_click = {
+					add_to_array = { nuclear_research_researcher_array = 1 }
+					remove_scientist = yes
+					update_hidden_ideas = yes
+					update_research_speed_nuclear = yes
+				}
+				fissile_material_uranium_click = {
+					add_to_array = { create_fissile_material_researcher_array = 1 }
+					remove_scientist = yes
+					update_hidden_ideas = yes
+					update_research_speed_fissile_material = yes
+				}
+				fissile_material_plutonium_click = {
+					add_to_array = { create_fissile_material_plutonium_researcher_array = 1 }
+					remove_scientist = yes
+					update_hidden_ideas = yes
+					update_research_speed_fissile_material = yes
+				}
+				moderator_works_button_click = {
+					add_to_array = { moderator_researcher_array = 1 }
+					remove_scientist = yes
+					update_hidden_ideas = yes
+					update_research_speed_moderator = yes
+				}
+				nuke_assembly_button_click = {
+					add_to_array = { nuclear_bomb_assembly_researcher_array = 1 }
+					remove_scientist = yes
+					update_hidden_ideas = yes
+					update_research_speed_nuclear_assembly = yes
+				}
+			###
+
+			### Remove Scientists ###
+				nuclear_research_researcher_icon_click = {
+					ROOT = {
+						remove_from_array = { array = nuclear_research_researcher_array }
+						add_scientist = yes
+						update_hidden_ideas = yes
+						update_research_speed_nuclear = yes
+					}
+				}
+				create_fissile_material_researcher_icon_click = {
+					ROOT = {
+						remove_from_array = { array = create_fissile_material_researcher_array }
+						add_scientist = yes
+						update_hidden_ideas = yes
+						update_research_speed_fissile_material = yes
+					}
+				}
+				create_fissile_material_plutonium_researcher_icon_click = {
+					ROOT = {
+						remove_from_array = { array = create_fissile_material_plutonium_researcher_array }
+						add_scientist = yes
+						update_hidden_ideas = yes
+						update_research_speed_fissile_material = yes
+					}
+				}
+				moderator_researcher_icon_click = {
+					ROOT = {
+						remove_from_array = { array = moderator_researcher_array }
+						add_scientist = yes
+						update_hidden_ideas = yes
+						update_research_speed_moderator = yes
+					}
+				}
+				nuclear_bomb_assembly_researcher_icon_click = {
+					ROOT = {
+						remove_from_array = { array = nuclear_bomb_assembly_researcher_array }
+						add_scientist = yes
+						update_hidden_ideas = yes
+						update_research_speed_nuclear_assembly = yes
+					}
+				}
+			###
+		}
+
+		triggers = {
+			nuclear_creation_button_click_enabled = { always = no }
+			nuclear_creation_active_button_visible = {
+				has_completed_nuke = yes
+			}
+
+			nuclear_research_slot_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = "no_more_than_2_scientist_tt"
+					has_free_researcher = yes
+					check_variable = { nuclear_research_researcher_array^num < 3 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = "not_finished_nuclear_research_tt"
+					NOT = { has_country_flag = nuclear_research_done }
+				}
+			}
+
+			fissile_material_uranium_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = "no_more_than_1_scientist_tt"
+					has_free_researcher = yes
+					check_variable = { create_fissile_material_researcher_array^num < 2 }
+				}
+			}
+			fissile_material_plutonium_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = "no_scientist_tt"
+					has_free_researcher = yes
+					check_variable = { create_fissile_material_plutonium_researcher_array^num < 1 }
+				}
+			}
+			moderator_works_button_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = "no_more_than_2_scientist_tt"
+					has_free_researcher = yes
+					check_variable = { moderator_researcher_array^num < 3 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = "not_finished_graphite_moderator_tt"
+					NOT = { has_country_flag = has_graphite_moderator }
+				}
+			}
+			nuke_assembly_button_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = "no_more_than_2_scientist_tt"
+					has_free_researcher = yes
+					check_variable = { nuclear_bomb_assembly_researcher_array^num < 3 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = "not_finished_nuclear_assembly_tt"
+					check_variable = { nuclear_assembly_var < 100 }
+				}
+			}
+		}
+
+		dynamic_lists = {
+			researcher_array_gridbox = {
+				array = researcher_array
+				entry_container = researcher_array_entry
+				change_scope = yes
+			}
+			nuclear_research_researcher_array_gridbox = {
+				array = nuclear_research_researcher_array
+				entry_container = nuclear_research_researcher_array_entry
+				change_scope = yes
+			}
+			moderator_researcher_array_gridbox = {
+				array = moderator_researcher_array
+				entry_container = moderator_researcher_array_entry
+				change_scope = yes
+			}
+			create_fissile_material_researcher_array_gridbox = {
+				array = create_fissile_material_researcher_array
+				entry_container = create_fissile_material_researcher_array_entry
+				change_scope = yes
+			}
+			create_fissile_material_plutonium_researcher_array_gridbox = {
+				array = create_fissile_material_plutonium_researcher_array
+				entry_container = create_fissile_material_plutonium_researcher_array_entry
+				change_scope = yes
+			}
+			nuclear_bomb_assembly_researcher_array_gridbox = {
+				array = nuclear_bomb_assembly_researcher_array
+				entry_container = nuclear_bomb_assembly_researcher_array_entry
+				change_scope = yes
+			}
+		}
+	}
+}

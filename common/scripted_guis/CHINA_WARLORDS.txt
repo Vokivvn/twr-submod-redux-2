@@ -1,0 +1,77 @@
+scripted_gui = {
+    warlord_gui = {
+        window_name = "warlord_gui_container"
+        context_type = selected_state_context
+        parent_window_token = selected_state_view
+
+        visible = {
+            is_owned_and_controlled_by = CHI
+            is_core_of = CHI
+            ROOT = { 
+                original_tag = CHI
+                is_ai = no
+            }
+            OR = {
+            has_state_flag = YUNNAN_CLIQUE
+            has_state_flag = GUANGXI_CLIQUE
+            has_state_flag = DONGBEI_AUTHORITY
+            has_state_flag = SHANXI_CLIQUE
+            has_state_flag = MA_CLIQUE
+            has_state_flag = TIBET_AUT
+            has_state_flag = XINJIANG_AUT
+            has_state_flag = MONGOLIA_AUT
+            }
+        }
+
+        effects = {
+            warlord_gui_button_click = {
+                if = {
+                    limit = {
+                        THIS = {
+                            has_variable = show_warlord
+                        }
+                    }
+                    THIS = {
+                        clear_variable = show_warlord
+                    }
+                }
+                else = {
+                    THIS = {
+                        set_variable = { show_warlord = 1 }
+                    }
+                }
+            }
+        }
+    }
+    
+    warlord_gui_main = {
+        window_name = "warlord_gui_main_container"
+        context_type = selected_state_context
+        parent_window_token = selected_state_view
+
+        visible = {
+        AND = {
+            check_variable = { show_warlord > 0 }
+            OR = {
+            has_state_flag = YUNNAN_CLIQUE
+            has_state_flag = GUANGXI_CLIQUE
+            has_state_flag = DONGBEI_AUTHORITY
+            has_state_flag = SHANXI_CLIQUE
+            has_state_flag = MA_CLIQUE
+            has_state_flag = TIBET_AUT
+            has_state_flag = XINJIANG_AUT
+            has_state_flag = MONGOLIA_AUT
+                }
+            }
+        }
+
+        properties = {
+            warlord_portrait = {
+                image = "[THIS.GetWarlordPortrait]"
+            }
+            fancy_letter = {
+                image = "[THIS.GetRegionalLetter]"
+            }
+        }
+    }
+}

@@ -1,0 +1,1262 @@
+shared_focus = {
+	id = CAN_CCF_Initial_Victory
+	icon = GFX_GENERIC_Social_Democracy_Time
+	x = 2
+	y = 0
+	
+	available = {
+		has_country_flag = CAN_QUE_CCF
+	}
+	bypass = {
+		has_country_flag = CAN_QUE_CCF
+	}
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Initial_1
+	icon = GFX_GENERIC_Room_Meeting
+	prerequisite = { focus = CAN_CCF_Initial_Victory }
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = -2
+	y = 1
+	cost = 8
+	
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_CAN_COUP
+		}
+	}
+	
+	available = {
+		has_country_flag = CAN_QUE_CCF
+	}
+	
+	completion_reward = {
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = CAN_CCF_Initial_2
+	icon = GFX_GENERIC_speech
+	prerequisite = { focus = CAN_CCF_Initial_Victory }
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = 0
+	y = 1
+	cost = 8
+	
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_CAN_COUP
+		}
+	}
+	
+	available = {
+		has_country_flag = CAN_QUE_CCF
+	}
+	
+	completion_reward = {
+		ruling_party_plus_3 = yes
+	}
+}
+shared_focus = {
+	id = CAN_CCF_Initial_3
+	icon = GFX_GENERIC_workers_rights
+	prerequisite = { focus = CAN_CCF_Initial_Victory }
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = 2
+	y = 1
+	cost = 8
+	
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 3
+			has_global_flag = COUNTRY_PATH_CAN_COUP
+		}
+	}
+	
+	available = {
+		has_country_flag = CAN_QUE_CCF
+	}
+	
+	completion_reward = {
+		add_political_power = 50
+	}
+}
+
+shared_focus = { #Constitution Amendment Act
+	id = CAN_CCF_Initial_CAA
+	icon = GFX_GENERIC_Adapt_Constitution
+	prerequisite = {
+		focus = CAN_CCF_Initial_1
+		focus = CAN_CCF_Initial_2
+		focus = CAN_CCF_Initial_3
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = 0
+	y = 2
+	cost = 5
+	
+	ai_will_do = {
+		factor = 5
+	}
+	
+	available = {
+		has_government = social_democrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = { #Constitution Amendment Act
+	id = CAN_CCF_Initial_Referendum
+	icon = GFX_CAN_referendum
+	prerequisite = {
+		focus = CAN_CCF_Initial_CAA
+	}
+	mutually_exclusive = {
+		focus = CAN_CCF_Initial_Autocoup
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = -1
+	y = 3
+	cost = 5
+	
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_CAN_COUP
+		}
+	}
+	
+	available = {
+		has_government = social_democrat
+	}
+	
+	completion_reward = {
+		country_event = {
+			id = twrcanada_ccf.1
+			days = 1
+		}
+	}
+}
+
+shared_focus = { #Down with the Queen!
+	id = CAN_CCF_Initial_Autocoup
+	icon = GFX_GENERIC_Anti_Monarchism
+	prerequisite = {
+		focus = CAN_CCF_Initial_CAA
+	}
+	mutually_exclusive = {
+		focus = CAN_CCF_Initial_Referendum
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = 1
+	y = 3
+	cost = 5
+	
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_CAN_CCF_SOC
+			NOT = {
+				OR = {
+					has_completed_focus = CAN_CCF_Initial_1
+					has_completed_focus = CAN_CCF_Initial_2
+				}
+			}
+		}
+		modifier = {
+			factor = 5
+			has_global_flag = COUNTRY_PATH_CAN_COUP
+		}
+	}
+	
+	available = {
+		has_government = social_democrat
+	}
+	
+	completion_reward = {
+		country_event = {
+			id = twrcanada_auth.1
+			days = 1
+		}
+	}
+}
+
+shared_focus = { #Flag Debate
+	id = CAN_CCF_Initial_Flag
+	icon = GFX_CAN_referendum
+	prerequisite = {
+		focus = CAN_CCF_Initial_Monarchy
+		focus = CAN_CCF_Initial_Republic
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = -3
+	y = 5
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		country_event = {
+			id = twrcanada.20
+			days = 2
+		}
+	}
+}
+
+shared_focus = { #Monarchy Remains
+	id = CAN_CCF_Initial_Monarchy
+	icon = GFX_goal_tfv_strengthen_commonwealth_ties
+	prerequisite = {
+		focus = CAN_CCF_Initial_Referendum
+	}
+	mutually_exclusive = {
+		focus = CAN_CCF_Initial_Republic
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = -1
+	y = 4
+	cost = 5
+	
+	available = {
+		has_country_flag = CAN_CCF_Monarchy_Remains
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = { #Republic Declared
+	id = CAN_CCF_Initial_Republic
+	icon = GFX_goal_tfv_sever_ties_with_uk
+	prerequisite = {
+		focus = CAN_CCF_Initial_Referendum
+		focus = CAN_CCF_Initial_Autocoup
+	}
+	mutually_exclusive = {
+		focus = CAN_CCF_Initial_Monarchy
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = 1
+	y = 4
+	cost = 5
+	
+	available = {
+		has_country_flag = CAN_CCF_Monarchy_Abolished
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Initial_Purge
+	icon = GFX_GENERIC_Old_Purge
+	prerequisite = { 
+		focus = CAN_CCF_Initial_Republic
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = 3
+	y = 5
+	cost = 5
+	
+	available = {
+		has_government = socialist
+		has_country_flag = CAN_CCF_Radical_Coup_Failed
+	}
+	
+	completion_reward = {
+		remove_ideas = CAN_CCF_Military_Opposition
+		add_command_power = -100
+		army_experience = -50
+	}
+}
+
+shared_focus = { #Coldwell Resigns
+	id = CAN_CCF_Initial_Ousted
+	icon = GFX_SOV_total_collapse
+	prerequisite = {
+		focus = CAN_CCF_Initial_Monarchy
+		focus = CAN_CCF_Initial_Republic
+	}
+	mutually_exclusive = {
+		focus = CAN_CCF_Initial_Coldwell
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = -1
+	y = 5
+	cost = 5
+	
+	available = {
+		has_country_flag = CAN_CCF_Coldwell_Ousted
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = { #Coldwell Remains
+	id = CAN_CCF_Initial_Coldwell
+	icon = GFX_GENERIC_Clogs_Socialist
+	prerequisite = {
+		focus = CAN_CCF_Initial_Republic
+	}
+	mutually_exclusive = {
+		focus = CAN_CCF_Initial_Ousted
+	}
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = 1
+	y = 5
+	cost = 5
+	
+	available = {
+		has_country_flag = CAN_CCF_Coldwell_Remains
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Initial_QuebecSolve
+	icon = GFX_CAN_Quebec_Special_Status
+	prerequisite = { 
+		focus = CAN_CCF_Initial_Ousted
+		focus = CAN_CCF_Initial_Coldwell
+	}
+	relative_position_id = CAN_CCF_Initial_Ousted
+	x = 1
+	y = 1
+	cost = 7
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		remove_ideas = CAN_quebec_regionalism
+		hidden_effect = {
+			remove_ideas = CAN_quebec_regionalism_reduced
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Initial_Moderate
+	icon = GFX_GENERIC_Social_Liberalism
+	prerequisite = { focus = CAN_CCF_Initial_Ousted }
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = -4
+	y = 6
+	cost = 1
+	
+	available = {
+		has_government = social_democrat
+	}
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+shared_focus = {
+	id = CAN_CCF_Initial_Reformist
+	icon = GFX_GENERIC_SocDem_Star
+	prerequisite = { focus = CAN_CCF_Initial_Coldwell }
+	relative_position_id = CAN_CCF_Initial_Victory
+	x = 4
+	y = 6
+	cost = 1
+	
+	available = {
+		has_government = socialist
+	}
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Both_1 
+	icon = GFX_USA_reestablish_the_gold_standard
+	prerequisite = { 
+		focus = CAN_CCF_Initial_Moderate
+		focus = CAN_CCF_Initial_Reformist
+	}
+	relative_position_id = CAN_CCF_Initial_Moderate
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		set_variable = {
+			var = CCF_pp_gain
+			value = 0
+		}
+		set_variable = {
+			var = CCF_pp_fac
+			value = -0.5
+		}
+		set_variable = {
+			var = CCF_st
+			value = -0.25
+		}
+		if = {
+			limit = {
+				has_completed_focus = CAN_CCF_Initial_Reformist
+			}
+			set_variable = {
+				var = CCF_ws
+				value = -0.25
+			}
+			else = {
+				set_variable = {
+					var = CCF_ws
+					value = 0
+				}
+			}
+		}
+		set_variable = {
+			var = CCF_cg
+			value = 0
+		}
+		set_variable = {
+			var = CCG_research
+			value = 0
+		}
+		set_variable = {
+			var = CCF_production
+			value = 0
+		}
+		set_variable = {
+			var = CCF_retention
+			value = 0
+		}
+		set_variable = {
+			var = CCF_effgain
+			value = 0
+		}
+		set_variable = {
+			var = CCF_effmax
+			value = 0
+		}
+		set_variable = {
+			var = CCF_slotfactor
+			value = 0
+		}
+		set_variable = {
+			var = CCF_rsrcfactor
+			value = 0
+		}
+		set_variable = {
+			var = CCF_export
+			value = 0
+		}
+		set_variable = {
+			var = CCF_const
+			value = 0
+		}
+		set_variable = {
+			var = CCF_const_civ
+			value = 0
+		}
+		set_variable = {
+			var = CCF_const_infra
+			value = 0
+		}
+		set_variable = {
+			var = CCF_population
+			value = 0
+		}
+		custom_effect_tooltip = CAN_CCF_Both_1_effect
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_focus = CAN_CCF_Initial_Reformist
+				}
+				add_dynamic_modifier = {
+					modifier = CAN_CCF_Radical_Idea
+				}
+				else = {
+					add_dynamic_modifier = {
+						modifier = CAN_CCF_Moderate_Idea
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Both_2
+	icon = GFX_GENERIC_Education
+	prerequisite = { 
+		focus = CAN_CCF_Both_1
+	}
+	relative_position_id = CAN_CCF_Both_1
+	x = -1
+	y = 1
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_CCF_Both_2_effect
+		add_to_variable = {
+			var = CCF_pp_fac
+			value = 0.2
+		}
+		add_to_variable = {
+			var = CCF_st
+			value = 0.1
+		}
+		add_to_variable = {
+			var = CCF_research
+			value = 0.05
+		}
+		add_to_variable = {
+			var = CCF_population
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Both_3
+	icon = GFX_GENERIC_Research_Buff
+	prerequisite = { 
+		focus = CAN_CCF_Both_2
+	}
+	relative_position_id = CAN_CCF_Both_1
+	x = -1
+	y = 2
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_CCF_Both_3_effect
+		add_to_variable = {
+			var = CCF_pp_fac
+			value = 0.05
+		}
+		add_to_variable = {
+			var = CCF_st
+			value = 0.025
+		}
+		add_to_variable = {
+			var = CCF_research
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Both_4
+	icon = GFX_GENERIC_Power_Plant
+	prerequisite = { 
+		focus = CAN_CCF_Both_3
+	}
+	relative_position_id = CAN_CCF_Both_1
+	x = -1
+	y = 3
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_CCF_Both_4_effect
+		add_to_variable = {
+			var = CCF_st
+			value = 0.025
+		}
+		add_to_variable = {
+			var = CCF_const_infra
+			value = 0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Both_5
+	icon = GFX_GENERIC_Appease_People
+	prerequisite = { 
+		focus = CAN_CCF_Both_1
+	}
+	relative_position_id = CAN_CCF_Both_1
+	x = 1
+	y = 1
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_CCF_Both_5_effect
+		add_to_variable = {
+			var = CCF_pp_fac
+			value = 0.10
+		}
+		add_to_variable = {
+			var = CCF_population
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Both_6
+	icon = GFX_GENERIC_clean_hands
+	prerequisite = { 
+		focus = CAN_CCF_Both_5
+	}
+	relative_position_id = CAN_CCF_Both_1
+	x = 1
+	y = 2
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_CCF_Both_6_effect
+		add_to_variable = {
+			var = CCF_pp_fac
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Both_7
+	icon = GFX_GENERIC_foreign_investment
+	prerequisite = { 
+		focus = CAN_CCF_Both_6
+	}
+	relative_position_id = CAN_CCF_Both_1
+	x = 1
+	y = 3
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_CCF_Both_7_effect
+		add_to_variable = {
+			var = CCF_pp_fac
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_CCF_Both_8
+	icon = GFX_GENERIC_Industrial_Social_Democracy
+	prerequisite = { 
+		focus = CAN_CCF_Both_4
+	}
+	prerequisite = {
+		focus = CAN_CCF_Both_7
+	}
+	relative_position_id = CAN_CCF_Both_1
+	x = 0
+	y = 4
+	cost = 5
+	
+	available = {
+		OR = {
+			has_government = social_democrat
+			has_government = socialist
+		}
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_CCF_Both_8_effect
+		add_to_variable = {
+			var = CCF_pp_fac
+			value = 0.1
+		}
+		if = {
+			limit = {
+				has_completed_focus = CAN_CCF_Initial_Moderate
+			}
+			custom_effect_tooltip = CAN_CCF_Both_8_effect_m
+			add_to_variable = {
+				var = CCF_st
+				value = 0.1
+			}
+			else = {
+				custom_effect_tooltip = CAN_CCF_Both_8_effect_r
+				add_to_variable = {
+					var = CCF_st
+					value = 0.05
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Dismantle_Capitalism
+	icon = GFX_GENERIC_socialist_uprising
+	prerequisite = { 
+		focus = CAN_CCF_Initial_Reformist
+	}
+	relative_position_id = CAN_CCF_Initial_Reformist
+	x = 0
+	y = 1
+	cost = 2
+	
+	available = {
+		is_communist = yes
+		has_completed_focus = CAN_CCF_Both_1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Dismantle_Capitalism_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.15
+		}
+		add_to_variable = {
+			var = CCF_const
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Sieze_Resources
+	icon = GFX_GENERIC_Steel_Shovel
+	prerequisite = { 
+		focus = CAN_RAD_Dismantle_Capitalism
+	}
+	relative_position_id = CAN_RAD_Dismantle_Capitalism
+	x = -1
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Sieze_Resources_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_rsrcfactor
+			value = 0.15
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Bye_Landlords
+	icon = GFX_GENERIC_land_redistribution
+	prerequisite = { 
+		focus = CAN_RAD_Dismantle_Capitalism
+	}
+	relative_position_id = CAN_RAD_Dismantle_Capitalism
+	x = 1
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Bye_Landlords_tt
+		every_owned_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Planning
+	icon = GFX_GENERIC_state_economy
+	prerequisite = { 
+		focus = CAN_RAD_Sieze_Resources
+	}
+	prerequisite = {
+		focus = CAN_RAD_Bye_Landlords
+	}
+	relative_position_id = CAN_RAD_Dismantle_Capitalism
+	x = 0
+	y = 2
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Planning_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.10
+		}
+		add_to_variable = {
+			var = CCF_retention
+			value = -0.15
+		}
+		add_to_variable = {
+			var = CCF_effgain
+			value = 0.10
+		}
+		add_to_variable = {
+			var = CCF_effmax
+			value = 0.15
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Propaganda
+	icon = GFX_GENERIC_speech
+	prerequisite = { 
+		focus = CAN_RAD_Planning
+	}
+	relative_position_id = CAN_RAD_Planning
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Propaganda_tt
+		add_to_variable = {
+			var = CCF_st
+			value = 0.25
+		}
+		add_to_variable = {
+			var = CCF_pp_fac
+			value = 0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Industry_1
+	icon = GFX_GENERIC_Factory_Planning
+	prerequisite = { 
+		focus = CAN_RAD_Planning
+	}
+	relative_position_id = CAN_RAD_Planning
+	x = -4
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Industry_1_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_const
+			value = 0.5
+		}
+		add_to_variable = {
+			var = CCF_const_civ
+			value = 0.15
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Industry_2
+	icon = GFX_GENERIC_Land_Reform
+	prerequisite = { 
+		focus = CAN_RAD_Industry_1
+	}
+	relative_position_id = CAN_RAD_Industry_1
+	x = -1
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Industry_2_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_slotfactor
+			value = 0.20
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Industry_3
+	icon = GFX_goal_generic_construct_civilian
+	prerequisite = { 
+		focus = CAN_RAD_Industry_1
+	}
+	relative_position_id = CAN_RAD_Industry_1
+	x = 1
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Industry_3_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_const
+			value = 0.10
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Industry_4
+	icon = GFX_goal_generic_construct_civ_factory
+	prerequisite = { 
+		focus = CAN_RAD_Industry_2
+	}
+	prerequisite = { 
+		focus = CAN_RAD_Industry_3
+	}
+	relative_position_id = CAN_RAD_Industry_1
+	x = 0
+	y = 2
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Industry_4_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_const_civ
+			value = 0.15
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Research_1
+	icon = GFX_focus_generic_socialist_science
+	prerequisite = { 
+		focus = CAN_RAD_Planning
+	}
+	relative_position_id = CAN_RAD_Planning
+	x = 4
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Research_1_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_research
+			value = 0.02
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Research_2
+	icon = GFX_GENERIC_Cash_and_Carry
+	prerequisite = { 
+		focus = CAN_RAD_Research_1
+	}
+	relative_position_id = CAN_RAD_Research_1
+	x = -1
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Research_2_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_research
+			value = 0.01
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Research_3
+	icon = GFX_GENERIC_Education
+	prerequisite = { 
+		focus = CAN_RAD_Research_1
+	}
+	relative_position_id = CAN_RAD_Research_1
+	x = 1
+	y = 1
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Research_3_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_research
+			value = 0.02
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Research_4
+	icon = GFX_GENERIC_Military_Science
+	prerequisite = { 
+		focus = CAN_RAD_Research_2
+	}
+	prerequisite = { 
+		focus = CAN_RAD_Research_3
+	}
+	relative_position_id = CAN_RAD_Research_1
+	x = 0
+	y = 2
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Research_4_tt
+		add_research_slot = 1
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Healthcare
+	icon = GFX_GENERIC_Medical_Evil
+	prerequisite = { 
+		focus = CAN_RAD_Propaganda
+	}
+	relative_position_id = CAN_RAD_Planning
+	x = -1
+	y = 2
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Healthcare_tt
+		add_to_variable = {
+			var = CCF_st
+			value = 0.05
+		}
+		add_to_variable = {
+			var = CCF_population
+			value = 0.10
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Poverty
+	icon = GFX_GENERIC_clean_hands
+	prerequisite = { 
+		focus = CAN_RAD_Propaganda
+	}
+	relative_position_id = CAN_RAD_Planning
+	x = 1
+	y = 2
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Poverty_tt
+		add_to_variable = {
+			var = CCF_st
+			value = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Homes
+	icon = GFX_GENERIC_urbanization1
+	prerequisite = { 
+		focus = CAN_RAD_Healthcare
+	}
+	prerequisite = { 
+		focus = CAN_RAD_Poverty
+	}
+	relative_position_id = CAN_RAD_Planning
+	x = 0
+	y = 3
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Homes_tt
+		add_to_variable = {
+			var = CCF_st
+			value = 0.10
+		}
+		add_to_variable = {
+			var = CCF_const_infra
+			value = 0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = CAN_RAD_Finetune
+	icon = GFX_GENERIC_planned_economy
+	prerequisite = { 
+		focus = CAN_RAD_Industry_4
+	}
+	prerequisite = { 
+		focus = CAN_RAD_Homes
+	}
+	prerequisite = { 
+		focus = CAN_RAD_Research_4
+	}
+	relative_position_id = CAN_RAD_Planning
+	x = 0
+	y = 4
+	cost = 5
+	
+	available = {
+		is_communist = yes
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = CAN_RAD_Finetune_tt
+		add_to_variable = {
+			var = CCF_st
+			value = -0.05
+		}
+		add_to_variable = {
+			var = CCF_retention
+			value = 0.05
+		}
+		add_to_variable = {
+			var = CCF_effgain
+			value = 0.05
+		}
+		add_to_variable = {
+			var = CCF_effmax
+			value = 0.05
+		}
+	}
+}

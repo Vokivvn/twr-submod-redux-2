@@ -1,0 +1,1536 @@
+#	Example:
+# 
+#	example_dynamic_modifier = {
+#		icon = "GFX_idea_unknown" # optional, will show up in guis if icon is specified
+#		enable = { always = yes } #optional, the modifier won't apply if not enabled
+#		remove_trigger = { always = no } #optional, will remove the modifier if true
+#
+#		# list of modifiers
+#		fuel_cost = 321
+#		max_fuel = var_max_fuel # will be taken from a variable
+#	}
+#
+#
+#	In a script file:
+#
+#	effect = {
+#		add_dynamic_modifier = {
+#			modifier = example_dynamic_modifier
+#			scope = GER # optional, if you specify this your dynamic modifier scoped to this scope (root is the effect scope)
+#			days = 14 # optional, will be removed after this many days passes
+#		}
+#	}
+#
+#	can be added to countries, states or unit leaders
+#	will only updated daily, unless forced by force_update_dynamic_modifier effect
+
+sabotaged_resources = {
+	remove_trigger = { 
+		has_resistance = no
+	}
+	
+	icon = GFX_modifiers_sabotaged_resource
+	
+	temporary_state_resource_oil = sabotaged_oil
+	temporary_state_resource_aluminium = sabotaged_aluminium
+	temporary_state_resource_rubber = sabotaged_rubber
+	temporary_state_resource_tungsten = sabotaged_tungsten
+	temporary_state_resource_steel = sabotaged_steel
+	temporary_state_resource_chromium = sabotaged_chromium
+}
+
+autonomous_state = {
+	enable = { always = yes }
+
+	icon = GFX_modifiers_autonomus_state
+	
+	recruitable_population_factor = -0.5
+	local_building_slots_factor = -0.25
+	state_resources_factor = -0.25
+	state_production_speed_buildings_factor = -0.25
+}
+
+semi_autonomous_state = {
+	enable = { always = yes }
+
+	icon = GFX_modifiers_autonomus_state
+	
+	local_building_slots_factor = -0.25
+	state_resources_factor = -0.25
+	state_production_speed_buildings_factor = -0.25
+}
+
+
+dense_rural_infrastructure = { #State Modifier
+	enable = { always = yes }
+	remove_trigger = { infrastructure > 4 }
+
+	icon = GFX_modifiers_SOV_civilian_labor_in_defense
+	
+	local_non_core_supply_impact_factor = 0.35
+}
+
+bryansk_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { is_fascist = no }
+	}
+	icon = GFX_RONA_modifier_icon
+	
+	recruitable_population_factor = -0.5
+	local_building_slots_factor = -0.25
+	state_resources_factor = -0.25
+	state_production_speed_buildings_factor = -0.25
+}
+
+mujahideen_i = {
+	enable = { always = yes }
+
+	icon = GFX_mujahideen_modifier_icon
+	
+	recruitable_population_factor = -0.9
+	local_building_slots_factor = -0.5
+	state_resources_factor = -0.5
+	state_production_speed_buildings_factor = -0.5
+	local_supplies = -0.5
+	disable_strategic_redeployment = 1
+}
+
+mujahideen_ii = {
+	enable = { always = yes }
+
+	icon = GFX_mujahideen_modifier_icon
+	
+	recruitable_population_factor = -0.5
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+tuva_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.3
+	#329
+}
+
+novaya_zemlya_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.3
+	#961
+}
+
+yakut_assr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.3
+	#574, 644
+}
+
+tartar_assr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	#249
+}
+
+nenets_assr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.3
+	#262
+}
+
+kazakh_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+north_ossetian_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = 0.15
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+	#970
+}
+
+komi_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.2
+	local_building_slots_factor = -0.15
+	state_production_speed_buildings_factor = -0.1
+	#397
+}
+
+udmurt_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.3
+	industrial_capacity_factory = 0.01
+	state_production_speed_buildings_factor = 0.15
+	#399
+}
+
+dagestan_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	compliance_growth_on_our_occupied_states = 0.1
+	state_production_speed_buildings_factor = -0.15
+	#232
+}
+
+kalmyk_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	cavalry_attack_factor = 0.05
+	#237
+}
+
+chechen_ingush_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	#233
+}
+
+byelorussian_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	#207, 206, 204, 928
+}
+
+ukrainian_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	#226, 197, 203, 202
+}
+
+buryat_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.3
+	#565, 564
+}
+
+georgian_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	#963, 231, 964
+}
+
+abkhaz_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	#962
+}
+
+armenian_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	#230, 965, 968
+}
+
+azerbaijan_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+	#969, 967, 229, 966
+}
+
+georgian_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.2
+	local_building_slots_factor = -0.2
+	state_resources_factor = -0.2
+	state_production_speed_buildings_factor = -0.2
+	#963, 231, 964, 962
+}
+
+armenian_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.2
+	local_building_slots_factor = -0.2
+	state_resources_factor = -0.2
+	state_production_speed_buildings_factor = -0.2
+	#230, 965, 968
+}
+
+azerbaijan_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.2
+	state_resources_factor = -0.2
+	state_production_speed_buildings_factor = -0.2
+	#969, 967, 229, 966
+}
+
+byelorussian_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.2
+	local_building_slots_factor = -0.15
+	state_resources_factor = -0.15
+	state_production_speed_buildings_factor = -0.15
+	#207, 206, 204, 928
+}
+
+ukrainian_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.2
+	local_building_slots_factor = -0.15
+	state_resources_factor = -0.15
+	state_production_speed_buildings_factor = -0.15
+	#226, 197, 203, 202
+}
+
+baltic_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.2
+	local_building_slots_factor = -0.2
+	state_resources_factor = -0.1
+}
+
+baltic_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.05
+}
+
+riga_ASSR_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { is_communist = no }
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.9
+	state_production_speed_dockyard_factor = 0.3
+	state_production_speed_naval_base_factor = 0.3
+	state_repair_speed_dockyard_factor = 0.3
+	state_repair_speed_naval_base_factor = 0.3
+	local_manpower = -0.3
+}
+
+jewish_assr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = SOV } }
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	local_building_slots_factor = 0.3
+	state_production_speed_buildings_factor = 0.3
+	local_manpower = 0.3
+}
+
+kazakh_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.15
+	local_building_slots_factor = -0.15
+	state_resources_factor = -0.15
+	state_production_speed_buildings_factor = -0.15
+}
+
+kirghiz_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.15
+	local_building_slots_factor = -0.15
+	state_resources_factor = -0.15
+	state_production_speed_buildings_factor = -0.15
+}
+
+kirghiz_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+uzbek_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.15
+	local_building_slots_factor = -0.15
+	state_resources_factor = -0.15
+	state_production_speed_buildings_factor = -0.15
+}
+
+uzbek_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+turkmen_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.15
+	local_building_slots_factor = -0.15
+	state_resources_factor = -0.15
+	state_production_speed_buildings_factor = -0.15
+}
+
+turkmen_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+tajik_ssr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.15
+	local_building_slots_factor = -0.15
+	state_resources_factor = -0.15
+	state_production_speed_buildings_factor = -0.15
+}
+
+tajik_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+kabardian_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+chuvash_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+mordovian_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+karelian_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+mari_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+bashkir_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = -0.1
+	state_resources_factor = -0.1
+	state_production_speed_buildings_factor = -0.1
+}
+
+crimean_assr_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		OR = { 
+				tag = KAZ
+				tag = SOV
+				tag = NRI
+				tag = NOV
+				tag = KRA 
+				}
+			}
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.5
+	state_production_speed_industrial_complex_factor = 0.6
+	state_production_speed_buildings_factor = -0.2
+}
+
+birobidzhan_ser_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { OR = { tag = SOV tag = KAZ } } }
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.9
+	local_building_slots_factor = 0.3
+	state_production_speed_buildings_factor = 0.3
+	local_manpower = 0.5
+	disable_strategic_redeployment = 1
+}
+
+SBR_assrs = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = { tag = SBR }
+		}
+	}
+	icon = GFX_modifiers_ASSR_icon
+	
+	recruitable_population_factor = -0.1
+	local_building_slots_factor = 0.1
+}
+armenian_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+azerbaijani_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+cossack_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+crimean_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+georgian_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+kalmyk_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+kazakh_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+mountaineer_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+ossetian_sar_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { has_country_flag = POSSIBLE_RUZ_TAG_FLAG } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+komi_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+ossetian_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+abkhaz_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+buryat_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+kazakh_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+kalmyk_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+tartar_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+yakut_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+jewish_nr_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = { NOT = { tag = RFP } }
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	
+	recruitable_population_factor = -0.3
+	local_building_slots_factor = -0.3
+	state_resources_factor = -0.3
+	state_production_speed_buildings_factor = -0.3
+}
+
+arkhangelsk_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_production_speed_dockyard_factor = 0.3
+	state_production_speed_naval_base_factor = 0.3
+	state_repair_speed_dockyard_factor = 0.3
+	state_repair_speed_naval_base_factor = 0.3
+	#214
+}
+
+talinn_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_production_speed_dockyard_factor = 0.3
+	state_production_speed_naval_base_factor = 0.3
+	state_repair_speed_dockyard_factor = 0.3
+	state_repair_speed_naval_base_factor = 0.3
+	#13
+}
+
+dolgikhgrad_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_production_speed_dockyard_factor = 0.3
+	state_production_speed_naval_base_factor = 0.3
+	state_repair_speed_dockyard_factor = 0.3
+	state_repair_speed_naval_base_factor = 0.3
+	#137
+}
+
+magadan_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_production_speed_dockyard_factor = 0.3
+	state_production_speed_naval_base_factor = 0.3
+	state_repair_speed_dockyard_factor = 0.3
+	state_repair_speed_naval_base_factor = 0.3
+	#562
+}
+
+kharbarovsk_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_production_speed_buildings_factor = 0.15
+	#409
+}
+
+vitebsk_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_production_speed_buildings_factor = 0.15
+	#207
+}
+
+suvorovgrad_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_production_speed_buildings_factor = 0.15
+	#217
+}
+
+rostov_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_production_speed_buildings_factor = 0.15
+	#218
+}
+
+norilsk_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	state_resources_factor = 0.3
+	recruitable_population_factor = -0.3
+	#1021, 516
+}
+
+moscow_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	research_speed_factor = 0.02
+	#219, 1003
+}
+
+magnitogorsk_seo_flag_i = {
+	enable = { always = yes }
+	remove_trigger = { 
+		controller = {
+		NOT = {
+		tag = KCS
+			}
+		}
+	}
+	icon = GFX_modifiers_RUS_AR_icon
+	local_building_slots_factor = 0.15
+	#582
+}
+# On States
+state_unrest = {
+	enable = { always = yes }
+	icon = GFX_modifiers_sabotaged_resource
+	supply_consumption_factor = 0.2
+}

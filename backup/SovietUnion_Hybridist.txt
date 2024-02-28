@@ -1,0 +1,79 @@
+focus_tree = {
+	id = sov_hybridist
+	country = {
+		factor = 0
+	}
+	default = no
+	focus = {
+	cancelable = no
+		id = SOV_hybridist_consolidation
+		icon = GFX_focus_generic_military_mission
+		cost = 3
+		x = 4
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_hybridist_consolidation"
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = no
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = SOV_hybridist_abakumov
+		icon = GFX_focus_generic_military_mission
+		cost = 3
+		prerequisite = {
+			focus = SOV_hybridist_consolidation
+		}
+		relative_position_id = SOV_hybridist_consolidation
+		mutually_exclusive = {
+			focus = SOV_hybridist_kuznetsov
+		}
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_hybridist_abakumov"
+			kill_country_leader = yes
+			load_focus_tree = sov_abakumov_union
+		}
+	}
+	focus = {
+	cancelable = no
+		id = SOV_hybridist_kuznetsov
+		icon = GFX_focus_generic_military_mission
+		cost = 3
+		prerequisite = {
+			focus = SOV_hybridist_consolidation
+		}
+		relative_position_id = SOV_hybridist_consolidation
+		mutually_exclusive = {
+			focus = SOV_hybridist_abakumov
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_hybridist_kuznetsov"
+			create_country_leader = {
+				name = "Nikolay Kuznetsov"
+				desc = ""
+				picture = "Kuznetsov.dds"
+				expire = "1975.1.1"
+				ideology = hybridist
+				traits = {
+				}
+			}
+			load_focus_tree = sov_kuznetsov_union
+		}
+	}
+}

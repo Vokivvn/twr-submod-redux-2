@@ -1,0 +1,1990 @@
+focus_tree = {
+	id = QUE
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = QUE
+		}
+	}
+	default = no
+	
+	continuous_focus_position = { x = 50 y = -1000 }  
+	
+	shared_focus =  QUE_Le_Quebec_Libre
+	shared_focus = QUE_The_Quebec_Armed_Forces
+	shared_focus = QUE_Legacy_of_the_Quiet_Revoltion
+}
+
+shared_focus = {
+	id = QUE_Le_Quebec_Libre
+	icon = GFX_CAN_Quebec_Special_Status
+	x = 10
+	y = 0
+	cost = 2
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		
+	}
+	
+	bypass = {
+		QUE = {
+			exists = yes
+		}
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = QUE_Provisional_Govt
+	icon = GFX_GENERIC_Room_Meeting
+	prerequisite = { focus = QUE_Le_Quebec_Libre }
+	relative_position_id = QUE_Le_Quebec_Libre
+	x = 0
+	y = 1
+	cost = 2
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = QUE_Political_Infighting
+			add_idea = QUE_Political_Infighting_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_New_Army
+	icon = GFX_GENERIC_Coalition_Army
+	prerequisite = { focus = QUE_Provisional_Govt }
+	relative_position_id = QUE_Le_Quebec_Libre
+	x = -1
+	y = 2
+	cost = 2
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		load_oob = QUE_1952
+	}
+}
+
+shared_focus = {
+	id = QUE_Dealing_With_Extremists
+	icon = GFX_GENERIC_starve_communists
+	prerequisite = { focus = QUE_Provisional_Govt }
+	relative_position_id = QUE_Le_Quebec_Libre
+	x = 1
+	y = 2
+	cost = 2
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		country_event = {
+			id = twrquebec.4
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_First_Elections
+	icon = GFX_QUE_Call_For_New_Elections
+	prerequisite = { 
+		focus = QUE_New_Army
+	}
+	prerequisite = { 
+		focus = QUE_Dealing_With_Extremists
+	}
+	relative_position_id = QUE_Le_Quebec_Libre
+	x = 0
+	y = 3
+	cost = 8
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		
+	}
+	
+	completion_reward = {
+		country_event = {
+			id = twrquebec.1
+			days = 5
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Victory
+	icon = GFX_GENERIC_Authoritarian_Democracy
+	prerequisite = { 
+		focus = QUE_First_Elections
+	}
+	relative_position_id = QUE_First_Elections
+	x = -3
+	y = 1
+	cost = 8
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		always = no
+	}
+	
+	bypass = {
+		has_country_flag = QUE_FIRST_ELECTIONS_HELD
+		has_government = paternal_autocrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Education
+	icon = GFX_GENERIC_Catholic_Education
+	prerequisite = { 
+		focus = QUE_Pat_Victory
+	}
+	relative_position_id = QUE_Pat_Victory
+	x = -4
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Catholic_Education
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Spirit
+	icon = GFX_GENERIC_Rally_the_People
+	prerequisite = { 
+		focus = QUE_Pat_Education
+	}
+	relative_position_id = QUE_Pat_Education
+	x = -1
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = QUE_Church_Dominance
+			add_idea = QUE_Church_Dominance_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_White_Berets
+	icon = GFX_GENERIC_Police_Equipment
+	prerequisite = { 
+		focus = QUE_Pat_Education
+	}
+	relative_position_id = QUE_Pat_Education
+	x = 1
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		hidden_effect = {
+			country_event = { days = 7 id = twrquebecflavor.5}
+			country_event = { days = 14 id = twrquebecflavor.6}
+		}
+		add_ideas = QUE_Glory_To_The_White_Berets
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_AB
+	icon = GFX_GENERIC_brain
+	prerequisite = { 
+		focus = QUE_Pat_Spirit
+	}
+	prerequisite = { 
+		focus = QUE_Pat_White_Berets
+	}
+	relative_position_id = QUE_Pat_Education
+	x = 0
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = QUE_Corporate_Dominance
+			add_idea = QUE_Corporate_Dominance_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Our_Own_Way
+	icon = GFX_CAN_Quebec_Treaty
+	prerequisite = { 
+		focus = QUE_Pat_Victory
+	}
+	relative_position_id = QUE_Pat_Victory
+	x = -1
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		add_stability = 0.05
+		add_war_support = -0.05
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Electors
+	icon = GFX_USA_voter_registration_act
+	prerequisite = { 
+		focus = QUE_Pat_Our_Own_Way
+	}
+	relative_position_id = QUE_Pat_Our_Own_Way
+	x = 0
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		country_event = { days = 0 id = twrquebecflavor.3}
+		swap_ideas = {
+			remove_idea = established_democracy
+    		add_idea = facade_democracy
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Isolation
+	icon = GFX_GENERIC_Cooperated_Isolation
+	prerequisite = { 
+		focus = QUE_Pat_Electors
+	}
+	mutually_exclusive = {
+		focus = QUE_Pat_Germans
+	}
+	relative_position_id = QUE_Pat_Our_Own_Way
+	x = -1
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		leave_faction = yes
+		add_ideas = neutrality_idea
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Germans
+	icon = GFX_GER_agreement
+	prerequisite = { 
+		focus = QUE_Pat_Electors
+	}
+	mutually_exclusive = {
+		focus = QUE_Pat_Isolation
+	}
+	relative_position_id = QUE_Pat_Our_Own_Way
+	x = 1
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		leave_faction = yes
+		add_opinion_modifier = {target = GER modifier = large_increase}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Antizionist
+	icon = GFX_GENERIC_crush_jews
+	prerequisite = { 
+		focus = QUE_Pat_Isolation
+		focus = QUE_Pat_Germans
+	}
+	relative_position_id = QUE_Pat_Our_Own_Way
+	x = 0
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		add_timed_idea = { idea = QUE_Destroy_Zionist_Influence days = 100 }
+		country_event = { days = 0 id = twrquebecflavor.1}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Fuck_Unions
+	icon = GFX_GENERIC_Purge_SocDem
+	prerequisite = { 
+		focus = QUE_Pat_Victory
+	}
+	relative_position_id = QUE_Pat_Victory
+	x = 2
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+
+	}
+
+	completion_reward = {
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Economics
+	icon = GFX_GENERIC_gold_trade
+	prerequisite = { 
+		focus = QUE_Pat_Fuck_Unions
+	}
+	relative_position_id = QUE_Pat_Fuck_Unions
+	x = -1
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		country_event = { days = 0 id = twrquebecflavor.4 }
+		swap_ideas = {
+			remove_idea = QUE_Corporate_Dominance_2
+			add_idea = QUE_Corporate_Dominance_3
+		}
+		468 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		466 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Nationalization
+	icon = GFX_focus_generic_aluminum
+	prerequisite = { 
+		focus = QUE_Pat_Fuck_Unions
+	}
+	relative_position_id = QUE_Pat_Fuck_Unions
+	x = 1
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		466 = {
+			add_resource = {
+				type = steel
+				amount = 16
+			}
+		}
+		468 = {
+			add_resource = {
+				type = tungsten
+				amount = 4
+			}
+			add_resource = {
+				type = chromium
+				amount = 2
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Never_Again
+	icon = GFX_GENERIC_Anti_Protest_Law
+	prerequisite = { 
+		focus = QUE_Pat_Economics
+	}
+	prerequisite = { 
+		focus = QUE_Pat_Nationalization
+	}
+	relative_position_id = QUE_Pat_Fuck_Unions
+	x = 0
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		remove_ideas = QUE_Political_Infighting_2
+		country_event = { days = 0 id = twrquebecflavor.2}
+	}
+}
+
+shared_focus = {
+	id = QUE_Pat_Vaterland
+	icon = GFX_GENERIC_Paternal_Autocrat
+	prerequisite = { 
+		focus = QUE_Pat_AB
+	}
+	prerequisite = { 
+		focus = QUE_Pat_Antizionist
+	}
+	prerequisite = { 
+		focus = QUE_Pat_Never_Again
+	}
+	relative_position_id = QUE_Pat_Victory
+	x = -1
+	y = 5
+	cost = 8
+	
+	available = {
+		has_government = paternal_autocrat
+	}
+
+	completion_reward = {
+		remove_ideas = QUE_Corporate_Dominance_3
+		add_political_power = 100
+		add_stability = 0.20
+		add_war_support = 0.20
+	}
+}
+
+shared_focus = {
+	id = QUE_Lib_Victory
+	icon = GFX_GENERIC_Social_Liberalism
+	prerequisite = { 
+		focus = QUE_First_Elections
+	}
+	relative_position_id = QUE_First_Elections
+	x = 5
+	y = 1
+	cost = 8
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		always = no
+	}
+	
+	bypass = {
+		has_country_flag = QUE_FIRST_ELECTIONS_HELD
+		has_government = liberal
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = QUE_Lib_Tolerance
+	icon = GFX_GENERIC_victory_liberty
+	prerequisite = { 
+		focus = QUE_Lib_Victory
+	}
+	relative_position_id = QUE_Lib_Victory
+	x = -3
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = liberal
+	}
+
+	completion_reward = {
+		hidden_effect = {
+			country_event = { days = 7 id = twrquebecflavor.12}
+			country_event = { days = 14 id = twrquebecflavor.14}
+		}
+		swap_ideas = {
+			remove_idea = QUE_Political_Infighting
+			add_idea = QUE_Political_Infighting_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Lib_Federalism
+	icon = GFX_QUE_Cooperative_Federalism
+	prerequisite = { 
+		focus = QUE_Lib_Tolerance
+	}
+	relative_position_id = QUE_Lib_Victory
+	x = -3
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = liberal
+	}
+
+	completion_reward = {
+		country_event = { days = 0 id = twrquebecflavor.16}
+		468 = {
+			add_extra_state_shared_building_slots = 3
+		}
+		466 = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Lib_Common_Currency #Fixed Exchange Rate
+	icon = GFX_USA_reestablish_the_gold_standard
+	prerequisite = { 
+		focus = QUE_Lib_Federalism
+	}
+	relative_position_id = QUE_Lib_Victory
+	x = -3
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = liberal
+	}
+
+	completion_reward = {
+		country_event = { days = 7 id = twrquebecflavor.13}
+		USA = {country_event = {days = 1 id = twrpanamericanunion.1}}
+		reverse_add_opinion_modifier = {
+    	target = USA
+    	modifier = foreign_company_deals
+		}
+		add_offsite_building = { type = arms_factory level = 1 }
+	}
+}
+
+shared_focus = {
+	id = QUE_Lib_Pan_American_Union #Quebec Investment Boost
+	icon = GFX_QUE_Pan_American_Union
+	prerequisite = { 
+		focus = QUE_Lib_Common_Currency
+	}
+	prerequisite = { 
+		focus = QUE_LibSD_Minorities
+	}
+	relative_position_id = QUE_Lib_Victory
+	x = -2
+	y = 4
+	cost = 8
+	
+	available = {
+		has_government = liberal
+	}
+
+	completion_reward = {
+		hidden_effect = {
+			country_event = { days = 31 id = twrquebecflavor.15}
+		}
+		remove_ideas = QUE_Corporate_Dominance
+		remove_ideas = QUE_Political_Infighting_2
+	}
+}
+
+shared_focus = {
+	id = QUE_LibSD_Secular
+	icon = GFX_GENERIC_Catholic_Secular
+	prerequisite = { 
+		focus = QUE_Lib_Victory
+		focus = QUE_SD_Victory
+	}
+	relative_position_id = QUE_Lib_Victory
+	x = 1
+	y = 1
+	cost = 8
+	
+	available = {
+		OR = {
+			has_government = liberal
+			has_government = social_democrat
+		}
+	}
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = QUE_Church_Dominance
+			add_idea = QUE_Church_Dominance_3
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_LibSD_Immigration
+	icon = GFX_GENERIC_Appease_People
+	prerequisite = { 
+		focus = QUE_LibSD_Secular
+	}
+	relative_position_id = QUE_LibSD_Secular
+	x = -2
+	y = 1
+	cost = 8
+	
+	available = {
+		OR = {
+			has_government = liberal
+			has_government = social_democrat
+		}
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Relax_Immigration
+	}
+}
+
+shared_focus = {
+	id = QUE_LibSD_Culture
+	icon = GFX_QUE_Promote_Quebec_Culture
+	prerequisite = { 
+		focus = QUE_LibSD_Secular
+	}
+	relative_position_id = QUE_LibSD_Secular
+	x = 0
+	y = 1
+	cost = 8
+	
+	available = {
+		OR = {
+			has_government = liberal
+			has_government = social_democrat
+		}
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Promote_Quebecois_Culture
+	}
+}
+
+shared_focus = {
+	id = QUE_LibSD_Welfare
+	icon = GFX_GENERIC_social_democracy
+	prerequisite = { 
+		focus = QUE_LibSD_Secular
+	}
+	relative_position_id = QUE_LibSD_Secular
+	x = 2
+	y = 1
+	cost = 8
+	
+	available = {
+		OR = {
+			has_government = liberal
+			has_government = social_democrat
+		}
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Social_Welfare_Reforms
+	}
+}
+
+shared_focus = {
+	id = QUE_LibSD_Minorities
+	icon = GFX_GENERIC_minority_aimed_projects
+	prerequisite = { 
+		focus = QUE_LibSD_Immigration
+	}
+	prerequisite = { 
+		focus = QUE_LibSD_Culture
+	}
+	prerequisite = { 
+		focus = QUE_LibSD_Welfare
+	}
+	relative_position_id = QUE_LibSD_Secular
+	x = 0
+	y = 2
+	cost = 8
+	
+	available = {
+		OR = {
+			has_government = liberal
+			has_government = social_democrat
+		}
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Rights_For_Minorities
+	}
+}
+
+shared_focus = {
+	id = QUE_SD_Victory
+	icon = GFX_GENERIC_Social_Democracy_Time
+	prerequisite = { 
+		focus = QUE_First_Elections
+	}
+	relative_position_id = QUE_First_Elections
+	x = 7
+	y = 1
+	cost = 8
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		always = no
+	}
+	
+	bypass = {
+		has_country_flag = QUE_FIRST_ELECTIONS_HELD
+		has_government = social_democrat
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = QUE_SD_Unions
+	icon = GFX_GENERIC_Unionize
+	prerequisite = { 
+		focus = QUE_SD_Victory
+	}
+	relative_position_id = QUE_SD_Victory
+	x = 3
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = social_democrat
+	}
+
+	completion_reward = {
+		hidden_effect = {
+			country_event = { days = 7 id = twrquebecflavor.17}
+			country_event = { days = 14 id = twrquebecflavor.21}
+		}
+		swap_ideas = {
+			remove_idea = QUE_Corporate_Dominance
+			add_idea = QUE_Corporate_Dominance_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_SD_Nationalization
+	icon = GFX_GENERIC_state_economy
+	prerequisite = { 
+		focus = QUE_SD_Unions
+	}
+	relative_position_id = QUE_SD_Unions
+	x = 0
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = social_democrat
+	}
+
+	completion_reward = {
+		hidden_effect = {
+			country_event = { days = 0 id = twrquebecflavor.18}
+			country_event = { days = 14 id = twrquebecflavor.19}
+		}
+		swap_ideas = {
+			remove_idea = QUE_Corporate_Dominance_2
+			add_idea = QUE_Corporate_Dominance_3
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_SD_Fuck_Tankies
+	icon = GFX_GENERIC_starve_communists
+	prerequisite = { 
+		focus = QUE_SD_Nationalization
+	}
+	relative_position_id = QUE_SD_Unions
+	x = 0
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = social_democrat
+	}
+
+	completion_reward = {
+		country_event = { days = 0 id = twrquebecflavor.20}
+		swap_ideas = {
+			remove_idea = QUE_Political_Infighting
+			add_idea = QUE_Political_Infighting_2
+		}
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = national_socialist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_SD_AVG
+	icon = GFX_GENERIC_Revolutionary_Student
+	prerequisite = { 
+		focus = QUE_SD_Fuck_Tankies
+	}
+	prerequisite = { 
+		focus = QUE_LibSD_Minorities
+	}
+	relative_position_id = QUE_SD_Victory
+	x = 2
+	y = 4
+	cost = 8
+	
+	available = {
+		has_government = social_democrat
+	}
+
+	completion_reward = {
+		country_event = { days = 0 id = twrquebecflavor.22}
+		remove_ideas = QUE_Corporate_Dominance_3
+		remove_ideas = QUE_Political_Infighting_2
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Victory
+	icon = GFX_GENERIC_Conservative
+	prerequisite = { 
+		focus = QUE_First_Elections
+	}
+	relative_position_id = QUE_First_Elections
+	x = 14
+	y = 1
+	cost = 8
+
+	ai_will_do = {
+		factor = 20
+	}
+	
+	available = {
+		always = no
+	}
+	
+	bypass = {
+		has_country_flag = QUE_FIRST_ELECTIONS_HELD
+		has_government = conservative
+	}
+
+	completion_reward = {
+		country_event = { days = 0 id = twrquebecflavor.8}
+	}
+}
+
+shared_focus = {
+	id = QUE_The_Bilingualism_Issue
+	icon = GFX_QUE_Bilingualism_Issue
+	prerequisite = { 
+		focus = QUE_Con_Victory
+	}
+	relative_position_id = QUE_Con_Victory
+	x = -2
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		country_event = {
+			id = twrquebec.3
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Values
+	icon = GFX_GENERIC_Christianity
+	prerequisite = { 
+		focus = QUE_The_Bilingualism_Issue
+	}
+	relative_position_id = QUE_Con_Victory
+	x = -2
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		country_event = { days = 0 id = twrquebecflavor.11 }
+		swap_ideas = {
+			remove_idea = QUE_Church_Dominance
+			add_idea = QUE_Church_Dominance_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Education
+	icon = GFX_GENERIC_Education
+	prerequisite = { 
+		focus = QUE_Con_Values
+	}
+	relative_position_id = QUE_Con_Victory
+	x = -2
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		country_event = { days = 0 id = twrquebecflavor.10}
+		add_ideas = QUE_Education_Subsidies
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Econ
+	icon = GFX_GENERIC_economic_prosperity
+	prerequisite = { 
+		focus = QUE_Con_Victory
+	}
+	relative_position_id = QUE_Con_Victory
+	x = 2
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = QUE_Corporate_Dominance
+			add_idea = QUE_Corporate_Dominance_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Family
+	icon = GFX_GENERIC_Family
+	prerequisite = { 
+		focus = QUE_Con_Econ
+	}
+	relative_position_id = QUE_Con_Econ
+	x = -2
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = QUE_Political_Infighting
+			add_idea = QUE_Political_Infighting_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Development
+	icon = GFX_focus_generic_aluminum
+	prerequisite = { 
+		focus = QUE_Con_Econ
+	}
+	relative_position_id = QUE_Con_Econ
+	x = 0
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		468 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		466 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 3
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Unemployment
+	icon = GFX_GENERIC_clean_hands
+	prerequisite = { 
+		focus = QUE_Con_Econ
+	}
+	relative_position_id = QUE_Con_Econ
+	x = 2
+	y = 1
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Unemployment_Benefits
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Unions
+	icon = GFX_GENERIC_Purge_SocDem
+	prerequisite = { 
+		focus = QUE_Con_Family
+	}
+	prerequisite = { 
+		focus = QUE_Con_Development
+	}
+	relative_position_id = QUE_Con_Econ
+	x = -1
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		hidden_effect = {
+			country_event = { days = 14 id = twrquebecflavor.9}
+			country_event = { days = 7 id = twrquebecflavor.7}
+		}
+		swap_ideas = {
+			remove_idea = QUE_Corporate_Dominance_2
+			add_idea = QUE_Corporate_Dominance_3
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Housing
+	icon = GFX_GENERIC_Major_City
+	prerequisite = { 
+		focus = QUE_Con_Unemployment
+	}
+	prerequisite = { 
+		focus = QUE_Con_Development
+	}
+	relative_position_id = QUE_Con_Econ
+	x = 1
+	y = 2
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = QUE_Unemployment_Benefits
+			add_idea = QUE_Unemployment_Benefits_2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Relief
+	icon = GFX_GENERIC_agriculture
+	prerequisite = { 
+		focus = QUE_Con_Unions
+	}
+	prerequisite = { 
+		focus = QUE_Con_Housing
+	}
+	relative_position_id = QUE_Con_Econ
+	x = 0
+	y = 3
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		466 = {
+			add_extra_state_shared_building_slots = 3
+		}
+		468 = {
+			add_extra_state_shared_building_slots = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Con_Catholic
+	icon = GFX_GENERIC_christian_agreement
+	prerequisite = { 
+		focus = QUE_Con_Education
+	}
+	prerequisite = { 
+		focus = QUE_Con_Relief
+	}
+	relative_position_id = QUE_Con_Victory
+	x = 0
+	y = 5
+	cost = 8
+	
+	available = {
+		has_government = conservative
+	}
+
+	completion_reward = {
+		remove_ideas = QUE_Political_Infighting_2
+		remove_ideas = QUE_Corporate_Dominance_3
+	}
+}
+
+shared_focus = {
+	id = QUE_The_Quebec_Armed_Forces
+	icon = GFX_GENERIC_Coalition_Army
+	x = 32
+	y = 0
+	cost = 8
+	
+	offset = {
+		x = -13
+		y = 0
+		trigger = {
+			has_country_flag = QUE_SOC
+		}
+	}
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		army_experience = 25
+		navy_experience = 25
+		air_experience = 25
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+		add_doctrine_cost_reduction = {
+			name = air_doc_bonus
+			cost_reduction = 0.5
+			uses = 1
+			category = air_doctrine
+		}
+		add_doctrine_cost_reduction = {
+			name = naval_doc_bonus
+			cost_reduction = 0.5
+			uses = 1
+			category = naval_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Reusing_The_Old_Armories
+	icon = GFX_GENERIC_Military_Equipment
+	prerequisite = {focus = QUE_The_Quebec_Armed_Forces}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 0
+	y = 1
+	cost = 8
+	
+	available = {
+		
+	}
+	
+	completion_reward = {
+		add_equipment_to_stockpile = {
+		    type = infantry_equipment
+		    amount = 2500
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_A_New_Rifle
+	icon = GFX_GENERIC_Holding_Gun
+	prerequisite = {focus = QUE_Reusing_The_Old_Armories}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 0
+	y = 2
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 1
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_The_Quebecois_Navy
+	icon = GFX_GENERIC_navy_agreement
+	prerequisite = {focus = QUE_A_New_Rifle}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = -2
+	y = 3
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		468 = {
+			add_building_construction = {
+				type = dockyard
+				level = 3
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Develop_The_Ski_Dogs
+	icon = GFX_QUE_Ski_Doo
+	prerequisite = {focus = QUE_The_Quebecois_Navy}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = -2
+	y = 4
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = motorized_equipment
+		}
+		add_equipment_to_stockpile = {
+		    type = motorized_equipment
+		    amount = 400
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_The_Rangers_Of_Gaspe
+	icon = GFX_GENERIC_Yankee_Style_Soldier
+	prerequisite = {focus = QUE_Develop_The_Ski_Dogs}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = -2
+	y = 5
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Rangers_Of_Gaspe
+	}
+}
+
+shared_focus = {
+	id = QUE_The_Engineers_Of_Trois_Rivieres
+	icon = GFX_GENERIC_Steel_Shovel
+	prerequisite = {focus = QUE_A_New_Rifle}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 0
+	y = 3
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = engineers_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Quebec_Citadel_Program
+	icon = GFX_GENERIC_Soldiers_Defense
+	prerequisite = {focus = QUE_The_Engineers_Of_Trois_Rivieres}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 0
+	y = 4
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		468 = {
+			add_building_construction = {
+				type = bunker
+				level = 3
+				instant_build = yes
+				province = 12149
+			}
+		}
+		468 = {
+			add_building_construction = {
+				type = bunker
+				level = 4
+				instant_build = yes
+				province = 4345
+			}
+		}
+		468 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 10230
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_The_Quebecois_Mechanized_Corps
+	icon = GFX_GENERIC_halftrack
+	prerequisite = {focus = QUE_Quebec_Citadel_Program}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 0
+	y = 5
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 1
+			category = cat_mechanized_equipment
+		}
+		add_equipment_to_stockpile = {
+			type = APC_1950_equipment_1
+			amount = 300
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_The_Quebecois_Air_Force
+	icon = GFX_GENERIC_Air_Force_two
+	prerequisite = {focus = QUE_A_New_Rifle}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 2
+	y = 3
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_equipment_to_stockpile = {
+		    type = jet_fighter_equipment_1
+		    amount = 40
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Found_The_Military_College_Of_Saint_Jean
+	icon = GFX_GENERIC_Education
+	prerequisite = {focus = QUE_The_Quebecois_Air_Force}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 2
+	y = 4
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_ideas = QUE_College_Of_Saint_Jean
+	}
+}
+
+shared_focus = {
+	id = QUE_Hire_Foreign_Officers
+	icon = GFX_GENERIC_Officer_Army
+	prerequisite = {focus = QUE_Found_The_Military_College_Of_Saint_Jean}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 2
+	y = 5
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.5
+			uses = 3
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Glorie_Aux_Marines
+	icon = GFX_GENERIC_Marines_March
+	prerequisite = {focus = QUE_The_Rangers_Of_Gaspe}
+	prerequisite = {focus = QUE_The_Quebecois_Mechanized_Corps}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = -1
+	y = 6
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = marine_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Purchase_Old_Tanks
+	icon = GFX_GENERIC_Tank_through_Wall
+	prerequisite = {focus = QUE_Hire_Foreign_Officers}
+	prerequisite = {focus = QUE_The_Quebecois_Mechanized_Corps}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 1
+	y = 6
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = MBT_1950_equipment_1 
+			amount = 150
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_From_Militas_To_An_Army
+	icon = GFX_GENERIC_Army_Cooperation
+	prerequisite = {focus = QUE_Glorie_Aux_Marines}
+	prerequisite = {focus = QUE_Purchase_Old_Tanks}
+	relative_position_id = QUE_The_Quebec_Armed_Forces
+	x = 0
+	y = 7
+	cost = 8
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_manpower = 30000
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = QUE_Legacy_of_the_Quiet_Revoltion
+	icon = GFX_GENERIC_economic_prosperity
+	x = -2
+	y = 0
+	cost = 5
+	
+	offset = {
+		x = -4
+		y = 0
+		trigger = {
+			has_country_flag = QUE_SOC
+		}
+	}
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Invest_in_the_Cities
+	icon = GFX_focus_generic_industry_2
+	prerequisite = { focus = QUE_Legacy_of_the_Quiet_Revoltion }
+	relative_position_id = QUE_Legacy_of_the_Quiet_Revoltion
+	x = -2
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		468 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Invest_in_the_Countryside
+	icon = GFX_focus_generic_industry_1
+	prerequisite = { focus = QUE_Legacy_of_the_Quiet_Revoltion }
+	relative_position_id = QUE_Legacy_of_the_Quiet_Revoltion
+	x = 2
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		466 = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Develop_Trois_Riveres
+	icon = GFX_GENERIC_industry_agreement
+	prerequisite = { focus = QUE_Invest_in_the_Cities }
+	relative_position_id = QUE_Invest_in_the_Cities
+	x = -2
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		468 = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Overhaul_Lauzons_Shipyards
+	icon = GFX_GENERIC_Naval_Industry
+	prerequisite = { focus = QUE_Develop_Trois_Riveres }
+	relative_position_id = QUE_Develop_Trois_Riveres
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		468 = {
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Industrialization_for_Victory
+	icon = GFX_GENERIC_military_industry_produce
+	prerequisite = { focus = QUE_Invest_in_the_Cities }
+	relative_position_id = QUE_Invest_in_the_Cities
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		468 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Expand_our_Universities
+	icon = GFX_GENERIC_Research_Buff
+	prerequisite = { focus = QUE_Industrialization_for_Victory }
+	relative_position_id = QUE_Industrialization_for_Victory
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = QUE_Oil_in_Anticosti
+	icon = GFX_GENERIC_Oil_Planning
+	prerequisite = { focus = QUE_Invest_in_the_Cities }
+	prerequisite = { focus = QUE_Invest_in_the_Countryside }
+	relative_position_id = QUE_Invest_in_the_Cities
+	x = 2
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_resource = {
+			type = oil
+			amount = 6
+			state = 466
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Modernize_Steel_Mills
+	icon = GFX_focus_generic_steel
+	prerequisite = { focus = QUE_Oil_in_Anticosti }
+	relative_position_id = QUE_Oil_in_Anticosti
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_resource = {
+			type = steel
+			amount = 12
+			state = 468
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_An_Industrious_Quebec
+	icon = GFX_focus_generic_industry_3
+	prerequisite = { focus = QUE_Overhaul_Lauzons_Shipyards }
+	prerequisite = { focus = QUE_Expand_our_Universities }
+	prerequisite = { focus = QUE_Modernize_Steel_Mills }
+	relative_position_id = QUE_Expand_our_Universities
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Indostrious_Quebec
+	}
+}
+
+shared_focus = {
+	id = QUE_Aluminum_in_Baie_Comeau
+	icon = GFX_focus_generic_aluminum
+	prerequisite = { focus = QUE_Invest_in_the_Countryside }
+	relative_position_id = QUE_Invest_in_the_Countryside
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_resource = {
+			type = aluminium
+			amount = 18
+			state = 466
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Dealing_with_our_Rubber_Shortage
+	icon = GFX_focus_generic_rubber
+	prerequisite = { focus = QUE_Aluminum_in_Baie_Comeau }
+	relative_position_id = QUE_Aluminum_in_Baie_Comeau
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		466 = {
+			add_building_construction = {
+				type = synthetic_refinery
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 1
+			category = synth_resources
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_Laurentian_Railways
+	icon = GFX_GENERIC_fix_crap_rails
+	prerequisite = { focus = QUE_Invest_in_the_Countryside }
+	relative_position_id = QUE_Invest_in_the_Countryside
+	x = 2
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		468 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		466 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_A_Quebecois_Autobahn
+	icon = GFX_focus_CDA_fix_rails
+	prerequisite = { focus = QUE_Laurentian_Railways }
+	relative_position_id = QUE_Laurentian_Railways
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		468 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		466 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = QUE_A_Prosperous_Quebec
+	icon = GFX_GENERIC_economy_control
+	prerequisite = { focus = QUE_Modernize_Steel_Mills }
+	prerequisite = { focus = QUE_Dealing_with_our_Rubber_Shortage }
+	prerequisite = { focus = QUE_A_Quebecois_Autobahn }
+	relative_position_id = QUE_Dealing_with_our_Rubber_Shortage
+	x = 0
+	y = 1
+	cost = 5
+	
+	available = {
+		
+	}
+
+	completion_reward = {
+		add_ideas = QUE_Prosperous_Quebec
+	}
+}

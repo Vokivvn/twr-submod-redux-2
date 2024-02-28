@@ -1,0 +1,134 @@
+focus_tree = {
+	id = TWR_Bulgaria
+	country = {
+		factor = 0
+		modifier = {
+			tag = BUL
+			add = 10
+		}
+	}
+	default = no
+	
+ 	continuous_focus_position = { x = 50 y = -1000 }
+
+	focus = {
+	cancelable = no
+		id = BUL_Expand_Executive_Power
+		icon = GFX_BUL_expanding_power
+		cost = 6
+		x = 8
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Expand_Executive_Power"
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Formalie_the_Greyshirts
+		icon = GFX_BUL_formalise_paramilitaries
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = BUL_Expand_Executive_Power
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Expand_Executive_Power
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Formalie_the_Greyshirts"
+			add_ideas = BUL_Formalise_the_Greyshirts
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = BUL_Silence_the_Socialist_Opposition
+		icon = GFX_GENERIC_gag
+		cost = 6
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = BUL_Formalie_the_Greyshirts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Formalie_the_Greyshirts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Silence_the_Socialist_Opposition"
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = bolshevik_leninist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = marxist_leninist
+				popularity = -0.03
+			}
+			add_manpower = -1000
+			set_country_flag = BUL_commies_banned
+			custom_effect_tooltip = commie_ministers_banned
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Execute_the_Revolutionaries
+		icon = GFX_SAF_suppresscommies
+		cost = 6
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = BUL_Formalie_the_Greyshirts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Formalie_the_Greyshirts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Execute_the_Revolutionaries"
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.03
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_Monarchists_Rally
+		icon = GFX_BUL_Tsarist_rally
+		cost = 6
+		x = 8
+		y = 3 
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_The_Monarchists_Rally"
+			custom_effect_tooltip = THE_MONARCHISTS_HAVE_RALLIED_BUL
+		}
+	}
+	
+}

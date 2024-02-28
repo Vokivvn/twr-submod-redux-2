@@ -1,0 +1,567 @@
+#####################
+##Coded by Spyeter###
+#####################
+
+
+shared_focus = {
+	id = CRO_Car_Coup_Detat
+	icon = GFX_CRO_Coup_Detat
+	cost = 3
+	x = 13
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Coup_Detat"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		add_ideas = authoritarian_system
+		hidden_effect = {
+			add_ideas = CRO_Unstable_Government_idea 
+		}	
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Tko_Visoko_Leti
+	icon = GFX_GENERIC_socialist_announcement
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = CRO_Car_Coup_Detat
+	prerequisite = {
+		focus = CRO_Car_Coup_Detat
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Tko_Visoko_Leti"
+add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.05
+    }
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Nisko_Pada
+	icon = GFX_Fuck_Social_Democrats
+	cost = 3
+	x = 1
+	y = 1
+	relative_position_id = CRO_Car_Coup_Detat
+	prerequisite = {
+		focus = CRO_Car_Coup_Detat
+	}
+	available = { has_completed_focus = CRO_Car_Tko_Visoko_Leti }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Nisko_Pada"
+add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.05
+    }
+	}
+}
+	
+shared_focus = {
+	id = CRO_Car_De_Hebrangization
+	icon = GFX_CRO_De_Hebrangization
+	cost = 3
+	x = 0
+	y = 2
+	relative_position_id = CRO_Car_Coup_Detat
+	prerequisite = {
+		focus = CRO_Car_Tko_Visoko_Leti
+	}
+	prerequisite = {
+		focus = CRO_Car_Nisko_Pada
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_De_Hebrangization"
+		remove_dynamic_modifier = { modifier = CRO_Two_Stage_Theory_Modifier }
+add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.15
+    }
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Destroy_Hebrangnomics
+	icon = GFX_RMD_Economic_Liberalization
+	cost = 3
+	x = -4
+	y = 1
+	relative_position_id = CRO_Car_De_Hebrangization
+	prerequisite = {
+		focus = CRO_Car_De_Hebrangization
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Destroy_Hebrangnomics"
+		add_ideas = export_focus 
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_End_Planned_Economy
+	icon = GFX_GENERIC_planned_economy
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Destroy_Hebrangnomics
+	prerequisite = {
+		focus = CRO_Car_Destroy_Hebrangnomics
+	}
+	bypass = {
+		NOT = { has_idea = CRO_Planned_Economy }
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_End_Planned_Economy"
+		remove_ideas = CRO_Planned_Economy 
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Allow_Church
+	icon = GFX_GENERIC_christian_agreement
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = CRO_Car_De_Hebrangization
+	prerequisite = {
+		focus = CRO_Car_De_Hebrangization
+	}
+	bypass = {
+		NOT = { has_idea = CRO_Forced_Secularization_idea }
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Allow_Church"
+		remove_ideas = CRO_Forced_Secularization_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Return_Church_Property
+	icon = GFX_GENERIC_Land_Reform
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Allow_Church
+	prerequisite = {
+		focus = CRO_Car_Allow_Church
+	}
+	bypass = {
+		NOT = { has_idea = CRO_catholic_church_intimidated }
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Return_Church_Property"
+		remove_ideas = CRO_catholic_church_intimidated
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Allow_Small_Private_Businesses
+	icon = GFX_GENERIC_Cash_and_Carry
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_De_Hebrangization
+	prerequisite = {
+		focus = CRO_Car_De_Hebrangization
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Allow_Small_Private_Businesses"
+                add_political_power = 150
+                add_stability = 0.10
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Re_Introduce_Markets
+	icon = GFX_GENERIC_Market_Liberal
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Allow_Small_Private_Businesses
+	prerequisite = {
+		focus = CRO_Car_Allow_Small_Private_Businesses
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Re_Introduce_Markets"
+		random_owned_state = { 
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = { 
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = { 
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Disband_The_Special_Security_Service
+	icon = GFX_SER_focus_purge_udba
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = CRO_Car_De_Hebrangization
+	prerequisite = {
+		focus = CRO_Car_De_Hebrangization
+	}
+	bypass = {
+		NOT = { has_idea = CRO_Special_Security_Service }
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Disband_The_Special_Security_Service"
+		remove_ideas = CRO_Special_Security_Service
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_End_Gulags
+	icon = GFX_NOV_No_More_Gulag
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Disband_The_Special_Security_Service
+	prerequisite = {
+		focus = CRO_Car_Disband_The_Special_Security_Service
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_End_Gulags"
+		country_event = { id = twrcroatiacar.2 }	
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Shut_Down_Soviets
+	icon = GFX_SOV_traditionalist_socialism
+	cost = 3
+	x = 4
+	y = 1
+	relative_position_id = CRO_Car_De_Hebrangization
+	prerequisite = {
+		focus = CRO_Car_De_Hebrangization
+	}
+	bypass = {
+		NOT = { has_idea = CRO_Supreme_Soviet }
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Shut_Down_Soviets"
+		remove_ideas = CRO_Supreme_Soviet
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Abolish_Title_Of_Supreme_leader
+	icon = GFX_emphasizing_the_vaule_of_people_milita
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Shut_Down_Soviets
+	prerequisite = {
+		focus = CRO_Car_Shut_Down_Soviets
+	}
+	bypass = {
+		NOT = { has_idea = CRO_Supreme_Ruler_Hebrang }
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Abolish_Title_Of_Supreme_leader"
+		remove_ideas = CRO_Supreme_Ruler_Hebrang
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Destroy_The_Legacy_Of_Hebrang
+	icon = GFX_CRO_Destroy_The_Legacy_Of_Hebrang
+	cost = 3
+	x = 0
+	y = 3
+	relative_position_id = CRO_Car_De_Hebrangization
+	prerequisite = {
+		focus = CRO_Car_End_Planned_Economy
+	}
+	prerequisite = {
+		focus = CRO_Car_Return_Church_Property
+	}
+	prerequisite = {
+		focus = CRO_Car_Re_Introduce_Markets
+	}
+	prerequisite = {
+		focus = CRO_Car_End_Gulags
+	}
+	prerequisite = {
+		focus = CRO_Car_Abolish_Title_Of_Supreme_leader
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Destroy_The_Legacy_Of_Hebrang"
+add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.25
+    }
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Give_Stalinism_A_Well_Deserved_Grave
+	icon = GFX_KAZ_Stalin_is_Dead_Details_Later
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Destroy_The_Legacy_Of_Hebrang
+	prerequisite = {
+		focus = CRO_Car_Destroy_The_Legacy_Of_Hebrang
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Give_Stalinism_A_Well_Deserved_Grave"
+		country_event = { id = twrcroatia.258 } 
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_The_Red_Junta
+	icon = GFX_DDR_Communist_Junta
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Give_Stalinism_A_Well_Deserved_Grave
+	prerequisite = {
+		focus = CRO_Car_Give_Stalinism_A_Well_Deserved_Grave
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_The_Red_Junta"
+		country_event = { id = twrcroatiacar.1 }
+		remove_ideas = CRO_Unstable_Government_idea	
+		add_ideas = CRO_Stratocratic_Socialism
+		IF = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			cro_create_intelligence_agency = yes
+		}	
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Car_Rebuild_Rebuild_Rebuild
+	icon = GFX_SER_focus_industralize_the_cities
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = CRO_Car_The_Red_Junta
+	prerequisite = {
+		focus = CRO_Car_The_Red_Junta
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Rebuild_Rebuild_Rebuild"
+		swap_ideas = {
+			remove_idea = CRO_Four_Year_Plan_idea 
+			add_idea = SER_yugo_five_year_plan
+		}
+		hidden_effect = {
+			remove_ideas = SER_yugo_five_year_plan
+			add_ideas = SER_yugo_five_year_plan
+		}
+		add_timed_idea = {
+			idea = CRO_Rearming_the_Republic_idea 
+			days = 730
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_National_Liberation_Army
+	icon = GFX_CRO_National_Liberation_Army
+	cost = 3
+	x = 1
+	y = 1
+	relative_position_id = CRO_Car_The_Red_Junta
+	prerequisite = {
+		focus = CRO_Car_The_Red_Junta
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_National_Liberation_Army"
+	 	add_dynamic_modifier = { modifier = CRO_National_Liberation_Army_modifier }
+		set_variable = { CRO_National_Liberation_Army_modifier_conscription = 0.05 }
+		set_cosmetic_tag = CRO_Yugoslav_Liberation_Army
+                set_party_name = {
+                               ideology = socialist
+                               name = AVNOJ
+                               long_name = AVNOJ_long
+                      }
+                set_party_name = {
+                               ideology = marxist_leninist
+                               name = AVNOJ
+                               long_name = AVNOJ_long
+                      }
+                set_party_name = {
+                               ideology = bolshevik_leninist
+                               name = AVNOJ
+                               long_name = AVNOJ_long
+                      }
+        add_state_core = 105
+        add_state_core = 104
+        add_state_core = 983
+        add_state_core = 103
+        add_state_core = 1016
+        add_state_core = 163
+        add_state_core = 770
+        add_state_core = 102
+        add_state_core = 765
+        add_state_core = 815
+        add_state_core = 814
+        add_state_core = 813
+        add_state_core = 812
+        add_state_core = 772
+        add_state_core = 819
+        add_state_core = 45
+        add_state_core = 981
+        add_state_core = 979
+        add_state_core = 980
+        add_state_core = 772
+        add_state_core = 107
+        add_state_core = 108
+        add_state_core = 982
+        add_state_core = 811
+        add_state_core = 818
+		add_state_core = 106
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Legla_Orla
+	icon = GFX_SER_focus_death_to_fascism
+	cost = 3
+	x = -3
+	y = 1
+	relative_position_id = CRO_Car_National_Liberation_Army
+	prerequisite = {
+		focus = CRO_Car_National_Liberation_Army
+	}
+	prerequisite = {
+		focus = CRO_Car_Rebuild_Rebuild_Rebuild
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Legla_Orla"
+		custom_effect_tooltip = CRO_National_Liberation_Army_modifier_buff_tt
+		set_variable = { CRO_National_Liberation_Army_modifier_army_speed_factor = 0.20 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Vucje_Staze
+	icon = GFX_SER_focus_freedom_to_the_people
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = CRO_Car_National_Liberation_Army
+	prerequisite = {
+		focus = CRO_Car_National_Liberation_Army
+	}
+	prerequisite = {
+		focus = CRO_Car_Rebuild_Rebuild_Rebuild
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Legla_Orla"
+		custom_effect_tooltip = CRO_National_Liberation_Army_modifier_buff_tt
+		set_variable = { CRO_National_Liberation_Army_modifier_land_reinforce_rate = 0.15 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Silna_Brda_Uske_Klance
+	icon = GFX_SER_focus_learn_from_the_bosnian_resistance
+	cost = 3
+	x = 1
+	y = 1
+	relative_position_id = CRO_Car_National_Liberation_Army
+	prerequisite = {
+		focus = CRO_Car_National_Liberation_Army
+	}
+	prerequisite = {
+		focus = CRO_Car_Rebuild_Rebuild_Rebuild
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Legla_Orla"
+		custom_effect_tooltip = CRO_National_Liberation_Army_modifier_buff_tt
+		set_variable = { CRO_National_Liberation_Army_modifier_attrition = -0.15 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Partizanske_Cete_Gaze
+	icon = GFX_SER_focus_sloboda_svim_narodima
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Vucje_Staze
+	prerequisite = {
+		focus = CRO_Car_Legla_Orla
+	}
+	prerequisite = {
+		focus = CRO_Car_Vucje_Staze
+	}
+	prerequisite = {
+		focus = CRO_Car_Silna_Brda_Uske_Klance
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Partizanske_Cete_Gaze"
+		custom_effect_tooltip = CRO_National_Liberation_Army_modifier_buff_tt
+		set_variable = { CRO_National_Liberation_Army_modifier_morale_factor = 0.15 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Car_Fasisticke_Lomec_Lance
+	icon = GFX_SER_focus_send_out_the_partisans
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Car_Partizanske_Cete_Gaze
+	prerequisite = {
+		focus = CRO_Car_Partizanske_Cete_Gaze
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Car_Fasisticke_Lomec_Lance"
+		custom_effect_tooltip = CRO_National_Liberation_Army_modifier_buff_tt
+		set_variable = { CRO_National_Liberation_Army_modifier_pp_factor = 0.10 }
+		set_variable = { CRO_National_Liberation_Army_modifier_war_support_factor = 0.15 }
+        hidden_effect = { sound_effect = CRO_our_song } 
+	}
+}
+
+

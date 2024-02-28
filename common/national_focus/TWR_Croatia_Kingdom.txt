@@ -1,0 +1,378 @@
+#############################
+## KINGDOM OF CROATIA TREE ##
+#############################
+shared_focus = {
+	id = CRO_Kingdom_As_Rome_Commands
+	icon = GFX_ITA_A_King_for_Land
+	cost = 5
+	x = 14
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_As_Rome_Commands"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+                hidden_effect = {
+                 add_ideas = {
+                CRO_MoS_Ante_Vokic 
+                CRO_FM_Vjekoslav_Vrancic 
+                CRO_AM_Lovro_Susic 
+                }
+           }
+	hidden_effect = {            
+	 109 = { #zagreb
+                remove_province_modifier = {
+                    static_modifiers = { terrain_zagreb }
+                    province = { id = 11581 }
+                }
+                add_province_modifier = {
+                    static_modifiers = { terrain_zagreb_free }
+                    province = { id = 11581 }
+                }
+            }
+	cro_remove_bosnia_modifiers = yes
+			104 = {
+            	add_dynamic_modifier = { modifier = bosnia_v }
+            }
+			981 = {
+            	add_dynamic_modifier = { modifier = bosnia_v }
+            }
+			982 = {
+            	add_dynamic_modifier = { modifier = bosnia_v }
+            }
+	set_party_name = {
+				ideology = paternal_autocrat
+				name = KSH
+				long_name = KSH_long
+			}
+add_ideas = authoritarian_system
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Mediterranean_Pact_Peacekeepers
+	icon = GFX_ITA_Med_Pact
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Kingdom_As_Rome_Commands
+	prerequisite = {
+		focus = CRO_Kingdom_As_Rome_Commands
+	}
+	available = {
+		has_war = no
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Mediterranean_Pact_Peacekeepers"
+		add_ideas = CRO_Mediterranean_Pact_Peacekeepers_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_End_the_Insurgency
+	icon = GFX_CRO_A_Terrible_Swarm_of_Avengers
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Kingdom_As_Rome_Commands
+	prerequisite = {
+		focus = CRO_Kingdom_As_Rome_Commands
+	}
+	available = {
+		has_war = no
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_End_the_Insurgency"
+                 country_event = { id = twrcroatia.238 }
+		add_ideas = CRO_Oruznistvo_idea 
+		IF = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			cro_create_intelligence_agency = yes
+		}	
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Disband_the_Ustase
+	icon = GFX_CRO_Disband_the_Ustashe
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Kingdom_As_Rome_Commands
+	prerequisite = {
+		focus = CRO_Kingdom_As_Rome_Commands
+	}
+	available = {
+		has_war = no
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Disband_the_Ustase"
+		add_political_power = -50
+		add_popularity = {
+			ideology = national_socialist
+			popularity = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Give_Aimone_the_Crown
+	icon = GFX_CRO_Give_Aimone_the_Crown
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Kingdom_Disband_the_Ustase
+	prerequisite = {
+		focus = CRO_Kingdom_Mediterranean_Pact_Peacekeepers
+	}
+	prerequisite = {
+		focus = CRO_Kingdom_End_the_Insurgency
+	}
+	prerequisite = {
+		focus = CRO_Kingdom_Disband_the_Ustase
+	}
+	available = {
+		has_war = no
+        owns_state = 104
+        owns_state = 981
+        owns_state = 982
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Give_Aimone_the_Crown"
+		country_event = {
+			id = twrcroatia.47
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Illyrian_Trade
+	icon = GFX_CRO_Italian_Trade
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Kingdom_Give_Aimone_the_Crown
+	prerequisite = {
+		focus = CRO_Kingdom_Give_Aimone_the_Crown
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Illyrian_Trade"
+		add_ideas = CRO_Illyrian_Trade_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Il_Duces_State_Visit_to_Split
+	icon = GFX_ITA_Viva_Mussolini 
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Kingdom_Illyrian_Trade
+	prerequisite = {
+		focus = CRO_Kingdom_Illyrian_Trade
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Il_Duces_State_Visit_to_Split"
+		country_event = {
+			id = twrcroatia.48
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Request_Autonomy
+	icon = GFX_CRO_Greater_Autonomy
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Kingdom_Il_Duces_State_Visit_to_Split
+	prerequisite = {
+		focus = CRO_Kingdom_Il_Duces_State_Visit_to_Split
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Request_Autonomy"
+		ITA = {
+			country_event = {
+				id = twrcroatia.49
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_The_Disputed_Territories
+	icon = GFX_CRO_Dalmatia
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Kingdom_Give_Aimone_the_Crown
+	prerequisite = {
+		focus = CRO_Kingdom_Give_Aimone_the_Crown
+	}
+	available = {
+		ITA = { controls_state = 163 }
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_The_Disputed_Territories"
+		ITA = {
+			country_event = {
+				id = twrcroatia.52
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Rearm_the_Kingdom
+	icon = GFX_GENERIC_Holding_Gun
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Kingdom_The_Disputed_Territories
+	prerequisite = {
+		focus = CRO_Kingdom_The_Disputed_Territories
+	}
+	available = {
+		has_completed_focus = CRO_The_Worst_is_Behind_Us
+		has_completed_focus = CRO_Mediterranean_Navy_Expansion
+		has_completed_focus = CRO_Modernise_Our_Land_Forces
+		has_completed_focus = CRO_Improving_The_Airforce
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Rearm_the_Kingdom"
+		add_timed_idea = {
+			idea = CRO_Rearming_the_Kingdom_idea
+			days = 730
+		}
+add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Croatian_Revanchism
+	icon = GFX_CRO_A_Dream_Come_True
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Kingdom_Rearm_the_Kingdom
+	prerequisite = {
+		focus = CRO_Kingdom_Rearm_the_Kingdom
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Croatian_Revanchism"
+		104 = { add_core_of = CRO }
+		981 = { add_core_of = CRO }
+		982 = { add_core_of = CRO }
+		103 = { add_core_of = CRO }
+		819 = { add_core_of = CRO }
+		104 = { add_core_of = CRO }
+		163 = { add_core_of = CRO }
+		815 = { add_core_of = CRO }
+		813 = { add_core_of = CRO }
+		45 = { add_core_of = CRO }
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_A_Bilingual_State
+	icon = GFX_CRO_ITA_Bistate
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Kingdom_Give_Aimone_the_Crown
+	prerequisite = {
+		focus = CRO_Kingdom_Give_Aimone_the_Crown
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_A_Bilingual_State"
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.03
+		}
+		add_stability = 0.05
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Italian_Settler_Programme
+	icon = GFX_ITA_Italianise_Dalmatia
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Kingdom_A_Bilingual_State
+	prerequisite = {
+		focus = CRO_Kingdom_A_Bilingual_State
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Italian_Settler_Programme"
+		103 = { add_manpower = 500 }
+		1016 = { add_manpower = 500 }
+		IF = {
+			limit = {
+				CRO = { owns_state = 163 }
+			}
+			163 = { add_manpower = 250 }
+		}
+		add_timed_idea = {
+			idea = CRO_Italian_Settler_Programme_idea
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_The_Vatican_Connection
+	icon = GFX_GENERIC_Catholic_Government
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Kingdom_Italian_Settler_Programme
+	prerequisite = {
+		focus = CRO_Kingdom_Italian_Settler_Programme
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_The_Vatican_Connection"
+		add_ideas = CRO_catholic_church_support 
+	}
+}
+
+shared_focus = {
+	id = CRO_Kingdom_Long_Live_the_King
+	icon = GFX_CRO_Kingdom_Throne
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Kingdom_The_Vatican_Connection
+	prerequisite = {
+		focus = CRO_Kingdom_Request_Autonomy
+	}
+	prerequisite = {
+		focus = CRO_Kingdom_Croatian_Revanchism
+	}
+	prerequisite = {
+		focus = CRO_Kingdom_The_Vatican_Connection
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Kingdom_Long_Live_the_King"
+                custom_effect_tooltip = CRO_reunification_decision_tt
+                set_country_flag = CRO_Reunify_Croatia_decision_flag 
+		remove_ideas = CRO_Low_Legitimacy_idea
+	}
+}

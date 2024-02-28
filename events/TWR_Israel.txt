@@ -1,0 +1,184 @@
+﻿add_namespace = twrisrael
+add_namespace = twrisraelpres
+add_namespace = twrisraelelections
+add_namespace = twrisraelnews
+
+
+country_event = {
+	id = twrisraelpres.1
+	title = twrisraelpres.1.t #Death of the President
+	desc = twrisraelpres.1.d
+	picture = GFX_report_event_weizmann_death
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrisraelpres.1.a #Mourning
+		add_political_power = -15
+		hidden_effect = {
+		clr_country_flag = pres_Chaim_Weizmann
+		set_country_flag = pres_Yosef_Sprinzak
+		remove_ideas = hos_popular_figurehead
+		add_ideas = hos_mediocre
+		}
+	}
+}
+country_event = {
+	id = twrisraelpres.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrisraelpres.2"}
+	title = twrisraelpres.2.t #New pres
+	desc = twrisraelpres.2.d
+	picture = GFX_report_event_israel_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrisraelpres.2.a #New President
+		add_political_power = 15
+		hidden_effect = {
+		clr_country_flag = pres_Yosef_Sprinzak
+		set_country_flag = pres_Yitzhak_Ben-Zvi
+		remove_ideas = hos_mediocre
+		add_ideas = hos_popular_figurehead
+		}
+	}
+}
+news_event = {
+	id = twrisraelpres.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrisraelpres.3"}
+	title = twrisraelpres.3.t #Death
+	desc = twrisraelpres.3.d
+	picture = GFX_news_event_weizmann
+	major = yes
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	option = {
+		name = twrisraelpres.3.a #rip
+		trigger = {
+			is_german = no
+		}
+	}
+	option = {
+		name = twrisraelpres.3.b #jew
+		trigger = {
+				is_german = yes
+		}
+	}
+}
+
+##################
+#Einstein Arrives in Israel
+country_event = {
+  id = twrisrael.0
+  immediate = {log = "[GetDateText]: [Root.GetName]: event twrisrael.0"}
+  title = twrisrael.0.t
+  desc = twrisrael.0.d
+  picture = GFX_report_einstein_in_israel
+
+  is_triggered_only = yes
+
+  fire_only_once = yes
+
+  option = {
+   name = twrisrael.0.a #The great thinker of the 20th century has arrived!
+   #news_event = { id = twrisraelnews.1 days = 0 }
+   country_event = { id = twrisrael.1 days = 3 }
+   add_political_power = 50
+  }
+}
+
+#Einsteins Speech
+country_event = {
+    id = twrisrael.1
+    immediate = {log = "[GetDateText]: [Root.GetName]: event twrisrael.1"}
+    title = twrisrael.1.t
+    desc = twrisrael.1.d
+    picture = GFX_report_einstein_in_israel
+
+    is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+    name = twrisrael.1.a #Einstein survives an assasination attempt!
+    add_political_power = 50
+    add_tech_bonus = {
+        bonus = 0.25
+        uses = 1
+        category = nuclear
+    }
+}
+
+    option = {
+    name = twrisrael.1.b #Einstein is declared dead at 14:27, Israeli time.
+    set_global_flag = einstein_dead
+    add_political_power = -50
+    hidden_effect = {
+    	news_event = { id = twrisraelnews.2 days = 0 }
+        }
+    }
+}
+
+news_event = {
+	id = twrisraelnews.1
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrisraelnews.1"
+	}
+	title = "Einstein Visits Israel"
+	desc = twrisraelnews.1.d
+	picture = GFX_news_einstein_in_israel
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	major = yes
+
+	option = {
+		name = "He should see his old friend's work."
+		trigger = {
+			is_german = no
+		}
+	}
+	option = {
+		name = "Interesting"
+		trigger = { is_german = yes }
+	}
+} 
+
+news_event = {
+	id = twrisraelnews.2
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrisraelnews.2"
+	}
+	title = twrisraelnews.2.t #Einstein Killed in Israel
+	desc = twrisraelnews.2.d
+	picture = GFX_news_dead_einstein
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	major = yes
+
+	option = {
+		name = twrisraelnews.2.a
+		trigger = {
+			is_german = no
+			is_ss = no
+		}
+	}
+	option = {
+		name = twrisraelnews.2.b
+		trigger = { 
+			OR = {
+			is_german = yes 
+			is_ss = yes
+			}
+		}
+	}
+}

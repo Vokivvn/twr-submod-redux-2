@@ -1,0 +1,177 @@
+﻿##############################
+## Association of the Freed ##
+##############################
+add_namespace = rsb
+
+country_event = { # A Meeting with Saburov
+	id = rsb.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rsb.1"}
+	title = rsb.1.t
+	desc = rsb.1.d
+	picture = GFX_report_event_partisan_coup
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rsb.1.a
+		army_experience = 5
+	}
+}
+
+country_event = { # Soviet Moscow - The End of the Freed
+	id = rsb.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rsb.2"}
+	title = rsb.2.t
+	desc = rsb.2.d
+	picture = GFX_report_event_karbyshev
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rsb.2.a
+		annex_country = {
+			target = RSB
+			transfer_troops = yes
+		}
+	}
+}
+
+country_event = { # SS Officers Executed
+	id = rsb.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rsb.3"}
+	title = rsb.3.t
+	desc = rsb.3.d
+	picture = GFX_report_event_firing_squad
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rsb.3.a
+		hidden_effect = {
+			RMO = {
+				country_event = {
+					id = rsb.4
+				}
+			}
+		}
+	}
+}
+
+country_event = { # Reichskommissariat Moskowien - Officers Executed by Slave Uprisings!
+	id = rsb.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rsb.4"}
+	title = rsb.4.t
+	desc = rsb.4.d
+	picture = GFX_report_event_firing_squad
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rsb.4.a
+		add_manpower = -500
+	}
+}
+
+country_event = { # Reichskommissariat Moskowien - Slave Terror Campaign
+	id = rsb.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rsb.5"}
+	title = rsb.5.t
+	desc = rsb.5.d
+	picture = GFX_report_event_partiasans_in_woods
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rsb.5.a
+		add_ideas = RSB_Anti_German_Terror_idea_GER
+	}
+}
+
+country_event = { # The Issue of the Red Army
+	id = rsb.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rsb.6"}
+	title = rsb.6.t
+	desc = rsb.6.d
+	picture = GFX_report_event_partiasans_in_woods
+ 
+	is_triggered_only = yes
+	
+	option = { # yes
+		name = rsb.6.a
+		declare_war_on = {
+			target = SMO
+			type = annex_everything
+		}
+		add_war_support = -0.2
+	}
+	option = { # no
+		name = rsb.6.b
+	}
+}
+
+country_event = { # Dmitry Karbyshev Dies
+	id = rsb.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rsb.7"}
+	title = rsb.7.t
+	desc = rsb.7.d
+	picture = GFX_report_event_karbyshev
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rsb.7.a
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "No Authority"
+			desc = "POLITICS_FREED_NO_LEADER_DESC"
+			picture = "No_Authority.dds"
+			expire = "1973.5.3"
+			ideology = radical_socialism
+			traits = { }
+		}
+		custom_effect_tooltip = RSB_remove_all_ideas_tt
+		hidden_effect = {
+			remove_ideas = {
+				RSB_Karbyshevs_Last_Stand_idea
+				RSB_Anti_German_Terror_idea
+				RSB_Anti_German_Terror_idea_GER
+				RSB_Soup_for_the_Needy_idea
+				RSB_Soup_for_the_Needy_idea1
+				RSB_Fighting_the_Collaborators_idea
+			}
+			SMO = {
+				country_event = {
+					id = rsb.2
+					days = 10
+				}
+			}
+		}
+		add_ideas = RSB_No_Authority_idea
+	}
+}
+
+country_event = { # Dmitry Karbyshev Dies
+	id = rsb.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rsb.8"}
+	title = rsb.8.t
+	desc = rsb.8.d
+	picture = GFX_report_event_karbyshev
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rsb.8.a
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Aleksandr Pechersky"
+			desc = "POLITICS_ALEKSANDR_PECHERSKY_DESC"
+			picture = "Aleksandr_Pechersky.dds"
+			expire = "1973.5.3"
+			ideology = radical_socialism
+			traits = { }
+		}
+		hidden_effect = {
+			remove_ideas = RSB_Karbyshevs_Last_Stand_idea
+		}
+	}
+}

@@ -1,0 +1,95 @@
+﻿add_namespace = twregl
+
+country_event = {
+	id = twregl.1 #monarch question
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregl.1"}
+	title = twregl.1.t #the monarch problem
+	desc = twregl.1.d
+	picture = GFX_report_event_buckingham_palace
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twregl.1.a #leave it vacant
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = 50
+	}
+	option = {
+		name = twregl.1.b #appoint a fake king
+		ai_chance = {
+			factor = 30
+		}
+		add_stability = 0.05
+		hidden_effect = {
+		clr_country_flag = mon_ENG_Vacant
+		set_country_flag = mon_Frederick_I
+		}
+	}
+	option = {
+		name = twregl.1.c #we do not need a monarch
+		ai_chance = {
+			factor = 20
+		}
+		add_stability = -0.05
+		add_political_power = 100
+		hidden_effect = {
+		clr_country_flag = has_symbolic_figurehead
+		clr_country_flag = mon_ENG_Vacant
+		}
+	}
+}
+
+news_event = { #fake monarch
+	id = twregl.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregl.2"}
+	title = twregl.2.t
+	desc = twregl.2.d
+	picture = GFX_news_event_nazi_parade
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twregl.2.a
+		trigger = {
+		is_in_faction_with = EGL
+		}
+	}
+	option = {
+		trigger = {
+		NOT = {
+		is_in_faction_with = EGL
+		}
+		}
+		name = twregl.2.b
+	}
+}
+
+news_event = { #fake government
+	id = twregl.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregl.3"}
+	title = twregl.3.t
+	desc = twregl.3.d
+	picture = GFX_news_event_civil_government
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twregl.3.a
+		trigger = {
+		is_in_faction_with = EGL
+		}
+	}
+	option = {
+		trigger = {
+		NOT = {
+		is_in_faction_with = EGL
+		}
+		}
+		name = twregl.3.b
+	}
+}

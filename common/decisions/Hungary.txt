@@ -1,0 +1,2001 @@
+#########################################################################
+#  Hungary
+#########################################################################
+operations = {
+	HUN_recruit_hungarian_outlaws = {
+		icon = generic_form_nation
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		has_completed_focus = HUN_A_Refuge_For_the_Hungarian_Outcasts
+		}
+		available = {
+		has_completed_focus = HUN_A_Refuge_For_the_Hungarian_Outcasts
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_remove = 14
+		days_re_enable = 14
+
+		modifier = {
+			political_power_cost = 0.05
+			consumer_goods_factor = 0.01
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+		}
+		remove_effect = {
+		add_manpower = 1000
+		}
+	}	
+}
+diplomatic_decisions = {
+	HUN_align_with_TA = {
+		icon = eng_support_imperialist_coup
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		OR = {
+		AND = {
+		has_government = paternal_autocrat
+		has_completed_focus = HUN_Humanity_Civility_Diplomacy
+			}
+		AND = {
+		is_democratic = yes
+		has_completed_focus = HUN_Matters_of_Hungary
+			}
+		}
+		NOT = {
+		has_country_flag = mon_Filiberto_I
+		has_country_flag = ALIGN_WITH_ITA_HUN
+		has_country_flag = OPTION_IN_PROGRESS_HUN
+			}
+		is_in_faction = no
+		}
+		available = {
+		has_war = no
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 60
+		}
+
+		complete_effect = {
+			USA = {
+			country_event = { id = twrhundem.4 hours = 8 }
+			}
+			set_country_flag = OPTION_IN_PROGRESS_HUN
+		}
+	}
+	HUN_align_with_italy = {
+		icon = eng_support_imperialist_coup
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		has_government = paternal_autocrat
+		has_completed_focus = HUN_Humanity_Civility_Diplomacy
+		NOT = {
+		has_country_flag = mon_Otto_II
+		has_country_flag = ALIGN_WITH_TA_HUN
+		has_country_flag = OPTION_IN_PROGRESS_HUN
+			}
+		is_in_faction = no
+		}
+		available = {
+		has_war = no
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 60
+		}
+
+		complete_effect = {
+			ITA = {
+			country_event = { id = twrhunjunta.1 hours = 8 }
+			}
+			set_country_flag = OPTION_IN_PROGRESS_HUN
+		}
+	}
+	HUN_join_the_med_union = {
+		icon = eng_support_imperialist_coup
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		has_country_flag = ALIGN_WITH_ITA_HUN
+		has_government = paternal_autocrat
+		has_completed_focus = HUN_Humanity_Civility_Diplomacy
+		}
+		available = {
+		ITA = { has_completed_focus = ITA_Form_the_Mediterranean_Union }
+		}
+
+		cost = 50
+		fire_only_once = yes
+		
+		ai_will_do = {
+			factor = 70
+		}
+
+		complete_effect = {
+		add_ideas = ITA_mediterranean_union_member
+		add_opinion_modifier = {
+    	target = ITA
+    	modifier = HUN_renew_the_rome_protocols
+			}
+		reverse_add_opinion_modifier = {
+    	target = ITA
+    	modifier = HUN_renew_the_rome_protocols
+			}
+		}
+	}
+}
+HUN_expand_hungary = {
+	HUN_establish_control_in_transylvania = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		owns_state = 84
+		NOT = { has_country_flag = HUN_ONGOING_CORE }
+		has_war = no
+		}
+
+		cost = 200
+		fire_only_once = yes
+		days_remove = 150
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		set_country_flag = HUN_ONGOING_CORE
+		}
+		remove_effect = {
+		84 = {
+		add_core_of = HUN
+			}
+		clr_country_flag = HUN_ONGOING_CORE
+		}
+	}	
+	HUN_establish_control_in_banat = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		owns_state = 82
+		NOT = { has_country_flag = HUN_ONGOING_CORE }
+		has_war = no
+		}
+
+		cost = 200
+		fire_only_once = yes
+		days_remove = 150
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		set_country_flag = HUN_ONGOING_CORE
+		}
+		remove_effect = {
+		82 = {
+		add_core_of = HUN
+			}
+		clr_country_flag = HUN_ONGOING_CORE
+		}
+	}
+	HUN_establish_control_in_crisana = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		owns_state = 83
+		NOT = { has_country_flag = HUN_ONGOING_CORE }
+		has_war = no
+		}
+
+		cost = 200
+		fire_only_once = yes
+		days_remove = 150
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		set_country_flag = HUN_ONGOING_CORE
+		}
+		remove_effect = {
+		83 = {
+		add_core_of = HUN
+			}
+		clr_country_flag = HUN_ONGOING_CORE
+		}
+	}
+	HUN_establish_control_in_west_banat = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		owns_state = 772
+		NOT = { has_country_flag = HUN_ONGOING_CORE }
+		has_war = no
+		}
+
+		cost = 200
+		fire_only_once = yes
+		days_remove = 150
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		set_country_flag = HUN_ONGOING_CORE
+		}
+		remove_effect = {
+		772 = {
+		add_core_of = HUN
+			}
+		clr_country_flag = HUN_ONGOING_CORE
+		}
+	}
+	HUN_establish_control_in_upper_hungary = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		OR = {
+		NOT = {
+		has_country_flag = BELA_KUN_ASSR
+				}
+			}
+		}
+
+		available = {
+		owns_state = 70
+		NOT = { has_country_flag = HUN_ONGOING_CORE }
+		has_war = no
+		NOT = {
+		has_country_flag = BELA_KUN_ASSR
+			}
+		}
+
+		cost = 400
+		fire_only_once = yes
+		days_remove = 300
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		set_country_flag = HUN_ONGOING_CORE
+		}
+		remove_effect = {
+		71 = {
+		add_core_of = HUN
+			}
+		70 = {
+		add_core_of = HUN
+			}
+		clr_country_flag = HUN_ONGOING_CORE
+		}
+	}
+	HUN_invade_german_banat = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		owns_state = 82
+		has_war = no
+		country_exists = SBA
+		SBA = {
+		is_subject = no
+			}
+		}
+
+		cost = 100
+		fire_only_once = yes
+		days_remove = 10
+		war_with_on_remove = SBA
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		remove_effect = {
+		declare_war_on = {
+    	target = SBA
+    	type = annex_everything
+			}
+		}
+	}
+	HUN_establish_control_in_vojvodina = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		owns_state = 819
+		NOT = { has_country_flag = HUN_ONGOING_CORE }
+		has_war = no
+		}
+
+		cost = 200
+		fire_only_once = yes
+		days_remove = 150
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		set_country_flag = HUN_ONGOING_CORE
+		}
+		remove_effect = {
+		819 = {
+		add_core_of = HUN
+			}
+		clr_country_flag = HUN_ONGOING_CORE
+		}
+	}
+	HUN_establish_control_in_croatia = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		owns_state = 109
+		owns_state = 1030
+		owns_state = 1016
+		NOT = { has_country_flag = HUN_ONGOING_CORE }
+		has_war = no
+		}
+
+		cost = 500
+		fire_only_once = yes
+		days_remove = 365
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		set_country_flag = HUN_ONGOING_CORE
+		}
+		remove_effect = {
+		109 = {
+		add_core_of = HUN
+			}
+		1030 = {
+		add_core_of = HUN
+			}
+		1016 = {
+		add_core_of = HUN
+			}
+		clr_country_flag = HUN_ONGOING_CORE
+		}
+	}
+	HUN_return_to_capartho_ukraine = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		country_exists = CKR
+		}
+		available = {
+		country_exists = CKR
+		has_war = no
+		owns_state = 154
+		154 = {
+		is_demilitarized_zone = no
+		}
+		NOT = {
+		has_idea = ROMHUN_defeat
+			}
+		}
+
+		cost = 70
+		fire_only_once = yes
+		days_remove = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		war_with_on_remove = CKR
+		complete_effect = {
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = CKR
+    	type = annex_everything
+			}
+		}
+	}
+	HUN_invade_slovakia = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 664
+		SLO = {
+		is_subject = no
+		exists = yes
+			}
+		OR = {
+		has_completed_focus = HUN_A_War_To_the_Death
+		has_completed_focus = HUN_Proclaim_Greater_Hungary
+		has_completed_focus = HUN_Hungary_in_the_21st_Century
+		has_completed_focus = HUN_Militarist_Nationalism
+		AND = {
+		has_completed_focus = HUN_Reclaiming_National_Sovereignty
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+				}
+			}
+		NOT = {
+		has_global_flag = HUN_AGREE
+			}
+		}
+		available = {
+		owns_state = 664
+		owns_state = 76
+		SLO = {
+		is_subject = no
+		is_in_faction = no
+		}
+		has_war = no
+		}
+
+		cost = 90
+		fire_only_once = yes
+		days_remove = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		war_with_on_remove = SLO
+		complete_effect = {
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = SLO
+    	type = annex_everything
+			}
+		}
+	}
+	HUN_violate_slovak_hungarian_agreement = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		has_global_flag = HUN_AGREE
+		}
+		available = {
+		OR = {
+		has_completed_focus = HUN_A_War_To_the_Death
+		has_completed_focus = HUN_Proclaim_Greater_Hungary
+		has_completed_focus = HUN_Militarist_Nationalism
+		AND = {
+		has_completed_focus = HUN_Reclaiming_National_Sovereignty
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+				}
+			}
+		}
+
+		cost = 80
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+		add_opinion_modifier = {
+	    target = SLO
+	    modifier = faction_traitor
+		}
+		reverse_add_opinion_modifier = {
+	    target = SLO
+	    modifier = faction_traitor
+		}
+		diplomatic_relation = {
+		country = HUN
+		relation = non_aggression_pact
+		active = no
+		}
+		SLO = {
+		country_event = slovakia.69
+		}
+		clr_global_flag = HUN_AGREE
+		}
+	}
+	HUN_integrate_slovakia = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		SLO = {
+		is_subject_of = ROOT
+		exists = yes
+			}
+		is_fascist = yes
+		}
+		available = {
+		SLO = {
+		is_subject_of = ROOT
+		exists = yes
+			}
+		is_fascist = yes
+		owns_state = 76
+		}
+
+		cost = 500
+		fire_only_once = yes
+		days_remove = 200
+
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+		}
+		remove_effect = {
+		annex_country = {
+    	target = SLO
+    	transfer_troops = no
+			}
+		}
+	}
+	HUN_the_war_to_end_all_wars = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		OR = {
+		has_completed_focus = HUN_A_War_To_the_Death
+		AND = {
+		has_completed_focus = HUN_Reclaiming_National_Sovereignty
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+		}
+		has_completed_focus = HUN_Nullify_the_Treaty
+		}
+		has_war = no
+		}
+
+		cost = 95
+		fire_only_once = yes
+		days_remove = 90
+
+		modifier = {
+		minimum_training_level = -0.3
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+		war_with_on_remove = ROM
+		complete_effect = {
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = ROM
+    	type = annex_everything
+			}
+		news_event = twrromaniahungary.18
+		clr_global_flag = ROMHUN_ROM_refused_peace
+		clr_global_flag = ROMHUN_HUN_refused_peace
+		}
+	}
+	HUN_transylvanian_assr = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 84
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+		}
+		available = {
+		owns_state = 84
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+		has_war = no
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		country_event = twrhunrev.8
+		}
+	}
+	HUN_transfer_crisana = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 83
+		country_exists = TRY
+		TRY = {
+		is_subject_of = ROOT
+			}
+		}
+		available = {
+		owns_state = 83
+		country_exists = TRY
+		TRY = {
+		is_subject_of = ROOT
+			}
+		}
+
+		cost = 10
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		complete_effect = {
+		TRY = {
+		transfer_state = 83
+			}
+		83 = {
+		add_core_of = TRY
+			}
+		}
+	}
+	HUN_slovak_assr = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 70
+		has_country_flag = BELA_KUN_ASSR
+		NOT = {
+		country_exists = SLO
+			}
+		}
+		available = {
+		owns_state = 70
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+		has_war = no
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		664 = {
+		remove_core_of = SLO
+		}
+		release_autonomy = {
+    	target = SLO
+    	autonomy_state = autonomy_SSR
+    	freedom_level = 0.3
+		}
+		hidden_effect = {
+			SLO = {
+			add_ideas = {
+			disarmed_nation
+			ROM_military_disarmed
+				}
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 100
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+			}
+			set_politics = {
+				ruling_party = socialist
+			}
+			set_cosmetic_tag = SLO_SSR	
+			load_focus_tree = generic
+				}		
+			}
+		}
+	}
+	HUN_croat_assr = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 109
+		has_country_flag = BELA_KUN_ASSR
+		NOT = {
+		country_exists = CRO
+			}
+		}
+		available = {
+		owns_state = 109
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+		has_war = no
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		45 = {
+		remove_core_of = CRO
+		}
+		release_autonomy = {
+    	target = CRO
+    	autonomy_state = autonomy_SSR
+    	freedom_level = 0.3
+		}
+		hidden_effect = {
+			CRO = {
+			add_ideas = {
+			disarmed_nation
+			ROM_military_disarmed
+				}
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 100
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+			}
+			set_politics = {
+				ruling_party = socialist
+			}
+			set_cosmetic_tag = CRO_SSR	
+			load_focus_tree = generic
+				}		
+			}
+		}
+	}
+	HUN_banat_assr = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 82
+		has_country_flag = BELA_KUN_ASSR
+		}
+		available = {
+		owns_state = 82
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+		has_war = no
+		}
+
+		cost = 25
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		82 = {
+		add_core_of = BNT
+		}
+		release_autonomy = {
+    	target = BNT
+    	autonomy_state = autonomy_SSR
+    	freedom_level = 0.3
+		}
+		hidden_effect = {
+			BNT = {
+			add_ideas = {
+			disarmed_nation
+			ROM_military_disarmed
+				}
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 100
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+				}
+				set_politics = {
+				ruling_party = socialist
+				}
+				set_cosmetic_tag = BNT_SSR	
+			}		
+		}
+		}
+	}
+	HUN_transfer_west_banat = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 772
+		has_country_flag = BELA_KUN_ASSR
+		country_exists = BNT
+		BNT = {
+		is_subject_of = ROOT
+			}
+		}
+		available = {
+		owns_state = 772
+		has_completed_focus = HUN_Honour_the_Legacy_of_Bela_Kun
+		has_war = no
+		BNT = {
+		is_subject_of = ROOT
+			}
+		}
+
+		cost = 25
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		772 = {
+		add_core_of = BNT
+			}
+		BNT = {
+		transfer_state = 772
+			}
+		}
+	}
+	HUN_serbia_assr = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 107
+		}
+		available = {
+		owns_state = 107
+		is_communist = yes
+		has_war = no
+		}
+
+		cost = 25
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		SER = {
+			remove_state_core = 772
+			remove_state_core = 45
+		}
+		release_autonomy = {
+    	target = SER
+    	autonomy_state = autonomy_Soviet_Rep
+    	freedom_level = 0.5
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+					NOT = {
+						tag = HUN
+					}
+					NOT = {
+						tag = BNT
+					}
+					NOT = {
+						tag = CRO
+					}
+				}
+				release = SER
+			}			
+			SER = {
+			add_ideas = {
+			disarmed_nation
+			ROM_military_disarmed
+				}
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 100
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+				}
+				set_politics = {
+				ruling_party = socialist
+				}
+				drop_cosmetic_tag = yes
+				set_cosmetic_tag = SER_SSR	
+				load_focus_tree = generic
+			}		
+		}
+		}
+	}
+	HUN_bulgaria_assr = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 48
+		}
+		available = {
+		owns_state = 48
+		is_communist = yes
+		has_war = no
+		}
+
+		cost = 25
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		release_autonomy = {
+    	target = BUL
+    	autonomy_state = autonomy_Soviet_Rep
+    	freedom_level = 0.5
+		}
+		hidden_effect = {
+		every_country = {
+			limit = {
+				is_in_faction_with = ROOT
+				NOT = {
+					tag = HUN
+				}
+				NOT = {
+					tag = SER
+				}
+				NOT = {
+					tag = MCD
+				}
+				NOT = {
+					tag = GRE
+				}
+			}
+			release = BUL
+		}	
+			BUL = {
+			add_ideas = {
+			disarmed_nation
+			ROM_military_disarmed
+				}
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 100
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+				}
+				set_politics = {
+				ruling_party = socialist
+				}
+				drop_cosmetic_tag = yes
+				set_cosmetic_tag = BUL_SSR	
+				load_focus_tree = generic
+			}	
+			if = {
+			limit = {
+			owns_state = 1009
+			}
+			BUL = {
+				transfer_state = 1009
+				}	
+				}		
+			}
+		}
+	}
+	HUN_greek_assr = {
+		icon = infiltrate_state
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		owns_state = 877
+		}
+		available = {
+		owns_state = 877
+		is_communist = yes
+		has_war = no
+		}
+
+		cost = 25
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+		release_autonomy = {
+    	target = GRE
+    	autonomy_state = autonomy_Soviet_Rep
+    	freedom_level = 0.5
+		}
+		hidden_effect = {
+		every_country = {
+			limit = {
+				is_in_faction_with = ROOT
+				NOT = {
+					tag = HUN
+				}
+				NOT = {
+					tag = BUL
+				}
+				NOT = {
+					tag = MCD
+				}
+				NOT = {
+					tag = GRE
+				}
+			}
+			release = GRE
+		}
+			GRE = {
+			add_ideas = {
+			disarmed_nation
+			ROM_military_disarmed
+				}
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 0
+			    paternal_autocrat = 0
+			    conservative = 0
+			    liberal = 0
+			    social_democrat = 0
+			    socialist = 100
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+				}
+				set_politics = {
+				ruling_party = socialist
+				}
+				load_focus_tree = generic
+			}	
+			drop_cosmetic_tag = yes	
+			}
+		}
+	}
+}
+HUN_german_influence = {
+	HUN_use_german_grants = {
+		icon = ger_reichskommissariats
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		is_democratic = no
+		is_communist = no
+		NOT = {
+		has_country_flag = RADICALS_SHUTTED_DOWN
+			}
+		}
+		available = {
+		has_idea = HUN_German_Influence
+		}
+
+		cost = 25
+		fire_only_once = yes
+		days_re_enable = 35
+		days_remove = 30
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = -0.1
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_use_german_grants"
+			custom_effect_tooltip = GERMAN_INFLUENCE_GROWS
+			custom_effect_tooltip = MILITARY_LOYALTY_DECREASES
+			add_to_variable = {
+		    var = german_bund_influence
+		    value = 5
+			}
+			random_list = {
+			25 = { country_event = twrnewpolitic.3 }
+			25 = { country_event = twrnewpolitic.4 }
+			50 = {}
+			}
+			clamp_hungarian_variables = yes
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HUN_use_german_grants"
+		add_popularity = {
+    	ideology = fascist
+    	popularity = 0.03
+			}
+		add_popularity = {
+    	ideology = national_socialist
+    	popularity = 0.03
+			}
+		add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	HUN_deploy_street_thugs = {
+		icon = ger_reichskommissariats
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		is_democratic = no
+		is_communist = no
+		NOT = {
+		has_country_flag = RADICALS_SHUTTED_DOWN
+			}
+		}
+		available = {
+		custom_trigger_tooltip = {
+			tooltip = HUN_parliamentary_influence_above_0
+			check_variable = {
+			    var = hungarian_establishment_influence
+			    value = 0
+			    compare = greater_than
+				}
+			}
+		}		
+
+		cost = 25
+		fire_only_once = yes
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_use_german_grants"
+			custom_effect_tooltip = GERMAN_INFLUENCE_GROWS
+			custom_effect_tooltip = PARLIAMENT_INFLUENCE_DECREASES
+			add_to_variable = {
+		    var = german_bund_influence
+		    value = 5
+			}
+			subtract_from_variable = {
+		    var = hungarian_establishment_influence
+		    value = 5
+			}
+			random_list = {
+			30 = { country_event = twrnewpolitic.3 }
+			70 = {}
+			}
+			clamp_hungarian_variables = yes
+			add_stability = -0.02
+		}
+	}
+	HUN_suppress_radicals = {
+		icon = ger_reichskommissariats
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		is_fascist = no
+		NOT = {
+		has_country_flag = RADICALS_SHUTTED_DOWN
+			}
+			check_variable = {
+			    var = german_bund_influence
+			    value = 0
+			    compare = greater_than
+			}
+		}
+		available = {
+		NOT = {
+		has_country_flag = RADICALS_SHUTTED_DOWN
+			}
+		}
+
+		cost = 65
+		fire_only_once = no
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_use_german_grants"
+			custom_effect_tooltip = GERMAN_INFLUENCE_DECREASES
+			subtract_from_variable = {
+		    var = german_bund_influence
+		    value = 5
+			}
+			clamp_hungarian_variables = yes
+		}
+		days_remove = 15
+		modifier = {
+			fascist_drift = -0.01
+			national_socialist_drift = -0.01
+        }
+	}
+	HUN_remove_german_influence = {
+		icon = ger_reichskommissariats
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		NOT = {
+		has_country_flag = RADICALS_SHUTTED_DOWN
+			}
+		}
+		available = {
+		has_idea = HUN_German_Influence
+		OR = {
+		has_global_flag = GER_HUN_NEUTRAL
+		has_global_flag = GERMANS_ABANDON_HUNGARIAN_RADICALS
+		GER = {
+		has_war = yes
+			}
+		}
+			custom_trigger_tooltip = {
+				tooltip = 0_radical_influence_hun_tt		
+				check_variable = {
+					var = german_bund_influence
+					value = 0
+					compare = less_than_or_equals
+				}
+			}
+		}
+
+		cost = 20
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_remove_german_influence"
+			remove_ideas = HUN_German_Influence
+			if = {
+			limit = { has_idea = HUN_Volksbund }
+			remove_ideas = HUN_Volksbund
+			}
+			set_country_flag = RADICALS_SHUTTED_DOWN
+			clamp_hungarian_variables = yes
+		}
+	}
+	HUN_raid_radical_bases = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+		tag = HUN
+		}
+		visible = {
+		is_fascist = no
+		NOT = {
+		has_country_flag = RADICALS_SHUTTED_DOWN
+			}
+			check_variable = {
+			    var = german_bund_influence
+			    value = 0
+			    compare = greater_than
+			}
+		}
+		available = {
+		NOT = {
+		has_country_flag = RADICALS_SHUTTED_DOWN
+			}
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 15
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_use_german_grants"
+			custom_effect_tooltip = GERMAN_INFLUENCE_DECREASES
+			custom_effect_tooltip = MILITARY_INFLUENCE_GROWS
+			subtract_from_variable = {
+		    var = german_bund_influence
+		    value = 5
+			}
+			add_to_variable = {
+		    var = hungarian_military_influence
+		    value = 5
+			}
+			clamp_hungarian_variables = yes
+		}
+		modifier = {
+			fascist_drift = -0.01
+			national_socialist_drift = -0.01
+        }
+	}
+	HUN_regulate_the_military = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		custom_trigger_tooltip = {
+			tooltip = HUN_military_influence_above_0
+			check_variable = {
+			    var = hungarian_military_influence
+			    value = 0
+			    compare = greater_than
+				}
+			}
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_regulate_the_military"
+			custom_effect_tooltip = MILITARY_INFLUENCE_DECREASES
+			custom_effect_tooltip = PARLIAMENT_INFLUENCE_GROWS
+			subtract_from_variable = {
+		    var = hungarian_military_influence
+		    value = 5
+			}
+			add_to_variable = {
+		    var = hungarian_establishment_influence
+		    value = 5
+			}
+			clamp_hungarian_variables = yes
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HUN_regulate_the_military"
+		army_experience = -10
+		}
+	}
+	HUN_undermine_the_high_command = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+		tag = HUN
+		}
+		available = {
+		custom_trigger_tooltip = {
+			tooltip = HUN_military_influence_above_0
+			check_variable = {
+			    var = hungarian_military_influence
+			    value = 0
+			    compare = greater_than
+				}
+			}
+		}
+
+		cost = 65
+		fire_only_once = no
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_undermine_the_high_command"
+			custom_effect_tooltip = MILITARY_INFLUENCE_DECREASES
+			subtract_from_variable = {
+		    var = hungarian_military_influence
+		    value = 5
+			}
+			clamp_hungarian_variables = yes
+			army_experience = -10
+		}
+	}
+	HUN_bribe_the_commanders = {
+		icon = eng_install_government
+
+		allowed = {
+		tag = HUN
+		}
+
+		cost = 70
+		fire_only_once = no
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_bribe_the_commanders"
+			custom_effect_tooltip = MILITARY_LOYALTY_GROWS
+			add_to_variable = {
+		    var = hungarian_military_loyalty
+		    value = 1
+			}
+			clamp_hungarian_variables = yes
+		}
+	}
+	HUN_meet_with_the_deputies = {
+		icon = eng_install_government
+
+		allowed = {
+		tag = HUN
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_remove = 20
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_meet_with_the_deputies"
+			custom_effect_tooltip = PARLIAMENT_INFLUENCE_GROWS
+			add_to_variable = {
+		    var = hungarian_establishment_influence
+		    value = 5
+			}
+			clamp_hungarian_variables = yes
+			add_stability = 0.03
+		}
+		modifier = {
+		political_power_factor = 0.1
+		master_ideology_drift = 0.02
+		}
+	}
+	HUN_bribe_the_deputies = {
+		icon = eng_install_government
+
+		allowed = {
+		tag = HUN
+		}
+
+		cost = 60
+		fire_only_once = no
+		days_remove = 20
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HUN_bribe_the_deputies"
+		}
+		modifier = {
+		consumer_goods_factor = 0.01
+		}
+		remove_effect = {
+		custom_effect_tooltip = PARLIAMENT_INFLUENCE_DECREASES
+			subtract_from_variable = {
+		    var = hungarian_establishment_influence
+		    value = 5
+			}
+			clamp_hungarian_variables = yes
+		}
+	}
+}
+
+HUN_fort_project = {
+
+	HUN_cluj_line = {
+		icon = generic_construction
+		visible = {
+			has_country_flag = ARPAD_LINE_HUN
+		}
+		cost = 90
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			has_war = no
+			owns_state = 76
+			NOT = {
+			has_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+			}
+		}
+		complete_effect = {
+			set_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		add_equipment_to_stockpile = {
+		    type = support_equipment
+		    amount = -300
+			}
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 100
+		remove_effect = {
+			clr_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		76 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 7
+	    instant_build = yes
+	    province = 693
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 6714
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 9672
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 5
+	    instant_build = yes
+	    province = 3709
+		}
+			}
+		}
+	}
+
+	HUN_debrecen_wall = {
+		icon = generic_construction
+		visible = {
+			has_country_flag = ARPAD_LINE_HUN
+		}
+		cost = 90
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			has_war = no
+			owns_state = 154
+			NOT = {
+			has_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+			}
+		}
+		complete_effect = {
+			set_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		add_equipment_to_stockpile = {
+		    type = support_equipment
+		    amount = -300
+			}
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 100
+		remove_effect = {
+			clr_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		154 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 7
+	    instant_build = yes
+	    province = 11659
+		}	
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 11644
+		}	
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 9656
+		}	
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 679
+		}	
+			}
+		if = {
+		limit = { owns_state = 76 }
+		76 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 3696
+		}			
+				}
+			}
+		}
+	}
+
+	HUN_tisza_line = {
+		icon = generic_construction
+		visible = {
+			has_country_flag = ARPAD_LINE_HUN
+		}
+		cost = 90
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			has_war = no
+			owns_state = 43
+			NOT = {
+			has_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+			}
+		}
+		complete_effect = {
+			set_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		add_equipment_to_stockpile = {
+		    type = support_equipment
+		    amount = -300
+			}
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 100
+		remove_effect = {
+			clr_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		43 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 11520
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 3713
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 6716
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 684
+		}
+		add_building_construction = {
+	    type = bunker
+	    level = 4
+	    instant_build = yes
+	    province = 6700
+		}
+			}
+		}
+	}
+
+	HUN_vojvodina_defenses = {
+		icon = generic_construction
+		visible = {
+			has_country_flag = ARPAD_LINE_HUN
+		}
+		cost = 75
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			has_war = no
+			owns_state = 45
+			NOT = {
+			has_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+			}
+		}
+		complete_effect = {
+			set_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		add_equipment_to_stockpile = {
+		    type = support_equipment
+		    amount = -90
+			}
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 70
+		remove_effect = {
+			clr_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		45 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 6
+	    instant_build = yes
+	    province = 3617
+		}
+			}
+		}
+	}
+
+	HUN_pecs_defenses = {
+		icon = generic_construction
+		visible = {
+			has_country_flag = ARPAD_LINE_HUN
+		}
+		cost = 75
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			has_war = no
+			owns_state = 155
+			NOT = {
+			has_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+			}
+		}
+		complete_effect = {
+			set_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		add_equipment_to_stockpile = {
+		    type = support_equipment
+		    amount = -90
+			}
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 70
+		remove_effect = {
+			clr_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		155 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 6
+	    instant_build = yes
+	    province = 11610
+		}
+			}
+		}
+	}
+
+	HUN_budapest_pocket = {
+		icon = generic_construction
+		visible = {
+			has_country_flag = ARPAD_LINE_HUN
+		}
+		cost = 90
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			has_war = no
+			owns_state = 43
+			NOT = {
+			has_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+			}
+		}
+		complete_effect = {
+			set_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		add_equipment_to_stockpile = {
+		    type = support_equipment
+		    amount = -300
+			}
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 100
+		remove_effect = {
+			clr_country_flag = CONSTRUCTION_IN_PROGRESS_HUN
+		country_event = twrhungary.15
+		}
+	}
+}
+
+HUN_istvan_detroid = {
+#vp starts with 3
+	HUN_expand_dunapentele = {
+		icon = generic_construction
+		cost = 85
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			owns_state = 43
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		days_remove = 100
+		remove_effect = {
+			add_victory_points = {
+				province = 11625
+				value = 2
+			}
+			43 = {
+				add_extra_state_shared_building_slots = 2	
+			}
+		}
+	}
+	HUN_expand_housing_districts = {
+		icon = generic_construction
+		cost = 85
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			owns_state = 43
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		days_remove = 100
+		remove_effect = {
+			add_victory_points = {
+				province = 11625
+				value = 2
+			}
+			43 = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.05
+					}
+				}		
+			}
+		}
+	}
+	HUN_heavy_industrial_town = {
+		icon = generic_construction
+		cost = 100
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			owns_state = 43
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+			political_power_factor = -0.1
+		}
+		days_remove = 100
+		remove_effect = {
+			add_victory_points = {
+				province = 11625
+				value = 3
+			}
+			43 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+	}
+}

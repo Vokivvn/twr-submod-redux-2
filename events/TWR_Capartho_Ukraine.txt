@@ -1,0 +1,97 @@
+﻿###################################################
+###============| Cpartho EVENTS |==============###
+####=========|  Coded by Agatha |==========####
+###################################################
+
+add_namespace = twrckr
+
+country_event = { #Second Declaration of Independence
+	id = twrckr.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrckr.1"}
+	title = twrckr.1.t
+	desc = twrckr.1.d
+	picture = GFX_report_event_ckr_capital
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Ukraine has not yet died!
+		name = twrckr.1.a
+		add_stability = 0.15
+	}
+}
+
+country_event = { #The Defenders
+	id = twrckr.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrckr.2"}
+	title = twrckr.2.t
+	desc = twrckr.2.d
+	picture = GFX_report_event_CKR_armed_forces
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Salute
+		name = twrckr.2.a
+		create_field_marshal = {
+		name = "Sergey Efremov"
+		picture = "Sergey_Fedorovich_Efremov.dds"
+		traits = { defensive_doctrine }
+		skill = 2
+		attack_skill = 1
+		defense_skill = 3
+		planning_skill = 2
+		logistics_skill = 1
+		}
+		create_corps_commander = {
+		name = "Vasily Filonovych"
+		picture = "Vasily_Zakhariyovych_Filonovych.dds"
+		traits = { infantry_officer }
+		skill = 2
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 1
+		}
+		division_template = {
+			name = "Carpathian Sich"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+		        light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+			}
+		}
+		capital_scope = {
+		create_unit = {
+	    division = "name = \"Respublikans'ka Hvardiys'ka Dyviziya\" division_template = \"Carpathian Sich\" start_experience_factor = 0.1 start_equipment_factor = 0.3"
+	    owner = ROOT
+			}
+		}
+	}
+}
+
+country_event = { #General Election
+	id = twrckr.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrckr.3"}
+	title = twrckr.3.t
+	desc = twrckr.3.d
+	picture = GFX_report_event_election_CKR
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Democracy!
+		name = twrckr.3.a
+		retire_country_leader = yes
+		set_party_name = { 
+	    ideology = paternal_autocrat 
+	    long_name = CKR_UNITED_FRONT_LONG 
+	    name = CKR_UNITED_FRONT 
+		}
+		add_popularity = {
+		    ideology = social_democrat
+		    popularity = 0.05
+		}
+		add_stability = 0.1
+	}
+}

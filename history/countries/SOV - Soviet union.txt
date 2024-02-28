@@ -1,0 +1,647 @@
+﻿#########################################################################
+# Soviet Union
+#########################################################################
+capital = 398
+set_stability = 0.5
+set_war_support = 0.5
+oob = "SOV_1936"
+set_research_slots = 3
+set_convoys = 25
+
+#######################
+# Language
+#######################
+set_country_flag = russian_language
+set_country_flag = POSSIBLE_RUZ_TAG_FLAG
+add_ideas = { TWR_RUSSIAN_SECRET_BUFF }
+set_cosmetic_tag = SOV_PERM_GOV
+#######################
+#SCRIPTED GUI
+#######################
+set_country_flag = KAL_Ivan_Turkenich
+set_country_flag = REF_Nikolai_Bulganin
+set_country_flag = ORT_Mikhail_Suslov
+
+set_variable = {
+	var = SOV_kalininist_influence
+	value = 15
+}
+set_variable = {
+	var = SOV_nkvd_influence
+	value = 40
+}
+set_variable = {
+	var = SOV_reformist_influence
+	value = 20
+}
+set_variable = {
+	var = SOV_orthodox_influence
+	value = 30
+}
+set_variable = {
+	var = BULGANIN_FAVOUR_USE_COST
+	value = 95
+}
+set_variable = {
+	var = CONSTRUCTION_COST_SOV
+	value = 50
+}
+set_global_flag = moscow_rebuilt #again, bad naming but whatever
+set_global_flag = sevastapol_rebuilt
+set_global_flag = petrograd_rebuilt
+set_global_flag = kaliningrad_rebuilt
+
+#######################
+# Research
+#######################
+set_technology = {
+
+	infantry_weapons_1 = 1
+	tech_mountaineers = 1
+	marines = 1
+	paratroopers = 1
+
+	basic_infantry_equipment = 1
+	support_weapons = 1
+	infantry_at = 1
+	electronic_mechanical_engineering = 1
+	basic_train = 1
+	radio = 1
+	motorised_infantry = 1
+
+	tech_support = 1
+	tech_engineers = 1
+	tech_recon = 1
+	tech_logistics_company = 1
+	tech_military_police = 1
+	tech_signal_company = 1
+	tech_maintenance_company = 1
+
+	artillery4 = 1
+
+	base_armor = 1
+
+	early_fighter = 1
+	tac_bomber1 = 1
+	transport_air1 = 1
+	strategic_bomber1 = 1
+
+	fighter_1945 = 1
+	tac_air_1945 = 1
+	transport_air_1945 = 1
+	heavy_air_1945 = 1
+
+
+	CAS_1945 = 1
+	interceptor_1945 = 1
+
+	gw_artillery = 1
+
+	antiair5 = 1
+	antiair_1950 = 1
+
+	advanced_medium_tank = 1
+	mechanised_infantry3 = 1
+	advanced_light_tank = 1
+	APC_1950 = 1
+	IFV_1950 = 1
+}
+if = {
+	limit = {
+		not = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		naval_stipulations = 1
+	ww2_destroyer = 1
+	ww2_cruiser = 1
+	ww2_submarine = 1
+	ww2_battleship = 1
+	}
+	set_naval_oob = "SOV_1952_naval_legacy"
+}
+if = {
+	limit = {
+		 has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		mtg_naval_stipulations = 1
+		early_ship_hull_very_light = 1
+		early_ship_hull_more_light = 1
+		early_ship_hull_light = 1
+		basic_depth_charges = 1
+		sonar = 1
+		early_ship_hull_cruiser = 1
+		early_ship_hull_heavy = 1
+		early_ship_hull_submarine = 1
+		basic_battery = 1
+		basic_light_battery = 1
+		basic_light_shell = 1
+		basic_medium_battery = 1
+		damage_control_1 = 1
+		fire_control_methods_1 = 1
+		basic_naval_mines = 1
+	}
+	create_equipment_variant = {
+		name = "Patrioticheskiy Class"				
+		type = ship_hull_light_1
+		name_group = SOV_DD_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_1
+			fixed_ship_anti_air_slot = ship_anti_air_1
+			fixed_ship_fire_control_system_slot = empty
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_1
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = ship_mine_layer_1
+			rear_1_custom_slot = empty
+		}
+	}
+	create_equipment_variant = {
+		name = "Kalinin Class"				
+		type = ship_hull_cruiser_1
+		name_group = SOV_CL_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_medium_battery_1
+			fixed_ship_anti_air_slot = ship_anti_air_1
+			fixed_ship_fire_control_system_slot = empty
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = cruiser_ship_engine_1
+			fixed_ship_armor_slot = ship_armor_cruiser_1
+			fixed_ship_secondaries_slot = empty
+			mid_1_custom_slot = ship_light_battery_1
+			rear_1_custom_slot = ship_light_battery_1
+		}
+	}
+	create_equipment_variant = {
+		name = "Dekabrist Class"				
+		type = ship_hull_submarine_1
+		name_group = SOV_SS_SHCHUKA
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_1
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_torpedo_sub_1
+		}
+	}
+	create_equipment_variant = {
+		name = "Type P"				
+		type = ship_hull_submarine_1
+		name_group = SOV_SS_LENINETS
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_1
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_mine_layer_sub
+		}
+	}
+	set_naval_oob = "SOV_1952_naval_MTG"
+}
+#######################
+# Politics
+#######################
+set_politics = {	
+	ruling_party = bolshevik_leninist
+	last_election = "1933.7.1"
+	election_frequency = 48
+	elections_allowed = no
+}
+
+set_popularities = {
+	national_socialist = 0
+	fascist = 0
+	paternal_autocrat = 22
+	conservative = 0
+	liberal = 0
+	social_democrat = 0
+	socialist = 10
+	bolshevik_leninist = 37
+	marxist_leninist = 31
+}
+add_ideas = {
+	extensive_conscription
+	authoritarian_system
+	semi_industrialised_nation
+# National Spirits
+	SOV_in_shambles
+	SOV_red_army
+	SOV_leadership_distrust
+	SOV_the_nkvd_idea
+	SOV_public_discontent
+
+	SOV_HoG_Mikhail_Suslov
+	SOV_MoS_Sergei_Kruglov
+	SOV_FM_Vyacheslav_Molotov
+	SOV_AM_Nikolai_Bulganin
+	SOV_CoStaff_Vasily_Chuikov
+	SOV_CoArmy_Andrey_Andreyev
+	SOV_CoNavy_Nikolai_Kuznetsov
+	SOV_CoAir_Konstantin_Vershinin
+
+}
+#######################
+# Diplomacy
+#######################
+give_guarantee = TRV
+give_guarantee = KAZ
+diplomatic_relation = {
+country = TRV
+relation = non_aggression_pact
+active = yes
+}
+diplomatic_relation = {
+country = KAZ
+relation = non_aggression_pact
+active = yes
+}
+#######################
+# Leaders
+#######################
+# National Socialism
+create_country_leader = {
+	name = "-"
+	desc = ""
+	expire = "1965.1.1"
+	ideology = national_socialism
+	traits = {}
+}
+# Fascism
+create_country_leader = {
+	name = "-"
+	desc = ""
+	expire = "1965.1.1"
+	ideology = fascism
+	traits = {}
+}
+# Paternal Autocracy
+create_country_leader = {
+	name = "Vladimir Kirillin"
+	desc = "Vladimir_Kirillin_DESC"
+	picture = "Vladimir_Kirillin.dds"
+	expire = "1938.1.1"
+	ideology = bulganinism
+	traits = {}
+}
+
+# Paternal Autocracy
+create_country_leader = {
+	name = "Nikolai Bulganin"
+	desc = "LEADER_Nikolai_Bulganin_DESC"
+	picture = "Nikolai_Bulganin.dds"
+	expire = "1938.1.1"
+	ideology = bulganinism
+	traits = {}
+}
+
+# Conservatism
+create_country_leader = {
+	name = "-"
+	desc = ""
+	picture = "-"
+	expire = "1965.1.1"
+	ideology = traditionalist_conservatism
+	traits = {}
+}
+# Liberalism
+create_country_leader = {
+	name = "PDR Perm Underground"
+	desc = "PDR_PERM_UNDERGROUND_DESC"
+	picture = "PDR_Perm_Committee.dds"
+	expire = "1965.1.1"
+	ideology = sakharovism
+	traits = { cabinet_crisis }
+}
+# Social Democracy
+create_country_leader = {
+	name = "-"
+	desc = ""
+	expire = "1965.1.1"
+	ideology = social_patriotism
+	traits = {}
+}
+
+# Left-Wing Radicalism
+create_country_leader = {
+	name = "Yuri Orlov"
+	desc = "Yuri_Orlov_DESC"
+	picture = "Yuri_Orlov.dds"
+	expire = "1975.1.1"
+	ideology = zhukovism
+	traits = {}
+}
+# Bolshevik-Leninism
+create_country_leader = {
+	name = "Lavrentiy Beria"
+	desc = "POLITICS_BERIA_DESC"
+	picture = "Lavrentiy_Beria.dds"
+	expire = "1965.1.1"
+	ideology = nkvd_socialism
+	traits = {
+		unpopular_dictator
+	}
+}
+# Marxism-Leninism
+create_country_leader = {
+	name = "Mikhail Suslov"
+	desc = "LEADER_Mikhail_Suslov_DESC"
+	picture = "Mikhail_Suslov.dds"
+	expire = "1975.1.1"
+	ideology = marxism_leninism
+	traits = {}
+}	
+
+#######################
+# Generals
+#######################
+#create_field_marshal = {
+#	name = "Aleksandr Vasilevsky"
+#	picture = "Aleksandr_Vasilevsky.dds"
+#	traits = { inflexible_strategist }
+#	skill = 4
+#	attack_skill = 4
+#	defense_skill = 3
+#	planning_skill = 5
+#	logistics_skill = 3
+#}
+create_field_marshal = {
+	name = "Vasily Chuikov"
+	picture = "Vasily_Chuikov.dds"
+	traits = { inflexible_strategist media_personality logistics_wizard unyielding_defender }
+	skill = 4
+	attack_skill = 3
+	defense_skill = 5
+	planning_skill = 4
+	logistics_skill = 4
+}
+create_field_marshal = {
+	name = "Pavel Rotmistrov"
+	picture = "Pavel_Rotmistrov.dds"
+	traits = { armor_officer harsh_leader }
+	skill = 2
+	attack_skill = 3
+	defense_skill = 1
+	planning_skill = 1
+	logistics_skill = 2
+}
+create_field_marshal = {
+	name = "Iosif Apanasenko"
+	picture = "Iosif_Apanasenko.dds"
+	traits = { trait_cautious }
+	skill = 2
+	attack_skill = 2
+	defense_skill = 1
+	planning_skill = 3
+	logistics_skill = 2
+}
+create_corps_commander = {
+	name = "Afanasy Beloborodov"
+	picture = "Afanasy_Beloborodov.dds"
+	traits = { infantry_officer career_officer }
+	skill = 3
+	attack_skill = 3
+	defense_skill = 2
+	planning_skill = 2
+	logistics_skill = 1
+}
+create_corps_commander = {
+	name = "Vasily Korzh"
+	picture = "Vasily_Korzh.dds"
+	traits = { inspirational_leader career_officer }
+	skill = 3
+	attack_skill = 3
+	defense_skill = 2
+	planning_skill = 3
+	logistics_skill = 1
+}
+create_corps_commander = {
+	name = "Andrei Grechko"
+	picture = "Andrei_Grechko.dds"
+	traits = { inflexible_strategist cavalry_officer }
+	skill = 2
+	attack_skill = 2
+	defense_skill = 2
+	planning_skill = 2
+	logistics_skill = 1
+}
+create_corps_commander = {
+	name = "Ivan Chernyakhovsky"
+	picture = "Ivan_Chernyakhovsky.dds"
+	traits = { armor_officer }
+	skill = 2
+	attack_skill = 3
+	defense_skill = 1
+	planning_skill = 1
+	logistics_skill = 1
+}
+
+create_corps_commander = {
+	name = "Ivan Fedyuninsky"
+	picture = "Ivan_Fedyuninsky.dds"
+	traits = { ranger }
+	skill = 2
+	attack_skill = 1
+	defense_skill = 1
+	planning_skill = 2
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Kuzma Galitsky"
+	picture = "Kuzma_Galitsky.dds"
+	traits = { cavalry_officer }
+	skill = 1
+	attack_skill = 2
+	defense_skill = 1
+	planning_skill = 1
+	logistics_skill = 1
+}
+
+create_corps_commander = {
+	name = "Andrei Getman"
+	picture = "Andrei_Getman.dds"
+	traits = { armor_officer }
+	skill = 3
+	attack_skill = 3
+	defense_skill = 2
+	planning_skill = 1
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Vladimir Kurasov"
+	picture = "Vladimir_Kurasov.dds"
+	traits = { infantry_officer }
+	skill = 1
+	attack_skill = 2
+	defense_skill = 2
+	planning_skill = 1
+	logistics_skill = 1
+}
+
+create_corps_commander = {
+	name = "Vasily Margelov"
+	picture = "Vasily_Margelov.dds"
+	traits = { commando paratrooper }
+	skill = 3
+	attack_skill = 3
+	defense_skill = 1
+	planning_skill = 3
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Gennady Obaturov"
+	picture = "Gennady_Obaturov.dds"
+	traits = { ranger }
+	skill = 2
+	attack_skill = 2
+	defense_skill = 1
+	planning_skill = 2
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Issa Pliyev"
+	picture = "Issa_Pliyev.dds"
+	traits = { old_guard }
+	skill = 1
+	attack_skill = 1
+	defense_skill = 1
+	planning_skill = 1
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Sergei Shtemenko"
+	picture = "Sergei_Shtemenko.dds"
+	traits = { camouflage_expert skilled_staffer }
+	skill = 3
+	attack_skill = 2
+	defense_skill = 3
+	planning_skill = 2
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Andrey Matveyevich Andreyev"
+	picture = "Andrey_Matveyevich_Andreyev.dds"
+	traits = { politically_connected harsh_leader }
+	skill = 2
+	attack_skill = 2
+	defense_skill = 1
+	planning_skill = 1
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "David Dragunsky"
+	picture = "David_Dragunsky.dds"
+	traits = { armor_officer }
+	skill = 1
+	attack_skill = 2
+	defense_skill = 1
+	planning_skill = 1
+	logistics_skill = 1
+}
+
+create_corps_commander = {
+	name = "Vasily Glagolev"
+	picture = "Vasily_Glagolev.dds"
+	traits = { old_guard }
+	skill = 1
+	attack_skill = 1
+	defense_skill = 1
+	planning_skill = 2
+	logistics_skill = 1
+}
+
+create_corps_commander = {
+	name = "Pyotr Shafranov"
+	picture = "Pyotr_Shafranov.dds"
+	traits = { organizer }
+	skill = 2
+	attack_skill = 1
+	defense_skill = 1
+	planning_skill = 2
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Pavel Batov"
+	picture = "Pavel_Batov.dds"
+	traits = { war_hero panzer_leader }
+	skill = 3
+	attack_skill = 3
+	defense_skill = 2
+	planning_skill = 1
+	logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Ivan Yakubovsky"
+	picture = "Ivan_Yakubovsky.dds"
+	traits = { organizer }
+	skill = 3
+	attack_skill = 2
+	defense_skill = 2
+	planning_skill = 3
+	logistics_skill = 2
+}
+#######################
+# Admirals
+#######################
+
+create_navy_leader = {
+	name = "Nikolai Kuznetsov"
+	picture = "Nikolai_Kuznetsov.dds"
+	traits = { gunnery_expert arctic_water_expert }
+	skill = 5
+	attack_skill = 4
+	defense_skill = 4
+	maneuvering_skill = 5
+	coordination_skill = 4
+}
+create_navy_leader = {
+	name = "Stepan Kucherov"
+	picture = "Stepan_Kucherov.dds"
+	traits = { old_guard_navy }
+	skill = 2
+	attack_skill = 1
+	defense_skill = 1
+	maneuvering_skill = 2
+	coordination_skill = 2
+}
+
+create_navy_leader = {
+	name = "Vladimir Kasatonov"
+	picture = "Vladimir_Kasatonov.dds"
+	traits = { blockade_runner }
+	skill = 3
+	attack_skill = 3
+	defense_skill = 3
+	maneuvering_skill = 2
+	coordination_skill = 2
+}
+
+create_navy_leader = {
+	name = "Yuri Panteleyev"
+	picture = "Yuri_Aleksandrovich_Panteleyev.dds"
+	traits = { }
+	skill = 1
+	attack_skill = 1
+	defense_skill = 2
+	maneuvering_skill = 1
+	coordination_skill = 1
+}
+
+create_navy_leader = {
+	name = "Feliks Gromov"
+	picture = "Feliks_Gromov.dds"
+	traits = { }
+	skill = 2
+	attack_skill = 2
+	defense_skill = 2
+	maneuvering_skill = 1
+	coordination_skill = 1
+}

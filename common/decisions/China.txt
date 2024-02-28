@@ -1,0 +1,1335 @@
+CHI_NAM_Category = {
+	CHI_Morale_Problems = {
+		allowed = {
+			tag = CHI
+		}
+		available = {
+		OR = {
+			NOT = {
+				country_exists = VIN
+			}
+			has_country_flag = MORALE_CRISIS_SOLVED
+			}
+		}
+		activation = {
+			has_war_with = VIN
+			casualties > 300000
+		}
+		is_good = no
+		days_mission_timeout = 50
+		timeout_effect = {
+
+		}
+		complete_effect = {
+
+		}
+	}	
+	CHI_VIN_PeaceTimer = {
+		allowed = {
+			tag = CHI
+		}
+		available = {
+			NOT = {
+				country_exists = VIN
+			}
+		}
+		activation = {
+			has_war_with = VIN
+			date < 1955.01.01
+			NOT = { has_completed_focus = CHI_The_Vietnamese_Shame }
+		}
+		is_good = no
+		days_mission_timeout = 730
+		timeout_effect = {
+			if = {
+				limit ={
+					any_country = {
+					OR = {
+					is_subject_of = CHI
+					tag = CHI
+					}
+						controls_state = 897
+						controls_state = 671
+						controls_state = 896
+					}				
+				}
+				country_event = { id = twrchina.16 days = 0 }
+				remove_ideas = CHI_vietnam_war	
+				else = {
+					country_event = { id = twrchina.17 days = 0 }
+					remove_ideas = CHI_vietnam_war							
+				}									
+			}
+		}
+		complete_effect = {
+			country_event = { id = twrchina.171 days = 0 }
+			remove_ideas = CHI_vietnam_war
+		}
+	}		
+}
+CHI_combating_famine_decisions = {
+	CHI_subsidize_farms = {
+		icon = generic_decision
+
+		available = {
+			has_political_power > 29
+		}
+
+		cost = 30
+		days_remove = 20
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHI_subsidize_farms"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHI_subsidize_farms"
+			custom_effect_tooltip = CHI_famine_recovery_10_tt
+			add_to_variable = { famine_recovery_progress = 10 }
+			set_temp_variable = { temp_famine_calc = 1 }
+			CHI_famine_recovery_effects = yes
+		}
+	}
+	CHI_reduce_grain_tax = {
+		icon = generic_decision
+
+		available = {
+			has_political_power > 39
+		}
+
+		cost = 40
+		days_remove = 50
+		fire_only_once = yes
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_reduce_grain_tax"
+			custom_effect_tooltip = CHI_famine_recovery_20_tt
+			add_to_variable = { famine_recovery_progress = 20 }
+			set_temp_variable = { temp_famine_calc = 2 }
+			CHI_famine_recovery_effects = yes
+		}
+	}
+	CHI_redistribute_surplus_grain = {
+		icon = generic_decision
+
+		available = {
+			has_political_power > 39
+		}
+
+		cost = 40
+		days_remove = 50
+		fire_only_once = yes
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_redistribute_surplus_grain"
+			add_stability = -0.05
+			custom_effect_tooltip = CHI_famine_recovery_20_tt
+			add_to_variable = { famine_recovery_progress = 20 }
+			set_temp_variable = { temp_famine_calc = 2 }
+			CHI_famine_recovery_effects = yes
+		}
+	}
+	CHI_improve_farming_methods = {
+		icon = generic_decision
+
+		available = {
+			has_political_power > 39
+		}
+
+		cost = 40
+		days_remove = 50
+		fire_only_once = yes
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_improve_farming_methods"
+			add_tech_bonus = {
+				name = CHI_improve_farming_methods
+				category = industry
+				bonus = 0.5
+				uses = 1
+			}
+			custom_effect_tooltip = CHI_famine_recovery_20_tt
+			add_to_variable = { famine_recovery_progress = 20 }
+			set_temp_variable = { temp_famine_calc = 2 }
+			CHI_famine_recovery_effects = yes
+		}
+	}
+}
+CHI_DIPLO_Category = {
+	CHI_Resolve_The_American_Problem = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		has_war = no
+		USA = { has_war = no }
+		country_exists = USA
+		OR = {
+		has_completed_focus = CHI_President_Cheng
+		has_completed_focus = CHI_Unification_Fever
+		has_completed_focus = CHI_Lifu_Term
+		has_completed_focus = CHI_Political_Science_Faction
+		has_completed_focus = CHI_Blueshirts_Victory
+		has_completed_focus = CHI_Military_Junta
+		has_completed_focus = CHI_Control_the_Kuomintang
+		}
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+		OR = {
+		has_completed_focus = CHI_President_Cheng
+		has_completed_focus = CHI_Unification_Fever
+		has_completed_focus = CHI_Lifu_Term
+		has_completed_focus = CHI_Political_Science_Faction
+		has_completed_focus = CHI_Blueshirts_Victory
+		has_completed_focus = CHI_Military_Junta
+		has_completed_focus = CHI_Control_the_Kuomintang
+		}
+		country_exists = USA
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Resolve_The_American_Problem"
+			country_event = twrusachi.1
+		}
+	}
+	CHI_declare_expansionism = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		has_war = no
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		has_global_flag = CHINESE_AMERICAN_COLD_WAR
+		OR = {
+		has_completed_focus = CHI_The_Great_Republic
+		has_completed_focus = CHI_Diplomatic_Investigation
+		has_completed_focus = CHI_Three_Principles_Unification
+		has_completed_focus = CHI_Our_Righteous_Crusade
+		has_completed_focus = CHI_Distract_the_Public
+			}
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		OR = {
+		has_completed_focus = CHI_The_Great_Republic
+		has_completed_focus = CHI_Diplomatic_Investigation
+		has_completed_focus = CHI_Three_Principles_Unification
+		has_completed_focus = CHI_Our_Righteous_Crusade
+		has_completed_focus = CHI_Distract_the_Public
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_declare_expansionism"
+			set_country_flag = EXPANSIONIST_CHINA_RISE
+			news_event = twrchinaforeign.104
+		}
+	}
+	CHI_declare_expansionism_DAI = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		has_war = no
+		has_country_flag = DIPLOMACY_MAY_BEGIN_CHI
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		has_government = fascist
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		has_government = fascist
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_declare_expansionism_DAI"
+			set_country_flag = EXPANSIONIST_CHINA_RISE_DAI_LI
+			news_event = twrchinaforeign.104
+		}
+	}
+	CHI_declare_peaceful_rise = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		has_war = no
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		has_country_flag = DIPLOMACY_MAY_BEGIN_CHI
+		OR = {
+		has_government = liberal
+			}
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		OR = {
+		has_government = liberal
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_declare_peaceful_rise"
+			set_country_flag = CHI_PEACEFUL_EXPANSION
+			news_event = twrchinaforeign.105
+		}
+	}
+	CHI_nanjing_pact = {
+		icon = generic_operation
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		has_war = no
+		is_in_faction = no
+		OR = {
+		has_country_flag = EXPANSIONIST_CHINA_RISE
+		has_country_flag = CHI_PEACEFUL_EXPANSION
+			}
+		}
+		cost = 75
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+		is_in_faction = no
+		OR = {
+		has_country_flag = EXPANSIONIST_CHINA_RISE
+		has_country_flag = CHI_PEACEFUL_EXPANSION
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_nanjing_pact"
+			add_war_support = 0.05
+			add_stability = 0.05
+			create_faction = NANJING_PACT_TIME
+			news_event = twrchinaforeign.106
+			hidden_effect = { set_country_flag = NANJING_PACT_CHI }
+		}
+	}
+	CHI_March_on_macau = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		has_war = no
+		NOT = {
+		owns_state = 729
+		has_country_flag = CHI_PEACEFUL_EXPANSION
+			}
+		}
+		highlight_states = {
+			state = 729
+		}
+		cost = 75
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			NOT = {
+			owns_state = 729
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_March_on_macau"
+			729 = {
+			owner = {
+			country_event = { id = twrchinaforeign.16 hours = 3 }
+				}
+			}
+		}
+	}
+	CHI_March_on_hk = {
+		icon = oppression
+		fire_only_once = yes
+	
+		allowed = { tag = CHI }
+		available = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			has_war = no
+			NOT = {
+				owns_state = 326
+			}
+		}
+
+		highlight_states = {
+			state = 326
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			NOT = { owns_state = 326 }
+		}
+
+		is_good = yes
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_March_on_hk"
+			326 = {
+				owner = {
+					country_event = { id = twrchinaforeign.11 hours = 3 }
+				}
+			}
+		}
+	}
+	CHI_KOR_Government_in_exile = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		has_war = no
+		KOR = { is_communist = yes }
+		}
+		cost = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			KOR = { is_communist = yes }
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_KOR_Government_in_exile"
+			set_country_flag = GOVERNMENT_IN_EXILE_KOR
+			add_stability = 0.05
+			news_event = twrchinaforeign.24
+		}
+	}
+	CHI_invade_korea = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		AND = {
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		has_country_flag = GOVERNMENT_IN_EXILE_KOR
+		has_country_flag = EXPANSIONIST_CHINA_RISE
+		has_war = no
+			}
+		}
+		cost = 100
+		days_remove = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			KOR = { is_communist = yes }
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_korea"
+		add_ai_strategy = {
+                type = conquer
+                id = KOR
+                value = 100
+            }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_korea"
+			news_event = twrchinaforeign.25
+			declare_war_on = {
+    		target = KOR
+    		type = annex_everything
+			}
+			set_global_flag = chi_invade_korea
+		}
+	}
+	CHI_invade_burma = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+		available = {
+		has_country_flag = CHI_DIPLO_UNLOCKED
+		has_country_flag = EXPANSIONIST_CHINA_RISE
+		has_war = no
+		NOT = {
+		BUR = {
+		is_subject = yes
+		is_in_faction = yes
+				}
+			}
+		}
+		cost = 100
+		days_remove = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			BUR = { exists = yes }
+			has_country_flag = EXPANSIONIST_CHINA_RISE
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_burma"
+		add_ai_strategy = {
+                type = conquer
+                id = BUR
+                value = 100
+            }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_burma"
+			news_event = twrchinaforeign.103
+			declare_war_on = {
+    		target = BUR
+    		type = annex_everything
+			}
+			set_global_flag = chi_invade_burma
+		}
+	}
+	CHI_invade_tibet = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+				has_country_flag = CHI_DIPLO_UNLOCKED
+				OR = {
+					has_country_flag = EXPANSIONIST_CHINA_RISE
+					has_country_flag = EXPANSIONIST_CHINA_RISE_DAI_LI
+				}
+				has_war = no
+				TIB = {
+					owns_state = 322
+				}
+				322 = {
+				owner = {
+				is_subject = no
+					}
+				}
+			}
+		}
+		cost = 70
+		days_remove = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			OR = {
+				has_country_flag = EXPANSIONIST_CHINA_RISE
+				has_country_flag = EXPANSIONIST_CHINA_RISE_DAI_LI
+			}
+			NOT = {
+				owns_state = 322
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_tibet"
+			add_ai_strategy = {
+                type = conquer
+                id = TIB
+                value = 100
+            }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_tibet"
+			declare_war_on = {
+    		target = TIB
+    		type = annex_everything
+			}			
+			set_global_flag = chi_invade_tibet
+		}
+	}
+	CHI_invade_laos = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			has_country_flag = EXPANSIONIST_CHINA_RISE
+			has_war = no
+			LAO = {
+			is_communist = yes
+			is_subject = no
+				}
+			KMV = {
+			exists = yes
+			is_subject_of = CHI
+				}
+			}
+		}
+		cost = 70
+		days_remove = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			has_country_flag = EXPANSIONIST_CHINA_RISE
+			KMV = {
+			exists = yes
+			is_subject_of = CHI
+			}
+			LAO = {
+			is_communist = yes
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_laos"
+			add_ai_strategy = {
+                type = conquer
+                id = LAO
+                value = 100
+            }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_laos"
+			news_event = twrchinaforeign.101
+			declare_war_on = {
+    		target = LAO
+    		type = annex_everything
+			}			
+			set_global_flag = chi_invade_laos
+		}
+	}
+	CHI_invade_cambodia = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			has_country_flag = EXPANSIONIST_CHINA_RISE
+			has_war = no
+			CAM = {
+			is_communist = yes
+			is_subject = no
+				}
+			KMV = {
+			exists = yes
+			is_subject_of = CHI
+				}
+			}
+		}
+		cost = 70
+		days_remove = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			has_country_flag = EXPANSIONIST_CHINA_RISE
+			KMV = {
+			exists = yes
+			is_subject_of = CHI
+			}
+			CAM = {
+			is_communist = yes
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_cambodia"
+			add_ai_strategy = {
+                type = conquer
+                id = CAM
+                value = 100
+            }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_cambodia"
+			news_event = twrchinaforeign.102
+			declare_war_on = {
+    		target = CAM
+    		type = annex_everything
+			}			
+			set_global_flag = chi_invade_laos
+		}
+	}
+	CHI_support_the_caf = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			has_war = no
+			CAF = {
+			exists = yes
+			has_war = yes
+				}
+			}
+		}
+		cost = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			CAF = {
+			exists = yes
+			has_war = yes
+				}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_support_the_caf"
+			send_equipment = {
+    		equipment = infantry_equipment
+    		amount = 1000
+    		target = CAF
+			}
+			hidden_effect = {
+			set_country_flag = SUPPORT_CAF_CHI
+			}
+		}
+	}
+	CHI_invade_mongolia = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+				has_country_flag = CHI_DIPLO_UNLOCKED
+				OR = {
+					has_country_flag = EXPANSIONIST_CHINA_RISE
+					has_country_flag = EXPANSIONIST_CHINA_RISE_DAI_LI
+				}
+				has_war = no
+				NOT = {
+					OR = {
+						owns_state = 330
+						MON = { has_government = paternal_autocrat }
+					}
+				}
+			}
+		}
+		cost = 70
+		days_remove = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			has_country_flag = CHI_DIPLO_UNLOCKED
+			OR = {
+				has_country_flag = EXPANSIONIST_CHINA_RISE
+				has_country_flag = EXPANSIONIST_CHINA_RISE_DAI_LI
+			}
+			NOT = {
+				OR = {
+					owns_state = 330
+					MON = { has_government = paternal_autocrat }
+				}
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_mongolia"
+			330 = {
+				owner = {
+					ROOT = {
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invade_mongolia"
+			if = {
+				limit = {
+					330 = {
+						owner = {
+							is_subject = no
+						}
+					}
+				}
+				news_event = twrchinaforeign.100
+				330 = {
+					owner = {
+						ROOT = {
+							declare_war_on = {
+								target = PREV
+								type = annex_everything
+							}
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					330 = {
+						owner = {
+							is_subject = yes
+						}
+					}
+				}
+				330 = {
+					owner = {
+						OVERLORD = {
+							country_event = twrchinaforeign.26
+						}
+					}
+				}
+			}
+			set_global_flag = chi_invade_mongolia
+		}
+	}
+	CHI_invite_the_caf = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+			is_faction_leader = yes
+			has_war = no
+			CAF = {
+			exists = yes
+			has_war = no
+			is_communist = no
+			is_in_faction = no
+				}
+			}
+		}
+		cost = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			is_faction_leader = yes
+			CAF = {
+			exists = yes
+			has_war = no
+			is_communist = no
+			is_in_faction = no
+				}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invite_the_caf"
+			CAF = {
+			country_event = twrchinaforeign.30
+			}
+		}
+	}
+	CHI_invite_the_cam = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+			is_faction_leader = yes
+			has_war = no
+			CAM = {
+			exists = yes
+			has_war = no
+			is_communist = no
+			is_in_faction = no
+				}
+			}
+		}
+		cost = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			is_faction_leader = yes
+			CAM = {
+			exists = yes
+			has_war = no
+			is_communist = no
+			is_in_faction = no
+				}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invite_the_cam"
+			CAM = {
+			country_event = twrchinaforeign.30
+			}
+		}
+	}
+	CHI_invite_the_thai = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+			is_faction_leader = yes
+			has_war = no
+			SIA = {
+			exists = yes
+			has_war = no
+			is_communist = no
+			is_in_faction = no
+				}
+			}
+		}
+		cost = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			is_faction_leader = yes
+			SIA = {
+			exists = yes
+			has_war = no
+			is_communist = no
+			is_in_faction = no
+				}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invite_the_thai"
+			SIA = {
+			country_event = twrchinaforeign.30
+			}
+		}
+	}
+	CHI_invite_the_SOV_SPEC = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+			AND = {
+			is_faction_leader = yes
+			has_war = no
+			#SPEC RUSSIA
+			SOV = {
+			exists = yes
+			has_war = no
+			is_communist = no
+			is_in_faction = no
+				}
+			}
+		}
+		cost = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			is_faction_leader = yes
+			#SPEC RUSSIA
+			SOV = {
+			exists = yes
+			has_war = no
+			is_communist = no
+			is_in_faction = no
+				}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invite_the_SOV_SPEC"
+			SOV = {
+			country_event = twrchinaforeign.30
+			}
+		}
+	}
+}
+CHI_NRA_Status_Category = {
+	CHI_NRA_raise_GAN_infantry = {
+		allowed = {
+			tag = CHI
+		}
+		available = {
+		has_idea = CHI_NRA
+		any_owned_state = {
+		has_state_flag = GUANGXI_CLIQUE
+			}
+		NOT = {
+		has_country_flag = GXC_DISAGREEMENTS
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 50
+			has_manpower > 10800
+		}
+		custom_cost_text = CHI_RAISE_INFANTRY_TOOLTIP
+		days_remove = 30
+		days_re_enable = 15
+		complete_effect = {
+			hidden_effect = {
+				add_manpower = -10800
+				add_political_power = -50
+			}
+			if = {
+				limit = { NOT = { has_template = "Guangxi Division" } }
+				division_template = {
+					name = "Guangxi Division"				
+					division_names_group = CHI_CLIQUE_01
+					is_locked = yes
+													
+					regiments = {					
+						light_infantry = { x = 0 y = 0 }	
+						light_infantry = { x = 0 y = 1 }
+						light_infantry = { x = 0 y = 2 }
+						light_infantry = { x = 0 y = 3 }
+						light_infantry = { x = 1 y = 0 }
+						light_infantry = { x = 1 y = 1 }
+						light_infantry = { x = 1 y = 2 }
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }	
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1 }
+					}
+				}
+			}
+		}
+		remove_effect = {
+			random_owned_state = {
+				limit = { has_state_flag = GUANGXI_CLIQUE }
+				create_unit = {
+					division = "division_template = \"Guangxi Division\" start_experience_factor = 0.3 start_equipment_factor = 0"
+					owner = ROOT
+				}
+			}
+		}
+	}
+	CHI_NRA_raise_YUN_infantry = {
+		allowed = {
+			tag = CHI
+		}
+		available = {
+		has_idea = CHI_NRA
+		any_owned_state = {
+		has_state_flag = YUNNAN_CLIQUE
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 50
+			has_manpower > 10800
+		}
+		custom_cost_text = CHI_RAISE_INFANTRY_TOOLTIP
+		days_remove = 30
+		days_re_enable = 15
+		complete_effect = {
+			hidden_effect = {
+				add_manpower = -10800
+				add_political_power = -50
+			}
+			if = {
+				limit = { NOT = { has_template = "Yunnan Division" } }
+				division_template = {
+					name = "Yunnan Division"				
+					division_names_group = CHI_CLIQUE_01
+					is_locked = yes
+													
+					regiments = {					
+						mountaineers = { x = 0 y = 0 }	
+						mountaineers = { x = 0 y = 1 }
+						mountaineers = { x = 0 y = 2 }
+						mountaineers = { x = 0 y = 3 }
+						light_infantry = { x = 1 y = 0 }
+						light_infantry = { x = 1 y = 1 }
+						light_infantry = { x = 1 y = 2 }
+						light_infantry = { x = 2 y = 0 }
+						light_infantry = { x = 2 y = 1 }
+						light_infantry = { x = 2 y = 2 }	
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						artillery = { x = 0 y = 1 }
+					}
+				}
+			}
+		}
+		remove_effect = {
+			random_owned_state = {
+				limit = { has_state_flag = YUNNAN_CLIQUE }
+				create_unit = {
+					division = "division_template = \"Yunnan Division\" start_experience_factor = 0.4 start_equipment_factor = 0"
+					owner = ROOT
+				}
+			}
+		}
+	}
+	CHI_NRA_raise_MA_infantry = {
+		allowed = {
+			tag = CHI
+		}
+		available = {
+		has_idea = CHI_NRA
+		any_owned_state = {
+		has_state_flag = YUNNAN_CLIQUE
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 50
+			has_manpower > 10800
+		}
+		custom_cost_text = CHI_RAISE_INFANTRY_TOOLTIP
+		days_remove = 30
+		days_re_enable = 15
+		complete_effect = {
+			hidden_effect = {
+				add_manpower = -10800
+				add_political_power = -50
+			}
+			if = {
+				limit = { NOT = { has_template = "Ma Division" } }
+				division_template = {
+					name = "Ma Division"				
+					division_names_group = CHI_CLIQUE_01
+					is_locked = yes
+													
+					regiments = {					
+						cavalry = { x = 0 y = 0 }	
+						cavalry = { x = 0 y = 1 }
+						cavalry = { x = 0 y = 2 }
+						cavalry = { x = 0 y = 3 }
+						cavalry = { x = 1 y = 0 }
+						cavalry = { x = 1 y = 1 }
+						cavalry = { x = 1 y = 2 }
+						cavalry = { x = 2 y = 0 }
+						cavalry = { x = 2 y = 1 }
+						cavalry = { x = 2 y = 2 }	
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						artillery = { x = 0 y = 1 }
+					}
+				}
+			}
+		}
+		remove_effect = {
+			random_owned_state = {
+				limit = { has_state_flag = MA_CLIQUE }
+				create_unit = {
+					division = "division_template = \"Ma Division\" start_experience_factor = 0.6 start_equipment_factor = 0"
+					owner = ROOT
+				}
+			}
+		}
+	}
+	CHI_NRA_raise_SHX_infantry = {
+		allowed = {
+			tag = CHI
+		}
+		available = {
+		has_idea = CHI_NRA
+		any_owned_state = {
+		has_state_flag = SHANXI_CLIQUE
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 50
+			has_manpower > 10800
+		}
+		custom_cost_text = CHI_RAISE_INFANTRY_TOOLTIP
+		days_remove = 30
+		days_re_enable = 15
+		complete_effect = {
+			hidden_effect = {
+				add_manpower = -10800
+				add_political_power = -50
+			}
+			if = {
+				limit = { NOT = { has_template = "Shanxi Division" } }
+				division_template = {
+					name = "Shanxi Division"				
+					division_names_group = CHI_CLIQUE_01
+					is_locked = yes
+													
+					regiments = {					
+						light_infantry = { x = 0 y = 0 }	
+						light_infantry = { x = 0 y = 1 }
+						light_infantry = { x = 0 y = 2 }
+						light_infantry = { x = 0 y = 3 }
+						light_infantry = { x = 1 y = 0 }
+						light_infantry = { x = 1 y = 1 }
+						light_infantry = { x = 1 y = 2 }
+						light_infantry = { x = 2 y = 0 }
+						light_infantry = { x = 2 y = 1 }
+						artillery_brigade = { x = 3 y = 0 }	
+						artillery_brigade = { x = 3 y = 1 }	
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1 }
+					}
+				}
+			}
+		}
+		remove_effect = {
+			random_owned_state = {
+				limit = { has_state_flag = SHANXI_CLIQUE }
+				create_unit = {
+				division = "division_template = \"Shanxi Division\" start_experience_factor = 0.3 start_equipment_factor = 0"
+				owner = ROOT
+				}
+			}
+		}
+	}
+	CHI_NRA_raise_MAN_infantry = {
+		allowed = {
+			tag = CHI
+		}
+		available = {
+		has_idea = CHI_NRA
+		any_owned_state = {
+		has_state_flag = DONGBEI_AUTHORITY
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 70
+			has_manpower > 8700
+		}
+		custom_cost_text = CHI_RAISE_INFANTRY_TOOLTIP_DONGBEI
+		days_remove = 30
+		days_re_enable = 15
+		complete_effect = {
+			hidden_effect = {
+				add_manpower = -8700
+				add_political_power = -70
+			}
+			if = {
+				limit = { NOT = { has_template = "Dongbei Division" } }
+				division_template = {
+					name = "Dongbei Division"				
+					division_names_group = CHI_MOT_01
+					is_locked = yes
+					priority = 2					
+					regiments = {					
+						motorized = { x = 0 y = 0 }	#1200
+						motorized = { x = 0 y = 1 }
+						motorized = { x = 0 y = 2 }
+						motorized = { x = 1 y = 0 } #1000
+						motorized = { x = 1 y = 1 }
+						motorized = { x = 1 y = 2 }
+						motorized = { x = 2 y = 0 }
+						motorized = { x = 2 y = 1 }
+					}
+					support = {
+						recon = { x = 0 y = 0 } #500
+						engineer = { x = 0 y = 1 } #300
+						artillery = { x = 0 y = 1 } #300
+					}
+				}
+			}
+		}
+		remove_effect = {
+			random_owned_state = {
+				limit = { has_state_flag = DONGBEI_AUTHORITY }
+				create_unit = {
+					division = "division_template = \"Dongbei Division\" start_experience_factor = 0.5 start_equipment_factor = 0"
+					owner = ROOT
+				}
+			}
+		}
+	}
+}
+political_actions = {
+	CHI_invite_Yan_Xishan = {
+		icon = generic_form_nation
+		fire_only_once = yes
+		allowed = { tag = CHI }
+
+		available = {
+		OR = {
+		has_completed_focus = CHI_A_Fistful_Of_Democracy
+		has_completed_focus = CHI_Meet_with_the_People
+		has_completed_focus = CHI_National_Revolution
+		has_completed_focus = CHI_Unification_Fever
+			}
+		}
+		cost = 50
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+		OR = {
+		has_completed_focus = CHI_A_Fistful_Of_Democracy
+		has_completed_focus = CHI_Meet_with_the_People
+		has_completed_focus = CHI_National_Revolution
+		has_completed_focus = CHI_Unification_Fever
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_invite_Yan_Xishan"
+			country_event = twrchina.43
+		}
+	}	
+}

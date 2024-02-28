@@ -1,0 +1,2008 @@
+add_namespace = twrffr
+add_namespace = twrffrafrica
+add_namespace = twrffresults
+add_namespace = twrNewFrance
+#FREE FRANCE#
+country_event = { 
+	id = twrffrafrica.1 #releasing africa
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffrafrica.1"}
+	title = twrffrafrica.1.t
+	desc = twrffrafrica.1.d
+	picture = GFX_report_event_african_unity
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffrafrica.1.a
+		ai_chance = {
+			factor = 90
+		}
+		add_stability = 0.15
+		release = SEN
+		release = MLI
+		release = IVO
+		release = CAR
+		release = GAB
+		release = RCG
+		release = GNA
+		release = VOL
+		release = MRT
+		release = CMR
+		release = CHA
+		release = NGR
+		release = TOG
+		release = DAH
+		release = MAD
+		remove_ideas = FFR_minority_state						  
+		news_event = twrffrafrica.3
+	}
+}
+country_event = { 
+	id = twrffrafrica.2 #releasing algeria
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffrafrica.2"}
+	title = twrffrafrica.2.t
+	desc = twrffrafrica.2.d
+	picture = GFX_report_event_algerian_war
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffrafrica.2.a
+		ai_chance = {
+			factor = 50
+		}
+		add_stability = -0.15
+		add_ideas = FFR_maintaining_algeria
+	}
+	option = {
+		name = twrffrafrica.2.b
+		ai_chance = {
+			factor = 30
+		}
+		release = ALG
+		add_political_power = -100
+	}
+}
+news_event = {
+	id = twrffrafrica.3 #Free Africa
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffrafrica.3"}
+	title = twrffrafrica.3.t
+	desc = twrffrafrica.3.d
+	picture = GFX_news_event_african_union
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffrafrica.3.a
+	}
+} 
+country_event = { 
+	id = twrffr.0 #FA Intro
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.0"}
+	title = twrffr.0.t
+	desc = twrffr.0.d
+	picture = GFX_report_event_dakar
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.0.a
+	}
+}
+country_event = { 
+	id = twrffr.1 #protests in dakar
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.1"}
+	title = twrffr.1.t
+	desc = twrffr.1.d
+	picture = GFX_report_event_dakar
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.1.a
+		ai_chance = {
+			factor = 90
+		}
+		add_stability = -0.1
+		hidden_effect = { country_event = { id = twrffr.2 days = 5 random = 300 } }
+	}
+}
+country_event = { 
+	id = twrffr.2 #demanding self rule
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.2"}
+	title = twrffr.2.t
+	desc = twrffr.2.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.2.a
+		add_stability = -0.05
+		ai_chance = {
+			factor = 90
+		}
+		hidden_effect = { 
+			country_event = { id = twrffr.3 days = 7 random = 300 } 
+			set_country_flag = identity_questioned
+		}
+	}
+}
+country_event = { 
+	id = twrffr.3 #colonial government pressured and ask london
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.3"}
+	title = twrffr.3.t
+	desc = twrffr.3.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.3.a
+		add_political_power = 30
+		hidden_effect = { 
+			ENG = {
+				country_event = { id = twrffr.31 days = 1 }
+			}
+		}
+	}
+}
+country_event = { 
+	id = twrffr.31 #French Authority demands better treatment
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.31"}
+	title = twrffr.31.t
+	desc = twrffr.31.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.31.a #accept the demand
+		ai_chance = { 
+			factor = 75
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_SHUTDOWN
+			}
+		}
+		add_political_power = 30
+		hidden_effect = { 
+			FFR = {
+				country_event = { id = twrffr.4 days = 1 }
+			}
+		}
+	}
+	option = {
+		name = twrffr.31.b #string them along
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 60
+				ENG = {
+					has_government = fascist
+				}
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_FEDERATION
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_COLLAPSE
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_FREEFRANCE
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_THIRDFORCE
+			}
+		}
+		add_political_power = -30
+		hidden_effect = { 
+			FFR = {
+				country_event = { id = twrffr.4 days = 1 }
+				set_country_flag = fooled_the_french
+			}
+		}
+	}
+}
+country_event = { 
+	id = twrffr.4 #Britain agrees to our demand
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.4"}
+	title = twrffr.4.t
+	desc = twrffr.4.d
+	picture = GFX_report_event_introducing_democracy
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.4.a #Victory for the Authority
+		add_stability = 0.05
+		complete_national_focus = FFR_Introduce_Limited_Democracy
+		hidden_effect = { 
+			if = {
+				limit = {
+					has_country_flag = fooled_the_french
+				}   
+				country_event = { id = twrffr.6 days = 5 random = 300 }
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = fooled_the_french
+					}
+				}
+				country_event = { id = twrffr.5 days = 5 random = 300 }
+			}
+		}
+	}
+}
+country_event = { 
+	id = twrffr.5 #preparing democracy
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.5"}
+	title = twrffr.5.t
+	desc = twrffr.5.d
+	picture = GFX_report_event_african_education
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.5.a
+		add_political_power = 50
+		hidden_effect = { 
+			country_event = { id = twrffr.51 days = 4 random = 300 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.8 #lazarie formed mali and azawad fight later
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.8"}
+	title = twrffr.8.t
+	desc = twrffr.8.d
+	picture = GFX_report_event_lazarie_udi
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.8.a
+		add_political_power = -150
+		add_manpower = 3000
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = LAZ
+		ENG = {
+			end_puppet = FFR
+		}
+		leave_faction = yes
+		set_capital = { state = 915 }
+		hidden_effect = { 
+			news_event = { id = twrffr.880 days = 1 }
+			delete_unit_template_and_units = {
+				division_template = "Légion Coloniale"
+			}
+			load_oob = "LAZ_UDI"
+			SEN = {
+				transfer_state = 272
+				load_oob = "SEN_IND"
+			}
+			MLI = {
+				transfer_state = 794
+				transfer_state = 916
+				transfer_state = 917
+				transfer_state = 929
+				load_oob = "MLI_IND"
+				country_event = { id = twrffr.10 days = 7 }
+			}
+			AZA = {
+				transfer_state = 934
+				load_oob = "AZA_IND"
+			}
+			release = AZA
+			TOG = {
+				transfer_state = 786
+			}
+			DAH = {
+				transfer_state = 787
+			}
+			CMR = {
+				transfer_state = 789
+				transfer_state = 923
+				transfer_state = 922
+			}
+			RCG = {
+				transfer_state = 926
+				transfer_state = 790
+			}
+			CAR = {
+				transfer_state = 927
+				transfer_state = 660
+			}
+			GAB = {
+				transfer_state = 925
+				transfer_state = 539
+			}
+			VOL = {
+				transfer_state = 921
+				transfer_state = 795
+			}
+			IVO = {
+				transfer_state = 919
+				transfer_state = 556
+			}
+			GNA = {
+				transfer_state = 918
+				transfer_state = 785
+			}
+			release = NGR
+			release = CHA
+			every_country = {
+				limit = {
+					is_in_faction_with = ENG
+				}
+				country_event = { id = twrffr.881 days = 5 random = 50 }
+			}
+			FFR = {
+				add_ai_strategy = {
+					type = conquer
+					id = SEN
+					value = 100
+				}
+				add_state_core = 915
+			}
+		}
+	}
+}
+country_event = { 
+	id = twrffr.9 #lazarie bush war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.9"}
+	title = twrffr.9.t
+	desc = twrffr.9.d
+	picture = GFX_report_event_lazarie_bush
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.9.a
+		declare_war_on = {
+			target = SEN
+			type = annex_everything
+		}
+		hidden_effect = { 
+			news_event = { id = twrffr.882 hours = 4 }
+			set_country_flag = LAZBUSH
+		}
+	}
+}
+country_event = { 
+	id = twrffr.10 #azawad war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.10"}
+	title = twrffr.10.t
+	desc = twrffr.10.d
+	picture = GFX_report_event_azawad_malian_war
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.10.a
+		declare_war_on = {
+			target = AZA
+			type = annex_everything
+		}
+		hidden_effect = { 
+			news_event = { id = twrffr.883 days = 1 random = 300 }
+			set_country_flag = AZAWAR
+		}
+	}
+}
+country_event = { 
+	id = twrffr.881 #embargo the lazarie
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.881"}
+	title = twrffr.881.t
+	desc = twrffr.881.d
+	picture = GFX_report_event_lazarie_udi
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.881.a
+		add_opinion_modifier = {
+			target = FFR
+			modifier = embargo
+		}
+	}
+}
+news_event = {
+	id = twrffr.880 #lazarie
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.880"}
+	title = twrffr.880.t
+	desc = twrffr.880.d
+	picture = GFX_news_event_lazarie
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.880.a
+		trigger = {
+			NOT = {
+				TAG = FFR
+			}
+		}
+	}
+	option = {
+		name = twrffr.880.b
+		trigger = { TAG = FFR }
+	}
+} 
+news_event = {
+	id = twrffr.882 #lazarie war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.882"}
+	title = twrffr.882.t
+	desc = twrffr.882.d
+	picture = GFX_news_event_lazarie_bush_war
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.882.a
+		trigger = {
+			NOT = {
+				TAG = FFR
+			}
+			TAG = SEN
+		}
+	}
+	option = {
+		name = twrffr.882.b
+		trigger = {
+			NOT = {
+				TAG = SEN
+			}
+			TAG = FFR
+		}
+	}
+	option = {
+		name = twrffr.882.c
+		trigger = {
+			NOT = {
+				TAG = SEN
+				TAG = FFR
+			}
+		}
+	}
+} 
+news_event = {
+	id = twrffr.883 #azawad war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.883"}
+	title = twrffr.883.t
+	desc = twrffr.883.d
+	picture = GFX_news_event_azawad_war
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.883.a
+		trigger = {
+			NOT = {
+				TAG = MLI
+			}
+			TAG = AZA
+		}
+	}
+	option = {
+		name = twrffr.883.b
+		trigger = {
+			NOT = {
+				TAG = AZA
+			}
+			TAG = MLI
+		}
+	}
+	option = {
+		name = twrffr.883.c
+		trigger = {
+			NOT = {
+				TAG = AZA
+				TAG = MLI
+			}
+		}
+	}
+} 
+country_event = { 
+	id = twrffr.51 #the first west african election
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.51"}
+	title = twrffr.51.t
+	desc = twrffr.51.d
+	picture = GFX_report_event_african_education
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.51.a
+		add_political_power = 50
+		hidden_effect = { 
+			country_event = { id = twrffr.52 days = 2 random = 300 }
+			set_country_flag = FFRSFUTURE
+		}
+	}
+}
+country_event = { 
+	id = twrffr.52 #election results
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.52"}
+	title = twrffr.52.t
+	desc = twrffr.52.d
+	picture = GFX_report_event_election_results
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.52.a #de gaulle wins the election
+		set_politics = {
+			ruling_party = conservative
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_FEDERATION
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_COLLAPSE
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_THIRDFORCE
+			}
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.5
+		}
+		hidden_effect = { 
+			set_country_flag = FREE_FRANCE_HERE
+			complete_national_focus = FFR_Free_French_Elected
+		}
+	}
+	option = {
+		name = twrffr.52.b #lberal party
+		set_politics = {
+			ruling_party = liberal
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_FEDERATION
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_COLLAPSE
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_FREEFRANCE
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_THIRDFORCE
+			}
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.5
+		}
+		hidden_effect = { 
+			set_country_flag = DEMELECTED
+			complete_national_focus = FFR_Franco_African_Confederation
+		}
+	}
+	option = {
+		name = twrffr.52.c #socdem party
+		set_politics = {
+			ruling_party = social_democrat
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_FREEFRANCE
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_THIRDFORCE
+			}
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.5
+		}
+		hidden_effect = { 
+			set_country_flag = DEMELECTED
+			complete_national_focus = FFR_Franco_African_Confederation
+		}
+	}
+	option = {
+		name = twrffr.52.e #third position
+		set_politics = {
+			ruling_party = fascist
+		}
+		ai_chance = {
+			factor = 0
+			modifier = {
+				add = 1
+				has_global_flag = COUNTRY_PATH_FFR_THIRDFORCE
+			}
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.4
+		}
+		hidden_effect = { 
+			set_country_flag = THIRDFORCE
+			complete_national_focus = FFR_Third_Force
+		}
+	}
+}
+country_event = { 
+	id = twrffr.6 #unrest in the colonies
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.6"}
+	title = twrffr.6.t
+	desc = twrffr.6.d
+	picture = GFX_report_event_west_african_resistance
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.6.a
+		add_political_power = -50
+		hidden_effect = { 
+			country_event = { id = twrffr.61 days = 4 random = 300 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.61 #governor requests backup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.61"}
+	title = twrffr.61.t
+	desc = twrffr.61.d
+	picture = GFX_report_event_west_african_resistance
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.61.a
+		add_political_power = -50
+		hidden_effect = { 
+			country_event = { id = twrffr.62 days = 4 random = 300 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.62 #election cancelled
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.62"}
+	title = twrffr.62.t
+	desc = twrffr.62.d
+	picture = GFX_report_event_west_african_resistance
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.62.a
+		add_political_power = -150
+		add_stability = -0.15
+		hidden_effect = { 
+			set_country_flag = SHUTITDOWNFFR
+			complete_national_focus = FFR_Shutdown_Elections
+			ENG = {
+				country_event = { id = twrffr.63 days = 1 }
+			}
+		}
+	}
+}
+country_event = { 
+	id = twrffr.63 #FFR Control tighten
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.63"}
+	title = twrffr.63.t
+	desc = twrffr.63.d
+	picture = GFX_report_event_west_african_resistance
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.63.a
+	}
+}
+country_event = { 
+	id = twrffr.7 #british talks
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.7"}
+	title = twrffr.7.t
+	desc = twrffr.7.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.7.a
+		add_political_power = 50
+		ENG = {
+			hidden_effect = { 
+				country_event = { id = twrffr.71 days = 4 random = 300 }
+			}
+		}
+	}
+}
+country_event = { 
+	id = twrffr.11 #Confederation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.11"}
+	title = twrffr.11.t
+	desc = twrffr.11.d
+	picture = GFX_report_event_african_education
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.11.a
+		add_political_power = 50
+		add_ideas = FFR_unstable_confederation
+		set_cosmetic_tag = FFR_WAF
+		leave_faction = yes
+		ENG = {
+		end_puppet = FFR
+			set_autonomy = {
+				target = FFR
+				autonomy_state = autonomy_free
+			}
+		}
+		hidden_effect = { 
+			news_event = { id = twrffr.81 hours = 4 }
+			ENG = { country_event = { id = twrffr.11001 hours = 1 } }
+			white_peace_with_all = yes
+		}
+	}
+}
+country_event = { 
+	id = twrffr.11001 #English reaction
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.11001"}
+	title = twrffr.11001.t
+	desc = twrffr.11001.d
+	picture = GFX_report_event_central_african_identity
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.11001.a
+	}
+}
+news_event = {
+	id = twrffr.81 #Franco-African Confederation formed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.81"}
+	title = twrffr.81.t
+	desc = twrffr.81.d
+	picture = GFX_news_event_french_confederation
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.81.a
+	}
+} 
+country_event = { 
+	id = twrffr.12 #Political ban lifted
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.12"}
+	title = twrffr.12.t
+	desc = twrffr.12.d
+	picture = GFX_report_event_african_education
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.9.a
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.15
+		}
+
+		hidden_effect = { 
+			country_event = { id = twrffr.13 days = 4 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.13 #The Sepratist Union
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.13"}
+	title = twrffr.13.t
+	desc = twrffr.13.d
+	picture = GFX_report_event_nationalist_front_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.13.a #crackdown!
+		ai_chance = {
+			factor = 30
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_COLLAPSE
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_FEDERATION
+			}
+		}
+		add_political_power = -250
+		hidden_effect = { 
+			country_event = { id = twrffr.14 days = 4 }
+		}
+	}
+	option = {
+		name = twrffr.13.b #be democratic about it!
+		ai_chance = {
+			factor = 40
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+		add_stability = 0.1
+		hidden_effect = { 
+			country_event = { id = twrffr.14 days = 4 }
+			set_country_flag = WEST_AFRICAN_NATIONALISTS_ALLOWED
+		}
+	}
+}
+country_event = { 
+	id = twrffr.14 #The First West African Congress
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.14"}
+	title = twrffr.14.t
+	desc = twrffr.14.d
+	picture = GFX_report_event_congress_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.14.a
+		add_stability = 0.1
+		hidden_effect = {
+			country_event = { id = twrffr.15 days = 3 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.15 #The First West African Congress
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.15"}
+	title = twrffr.15.t
+	desc = twrffr.15.d
+	picture = GFX_report_event_congress_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.15.a
+		add_stability = 0.1
+		hidden_effect = {
+			country_event = { id = twrffr.16 days = 3 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.16 #The African League Elected
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.16"}
+	title = twrffr.16.t
+	desc = twrffr.16.d
+	picture = GFX_report_event_congress_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.16.a
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = socialist
+		}
+		hidden_effect = {
+			country_event = { id = twrffr.17 days = 3 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.17 #The Redemption Act needs news
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.17"}
+	title = twrffr.17.t
+	desc = twrffr.17.d
+	picture = GFX_report_event_congress_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.17.a #This bill passes
+		every_army_leader = {
+			retire = yes
+		}
+		every_navy_leader = {
+			retire = yes
+		}
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = WAF_NO_WHITES
+		hidden_effect = {
+			country_event = { id = twrffr.18 days = 4 }
+			set_country_flag = french_exiled
+			news_event = { id = twrffr.17021 hours = 3 }
+		}
+	}
+}
+news_event = {
+	id = twrffr.17021 #Redemption
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.17021"}
+	title = twrffr.17021.t
+	desc = twrffr.17021.d
+	picture = GFX_news_event_african_1
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.17021.a
+		trigger = {
+			tag = FFR
+		}
+	}
+	option = {
+		name = twrffr.17021.b
+		trigger = {
+			NOT = {
+				tag = FFR
+			}
+		}
+	}
+} 
+country_event = { 
+	id = twrffr.18 #End of the Congress
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.18"}
+	title = twrffr.18.t
+	desc = twrffr.18.d
+	picture = GFX_report_event_congress_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.18.a #Good
+		add_political_power = 50
+		add_stability = 0.05
+		complete_national_focus = FFR_End_Of_The_Regime
+		hidden_effect = {
+			country_event = { id = twrffr.19 days = 6 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.19 #Sepratists demand independence 
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.19"}
+	title = twrffr.19.t
+	desc = twrffr.19.d
+	picture = GFX_report_event_nationalist_front_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.19.a #Ban all attempts!
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_FEDERATION
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_FFR_COLLAPSE
+			}
+		}
+		add_political_power = -150
+		add_stability = -0.15
+		hidden_effect = {
+			country_event = { id = twrffr.20 days = 3 } #resistance
+		}
+	}
+	option = {
+		name = twrffr.19.b #Allow an election
+		ai_chance = {
+			factor = 50
+		}
+		trigger = {
+			has_country_flag = WEST_AFRICAN_NATIONALISTS_ALLOWED
+		}
+		add_stability = 0.1
+		hidden_effect = {
+			random_list = {
+				30 = {
+					modifier = {
+						factor = 0
+						has_global_flag = COUNTRY_PATH_FFR_COLLAPSE
+					}
+					country_event = { id = twrffr.191 days = 7 }
+				} #Confederation grew stronger
+				70 = {
+					modifier = {
+						factor = 0
+						has_global_flag = COUNTRY_PATH_FFR_FEDERATION
+					}
+					country_event = { id = twrffr.192 days = 7 }
+				} #Confederation Dissolved
+			}
+		}
+	}
+	option = {
+		name = twrffr.19.c #Dissolve the Government
+		ai_chance = {
+			factor = 0
+		}
+		trigger = {
+			has_country_flag = WEST_AFRICAN_NATIONALISTS_ALLOWED
+		}
+		add_stability = 0.1
+		hidden_effect = {
+			country_event = { id = twrffr.192 days = 7 }#Confederation Dissolved
+		}
+	}
+}
+country_event = { 
+	id = twrffr.191 #Unity prevails
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.191"}
+	title = twrffr.191.t
+	desc = twrffr.191.d
+	picture = GFX_report_event_african_unity
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.191.a #We will grow stronger
+		add_stability = 0.15
+		add_political_power = 200
+		hidden_effect = {
+			country_event = { id = twrffr.22 days = 7 random = 300 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.192 #Confederation Dissolved
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.192"}
+	title = twrffr.192.t
+	desc = twrffr.192.d
+	picture = GFX_report_event_nationalist_front_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.192.a #We will grow stronger
+		complete_national_focus = FFR_Disband_the_Confederation
+		hidden_effect = {
+			SEN = {
+				transfer_state = 272
+				load_oob = "SEN_IND"
+			}
+			AZA = {
+				transfer_state = 934
+				load_oob = "AZA_IND"
+			}
+			release = AZA
+			MLI = {
+				transfer_state = 794
+				transfer_state = 916
+				transfer_state = 917
+				transfer_state = 929
+				load_oob = "MLI_IND"
+			}
+			release = MLI
+			TOG = {
+				transfer_state = 786
+			}
+			DAH = {
+				transfer_state = 787
+			}
+			CMR = {
+				transfer_state = 789
+				transfer_state = 923
+				transfer_state = 922
+			}
+			RCG = {
+				transfer_state = 926
+				transfer_state = 790
+			}
+			CAR = {
+				transfer_state = 927
+				transfer_state = 660
+			}
+			GAB = {
+				transfer_state = 925
+				transfer_state = 539
+			}
+			CHA = {
+				transfer_state = 515
+				transfer_state = 924
+			}
+			release = CHA
+			VOL = {
+				transfer_state = 921
+				transfer_state = 795
+			}
+			NGR = {
+				transfer_state = 920
+				transfer_state = 788
+			}
+			release = NGR
+			IVO = {
+				transfer_state = 919
+				transfer_state = 556
+			}
+			GNA = {
+				transfer_state = 918
+				transfer_state = 785
+			}
+			SEN = { 
+				annex_country = {
+					target = FFR
+					transfer_troops = no
+				}
+			}
+		ENG = {
+		news_event = { id = twrffr.19201 hours = 3 }
+			}
+		}
+	}
+}
+news_event = {
+	id = twrffr.19201 #ded
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.17021"}
+	title = twrffr.19201.t
+	desc = twrffr.19201.d
+	picture = GFX_news_event_african_collapse
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.19201.a
+	}
+} 
+country_event = { 
+	id = twrffr.20 #Nationalist Resistance
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.20"}
+	title = twrffr.20.t
+	desc = twrffr.20.d
+	picture = GFX_report_event_central_african_identity
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.20.a #We must maintain the Confederation
+		swap_ideas = {
+			remove_idea = FFR_unstable_confederation
+			add_idea = FFR_unstable_confederation_2
+		}
+		hidden_effect = {
+			country_event = { id = twrffr.21 days = 6 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.21 #Worsening issues
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.20"}
+	title = twrffr.21.t
+	desc = twrffr.21.d
+	picture = GFX_report_event_african_soldier
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.21.a #We must maintain the Confederation
+		trigger = {
+			NOT = {
+				has_country_flag = WEST_AFRICAN_NATIONALISTS_ALLOWED
+			}
+		}
+		hidden_effect = {
+			country_event = { id = twrffr.22 days = 6 }
+		}
+	}
+	option = {
+		name = twrffr.21.a #We must maintain the Confederation civil war
+		trigger = {
+			has_country_flag = WEST_AFRICAN_NATIONALISTS_ALLOWED
+		}
+		hidden_effect = {
+			country_event = { id = twrffr.23 days = 6 }
+		}
+	}
+}
+country_event = { 
+	id = twrffr.22 #The West African Federation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.22"}
+	title = twrffr.22.t
+	desc = twrffr.22.d
+	picture = GFX_report_event_congress_african
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.22.a #A new nation!
+		if = {
+			limit = { has_idea = FFR_unstable_confederation_2 }
+		swap_ideas = {
+			remove_idea = FFR_unstable_confederation_2
+			add_idea = FFR_unstable_confederation_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = FFR_unstable_confederation }
+		swap_ideas = {
+			remove_idea = FFR_unstable_confederation
+			add_idea = FFR_unstable_confederation_3
+		}
+	}
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = WAAF
+		complete_national_focus = FFR_West_African_Federation
+		hidden_effect = { #news
+			news_event = { id = twrffr.22021 hours = 3 }
+		}
+	}
+}
+
+news_event = {
+	id = twrffr.22021 #new era
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.22021"}
+	title = twrffr.22021.t
+	desc = twrffr.22021.d
+	picture = GFX_news_event_west_african
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.22021.a
+	}
+} 
+
+country_event = { 
+	id = twrffr.23 #The West African Collapse
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.23"}
+	title = twrffr.23.t
+	desc = twrffr.23.d
+	picture = GFX_report_event_african_soldier
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.23.a #Sad
+		complete_national_focus = FFR_Disband_the_Confederation
+		hidden_effect = {
+			SEN = {
+				transfer_state = 272
+				load_oob = "SEN_IND"
+			}
+			AZA = {
+				transfer_state = 934
+				load_oob = "AZA_IND"
+			}
+			release = AZA
+			MLI = {
+				transfer_state = 794
+				transfer_state = 916
+				transfer_state = 917
+				transfer_state = 929
+				load_oob = "MLI_IND"
+			}
+			release = MLI
+			TOG = {
+				transfer_state = 786
+			}
+			DAH = {
+				transfer_state = 787
+			}
+			CMR = {
+				transfer_state = 789
+				transfer_state = 923
+				transfer_state = 922
+			}
+			RCG = {
+				transfer_state = 926
+				transfer_state = 790
+			}
+			CAR = {
+				transfer_state = 927
+				transfer_state = 660
+			}
+			GAB = {
+				transfer_state = 925
+				transfer_state = 539
+			}
+			CHA = {
+				transfer_state = 515
+				transfer_state = 924
+			}
+			release = CHA
+			VOL = {
+				transfer_state = 921
+				transfer_state = 795
+			}
+			NGR = {
+				transfer_state = 920
+				transfer_state = 788
+			}
+			release = NGR
+			IVO = {
+				transfer_state = 919
+				transfer_state = 556
+			}
+			GNA = {
+				transfer_state = 918
+				transfer_state = 785
+			}
+			SEN = { 
+				annex_country = {
+					target = FFR
+					transfer_troops = no
+				}
+			}
+			ENG = {
+				news_event = { id = twrffr.23021 hours = 3 }
+			}
+		}
+	}
+}
+
+news_event = {
+	id = twrffr.23021 #new era
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.23021"}
+	title = twrffr.23021.t
+	desc = twrffr.23021.d
+	picture = GFX_news_event_african_collapse
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.23021.a
+	}
+} 
+country_event = { 
+	id = twrffr.71 #british talks
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.71"}
+	title = twrffr.71.t
+	desc = twrffr.71.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.71.a #allow
+		add_stability = 0.1
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 0.1
+				is_fascist = yes
+			}
+		}
+		FFR = {
+			hidden_effect = { 
+				country_event = twrffr.72
+			}
+		}
+	}
+	option = {
+		name = twrffr.71.b #disapprove
+		add_stability = -0.2
+		add_political_power = -200
+		ai_chance = {
+			factor = 0
+			modifier = {
+				factor = 0.5
+				is_fascist = yes
+			}
+		}
+		FFR = {
+			hidden_effect = { 
+				country_event = twrffr.73
+			}
+		}
+	}
+}
+country_event = { 
+	id = twrffr.72 #freedom
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.72"}
+	title = twrffr.72.t
+	desc = twrffr.72.d
+	picture = GFX_report_event_angry_degaulle
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.72.a
+		add_stability = 0.15
+		ENG = {
+		set_autonomy = {
+			target = FFR
+			autonomy_state = autonomy_free
+		}
+		}
+		drop_cosmetic_tag = yes		
+		leave_faction = yes
+		hidden_effect = {
+			set_country_flag = ind_problem
+			end_puppet = FFR
+		}
+	}
+}
+country_event = { 
+	id = twrffr.73 #bye bye freedom
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.73"}
+	title = twrffr.73.t
+	desc = twrffr.73.d
+	picture = GFX_report_event_west_african_resistance
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.72.a
+		add_stability = -0.25
+		add_political_power = -500
+		set_politics = {
+			ruling_party = paternal_autocrat
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.3
+		}
+		hidden_effect = {
+			set_country_flag = SHUTITDOWNFFR
+			clr_country_flag = FREE_FRANCE_HERE
+		}
+	}
+}
+
+country_event = { 
+	id = twrffr.991 #free french victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.991"}
+	title = twrffr.991.t
+	desc = twrffr.991.d
+	picture = GFX_report_event_free_french_forces
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.991.a
+		trigger = {
+			tag = FFR
+		}
+		add_political_power = 70
+		transfer_state = 557
+		transfer_state = 929
+		transfer_state = 914
+		transfer_state = 913
+		transfer_state = 793
+		transfer_state = 845
+		transfer_state = 844
+		transfer_state = 843
+	}
+	option = {
+		name = twrffr.991.b
+		add_stability = -0.05
+		add_political_power = -50
+		trigger = {
+			tag = FRA
+		}
+	}
+}
+country_event = { 
+	id = twrffr.992 #french victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.992"}
+	title = twrffr.992.t
+	desc = twrffr.992.d
+	picture = GFX_report_event_vichy_french_forces
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.992.a
+		trigger = {
+			tag = FFR
+		}
+		add_political_power = -70
+		add_stability = -0.05
+	}
+	option = {
+		name = twrffr.992.b
+		trigger = {
+			tag = FRA
+		}
+		add_political_power = 150
+		add_stability = 0.05
+	}
+}
+country_event = { 
+	id = twrffr.971 #french overseas colonies
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.992"}
+	title = twrffr.971.t
+	desc = twrffr.971.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.971.a #yes
+		country_event = twrffr.972
+		ai_chance = {
+			factor = 70
+		}
+	}
+	option = {
+		name = twrffr.971.b #no
+		FFR = {
+			country_event = twrffr.9711
+		}
+	}
+}
+country_event = { 
+	id = twrffr.9711 #french overseas colonies
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.9711"}
+	title = twrffr.9711.t
+	desc = twrffr.9711.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.9711.a #yes
+		add_political_power = -100
+	}
+}
+country_event = { 
+	id = twrffr.972 #hand over what colonies
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.992"}
+	title = twrffr.972.t
+	desc = twrffr.972.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.972.a #all
+		country_event = twrffr.972
+		ai_chance = {
+			factor = 50
+		}
+		FFR = {
+			add_opinion_modifier = {
+				target = ENG
+				modifier = mutual_border_agreed_on
+			}
+			add_political_power = 50
+		}
+		FFR = {
+			transfer_state = 953
+			transfer_state = 543
+			transfer_state = 706
+			transfer_state = 708
+			transfer_state = 713
+			transfer_state = 310
+			transfer_state = 694
+		}
+	}
+	option = {
+		name = twrffr.972.b #more
+		ai_chance = {
+			factor = 60
+		}
+		FFR = {
+			add_opinion_modifier = {
+				target = ENG
+				modifier = mutual_border_agreed_on
+			}
+		}
+		FFR = {
+			transfer_state = 706
+			transfer_state = 708
+			transfer_state = 713
+			transfer_state = 310
+			transfer_state = 694
+		}
+	}
+	option = {
+		name = twrffr.972.c #small
+		ai_chance = {
+			factor = 50
+		}
+		FFR = {
+			transfer_state = 706
+			transfer_state = 708
+			transfer_state = 713
+			transfer_state = 694
+		}
+	}
+}
+country_event = { 
+	id = twrffr.973 #french victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.973"}
+	title = twrffr.973.t
+	desc = twrffr.973.d
+	picture = GFX_report_event_vichy_french_forces
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrffr.973.a #refuse to be anexed
+		FFR = {
+			create_wargoal = {
+				type = annex_everything
+				target = ROOT
+			}
+		}
+	}
+	option = {
+		name = twrffr.973.b #annexed
+		FFR = {
+			annex_country = {
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+	}
+}
+country_event = {#Accept FFR into the Toronto Accord?
+	id = twrffr.1111
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.1111"}
+	title = twrffr.1111.t
+	desc = twrffr.1111.d
+	picture = GFX_report_event_TA_flag
+
+	is_triggered_only = yes
+
+
+
+	option = {#Yee
+		name = twrffr.1111.a
+		ai_chance = { factor = 100 }
+		USA = { add_to_faction = FFR }
+		hidden_effect = { 
+			news_event = { id = twrffr.11111 days = 1 }
+		}
+	}
+
+	option = {#nah
+		name = twrffr.1111.b
+		ai_chance = { factor = 0 }
+		hidden_effect = {
+			FFR = { country_event = { id = twrffr.11110 days = 1 } }
+		}
+	}	
+}
+
+country_event = {#nah
+	id = twrffr.11110
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.11110"}
+	title = twrffr.11110.t
+	desc = twrffr.11110.d
+	picture = GFX_report_event_TA_flag
+
+	is_triggered_only = yes
+
+
+
+	option = {#sad
+		name = twrffr.11110.a
+
+	}
+
+
+
+}
+news_event = {
+	id = twrffr.11111 #TA
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffr.11111"}
+	title = twrffr.11111.t
+	desc = twrffr.11111.d
+	picture = GFX_news_event_toronto_accord
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+		name = twrffr.11111.a
+		trigger = {
+			is_in_faction_with = USA
+		}
+	}
+	option = {
+		name = twrffr.11111.b
+		trigger = {
+			NOT = {
+				is_in_faction_with = USA
+			}
+		}
+	}
+} 
+
+news_event = {
+	id = twrffresults.1 #Free France
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffresults.1"}
+	title = twrffresults.1.t
+	desc = twrffresults.1.d
+	picture = GFX_news_event_free_french_victory
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+	trigger = { tag = FFR }
+		name = twrffresults.1.a
+	}
+	option = {
+	trigger = { NOT = { tag = FFR } }
+		name = twrffresults.1.b
+	}
+} 
+
+news_event = {
+	id = twrffresults.2 #Fascist Free France
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffresults.2"}
+	title = twrffresults.2.t
+	desc = twrffresults.2.d
+	picture = GFX_news_event_fascist_free_france
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+	trigger = { tag = FFR }
+		name = twrffresults.2.a
+	}
+	option = {
+	trigger = { NOT = { tag = FFR } }
+		name = twrffresults.2.b
+	}
+} 
+
+news_event = {
+	id = twrffresults.3 #Democrats Victory Free France
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffresults.3"}
+	title = twrffresults.3.t
+	desc = twrffresults.3.d
+	picture = GFX_news_event_democratic_victory_ffr
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+	trigger = { tag = FFR }
+		name = twrffresults.3.a
+	}
+	option = {
+	trigger = { NOT = { tag = FFR } }
+		name = twrffresults.3.b
+	}
+} 
+
+news_event = {
+	id = twrffresults.4 #British Control
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrffresults.4"}
+	title = twrffresults.4.t
+	desc = twrffresults.4.d
+	picture = GFX_news_event_british_west_african_security
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = no
+
+	option = {
+	trigger = { tag = ENG }
+		name = twrffresults.4.a
+	}
+	option = {
+	trigger = { NOT = { tag = ENG } }
+		name = twrffresults.4.b
+	}
+} 
+#Courtesy of Angelblue1032!
+country_event = {
+	id = twrNewFrance.1 #Degaulle: DeGaulle takes a Step towards Paris
+	title = twrNewFrance.1.t
+	desc = twrNewFrance.1.d
+	picture = GFX_report_event_angry_degaulle
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrNewFrance.1.a
+		add_political_power = 100
+		FRA = {
+			country_event = { id = twrNewFrance.2 hours = 10}
+			}
+		}
+		
+}
+
+country_event = {
+	id = twrNewFrance.2 #DeGaulle: DeGaulle takes a Step towards Paris - FFR
+	title = twrNewFrance.2.t
+	desc = twrNewFrance.2.d
+	picture = GFX_report_event_angry_degaulle
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrNewFrance.2.a #Need news
+		ai_chance = {
+			factor = 50
+		}
+		every_unit_leader = {
+		limit = { NOT = { has_trait = politically_connected } }
+		set_nationality = FFR
+				}
+		FFR = {
+		annex_country = {
+			target = FRA
+			transfer_troops = yes
+				}
+		set_country_flag = FFR_PEACEFUL_REUNIFICATION
+		news_event = twrNewFrance.404
+			}
+		}
+		
+	option = {
+		name = twrNewFrance.2.b
+		ai_chance = {
+			factor = 50
+		}
+		FFR = {
+			country_event = { id = twrNewFrance.3 hours = 10}
+			}
+		}
+		
+}
+
+country_event = {
+	id = twrNewFrance.3 #Darlan: FRA Declines our Request
+	title = twrNewFrance.3.t
+	desc = twrNewFrance.3.d
+	picture = GFX_report_event_angry_degaulle
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrNewFrance.3.a		
+	}
+}
+
+news_event = {
+	id = twrNewFrance.404 #French Unification
+	title = twrNewFrance.404.t
+	desc = twrNewFrance.404.d
+	picture = GFX_news_event_french_reunification
+	
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrNewFrance.404.a
+		trigger = {
+			NOT = {
+			TAG = FFR
+			TAG = FRA
+			}
+		}
+	}
+	option = {
+		name = twrNewFrance.404.b
+		trigger = {
+			OR = {
+			TAG = FFR
+			TAG = FRA
+			}
+		}
+	}
+}
+
+news_event = {
+	id = twrNewFrance.405 #Exiles Return to Paris
+	title = twrNewFrance.405.t
+	desc = twrNewFrance.405.d
+	picture = GFX_news_event_return_to_paris
+	trigger = {
+	NOT = {
+	has_country_flag = FFR_PEACEFUL_REUNIFICATION
+		}
+	}
+	
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrNewFrance.405.a
+		trigger = {
+			NOT = {
+			TAG = FFR
+			}
+		}
+	}
+	option = {
+		name = twrNewFrance.405.b
+		trigger = {
+			OR = {
+			TAG = FFR
+			}
+		}
+	}
+}

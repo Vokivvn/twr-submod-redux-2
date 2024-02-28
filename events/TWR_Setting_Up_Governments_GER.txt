@@ -1,0 +1,6219 @@
+add_namespace = twrgeroccupation
+add_namespace = twrgerultimatum
+
+country_event = {
+	id = twrgeroccupation.1 #fall of UK
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.1"}
+	title = twrgeroccupation.1.t
+	desc = twrgeroccupation.1.d
+	picture = GFX_report_event_fall_of_britain
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			ENG = {
+				country_event = {
+					id = twrgeroccupation.18 hours = 3
+				}
+			}
+			CAN = {
+				news_event = {
+					id = twrgeroccupation.16 days = 5
+				}
+			}
+		}
+	}
+
+	option = {
+		name = twrgeroccupation.1.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -150
+		add_stability = -0.1
+		custom_effect_tooltip = BRIHOMEGUARDS
+		hidden_effect = {
+			division_template = {
+				name = "Britische Hilfsarmee"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+				}
+				is_locked = yes
+			}
+			126 = {
+				create_unit = {
+					division = "name = \"1. British Auxiliary 'England'\" division_template = \"Britische Hilfsarmee\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2. British Auxiliary 'Lancaster'\" division_template = \"Britische Hilfsarmee\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"3. British Auxiliary 'Yorkshire'\" division_template = \"Britische Hilfsarmee\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ROOT
+				}
+			}
+			121 = {
+				create_unit = {
+					division = "name = \"4. British Auxiliary 'Highlanders'\" division_template = \"Britische Hilfsarmee\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Scottish Home Guards\" division_template = \"Britische Hilfsarmee\" start_experience_factor = 0.2 start_equipment_factor = 0.5"
+					owner = ROOT
+				}
+			}
+			122 = {
+				create_unit = {
+					division = "name = \"Welsh Home Guards\" division_template = \"Britische Hilfsarmee\" start_experience_factor = 0.2 start_equipment_factor = 0.5"
+					owner = ROOT
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.1.b #Division plan
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 150
+		add_stability = 0.1
+		custom_effect_tooltip = DIVIDEBRITAIN
+		hidden_effect = {
+			SCO = {
+				transfer_state = 121
+				transfer_state = 133
+				transfer_state = 120
+				transfer_state = 136
+
+				add_state_core = 121
+			}
+			EGL = {
+				transfer_state = 126
+				transfer_state = 127
+				transfer_state = 338
+				transfer_state = 128
+				transfer_state = 129
+				transfer_state = 130
+				transfer_state = 132
+				transfer_state = 131
+				transfer_state = 125
+				transfer_state = 123
+
+				add_state_core = 126
+			}
+			SCO = {
+
+				load_oob = "SCO_LIBERATED"
+			}
+			WAL = {
+				transfer_state = 122
+				add_state_core = 122
+				load_oob = "WAL_LIBERATED"
+			}
+			EGL = {
+				load_oob = "EGL_LIBERATED"
+
+			}
+			puppet = SCO
+			set_autonomy = {
+				target = SCO
+				autonomy_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			puppet = WAL
+			set_autonomy = {
+				target = WAL
+				autonomy_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			SCO = {
+			set_politics = {	
+				ruling_party = paternal_autocrat
+				election_frequency = 48
+				last_election = "1936.1.1"
+				elections_allowed = no
+
+			}
+
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 1
+			    paternal_autocrat = 29
+			    conservative = 21
+			    liberal = 27
+			    social_democrat = 22
+			    socialist = 0
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+				}
+			}
+			WAL = {
+				set_politics = {	
+					ruling_party = fascist
+					election_frequency = 48
+					last_election = "1936.1.1"
+					elections_allowed = no
+
+				}
+
+				set_popularities = {
+				    national_socialist = 0
+				    fascist = 25
+				    paternal_autocrat = 26
+				    conservative = 14
+				    liberal = 0
+				    social_democrat = 35
+				    socialist = 0
+				    bolshevik_leninist = 0
+				    marxist_leninist = 0
+				}
+
+			}
+			set_autonomy = {
+				target = EGL
+				autonomy_state = autonomy_puppet
+				freedom_level = 0.1
+			}
+			EGL = {
+				set_cosmetic_tag = RK_EGL
+				set_politics = {
+					ruling_party = national_socialist
+					election_frequency = 48
+					elections_allowed = no
+
+				}
+
+				set_popularities = {
+					national_socialist = 80
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 10
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 10
+				}
+				country_event = {
+					id = twrgeroccupation.4 days = 14 random = 300
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.1.c #government britain
+		ai_chance = {
+			factor = 4
+		}
+		add_political_power = 150
+		add_stability = 0.1
+		custom_effect_tooltip = GREATBRITAINPUPPET
+		hidden_effect = {
+			EGL = {
+				transfer_state = 121
+				transfer_state = 133
+				transfer_state = 120
+				transfer_state = 136
+
+				transfer_state = 122
+
+				transfer_state = 126
+				transfer_state = 127
+				transfer_state = 338
+				transfer_state = 128
+				transfer_state = 129
+				transfer_state = 130
+				transfer_state = 132
+				transfer_state = 131
+				transfer_state = 123
+				transfer_state = 125
+
+				add_state_core = 126
+			}
+			EGL = {
+
+
+				division_template = {
+					name = "British Guards"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+					}
+				}
+				126 = {
+					create_unit = {
+						division = "name = \"1. British Auxiliary 'England'\" division_template = \"British Guards\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+					create_unit = {
+						division = "name = \"2. British Auxiliary 'Lancaster'\" division_template = \"British Guards\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+					create_unit = {
+						division = "name = \"3. British Auxiliary 'Yorkshire'\" division_template = \"British Guards\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+					create_unit = {
+						division = "name = \"5. British Auxiliary 'United'\" division_template = \"British Guards\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+					create_unit = {
+						division = "name = \"6. British Auxiliary 'Cambridge'\" division_template = \"British Guards\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+					create_unit = {
+						division = "name = \"7. British Auxiliary 'Essex'\" division_template = \"British Guards\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+				}
+				121 = {
+					create_unit = {
+						division = "name = \"4. British Auxiliary 'Highlanders'\" division_template = \"British Guards\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+					create_unit = {
+						division = "name = \"Scottish Home Guards\" division_template = \"British Guards\" start_experience_factor = 0.2 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+				}
+				122 = {
+					create_unit = {
+						division = "name = \"Welsh Home Guards\" division_template = \"British Guards\" start_experience_factor = 0.2 start_equipment_factor = 0.5"
+						owner = EGL
+					}
+				}
+
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = EGL
+					autonomy_state = autonomy_puppet
+					freedom_level = 0.1
+				}
+				else = {
+					puppet = EGL
+				}
+			}
+			EGL = {
+				set_cosmetic_tag = RK_GER_BRITAIN
+				set_politics = {
+					ruling_party = national_socialist
+					election_frequency = 48
+					elections_allowed = no
+
+				}
+
+				set_popularities = {
+					national_socialist = 80
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 10
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 10
+				}
+				country_event = {
+					id = twrgeroccupation.4 days = 14 random = 300
+				}
+				set_country_flag = BRITAINGOVERNMENT
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.2"}
+	title = twrgeroccupation.2.t #question of northern ireland
+	desc = twrgeroccupation.2.d
+	picture = GFX_report_event_ira
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.2.a
+		ai_chance = {
+			factor = 30
+		}
+	}
+	option = {
+		name = twrgeroccupation.2.b
+		add_stability = 0.05
+		add_political_power = 50
+		add_offsite_building = { type = arms_factory level = 1 }
+		ai_chance = {
+			factor = 50
+		}
+		IRE = {
+			transfer_state = 119
+			remove_ideas = {
+				IRE_dream_of_ireland
+				neutrality_idea
+			}
+			country_event = {
+				id = twrgeroccupation.3 days = 1
+			}
+			news_event = {
+				id = twrgeroccupation.3001 days = 2
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.2.c
+		add_stability = 0.05
+		add_political_power = 50
+		ai_chance = {
+			factor = 50
+		}
+		119 = {
+		add_core_of = NIR
+		}
+		NIR = {
+			transfer_state = 119
+			add_state_core = 119
+			country_event = {
+				id = twrgeroccupation.2001 days = 5
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = NIR
+				autonomous_state = autonomy_reichsprotectorate
+			}
+			else = {
+				puppet = NIR
+			}
+		}
+	}
+}
+
+news_event = {
+	id = twrgeroccupation.3001 #The Belfast Award
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.3001"}
+	title = twrgeroccupation.3001.t
+	desc = twrgeroccupation.3001.d
+	picture = GFX_news_event_belfast_award
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			has_country_flag = german_and_germanrk
+			NOT = {
+				tag = IRE
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.3001.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_country_flag = german_and_germanrk
+				tag = IRE
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.3001.b
+	}
+	option = {
+		trigger = {
+			tag = IRE
+			NOT = {
+				has_country_flag = german_and_germanrk
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.3001.c
+	}
+	option = {
+		trigger = {
+			tag = ENG
+			NOT = {
+				has_country_flag = german_and_germanrk
+				tag = IRE
+			}
+		}
+		name = twrgeroccupation.3001.brit
+	}
+}
+
+news_event = {
+	id = twrgeroccupation.7777 #The Second Soviet German War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.7777"}
+	title = twrgeroccupation.7777.t
+	desc = twrgeroccupation.7777.d
+	picture = GFX_news_event_end_of_the_air_war
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			is_german = yes
+			NOT = {
+				tag = SOV
+			}
+		}
+		name = twrgeroccupation.7777.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = SOV
+				is_german = yes
+			}
+		}
+		name = twrgeroccupation.7777.b
+	}
+	option = {
+		trigger = {
+			tag = SOV
+			NOT = {
+				is_german = yes
+			}
+		}
+		name = twrgeroccupation.7777.c
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.2001 #leader of ulster
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.2001"}
+	title = twrgeroccupation.2001.t #question of northern ireland
+	desc = twrgeroccupation.2001.d
+	picture = GFX_report_event_ira
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.2001.a #unionist add ideas
+		trigger = { NOT = { OVERLORD = { tag = HSS } } }
+		ai_chance = {
+			factor = 50
+		}
+		set_politics = {
+			ruling_party = paternal_autocrat
+		}
+		add_popularity = {
+    	ideology = paternal_autocrat
+    	popularity = 0.5
+		}
+	}
+	option = {
+		name = twrgeroccupation.2001.b #unionist german
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.2
+		add_political_power = -150
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.3"}
+	title = twrgeroccupation.3.t #question of northern ireland
+	desc = twrgeroccupation.3.d
+	picture = GFX_report_event_ira
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.3.a #26+6 = 1
+		add_political_power = 250
+		add_ideas = IRE_united_ireland
+		hidden_effect = {
+			set_country_flag = IRE_can_be_pressured_by_nazis
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.4 #Civilian Government
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.4"}
+	title = twrgeroccupation.4.t #the new civilian government
+	desc = twrgeroccupation.4.d
+	picture = GFX_report_event_civil_britain
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		trigger = {
+			NOT = {
+				has_country_flag = BRITAINGOVERNMENT
+			}
+		}
+		name = twrgeroccupation.4.a #new pm
+		add_political_power = 30
+		drop_cosmetic_tag = yes
+		remove_ideas = GER_RK_repression
+		set_politics = {
+			ruling_party = fascist
+			election_frequency = 48
+			elections_allowed = no
+
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.5
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.06
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.04
+		}
+		hidden_effect = {
+			set_country_flag = has_symbolic_figurehead
+			set_country_flag = mon_ENG_Vacant
+			country_event = { id = twregl.1 days = 7 random = 300 }
+		}
+	}
+	option = {
+		trigger = {
+			has_country_flag = BRITAINGOVERNMENT
+		}
+		name = twrgeroccupation.4.a #new pm
+		add_political_power = 30
+		drop_cosmetic_tag = yes
+		remove_ideas = GER_RK_repression
+		set_politics = {
+			ruling_party = fascist
+			election_frequency = 48
+			elections_allowed = no
+
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.5
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.1
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.06
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.04
+		}
+		set_cosmetic_tag = RK_BRITAIN
+		hidden_effect = {
+			set_country_flag = has_symbolic_figurehead
+			set_country_flag = mon_ENG_Vacant
+			country_event = { id = twregl.1 days = 7 random = 300 }
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.5"}
+	title = twrgeroccupation.5.t #the black book
+	desc = twrgeroccupation.5.d
+	picture = GFX_report_event_the_black_book
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.5.a #arrest em
+		add_stability = -0.15
+		add_political_power = 150
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.6"}
+	title = twrgeroccupation.6.t #occupation iceland
+	desc = twrgeroccupation.6.d
+	picture = GFX_report_event_occupation_of_iceland
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.6.a
+		add_political_power = 50
+		custom_effect_tooltip = ICELANDFORMED
+		hidden_effect = {
+			ICL = {
+				add_manpower = 500
+				transfer_state = 100
+				add_state_core = 100
+				division_template = {
+					name = "Isländische Hilfsabteilung"
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+					}
+				}
+				100 = {
+					create_unit = {
+						division = "name = \"1. Isländische Befreiungsarmee\" division_template = \"Isländische Hilfsabteilung\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = ICL
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					last_election = "1933.10.16"
+					election_frequency = 36
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					national_socialist = 67
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 33
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+			}
+			set_autonomy = {
+				target = ICL
+				autonomous_state = autonomy_reichsprotectorate
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.6.b
+		add_political_power = -50
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.7"}
+	title = twrgeroccupation.7.t #occupation canada
+	desc = twrgeroccupation.7.d
+	picture = GFX_report_event_nazi_canada_planning
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.7.a #two states solution
+		add_political_power = 150
+		custom_effect_tooltip = TWOSTATES
+		hidden_effect = {
+			country_event = { id = twrgeroccupation.8 days = 5 random = 500 } #French leaders contacted
+		}
+	}
+	option = {
+		name = twrgeroccupation.7.b #one state solution
+		custom_effect_tooltip = ONESTATE
+		hidden_effect = {
+			country_event = { id = twrgeroccupation.10 days = 5 random = 500 } #French-Anglo-German conference
+		}
+	}
+	option = {
+		name = twrgeroccupation.7.c #direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -200
+		add_stability = -0.1
+	}
+}
+country_event = {
+	id = twrgeroccupation.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.8"}
+	title = twrgeroccupation.8.t #Quebec formation
+	desc = twrgeroccupation.8.d
+	picture = GFX_report_event_quebec_flag
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.8.a
+		add_political_power = 150
+		hidden_effect = {
+			country_event = { id = twrgeroccupation.9 days = 5 random = 500 }
+			set_autonomy = {
+				target = QUE
+				autonomous_state = autonomy_reichsprotectorate
+			}
+			QUE = {
+				transfer_state = 466
+				transfer_state = 468
+				add_state_core = 466
+				add_state_core = 468
+				division_template = {
+					name = "Gardes Auxiliaires"
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 0 y = 2 }
+						militia = { x = 0 y = 3 }
+						militia = { x = 1 y = 0 }
+						militia = { x = 2 y = 1 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+					}
+				}
+				466 = {
+					create_unit = {
+						division = "name = \"1. Gardes Auxiliaires\" division_template = \"Gardes Auxiliaires\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = QUE
+					}
+					create_unit = {
+						division = "name = \"2. Gardes Auxiliaires\" division_template = \"Gardes Auxiliaires\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = QUE
+					}
+					create_unit = {
+						division = "name = \"3. Gardes Auxiliaires\" division_template = \"Gardes Auxiliaires\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = QUE
+					}
+				}
+				set_politics = {
+					ruling_party = fascist
+					last_election = "1935.10.14"
+					election_frequency = 60
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					national_socialist = 0
+					fascist = 60
+					paternal_autocrat = 33
+					conservative = 7
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				create_country_leader = {
+					name = "Rèal Couette"
+					desc = "Real_Couette_DESC"
+					picture = "Real_Couette.dds"
+					expire = "1965.1.1"
+					ideology = legionarism
+					traits = {
+
+					}
+				}
+				load_focus_tree = generic
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.9"}
+	title = twrgeroccupation.9.t #Canadian Civil Government
+	desc = twrgeroccupation.9.d
+	picture = GFX_report_event_nazi_canada_formed
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.9.a
+		add_political_power = 150
+		hidden_effect = {
+			OCN = {
+				transfer_state = 276
+				add_state_core = 276
+				transfer_state = 683
+				transfer_state = 471
+				transfer_state = 740
+				transfer_state = 739
+				transfer_state = 682
+				transfer_state = 473
+				transfer_state = 472
+				transfer_state = 470
+				transfer_state = 469
+				transfer_state = 467
+				transfer_state = 465
+				transfer_state = 464
+				transfer_state = 332
+				transfer_state = 331
+				transfer_state = 730
+			}
+			set_autonomy = {
+				target = OCN
+				autonomous_state = autonomy_reichsprotectorate
+			}
+			OCN = {
+				division_template = {
+					name = "Canadian Free Corp"
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 0 y = 2 }
+						militia = { x = 0 y = 3 }
+						militia = { x = 1 y = 0 }
+						militia = { x = 2 y = 1 }
+						militia = { x = 3 y = 2 }
+						militia = { x = 4 y = 3 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+					}
+				}
+				division_template = {
+					name = "Canadian Mounted Auxiliairy"
+					regiments = {
+						mountaineers = { x = 0 y = 0 }
+						mountaineers = { x = 0 y = 1 }
+						cavalry = { x = 1 y = 0 }
+						cavalry = { x = 2 y = 1 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+					}
+				}
+				276 = {
+					create_unit = {
+						division = "name = \"1. Canadian Free Corp 'Alberta'\" division_template = \"Canadian Free Corp\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+					create_unit = {
+						division = "name = \"2. Canadian Free Corp 'Columbia'\" division_template = \"Canadian Free Corp\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+					create_unit = {
+						division = "name = \"3. Canadian Free Corp\" division_template = \"Canadian Free Corp\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+					create_unit = {
+						division = "name = \"4. Canadian Free Corp 'Ottawa'\" division_template = \"Canadian Free Corp\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+					create_unit = {
+						division = "name = \"Independent Mounted Auxiliairy Division\" division_template = \"Canadian Mounted Auxiliairy\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+				}
+				set_politics = {
+					ruling_party = fascist
+					last_election = "1935.10.14"
+					election_frequency = 60
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					national_socialist = 0
+					fascist = 40
+					paternal_autocrat = 0
+					conservative = 15
+					liberal = 30
+					social_democrat = 15
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				add_ideas = {
+				rk_facade_freedom
+				rk_german_advisers
+				OCN_canadian_proudness
+				rk_canadian_resistance
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.10"}
+	title = twrgeroccupation.10.t #French-Anglo tension
+	desc = twrgeroccupation.10.d
+	picture = GFX_report_event_nazi_canada_planning
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.10.a #Force them
+		add_political_power = -50
+		hidden_effect = {
+			country_event = {
+				id = twrgeroccupation.11 days = 8 random = 500
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.11"}
+	title = twrgeroccupation.11.t #United Canada
+	desc = twrgeroccupation.11.d
+	picture = GFX_report_event_nazi_canada_formed
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			news_event = { id = twrgeroccupation.21 days = 5 }
+		}
+	}
+	option = {
+		name = twrgeroccupation.11.a
+		add_political_power = 200
+		add_stability = 0.01
+		hidden_effect = {
+			OCN = {
+				transfer_state = 276
+				transfer_state = 468
+				add_state_core = 276
+				transfer_state = 683
+				transfer_state = 471
+				transfer_state = 740
+				transfer_state = 739
+				transfer_state = 682
+				transfer_state = 473
+				transfer_state = 472
+				transfer_state = 470
+				transfer_state = 469
+				transfer_state = 468
+				transfer_state = 467
+				transfer_state = 465
+				transfer_state = 464
+				transfer_state = 332
+				transfer_state = 331
+				transfer_state = 466
+				transfer_state = 730
+			}
+			set_autonomy = {
+				target = OCN
+				autonomous_state = autonomy_reichsprotectorate
+			}
+			OCN = {
+				division_template = {
+					name = "Canadian Free Corp"
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 0 y = 2 }
+						militia = { x = 0 y = 3 }
+						militia = { x = 1 y = 0 }
+						militia = { x = 2 y = 1 }
+						militia = { x = 3 y = 2 }
+						militia = { x = 4 y = 3 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+					}
+				}
+				division_template = {
+					name = "Canadian Mounted Auxiliairy"
+					regiments = {
+						mountaineers = { x = 0 y = 0 }
+						mountaineers = { x = 0 y = 1 }
+						cavalry = { x = 1 y = 0 }
+						cavalry = { x = 2 y = 1 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+					}
+				}
+				276 = {
+					create_unit = {
+						division = "name = \"1. Canadian Free Corp 'Alberta'\" division_template = \"Canadian Free Corp\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+					create_unit = {
+						division = "name = \"2. Canadian Free Corp 'Columbia'\" division_template = \"Canadian Free Corp\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+					create_unit = {
+						division = "name = \"3. Canadian Free Corp\" division_template = \"Canadian Free Corp\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+					create_unit = {
+						division = "name = \"4. Canadian Free Corp 'Ottawa'\" division_template = \"Canadian Free Corp\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+					create_unit = {
+						division = "name = \"Independent Mounted Auxiliairy Division\" division_template = \"Canadian Mounted Auxiliairy\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+				}
+				466 = {
+					create_unit = {
+						division = "name = \"1. Gardes Auxiliaires\" division_template = \"Canadian Mounted Auxiliairy\" start_experience_factor = 0.05 start_equipment_factor = 0.5"
+						owner = OCN
+					}
+				}
+				set_politics = {
+					ruling_party = fascist
+					last_election = "1935.10.14"
+					election_frequency = 60
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					national_socialist = 0
+					fascist = 40
+					paternal_autocrat = 0
+					conservative = 15
+					liberal = 30
+					social_democrat = 15
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				add_ideas = {
+				rk_facade_freedom
+				rk_german_advisers
+				OCN_canadian_proudness
+				rk_canadian_resistance
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.12"}
+	title = twrgeroccupation.12.t #American Occupation
+	desc = twrgeroccupation.12.d
+	picture = GFX_report_event_if_day
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.12.b #American Liberation
+		custom_effect_tooltip = GER_OCCUPATION_OF_USA_TT
+		hidden_effect = {
+			country_event = { id = twrgeroccupation.13 days = 5 random = 300 }
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.13"}
+	title = twrgeroccupation.13.t #American establishing order
+	desc = twrgeroccupation.13.d
+	picture = GFX_report_event_mass_arrest
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.13.a #Direct Rule
+		add_political_power = -30
+		hidden_effect = {
+			country_event = { id = twrgeroccupation.14 days = 4 random = 300 }
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.14"}
+	title = twrgeroccupation.14.t #backdealing
+	desc = twrgeroccupation.14.d
+	picture = GFX_report_event_nazi_america
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.14.a #Direct Rule
+		add_political_power = 30
+		hidden_effect = {
+			country_event = { id = twrgeroccupation.15 days = 4 random = 300 }
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.15"}
+	title = twrgeroccupation.15.t #liberation of america
+	desc = twrgeroccupation.15.d
+	picture = GFX_report_event_nazi_american_formation
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			USA = {
+				country_event = { id = twrgeroccupation.19 hours = 8 }
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						region = 53 #West Coast
+						region = 170 #Rocky Mountains
+						region = 57 #Central USA
+					}
+					is_owned_by = ENG
+					is_owned_by = USA
+					is_owned_by = HOL
+				}
+				ROOT = {
+					transfer_state = PREV
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.15.a #liberation
+		add_political_power = 150
+		give_guarantee = CSA
+		give_military_access = CSA
+		add_ai_strategy = {
+			type = alliance
+			id = "CSA"
+			value = 200
+		}
+		ROOT = {
+			add_to_faction = CSA
+		}
+		hidden_effect = {
+			CSA = {
+				transfer_state = 361
+				transfer_state = 784
+				add_state_core = 361
+				add_state_core = 784
+				transfer_state = 261
+				transfer_state = 357
+				transfer_state = 358
+				transfer_state = 359
+				transfer_state = 360
+				transfer_state = 362
+				transfer_state = 363
+				transfer_state = 364
+				transfer_state = 365
+				transfer_state = 366
+				transfer_state = 367
+				transfer_state = 368
+				transfer_state = 369
+				transfer_state = 370
+				transfer_state = 371
+				transfer_state = 372
+				transfer_state = 373
+				transfer_state = 374
+				transfer_state = 375
+				transfer_state = 376
+				transfer_state = 377
+				transfer_state = 378
+				transfer_state = 379
+				transfer_state = 380
+				transfer_state = 381
+				transfer_state = 382
+				transfer_state = 383
+				transfer_state = 384
+				transfer_state = 385
+				transfer_state = 386
+				transfer_state = 387
+				transfer_state = 388
+				transfer_state = 389
+				transfer_state = 390
+				transfer_state = 391
+				transfer_state = 392
+				transfer_state = 393
+				transfer_state = 394
+				transfer_state = 395
+				transfer_state = 396
+				transfer_state = 777
+				transfer_state = 778
+				transfer_state = 779
+				transfer_state = 780
+				transfer_state = 781
+				transfer_state = 782
+				transfer_state = 783
+			}
+			CSA = {
+				give_military_access = ROOT
+				diplomatic_relation = {
+					country = ROOT
+					relation = docking_rights
+					active = yes
+				}
+				add_ai_strategy = {
+					type = alliance
+					id = ROOT
+					value = 200
+				}
+
+
+				division_template = {
+					name = "American Volunteer Division"
+					regiments = {
+						light_infantry = { x = 0 y = 0 }
+						light_infantry = { x = 0 y = 1 }
+						light_infantry = { x = 0 y = 2 }
+						light_infantry = { x = 0 y = 3 }
+						light_infantry = { x = 1 y = 0 }
+						light_infantry = { x = 2 y = 1 }
+						light_infantry = { x = 3 y = 2 }
+						light_infantry = { x = 4 y = 3 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1}
+					}
+				}
+				division_template = {
+					name = "Combined Division"
+					regiments = {
+						cavalry = { x = 0 y = 0 }
+						cavalry = { x = 0 y = 1 }
+						cavalry = { x = 0 y = 2 }
+						light_armor = { x = 1 y = 0 }
+						light_armor = { x = 1 y = 1 }
+						light_armor = { x = 1 y = 2 }
+						MBT = { x = 2 y = 0 }
+						MBT = { x = 2 y = 1 }
+						MBT = { x = 2 y = 2 }
+					}
+					support = {
+						artillery = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1 }
+						signal_company = { x = 0 y = 2 }
+						field_hospital = { x = 0 y = 3 }
+					}
+				}
+				784 = {
+					create_unit = {
+						division = "name = \"1. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"2. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"3. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"4. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"5. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"6. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"7. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"8. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"9. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"10. American Free Corp\" division_template = \"American Volunteer Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"1. Free American Armored Corp\" division_template = \"Combined Division\" start_experience_factor = 0.1 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+					create_unit = {
+						division = "name = \"2. Free American Armored Corp\" division_template = \"Combined Division\" start_experience_factor = 0.06 start_equipment_factor = 0.7"
+						owner = CSA
+					}
+				}
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1932.11.8"
+					election_frequency = 48
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 5
+					conservative = 60
+					liberal = 35
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				add_ideas = {
+				rk_german_advisers
+				rk_facade_freedom
+				rk_american_rightist_groups_supported
+				rk_american_resistance
+				USA_segregation
+				}
+			}
+		}
+	}
+}
+news_event = {
+	id = twrgeroccupation.16 #Queen takes flight
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.16"}
+	title = twrgeroccupation.16.t
+	desc = twrgeroccupation.16.d
+	picture = GFX_news_event_elizabeth_in_canada
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			has_country_flag = german_and_germanrk
+			NOT = {
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.16.a
+		hidden_effect = {
+			set_global_flag = queen_in_canada
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_country_flag = german_and_germanrk
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.16.b
+	}
+	option = {
+		trigger = {
+			tag = ENG
+			NOT = {
+				has_country_flag = german_and_germanrk
+			}
+		}
+		name = twrgeroccupation.16.c
+	}
+}
+news_event = {
+	id = twrgeroccupation.17 #Fall of the Home Isles
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.17"}
+	title = twrgeroccupation.17.t
+	desc = twrgeroccupation.17.d
+	picture = GFX_news_event_fall_of_britain
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			has_country_flag = german_and_germanrk
+			NOT = {
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.17.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_country_flag = german_and_germanrk
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.17.b
+	}
+	option = {
+		trigger = {
+			tag = ENG
+			NOT = {
+				has_country_flag = german_and_germanrk
+			}
+		}
+		name = twrgeroccupation.17.c
+	}
+}
+country_event = {
+	id = twrgeroccupation.18 #Fall of the Home Isles
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.18"}
+	title = twrgeroccupation.18.t
+	desc = twrgeroccupation.18.d
+	picture = GFX_report_event_proudly_alone_ENG
+	is_triggered_only = yes
+
+	option = { #Free British Government
+		name = twrgeroccupation.18.a
+		add_ideas = ENG_state_of_emergency
+		set_capital = { state = 696 }
+		set_politics = {
+			ruling_party = paternal_autocrat
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Louis Mountbatten"
+			desc = "none"
+			picture = "Britain_PA_Mountbatten.dds"
+			expire = "1985.1.1"
+			ideology = authoritarian_democracy
+			traits = {}
+		}
+		set_cosmetic_tag = ENG_EXILE
+		set_party_name = {
+			ideology = paternal_autocrat
+			long_name = ENG_GOVERNMENT_JUNTA_LONG
+			name = ENG_GOVERNMENT_JUNTA
+		}
+		custom_effect_tooltip = WE_WILL_ALSO_SOLOMON_ISLANDS
+		hidden_effect ={
+			load_focus_tree = TWR_ENG_EXL
+			set_country_flag = ENG_EXILED_OOF
+			CAN = {
+				transfer_state = 634
+				country_event = twrgeroccupation.18010
+			}
+			TA_collapse_british_empire = yes
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.18010 #Canadians Invited
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.18010"}
+	title = twrgeroccupation.18010.t
+	desc = twrgeroccupation.18010.d
+	picture = GFX_report_event_proudly_alone_ENG
+	is_triggered_only = yes
+
+	option = { #Free British Government
+		name = twrgeroccupation.18010.a
+		add_political_power = 50
+		add_manpower = 15000
+	}
+}
+country_event = {
+	id = twrgeroccupation.19 #Hawaiian Government
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.19"}
+	title = twrgeroccupation.19.t
+	desc = twrgeroccupation.19.d
+	picture = GFX_report_event_hawaiian_law
+	is_triggered_only = yes
+
+	option = { #Free American Government
+		name = twrgeroccupation.19.a
+		set_capital = { state = 629 }
+		629 = {
+		add_core_of = USA
+		}
+		set_state_controller = 629
+		add_ideas = USA_hawaii_martial_law
+		set_politics = {
+			ruling_party = paternal_autocrat
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Williston B. Palmer"
+			desc = "none"
+			picture = "Williston_B_Palmer.dds"
+			expire = "1985.1.1"
+			ideology = authoritarian_democracy
+			traits = {}
+		}
+		set_party_name = {
+			ideology = paternal_autocrat
+			long_name = USA_GOVERNMENT_JUNTA_LONG
+			name = USA_GOVERNMENT_JUNTA
+		}
+		hidden_effect ={
+			load_focus_tree = TWR_USA_EXL
+			set_country_flag = USA_EXILED_OOF
+		}
+	}
+}
+country_event = { #twrgeroccupation.20 on action
+	id = twrgeroccupation.202020
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrgeroccupation.20
+	}
+
+	option = {
+		name = hidnews.1.a
+	}
+}
+news_event = {
+	id = twrgeroccupation.20 #Fall of the Homeland
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.20"}
+	title = twrgeroccupation.20.t
+	desc = twrgeroccupation.20.d
+	picture = GFX_news_event_nazi_victory_over_america
+	is_triggered_only = yes
+	major = yes
+	option = {
+		trigger = {
+			has_country_flag = german_and_germanrk
+			NOT = {
+				OR = {
+					tag = USA
+					tag = CAN
+				}
+			}
+		}
+		name = twrgeroccupation.20.a
+		hidden_effect = {
+			ENG = {
+				news_event = {
+					id = twrgeroccupation.21
+					days = 4
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_country_flag = german_and_germanrk
+				OR = {
+					tag = USA
+					tag = CAN
+				}
+			}
+		}
+		name = twrgeroccupation.20.b
+	}
+	option = {
+		trigger = {
+			OR = {
+				tag = USA
+				tag = CAN
+			}
+			NOT = {
+				has_country_flag = german_and_germanrk
+			}
+		}
+		name = twrgeroccupation.20.c
+	}
+}
+news_event = {
+	id = twrgeroccupation.21 #Another Flight
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.21"}
+	title = twrgeroccupation.21.t
+	desc = twrgeroccupation.21.d
+	picture = GFX_news_event_queen_escapes_to_australia
+	is_triggered_only = yes
+	major = yes
+	trigger = {
+		has_global_flag = queen_in_canada
+	}
+
+	option = {
+		trigger = {
+			has_country_flag = german_and_germanrk
+			NOT = {
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.21.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_country_flag = german_and_germanrk
+				tag = ENG
+			}
+		}
+		name = twrgeroccupation.21.b
+	}
+	option = {
+		trigger = {
+			tag = ENG
+			NOT = {
+				has_country_flag = german_and_germanrk
+			}
+		}
+		name = twrgeroccupation.21.c
+	}
+}
+country_event = {
+	id = twrgeroccupation.22 #australia conscription and unification
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.22"}
+	title = twrgeroccupation.22.t
+	desc = twrgeroccupation.22.d
+	picture = GFX_report_event_australia_stands
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_faction_leader = yes
+			GRM = {
+				save_event_target_as = ta_defeated_by
+				TA_collapse = yes
+				white_peace_with_ROOT = yes
+			}
+			set_country_flag = ASSUMED_TA_LEADERSHIP
+		}
+	}
+	option = { #expand conscription
+		name = twrgeroccupation.22.a
+		ai_chance = {
+			factor = 50
+		}
+		add_stability = -0.05
+		add_political_power = -50
+		add_manpower = 150000
+	}
+	option = { #expand conscription and unification
+		name = twrgeroccupation.22.b
+		ai_chance = {
+			factor = 70
+		}
+		add_stability = -0.1
+		add_political_power = -150
+		add_manpower = 150000
+		NZL = {
+			country_event = { id = twrgeroccupation.23 days = 2 }
+		}
+	}
+	option = { #Do nothing
+		name = twrgeroccupation.22.c
+		ai_chance = {
+			factor = 40
+		}
+		add_stability = 0.1
+	}
+}
+country_event = {
+	id = twrgeroccupation.23 #kiwi responds
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.23"}
+	title = twrgeroccupation.23.t
+	desc = twrgeroccupation.23.d
+	picture = GFX_report_event_australia_stands
+	is_triggered_only = yes
+
+	option = { #we have no choice
+		name = twrgeroccupation.23.a
+		ai_chance = {
+			factor = 50
+		}
+		AST = {
+			country_event = {
+				id = twrgeroccupation.24 days = 2
+			}
+		}
+	}
+	option = { #no
+		name = twrgeroccupation.23.b
+		ai_chance = {
+			factor = 30
+		}
+		add_stability = -0.15
+		add_war_support = -0.15
+		AST = {
+			country_event = {
+				id = twrgeroccupation.25 days = 2
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.24 #australia conscription and unification
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.24"}
+	title = twrgeroccupation.24.t
+	desc = twrgeroccupation.24.d
+	picture = GFX_report_event_australia_stands
+	is_triggered_only = yes
+
+	option = { #expand conscription
+		name = twrgeroccupation.24.a
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = 100
+		annex_country = {
+			target = NZL
+			transfer_troops = yes
+		}
+		add_ideas = AST_necessary_unification
+		set_cosmetic_tag = AST_NZL_COMMONWEALTH
+		hidden_effect = {
+			news_event = { id = twrgeroccupation.26 days = 1 }
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.25 #refused
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.25"}
+	title = twrgeroccupation.25.t
+	desc = twrgeroccupation.25.d
+	picture = GFX_report_event_australia_stands
+	is_triggered_only = yes
+	is_triggered_only = yes
+
+	option = { #expand conscription
+		name = twrgeroccupation.25.a
+		add_ideas = AST_necessary_unification
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = -100
+	}
+}
+news_event = {
+	id = twrgeroccupation.26 #Another Flight
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.26"}
+	title = twrgeroccupation.26.t
+	desc = twrgeroccupation.26.d
+	picture = GFX_news_event_aussie_unification
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			tag = AST
+		}
+		name = twrgeroccupation.26.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = AST
+			}
+		}
+		name = twrgeroccupation.26.b
+	}
+}
+country_event = {
+	id = twrgeroccupation.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.27"}
+	title = twrgeroccupation.27.t #occupation france - leads to more events related to French RK
+	desc = twrgeroccupation.27.d
+	picture = GFX_report_event_french_flag
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.27.ab #full rk france
+		add_political_power = 50
+		custom_effect_tooltip = RK_united_france
+		hidden_effect = {
+			country_event = { id = twrgeroccupation.28 days = 14 }
+			if = {
+				limit = {
+					NOT = {
+						country_exists = FRA
+					}
+				}
+				VIC = {
+					transfer_state = 16
+					transfer_state = 18
+					transfer_state = 27
+					transfer_state = 20
+					transfer_state = 32
+					transfer_state = 21
+					transfer_state = 22
+					transfer_state = 26
+					transfer_state = 31
+					transfer_state = 25
+					transfer_state = 33
+					transfer_state = 24
+					transfer_state = 29
+					transfer_state = 15
+					transfer_state = 30
+					transfer_state = 14
+					transfer_state = 23
+					transfer_state = 19
+					add_state_core = 16
+					add_manpower = 50000
+					division_template = {
+						name = "Division Auxiliaire"
+						regiments = {
+							militia = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+							militia = { x = 1 y = 2 }
+							militia = { x = 2 y = 0 }
+							militia = { x = 2 y = 1 }
+							militia = { x = 2 y = 2 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					division_template = {
+						name = "Cavalerie Auxiliaire"
+						regiments = {
+							cavalry = { x = 0 y = 0 }
+							cavalry = { x = 0 y = 1 }
+							cavalry = { x = 0 y = 2 }
+							cavalry = { x = 0 y = 3 }
+							cavalry = { x = 1 y = 0 }
+							cavalry = { x = 1 y = 1 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					16 = {
+						create_unit = {
+							division = "name = \"1re Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"2e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"3e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"4e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"5e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"6e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"7e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"8e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"9e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"1re Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"2e Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"3e Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = VIC
+						autonomous_state = autonomy_reichsprotectorate
+					}
+					else = {
+						puppet = VIC
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_war_with = FRA
+					FRA = {
+						has_capitulated = yes
+					}
+				}
+				VIC = {
+					transfer_state = 16
+					set_state_controller = 18
+					set_state_controller = 27
+					set_state_controller = 20
+					set_state_controller = 32
+					set_state_controller = 21
+					set_state_controller = 22
+					set_state_controller = 26
+					set_state_controller = 31
+					set_state_controller = 25
+					set_state_controller = 33
+					set_state_controller = 24
+					set_state_controller = 29
+					set_state_controller = 15
+					set_state_controller = 30
+					set_state_controller = 14
+					set_state_controller = 23
+					set_state_controller = 19
+					add_state_core = 16
+					add_manpower = 50000
+					division_template = {
+						name = "Division Auxiliaire"
+						regiments = {
+							militia = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+							militia = { x = 1 y = 2 }
+							militia = { x = 2 y = 0 }
+							militia = { x = 2 y = 1 }
+							militia = { x = 2 y = 2 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					division_template = {
+						name = "Cavalerie Auxiliaire"
+						regiments = {
+							cavalry = { x = 0 y = 0 }
+							cavalry = { x = 0 y = 1 }
+							cavalry = { x = 0 y = 2 }
+							cavalry = { x = 0 y = 3 }
+							cavalry = { x = 1 y = 0 }
+							cavalry = { x = 1 y = 1 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					16 = {
+						create_unit = {
+							division = "name = \"1re Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"2e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"3e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"4e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"5e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"6e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"7e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"8e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"9e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"1re Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"2e Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"3e Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+					}
+				}
+				set_autonomy = {
+				target = VIC
+				autonomous_state = autonomy_reichsprotectorate
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.27.ba #divide France and rk
+		add_political_power = 70
+		add_stability = 0.05
+		custom_effect_tooltip = RK_divided_france
+		hidden_effect = {
+			country_event = { id = twrgeroccupation.28 days = 14 }
+			if = {
+				limit = {
+					NOT = {
+						country_exists = FRA
+					}
+				}
+				VIC = {
+					transfer_state = 16
+					transfer_state = 18
+					transfer_state = 27
+					transfer_state = 20
+					transfer_state = 32
+					transfer_state = 21
+					transfer_state = 22
+					transfer_state = 26
+					transfer_state = 31
+					transfer_state = 25
+					transfer_state = 33
+					transfer_state = 24
+					transfer_state = 29
+					transfer_state = 15
+					transfer_state = 30
+					transfer_state = 23
+					transfer_state = 19
+					add_state_core = 16
+					add_manpower = 50000
+					division_template = {
+						name = "Division Auxiliaire"
+						regiments = {
+							militia = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+							militia = { x = 1 y = 2 }
+							militia = { x = 2 y = 0 }
+							militia = { x = 2 y = 1 }
+							militia = { x = 2 y = 2 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					division_template = {
+						name = "Cavalerie Auxiliaire"
+						regiments = {
+							cavalry = { x = 0 y = 0 }
+							cavalry = { x = 0 y = 1 }
+							cavalry = { x = 0 y = 2 }
+							cavalry = { x = 0 y = 3 }
+							cavalry = { x = 1 y = 0 }
+							cavalry = { x = 1 y = 1 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					16 = {
+						create_unit = {
+							division = "name = \"1re Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"2e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"3e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"4e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"5e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"6e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"7e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"8e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"9e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"1re Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"2e Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"3e Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+					}
+				}
+				RFA = {
+					transfer_state = 14
+					add_state_core = 14
+					add_manpower = 7000
+					division_template = {
+						name = "Division Auxiliaire"
+						regiments = {
+							militia = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+							militia = { x = 1 y = 2 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					14 = {
+						create_unit = {
+							division = "name = \"Bretagne-Abteilung\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = RFA
+						}
+						create_unit = {
+							division = "name = \"Brest-Gruppe\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = RFA
+						}
+					}
+
+				}
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = VIC
+						autonomous_state = autonomy_reichsprotectorate
+					}
+					else = {
+						puppet = VIC
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = RFA
+						autonomy_state = autonomy_reichsprotectorate
+					}
+					else = {
+						puppet = RFA
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_war_with = FRA
+					FRA = {
+						has_capitulated = yes
+					}
+				}
+				VIC = {
+					transfer_state = 16
+					set_state_controller = 18
+					set_state_controller = 27
+					set_state_controller = 20
+					set_state_controller = 32
+					set_state_controller = 21
+					set_state_controller = 22
+					set_state_controller = 26
+					set_state_controller = 31
+					set_state_controller = 25
+					set_state_controller = 33
+					set_state_controller = 24
+					set_state_controller = 29
+					set_state_controller = 15
+					set_state_controller = 30
+					set_state_controller = 23
+					set_state_controller = 19
+					add_state_core = 16
+					add_manpower = 50000
+					division_template = {
+						name = "Division Auxiliaire"
+						regiments = {
+							militia = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+							militia = { x = 1 y = 2 }
+							militia = { x = 2 y = 0 }
+							militia = { x = 2 y = 1 }
+							militia = { x = 2 y = 2 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					division_template = {
+						name = "Cavalerie Auxiliaire"
+						regiments = {
+							cavalry = { x = 0 y = 0 }
+							cavalry = { x = 0 y = 1 }
+							cavalry = { x = 0 y = 2 }
+							cavalry = { x = 0 y = 3 }
+							cavalry = { x = 1 y = 0 }
+							cavalry = { x = 1 y = 1 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					16 = {
+						create_unit = {
+							division = "name = \"1re Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"2e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"3e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"4e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"5e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"6e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"7e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"8e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"9e Division Auxiliaire\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"1re Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"2e Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+						create_unit = {
+							division = "name = \"3e Cavalerie Auxiliaire\" division_template = \"Cavalerie Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = VIC
+						}
+					}
+				}
+				RFA = {
+					transfer_state = 14
+					add_state_core = 14
+					add_manpower = 7000
+					division_template = {
+						name = "Division Auxiliaire"
+						regiments = {
+							militia = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+							militia = { x = 1 y = 2 }
+						}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}
+					}
+					14 = {
+						create_unit = {
+							division = "name = \"Bretagne-Abteilung\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = RFA
+						}
+						create_unit = {
+							division = "name = \"Brest-Gruppe\" division_template = \"Division Auxiliaire\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+							owner = RFA
+						}
+					}
+
+				}
+				set_autonomy = {
+					target = VIC
+					autonomous_state = autonomy_reichsprotectorate
+				}
+				set_autonomy = {
+					target = RFA
+					autonomy_state = autonomy_reichsprotectorate
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.27.b #full occupation
+		add_political_power = -150
+		add_stability = -0.1
+		hidden_effect = {
+			set_country_flag = FRENCH_QUESTION_SETTLED
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.28 #french admin
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.28"}
+	title = twrgeroccupation.28.t
+	desc = twrgeroccupation.28.d
+	picture = GFX_report_event_french_state
+	is_triggered_only = yes
+
+	option = { #another collaborator state
+		name = twrgeroccupation.28.a
+		ai_chance = {
+			factor = 50
+		}
+		country_event = twrgeroccupation.29
+		VIC = {
+			country_event = { id = twrgeroccupation.30 days = 3 }
+		}
+	}
+	option = { #maintain the occupation government
+		name = twrgeroccupation.28.b
+		country_event = twrgeroccupation.29
+		ai_chance = {
+			factor = 70
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.29 #french border plans
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.28"}
+	title = twrgeroccupation.29.t
+	desc = twrgeroccupation.29.d
+	picture = GFX_report_event_german_border_problem
+	is_triggered_only = yes
+	is_triggered_only = yes
+
+	option = { #vichy borders
+		name = twrgeroccupation.29.a
+		add_stability = -0.1
+		ai_chance = {
+			factor = 50
+		}
+		if = {
+			limit = {
+				country_exists = RFA
+			}
+			ROOT = {
+				transfer_state = 27
+				transfer_state = 24
+				transfer_state = 16
+				transfer_state = 18
+				transfer_state = 29
+				transfer_state = 15
+				transfer_state = 30
+				transfer_state = 23
+				transfer_state = 19
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = {
+					country_exists = RFA
+				}
+			}
+			ROOT = {
+				transfer_state = 27
+				transfer_state = 24
+				transfer_state = 16
+				transfer_state = 18
+				transfer_state = 29
+				transfer_state = 15
+				transfer_state = 30
+				transfer_state = 23
+				transfer_state = 19
+				transfer_state = 14
+			}
+		}
+	}
+	option = { #take a bit
+		name = twrgeroccupation.29.b
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = 50
+		transfer_state = 18
+		transfer_state = 29
+		VIC = {
+			set_capital = { state = 16 }
+		}
+	}
+	option = { #take nothing
+		name = twrgeroccupation.29.c
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = 100
+		add_stability = 0.05
+		VIC = {
+			set_capital = { state = 16 }
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.30 #french PM trigger news
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.28"}
+	title = twrgeroccupation.30.t
+	desc = twrgeroccupation.30.d
+	picture = GFX_report_event_german_french_PM
+	is_triggered_only = yes
+	is_triggered_only = yes
+
+	option = { #another collaborator state
+		name = twrgeroccupation.30.a
+		ai_chance = {
+			factor = 90
+		}
+		set_cosmetic_tag = VIC_collab
+		retire_country_leader = yes
+		set_party_name = {
+			ideology = national_socialist
+			long_name = VIC_FRENCH_national_socialist_party_long
+			name = VIC_FRENCH_national_socialist_party
+		}
+		create_country_leader = {
+			name = "Edgar Puaud"
+			desc = "Edgar_Puaud_DESC"
+			picture = "Edgar_Puaud.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+
+			}
+		}
+		add_ideas = {
+			FRA_war_reparations
+			FRA_incompetent_government
+			FRA_the_third_armistice
+		}
+		if = {
+		limit = { country_exists = GER }
+		GER = {
+			country_event = twrgeroccupation.29
+			}
+		}
+		if = {
+		limit = { country_exists = HGR }
+		HGR = {
+			country_event = twrgeroccupation.29
+			}
+		}
+		if = {
+		limit = { country_exists = HSS }
+		HSS = {
+			country_event = twrgeroccupation.29
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = twrgeroccupation.31 # occupation of Iberia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.31"}
+	title = twrgeroccupation.31.t
+	desc = twrgeroccupation.31.d
+	picture = GFX_report_event_fall_of_britain
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.31.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+	}
+	option = {
+		name = twrgeroccupation.31.b #Iberian plan
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 150
+		add_stability = 0.1
+
+		hidden_effect = {
+			if = {
+				limit = {
+					country_exists = POR
+					NOT = {
+						country_exists = SPA
+					}
+				}
+				WGR = {
+					transfer_state = 41
+					transfer_state = 165
+					transfer_state = 166
+					transfer_state = 172
+					transfer_state = 167
+					transfer_state = 175
+					transfer_state = 176
+					transfer_state = 776
+					transfer_state = 168
+					transfer_state = 173
+					transfer_state = 169
+					transfer_state = 170
+					transfer_state = 174
+					transfer_state = 775
+					transfer_state = 171
+					transfer_state = 177
+					add_state_core = 41
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						country_exists = POR
+						country_exists = SPA
+					}
+				}
+				WGR = {
+					transfer_state = 41
+					transfer_state = 165
+					transfer_state = 166
+					transfer_state = 172
+					transfer_state = 167
+					transfer_state = 175
+					transfer_state = 176
+					transfer_state = 776
+					transfer_state = 168
+					transfer_state = 173
+					transfer_state = 169
+					transfer_state = 170
+					transfer_state = 174
+					transfer_state = 775
+					transfer_state = 171
+					transfer_state = 180
+					transfer_state = 181
+					transfer_state = 112
+					transfer_state = 179
+					transfer_state = 177
+					add_state_core = 41
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = WGR
+				autonomy_state = autonomy_reichsprotectorate
+			}
+			else = {
+				puppet = WGR
+			}
+		}
+		if = {
+			limit = {
+				country_exists = POR
+				NOT = {
+					country_exists = SPA
+				}
+			}
+			custom_effect_tooltip = PORTUGAL_GIVEN_LATER
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.32 #Nordic Question - for Goebbels only
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.32"}
+	title = twrgeroccupation.32.t
+	desc = twrgeroccupation.32.d
+	picture = GFX_report_event_nordic_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.32.a #Divide and rule
+		ai_chance = {
+			factor = 40
+		}
+		add_stability = 0.15
+	}
+	option = {
+		name = twrgeroccupation.32.b #United Nordic
+		ai_chance = {
+			factor = 40
+		}
+		add_political_power = 50
+		hidden_effect = {
+			set_country_flag = NORDIC_UNIFICATION_GER
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.33 #fall of Sweden
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.33"}
+	title = twrgeroccupation.33.t
+	desc = twrgeroccupation.33.d
+	picture = GFX_report_event_nordic_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.33.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+	}
+	option = {
+		name = twrgeroccupation.33.b #Direct rule
+		trigger = {
+			NOT = {
+				has_country_flag = NORDIC_UNIFICATION_GER
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			release_autonomy = {
+				target = SWE
+				autonomy_state = autonomy_reichsprotectorate
+				freedom_level = 0.2
+			}
+			SWE = {
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			SWE = { set_country_flag = is_ss_puppet }
+			release_autonomy = {
+				target = SWE
+				autonomy_state = autonomy_SS_Ordenstaat
+				freedom_level = 0.2
+			}
+			SWE = {
+				set_cosmetic_tag = SWE_SS
+				create_country_leader = {
+					name = "Philipp Bouhler"
+					desc = ""
+					picture = "Philipp_Bouhle.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				release = SWE
+			}
+			SWE = {
+			remove_ideas = {
+				en_svensk_tiger
+				neutrality_idea
+				SWE_realpolitik
+				hos_popular_figurehead
+			}
+			clr_country_flag = has_symbolic_figurehead
+			add_ideas = {
+				GER_RK_repression
+				kleptocratic_regime
+			}
+			TWR_remove_from_un = yes
+			load_focus_tree = { tree = generic keep_completed = yes }
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = twrgeroccupation.33.e #Nordic Plan needs special stuff and oob
+		trigger = {
+			OR = {
+				tag = HSS
+				has_focus_tree = himmler_germany
+			}
+			NOR = {
+				is_subject_of = ROOT
+				has_completed_focus = NOR_Ordensstat_Norwegen
+			}
+		}
+		ai_chance = {
+			factor = 2
+		}
+		add_political_power = 150
+		add_stability = 0.1
+		NOR = {
+			add_political_power = 150
+			add_stability = 0.1
+		}
+		hidden_effect = {
+			NOR = {
+				transfer_state = 138
+				transfer_state = 139
+				transfer_state = 140
+				transfer_state = 141
+				transfer_state = 38
+				transfer_state = 666
+				transfer_state = 124
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.33.c #Nordic Plan needs special stuff and oob
+		trigger = {
+			has_country_flag = NORDIC_UNIFICATION_GER
+		}
+		ai_chance = {
+			factor = 2
+		}
+		add_political_power = 150
+		add_stability = 0.1
+		hidden_effect = {
+			RTU = {
+				transfer_state = 138
+				transfer_state = 139
+				transfer_state = 140
+				transfer_state = 141
+				transfer_state = 38
+				transfer_state = 666
+				transfer_state = 124
+				add_state_core = 141
+			}
+		if = {
+		limit = { RTU = { is_subject = no } }
+		set_autonomy = {
+		    target = RTU
+		    autonomy_state = autonomy_reichskommissariat
+		}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.34 #fall of Finland
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.34"}
+	title = twrgeroccupation.34.t
+	desc = twrgeroccupation.34.d
+	picture = GFX_report_event_nordic_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.34.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+	}
+	option = {
+		name = twrgeroccupation.34.b #Finn and aland stuff
+		trigger = {
+			NOT = {
+				has_country_flag = NORDIC_UNIFICATION_GER
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 150
+		add_stability = 0.1
+		hidden_effect = {
+		if = {
+		limit = {
+		NOT = {
+		OR = {
+		tag = HSS
+		has_focus_tree = himmler_germany
+				}
+			}
+		}
+		release_autonomy = {
+			target = FIN
+			autonomy_state = autonomy_reichsprotectorate
+			freedom_level = 0.3
+			}
+		}
+		if = {
+		limit = {
+		OR = {
+		tag = HSS
+		has_focus_tree = himmler_germany
+			}
+		}
+		release_autonomy = {
+			target = FIN
+			autonomy_state = autonomy_SS_Ordenstaat
+			freedom_level = 0.3
+			}
+		FIN = {
+				set_cosmetic_tag = FIN_SS
+				create_country_leader = {
+					name = "Karl Ullrich"
+					desc = ""
+					picture = "Karl_Ullrich.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 213
+						state = 215
+						state = 216
+					}
+				}
+				FIN = {
+					transfer_state = PREV
+				}
+			}
+			FIN = { #will code special ideas, needs a small event chain
+				remove_ideas = {
+					finlandia_triumphant
+					facade_democracy
+					karelian_money_drain
+					valpo_grants
+					finnicization_spirit
+					FIN_russian_labour
+					karelian_autonomy
+					FIN_k_infra_project
+					karelia_in_disrepair
+					FIN_karelianism
+					fin_bible_and_the_law_idea
+					scrapped_swedish
+					summer_camps_finland
+					lutheran_nation
+					fin_realpolitik
+					peace_vigilance_neutrality
+					unity_from_liberty
+					unity_from_liberty2
+					finnish_trade_idea
+					FIN_svedu_strike
+					FIN_arming_reserves
+					FIN_lotta_svard
+					FIN_lotta_svard2
+					FIN_lotta_svard3
+					FIN_suojeluskunta
+					FIN_begin_industrialisation_ns
+					FIN_begin_industrialisation_ns2
+					FIN_free_education
+					FIN_subsidise_farmers
+					FIN_quality_healthcare_ns
+					FIN_Strong_economy
+					FIN_naval_missiles
+					FIN_Corporatism
+					FIN_prepare_liberation
+					FIN_Fight_like_Athenians
+					FIN_Total_Defenses
+					FIN_Total_Defenses2
+					FIN_every_man_serves
+					FIN_rally
+				}
+				add_ideas = {
+					GER_RK_repression
+					kleptocratic_regime
+				}
+				load_focus_tree = { tree = generic keep_completed = yes }
+				TWR_remove_from_un = yes
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.34.c #Nordic Plan needs special stuff and oob
+		trigger = {
+			has_country_flag = NORDIC_UNIFICATION_GER
+		}
+		ai_chance = {
+			factor = 2
+		}
+		add_political_power = 150
+		hidden_effect = {
+			RTU = {
+				transfer_state = 111
+				transfer_state = 147
+				transfer_state = 146
+				transfer_state = 722
+				transfer_state = 150
+				transfer_state = 216
+				transfer_state = 215
+				transfer_state = 149
+				transfer_state = 213
+				transfer_state = 148
+				transfer_state = 145
+			}
+		if = {
+		limit = { RTU = { is_subject = no } }
+		set_autonomy = {
+		    target = RTU
+		    autonomy_state = autonomy_reichskommissariat
+		}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.35 #fall of Norway
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.35"}
+	title = twrgeroccupation.35.t
+	desc = twrgeroccupation.35.d
+	picture = GFX_report_event_nordic_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.35.a #Direct rule
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = twrgeroccupation.35.b #Nordic Plan needs special stuff and oob
+		trigger = {
+			has_country_flag = NORDIC_UNIFICATION_GER
+		}
+		ai_chance = {
+			factor = 2
+		}
+		add_political_power = 150
+		hidden_effect = {
+			RTU = {
+				transfer_state = 110
+				transfer_state = 142
+				transfer_state = 143
+				transfer_state = 722
+				transfer_state = 144
+			}
+		if = {
+		limit = { RTU = { is_subject = no } }
+		set_autonomy = {
+		    target = RTU
+		    autonomy_state = autonomy_reichskommissariat
+		}
+			}
+		}
+	}
+}
+
+
+
+country_event = {
+	id = twrgerultimatum.1 #Gotenland ultimatum
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgerultimatum.1"}
+	title = twrgerultimatum.1.t
+	desc = twrgerultimatum.1.d
+	picture = GFX_report_event_hitler_speech
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+
+	option = {
+		name = twrgerultimatum.1.a #Never surrender!
+		ai_chance = {
+			factor = 30
+		}
+		declare_war_on = {
+        target = GRM
+         type = annex_everything
+       }
+		
+	}
+	option = {
+		name = twrgerultimatum.1.b #Back to being Germanys bitch
+		ai_chance = {
+			factor = 80
+		}
+		GRM = { annex_country = { target = RGO } }
+		GRM = { puppet = RGO }
+		RGO = {
+		transfer_state = 137
+		transfer_state = 196
+		transfer_state = 200
+		}
+		
+	}
+}
+	
+
+
+country_event = {
+	id = twrgerultimatum.3 #Gotenland wants to negotiate
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgerultimatum.3"}
+	title = twrgerultimatum.3.t
+	desc = twrgerultimatum.3.d
+	picture = GFX_report_event_hitler_speech
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+
+	option = {
+		name = twrgerultimatum.3.a #It is... acceptable.
+		ai_chance = {
+			factor = 100
+		}
+		GRM = { annex_country = { target = RGO } }
+		add_to_faction = RGO
+		RGO = {
+		transfer_state = 137
+		transfer_state = 196
+		transfer_state = 200
+		transfer_state = 197
+		transfer_state = 226
+		transfer_state = 234
+		transfer_state = 971
+		}
+	}
+	
+	option = {
+		name = twrgerultimatum.3.b #no deal gib lebenraum
+		ai_chance = {
+			factor = 5
+		}
+    GRM = { country_event = { id = twrgerultimatum.2 } }  
+		}
+    }
+
+country_event = {
+	id = twrgerultimatum.2 #Gotenland final ultimatum
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgerultimatum.2"}
+	title = twrgerultimatum.2.t
+	desc = twrgerultimatum.2.d
+	picture = GFX_report_event_hitler_speech
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+
+	option = {
+		name = twrgerultimatum.1.a #Never surrender!
+		ai_chance = {
+			factor = 50
+		}
+		declare_war_on = {
+        target = GRM
+         type = annex_everything
+       }
+		
+	}
+	option = {
+		name = twrgerultimatum.1.b #Back to being Germanys bitch
+		ai_chance = {
+			factor = 80
+		}
+		GRM = { annex_country = { target = RGO } }
+		GRM = { puppet = RGO }
+		RGO = {
+		transfer_state = 137
+		transfer_state = 196
+		transfer_state = 200
+		}
+	}
+}
+
+
+
+
+
+
+country_event = {
+	id = twrgeroccupation.36 #Italy occupation, fixed now I think. 
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.36"}
+	title = twrgeroccupation.36.t
+	desc = twrgeroccupation.36.d
+	picture = GFX_report_event_italian_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.36.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		hidden_effect = {
+				GRM = {
+					transfer_state = 2
+					set_state_controller = 812
+					set_state_controller = 811
+					set_state_controller = 736
+					set_state_controller = 769
+					set_state_controller = 159
+					set_state_controller = 158
+					set_state_controller = 735
+					set_state_controller = 162
+					set_state_controller = 161
+					set_state_controller = 157
+					set_state_controller = 117
+					set_state_controller = 910
+					set_state_controller = 156
+					set_state_controller = 115
+					set_state_controller = 160
+					transfer_state = 39
+					add_state_core = 2
+			}
+	   }
+	}
+	option = {
+		name = twrgeroccupation.36.b #Take the Northern bits
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 150
+		add_stability = 0.1
+		add_war_support = 0.1
+		hidden_effect = {
+			if = {
+				limit = {
+					country_exists = ITA
+				}
+				SRK = {
+					transfer_state = 2
+					set_state_controller = 812
+					set_state_controller = 811
+					set_state_controller = 736
+					set_state_controller = 769
+					set_state_controller = 159
+					set_state_controller = 158
+					set_state_controller = 735
+					set_state_controller = 162
+					set_state_controller = 161
+					set_state_controller = 157
+					set_state_controller = 117
+					set_state_controller = 910
+					set_state_controller = 156
+					set_state_controller = 115
+					set_state_controller = 160
+					add_state_core = 2
+				}
+					GRM = {
+					transfer_state = 765
+					transfer_state = 814
+					transfer_state = 767
+					transfer_state = 764
+					transfer_state = 811
+					transfer_state = 812
+					transfer_state = 813
+					transfer_state = 39
+
+				}
+				CRO = {
+					transfer_state = 815
+
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						country_exists = ITA
+					}
+				}
+				SRK = {
+					transfer_state = 2
+					transfer_state = 812
+					transfer_state = 811
+					transfer_state = 736
+					transfer_state = 769
+					transfer_state = 159
+					transfer_state = 158
+					transfer_state = 735
+					transfer_state = 162
+					transfer_state = 161
+					transfer_state = 157
+					transfer_state = 117
+					transfer_state = 910
+					transfer_state = 156
+					transfer_state = 115
+					transfer_state = 160
+					add_state_core = 2
+				}
+				GRM = {
+					transfer_state = 765
+					transfer_state = 814
+					transfer_state = 767
+					transfer_state = 764
+					transfer_state = 811
+					transfer_state = 812
+					transfer_state = 813
+				}
+				CRO = {
+					transfer_state = 815
+
+				}
+			}
+			if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+				SRK = { set_country_flag = is_ss_puppet }
+				set_autonomy = {
+				target = SRK
+				autonomy_state = autonomy_SS_Ordenstaat
+				}
+				SRK = {
+					set_cosmetic_tag = SRK_SS
+					create_country_leader = {
+						name = "Constantin Heldmann"
+						desc = ""
+						picture = "Constantin_Heldmann.dds"
+						expire = "1965.1.1"
+						ideology = national_socialism
+						traits = {
+						}
+					}
+					set_politics = {
+						ruling_party = national_socialist
+						elections_allowed = no
+					}
+					set_party_name = {
+						ideology = national_socialist
+						long_name = "Schutzstaffel"
+						name = "SS"
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+					OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+						}
+					}
+				}
+				set_autonomy = {
+					target = SRK
+					autonomy_state = autonomy_reichsprotectorate
+				}
+				SRK = {
+				country_event = { id = twrgeroccupation.361 days = 14 random = 300 }
+				}
+			}
+			SRK = {
+				load_oob = "ITA_GERMAN_STUFF"
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.361 #italy transition
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.361"}
+	title = twrgeroccupation.361.t
+	desc = twrgeroccupation.361.d
+	picture = GFX_report_event_italian_map
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrgeroccupation.361.a #yeet
+		ai_chance = {
+			factor = 50
+		}
+		add_stability = 0.15
+		remove_ideas = GER_RK_repression
+		add_ideas = rk_facade_freedom
+		retire_country_leader = yes
+		drop_cosmetic_tag = yes
+		set_party_name = {
+			ideology = national_socialist
+			long_name = SRK_ITAOF_national_socialist_party_long
+			name = SRK_ITAOF_national_socialist_party
+		}
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.37 #African administration
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.37"}
+	title = twrgeroccupation.37.t
+	desc = twrgeroccupation.37.d
+	picture = GFX_report_event_african_germans
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.37.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = twrgeroccupation.37.b #Nordic Plan needs special stuff and oob
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 150
+		add_war_support = 0.05
+		every_state = {
+			limit = {
+				is_owned_and_controlled_by = ROOT
+				is_on_continent = africa
+			}
+			MTA = {
+				transfer_state = PREV
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = MTA
+				autonomy_state = autonomy_reichskommissariat
+			}
+			else = {
+				puppet = MTA
+			}
+		}
+	}
+}
+
+news_event = {
+	id = twrgeroccupation.38 #End of the German-Soviet War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.38"}
+	title = twrgeroccupation.38.t
+	desc = twrgeroccupation.38.d
+	picture = GFX_news_event_nazis_in_russia
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			is_german = yes
+		}
+		name = twrgeroccupation.38.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				is_german = yes
+			}
+		}
+		name = twrgeroccupation.38.b
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.39 #Future of this war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.39"}
+	title = twrgeroccupation.39.t
+	desc = twrgeroccupation.39.d
+	picture = GFX_report_event_soviet_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.39.a #Pull out to old borders
+		ai_chance = {
+			factor = 40
+		}
+		trigger = {
+			AND = {
+				OR = {
+					controls_ostland = yes
+					ally_controls_ostland = yes
+				}
+				OR = {
+					controls_moskow = yes
+					ally_controls_moskow = yes
+				}
+				OR = {
+					controls_rka = yes
+					ally_controls_rka = yes
+				}
+				OR = {
+					controls_ruk = yes
+					ally_controls_ruk = yes
+				}
+			}
+		}
+		remove_ideas = GER_SOV_supplies_3
+		hidden_effect = {
+			SOV = {
+				white_peace_with_ROOT = yes
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.39.b #Continue this war
+		ai_chance = {
+			factor = 40
+		}
+		add_ideas = GER_Soviet_Chaos
+	}
+	option = {
+		name = twrgeroccupation.39.c #arrange a peace deal
+		ai_chance = {
+			factor = 40
+		}
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Joseph Goebbels"
+					ruling_only = yes
+				}
+				AND = {
+					OR = {
+						controls_ostland = yes
+						ally_controls_ostland = yes
+					}
+					OR = {
+						controls_moskow = yes
+						ally_controls_moskow = yes
+					}
+					OR = {
+						controls_rka = yes
+						ally_controls_rka = yes
+					}
+					OR = {
+						controls_ruk = yes
+						ally_controls_ruk = yes
+					}
+				}
+			}
+		}
+		SOV = {
+			country_event = {
+				id = twrgeroccupation.40 days = 5
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.40 #Soviet talks
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.40"}
+	title = twrgeroccupation.40.t
+	desc = twrgeroccupation.40.d
+	picture = GFX_report_event_soviet_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.40.a #Onward to Germania
+		ai_chance = {
+			factor = 0
+		}
+		FROM = {
+			country_event = { id = twrgeroccupation.41 hours = 5 }
+		}
+	}
+	option = {
+		name = twrgeroccupation.40.b #Yes
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 150
+		FROM = { white_peace_with_ROOT = yes }
+	}
+}
+country_event = {
+	id = twrgeroccupation.41 #Prolonged war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.41"}
+	title = twrgeroccupation.41.t
+	desc = twrgeroccupation.41.d
+	picture = GFX_report_event_soviet_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.41.a #Bring it on
+		ai_chance = {
+			factor = 0
+		}
+		add_ideas = GER_Soviet_Chaos
+	}
+}
+country_event = {
+	id = twrgeroccupation.42 #To Ural
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.42"}
+	title = twrgeroccupation.42.t
+	desc = twrgeroccupation.42.d
+	picture = GFX_report_event_soviet_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.42.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		add_political_power = -150
+	}
+	option = {
+		name = twrgeroccupation.42.b #Give it to RMO
+		ai_chance = {
+			factor = 1
+		}
+		trigger = {
+			country_exists = RMO
+		}
+		RMO = {
+			transfer_state = 255
+			transfer_state = 252
+			transfer_state = 398
+			transfer_state = 239
+			transfer_state = 250
+			transfer_state = 651
+			transfer_state = 251
+			transfer_state = 256
+			transfer_state = 1028
+			transfer_state = 1029
+			transfer_state = 399
+			transfer_state = 652
+			transfer_state = 400
+			transfer_state = 582
+			transfer_state = 249
+			transfer_state = 397
+			transfer_state = 573
+			transfer_state = 252
+			transfer_state = 581
+			transfer_state = 262
+			transfer_state = 961
+		}
+	}
+	option = {
+		name = twrgeroccupation.42.b #Give it to ROS
+		ai_chance = {
+			factor = 1
+		}
+		trigger = {
+			country_exists = ROS
+			has_completed_focus = GER_RK_Ost
+			NOT = {
+				has_global_flag = OST_DISSOLVED
+			}
+		}
+		ROS = {
+			transfer_state = 255
+			transfer_state = 252
+			transfer_state = 398
+			transfer_state = 239
+			transfer_state = 250
+			transfer_state = 651
+			transfer_state = 251
+			transfer_state = 256
+			transfer_state = 399
+			transfer_state = 652
+			transfer_state = 400
+			transfer_state = 582
+			transfer_state = 249
+			transfer_state = 397
+			transfer_state = 573
+			transfer_state = 252
+			transfer_state = 581
+			transfer_state = 262
+			transfer_state = 961
+			transfer_state = 1028
+			transfer_state = 1029
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.43 #To Oral
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.43"}
+	title = twrgeroccupation.43.t
+	desc = twrgeroccupation.43.d
+	picture = GFX_report_event_soviet_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.43.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		add_political_power = -150
+	}
+	option = {
+		name = twrgeroccupation.43.b #Give it to IDE
+		ai_chance = {
+			factor = 1
+		}
+		IDE = {
+			transfer_state = 401
+			transfer_state = 406
+			transfer_state = 407
+			add_state_core = 407
+			set_politics = {
+				ruling_party = national_socialist
+			}
+		}
+		if = {
+		limit = {
+			NOT = {
+				tag = HSS
+				has_focus_tree = himmler_germany
+			}
+		}
+		set_autonomy = {
+			target = IDE
+			autonomy_state = autonomy_reichskommissariat
+			}
+		IDE = {
+			create_country_leader = {
+			name = "Dietrich Klagges"
+			desc = "Dietrich_Klagges_DESC"
+			picture = "Dietrich_Klagges.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				}
+			}
+			set_cosmetic_tag = TRV_RK
+			set_party_name = {
+				ideology = national_socialist
+				long_name = RMO_national_socialist_party
+				name = RMO_national_socialist_party
+				}
+			}
+		}
+		if = {
+		limit = {
+			OR = {
+				tag = HSS
+				has_focus_tree = himmler_germany
+			}
+		}
+			IDE = { set_country_flag = is_ss_puppet }
+			set_autonomy = {
+			target = IDE
+			autonomy_state = autonomy_SS_Ordenstaat
+			}
+			IDE = {
+				set_cosmetic_tag = TRV_SS
+				create_country_leader = {
+					name = "Ernst Damzog"
+					desc = ""
+					picture = "Ernst_Damzog.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+		hidden_effect = {
+			IDE = {
+				load_focus_tree = TWR_TRV_RK
+				add_popularity = {
+					ideology = national_socialist
+					popularity = 0.6
+				}
+				every_army_leader = {
+					retire = yes
+				}
+				add_ideas = {
+					GER_RK_repression
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.43.c #Give it to ROS
+		ai_chance = {
+			factor = 1
+		}
+		trigger = {
+			country_exists = ROS
+			has_completed_focus = GER_RK_Ost
+			NOT = {
+				has_global_flag = OST_DISSOLVED
+			}
+		}
+		ROS = {
+			transfer_state = 401
+			transfer_state = 406
+			transfer_state = 407
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.44 #To Siberia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.44"}
+	title = twrgeroccupation.44.t
+	desc = twrgeroccupation.44.d
+	picture = GFX_report_event_soviet_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.44.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		add_political_power = -150
+	}
+	option = {
+		name = twrgeroccupation.44.b #Give it to RUR
+		ai_chance = {
+			factor = 1
+		}
+		RUR = {
+			add_state_core = 571
+			transfer_state = 577
+			transfer_state = 580
+			transfer_state = 653
+			transfer_state = 403
+			transfer_state = 571
+			transfer_state = 588
+			transfer_state = 572
+			transfer_state = 583
+			transfer_state = 590
+			transfer_state = 404
+			transfer_state = 402
+			transfer_state = 587
+			transfer_state = 579
+		}
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+		set_autonomy = {
+			target = RUR
+			autonomy_state = autonomy_reichskommissariat
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			RUR = { set_country_flag = is_ss_puppet }
+			set_autonomy = {
+			target = RUR
+			autonomy_state = autonomy_SS_Ordenstaat
+			}
+			RUR = {
+				set_cosmetic_tag = RUR_SS
+				create_country_leader = {
+					name = "August Heissmeyer"
+					desc = ""
+					picture = "August_Heissmeyer.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.45 #To Turkestan
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.45"}
+	title = twrgeroccupation.45.t
+	desc = twrgeroccupation.45.d
+	picture = GFX_report_event_soviet_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.45.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		add_political_power = -150
+	}
+	option = {
+		name = twrgeroccupation.45.b #Give it to TRK
+		ai_chance = {
+			factor = 1
+		}
+		TRK = {
+			transfer_state = 997
+			transfer_state = 998
+			transfer_state = 994
+			transfer_state = 995
+			transfer_state = 996
+			transfer_state = 993
+			transfer_state = 742
+			transfer_state = 732
+			transfer_state = 589
+			transfer_state = 586
+			transfer_state = 585
+			transfer_state = 584
+			transfer_state = 405
+			set_politics = {
+				ruling_party = national_socialist
+			}
+		}
+		if = {
+		limit = {
+		NOT = {
+			tag = HSS
+			has_focus_tree = himmler_germany
+			}
+		}
+		set_autonomy = {
+			target = TRK
+			autonomy_state = autonomy_reichskommissariat
+			}
+		TRK = {
+			create_country_leader = {
+				name = "Gustav Simon"
+				desc = "Gustav_Simon_DESC"
+				picture = "Gustav_Simon.dds"
+				expire = "1965.1.1"
+				ideology = national_socialism
+				traits = {
+					}
+				}
+			set_cosmetic_tag = TRK_RK
+			set_party_name = {
+				ideology = national_socialist
+				long_name = RMO_national_socialist_party
+				name = RMO_national_socialist_party
+				}
+			}
+		}
+		if = {
+		limit = {
+			OR = {
+			tag = HSS
+			has_focus_tree = himmler_germany
+			}
+		}
+			TRK = { set_country_flag = is_ss_puppet }
+			set_autonomy = {
+			target = TRK
+			autonomy_state = autonomy_SS_Ordenstaat
+			}
+			TRK = {
+				set_cosmetic_tag = TRK_SS
+				create_country_leader = {
+					name = "Erwin Schulz"
+					desc = ""
+					picture = "Erwin_Schulz.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+		hidden_effect = {
+			TRK = {
+				load_focus_tree = TWR_TRK_RK
+				add_ideas = {
+					GER_RK_repression
+					RK_the_wild_east
+				}
+				add_popularity = {
+					ideology = national_socialist
+					popularity = 0.6
+				}
+				every_army_leader = {
+					retire = yes
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.46 #To Central Siberia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.46"}
+	title = twrgeroccupation.46.t
+	desc = twrgeroccupation.46.d
+	picture = GFX_report_event_soviet_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.46.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		add_political_power = -150
+	}
+	option = {
+		name = twrgeroccupation.46.b #Give it to the RK all
+		trigger = {
+			country_exists = RUR
+		}
+		ai_chance = {
+			factor = 1
+		}
+		RUR = {
+			transfer_state = 578
+			transfer_state = 570
+			transfer_state = 40
+			transfer_state = 575
+			transfer_state = 576
+			transfer_state = 516
+			transfer_state = 1021
+			transfer_state = 329
+			transfer_state = 978
+			transfer_state = 875
+			transfer_state = 654
+			transfer_state = 569
+			transfer_state = 567
+			transfer_state = 568
+			transfer_state = 566
+			transfer_state = 565
+		}
+	}
+	option = {
+		name = twrgeroccupation.46.c #Give it to the RK all
+		trigger = {
+			country_exists = RUR
+		}
+		ai_chance = {
+			factor = 1
+		}
+		RUR = {
+			transfer_state = 578
+			transfer_state = 570
+			transfer_state = 40
+			transfer_state = 575
+			transfer_state = 576
+			transfer_state = 516
+			transfer_state = 1021
+			transfer_state = 329
+			transfer_state = 978
+			transfer_state = 875
+			transfer_state = 654
+			transfer_state = 567
+			transfer_state = 568
+			transfer_state = 566
+			transfer_state = 565
+		}
+		RAR = {
+			transfer_state = 569
+		}
+		set_autonomy = {
+			target = RAR
+			autonomy_state = autonomy_reichskommissariat
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.47 #razing the vatican goebbels
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.47"}
+	title = twrgeroccupation.47.t
+	desc = twrgeroccupation.47.d
+	picture = GFX_report_event_vatican_city_nazis
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.47.a #burn it all
+		ai_chance = {
+			factor = 100
+		}
+		custom_effect_tooltip = VATICAN_RAZED
+		hidden_effect = {
+			news_event = { id = twrgeroccupation.49 hours = 8 }
+			2 = {
+				remove_province_modifier = {
+					static_modifiers = { vatican_i }
+					province = { id = 9904 }
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.48 #vatican occupation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.48"}
+	title = twrgeroccupation.48.t
+	desc = twrgeroccupation.48.d
+	picture = GFX_report_event_vatican_city_nazis
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.48.a #occupy them
+		ai_chance = {
+			factor = 30
+		}
+		custom_effect_tooltip = VATICAN_REMOVED
+		hidden_effect = {
+			2 = {
+				remove_province_modifier = {
+					static_modifiers = { vatican_i }
+					province = { id = 9904 }
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.48.b #allow them to exist
+		ai_chance = {
+			factor = 30
+		}
+		add_political_power = 50
+	}
+	option = {
+		name = twrgeroccupation.48.c #reform the vatican state
+		ai_chance = {
+			factor = 50
+		}
+		custom_effect_tooltip = VATICAN_REFORMED
+		hidden_effect = {
+			news_event = { id = twrgeroccupation.50 hours = 8 }
+			2 = {
+				remove_province_modifier = {
+					static_modifiers = { vatican_i }
+					province = { id = 9904 }
+				}
+			}
+			2 = {
+				add_province_modifier = {
+					static_modifiers = { vatican_NAZI }
+					province = {
+						id = 9904
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = twrgeroccupation.49 #Vatican Razed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.49"}
+	title = twrgeroccupation.49.t
+	desc = twrgeroccupation.49.d
+	picture = GFX_news_event_nazi_paratrooper_vatican
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			is_german = yes
+		}
+		name = twrgeroccupation.49.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				is_german = yes
+			}
+		}
+		name = twrgeroccupation.49.b
+	}
+}
+news_event = {
+	id = twrgeroccupation.50 #Vatican Reformed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.50"}
+	title = twrgeroccupation.50.t
+	desc = twrgeroccupation.50.d
+	picture = GFX_news_event_swiss_guard
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			is_german = yes
+		}
+		name = twrgeroccupation.50.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				is_german = yes
+			}
+		}
+		name = twrgeroccupation.50.b
+	}
+}
+country_event = {
+	id = twrgeroccupation.51 #ireland pressure
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.51"}
+	title = twrgeroccupation.51.t
+	desc = twrgeroccupation.51.d
+	picture = GFX_report_event_irish_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.51.a #Pressure them to sign the pact
+		ai_chance = {
+			factor = 50
+		}
+		IRE = {
+			country_event = {
+				id = twrgeroccupation.52 days = 4
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.51.b #Organize a coup
+		ai_chance = {
+			factor = 30
+		}
+		add_political_power = -50
+		add_manpower = -1500
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -900
+			producer = GER
+		}
+		IRE = {
+			country_event = {
+				id = twrgeroccupation.53 days = 11 random = 400
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.52 #parliament debate
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.52"}
+	title = twrgeroccupation.52.t
+	desc = twrgeroccupation.52.d
+	picture = GFX_report_event_irish_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.52.a #we will join the pact
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = -150
+		add_stability = -0.1
+		news_event = { id = twrgeroccupation.521 days = 2 }
+		add_opinion_modifier = {
+			target = FROM
+			modifier = huge_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = FROM
+			modifier = huge_increase
+		}
+		add_ideas = {
+			IRE_collaboration_politics
+		}
+		FROM = { add_to_faction = IRE }
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.1
+		}
+	}
+
+	option = {
+		name = twrgeroccupation.52.b #we will not yield
+		ai_chance = {
+			factor = 40
+		}
+		add_political_power = 50
+		FROM = { country_event = { id = twrgeroccupation.522 days = 2 } }
+	}
+}
+news_event = {
+	id = twrgeroccupation.521 #Ireland joins
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.521"}
+	title = twrgeroccupation.521.t
+	desc = twrgeroccupation.521.d
+	picture = GFX_news_event_ireland_joins_the_pact
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			NOT = {
+				tag = IRE
+			}
+			is_german = yes
+		}
+		name = twrgeroccupation.521.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				is_german = yes
+				tag = IRE
+			}
+		}
+		name = twrgeroccupation.521.b
+	}
+	option = {
+		trigger = {
+			NOT = {
+				is_german = yes
+			}
+			tag = IRE
+		}
+		name = twrgeroccupation.521.c
+	}
+}
+country_event = {
+	id = twrgeroccupation.522 #parliament refused
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.522"}
+	title = twrgeroccupation.522.t
+	desc = twrgeroccupation.522.d
+	picture = GFX_report_event_irish_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.522.a #we will invade
+		ai_chance = {
+			factor = 50
+		}
+		add_opinion_modifier = {
+			target = IRE
+			modifier = large_decrease
+		}
+		reverse_add_opinion_modifier = {
+			target = IRE
+			modifier = large_decrease
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = IRE
+		}
+	}
+
+	option = {
+		name = twrgeroccupation.522.b #we will forgive them
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+country_event = {
+	id = twrgeroccupation.53 #military coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.53"}
+	title = twrgeroccupation.53.t
+	desc = twrgeroccupation.53.d
+	picture = GFX_report_event_irish_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.53.a #our new overlords
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = -150
+		add_stability = -0.15
+		news_event = { id = twrgeroccupation.531 days = 2 }
+		add_opinion_modifier = {
+			target = FROM
+			modifier = huge_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = FROM
+			modifier = huge_increase
+		}
+		add_ideas = {
+			IRE_puppet_regime_collaboration
+		}
+		GRM = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = IRE
+					autonomy_state = autonomy_satellite
+				}
+				else = {
+					puppet = IRE
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = national_socialist
+		}
+		create_country_leader = {
+			name = "Seamus O'Donovan"
+			desc = "Seamus_O_Donovan_DESC"
+			picture = "Seamus_O_Donovan.dds"
+			expire = "1981.1.1"
+			ideology = national_socialism
+			traits = {}
+		}
+		set_party_name = {
+			ideology = national_socialist
+			long_name = IRE_IRA_LONG
+			name = IRE_IRA_SHORT
+		}
+
+
+		hidden_effect = {
+			clr_country_flag = has_symbolic_figurehead
+			clr_country_flag = pres_Sean_T_OKelly
+			set_popularities = {
+				national_socialist = 47
+				fascist = 0
+				paternal_autocrat = 0
+				conservative = 30
+				liberal = 22
+				social_democrat = 1
+				socialist = 0
+				bolshevik_leninist = 0
+				marxist_leninist = 0
+			}
+			load_focus_tree = { tree = generic keep_completed = yes }
+		}
+	}
+}
+news_event = {
+	id = twrgeroccupation.531 #Ireland coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.531"}
+	title = twrgeroccupation.531.t
+	desc = twrgeroccupation.531.d
+	picture = GFX_news_event_irish_coup
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			NOT = {
+				tag = IRE
+			}
+			is_german = yes
+		}
+		name = twrgeroccupation.531.a
+	}
+	option = {
+		trigger = {
+			NOT = {
+				is_german = yes
+				tag = IRE
+			}
+		}
+		name = twrgeroccupation.531.b
+	}
+	option = {
+		trigger = {
+			NOT = {
+				is_german = yes
+			}
+			tag = IRE
+		}
+		name = twrgeroccupation.531.c
+	}
+}
+country_event = {
+	id = twrgeroccupation.54 #Bulgaria
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.54"}
+	title = twrgeroccupation.54.t
+	desc = twrgeroccupation.54.d
+	picture = GFX_report_event_bulgarian_fight
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.54.a #Direct occupation
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		add_political_power = -150
+	}
+
+	option = {
+		name = twrgeroccupation.54.b #bulgar hours
+		trigger = {
+			NOT = {
+				tag = HSS
+				has_focus_tree = himmler_germany
+			}
+		}
+		ai_chance = {
+			factor = 20
+		}
+		release_autonomy = {
+			target = BUL
+			autonomy_state = autonomy_satellite
+		}
+		add_stability = 0.1
+		hidden_effect = {
+			if = {
+				limit = {
+					date < 1959.01.01
+				}
+				BUL = {
+					create_country_leader = {
+						name = "Aleksandar Tsankov"
+						desc = "Aleksandar_Tsankov_DESC"
+						picture = "Aleksandar_Tsankov.dds"
+						expire = "1965.1.1"
+						ideology = national_socialism
+						traits = {
+
+						}
+					}
+					set_cosmetic_tag = BUL_RK
+					load_focus_tree = { tree = generic keep_completed = yes }
+				}
+				else = {
+					BUL = {
+						create_country_leader = {
+							name = "Assen Kantardzhiev"
+							desc = "Assen_Kantardzhiev_DESC"
+							picture = "Assen_Kantardzhiev.dds"
+							expire = "1965.1.1"
+							ideology = national_socialism
+							traits = {
+
+							}
+						}
+						set_cosmetic_tag = BUL_RK
+						load_focus_tree = { tree = generic keep_completed = yes }
+					}
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 1009
+				}
+				BUL = {
+					transfer_state = 1009
+				}
+			}
+			BUL = {
+				remove_ideas = {
+					BUL_party_centralisation_3
+					BUL_party_centralisation_4
+					BUL_New_Economic_Direction
+					BUL_balkan_prussia
+					BUL_ukraine_refugees
+					BUL_greek_unrest
+					BUL_greek_unrest_2
+					BUL_hated_regent
+					BUL_bulgarian_turmoil
+					MCD_native_unrest
+					BUL_puppet_regent
+					BUL_Formalise_the_Greyshirts
+					BUL_Aftermath_of_Officer_Purge
+					BUL_The_Chaos
+					BUL_The_Chaos1
+					BUL_The_Chaos2
+					BUL_The_Chaos3
+					BUL_The_Chaos4
+					BUL_The_Chaos5
+					BUL_The_Crisis_of_52
+					BUL_Shrinked_Down_Greyshirts
+					BUL_party_centralisation_1
+					BUL_party_centralisation_2
+				}
+				clr_country_flag = has_symbolic_figurehead
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.54.c #bulgar and macedonia hours
+		trigger = {
+			NOT = {
+				tag = HSS
+				has_focus_tree = himmler_germany
+			}
+			106 = {
+			is_owned_and_controlled_by = ROOT
+			}
+		}
+		ai_chance = {
+			factor = 50
+		}
+		release_autonomy = {
+			target = BUL
+			autonomy_state = autonomy_satellite
+		}
+		add_stability = 0.1
+		add_political_power = 100
+		MCD = {
+			transfer_state = 106
+			set_cosmetic_tag = MCD_RK
+		}
+		set_autonomy = {
+			target = MCD
+			autonomy_state = autonomy_reichskommissariat
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					date < 1959.01.01
+				}
+				BUL = {
+					create_country_leader = {
+						name = "Aleksandar Tsankov"
+						desc = "Aleksandar_Tsankov_DESC"
+						picture = "Aleksandar_Tsankov.dds"
+						expire = "1965.1.1"
+						ideology = national_socialism
+						traits = {
+
+						}
+					}
+					set_cosmetic_tag = BUL_RK
+				}
+				else = {
+					BUL = {
+						create_country_leader = {
+							name = "Assen Kantardzhiev"
+							desc = "Assen_Kantardzhiev_DESC"
+							picture = "Assen_Kantardzhiev.dds"
+							expire = "1965.1.1"
+							ideology = national_socialism
+							traits = {
+
+							}
+						}
+						set_cosmetic_tag = BUL_RK
+					}
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 1009
+				}
+				BUL = {
+					transfer_state = 1009
+				}
+			}
+			MCD = {
+				create_country_leader = {
+					name = "Günther Anhalt"
+					desc = "Gunther_Anhalt_DESC"
+					picture = "Gunther_Anhalt.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+
+					}
+				}
+			}
+			BUL = {
+				remove_ideas = {
+					BUL_party_centralisation_3
+					BUL_party_centralisation_4
+					BUL_New_Economic_Direction
+					BUL_balkan_prussia
+					BUL_ukraine_refugees
+					BUL_greek_unrest
+					BUL_greek_unrest_2
+					BUL_hated_regent
+					BUL_bulgarian_turmoil
+					MCD_native_unrest
+					BUL_puppet_regent
+					BUL_Formalise_the_Greyshirts
+					BUL_Aftermath_of_Officer_Purge
+					BUL_The_Chaos
+					BUL_The_Chaos1
+					BUL_The_Chaos2
+					BUL_The_Chaos3
+					BUL_The_Chaos4
+					BUL_The_Chaos5
+					BUL_The_Crisis_of_52
+					BUL_Shrinked_Down_Greyshirts
+					BUL_party_centralisation_1
+					BUL_party_centralisation_2
+				}
+				clr_country_flag = has_symbolic_figurehead
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.54.b #bulgar hours
+		trigger = {
+			OR = {
+				tag = HSS
+				has_focus_tree = himmler_germany
+			}
+		}
+		ai_chance = {
+			factor = 20
+		}
+		BUL = { set_country_flag = is_ss_puppet }
+		release_autonomy = {
+			target = BUL
+			autonomy_state = autonomy_SS_Ordenstaat
+		}
+		add_stability = 0.1
+		hidden_effect = {
+			BUL = {
+				create_country_leader = {
+					name = "Fritz Weitzel"
+					desc = "Fritz_Weitzel_DESC"
+					picture = "Fritz_Weitzel.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+
+					}
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+				set_cosmetic_tag = BUL_SS
+				load_focus_tree = { tree = generic keep_completed = yes }
+			}
+			if = {
+				limit = {
+					owns_state = 1009
+				}
+				BUL = {
+					transfer_state = 1009
+				}
+			}
+			BUL = {
+				remove_ideas = {
+					BUL_party_centralisation_3
+					BUL_party_centralisation_4
+					BUL_New_Economic_Direction
+					BUL_balkan_prussia
+					BUL_ukraine_refugees
+					BUL_greek_unrest
+					BUL_greek_unrest_2
+					BUL_hated_regent
+					BUL_bulgarian_turmoil
+					MCD_native_unrest
+					BUL_puppet_regent
+					BUL_Formalise_the_Greyshirts
+					BUL_Aftermath_of_Officer_Purge
+					BUL_The_Chaos
+					BUL_The_Chaos1
+					BUL_The_Chaos2
+					BUL_The_Chaos3
+					BUL_The_Chaos4
+					BUL_The_Chaos5
+					BUL_The_Crisis_of_52
+					BUL_Shrinked_Down_Greyshirts
+					BUL_party_centralisation_1
+					BUL_party_centralisation_2
+				}
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				clr_country_flag = has_symbolic_figurehead
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.54.c #bulgar and macedonia hours
+		trigger = {
+			OR = {
+				tag = HSS
+				has_focus_tree = himmler_germany
+			}
+			106 = {
+			is_owned_and_controlled_by = ROOT
+			}
+		}
+		ai_chance = {
+			factor = 50
+		}
+		BUL = { set_country_flag = is_ss_puppet }
+		release_autonomy = {
+			target = BUL
+			autonomy_state = autonomy_SS_Ordenstaat
+		}
+		add_stability = 0.1
+		add_political_power = 100
+		MCD = {
+			transfer_state = 106
+			set_cosmetic_tag = MCD_SS
+			set_country_flag = is_ss_puppet
+		}
+		set_autonomy = {
+			target = MCD
+			autonomy_state = autonomy_SS_Ordenstaat
+		}
+		hidden_effect = {
+			BUL = {
+				create_country_leader = {
+					name = "Fritz Weitzel"
+					desc = "Fritz_Weitzel_DESC"
+					picture = "Fritz_Weitzel.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+
+					}
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				set_cosmetic_tag = BUL_SS
+				load_focus_tree = { tree = generic keep_completed = yes }
+			}
+			if = {
+				limit = {
+					owns_state = 1009
+				}
+				BUL = {
+					transfer_state = 1009
+				}
+			}
+			MCD = {
+				create_country_leader = {
+					name = "Otto Wächter"
+					desc = "Otto_Wachter_DESC"
+					picture = "Otto_Wachter.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+
+					}
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+			}
+			BUL = {
+				remove_ideas = {
+					BUL_party_centralisation_3
+					BUL_party_centralisation_4
+					BUL_New_Economic_Direction
+					BUL_balkan_prussia
+					BUL_ukraine_refugees
+					BUL_greek_unrest
+					BUL_greek_unrest_2
+					BUL_hated_regent
+					BUL_bulgarian_turmoil
+					MCD_native_unrest
+					BUL_puppet_regent
+					BUL_Formalise_the_Greyshirts
+					BUL_Aftermath_of_Officer_Purge
+					BUL_The_Chaos
+					BUL_The_Chaos1
+					BUL_The_Chaos2
+					BUL_The_Chaos3
+					BUL_The_Chaos4
+					BUL_The_Chaos5
+					BUL_The_Crisis_of_52
+					BUL_Shrinked_Down_Greyshirts
+					BUL_party_centralisation_1
+					BUL_party_centralisation_2
+				}
+				clr_country_flag = has_symbolic_figurehead
+			}
+		}
+	}
+}
+
+country_event = { # Germany releases Greece
+	id = twrgeroccupation.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.55"}
+	title = twrgeroccupation.55.t
+	desc = twrgeroccupation.55.d
+	picture = GFX_report_event_GRE_Parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #release Greece as puppet
+		name = twrgeroccupation.55.a
+		ai_chance = {
+			factor = 1
+		}
+		add_manpower = -500
+		release_puppet = GRE
+		GRE = {
+			set_cosmetic_tag = RK_GRE
+			set_politics = {
+				ruling_party = national_socialist
+			}
+			set_party_name = {
+				ideology = national_socialist
+				long_name = "German Occupation Authority"
+				name = "Occupation Authority"
+			}
+			create_country_leader = {
+				name = "Günther Altenburg"
+				desc = ""
+				picture = "Portrait_GRE_Gunter_Altenburg.dds"
+				expire = "1965.1.1"
+				ideology = national_socialism
+				traits = {
+				}
+			}
+		}
+		hidden_effect = {
+			GRE = {
+				remove_ideas = GRE_low_legitimacy
+				set_popularities = {
+					national_socialist = 1
+					fascist = 22
+					paternal_autocrat = 21
+					conservative = 6
+					liberal = 10
+					social_democrat = 4
+					socialist = 15
+					bolshevik_leninist = 6
+					marxist_leninist = 15
+				}
+				load_focus_tree = generic
+				clr_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK
+				clr_country_flag = GRE_MILITARY_THREAT_TOOLTIP
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.55.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+		add_manpower = -20000
+	}
+}
+
+country_event = { # Germany releases Bosnia
+	id = twrgeroccupation.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.56"}
+	title = twrgeroccupation.56.t
+	desc = twrgeroccupation.56.d
+	picture = GFX_report_event_GRE_SB_Soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #release Bosnia as puppet
+		name = twrgeroccupation.56.a
+		ai_chance = {
+			factor = 50
+		}
+		add_manpower = -500
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			release_autonomy = {
+				target = BOS
+				autonomy_state = autonomy_reichsprotectorate
+				freedom_level = 0.2
+			}
+			BOS = {
+				set_cosmetic_tag = BOS_RK
+				create_country_leader = {
+					name = "Karl-Gustav Sauberzweig"
+					desc = ""
+					picture = "Karl-Gustav_Sauberzweig.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "German Occupation Authority"
+					name = "Occupation Authority"
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			BOS = { set_country_flag = is_ss_puppet }
+			release_autonomy = {
+				target = BOS
+				autonomy_state = autonomy_SS_Ordenstaat
+				freedom_level = 0.2
+			}
+			BOS = {
+				set_cosmetic_tag = BOS_SS
+				create_country_leader = {
+					name = "Desiderius Hampel"
+					desc = ""
+					picture = "Desiderius_Hampel.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+		hidden_effect = {
+			BOS = {
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				load_focus_tree = generic
+				add_ideas = {
+					GER_RK_repression
+					kleptocratic_regime
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.56.b #Transfer Bosnia to Croatia
+		ai_chance = {
+			factor = 30
+		}
+		trigger = {
+			CRO = {
+				is_subject_of = ROOT
+			}
+		}
+		add_political_power = 50
+		CRO = {
+			transfer_state = 104
+			transfer_state = 981
+			transfer_state = 982
+			transfer_state = 983
+		}
+	}
+	option = {
+		name = twrgeroccupation.56.c
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+		add_manpower = -20000
+	}
+}
+
+country_event = { # Germany releases Romania
+	id = twrgeroccupation.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.57"}
+	title = twrgeroccupation.57.t
+	desc = twrgeroccupation.57.d
+	picture = GFX_report_event_GRE_SB_Soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #release Romania as puppet
+		name = twrgeroccupation.57.a
+		ai_chance = {
+			factor = 50
+		}
+		add_manpower = -500
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			release_autonomy = {
+				target = ROM
+				autonomy_state = autonomy_reichsprotectorate
+				freedom_level = 0.2
+			}
+			ROM = {
+				set_politics = {
+					ruling_party = national_socialist
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			ROM = { set_country_flag = is_ss_puppet }
+			release_autonomy = {
+				target = ROM
+				autonomy_state = autonomy_SS_Ordenstaat
+				freedom_level = 0.2
+			}
+			ROM = {
+				set_cosmetic_tag = ROM_SS
+				create_country_leader = {
+					name = "Wilhel Fuchs"
+					desc = ""
+					picture = "Wilhel_Fuchs.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+		hidden_effect = {
+			ROM = {
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				load_focus_tree = { tree = generic keep_completed = yes }
+				remove_ideas = {
+					ROM_wolf_of_balkans
+					ROM_oil_exports
+					ROM_against_hungary
+					ROM_political_uncertainties
+					ROM_memories_of_the_conduator
+					ROM_iron_guard_light
+					hos_popular_figurehead
+					ROM_victory
+					ROMHUN_defeat
+					ROM_failed_invasion
+					hos_unpopular_figurehead
+					hos_mediocre
+					hos_tyranical_overseer
+				}
+				add_ideas = {
+					GER_RK_repression
+					kleptocratic_regime
+				}
+				clr_country_flag = has_symbolic_figurehead
+				if = {
+					limit = {
+						owns_state = 76
+					}
+					ROOT = {
+						transfer_state = 76
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.57.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+		add_manpower = -20000
+		set_country_flag = OCCUPIED_ROM
+	}
+}
+
+country_event = { # Germany releases Hungary
+	id = twrgeroccupation.58
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.58"}
+	title = twrgeroccupation.58.t
+	desc = twrgeroccupation.58.d
+	picture = GFX_report_event_GRE_SB_Soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #release Hungary as puppet
+		name = twrgeroccupation.58.a
+		ai_chance = {
+			factor = 50
+		}
+		add_manpower = -500
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			release_autonomy = {
+				target = HUN
+				autonomy_state = autonomy_reichsprotectorate
+				freedom_level = 0.2
+			}
+			HUN = {
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			HUN = { set_country_flag = is_ss_puppet }
+			release_autonomy = {
+				target = HUN
+				autonomy_state = autonomy_SS_Ordenstaat
+				freedom_level = 0.2
+			}
+			HUN = {
+				set_cosmetic_tag = HUN_SS
+				create_country_leader = {
+					name = "László Deák"
+					desc = ""
+					picture = "Laszlo_Deak.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+		hidden_effect = {
+			HUN = {
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				load_focus_tree = { tree = generic keep_completed = yes }
+				remove_ideas = {
+					HUN_the_prospect_times
+					HUN_against_romania
+					HUN_reparations
+					HUN_revanchist
+					HUN_German_Influence
+					HUN_Volksbund
+					HUN_Anti_German_Military
+					HUN_Anti_German_Military2
+					HUN_Refugee_Crisis
+					ROMHUN_defeat
+					hos_unpopular_figurehead
+					hos_mediocre
+					hos_tyranical_overseer
+				}
+				add_ideas = {
+					GER_RK_repression
+					kleptocratic_regime
+				}
+				clr_country_flag = has_symbolic_figurehead
+				every_owned_state = {
+					limit = {
+						OR = {
+							state = 838
+							state = 839
+						}
+					}
+					ROOT = {
+						transfer_state = PREV
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.57.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+		add_manpower = -20000
+	}
+}
+
+country_event = { # Germany releases Serbia
+	id = twrgeroccupation.59
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.59"}
+	title = twrgeroccupation.59.t
+	desc = twrgeroccupation.59.d
+	picture = GFX_report_event_GRE_SB_Soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #release Hungary as puppet
+		name = twrgeroccupation.59.a
+		ai_chance = {
+			factor = 50
+		}
+		add_manpower = -500
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 108
+						state = 107
+						state = 819
+					}
+					owner = {
+						OR = {
+							tag = ROOT
+							is_in_faction_with = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				SER = { transfer_state = PREV }
+			}
+			set_autonomy = {
+				target = SER
+				autonomy_state = autonomy_reichskommissariat
+				freedom_level = 0.2
+			}
+			SER = {
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_cosmetic_tag = SER_RK
+				create_country_leader = {
+					name = "Hartwig von Ludwiger"
+					desc = ""
+					picture = "Hartwig_von_Ludwiger.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "German Military Administration"
+					name = "German Military"
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			SER = { set_country_flag = is_ss_puppet }
+			every_state = {
+				limit = {
+					OR = {
+						state = 108
+						state = 107
+						state = 819
+					}
+					owner = {
+						OR = {
+							tag = ROOT
+							is_in_faction_with = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				SER = { transfer_state = PREV }
+			}
+			set_autonomy = {
+				target = SER
+				autonomy_state = autonomy_SS_Ordenstaat
+				freedom_level = 0.2
+			}
+			SER = {
+				set_cosmetic_tag = SER_SS
+				create_country_leader = {
+					name = "Werner Lorenz"
+					desc = ""
+					picture = "Werner_Lorenz.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+				if = {
+					limit = {
+						owns_state = 819
+						SBA = {
+							exists = yes
+							is_subject_of = ROOT
+						}
+					}
+					SBA = {
+						transfer_state = 819
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			SER = {
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				load_focus_tree = { tree = generic keep_completed = yes }
+				remove_ideas = {
+					SER_german_detachment
+					SER_chetnik_issue
+				}
+				add_ideas = {
+					GER_RK_repression
+					kleptocratic_regime
+				}
+				clr_country_flag = has_symbolic_figurehead
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.57.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+		add_manpower = -20000
+	}
+}
+
+country_event = { # Germany releases MNT
+	id = twrgeroccupation.60
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.60"}
+	title = twrgeroccupation.60.t
+	desc = twrgeroccupation.60.d
+	picture = GFX_report_event_GRE_SB_Soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #release Monternegro as puppet
+		name = twrgeroccupation.60.a
+		ai_chance = {
+			factor = 50
+		}
+		add_manpower = -500
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			release_autonomy = {
+				target = MNT
+				autonomy_state = autonomy_reichskommissariat
+				freedom_level = 0.2
+			}
+			MNT = {
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_cosmetic_tag = MNT_RK
+				create_country_leader = {
+					name = "Johann Fortner"
+					desc = ""
+					picture = "Johann_Fortner.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "German Military Administration"
+					name = "German Military"
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			MNT = { set_country_flag = is_ss_puppet }
+			release_autonomy = {
+				target = MNT
+				autonomy_state = autonomy_SS_Ordenstaat
+				freedom_level = 0.2
+			}
+			MNT = {
+				set_cosmetic_tag = MNT_SS
+				create_country_leader = {
+					name = "Heinrich Fehlis"
+					desc = ""
+					picture = "Heinrich_Fehlis.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				release = MNT
+			}
+			MNT = {
+				set_popularities = {
+					national_socialist = 100
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				load_focus_tree = { tree = generic keep_completed = yes }
+				add_ideas = {
+					GER_RK_repression
+					kleptocratic_regime
+				}
+				clr_country_flag = has_symbolic_figurehead
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.57.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+		add_manpower = -20000
+	}
+}
+
+
+country_event = { #Fate of Northern Transylvania GER
+	id = twrgeroccupation.61
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.61"}
+	title = twrgeroccupation.61.t
+	desc = twrgeroccupation.61.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.61.a
+		trigger = {
+			HUN = {
+			is_subject_of = ROOT
+			}
+		}
+		HUN = {
+			transfer_state = 838
+			transfer_state = 839
+			transfer_state = 76
+			country_event = { id = twrgeroccupation.62 days = 1 }
+		}
+	}
+	option = {
+		name = twrgeroccupation.61.b
+		trigger = {
+			ROM = {
+			is_subject_of = ROOT
+			}
+		}
+		ROM = {
+			transfer_state = 838
+			transfer_state = 839
+			transfer_state = 76
+			country_event = { id = twrgeroccupation.62 days = 1 }
+		}
+	}
+}
+
+country_event = { #We got northern Transylvania
+	id = twrgeroccupation.62
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.62"}
+	title = twrgeroccupation.62.t
+	desc = twrgeroccupation.62.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.62.a
+	}
+}
+
+country_event = { #Fate of Odessa GER
+	id = twrgeroccupation.63
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.63"}
+	title = twrgeroccupation.63.t
+	desc = twrgeroccupation.63.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.63.a
+		trigger = {
+			RUK = {
+			is_subject_of = ROOT
+			}
+		}
+		RUK = {
+			transfer_state = 192
+			transfer_state = 198
+			country_event = { id = twrgeroccupation.64 days = 1 }
+		}
+	}
+	option = {
+		name = twrgeroccupation.63.b
+		trigger = {
+			ROS = {
+			is_subject_of = ROOT
+			}
+			has_completed_focus = GER_RK_Ost
+		}
+		ROS = {
+			transfer_state = 192
+			transfer_state = 198
+			country_event = { id = twrgeroccupation.64 days = 1 }
+		}
+	}
+	option = {
+		name = twrgeroccupation.61.b
+		trigger = {
+			ROM = {
+			OR = {
+			is_subject_of = ROOT
+			is_in_faction_with = ROOT
+				}
+			}
+		}
+		ROM = {
+			transfer_state = 192
+			transfer_state = 198
+			country_event = { id = twrgeroccupation.64 days = 1 }
+		}
+	}
+}
+
+country_event = { #We got Odessa
+	id = twrgeroccupation.64
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.64"}
+	title = twrgeroccupation.64.t
+	desc = twrgeroccupation.64.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.64.a
+	}
+}
+
+country_event = { #Fate of Vojvodina GER
+	id = twrgeroccupation.65
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.65"}
+	title = twrgeroccupation.65.t
+	desc = twrgeroccupation.65.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.65.a
+		trigger = {
+			HUN = {
+			is_subject_of = ROOT
+			}
+		}
+		HUN = {
+			transfer_state = 45
+			country_event = { id = twrgeroccupation.66 days = 1 }
+		}
+	}
+	option = {
+		name = twrgeroccupation.65.b
+		trigger = {
+			SBA = {
+			is_subject_of = ROOT
+			}
+		}
+		SBA = {
+			transfer_state = 45
+			country_event = { id = twrgeroccupation.66 days = 1 }
+		}
+	}
+	option = {
+		name = twrgeroccupation.65.b
+		trigger = {
+		NOT = {
+			SBA = {
+			is_subject_of = ROOT
+				}
+			}
+		}
+		add_political_power = -50
+	}
+}
+
+country_event = { #We got Vojvodina
+	id = twrgeroccupation.66
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.66"}
+	title = twrgeroccupation.66.t
+	desc = twrgeroccupation.66.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.66.a
+	}
+}
+
+country_event = {
+	id = twrgeroccupation.67 #Mount Athos Occupation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.67"}
+	title = twrgeroccupation.67.t
+	desc = twrgeroccupation.67.d
+	picture = GFX_report_event_mount_athos_occupation
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.67.a #occupy them
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			731 = {
+				remove_province_modifier = {
+					static_modifiers = { mount_athos_i }
+					province = { id = 895 }
+				}
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.67.b #reform them
+		ai_chance = {
+			factor = 90
+		}
+		hidden_effect = {
+			731 = {
+				remove_province_modifier = {
+					static_modifiers = { mount_athos_i }
+					province = { id = 895 }
+				}
+			}
+			731 = {
+				add_province_modifier = {
+					static_modifiers = { mount_athos_ii }
+					province = {
+						id = 895
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = { # Germany releases RKE
+	id = twrgeroccupation.68
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.68"}
+	title = twrgeroccupation.68.t
+	desc = twrgeroccupation.68.d
+	picture = GFX_report_event_rka_german_retreat
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #release RKE as puppet
+		name = twrgeroccupation.68.a
+		ai_chance = {
+			factor = 50
+		}
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			RKE = {
+			transfer_state = 408
+			transfer_state = 409
+			transfer_state = 560
+			transfer_state = 657
+			transfer_state = 561
+			transfer_state = 563
+			transfer_state = 564
+			transfer_state = 574
+			transfer_state = 562
+			transfer_state = 637
+			transfer_state = 644
+			}
+			if = {
+			limit = { controls_state = 870 }
+			RKE = {
+			transfer_state = 870
+				}
+			}
+			if = {
+			limit = { controls_state = 655 }
+			RKE = {
+			transfer_state = 655
+				}
+			}
+			if = {
+			limit = { controls_state = 537 }
+			RKE = {
+			transfer_state = 537
+				}
+			}
+			if = {
+			limit = { controls_state = 555 }
+			RKE = {
+			transfer_state = 555
+				}
+			}
+			408 = {
+			add_core_of = RKE
+			}
+			set_autonomy = {
+				target = RKE
+				autonomy_state = autonomy_reichsprotectorate
+				freedom_level = 0.2
+			}
+			RKE = {
+				set_politics = {
+					ruling_party = paternal_autocrat
+					elections_allowed = no
+				}
+				set_political_party = {
+   				ideology = paternal_autocrat
+    			popularity = 100
+				}
+				load_focus_tree = { tree = generic keep_completed = yes }
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			RKE = {
+			transfer_state = 408
+			transfer_state = 409
+			transfer_state = 560
+			transfer_state = 657
+			transfer_state = 561
+			transfer_state = 563
+			transfer_state = 564
+			transfer_state = 574
+			transfer_state = 562
+			transfer_state = 637
+			transfer_state = 644
+			}
+			if = {
+			limit = { controls_state = 870 }
+			RKE = {
+			transfer_state = 870
+				}
+			}
+			if = {
+			limit = { controls_state = 655 }
+			RKE = {
+			transfer_state = 655
+				}
+			}
+			if = {
+			limit = { controls_state = 537 }
+			RKE = {
+			transfer_state = 537
+				}
+			}
+			if = {
+			limit = { controls_state = 555 }
+			RKE = {
+			transfer_state = 555
+				}
+			}
+			408 = {
+			add_core_of = RKE
+			}
+			set_autonomy = {
+				target = RKE
+				autonomy_state = autonomy_reichsprotectorate
+				freedom_level = 0.2
+			}
+			RKE = {
+				set_cosmetic_tag = RKE_SS
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_political_party = {
+   				ideology = national_socialist
+    			popularity = 100
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			add_ideas = GER_RK_repression
+			load_focus_tree = { tree = generic keep_completed = yes }
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.57.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+		add_manpower = -20000
+	}
+}
+country_event = { # Germany releases Turkey
+	id = twrgeroccupation.69
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.69"}
+	title = twrgeroccupation.69.t
+	desc = twrgeroccupation.69.d
+	picture = GFX_report_event_GRE_SB_Soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #release Turkey as puppet
+		name = twrgeroccupation.69.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+			limit = {
+				NOT = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			release_autonomy = {
+				target = TUR
+				autonomy_state = autonomy_reichsprotectorate
+				freedom_level = 0.4
+			}
+			TUR = {
+				set_cosmetic_tag = TUR_RK
+				create_country_leader = {
+					name = "Asım Gündüz"
+					desc = ""
+					picture = "Portrait_TUR_Asim_Gunduz.dds"
+					expire = "1965.1.1"
+					ideology = fascism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = fascist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = fascist
+					long_name = "Ulusal Komite (National Committee)"
+					name = "UK"
+				}
+				set_popularities = {
+					fascist = 100
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = HSS
+					has_focus_tree = himmler_germany
+				}
+			}
+			TUR = { set_country_flag = is_ss_puppet }
+			release_autonomy = {
+				target = TUR
+				autonomy_state = autonomy_SS_Ordenstaat
+				freedom_level = 0.4
+			}
+			TUR = {
+				set_cosmetic_tag = TUR_SS
+				set_popularities = {
+					national_socialist = 100
+				}
+				create_country_leader = {
+					name = "Elyesa Bazna"
+					desc = ""
+					picture = "Portrait_TUR_Elyesa_Bazna.dds"
+					expire = "1965.1.1"
+					ideology = national_socialism
+					traits = {
+					}
+				}
+				set_politics = {
+					ruling_party = national_socialist
+					elections_allowed = no
+				}
+				set_party_name = {
+					ideology = national_socialist
+					long_name = "Schutzstaffel"
+					name = "SS"
+				}
+			}
+		}
+		hidden_effect = {
+			TUR = {
+				load_focus_tree = { tree = generic keep_completed = yes }
+				add_ideas = {
+					GER_RK_repression
+					kleptocratic_regime
+				}
+				clr_country_flag = has_symbolic_figurehead
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.57.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+		add_manpower = -20000
+		set_country_flag = FUNKY_MILITARY_OCCUPATION
+	}
+}
+
+
+country_event = {
+	id = twrgeroccupation.70 #fall of Norway - normal nazi invasion
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgeroccupation.35"}
+	title = twrgeroccupation.35.t
+	desc = twrgeroccupation.35.d
+	picture = GFX_report_event_nordic_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgeroccupation.35.a #Direct rule
+		ai_chance = {
+			factor = 0
+		}
+		
+		hidden_effect = {
+		
+		GRM = {
+				transfer_state = 110
+				transfer_state = 142
+				transfer_state = 143
+				transfer_state = 144
+			}
+		}
+	}
+	option = {
+		name = twrgeroccupation.70.a #get reichy norway
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+		
+		release_puppet = NOR
+		
+			NOR = {
+			    set_cosmetic_tag = RK_NOR_RESTORED
+				transfer_state = 110
+				transfer_state = 142
+				transfer_state = 143
+				transfer_state = 144
+		set_autonomy = {
+		    target = NOR
+		    autonomy_state = autonomy_reichskommissariat
+		}       
+			}
+		}
+	}
+}
+
+

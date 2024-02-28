@@ -1,0 +1,792 @@
+﻿#########################################################################
+# TWR Hour Events : Brazil
+#########################################################################
+add_namespace = twrbrazil
+
+country_event = {
+	id = twrbrazil.0 #Starting situation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrportugal.1"}
+	title = twrbrazil.0.t
+	desc = twrbrazil.0.d
+	picture = GFX_report_event_BRA
+
+	is_triggered_only = yes
+
+
+
+	option = {
+		name = twrbrazil.0.a
+			hidden_effect = {
+				complete_national_focus = BRA_Vargas
+			}
+		}
+}
+
+country_event = {
+	id = twrbrazil.1 #Shot that Silenced Brazil
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.1"}
+	title = twrbrazil.1.t
+	desc = twrbrazil.1.d
+	picture = GFX_report_event_BRA
+
+	is_triggered_only = yes
+
+
+
+	option = {
+		name = twrbrazil.1.a #Dead Vargas
+			kill_country_leader = yes
+			set_politics = { ruling_party = paternal_autocrat } 
+			add_popularity = { ideology = social_democrat popularity = 0.15 }
+			set_country_flag = BRA_VARGAS_DEATH
+			create_country_leader = {
+				name = "Brazilian Parliament"
+				desc = ""
+				picture = "gfx/leaders/BRA/BRA_Parliament.dds"
+				expire = "2000.1.1"
+				ideology = transitional_regime 
+				traits = {}
+			}
+			hidden_effect = {
+			news_event = { id = twrbranews.2 days = 0 }
+			}
+		}
+
+
+	
+}
+
+country_event = {
+	id = twrbrazil.2 #German Ambassador Crisis
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.2"}
+	title = twrbrazil.2.t
+	desc = twrbrazil.2.d
+	picture = GFX_report_event_BRA
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+		trigger = { 
+		NOT = { has_country_flag = BRA_GER_CRISIS }
+		}
+
+
+	option = {
+		name = twrbrazil.2.a #Protect the ambassador
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_BRA_COMETOBRAZIL
+			}
+		}
+		add_stability = -0.05
+		add_manpower = -100
+		country_event = { id = twrbrazil.3 days = 5 }
+		set_country_flag = BRA_GER_CRISIS
+	}
+
+
+	option = {
+		name = twrbrazil.2.b #Keep out of the crisis
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_BRA_DEMOCRACY
+					has_global_flag = COUNTRY_PATH_BRA_GOMES
+				}
+			}
+		}
+		add_stability = -0.15
+		add_political_power = -100
+		hidden_effect = {
+		country_event = { id = twrbrazil.8 days = 7 }
+
+		}
+	}
+	
+}
+
+country_event = {
+	id = twrbrazil.3 #Ritter demands an apology
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.3"}
+	title = twrbrazil.3.t
+	desc = twrbrazil.3.d
+	picture = GFX_report_event_BRA_Germans
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrbrazil.3.a #Apologize
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_BRA_DEMOCRACY
+			}
+		}
+		add_political_power = -50
+		country_event = { id = twrbrazil.4 days = 15 }
+	}
+
+
+	option = {
+		name = twrbrazil.3.b #You can be glad that we saved your ass
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_BRA_GOMES
+			}
+		}
+		add_political_power = 20
+		country_event = { id = twrbrazil.6 days = 5 }
+	}
+	
+}
+
+country_event = {
+	id = twrbrazil.4 #American faction detains Ritter
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.4"}
+	title = twrbrazil.4.t
+	desc = twrbrazil.4.d
+	picture = GFX_report_event_BRA_army
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrbrazil.4.a #I'll be forced to resign then
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = -100
+		country_event = { id = twrbrazil.5 days = 2 }
+	}
+
+
+	option = {
+		name = twrbrazil.4.b #I'll only leave this office dead
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_BRA_GOMES
+			}
+		}
+		add_stability = -0.05
+		country_event = { id = twrbrazil.1 days = 2 }
+	}
+	
+}
+
+country_event = {
+	id = twrbrazil.5 #Pro-American Junta established COUP
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.5"}
+	title = twrbrazil.5.t
+	desc = twrbrazil.5.d
+	picture = GFX_report_event_BRA_Gomes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrbrazil.5.a #I'll be forced to resign then 
+		add_political_power = -25
+		add_stability = -0.1
+		clr_country_flag = BRA_REPUBLIC
+		set_politics = { ruling_party = paternal_autocrat }
+		add_popularity = { ideology = social_democrat popularity = -0.2 }
+		add_ideas = { authoritarian_system }
+		create_country_leader = {
+			name = "Eduardo Gomes"
+			desc = ""
+			picture = "gfx/leaders/BRA/Eduardo_Gomes.dds"
+			expire = "2000.1.1"
+			ideology = military_dictatorshipz 
+			traits = {}
+		}
+		hidden_effect = {
+		complete_national_focus = BRA_Gomes_Junta
+		news_event = { id = twrbranews.3 days = 0 }
+		}
+	}
+}
+
+country_event = {
+	id = twrbrazil.6 #German ambassador leaves Brazil
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.6"}
+	title = twrbrazil.6.t
+	desc = twrbrazil.6.d
+	picture = GFX_report_event_BRA_plane
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrbrazil.6.a #I'll be forced to resign then 
+		add_political_power = -5
+		country_event = { id = twrbrazil.11 days = 10 }
+	}
+}
+
+country_event = {
+	id = twrbrazil.7 #German ambassador leaves Brazil - 2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.7"}
+	title = twrbrazil.7.t
+	desc = twrbrazil.7.d
+	picture = GFX_report_event_BRA_plane
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrbrazil.7.a #I'll be forced to resign then 
+		add_political_power = -15
+		country_event = { id = twrbrazil.11 days = 10 }
+	}
+}
+
+country_event = {
+	id = twrbrazil.8 #German ambassador killed 
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrportugal.1"}
+	title = twrbrazil.8.t
+	desc = twrbrazil.8.d
+	picture = GFX_report_event_BRA
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrbrazil.8.a #I'll be forced to resign then 
+		add_political_power = -200
+		add_stability = -0.1
+		country_event = { id = twrbrazil.9 days = 5 }
+	}
+}
+
+country_event = {
+	id = twrbrazil.9 #German faction forces Vargas to resign
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrportugal.1"}
+	title = twrbrazil.9.t
+	desc = twrbrazil.9.d
+	picture = GFX_report_event_BRA_army
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrbrazil.9.a #I'll be forced to resign then
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = -25
+		country_event = { id = twrbrazil.10 days = 10 }
+	}
+
+	option = {
+		name = twrbrazil.9.b #I'll be forced to resign then IN DEATH
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_BRA_COMETOBRAZIL
+			}
+		}
+		country_event = { id = twrbrazil.1 days = 5 }
+	}
+}
+
+country_event = {
+	id = twrbrazil.10 #German faction junta COUP
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrportugal.1"}
+	title = twrbrazil.10.t
+	desc = twrbrazil.10.d
+	picture = GFX_report_event_BRA_Monteiro
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrbrazil.10.a #I'll be forced to resign then 
+		add_political_power = -25
+		clr_country_flag = BRA_REPUBLIC
+		add_stability = -0.1
+		set_politics = { ruling_party = paternal_autocrat }
+		add_popularity = { ideology = social_democrat popularity = -0.2 }
+		add_popularity = { ideology = national_socialist popularity = 0.05 }
+		add_ideas = { authoritarian_system }
+		create_country_leader = {
+			name = "Gois Monteiro"
+			desc = "Eduardo_Gomes_desc"
+			picture = "gfx/leaders/BRA/Gois_Monteiro.dds"
+			expire = "2000.1.1"
+			ideology = military_dictatorshipz 
+			traits = {}
+		}
+		hidden_effect = {
+		complete_national_focus = BRA_Monteiro_Junta
+		news_event = { id = twrbranews.4 days = 0 }
+		set_country_flag = BRA_Pro_Germans
+		}
+	}
+
+
+}
+
+country_event = {
+	id = twrbrazil.11 #Vargas government survives
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrportugal.1"}
+	title = twrbrazil.11.t
+	desc = twrbrazil.11.d
+	picture = GFX_report_event_BRA
+
+	is_triggered_only = yes
+
+
+	option = {#I'll be forced to resign then 
+		name = twrbrazil.11.a
+		add_political_power = 100
+		add_stability = 0.1
+		add_popularity = { ideology = social_democrat popularity = 0.1 }
+		set_country_flag = BRA_VARGAS_SURVIVES
+		hidden_effect = { 
+		news_event = { id = twrbranews.1 days = 0 }
+		}
+	}
+
+
+}
+
+country_event = {
+	id = twrbrazil.12 #1956 election
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrportugal.1"}
+	title = twrbrazil.12.t
+	desc = twrbrazil.12.d
+	picture = GFX_report_event_BRA
+
+	is_triggered_only = yes
+
+
+	option = {#Kubitschek
+		name = twrbrazil.12.a
+		set_politics = { ruling_party = conservative }
+		add_popularity = { ideology = conservative popularity = 0.1 }
+		set_party_name = { 
+			ideology = conservative
+			long_name = "Partido Social Democrático (Social Democratic Party)"
+			name = "PSD"
+		}
+		create_country_leader = {
+			name = "Juscelino Kubitschek"
+			desc = "Juscelino_Kubitschek_desc"
+			picture = "gfx/leaders/BRA/Juscelino_Kubitschek.dds"
+			expire = "2000.1.1"
+			ideology = fiscal_conservatism 
+			traits = {}
+		}
+		complete_national_focus = BRA_PSD
+		news_event = { id = twrbranews.6 days = 0 }
+	}
+
+	option = {
+		name = twrbrazil.12.b #Jango
+		set_politics = { ruling_party = social_democrat }
+		add_popularity = { ideology = social_democrat popularity = 0.1 }
+		create_country_leader = {
+			name = "João Goulart"
+			desc = ""
+			picture = "gfx/leaders/BRA/BRA_Jango.dds"
+			expire = "2000.1.1"
+			ideology = left-wing_populism
+			traits = {}
+		}
+		complete_national_focus = BRA_PTB
+		news_event = { id = twrbranews.7 days = 0 }
+			}
+
+	#option = {#Salgado
+	#	name = twrbrazil.12.c
+	#	set_politics = { ruling_party = fascist }
+	#	add_popularity = { ideology = fascist popularity = 0.1 }
+	#	create_country_leader = {
+	#		name = "Plínio Salgado"
+	#		desc = "Plinio_Salgado_desc"
+	#		picture = "gfx/leaders/BRA/Plinio_Salgado.dds"
+	#		expire = "2000.1.1"
+	#		ideology = integralism 
+	#		traits = {}
+	#	}
+	#	news_event = { id = twrbranews.5 days = 0 }
+	#	}
+
+	option = {
+		name = twrbrazil.12.e #Gomes
+		set_politics = { ruling_party = conservative }
+		add_popularity = { ideology = conservative popularity = 0.1 }
+		set_party_name = { 
+			ideology = conservative
+			long_name = "União Democrática Nacional (National Democratic Union)"
+			name = "UDN"
+		}
+		create_country_leader = {
+			name = "Eduardo Gomes"
+			desc = ""
+			picture = "gfx/leaders/BRA/Eduardo_Gomes.dds"
+			expire = "2000.1.1"
+			ideology = paternalistic_conservatism 
+			traits = {}
+		}
+		complete_national_focus = BRA_UDN
+		news_event = { id = twrbranews.8 days = 0 }
+		}
+}
+
+country_event = {
+	id = twrbrazil.13 #Join the TA?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.13"}
+	title = twrbrazil.13.t
+	desc = twrbrazil.13.d
+	picture = GFX_report_event_TA_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.13.a
+		ai_chance = {
+			factor = 6
+		}
+		USA = { country_event = { id = twrbrazil.14 days = 1 } }
+	}
+
+	option = {
+		name = twrbrazil.13.b
+		ai_chance = {
+			factor = 4
+		}
+	}
+}
+
+country_event = {
+	id = twrbrazil.14 #Brazil wants to join TA
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.14"}
+	title = twrbrazil.14.t
+	desc = twrbrazil.14.d
+	picture = GFX_report_event_TA_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.14.a
+		ai_chance = {
+			factor = 4
+		}
+		BRA = { country_event = { id = twrbrazil.15 days = 1 } }
+		add_to_faction = BRA
+	}
+
+	option = {
+		name = twrbrazil.14.b
+		ai_chance = {
+			factor = 1
+		}
+		BRA = { country_event = { id = twrbrazil.16 days = 1 } }
+	}
+}
+
+country_event = {
+	id = twrbrazil.15 #TA accepts
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.15"}
+	title = twrbrazil.15.t
+	desc = twrbrazil.15.d
+	picture = GFX_report_event_TA_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.15.a
+	}
+}
+
+country_event = {
+	id = twrbrazil.16 #TA refuses
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.15"}
+	title = twrbrazil.16.t
+	desc = twrbrazil.16.d
+	picture = GFX_report_event_TA_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.16.a
+	}
+}
+
+country_event = {
+	id = twrbrazil.17 #The Interference of the USA
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.15"}
+	title = twrbrazil.17.t
+	desc = twrbrazil.17.d
+	picture = GFX_report_event_american_weapons
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.17.a 
+		country_event = { id = twrbrazil.18 } 
+		
+	}
+	
+	option = {
+		name = twrbrazil.17.b
+		country_event = { id = twrbrazil.19 } 
+	}
+}
+
+country_event = {
+	id = twrbrazil.18 #Operation Spill
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.15"}
+	title = twrbrazil.18.t
+	desc = twrbrazil.18.d
+	picture = GFX_report_event_chinese_oil_field
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.18.a 
+		hidden_effect = {
+		USA = {
+		country_event = { id = twrbrazil.181 }
+			}
+		}
+	}
+	
+	option = {
+		name = twrbrazil.18.b 
+		country_event = { id = twrbrazil.19 }
+	}
+}
+
+country_event = {
+	id = twrbrazil.181 #The Brazilians are Aiding the Nazis
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.15"}
+	title = twrbrazil.181.t
+	desc = twrbrazil.181.d
+	picture = GFX_report_event_nazi_submarine
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.181.a 
+		ai_chance = {
+			factor = 4
+		}
+		BRA = {
+		country_event = { id = twrbrazil.182 hours = 7 }
+			}
+		}
+	
+	option = {
+		name = twrbrazil.181.b 
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 10
+		country_event = { id = twrbrazil.20 hours = 7 }
+	}
+}
+
+country_event = {
+	id = twrbrazil.182 #Pro-US Coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.15"}
+	title = twrbrazil.182.t
+	desc = twrbrazil.182.d
+	picture = GFX_report_event_usa_coup
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.182.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_BRA_COMETOBRAZIL
+			}
+		}
+		create_country_leader = {
+			name = "Eduardo Gomes"
+			desc = ""
+			picture = "gfx/leaders/BRA/Eduardo_Gomes.dds"
+			expire = "2000.1.1"
+			ideology = military_dictatorshipz 
+			traits = {}
+		}
+		hidden_effect = {
+		complete_national_focus = BRA_Gomes_Junta
+		remove_ideas = BRA_Foreign_Oil_Expertise
+		remove_ideas = BRA_Prussian_Discipline
+		remove_ideas = BRA_Military_For_Order
+		remove_ideas = BRA_German_Economics
+		clr_country_flag = BRA_Pro_Germans
+			}
+		}
+	
+	option = {
+		name = twrbrazil.182.b 
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 100
+		country_event = { id = twrbrazil.20 }
+	}
+}
+
+country_event = {
+	id = twrbrazil.19 #Operation Fishing Trip
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.15"}
+	title = twrbrazil.19.t
+	desc = twrbrazil.19.d
+	picture = GFX_report_event_chinese_oil_field
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.19.a 
+		add_resource = {
+			type = oil
+			amount = 10
+			state = 855
+			}
+		add_ideas = BRA_Black_Bass_Trade
+	}
+}
+
+country_event = {
+	id = twrbrazil.20 #Spill Successfull
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.15"}
+	title = twrbrazil.20.t
+	desc = twrbrazil.20.d
+	picture = GFX_report_event_chinese_oil_field
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.20.a 
+		add_resource = {
+			type = oil
+			amount = 20
+			state = 855
+			}
+		add_ideas = BRA_Black_Gold_for_Actual_Gold
+		}
+}
+
+country_event = {
+	id = twrbrazil.21 #Come to Brazil
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.21"}
+	title = twrbrazil.21.t
+	desc = twrbrazil.21.d
+	picture = GFX_report_event_german_flag_propaganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.21.a 
+		}
+}
+
+country_event = {
+	id = twrbrazil.22 #They Actually Came
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.21"}
+	title = twrbrazil.22.t
+	desc = twrbrazil.22.d
+	picture = GFX_report_event_german_flag_propaganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.22.a 
+		add_ideas = BRA_Nazi_Asylum_Program
+		create_corps_commander = {
+		name = "Otto Skorzeny"
+		picture = "Otto_Skorzeny.dds"
+		traits = { ss_general commando trickster }
+		skill = 3
+		id = 10932
+		attack_skill = 3
+		defense_skill = 1
+		planning_skill = 3
+		logistics_skill = 1
+			}
+		create_corps_commander = {
+		name = "Reinhard Gehlen"
+		picture = "Reinhard_Gehlen.dds"
+		traits = { trickster commando heer_staff }
+		skill = 3
+		id = 10938
+		attack_skill = 2
+		defense_skill = 1
+		planning_skill = 3
+		logistics_skill = 2
+		}
+		create_corps_commander = {
+		name = "Franz Augsberger"
+		picture = "Franz_Augsberger.dds"
+		traits = { ss_general infantry_leader }
+		skill = 2
+		id = 10939
+		attack_skill = 1
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 2
+		}
+		hidden_effect = {
+		country_event = { id = twrbrazil.23 days = 37 }
+		}
+		}
+}
+
+country_event = {
+	id = twrbrazil.23 #A Germans Life in Brazil
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbrazil.21"}
+	title = twrbrazil.23.t
+	desc = twrbrazil.23.d
+	picture = GFX_report_event_german_flag_propaganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = twrbrazil.23.a 
+		}
+}

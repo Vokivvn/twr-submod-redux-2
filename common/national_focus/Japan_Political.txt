@@ -1,0 +1,2923 @@
+focus_tree = {
+	id = Japan_Political
+	country = {
+		factor = 0
+	}
+
+	default = no
+	continuous_focus_position = { x = 50 y = -1000 }
+
+	focus = {
+	cancelable = no
+		id = JAP_Nation_Building_Debate
+		icon = GFX_JAP_Nationhood
+		cost = 4.00
+		x = 1
+		y = 0
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Nation_Building_Debate"
+			country_event = twrjapan.23
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Imperial_Debate
+		icon = GFX_JAP_The_Emperor_Debate
+		cost = 8.00
+		relative_position_id = JAP_Nation_Building_Debate
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = JAP_Nation_Building_Debate
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Imperial_Debate"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_An_Offer_Of_Abidication #winds of change
+		icon = GFX_JAP_New_Emperor
+		cost = 8.00
+		relative_position_id = JAP_Nation_Building_Debate
+		x = 1
+		y = 2
+		prerequisite = {
+			focus = JAP_The_Imperial_Debate
+		}
+		mutually_exclusive = {
+			focus = JAP_National_Prop
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_An_Offer_Of_Abidication"
+			custom_effect_tooltip = HIROHITO_ABDICATES
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_A_Constitutional_Monarchy
+		icon = GFX_JAP_Cons_Monarchy
+		cost = 8.00
+		relative_position_id = JAP_An_Offer_Of_Abidication
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = JAP_An_Offer_Of_Abidication
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_A_Constitutional_Monarchy"
+			country_event = twrjapan.25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_National_Prop
+		icon = GFX_JAP_Showa_Stays
+		cost = 8.00
+		relative_position_id = JAP_Nation_Building_Debate
+		x = -1
+		y = 2
+		prerequisite = {
+			focus = JAP_The_Imperial_Debate
+		}
+		mutually_exclusive = {
+			focus = JAP_An_Offer_Of_Abidication
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_National_Prop"
+			custom_effect_tooltip = HIROHITO_STAYS
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Affirm_the_Current_Drafts
+		icon = GFX_GENERIC_Align_Japan
+		cost = 6.00
+		relative_position_id = JAP_National_Prop
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = JAP_National_Prop
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Affirm_the_State_of_Japan"
+			add_war_support = 0.05
+			add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Post_Occupation_Election
+		icon = GFX_GENERIC_Democracy
+		cost = 8.00
+		relative_position_id = JAP_National_Prop
+		x = 1
+		y = 2
+		prerequisite = {
+			focus = JAP_Affirm_the_Current_Drafts
+			focus = JAP_A_Constitutional_Monarchy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Post_Occupation_Election"
+			country_event = twrjapan.15
+		}
+	}
+##POLITICAL TREE START
+	focus = {
+	cancelable = no
+		id = JAP_Jiyuto_Victory
+		icon = GFX_JAP_Liberal_Party_Victory
+		cost = 4.00
+		x = 7
+		y = 0
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_bypass_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Jiyuto_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Resolve_the_Democratic_Crisis
+		icon = GFX_JAP_Democratic_Crisis
+		cost = 4.00
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = JAP_Jiyuto_Victory
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Democratic_Crisis"
+			#add_ideas = JAP_stable_democracy_1
+			country_event = twrjapancrisis.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Right
+		icon = GFX_GENERIC_Liberal_Conservatism
+		cost = 4.00
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = JAP_Resolve_the_Democratic_Crisis
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Right"
+			swap_ideas = {
+				remove_idea = JAP_stable_democracy_1
+				add_idea = JAP_stable_democracy_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Chinese_Expansionism
+		icon = GFX_CHI_New_Life_Movement_Fascist
+		cost = 4.00
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = JAP_Jiyuto_Victory
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Chinese_Expansionism"
+			CHI = {
+				country_event = { id = twrjapan.34 days = 3 }
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Unsinkable_Carrier
+		icon = GFX_focus_jap_zero
+		cost = 4.00
+		x = -2
+		y = 2
+		prerequisite = {
+			focus = JAP_Chinese_Expansionism
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = JAP_The_Unsinkable_Carrier_airbases }
+				add_building_construction = {
+					type = air_base
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Unsinkable_Carrier"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 3
+					instant_build = yes
+				}
+				set_state_flag = JAP_The_Unsinkable_Carrier_airbases
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 3
+					instant_build = yes
+				}
+				set_state_flag = JAP_The_Unsinkable_Carrier_airbases
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Conservative_Doctrine
+		icon = GFX_GENERIC_Conservative
+		cost = 4.00
+		x = -3
+		y = 3
+		prerequisite = {
+			focus = JAP_The_Unsinkable_Carrier
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Conservative_Doctrine"
+			add_popularity = { ideology = conservative popularity = 0.10 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Restraining_the_Yakuza
+		icon = GFX_JAP_Yakuza
+		cost = 4.00
+		x = -3
+		y = 4
+		prerequisite = {
+			focus = JAP_Conservative_Doctrine
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Restraining_the_Yakuza"
+			add_ideas = JAP_yakuza_challenged
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Demonize_the_Left
+		icon = GFX_GENERIC_Anti_Com
+		cost = 4.00
+		x = -1
+		y = 3
+		prerequisite = {
+			focus = JAP_The_Unsinkable_Carrier
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Demonize_the_Left"
+			add_popularity = { ideology = social_democrat popularity = -0.05 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Supporting_Nationalism
+		icon = GFX_JAP_Japan_Nationalism
+		cost = 4.00
+		x = -1
+		y = 4
+		prerequisite = {
+			focus = JAP_Demonize_the_Left
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Supporting_Nationalism"
+			add_popularity = { ideology = fascist popularity = 0.05 }
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_American_Japanese_Security_Alliance
+		icon = GFX_USA_American_Eagle
+		cost = 4.00
+		x = -2
+		y = 5
+		prerequisite = {
+			focus = JAP_Supporting_Nationalism
+		}
+		prerequisite = {
+			focus = JAP_Restraining_the_Yakuza
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_American_Japanese_Security_Alliance"
+			hidden_effect = {
+				diplomatic_relation = {
+					country = USA
+					relation = military_access
+					active = yes
+				}
+			}
+			add_to_tech_sharing_group = JAP_american_japanese_security_treaty_tech_group
+			USA = { add_to_tech_sharing_group = JAP_american_japanese_security_treaty_tech_group }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Join_the_Accord
+		icon = GFX_ENG_USA_atlantic_union
+		cost = 4.00
+		x = -2
+		y = 6
+		prerequisite = {
+			focus = JAP_American_Japanese_Security_Alliance
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+			has_country_leader = {
+			    name = "Yoshida Shigeru"
+			    ruling_only = yes
+			}
+			USA = {
+			has_war = no
+			}
+		}
+		bypass = {
+			is_in_faction_with = USA
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Join_the_Accord"
+			USA = {
+				add_to_faction = ROOT
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Increase_the_American_Investments
+		icon = GFX_USA_capitalism
+		cost = 4.00
+		x = 0
+		y = 6
+		prerequisite = {
+			focus = JAP_American_Japanese_Security_Alliance
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Increase_the_American_Investments"
+			swap_ideas = {
+				remove_idea = JAP_us_jap_investments
+				add_idea = JAP_us_jap_investments_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Basic_Security_Rearm
+		icon = GFX_JAP_NPR
+		cost = 4.00
+		x = -4
+		y = 6
+		prerequisite = {
+			focus = JAP_American_Japanese_Security_Alliance
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Increase_the_American_Investments"
+			add_timed_idea = {
+				idea = JAP_security_rearmament
+				days = 100
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_A_Conservative_Agrarian_Party
+		icon = GFX_GENERIC_green_agriculture
+		cost = 4.00
+		x = 1
+		y = 3
+		prerequisite = {
+			focus = JAP_The_Right
+		}
+		prerequisite = {
+			focus = JAP_Supporting_the_Farmers
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_A_Conservative_Agrarian_Party"
+			add_stability = 0.075
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Developing_The_Farmlands
+		icon = GFX_GENERIC_agricultural_subsidies
+		cost = 4.00
+		x = 1
+		y = 4
+		prerequisite = {
+			focus = JAP_A_Conservative_Agrarian_Party
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = JAP_Developing_The_Farmlands_civ }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Developing_The_Farmlands"
+			random_owned_controlled_state = {
+				limit = {
+					industrial_complex > 0
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = JAP_Developing_The_Farmlands_civ
+			}
+			random_owned_controlled_state = {
+				limit = {
+					industrial_complex > 0
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = JAP_Developing_The_Farmlands_civ
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Big_Market_Strategy
+		icon = GFX_GENERIC_gold_trade
+		cost = 4.00
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = JAP_Jiyuto_Victory
+		}
+		relative_position_id = JAP_Jiyuto_Victory
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Big_Market_Strategy"
+			add_ideas = JAP_market_economics_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Supporting_the_Farmers
+		icon = GFX_VIN_Rice_Farmers
+		cost = 4.00
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = JAP_Big_Market_Strategy
+		}
+		relative_position_id = JAP_Big_Market_Strategy
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Supporting_the_Farmers"
+			add_tech_bonus = {
+				name = JAP_Supporting_the_Farmers
+				bonus = 0.75
+				uses = 1
+				category = industry
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Lobbying_From_the_Tops
+		icon = GFX_GENERIC_elite_party
+		cost = 4.00
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = JAP_Big_Market_Strategy
+		}
+		relative_position_id = JAP_Big_Market_Strategy
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Lobbying_From_the_Tops"
+			swap_ideas = {
+				remove_idea = JAP_market_economics_1
+				add_idea = JAP_market_economics_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Cooperating_With_the_Businesses
+		icon = GFX_GENERIC_corruption_money
+		cost = 4.00
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = JAP_Lobbying_From_the_Tops
+		}
+		relative_position_id = JAP_Big_Market_Strategy
+		available = {
+			has_government = conservative
+			NOT = {
+				has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+			has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Cooperating_With_the_Businesses"
+			swap_ideas = {
+				remove_idea = JAP_market_economics_2
+				add_idea = JAP_market_economics_3
+			}
+		}
+	}
+
+#SOCDEM
+	focus = {
+	cancelable = no
+		id = JAP_Shakaito_Victory
+		icon = GFX_JAP_Social_Democrat
+		cost = 4.00
+		x = 16
+		y = 0
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_bypass_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Shakaito_Victory"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Rightist_Majority
+		icon = GFX_JAP_SocDem_Right
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 1
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_rightist_majority_tt
+				always = no
+			}
+		}
+		prerequisite = {
+			focus = JAP_Shakaito_Victory
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Rightist_Majority"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Partnership_With_Reformist
+		icon = GFX_GENERIC_Social_Liberalism
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = JAP_The_Rightist_Majority
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Working_With_the_Reformist"
+			add_political_power = 75
+			add_popularity = { ideology = social_democrat popularity = 0.08 }
+			add_popularity = { ideology = liberal popularity = 0.08 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Open_Up_to_Asia
+		icon = GFX_JAP_ROC_KOR
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 2
+		y = 3
+		prerequisite = {
+			focus = JAP_Partnership_With_Reformist
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Open_Up_to_Asia"
+			add_opinion_modifier = {
+				target = CHI
+				modifier = JAP_opening_up_relations
+			}
+			CHI = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = JAP_opening_up_relations
+				}
+			}
+			add_opinion_modifier = {
+				target = KOR
+				modifier = JAP_opening_up_relations
+			}
+			KOR = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = JAP_opening_up_relations
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Blessing_From_The_Regent
+		icon = GFX_SPA_monarchists
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 4
+		y = 3
+		prerequisite = {
+			focus = JAP_Partnership_With_Reformist
+		}
+		available = {
+			has_government = social_democrat
+			has_country_flag = emperor_takahito
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Blessing_From_The_Regent"
+			add_political_power = 150
+			add_stability = 0.10
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Leftist_Majority
+		icon = GFX_JAP_SocDem_Left
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = JAP_Shakaito_Victory
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_leftist_majority_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Leftist_Majority"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Cooperate_With_the_Communist
+		icon = GFX_GENERIC_Communist_Discourse
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = -2
+		y = 2
+		prerequisite = {
+			focus = JAP_The_Leftist_Majority
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Cooperate_With_the_Communist"
+			add_political_power = 75
+			add_popularity = { ideology = bolshevik_leninist popularity = 0.04 }
+			add_popularity = { ideology = marxist_leninist popularity = 0.04 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Unionize_The_Workers
+		icon = GFX_SPA_Union
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = -2
+		y = 3
+		prerequisite = {
+			focus = JAP_Cooperate_With_the_Communist
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Unionize_The_Workers"
+			add_ideas = JAP_worker_unions
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Agreements_With_The_Students
+		icon = GFX_JAP_Student
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = JAP_The_Leftist_Majority
+			focus = JAP_The_Rightist_Majority
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Agreements_With_The_Students"
+			add_stability = 0.05
+			remove_ideas = KOR_communist_agitation
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Anti_American_Sentiments
+		icon = GFX_GENERIC_Anti_US
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = JAP_Agreements_With_The_Students
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Anti_American_Sentiments"
+			add_opinion_modifier = {
+				target = USA
+				modifier = JAP_anti_american
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = JAP_anti_american
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Cracking_Down_On_Corruption
+		icon = GFX_GENERIC_Gun_Arrest
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = -1
+		y = 4
+		prerequisite = {
+			focus = JAP_Anti_American_Sentiments
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Cracking_Down_On_Corruption"
+			if = {
+				limit = {
+					NOT = { has_idea = JAP_the_fight_against_crime_1 }
+				}
+				add_ideas = JAP_the_fight_against_crime_1
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = JAP_the_fight_against_crime_1
+					add_idea = JAP_the_fight_against_crime_2
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Reject_Traditional_Politics
+		icon = GFX_GENERIC_loosen_regulations
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = -3
+		y = 4
+		prerequisite = {
+			focus = JAP_Anti_American_Sentiments
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Reject_Traditional_Politics"
+			add_ideas = JAP_democratic_values_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Tough_On_Crime
+		icon = GFX_JAP_Crack_the_Yakuza
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 1
+		y = 4
+		prerequisite = {
+			focus = JAP_Anti_American_Sentiments
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Tough_On_Crime"
+			if = {
+				limit = {
+					NOT = { has_idea = JAP_the_fight_against_crime_1 }
+				}
+				add_ideas = JAP_the_fight_against_crime_1
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = JAP_the_fight_against_crime_1
+					add_idea = JAP_the_fight_against_crime_2
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Expanding_Welfare
+		icon = GFX_USA_expand_welfare
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 3
+		y = 4
+		prerequisite = {
+			focus = JAP_Anti_American_Sentiments
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Expanding_Welfare"
+			add_ideas = JAP_welfare_programs
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Reforming_the_Police_Forces
+		icon = GFX_JAP_Police_Reform
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 0
+		y = 5
+		prerequisite = {
+			focus = JAP_Cracking_Down_On_Corruption
+		}
+		prerequisite = {
+			focus = JAP_Tough_On_Crime
+		}
+		available = {
+			has_government = social_democrat
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Reforming_the_Police_Forces"
+			remove_ideas = JAP_the_fight_against_crime_2
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Defending_Democratic_Values
+		icon = GFX_JAP_Democracy
+		cost = 4.00
+		relative_position_id = JAP_Shakaito_Victory
+		x = 0
+		y = 6
+		prerequisite = {
+			focus = JAP_Reforming_the_Police_Forces
+		}
+		available = {
+			has_government = social_democrat
+			has_completed_focus = JAP_Reject_Traditional_Politics
+			has_completed_focus = JAP_Expanding_Welfare
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Defending_Democratic_Values"
+			swap_ideas = {
+				remove_idea = JAP_democratic_values_1
+				add_idea = JAP_democratic_values_2
+			}
+		}
+	}
+##End of Election
+	focus = {
+	cancelable = no
+		id = JAP_Liberal_Democratic_Formed
+		icon = GFX_JAP_Liberal_Dem
+		cost = 8.00
+		x = 29
+		y = 0
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_bypass_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Liberal_Democratic_Formed"
+			unlock_decision_category_tooltip = JAP_LDP_leadership_vote_decisions
+			custom_effect_tooltip = LDP_PATH_NOT_COMPLETED
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Prime_Minister_Unknown
+		icon = GFX_JAP_PM_Random
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = JAP_Liberal_Democratic_Formed
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_nobody_picked_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Prime_Minister_Unknown"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_First_LDP_Breakdown
+		icon = GFX_JAP_First_LDP_Crisis
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = JAP_Prime_Minister_Unknown
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_First_LDP_Breakdown"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Second_LDP_Breakdown
+		icon = GFX_JAP_Second_LDP_Crisis
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = JAP_First_LDP_Breakdown
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Second_LDP_Breakdown"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Third_LDP_Breakdown
+		icon = GFX_JAP_Third_LDP_Crisis
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 0
+		y = 4
+		prerequisite = {
+			focus = JAP_Second_LDP_Breakdown
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Third_LDP_Breakdown"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Final_Breakdown
+		icon = GFX_JAP_JAP_The_Final_Straw
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 0
+		y = 5
+		prerequisite = {
+			focus = JAP_Third_LDP_Breakdown
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Final_Breakdown"
+			custom_effect_tooltip = JAP_an_is_no_more_tt
+			hidden_effect = {
+				country_event = { id = twrjapan.18 days = 4 }
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Prime_Minister_Hatoyama
+		icon = GFX_JAP_LDP_First_Choice
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = JAP_Liberal_Democratic_Formed
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_hatoyama_picked_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Prime_Minister_Hatoyama"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Founding_Doctrine
+		icon = GFX_GENERIC_Red_Thick_Book
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -2
+		y = 2
+		prerequisite = {
+			focus = JAP_Prime_Minister_Hatoyama
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Founding_Doctrine"
+			unlock_decision_category_tooltip = JAP_hatoyama_doctrine_decisions
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Pro_American_Independence
+		icon = GFX_JAP_American_Brotherhood
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -4
+		y = 3
+		prerequisite = {
+			focus = JAP_The_Founding_Doctrine
+			focus = JAP_Facing_Our_Criminal_Past
+			focus = JAP_Never_Another_Jingo
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Pro_American_Independence"
+			USA = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = pro_us_policy
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Forming_the_JSDF
+		icon = GFX_JAP_Form_JSDF
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -5
+		y = 4
+		prerequisite = {
+			focus = JAP_Pro_American_Independence
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Forming_the_JSDF"
+			add_timed_idea = {
+				idea = JAP_forming_the_JSDF
+				days = 150
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Benefits_Of_Status_Quo
+		icon = GFX_goal_generic_neutrality_focus
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -3
+		y = 4
+		prerequisite = {
+			focus = JAP_Pro_American_Independence
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Benefits_Of_Status_Quo"
+			add_stability = 0.05
+			add_political_power = 25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Foundation_Of_Stability
+		icon = GFX_focus_jap_pacific_guardian
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -4
+		y = 5
+		prerequisite = {
+			focus = JAP_Benefits_Of_Status_Quo
+			focus = JAP_Forming_the_JSDF
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Foundation_Of_Stability"
+			add_popularity = { ideology = conservative popularity = 0.05 }
+			add_ideas = JAP_secure_politics
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Prime_Minister_Kishi
+		icon = GFX_JAP_PM_Kishi
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 4
+		y = 1
+		prerequisite = {
+			focus = JAP_Liberal_Democratic_Formed
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_kishi_picked_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Prime_Minister_Kishi"
+			news_event = twrjapan.67
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Washington_Support
+		icon = GFX_GENERIC_USA_Diplomat
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 4
+		y = 3
+		prerequisite = {
+			focus = JAP_Prime_Minister_Kishi
+		}
+		prerequisite = {
+			focus = JAP_State_Controlled_Corruption			
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Washington_Support"
+			USA = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = pro_us_policy
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Entrenched_Party #Partnered With Crime
+		icon = GFX_GENERIC_Crime_Heads
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 4
+		y = 4
+		prerequisite = {
+			focus = JAP_Washington_Support
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Entrenched_Party"
+			add_popularity = { ideology = conservative popularity = 0.05 }
+			swap_ideas = {
+				remove_idea = JAP_state_controlled_corruption_idea
+				add_idea = JAP_partnering_with_crime_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_A_Snap_Election
+		icon = GFX_GENERIC_Democracy
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 4
+		y = 5
+		prerequisite = {
+			focus = JAP_Entrenched_Party
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_A_Snap_Election"
+			country_event = twrjapan.33
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Unquestioned_Leadership
+		icon = GFX_JAP_Leadership
+		cost = 4.00
+		relative_position_id = JAP_A_Snap_Election
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = JAP_A_Snap_Election
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_kishi_wins_snap_elections_tt
+				has_country_flag = JAP_kishi_wins_snap_elections
+			}
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Unquestioned_Leadership"
+			add_political_power = 100
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Operation_Kingumeka
+		icon = GFX_GENERIC_Purge_Paper
+		cost = 4.00
+		relative_position_id = JAP_A_Snap_Election
+		x = 1
+		y = 2
+		prerequisite = {
+			focus = JAP_Unquestioned_Leadership
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Operation_Kingumeka"
+			add_stability = -0.10
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Arrest_and_Execute
+		icon = GFX_GENERIC_Gun_Purge
+		cost = 4.00
+		relative_position_id = JAP_A_Snap_Election
+		x = 1
+		y = 3
+		prerequisite = {
+			focus = JAP_Operation_Kingumeka
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Arrest_and_Execute"
+			swap_ideas = {
+				remove_idea = JAP_partnering_with_crime_1
+				add_idea = JAP_partnering_with_crime_2
+			}
+			add_timed_idea = {
+				idea = JAP_purged_opponents
+				days = 140
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Ban_the_Communist
+		icon = GFX_GENERIC_Communist_Congress_TWO
+		cost = 4.00
+		relative_position_id = JAP_A_Snap_Election
+		x = -1
+		y = 2
+		prerequisite = {
+			focus = JAP_Unquestioned_Leadership
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Ban_the_Communist"
+			add_popularity = { ideology = bolshevik_leninist popularity = -1 }
+			add_popularity = { ideology = marxist_leninist popularity = -1 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Ban_the_SocDem
+		icon = GFX_GENERIC_Purge_SocDem
+		cost = 4.00
+		relative_position_id = JAP_A_Snap_Election
+		x = -1
+		y = 3
+		prerequisite = {
+			focus = JAP_Ban_the_Communist
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Ban_the_SocDem"
+			add_popularity = { ideology = socialist popularity = -1 }
+			add_popularity = { ideology = social_democrat popularity = -1 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_One_Party_Democracy
+		icon = GFX_JAP_Forge_Our_Own_Kishi
+		cost = 4.00
+		relative_position_id = JAP_A_Snap_Election
+		x = 0
+		y = 4
+		prerequisite = {
+			focus = JAP_Ban_the_SocDem
+		}
+		prerequisite = {
+			focus = JAP_Arrest_and_Execute
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_One_Party_Democracy"
+			set_party_name = {
+				ideology = paternal_autocrat 
+				long_name = JAP_LDP_long
+				name = JAP_LDP
+			}
+			set_politics = { ruling_party = paternal_autocrat }
+			add_popularity = { ideology = paternal_autocrat popularity = 0.50 }
+			add_ideas = facade_democracy
+			hidden_effect = {
+				create_country_leader = {
+					name = "Nobusuke Kishi"
+					desc = ""
+					picture = "Nobusuke_Kishi.dds"
+					expire = "1965.1.1"
+					ideology = authoritarian_democracy
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Prime_Minister_Ishibashi
+		icon = GFX_JAP_PM_Ishibashi
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -4
+		y = 1
+		prerequisite = {
+			focus = JAP_Liberal_Democratic_Formed
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_ishibashi_picked_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Prime_Minister_Ishibashi"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Facing_Our_Criminal_Past
+		icon = GFX_JAP_A_Victim
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -4
+		y = 2
+		prerequisite = {
+			focus = JAP_Prime_Minister_Ishibashi
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Facing_Our_Criminal_Past"
+			country_event = twrjapan.27
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Prime_Minister_Ikeda
+		icon = GFX_JAP_PM_Ikeda
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -6
+		y = 1
+		prerequisite = {
+			focus = JAP_Liberal_Democratic_Formed
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_ikeda_picked_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Prime_Minister_Ikeda"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Never_Another_Jingo
+		icon = GFX_JAP_Dismembered_Japan
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = -6
+		y = 2
+		prerequisite = {
+			focus = JAP_Prime_Minister_Ikeda
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Never_Another_Jingo"
+			set_war_support = 0.20
+			add_ideas = JAP_never_again_idea
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Prime_Minister_Yoshida
+		icon = GFX_JAP_PM_Yoshida
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = JAP_Liberal_Democratic_Formed
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_yoshida_picked_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Prime_Minister_Yoshida"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Speak_Softly
+		icon = GFX_GENERIC_Shady_Deal
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = JAP_Prime_Minister_Yoshida
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Speak_Softly"
+			USA = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = pro_us_policy
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Uphold_Demilitarization
+		icon = GFX_GENERIC_Dove_of_Peace
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 2
+		y = 3
+		prerequisite = {
+			focus = JAP_Speak_Softly
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Uphold_Demilitarization"
+			add_stability = 0.15
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Glow_Under_Americas_Shadow
+		icon = GFX_USA_coalition
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 2
+		y = 4
+		prerequisite = {
+			focus = JAP_Uphold_Demilitarization
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Glow_Under_Americas_Shadow"
+			swap_ideas = {
+				remove_idea = JAP_us_jap_investments
+				add_idea = JAP_us_jap_investments_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Prime_Minister_Ichimada
+		icon = GFX_JAP_PM_Ichimada
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 6
+		y = 1
+		prerequisite = {
+			focus = JAP_Liberal_Democratic_Formed
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_ichimada_picked_tt
+				always = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Prime_Minister_Ichimada"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_State_Controlled_Corruption
+		icon = GFX_GENERIC_Slush_Cash
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 5
+		y = 2
+		prerequisite = {
+			focus = JAP_Prime_Minister_Ichimada
+			focus = JAP_Prime_Minister_Kishi
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_State_Controlled_Corruption"
+			add_political_power = 25
+			add_ideas = JAP_state_controlled_corruption_idea
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Banks_On_His_Back
+		icon = GFX_CHI_Bank
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 6
+		y = 3
+		prerequisite = {
+			focus = JAP_Prime_Minister_Ichimada
+		}
+		prerequisite = {
+			focus = JAP_State_Controlled_Corruption			
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Banks_On_His_Back"
+			swap_ideas = {
+				remove_idea = JAP_state_controlled_corruption_idea
+				add_idea = JAP_banks_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Gatekeeper_of_Wealth
+		icon = GFX_GENERIC_Pile_of_Money
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 6
+		y = 4
+		prerequisite = {
+			focus = JAP_The_Banks_On_His_Back			
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Gatekeeper_of_Wealth"
+			swap_ideas = {
+				remove_idea = JAP_banks_1
+				add_idea = JAP_banks_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_An_Outspoken_Economist
+		icon = GFX_ITA_Privatising_the_Banks
+		cost = 4.00
+		relative_position_id = JAP_Liberal_Democratic_Formed
+		x = 6
+		y = 5
+		prerequisite = {
+			focus = JAP_Gatekeeper_of_Wealth			
+		}
+		available = {
+			has_government = conservative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_An_Outspoken_Economist"
+			swap_ideas = {
+				remove_idea = JAP_banks_2
+				add_idea = JAP_banks_3
+			}
+		}
+	}
+#POLICE COUP
+	focus = {
+	cancelable = no
+		id = JAP_The_Police_Coup
+		icon = GFX_GENERIC_mobilize_police
+		cost = 8.00
+		x = 42
+		y = 0
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Police_Coup"
+			add_ideas = authoritarian_system
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Second_Showa_Restoration #SI
+		icon = GFX_focus_jap_showa_restoration
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_The_Police_Coup
+		}
+		mutually_exclusive = {
+			focus = JAP_Revisionist_Visions
+			focus = JAP_Police_Dictatorship
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -3
+		y = 1
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_JAP_POLICE
+					has_global_flag = COUNTRY_PATH_JAP_FASCIST
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Second_Showa_Restoration"
+			add_ideas = fanatical_dictatorship
+			news_event = twrjapan.84
+			set_party_name = { 
+			    ideology = paternal_autocrat 
+			    long_name = "Yamato Dynasty" 
+			    name = "Imperial House" 
+			}		
+			retire_country_leader = yes
+			create_country_leader = {
+			name = "Hirohito"
+			picture = "gfx/leaders/JAP/Emperor_Hirohito.dds"
+			expire = "2000.1.1"
+			ideology = monarchism 
+			traits = {
+				#
+				}
+			}
+			hidden_effect = {
+			clr_country_flag = has_symbolic_figurehead
+			clr_country_flag = mon_Hirohito
+			clr_country_flag = emperor_takahito
+			remove_ideas = {
+			hos_popular_figurehead
+			hos_mediocre
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Destroy_Radicalism
+		icon = GFX_GENERIC_government_supression
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Second_Showa_Restoration
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -4
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Destroy_Radicalism"
+			add_popularity = { ideology = fascist popularity = -0.05 }
+			remove_ideas = KOR_communist_agitation
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Days_Of_Our_Empire
+		icon = GFX_focus_jap_strike_south
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Destroy_Radicalism
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -4
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Days_Of_Our_Empire"
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Sun_Rises #SI
+		icon = GFX_JAP_memory_of_the_invasion
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_The_Days_Of_Our_Empire
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -4
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Sun_Rises"
+			add_ideas = JAP_sun_rises_again
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Mobilize_The_Imperial_Guards #SI
+		icon = GFX_JAP_toseiha
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Second_Showa_Restoration
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -2
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Mobilize_The_Imperial_Guards"
+			add_manpower = 30000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Protection_Movement #SI
+		icon = GFX_GENERIC_Stamp_Christain
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Mobilize_The_Imperial_Guards
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -2
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Protection_Movement"
+			add_ideas = JAP_cultural_isolation
+			remove_ideas = {
+			JAP_us_jap_investments
+			JAP_saocas
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Revisionist_Visions
+		icon = GFX_JAP_Glory
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_The_Police_Coup
+		}
+		mutually_exclusive = {
+			focus = JAP_Second_Showa_Restoration
+			focus = JAP_Police_Dictatorship
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_JAP_POLICE
+					has_global_flag = COUNTRY_PATH_JAP_EMPIRE
+				}
+			}
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Revisionist_Visions"
+			add_ideas = dictatorship
+			set_politics = {
+			ruling_party = fascist
+			}
+			add_popularity = {
+    		ideology = fascist
+    		popularity = 0.3
+			}
+			news_event = twrjapan.85
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Nationalism_First
+		icon = GFX_focus_attack_japan
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Revisionist_Visions
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 0
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Nationalism_First"
+			add_popularity = {
+			    ideology = fascist
+			    popularity = 0.1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Japan_Backstabbed
+		icon = GFX_JAP_Imperialism
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Nationalism_First
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 0
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Japan_Backstabbed"
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Emergency_Drafting #SI
+		icon = GFX_GENERIC_death_barrel
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Japan_Backstabbed
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -1
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Emergency_Drafting"
+			add_timed_idea = {
+				idea = JAP_emergency_draft
+				days = 70
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Blame_The_Minorities
+		icon = GFX_GENERIC_imprison_opposition
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Japan_Backstabbed
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 1
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Blame_The_Minorities"
+			add_stability = -0.05
+			add_popularity = { ideology = fascist popularity = 0.05 }
+			add_timed_idea = {
+				idea = JAP_political_boost
+				days = 100
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Police_Dictatorship
+		icon = GFX_SOV_duumvirist_senate
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_The_Police_Coup
+		}
+		mutually_exclusive = {
+			focus = JAP_Second_Showa_Restoration
+			focus = JAP_Revisionist_Visions
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_JAP_EMPIRE
+					has_global_flag = COUNTRY_PATH_JAP_FASCIST
+				}
+			}
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 3
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Police_Dictatorship"
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_CIA_Fundings
+		icon = GFX_USA_CIA
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Revisionist_Visions
+			focus = JAP_Police_Dictatorship
+		}
+		available = {
+			NOT = {
+				has_completed_focus = JAP_Alone_With_Pride
+			}
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 2
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_CIA_Fundings"
+			country_event = twrjapan.72
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Crackdown_On_Students
+		icon = GFX_KOR_destroy_opposition
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_CIA_Fundings
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 2
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Crackdown_On_Students"
+			add_stability = 0.15
+			add_manpower = -500
+			remove_ideas = KOR_communist_agitation
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Law_And_Order
+		icon = GFX_FIN_law_and_faith
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Police_Dictatorship
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 4
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Law_And_Order"
+			add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Authority_Laws #SI
+		icon = GFX_SOV_gulag_labour
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Law_And_Order
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 4
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Authority_Laws"
+
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Badge #SI
+		icon = GFX_JAP_The_Badge
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Authority_Laws
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 4
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Badge"
+			add_ideas = JAP_police_control
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Treaties_With_USA
+		icon = GFX_focus_chi_mission_to_the_us
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_The_Badge
+			focus = JAP_Emergency_Drafting
+		}
+		mutually_exclusive = {
+			focus = JAP_Alone_With_Pride
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 1
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Treaties_With_USA"
+			add_opinion_modifier = { target = USA modifier = medium_increase }
+			USA = { 
+				add_opinion_modifier = { target = JAP modifier = medium_increase }
+				country_event = twrjapan.76
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Japanese_State
+		icon = GFX_focus_jap_pacific_guardian
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Treaties_With_USA
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 2
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Japanese_State"
+			add_ideas = JAP_stable_state
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Alone_With_Pride
+		icon = GFX_focus_AST_war_japan
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Sun_Rises
+			focus = JAP_Emergency_Drafting
+			focus = JAP_The_Badge
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAP_CIA_support
+			}
+		}
+		mutually_exclusive = {
+			focus = JAP_Treaties_With_USA
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -1
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Alone_With_Pride"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Japan_Greatness
+		icon = GFX_focus_generic_japanese_imperial_glory
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Alone_With_Pride
+		}
+		mutually_exclusive = {
+			focus = JAP_Isolation_Forever
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 0
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Japan_Greatness"
+			add_political_power = 100
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Isolation_Forever
+		icon = GFX_GENERIC_Isolated_Island
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Alone_With_Pride
+		}
+		mutually_exclusive = {
+			focus = JAP_Japan_Greatness
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = -2
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Isolation_Forever"
+			add_ideas = JAP_deep_isolation
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Start_Of_Rearming
+		icon = GFX_focus_secret_rearmament
+		cost = 8.00
+		prerequisite = {
+			focus = JAP_Japan_Greatness
+		}
+		relative_position_id = JAP_The_Police_Coup
+		x = 0
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Start_Of_Rearming"
+			remove_ideas = JAP_total_military_restriction
+			add_timed_idea = {
+				idea = JAP_rearming_beginning
+				days = 300
+			}
+		}
+	}
+#POLICE COUP
+
+#ECONOMY#
+	focus = {
+	cancelable = no
+		id = JAP_Post_War_Economic_Development
+		icon = GFX_GENERIC_Human_Cogs
+		cost = 8.00
+		x = 52
+		y = 0
+		available = {
+		OR = {
+		has_country_flag = DEMOCRATIC_CRISIS_RESOLVED
+		has_completed_focus = JAP_Shakaito_Victory
+		has_completed_focus = JAP_The_Police_Coup
+		has_completed_focus = JAP_Liberal_Democratic_Formed
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Post_War_Economic_Development"
+			add_ideas = JAP_industrial_recovery
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Utilizing_Foreign_Aid
+		icon = GFX_focus_generic_concessions
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 0
+		y = 1
+		prerequisite = { focus = JAP_Post_War_Economic_Development }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Utilizing_Foreign_Aid"
+			add_timed_idea = {
+				idea = JAP_occupation_compensation
+				days = 100
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Purchasing_Tech
+		icon = GFX_GENERIC_Research_Buff
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 0
+		y = 2
+		prerequisite = { focus = JAP_Utilizing_Foreign_Aid }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Purchasing_Tech"
+			add_timed_idea = {
+				idea = JAP_tech_boost
+				days = 100
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Attract_Oversea_Corporations
+		icon = GFX_GENERIC_Cash_and_Carry
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 2
+		y = 3
+		prerequisite = { focus = JAP_Purchasing_Tech }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Attract_Oversea_Corporations"
+			add_ideas = JAP_trade_relations
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Retrofit_the_War_Economy
+		icon = GFX_GENERIC_arms_industry
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 2
+		y = 4
+		prerequisite = { focus = JAP_Attract_Oversea_Corporations }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Retrofit_the_War_Economy"
+			add_resource = {
+				type = aluminium
+				amount = 20
+				state = 532
+			}
+
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Global_Contractor
+		icon = GFX_GENERIC_Topke
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 1
+		y = 5
+		prerequisite = { focus = JAP_Retrofit_the_War_Economy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Global_Contractor"
+			unlock_decision_tooltip = JAP_the_free_market
+			every_country = {
+				limit = {
+					NOT = { tag = JAP }
+				}
+				activate_targeted_decision = {
+					target = JAP
+					decision = buy_convoys
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Japanese_Dockyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 1
+		y = 6
+		prerequisite = { focus = JAP_The_Global_Contractor }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Global_Contractor"
+			880 = {
+				add_building_construction = {
+					type = dockyard
+					level = 5
+					instant_build = yes
+				}
+			}			
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_New_Power_Grid
+		icon = GFX_GENERIC_Power_Plant
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 9.00
+		x = 3
+		y = 5
+		prerequisite = { focus = JAP_Retrofit_the_War_Economy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_New_Power_Grid"
+			add_stability = -0.05
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}			
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Starting_The_Oil_Industry
+		icon = GFX_GENERIC_Oil_Production
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 10.00
+		x = 3
+		y = 6
+		prerequisite = { focus = JAP_The_New_Power_Grid }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Starting_The_Oil_Industry"
+			882 = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2				
+			}
+			add_resource = {
+				type = oil
+				amount = 10
+				state = 882
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Restarting_Our_Heavy_Industry
+		icon = GFX_GENERIC_Factory_Complex
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 2
+		y = 7
+		prerequisite = { focus = JAP_Starting_The_Oil_Industry }
+		prerequisite = { focus = JAP_Japanese_Dockyards }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Restarting_Our_Heavy_Industry"
+			add_timed_idea = {
+				idea = JAP_industrial_boom
+				days = 100
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Japanese_Steelworks
+		icon = GFX_focus_generic_steel
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 3
+		y = 8
+		prerequisite = { focus = JAP_Restarting_Our_Heavy_Industry }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Japanese_Steelworks"
+			add_resource = {
+				type = steel
+				amount = 15
+				state = 536 #Hokkaido
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Developing_the_Automobile_Industry
+		icon = GFX_JAP_Automobile
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 3
+		y = 9
+		prerequisite = { focus = JAP_Japanese_Steelworks }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Developing_the_Automobile_Industry"
+			random_owned_controlled_state = {
+				prioritize = { 532 } # Nagoya
+				limit = {
+					free_building_slots = { 
+						building = industrial_complex 
+						size > 0 
+						include_locked = yes 
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = JAP_Developing_the_Automobile_Industry
+				bonus = 0.75
+				uses = 1
+				category = motorized_equipment
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Consumer_Manufacturers
+		icon = GFX_goal_generic_consumer_goods
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 5
+		y = 8
+		prerequisite = { focus = JAP_Restarting_Our_Heavy_Industry }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Consumer_Manufacturers"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = { 
+						building = industrial_complex 
+						size > 0 
+						include_locked = yes 
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = { 
+						building = industrial_complex 
+						size > 0 
+						include_locked = yes 
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Producing_Electronics
+		icon = GFX_JAP_Electronics
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 5
+		y = 9
+		prerequisite = { focus = JAP_Consumer_Manufacturers }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Producing_Electronics"
+			add_tech_bonus = {
+				name = JAP_Producing_Electronics
+				bonus = 1.0
+				uses = 2
+				category = computing_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Three_Artifacts
+		icon = GFX_JAP_Three_Machines
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 1
+		y = 8
+		prerequisite = { focus = JAP_Restarting_Our_Heavy_Industry }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Three_Artifacts"
+			add_timed_idea = {
+				idea = JAP_three_artifacts_idea
+				days = 150
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Middle_Class
+		icon = GFX_USA_family
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 1
+		y = 9
+		prerequisite = { focus = JAP_Three_Artifacts }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Middle_Class"
+			add_stability = 0.05
+			remove_ideas = JAP_supplies_issues
+			remove_ideas = JAP_eased_supplies_issues
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Academic_Boom
+		icon = GFX_POR_Education_Reform
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -1
+		y = 8
+		prerequisite = { focus = JAP_Restarting_Our_Heavy_Industry }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Academic_Boom"
+			add_ideas = JAP_science_boom_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Scientific_Efforts
+		icon = GFX_GENERIC_Education
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -1
+		y = 9
+		prerequisite = { focus = JAP_Academic_Boom }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Scientific_Efforts"
+			swap_ideas = {
+				remove_idea = JAP_science_boom_1
+				add_idea = JAP_science_boom_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Japanese_Boom
+		icon = GFX_GENERIC_Gold_Growth
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = 2
+		y = 10
+		prerequisite = { focus = JAP_The_Middle_Class }
+		prerequisite = { focus = JAP_Scientific_Efforts }
+		prerequisite = { focus = JAP_Producing_Electronics }
+		prerequisite = { focus = JAP_Developing_the_Automobile_Industry }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Japanese_Boom"
+			swap_ideas = {
+				remove_idea = JAP_industrial_recovery
+				add_idea = JAP_economic_miracle
+			}
+			add_ideas = industrialised_nation
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Last_Frontier
+		icon = GFX_JAP_Final_Frontier
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -2
+		y = 3
+		prerequisite = { focus = JAP_Purchasing_Tech }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Last_Frontier"
+			add_ideas = JAP_hokkaido_development_costs
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Sapporo_Development
+		icon = GFX_GENERIC_urbanization1
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -3
+		y = 4
+		prerequisite = { focus = JAP_The_Last_Frontier }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Sapporo_Development"
+			536 = {
+				add_extra_state_shared_building_slots = 2				
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Improve_Hokkaidos_Infrastructure
+		icon = GFX_GENERIC_highway
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -3
+		y = 5
+		prerequisite = { focus = JAP_Sapporo_Development }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Improve_Hokkaidos_Infrastructure"
+			if = {
+				limit = {
+					536 = {
+						free_building_slots = { 
+							building = infrastructure 
+							size > 1 
+						}
+					}
+				}
+				536 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}		
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Agri_Industry
+		icon = GFX_GENERIC_cow
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -1
+		y = 4
+		prerequisite = { focus = JAP_The_Last_Frontier }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Agri_Industry"
+			add_ideas = JAP_hokkaido_farms_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Commercial_Produce
+		icon = GFX_GENERIC_Strong_Farming
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -1
+		y = 5
+		prerequisite = { focus = JAP_The_Agri_Industry }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Commercial_Produce"
+			swap_ideas = {
+				remove_idea = JAP_hokkaido_farms_1
+				add_idea = JAP_hokkaido_farms_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_The_Shining_Island
+		icon = GFX_JAP_Shiny_Island
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -2
+		y = 6
+		prerequisite = { focus = JAP_Commercial_Produce }
+		prerequisite = { focus = JAP_Improve_Hokkaidos_Infrastructure }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_The_Shining_Island"
+			remove_ideas = JAP_hokkaido_development_costs
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Northern_Economic_Development
+		icon = GFX_JAP_Northern_Japan
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -3
+		y = 7
+		prerequisite = { focus = JAP_The_Shining_Island }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Northern_Economic_Development"
+			custom_effect_tooltip = JAP_unlock_north_development_decisions_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = JAP_Southern_Economic_Development
+		icon = GFX_JAP_Southern_Japan
+		relative_position_id = JAP_Post_War_Economic_Development
+		cost = 8.00
+		x = -1
+		y = 7
+		prerequisite = { focus = JAP_The_Shining_Island }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_Southern_Economic_Development"
+			custom_effect_tooltip = JAP_unlock_south_development_decisions_tt
+		}
+	}
+}
+#END OF INDUSTRIAL

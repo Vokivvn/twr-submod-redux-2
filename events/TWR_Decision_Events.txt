@@ -1,0 +1,706 @@
+﻿#########################################################################
+# TWR Events : Decisions
+#########################################################################
+add_namespace = twrdecevents
+
+country_event = { #FROM looks to buy old tanks
+	id = twrdecevents.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.1"}
+	title = twrdecevents.1.t
+	desc = twrdecevents.1.d
+	picture = GFX_report_event_industry
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrdecevents.1.a #sell them a lot
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				num_of_factories > 80
+			}
+			modifier = {
+				factor = 2
+				stockpile_ratio = {
+					archetype = light_tank_equipment
+					ratio > 0.4
+				}
+			}
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = light_tank_equipment
+					ratio < 0.05
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.2 days = 5 }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = arms_deal
+			}
+		}
+		effect_tooltip = {
+			send_equipment = {
+				equipment = light_tank_equipment
+				amount = 200
+				target = FROM
+			}
+		}
+		add_political_power = 25
+		add_timed_idea = {
+			idea = arms_cash_in
+			days = 210
+		}
+	}
+	option = {
+		name = twrdecevents.1.b #sell them some
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 0.3
+				stockpile_ratio = {
+					archetype = light_tank_equipment
+					ratio < 0.3
+				}
+			}
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = light_tank_equipment
+					ratio < 0.05
+				}
+			}
+			modifier = {
+				factor = 1.5
+				stockpile_ratio = {
+					archetype = light_tank_equipment
+					ratio > 0.3
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.3 days = 5 }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = arms_deal
+			}
+		}
+		effect_tooltip = {
+			send_equipment = {
+				equipment = light_tank_equipment
+				amount = 100
+				target = FROM
+			}
+		}
+		add_political_power = 25
+		add_timed_idea = {
+			idea = arms_cash_in
+			days = 90
+		}
+	}
+	option = {
+		name = twrdecevents.1.c #we wont sell
+		ai_chance = {
+			factor = 30
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = light_tank_equipment
+					ratio > 0.5
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.4 days = 2 }
+		}
+	}
+}
+country_event = { #FROM sells lots of tanks
+	id = twrdecevents.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.2"}
+	title = twrdecevents.2.t
+	desc = twrdecevents.2.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.2.a
+		FROM = {
+			send_equipment = {
+				equipment = light_tank_equipment
+				amount = 200
+				target = PREV
+			}
+		}
+		add_timed_idea = {
+			idea = arms_payment
+			days = 210
+		}
+	}
+}
+country_event = { #FROM sells some tanks
+	id = twrdecevents.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.3"}
+	title = twrdecevents.3.t
+	desc = twrdecevents.3.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.3.a
+		FROM = {
+			send_equipment = {
+				equipment = light_tank_equipment
+				amount = 100
+				target = PREV
+			}
+			
+		}
+		add_timed_idea = {
+			idea = arms_payment
+			days = 90
+		}
+	}
+}
+country_event = { #FROM sells nothing
+	id = twrdecevents.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.4"}
+	title = twrdecevents.4.t
+	desc = twrdecevents.4.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.4.a
+		add_political_power = -5
+	}
+}
+country_event = { #FROM looks to buy motorized
+	id = twrdecevents.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.5"}
+	title = twrdecevents.5.t
+	desc = twrdecevents.5.d
+	picture = GFX_report_event_industry
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrdecevents.5.a #sell them a lot
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				num_of_factories > 60
+			}
+			modifier = {
+				factor = 2
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.4
+				}
+			}
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio < 0.05
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.6 days = 5 }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = arms_deal
+			}
+		}
+		effect_tooltip = {
+			send_equipment = {
+				equipment = motorized_equipment
+				amount = 300
+				target = FROM
+			}
+		}
+		add_political_power = 25
+		add_timed_idea = {
+			idea = arms_cash_in
+			days = 210
+		}
+	}
+	option = {
+		name = twrdecevents.5.b #sell them some
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 0.3
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio < 0.3
+				}
+			}
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio < 0.05
+				}
+			}
+			modifier = {
+				factor = 1.5
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.3
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.7 days = 5 }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = arms_deal
+			}
+		}
+		effect_tooltip = {
+			send_equipment = {
+				equipment = motorized_equipment
+				amount = 150
+				target = FROM
+			}
+		}
+		add_political_power = 25
+		add_timed_idea = {
+			idea = arms_cash_in
+			days = 90
+		}
+	}
+	option = {
+		name = twrdecevents.5.c #we wont sell
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.5
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.4 days = 2 }
+		}
+	}
+}
+country_event = { #FROM sells lots of cars
+	id = twrdecevents.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.6"}
+	title = twrdecevents.6.t
+	desc = twrdecevents.6.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.6.a
+		FROM = {
+			send_equipment = {
+				equipment = motorized_equipment
+				amount = 300
+				target = PREV
+			}
+		}
+		add_timed_idea = {
+			idea = arms_payment
+			days = 210
+		}
+	}
+}
+country_event = { #FROM sells some cars
+	id = twrdecevents.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.7"}
+	title = twrdecevents.7.t
+	desc = twrdecevents.7.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.7.a
+		FROM = {
+			send_equipment = {
+				equipment = motorized_equipment
+				amount = 150
+				target = PREV
+			}
+			
+		}
+		add_timed_idea = {
+			idea = arms_payment
+			days = 90
+		}
+	}
+}
+country_event = { #FROM looks to buy gunns
+	id = twrdecevents.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.8"}
+	title = twrdecevents.8.t
+	desc = twrdecevents.8.d
+	picture = GFX_report_event_industry
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrdecevents.8.a #sell them a lot
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				num_of_factories > 60
+			}
+			modifier = {
+				factor = 2
+				stockpile_ratio = {
+					archetype = artillery_equipment
+					ratio > 0.4
+				}
+			}
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = artillery_equipment
+					ratio < 0.05
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.9 days = 5 }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = arms_deal
+			}
+		}
+		effect_tooltip = {
+			send_equipment = {
+				equipment = artillery_equipment
+				amount = 280
+				target = FROM
+			}
+		}
+		add_political_power = 25
+		add_timed_idea = {
+			idea = arms_cash_in
+			days = 210
+		}
+	}
+	option = {
+		name = twrdecevents.8.b #sell them some
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 0.3
+				stockpile_ratio = {
+					archetype = artillery_equipment
+					ratio < 0.3
+				}
+			}
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = artillery_equipment
+					ratio < 0.05
+				}
+			}
+			modifier = {
+				factor = 1.5
+				stockpile_ratio = {
+					archetype = artillery_equipment
+					ratio > 0.3
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.10 days = 5 }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = arms_deal
+			}
+		}
+		effect_tooltip = {
+			send_equipment = {
+				equipment = artillery_equipment
+				amount = 140
+				target = FROM
+			}
+		}
+		add_political_power = 25
+		add_timed_idea = {
+			idea = arms_cash_in
+			days = 90
+		}
+	}
+	option = {
+		name = twrdecevents.8.c #we wont sell
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = artillery_equipment
+					ratio > 0.5
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.4 days = 2 }
+		}
+	}
+}
+country_event = { #FROM sells lots of gunns
+	id = twrdecevents.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.9"}
+	title = twrdecevents.9.t
+	desc = twrdecevents.9.d
+	picture = GFX_report_event_british_artillery
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.9.a
+		FROM = {
+			send_equipment = {
+				equipment = artillery_equipment
+				amount = 280
+				target = PREV
+			}
+		}
+		add_timed_idea = {
+			idea = arms_payment
+			days = 210
+		}
+	}
+}
+country_event = { #FROM sells some gunns
+	id = twrdecevents.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.10"}
+	title = twrdecevents.10.t
+	desc = twrdecevents.10.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.10.a
+		FROM = {
+			send_equipment = {
+				equipment = artillery_equipment
+				amount = 140
+				target = PREV
+			}
+			
+		}
+		add_timed_idea = {
+			idea = arms_payment
+			days = 90
+		}
+	}
+}
+country_event = { #FROM looks to buy fighters
+	id = twrdecevents.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.11"}
+	title = twrdecevents.11.t
+	desc = twrdecevents.11.d
+	picture = GFX_report_event_industry
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrdecevents.11.a #sell them
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 2
+				num_of_factories > 60
+			}
+			modifier = {
+				factor = 0.1
+				has_deployed_air_force_size = {
+					size < 150
+					type = fighter
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.12 days = 5 }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = arms_deal
+			}
+		}
+		effect_tooltip = {
+			send_equipment = {
+				equipment = fighter_equipment
+				amount = 80
+				target = FROM
+			}
+		}
+		add_political_power = 25
+		add_timed_idea = {
+			idea = arms_cash_in
+			days = 130
+		}
+	}
+	option = {
+		name = twrdecevents.11.c #we wont sell
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				has_deployed_air_force_size = {
+					size > 250
+					type = fighter
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.4 days = 2 }
+		}
+	}
+}
+country_event = { #FROM sells some gunns
+	id = twrdecevents.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.12"}
+	title = twrdecevents.12.t
+	desc = twrdecevents.12.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.12.a
+		FROM = {
+			send_equipment = {
+				equipment = fighter_equipment
+				amount = 80
+				target = PREV
+			}
+			
+		}
+		add_timed_idea = {
+			idea = arms_payment
+			days = 130
+		}
+	}
+}
+
+country_event = { #FROM looks to buy convoys
+	id = twrdecevents.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.13"}
+	title = twrdecevents.13.t
+	desc = twrdecevents.13.d
+	picture = GFX_report_event_industry
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrdecevents.13.a #sell them
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 2
+				num_of_factories > 30
+				has_equipment = {
+					convoy_1 > 100
+				}
+			}
+			modifier = {
+				factor = 0.1
+				has_equipment = {
+					convoy_1 < 100
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.14 days = 5 }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = arms_deal
+			}
+		}
+		effect_tooltip = {
+			send_equipment = {
+				equipment = convoy
+				amount = 50
+				target = FROM
+			}
+		}
+		add_political_power = 25
+		add_timed_idea = {
+			idea = arms_cash_in
+			days = 130
+		}
+	}
+	option = {
+		name = twrdecevents.11.c #we wont sell
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				has_equipment = {
+					convoy_1 > 100
+				}
+			}
+		}
+		FROM = {
+			country_event = { id = twrdecevents.4 days = 2 }
+		}
+	}
+}
+country_event = { #FROM sells some gunns
+	id = twrdecevents.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.14"}
+	title = twrdecevents.14.t
+	desc = twrdecevents.14.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+    
+	option = {
+		name = twrdecevents.14.a
+		FROM = {
+			send_equipment = {
+				equipment = convoy
+				amount = 50
+				target = PREV
+			}
+			
+		}
+		add_timed_idea = {
+			idea = arms_payment
+			days = 130
+		}
+	}
+}
+country_event = { #Drug problems
+	id = twrdecevents.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrdecevents.15"}
+	title = twrdecevents.15.t
+	desc = twrdecevents.15.d
+	picture = GFX_report_event_nazi_drugs
+	is_triggered_only = yes
+    
+	option = {
+	name = twrdecevents.15.a
+	add_war_support = -0.15
+	add_political_power = -90
+	}
+	option = {
+	name = twrdecevents.15.b
+	random_list = {
+	50 = { 
+	random_army_leader = {
+	add_timed_unit_leader_trait = {
+	trait = sick
+	days = 90
+			}
+		}
+	}
+	50 = { army_experience = -30 }
+		}
+	}
+}

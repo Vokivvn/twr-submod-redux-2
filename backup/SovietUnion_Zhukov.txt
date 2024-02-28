@@ -1,0 +1,1919 @@
+focus_tree = {
+	id = zhukov_union
+	country = {
+		factor = 0
+	
+	}
+	default = no
+	continuous_focus_position = { x = 50 y = -1000 }
+
+#	focus = {
+#		cancelable = no 
+#		id = SOV_zhukov_dead
+#		icon = GFX_KRA_pale_rider
+#		x = 40
+#		y = 0
+#		cost = 10
+#		available_if_capitulated = yes 
+#		ai_will_do = { 
+#			factor = 1
+#		} 
+#		completion_reward = {
+#			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_dead"
+#		}
+#	}
+#	
+#	focus = {
+#		cancelable = no 
+#		id = SOV_death_failed
+#		icon = GFX_KRA_pale_rider
+#		relative_position_id = SOV_zhukov_dead
+#		x = 0
+#		y = 1
+#		cost = 10
+#		available_if_capitulated = yes 
+#		ai_will_do = { 
+#			factor = 1
+#		} 
+#		completion_reward = {
+#			log = "[GetDateText]: [Root.GetName]: Focus SOV_death_failed"
+#		}
+#	}
+#	
+#	focus = {
+#		cancelable = no 
+#		id = SOV_hang_rivals
+#		icon = GFX_GENERIC_government_supression
+#		prerequisite = { focus = SOV_death_failed }
+#		mutually_exclusive = { focus = SOV_offer_amnesty }
+#		relative_position_id = SOV_death_failed
+#		x = -1
+#		y = 1
+#		cost = 10
+#		available_if_capitulated = yes 
+#		ai_will_do = { 
+#			factor = 1
+#		} 
+#		completion_reward = {
+#			log = "[GetDateText]: [Root.GetName]: Focus SOV_hang_rivals"
+#		}
+#	}
+#	
+#	focus = {
+#		cancelable = no 
+#		id = SOV_offer_amnesty
+#		icon = GFX_SOV_Soviet_Democracy
+#		prerequisite = { focus = SOV_death_failed }
+#		mutually_exclusive = { focus = SOV_hang_rivals }
+#		relative_position_id = SOV_death_failed
+#		x = 1
+#		y = 1
+#		cost = 10
+#		available_if_capitulated = yes 
+#		ai_will_do = { 
+#			factor = 1
+#		} 
+#		completion_reward = {
+#			log = "[GetDateText]: [Root.GetName]: Focus SOV_offer_amnesty"
+#		}
+#	}
+#	
+#	focus = {
+#		cancelable = no 
+#		id = SOV_our_purpose
+#		icon = GFX_GER_revolution
+#		prerequisite = { focus = SOV_hang_rivals focus = SOV_offer_amnesty }
+#		relative_position_id = SOV_hang_rivals
+#		x = 1
+#		y = 1
+#		cost = 10
+#		available_if_capitulated = yes 
+#		ai_will_do = { 
+#			factor = 1
+#		} 
+#		completion_reward = {
+#			log = "[GetDateText]: [Root.GetName]: Focus SOV_our_purpose"
+#		}
+#	}
+
+	focus = {
+		cancelable = no 
+		id = SOV_zhukovs_vision
+		icon = GFX_SOV_Zhukov
+		x = 20
+		y = 0
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukovs_vision"
+			country_event = { id = twrsovzhukov.1 }
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd
+		icon = GFX_SOV_NKVD_remain
+		prerequisite = { focus = SOV_zhukovs_vision }
+		relative_position_id = SOV_zhukovs_vision
+		x = -8
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd"
+			add_ideas = SOV_the_nkvd_idea
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_create_isle_state
+		icon = GFX_SIS_creation
+		prerequisite = { focus = SOV_zhukov_nkvd }
+		relative_position_id = SOV_zhukov_nkvd
+		x = -2
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_create_isle_state"
+			custom_effect_tooltip = zhukovIsles
+			hidden_effect = {
+			961 = {
+			add_core_of = SIS
+			}
+				release_puppet = SIS
+				SIS = {
+					set_politics = {
+						ruling_party = bolshevik_leninist
+						elections_allowed = no
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_bare_minimum
+		icon = GFX_SIS_trade_with_union
+		prerequisite = { focus = SOV_zhukov_nkvd_create_isle_state }
+		relative_position_id = SOV_zhukov_nkvd_create_isle_state
+		x = -1
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_bare_minimum"
+			custom_effect_tooltip = zhukovResources
+			hidden_effect = {
+				add_resource = {
+					type = oil
+					amount = 3
+					state = 961
+				}
+				add_resource = {
+					type = steel
+					amount = 4
+					state = 961
+				}
+				add_resource = {
+					type = aluminium
+					amount = 4
+					state = 961
+				}
+				add_resource = {
+					type = tungsten
+					amount = 4
+					state = 961
+				}
+				add_resource = {
+					type = rubber
+					amount = 3
+					state = 961
+				}
+				add_resource = {
+					type = chromium
+					amount = 2
+					state = 961
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_modernize_belushya
+		icon = GFX_SIS_buildup_belushya
+		prerequisite = { focus = SOV_zhukov_nkvd_bare_minimum }
+		relative_position_id = SOV_zhukov_nkvd_bare_minimum
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_modernize_belushya"
+			961 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			961 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_fishing_fleets
+		icon = GFX_SIS_fishing_fleets
+		prerequisite = { focus = SOV_zhukov_nkvd_modernize_belushya }
+		relative_position_id = SOV_zhukov_nkvd_modernize_belushya
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_fishing_fleets"
+			send_equipment = {
+				equipment = convoy
+				amount = 10
+				target = SIS
+			}
+			custom_effect_tooltip = siberiaFleet
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_small_factories
+		icon = GFX_SIS_small_factories
+		prerequisite = { focus = SOV_zhukov_nkvd_fishing_fleets }
+		relative_position_id = SOV_zhukov_nkvd_fishing_fleets
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_small_factories"
+			961 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_empower_suslov
+		icon = GFX_GENERIC_socialist_announcement
+		prerequisite = { focus = SOV_zhukov_nkvd_create_isle_state }
+		relative_position_id = SOV_zhukov_nkvd_create_isle_state
+		x = 1
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_empower_suslov"
+			SIS = {
+				add_country_leader_trait = headstrong
+				add_political_power = 100
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_deport_officers
+		icon = GFX_SOV_deport_officers
+		prerequisite = { focus = SOV_zhukov_nkvd_empower_suslov }
+		relative_position_id = SOV_zhukov_nkvd_empower_suslov
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_deport_officers"
+			custom_effect_tooltip = zhukovOfficers
+			hidden_effect = {
+				SIS = {
+					add_manpower = 2000
+				}
+				add_stability = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_deport_lower_ranks
+		icon = GFX_SOV_deport_grunts
+		prerequisite = { focus = SOV_zhukov_nkvd_deport_officers }
+		relative_position_id = SOV_zhukov_nkvd_deport_officers
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_deport_lower_ranks"
+			custom_effect_tooltip = zhukovOthers
+			hidden_effect = {
+				SIS = {
+					add_manpower = 30000
+				}
+				add_stability = 0.1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_token_obligations
+		icon = GFX_SIS_defence_treaty
+		prerequisite = { focus = SOV_zhukov_nkvd_deport_lower_ranks }
+		relative_position_id = SOV_zhukov_nkvd_deport_lower_ranks
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_token_obligations"
+			give_guarantee = SIS
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_army_division
+		icon = GFX_GENERIC_soviet_advisors
+		prerequisite = { focus = SOV_zhukov_nkvd_token_obligations }
+		prerequisite = { focus = SOV_zhukov_nkvd_small_factories }
+		relative_position_id = SOV_zhukov_nkvd_token_obligations
+		x = -1
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_army_division"
+			custom_effect_tooltip = zhukovDivision
+			hidden_effect = {
+                division_template = {
+                    name = "Narodnoe Opolcheniye Diviziya"
+                    regiments = {
+                        light_infantry = { x = 0 y = 0 }
+                        light_infantry = { x = 0 y = 1 }
+                        light_infantry = { x = 0 y = 2 }
+                        light_infantry = { x = 1 y = 0 }
+                        light_infantry = { x = 1 y = 1 }
+                        light_infantry = { x = 1 y = 2 }
+                    }
+                }
+                961 = {
+                    create_unit = {
+                        division = "name = \"Izgnannaya Gvardiya Diviziya\" division_template = \"Narodnoe Opolcheniye Diviziya\" start_experience_factor = 0.1 start_equipment_factor = 1"
+                        owner = SIS
+                    }
+                }
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_filling_the_void
+		icon =  GFX_SOV_shattered_nkvd
+		prerequisite = { focus = SOV_zhukov_nkvd }
+		relative_position_id = SOV_zhukov_nkvd
+		x = 2
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_filling_the_void"
+			add_ideas = SOV_Our_Own_Secret_Police
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_transfer_powers
+		icon =  GFX_SOV_transfer_nkvd_power
+		prerequisite = { focus = SOV_zhukov_nkvd_filling_the_void }
+		relative_position_id = SOV_zhukov_nkvd_filling_the_void
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_transfer_powers"
+			swap_ideas = {
+				remove_idea = SOV_Our_Own_Secret_Police
+				add_idea = SOV_Our_Own_Secret_Police2
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_clear_the_politburo
+		icon =  GFX_SOV_duumvirist_senate
+		prerequisite = { focus = SOV_zhukov_nkvd_transfer_powers }
+		relative_position_id = SOV_zhukov_nkvd_transfer_powers
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_clear_the_politburo"
+			swap_ideas = {
+				remove_idea = SOV_Our_Own_Secret_Police2
+				add_idea = SOV_Our_Own_Secret_Police3
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_recreate_ministry_of_interior
+		icon =  GFX_SOV_rebuild_kremlin
+		prerequisite = { focus = SOV_zhukov_nkvd_clear_the_politburo }
+		relative_position_id = SOV_zhukov_nkvd_clear_the_politburo
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_recreate_ministry_of_interior"
+			swap_ideas = {
+				remove_idea = SOV_Our_Own_Secret_Police3
+				add_idea = SOV_Our_Own_Secret_Police4
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_supplement_new_ministry
+		icon =  GFX_GENERIC_socialist_production
+		prerequisite = { focus = SOV_zhukov_nkvd_recreate_ministry_of_interior }
+		relative_position_id = SOV_zhukov_nkvd_recreate_ministry_of_interior
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_supplement_new_ministry"
+			swap_ideas = {
+				remove_idea = SOV_Our_Own_Secret_Police4
+				add_idea = SOV_Our_Own_Secret_Police5
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_appoint_kuznetsov
+		icon =  GFX_SOV_accommodate_kuznetsov
+		prerequisite = { focus = SOV_zhukov_nkvd_supplement_new_ministry }
+		relative_position_id = SOV_zhukov_nkvd_supplement_new_ministry
+		x = 0
+		y = 1
+		cost = 5
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_appoint_kuznetsov"
+			add_political_power = 150
+			custom_effect_tooltip = zhukovKuznetsov
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_nkvd_kill_konev
+		icon =  GFX_SOV_purge_nkvd_l
+		prerequisite = { focus = SOV_zhukov_nkvd_appoint_kuznetsov }
+		prerequisite = { focus = SOV_zhukov_nkvd_army_division }
+		relative_position_id = SOV_zhukov_nkvd_appoint_kuznetsov
+		x = -2
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_nkvd_kill_konev"
+			remove_ideas = SOV_in_shambles
+			remove_ideas = SOV_the_nkvd_idea
+			remove_ideas = SOV_Our_Own_Secret_Police5
+			remove_ideas = SOV_MoS_Ivan_Konev
+			remove_ideas = SOV_CoStaff_Ivan_Konev
+			add_ideas = SOV_The_Ministry_of_Interior_Protects
+			custom_effect_tooltip = zhukovKonev
+			remove_ideas = SOV_leadership_distrust
+			set_country_flag = Ivan_Konev_unavailable
+			random_unit_leader = {
+            	limit = { 
+                	has_id = 1011
+            	}
+            	retire = yes
+        	}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_the_z_team
+		icon =  GFX_SOV_purge_zhukovism
+		prerequisite = { focus = SOV_zhukovs_vision }
+		relative_position_id = SOV_zhukovs_vision
+		x = 7
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_the_z_team"
+			#custom_effect_tooltip = ZHUKOV_BTEAM_UNFINISHED_TT
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_lomako
+		icon =  GFX_SOV_zhukov_Lomako_boi
+		prerequisite = { focus = SOV_zhukov_the_z_team }
+		relative_position_id = SOV_zhukov_the_z_team
+		x = -3
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_lomako_planocracy
+		icon =  GFX_SPA_Union
+		prerequisite = { focus = SOV_zhukov_lomako }
+		relative_position_id = SOV_zhukov_lomako
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_political_power	= 100
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_lomako_reinstating_GOSPLAN
+		icon =  GFX_GENERIC_socialist_production
+		prerequisite = { focus = SOV_lomako_planocracy }
+		relative_position_id = SOV_lomako_planocracy
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_recreated_gosplan
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_lomako_increasing_managerial_wages
+		icon =  GFX_GENERIC_friends_in_high_places
+		prerequisite = { focus = SOV_lomako_reinstating_GOSPLAN }
+		relative_position_id = SOV_lomako_reinstating_GOSPLAN
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_recreated_gosplan
+				add_idea = SOV_recreated_gosplan_2
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_lomako_red_tape_land
+		icon =  GFX_SOV_surveillance_squads
+		prerequisite = { focus = SOV_lomako_increasing_managerial_wages }
+		relative_position_id = SOV_lomako_increasing_managerial_wages
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_recreated_gosplan_2
+				add_idea = SOV_recreated_gosplan_3
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_marinesko
+		icon =  GFX_SOV_zhukov_Marinesko_boi
+		prerequisite = { focus = SOV_zhukov_the_z_team }
+		relative_position_id = SOV_zhukov_the_z_team
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_marinesko_alcoholocracy
+		icon =  GFX_GENERIC_Wine_2
+		prerequisite = { focus = SOV_zhukov_marinesko }
+		relative_position_id = SOV_zhukov_marinesko
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_stability = 0.03
+			add_war_support = 0.03
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_marinesko_ministry_of_beverages
+		icon =  GFX_SOV_rebuild_kremlin
+		prerequisite = { focus = SOV_marinesko_alcoholocracy }
+		relative_position_id = SOV_marinesko_alcoholocracy
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_ministry_of_beverages
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_marinesko_intoxicated_nation
+		icon =  GFX_GENERIC_Police_Equipment
+		prerequisite = { focus = SOV_marinesko_ministry_of_beverages }
+		relative_position_id = SOV_marinesko_ministry_of_beverages
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_ministry_of_beverages
+				add_idea = SOV_ministry_of_beverages_2
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_marinesko_nihilistic_reevaluation
+		icon =  GFX_GER_Theatre_of_Death
+		prerequisite = { focus = SOV_marinesko_intoxicated_nation }
+		relative_position_id = SOV_marinesko_intoxicated_nation
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_pokryshev
+		icon =  GFX_SOV_zhukov_Pokryshev_boi
+		prerequisite = { focus = SOV_zhukov_the_z_team }
+		relative_position_id = SOV_zhukov_the_z_team
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_pokryshev_disability_legislation
+		icon =  GFX_GENERIC_minority_aimed_projects
+		prerequisite = { focus = SOV_zhukov_pokryshev }
+		relative_position_id = SOV_zhukov_pokryshev
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_stability = 0.03
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_pokryshev_reforming_soviet_healthcare
+		icon =  GFX_GER_Professional_Militia
+		prerequisite = { focus = SOV_pokryshev_disability_legislation }
+		relative_position_id = SOV_pokryshev_disability_legislation
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_improved_healthcare
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_pokryshev_guns_for_meds
+		icon =  GFX_USA_invite_sweden
+		prerequisite = { focus = SOV_pokryshev_reforming_soviet_healthcare }
+		relative_position_id = SOV_pokryshev_reforming_soviet_healthcare
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		}
+		bypass = {
+			SWE = {	
+				exists = no
+			}
+		}
+		available = {
+			SWE = {
+				exists = yes
+			}
+		} 
+		completion_reward = {
+			add_opinion_modifier = {
+				target = SWE
+				modifier = large_increase
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = hospital_tech
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_pokryshev_hospital_construction
+		icon =  GFX_GENERIC_Power_Plant
+		prerequisite = { focus = SOV_pokryshev_guns_for_meds }
+		relative_position_id = SOV_pokryshev_guns_for_meds
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_improved_healthcare
+				add_idea = SOV_improved_healthcare_2
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_antonov
+		icon =  GFX_SOV_Zhukov_Antonov_boi
+		prerequisite = { focus = SOV_zhukov_the_z_team }
+		relative_position_id = SOV_zhukov_the_z_team
+		x = 3
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_antonov_burying_evidence_of_neglect
+		icon =  GFX_GENERIC_loosen_regulations
+		prerequisite = { focus = SOV_zhukov_antonov }
+		relative_position_id = SOV_zhukov_antonov
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_stability = 0.03
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_antonov_meritocratic_military
+		icon =  GFX_SOV_deport_officers
+		prerequisite = { focus = SOV_antonov_burying_evidence_of_neglect }
+		relative_position_id = SOV_antonov_burying_evidence_of_neglect
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_command_power = 25
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_antonov_bringing_together_factions
+		icon =  GFX_SOV_orlov_rokossovsky_vs_zhukov
+		prerequisite = { focus = SOV_antonov_meritocratic_military }
+		relative_position_id = SOV_antonov_meritocratic_military
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_antonov_creating_shock_forces
+		icon =  GFX_SOV_zaytsev_unity
+		prerequisite = { focus = SOV_antonov_bringing_together_factions }
+		relative_position_id = SOV_antonov_bringing_together_factions
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_stability = 0.03
+			army_experience = 10
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zteam_project_cumulus
+		icon =  GFX_SOV_zhukov_project_cumulus
+		prerequisite = { focus = SOV_antonov_creating_shock_forces focus = SOV_lomako_red_tape_land focus = SOV_pokryshev_hospital_construction focus = SOV_marinesko_nihilistic_reevaluation }
+		relative_position_id = SOV_antonov_creating_shock_forces
+		x = -3
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			set_technology = {
+				nukes = 1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_begin_the_conquest
+		icon = GFX_SOV_Konev_Siberia_Will_Run_Red
+		prerequisite = { focus = SOV_zhukovs_vision }
+		relative_position_id = SOV_zhukovs_vision
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = no 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_begin_the_conquest"
+			set_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+			set_country_flag = WESTERN_RUSSIA_UNIFICATION_UNITE_ONLY
+			add_ideas = SOV_Soviet_Reclamation
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_the_armenian
+		icon = GFX_SOV_attack_transvolga
+		prerequisite = { focus = SOV_zhukov_begin_the_conquest }
+		relative_position_id = SOV_zhukov_begin_the_conquest
+		x = -2
+		y = 1
+		cost = 10
+		available_if_capitulated = no 
+		bypass = {
+			TRV = {	
+				exists = no
+			}
+		}
+		available = {
+			TRV = {
+				exists = yes
+			}
+		}
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_the_armenian"
+			create_wargoal = {
+				type = annex_everything
+				target = TRV
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = TRV
+				value = 100
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_the_tatars
+		icon = GFX_SOV_attack_idel_ural
+		prerequisite = { focus = SOV_zhukov_begin_the_conquest }
+		relative_position_id = SOV_zhukov_begin_the_conquest
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = no
+		bypass = {
+			IDE = {	
+				exists = no
+			}
+		}
+		available = {
+			IDE = {
+				exists = yes
+			}
+		}
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_the_tatars"
+			create_wargoal = {
+				type = annex_everything
+				target = IDE
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = IDE
+				value = 100
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_the_turks
+		icon = GFX_SOV_attack_turkestan
+		prerequisite = { focus = SOV_zhukov_begin_the_conquest }
+		relative_position_id = SOV_zhukov_begin_the_conquest
+		x = 2
+		y = 1
+		cost = 10
+		available_if_capitulated = no
+		bypass = {
+			NOT = {
+				country_exists = TRA
+				country_exists = KAZ
+				country_exists = KYR
+				country_exists = TAJ
+				country_exists = UZB
+				country_exists = TRK		
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_central_asia_wargoal_tt
+			set_country_flag = CENTRAL_ASIA_REUNIFICATION
+#			if = {
+#				limit = {
+#					country_exists = TRK
+#				}
+#				create_wargoal = {
+#	    			type = annex_everything
+#	    			target = TRK
+#				}
+#			}
+#			if = {
+#				limit = {
+#					country_exists = KAZ
+#				}
+#				create_wargoal = {
+#	    			type = annex_everything
+#	    			target = KAZ
+#				}
+#			}
+#			if = {
+#				limit = {
+#					country_exists = KYR
+#				}
+#				create_wargoal = {
+#		    		type = annex_everything
+#		    			target = KYR
+#				}
+#			}
+#			if = {
+#				limit = {
+#					country_exists = TAJ
+#				}
+#				create_wargoal = {
+#		    		type = annex_everything
+#		    		target = TAJ
+#				}
+#			}
+#			if = {
+#				limit = {
+#					country_exists = UZB
+#				}
+#				create_wargoal = {
+#		    		type = annex_everything
+#		    		target = UZB
+#				}
+#			}
+#			if = {
+#				limit = {
+#					country_exists = TRA
+#				}
+#				create_wargoal = {
+#		    		type = annex_everything
+#		    		target = TRA
+#				}
+#			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_the_duke
+		icon = GFX_SOV_attack_buryatia
+		prerequisite = { focus = SOV_zhukov_the_armenian }
+		prerequisite = { focus = SOV_zhukov_the_tatars }
+		prerequisite = { focus = SOV_zhukov_the_turks }
+		relative_position_id = SOV_zhukov_the_armenian
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = no 
+		ai_will_do = { 
+			factor = 1
+		}
+		available = {
+			TRV = {
+				exists = no
+			}
+			IDE = {
+				exists = no
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = { country_exists = KRA }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = KRA
+				}
+				add_ai_strategy = {
+					type = conquer
+					id = KRA
+					value = 100
+				}
+			}
+			if = {
+				limit = { country_exists = BRY }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = BRY
+				}
+				add_ai_strategy = {
+					type = conquer
+					id = BRY
+					value = 100
+				}
+			}
+			if = {
+				limit = { country_exists = TAN }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = TAN
+	    		}
+				add_ai_strategy = {
+					type = conquer
+					id = TAN
+					value = 100
+				}
+			}
+			if = {
+				limit = { country_exists = NOV }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = NOV
+	    		}
+				add_ai_strategy = {
+					type = conquer
+					id = NOV
+					value = 100
+				}
+			}
+			if = {
+				limit = { country_exists = FAR }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = FAR
+	    		}
+				add_ai_strategy = {
+					type = conquer
+					id = FAR
+					value = 100
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_the_naval_favor
+		icon = GFX_SOV_kuznetsov_naval_service
+		prerequisite = { focus = SOV_zhukov_the_armenian }
+		prerequisite = { focus = SOV_zhukov_the_tatars }
+		prerequisite = { focus = SOV_zhukov_the_turks }
+		relative_position_id = SOV_zhukov_the_tatars
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		bypass = {
+			NRI = {	
+				exists = no
+			}
+		}
+		available = {
+			any_neighbor_country = {
+		    	tag = NRI
+		    }
+			NRI = {
+				exists = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_the_naval_favor"
+			create_wargoal = {
+				type = annex_everything
+				target = NRI
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = NRI
+				value = 100
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_the_republic
+		icon = GFX_SOV_attack_republic
+		prerequisite = { focus = SOV_zhukov_the_duke }
+		prerequisite = { focus = SOV_zhukov_the_naval_favor }
+		relative_position_id = SOV_zhukov_the_duke
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		bypass = {
+			RUS = {	
+				exists = no
+			}
+		}
+		available = {
+			any_neighbor_country = {
+		    	tag = RUS
+		    }
+			RUS = {
+				exists = yes
+			}
+			KRA = {
+				exists = no
+			}
+			NOV = {
+				exists = no
+			}
+			NRI = {
+				exists = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_the_republic"
+			create_wargoal = {
+				type = annex_everything
+				target = RUS
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = RUS
+				value = 100
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_rest_of_russia_sfsr
+		icon = GFX_SOV_konev_vultures_circling
+		prerequisite = { focus = SOV_zhukov_the_republic }
+		relative_position_id = SOV_zhukov_the_republic
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_rest_of_russia_sfsr"
+			add_ideas = SOV_Fatigued_Army
+			custom_effect_tooltip = zhukov_reclamation_tt
+			set_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_ukraine_ssr
+		icon = GFX_SOV_attack_ukraine
+		prerequisite = { focus = SOV_zhukov_rest_of_russia_sfsr }
+		relative_position_id = SOV_zhukov_rest_of_russia_sfsr
+		x = -2
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		completion_reward = {
+			unlock_decision_tooltip = SOV_restore_order
+			set_country_flag = WESTERN_RUSSIA_UNIFICATION
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_baltic_ssrs
+		icon = GFX_SOV_attack_ostland
+		prerequisite = { focus = SOV_zhukov_rest_of_russia_sfsr }
+		relative_position_id = SOV_zhukov_rest_of_russia_sfsr
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		}
+		available = {
+			owns_state = 219
+		}
+		completion_reward = {
+			if = {
+				limit = { country_exists = ROS }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = ROS
+	    		}
+				add_ai_strategy = {
+					type = conquer
+					id = ROS
+					value = 100
+				}
+			}
+			if = {
+				limit = { country_exists = LIT }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = LIT
+				}
+				add_ai_strategy = {
+					type = conquer
+					id = LIT
+					value = 100
+				}
+			}
+			if = {
+				limit = { country_exists = LAT }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = LAT
+				}
+				add_ai_strategy = {
+					type = conquer
+					id = LAT
+					value = 100
+				}
+			}
+			if = {
+				limit = { country_exists = EST }
+				create_wargoal = {
+	    			type = annex_everything
+	    			target = EST
+	    		}
+				add_ai_strategy = {
+					type = conquer
+					id = EST
+					value = 100
+				}
+			}
+			if = {
+				limit = { country_exists = BLR }
+				BLR = {
+					country_event = { id = twrrusreconquest.1 days = 3 }
+				}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_vasilys_sojourn
+		icon = GFX_focus_CDA_strike_georgia
+		prerequisite = { focus = SOV_zhukov_rest_of_russia_sfsr }
+		relative_position_id = SOV_zhukov_rest_of_russia_sfsr
+		x = 2
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+			OR = {
+				AND = {
+					any_neighbor_country = {
+						tag = GEO
+					}
+					GEO = {
+						exists = yes
+					}
+				}
+				AND = {
+					any_neighbor_country = {
+						tag = ARM
+					}
+					ARM = {
+						exists = yes
+					}
+				}
+			}
+		}
+		bypass = {
+			ARM = {
+				exists = no
+			}	
+			GEO = {
+				exists = no
+			}	
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_gotenland"
+			if = {
+			limit = { country_exists = GEO }
+			create_wargoal = {
+				type = annex_everything
+				target = GEO
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = GEO
+				value = 100
+			}
+			}
+			if = {
+			limit = { country_exists = ARM }
+			create_wargoal = {
+				type = annex_everything
+				target = ARM
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = ARM
+				value = 100
+				}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_rokossovskys_price
+		icon = GFX_SOV_orlov_rokossovsky_vs_zhukov
+		prerequisite = { focus = SOV_zhukov_ukraine_ssr }
+		prerequisite = { focus = SOV_zhukov_baltic_ssrs }
+		relative_position_id = SOV_zhukov_ukraine_ssr
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		}
+		bypass = {
+			GGP = {	
+				exists = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_besserabia"
+			create_wargoal = {
+				type = annex_everything
+				target = GGP
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = GGP
+				value = 100
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_karelia
+		icon = GFX_FIN_railway_through_karelia
+		prerequisite = { focus = SOV_zhukov_ukraine_ssr }
+		prerequisite = { focus = SOV_zhukov_baltic_ssrs }
+		relative_position_id = SOV_zhukov_ukraine_ssr
+		x = 2
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		}
+		bypass = {
+			OR = {
+				NOT = {
+					country_exists = FIN
+				}
+				has_guaranteed = FIN #white pact
+				AND = {
+					owns_state = 213
+					owns_state = 215
+					owns_state = 216
+					owns_state = 722
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_karelia"
+			FIN = {
+				country_event = {
+					id = twrrusreconquest.5
+					days = 3
+				}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_besserabia
+		icon = GFX_GENERIC_socialist_uprising
+		prerequisite = { focus = SOV_zhukov_vasilys_sojourn }
+		prerequisite = { focus = SOV_zhukov_baltic_ssrs }
+		relative_position_id = SOV_zhukov_baltic_ssrs
+		x = 2
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		available = {
+			any_neighbor_country = {
+		    	tag = ROM
+		    }
+			ROM = {
+				exists = yes
+			}
+		}
+		bypass = {
+			ROM = {
+				exists = no
+			}		
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_besserabia"
+			create_wargoal = {
+				type = annex_everything
+				target = ROM
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = ROM
+				value = 100
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no 
+		id = SOV_zhukov_gotenland
+		icon = GFX_SOV_attack_gotenland
+		prerequisite = { focus = SOV_zhukov_rokossovskys_price }
+		prerequisite = { focus = SOV_zhukov_karelia }
+		prerequisite = { focus = SOV_zhukov_besserabia }
+		relative_position_id = SOV_zhukov_rokossovskys_price
+		x = 2
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		} 
+		bypass = {
+		OR = {
+			RGO = {	
+				exists = no
+				}
+			RGO = {	
+				is_subject = yes
+				}
+			}
+		}
+		available = {
+			any_neighbor_country = {
+		    	tag = RGO
+		    }
+			RGO = {
+				exists = yes
+				is_puppet = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_gotenland"
+			create_wargoal = {
+				type = annex_everything
+				target = RGO
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = RGO
+				value = 100
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_call_up_everyone
+		icon = GFX_GENERIC_death_barrel
+		prerequisite = { focus = SOV_zhukov_gotenland }
+		relative_position_id = SOV_zhukov_gotenland
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_manpower = 100000
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_reunify_command
+		icon = GFX_GENERIC_Global_Revolution
+		prerequisite = { focus = SOV_zhukov_gotenland }
+		relative_position_id = SOV_zhukov_gotenland
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_Zhukov_Unified_Command
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_green_light
+		icon = GFX_SOV_Deport_All_New_Germans
+		prerequisite = { focus = SOV_zhukov_call_up_everyone }
+		prerequisite = { focus = SOV_zhukov_reunify_command }
+		relative_position_id = SOV_zhukov_call_up_everyone
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		}
+		available = {
+		OR = {
+		AND = {
+			owns_state = 189
+			owns_state = 206
+			}
+		AND = {
+		NOT = {
+		country_exists = AZR
+		country_exists = RAC
+		country_exists = SUK 
+		country_exists = SMO
+		country_exists = CDA
+		country_exists = BLR
+					}
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SOV_zhukov_green_light"
+			if = {
+			limit = { country_exists = GER }
+			create_wargoal = {
+				type = annex_everything
+				target = GER
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = GER
+				value = 100
+			}
+		}
+			if = {
+			limit = { country_exists = HSS }
+			create_wargoal = {
+				type = annex_everything
+				target = HSS
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = HSS
+				value = 100
+			}
+		}
+			if = {
+			limit = { country_exists = HGR }
+			create_wargoal = {
+				type = annex_everything
+				target = HGR
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = HGR
+				value = 100
+			}
+		}
+			if = {
+			limit = { country_exists = RKN }
+			create_wargoal = {
+				type = annex_everything
+				target = RKN
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = RKN
+				value = 100
+			}
+		}
+			if = {
+			limit = { country_exists = DDR }
+			create_wargoal = {
+				type = annex_everything
+				target = DDR
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = DDR
+				value = 100
+			}
+		}
+			#set_country_flag = ZHUKOV_ATTACK_PEOPLES_GERMANY
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_victory
+		icon = GFX_SOV_Deutschland_Forever_In_Ashes
+		prerequisite = { focus = SOV_zhukov_green_light }
+		relative_position_id = SOV_zhukov_green_light
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes
+		available = {
+		OR = {
+			controls_state = 855
+			any_allied_country = {
+			controls_state = 855
+				}
+			}
+		}
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_german_loot
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = SOV_zhukov_volkshalle
+		icon = GFX_SOV_zhukov_The_Eternal_Embassy
+		prerequisite = { focus = SOV_zhukov_victory }
+		relative_position_id = SOV_zhukov_victory
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			country_event = { id = twrsovzhukov.2 }
+		}
+	}
+	
+}

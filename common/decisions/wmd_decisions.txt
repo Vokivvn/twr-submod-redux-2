@@ -1,0 +1,113 @@
+wmd_decisions = {
+	issue_combat_drugs = {
+	cost = 50
+	fire_only_once = no
+	days_remove = 60
+	days_re_enable = 60
+	visible = {
+	has_tech = biological_body_enhacement
+	}
+	available = {
+	has_war = yes
+	}
+	modifier = {
+	army_infantry_attack_factor = 0.15
+	army_org_factor = -0.05
+	army_morale_factor = 0.15
+	}
+	days_remove = 200
+	remove_effect = {
+	random_list = {
+	60 = {}
+	40 = { country_event = twrdecevents.15 }
+			}
+		}
+	}
+}
+
+
+wmd_development = {
+	WMD_investing_into_chemicals = {
+
+		icon = generic_research
+		available = {
+		num_of_civilian_factories > 25
+		NOT = {
+		has_country_flag = chemical_weapons_ban_treaty
+			}
+		}
+
+		cost = 200
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 10
+			modifier = {
+			OR = {
+				tag = CHI
+				has_war = yes
+				}
+				factor = 3.0 #use as pp dump
+			}
+		}
+		visible = {
+			NOT = {
+				has_tech = immoral_warfare
+				has_country_flag = chemical_weapons_ban_treaty
+			}
+		}
+		days_remove = 365
+		modifier = {
+		research_speed_factor = -0.2
+		}
+		remove_effect = {
+		custom_effect_tooltip = ALLOW_RESEARCH_BIO_CHEMICAL_TECH
+		hidden_effect = {
+			set_technology = {
+				immoral_warfare = 1
+				}
+			}
+		}
+	}
+	WMD_kickstart_nuclear_project = {
+
+		icon = generic_research
+		available = {
+		count_triggers = {
+		    amount = 2
+		    num_of_civilian_factories > 50
+		    is_major = yes
+		    has_country_flag = NUCLEAR_ALLOWED
+			}
+		}
+
+		cost = 200
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 10
+			modifier = {
+			OR = {
+				tag = CHI
+				has_war = yes
+				}
+				factor = 3.0 #use as pp dump
+			}
+		}
+		visible = {
+			NOT = {
+				has_tech = nuclear_capabilities
+			}
+		}
+		days_remove = 365
+		modifier = {
+		research_speed_factor = -0.4
+		}
+		remove_effect = {
+		custom_effect_tooltip = ALLOW_RESEARCH_NUCLEAR_TECH
+		hidden_effect = {
+			set_technology = {
+				nuclear_capabilities = 1
+				}
+			}
+		}
+	}
+}

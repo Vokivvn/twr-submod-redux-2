@@ -1,0 +1,556 @@
+focus_tree = {
+	id = TWR_BUL_Crisis_Tree
+	default = no
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = BLC
+		}
+	}
+	
+ 	continuous_focus_position = { x = 50 y = -1000 }
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_Peoples_War
+		icon = GFX_GENERIC_Global_Revolution
+		cost = 2
+		x = 3
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			has_war_with = BUL
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_The_Peoples_War"
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Our_Partisan_Past
+		icon = GFX_GENERIC_Partisans
+		cost = 4
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Peoples_War
+		prerequisite = {
+			focus = BUL_The_Peoples_War
+		}
+		available = {
+			has_war_with = BUL
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Our_Partisan_Past"
+			add_ideas = BLC_partisans
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Disrupt_their_Supplies
+		icon = GFX_GENERIC_resistance
+		cost = 4
+		x = -2
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Peoples_War
+		prerequisite = {
+			focus = BLC_Our_Partisan_Past
+		}
+		available = {
+			has_war_with = BUL
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Disrupt_their_Supplies"
+			BUL = {
+				add_timed_idea = {
+				    idea = BLC_disrupted_supply_lines
+				    days = 100
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Rally_the_Defectors
+		icon = GFX_BUL_Rallying_the_Defectors
+		cost = 4
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Peoples_War
+		prerequisite = {
+			focus = BUL_The_Peoples_War
+		}
+		available = {
+			has_war_with = BUL
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Rally_the_Defectors"
+			add_manpower = 10000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Mobilize_the_Militias
+		icon = GFX_SOV_kruglov_worker_soldier
+		cost = 4
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Peoples_War
+		prerequisite = {
+			focus = BUL_The_Peoples_War
+		}
+		available = {
+			has_war_with = BUL
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Mobilize_the_Militias"
+			add_ideas = BLC_militias
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Our_Female_Comrades
+		icon = GFX_GENERIC_women_army
+		cost = 4
+		x = 1
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Peoples_War
+		prerequisite = {
+			focus = BLC_Mobilize_the_Militias
+		}
+		prerequisite = {
+			focus = BLC_Rally_the_Defectors
+		}
+		available = {
+			has_war_with = BUL
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Our_Female_Comrades"
+			add_manpower = 10000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Centralize_the_Milita
+		icon = GFX_GENERIC_Coalition_Army
+		cost = 6
+		x = 0
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Peoples_War
+		prerequisite = {
+			focus = BLC_Our_Female_Comrades
+		}
+		prerequisite = {
+			focus = BLC_Disrupt_their_Supplies
+		}
+		available = {
+			has_war_with = BUL
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Centralize_the_Milita"
+			swap_ideas = {
+				remove_idea = BLC_militias
+				add_idea = BLC_militias_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_The_People_Will_Be_Victorious
+		icon = GFX_GENERIC_Bell
+		cost = 6
+		x = 0
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Peoples_War
+		prerequisite = {
+			focus = BLC_Centralize_the_Milita
+		}
+		available = {
+			has_war_with = BUL
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_The_People_Will_Be_Victorious"
+			add_war_support = 0.2
+    		add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Revolution_Triumphant
+		icon = GFX_focus_BUL_the_fatherland_front
+		cost = 3
+		x = 11
+		y = 0
+		bypass = {
+			has_war = no
+			NOT = {
+				country_exists = BUL
+			}
+		}
+		available = {
+			has_war = no
+			NOT = {
+				country_exists = BUL
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Revolution_Triumphant"
+			add_political_power = 30
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Prosecute_the_Counter_Revolutionaries
+		icon = GFX_GENERIC_Arrests
+		cost = 6
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BUL_Revolution_Triumphant
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Prosecute_the_Counter_Revolutionaries"
+			add_manpower = -1000
+			add_popularity = {
+			    ideology = paternal_autocrat
+			    popularity = -0.2
+			}
+			country_event = blcbulgaria.3
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_A_Purge
+		icon = GFX_GENERIC_Old_Purge
+		cost = 9
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_Prosecute_the_Counter_Revolutionaries
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_A_Purge"
+			add_popularity = {
+			    ideology = socialist
+			    popularity = -0.05
+			}
+			add_popularity = {
+			    ideology = social_democrat
+			    popularity = -0.05
+			}
+			country_event = blcbulgaria.4
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Re-education_Camp
+		icon = GFX_GENERIC_imprison_opposition2
+		cost = 6
+		x = -1
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_Prosecute_the_Counter_Revolutionaries
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Re-education_Camp"
+			add_ideas = BLC_reeducation_camps
+			add_manpower = -5000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Cleanse_the_Bureaucracy
+		icon = GFX_GENERIC_backstab
+		cost = 6
+		x = 1
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_Prosecute_the_Counter_Revolutionaries
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Cleanse_the_Bureaucracy"
+			add_political_power = 100
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = BLC_Execute_the_Bourgeoisie
+		icon = GFX_GENERIC_No_Capitalism
+		cost = 6
+		x = 3
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BUL_Revolution_Triumphant
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Execute_the_Bourgeoisie"
+			country_event = blcbulgaria.5
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Confiscation_of_Wealth
+		icon = GFX_KOR_seize_the_wealth
+		cost = 6
+		x = 3
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_Execute_the_Bourgeoisie
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Confiscation_of_Wealth"
+			add_timed_idea = {
+				idea = BLC_conviscated_wealth
+				days = 365
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Redistribution_Act
+		icon = GFX_GENERIC_land_redistribution
+		cost = 6
+		x = 3
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_Confiscation_of_Wealth
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Redistribution_Act"
+			add_political_power = 50
+			add_war_support = 0.05
+			add_stability = 0.05
+			add_popularity = {
+			    ideology = bolshevik_leninist
+			    popularity = 0.05
+			}
+			add_popularity = {
+			    ideology = marxist_leninist
+			    popularity = 0.05
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Bread_Peace_Land
+		icon = GFX_GENERIC_Bell
+		cost = 6
+		x = -3
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BUL_Revolution_Triumphant
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Bread_Peace_Land"
+			add_war_support = 0.05
+			add_political_power = 80
+			add_popularity = {
+			    ideology = bolshevik_leninist
+			    popularity = 0.05
+			}
+			add_popularity = {
+			    ideology = marxist_leninist
+			    popularity = 0.05
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Begin_Collectivization
+		icon = GFX_GENERIC_Land_Reform
+		cost = 9
+		x = -3
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_Bread_Peace_Land
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Begin_Collectivization"
+			add_ideas = BLC_collectivisation
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_The_Means_Of_Production
+		icon = GFX_GENERIC_socialist_production
+		cost = 8
+		x = -3
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_Begin_Collectivization
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_The_Means_Of_Production"
+			add_ideas = BLC_controlling_means_of_production
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = BLC_The_First_Party_Congress
+		icon = GFX_focus_BUL_the_peoples_republic_of_bulgaria
+		cost = 7
+		x = 0
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_The_Means_Of_Production
+		}
+		prerequisite = {
+			focus = BLC_Redistribution_Act
+		}
+		prerequisite = {
+			focus = BLC_Re-education_Camp
+		}
+		prerequisite = {
+			focus = BLC_Cleanse_the_Bureaucracy
+		}
+		prerequisite = {
+			focus = BLC_A_Purge
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_The_First_Party_Congress"
+			country_event = blcbulgaria.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Todorov_Kalininism
+		icon = GFX_BUL_Todorovs_Kalininism
+		cost = 8
+		x = 0
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_The_First_Party_Congress
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = { focus = BLC_Bashev_Stalinism } 
+		mutually_exclusive = { focus = BLC_Peeva_Council_Communism } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Todorov_Kalininism"
+			add_ideas = BLC_kalininism
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Bashev_Stalinism
+		icon = GFX_BUL_Bashevs_Stalinism
+		cost = 8
+		x = 2
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_The_First_Party_Congress
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = { focus = BLC_Todorov_Kalininism } 
+		mutually_exclusive = { focus = BLC_Peeva_Council_Communism } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Bashev_Stalinism"
+			add_ideas = BLC_stalinism
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BLC_Peeva_Council_Communism
+		icon = GFX_BUL_Peevas_Council_Communism
+		cost = 8
+		x = -2
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Revolution_Triumphant
+		prerequisite = {
+			focus = BLC_The_First_Party_Congress
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = { focus = BLC_Bashev_Stalinism } 
+		mutually_exclusive = { focus = BLC_Todorov_Kalininism } 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BLC_Peeva_Council_Communism"
+			add_ideas = BLC_council_communism
+		}
+	}
+}

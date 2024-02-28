@@ -1,0 +1,465 @@
+focus_tree = {
+	id = TWR_BUL_Crisis_Tree_Anti_Communist
+	default = no
+	country = {
+		factor = 0
+	}
+	
+ 	continuous_focus_position = { x = 50 y = -1000 }
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_Brothers_War
+		icon = GFX_BUL_state_of_emergency
+		cost = 2
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			has_war_with = BLC
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_The_Brothers_War"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_We_Need_Aid
+		icon = GFX_GENERIC_Bell
+		cost = 4
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Brothers_War
+		prerequisite = {
+			focus = BUL_The_Brothers_War
+		}
+		available = {
+			has_war_with = BLC
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_We_Need_Aid"
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 1000
+			    producer = GER
+			}
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 1000
+			    producer = ITA
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Our_Richer_Friends
+		icon = GFX_GENERIC_Army_Cooperation
+		cost = 4
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Brothers_War
+		prerequisite = {
+			focus = BUL_We_Need_Aid
+		}
+		available = {
+			has_war_with = BLC
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Our_Richer_Friends"
+			add_timed_idea = {
+				idea = BUL_financial_support
+				days = 300
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Ally_the_Nationalists
+		icon = GFX_GENERIC_death_officer
+		cost = 4
+		x = -2
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Brothers_War
+		prerequisite = {
+			focus = BUL_We_Need_Aid
+		}
+		available = {
+			has_war_with = BLC
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Ally_the_Nationalists"
+			add_war_support = 0.05
+			add_stability = 0.1
+			add_popularity = {
+			    ideology = paternal_autocrat
+			    popularity = 0.1
+			}
+			add_popularity = {
+			    ideology = fascist
+			    popularity = 0.03
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_All_Brave_Sons_of_Bulgaria #icon
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 3
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Brothers_War
+		prerequisite = {
+			focus = BUL_The_Brothers_War
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_All_Brave_Sons_of_Bulgaria"
+			add_manpower = 100000
+		}
+		available = {
+			has_war_with = BLC
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Fight_For_Our_Ancestors
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 3
+		x = 2
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Brothers_War
+		prerequisite = {
+			focus = BUL_All_Brave_Sons_of_Bulgaria
+		}
+		available = {
+			has_war_with = BLC
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Fight_For_Our_Ancestors"
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Scorched_Earth
+		icon = GFX_ROS_Burn_It_All
+		cost = 5
+		x = 0
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Brothers_War
+		prerequisite = {
+			focus = BUL_Fight_For_Our_Ancestors
+		}
+		prerequisite = {
+			focus = BUL_All_Brave_Sons_of_Bulgaria
+		}
+		prerequisite = {
+			focus = BUL_Ally_the_Nationalists
+		}
+		available = {
+			has_war_with = BLC
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Scorched_Earth"
+			BLC = {
+				add_timed_idea = {
+				    idea = BLC_scorched_earth
+				    days = 100
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Victory_or_Death
+		icon = GFX_GENERIC_Victory_or_DEATH
+		cost = 4
+		x = 0
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Brothers_War
+		prerequisite = {
+			focus = BUL_Scorched_Earth
+		}
+		available = {
+			has_war_with = BLC
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Victory_or_Death"
+			add_ideas = BUL_victory_or_death_idea
+		}
+	}
+
+
+	focus = {
+	cancelable = no
+		id = BUL_Victory_is_Ours
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 1
+		x = 11
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			has_war = no
+			NOT = {
+				country_exists = BLC
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Victory_is_Ours"
+			hidden_effect = {
+				remove_ideas = BUL_victory_or_death_idea
+			}
+			custom_effect_tooltip = BUL_remove_civil_war_ideas
+			every_state = {
+				limit = { is_core_of = BUL }
+				remove_core_of = BLC
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Rebuilding_the_East
+		icon = GFX_BUL_Rebuilding_the_East
+		cost = 5
+		x = -2
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Victory_is_Ours
+		prerequisite = {
+			focus = BUL_Concentration_Camps_For_Opponents
+		}
+		prerequisite = {
+			focus = BUL_Public_Executions
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Rebuilding_the_East"
+			add_timed_idea = {
+				idea = BUL_reconstruction_effort
+				days = 100
+			}
+			77 = {
+				add_building_construction = {
+				    type = infrastructure
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+	}
+#	focus = {
+#	cancelable = no
+#		id = BUL_It_Feeds_The_Rich
+#		icon = GFX_GENERIC_Magic_Man
+#		cost = 5
+#		x = -2
+#		y = 3
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		relative_position_id = BUL_Victory_is_Ours
+#		prerequisite = {
+#			focus = BUL_Rebuilding_the_East
+#		}
+#		completion_reward = {
+#			log = "[GetDateText]: [Root.GetName]: Focus BUL_It_Feeds_The_Rich"
+#		}
+#	}
+
+	focus = {
+	cancelable = no
+		id = BUL_Find_the_Rebels
+		icon = GFX_GENERIC_Scouts
+		cost = 5
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Victory_is_Ours
+		prerequisite = {
+			focus = BUL_Victory_is_Ours
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Find_the_Rebels"
+			add_popularity = {
+			    ideology = marxist_leninist
+			    popularity = -0.2
+			}
+			add_popularity = {
+			    ideology = bolshevik_leninist
+			    popularity = -0.2
+			}
+			add_manpower = 1000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Public_Executions
+		icon = GFX_GENERIC_Generic_Execution
+		cost = 4
+		x = 1
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Victory_is_Ours
+		prerequisite = {
+			focus = BUL_Find_the_Rebels
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Public_Executions"
+			add_manpower = -1000
+			add_stability = 0.05
+			add_war_support = -0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Concentration_Camps_For_Opponents
+		icon = GFX_GENERIC_imprison_opposition
+		cost = 5
+		x = -1
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Victory_is_Ours
+		prerequisite = {
+			focus = BUL_Find_the_Rebels
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Concenration_Camps_For_Opponents"
+			add_ideas = BUL_prison_camps
+		}
+	}
+	focus = {
+	cancelable = no
+		id = BUL_Decimate_the_Left
+		icon = GFX_GENERIC_Anti_Com
+		cost = 5
+		x = 0
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Victory_is_Ours
+		prerequisite = {
+			focus = BUL_Concentration_Camps_For_Opponents
+		}
+		prerequisite = {
+			focus = BUL_Public_Executions
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Decimate_the_Left"
+			add_popularity = {
+			    ideology = social_democrat
+			    popularity = -0.2
+			}
+			add_stability = 0.1
+		}
+	}
+
+	
+	focus = {
+	cancelable = no
+		id = BUL_Reward_the_Officers
+		icon = GFX_GENERIC_money
+		cost = 4
+		x = 2
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Victory_is_Ours
+		prerequisite = {
+			focus = BUL_Concentration_Camps_For_Opponents
+		}
+		prerequisite = {
+			focus = BUL_Public_Executions
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Reward_the_Officers"
+			army_experience = 25
+			add_ideas = BUL_officers_rewarded
+		}
+	}
+#	focus = {
+#	cancelable = no
+#		id = BUL_Our_Nationalist_Allies
+#		icon = GFX_focus_rom_royal_dictatorship
+#		cost = 4
+#		x = 2
+#		y = 3
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		relative_position_id = BUL_Victory_is_Ours
+#		prerequisite = {
+#			focus = BUL_Reward_the_Officers
+#		}
+#		completion_reward = {
+#			log = "[GetDateText]: [Root.GetName]: Focus BUL_Our_Nationalist_Allies"
+#		}
+#	}
+
+	focus = {
+	cancelable = no
+		id = BUL_A_Silent_Night
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 5
+		x = 0
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Victory_is_Ours
+#		prerequisite = {
+#			focus = BUL_Our_Nationalist_Allies
+#		}
+		prerequisite = {
+			focus = BUL_Decimate_the_Left
+		}
+		prerequisite = {
+			focus = BUL_Reward_the_Officers
+		}
+		prerequisite = {
+			focus = BUL_Rebuilding_the_East
+		}
+#		prerequisite = {
+#			focus = BUL_It_Feeds_The_Rich
+#		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_A_Silent_Night"
+			load_focus_tree = TWR_BUL_Kozarov_Tree
+			complete_national_focus = BUL_The_Military_Coup
+			add_stability = 0.2
+		}
+	}
+}

@@ -1,0 +1,1769 @@
+GRE_Civil_War = {
+	GRE_conscript_the_masses = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+		has_civil_war = yes
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		days_re_enable = 14
+		cost = freedec?0
+		
+		complete_effect = {
+		add_manpower = 5000
+		add_political_power = -50
+		}
+	}
+	GRE_confiscate_civilian_properties = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+		has_civil_war = yes
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		fire_only_once = no
+		cost = 50
+		days_re_enable = 24
+		
+		complete_effect = {
+		random_list = {
+		25 = {
+		add_equipment_to_stockpile = {
+	    type = infantry_equipment_0
+	    amount = 500
+	    producer = GRE
+			}
+		}
+		25 = {
+		add_equipment_to_stockpile = {
+	    type = support_equipment
+	    amount = 50
+	    producer = GRE
+			}
+				}
+		25 = {
+		add_equipment_to_stockpile = {
+	    type = motorized_equipment
+	    amount = 50
+	    producer = GRE
+			}
+				}
+		25 = {
+		add_fuel = 100
+				}
+			}
+		}
+	}
+	GRE_request_british_intervention = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_civil_war = yes
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		visible = {
+			is_democratic = yes
+			ENG = {
+				has_war = no
+			}
+		}
+
+		fire_only_once = yes
+		cost = 30
+		
+		complete_effect = {
+			ENG = {
+				country_event = { id = twrGreekCivilWar.1 hours = 8 }
+			}
+		}
+	}
+	GRE_request_italian_intervention = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_civil_war = yes
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		visible = {
+			has_government = fascist
+			ITA = {
+				has_war = no
+			}
+		}
+
+		fire_only_once = yes
+		cost = 10
+		
+		complete_effect = {
+			ITA = {
+				country_event = { id = twrGreekCivilWar.1 hours = 8 }
+			}
+		}
+	}
+	GRE_request_nazi_intervention = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_civil_war = yes
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		visible = {
+			has_government = fascist
+			GER = {
+				has_war = no
+			}
+		}
+
+		fire_only_once = yes
+		cost = 30
+		
+		complete_effect = {
+			GER = {
+				country_event = { id = twrGreekCivilWar.1 hours = 8 }
+			}
+		}
+	}
+}
+GRE_Raids_for_Fuel = {
+	
+	GRE_Raid_the_Albanian_Border = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_Fuel_from_Border_Raids
+			is_neighbor_of = ALB
+			NOT = {
+				ALB = { is_puppet_of = GRE }
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		days_remove = 60
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+			state = 185
+			num_provinces = 3
+			on_win = twrGreeceSBRaid.1
+			on_lose = twrGreeceSBRaid.2
+			on_cancel = twrGreeceSBRaid.2
+		}
+				
+		defender = {
+			state = 44
+			num_provinces = 3
+			on_win = twrGreeceSBRaid.3
+			on_lose = twrGreeceSBRaid.4
+			on_cancel = twrGreeceSBRaid.4
+				}
+			}
+		}
+	}
+	
+	GRE_Raid_the_Macedonian_Border = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_Fuel_from_Border_Raids
+			NOT = {
+				owns_state = 106
+			}
+			OR = {
+				is_neighbor_of = BUL
+				is_neighbor_of = BLC
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		days_remove = 60
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+			state = 731
+			num_provinces = 3
+			on_win = twrGreeceSBRaid.1
+			on_lose = twrGreeceSBRaid.2
+			on_cancel = twrGreeceSBRaid.2
+		}
+				
+		defender = {
+			state = 106
+			num_provinces = 4
+			on_win = twrGreeceSBRaid.3
+			on_lose = twrGreeceSBRaid.4
+			on_cancel = twrGreeceSBRaid.4
+				}
+			}
+		}
+	}
+	
+	GRE_Raid_the_Kavalan_Border = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_Fuel_from_Border_Raids
+			OR = {
+				is_neighbor_of = BUL
+				is_neighbor_of = BLC
+			}
+			NOT = {
+				owns_state = 1009
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		days_remove = 60
+		
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+			state = 731
+			num_provinces = 2
+			on_win = twrGreeceSBRaid.1
+			on_lose = twrGreeceSBRaid.2
+			on_cancel = twrGreeceSBRaid.2
+		}
+				
+		defender = {
+			state = 1009
+			num_provinces = 2
+			on_win = twrGreeceSBRaid.3
+			on_lose = twrGreeceSBRaid.4
+			on_cancel = twrGreeceSBRaid.4
+				}
+			}
+		}
+	}
+	
+	GRE_Raid_the_Thessalonikan_Border = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_Fuel_from_Border_Raids
+			OR = {
+				is_neighbor_of = BUL
+				is_neighbor_of = BLC
+			}
+			NOT = {
+				owns_state = 731
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		visible = {
+			OR = {
+				BLC = {
+					owns_state = 731
+				}
+				BUL = {
+					owns_state = 731
+				}
+			}
+		}
+		
+		days_remove = 60
+		
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+			state = 47
+			num_provinces = 2
+			on_win = twrGreeceSBRaid.1
+			on_lose = twrGreeceSBRaid.2
+			on_cancel = twrGreeceSBRaid.2
+		}
+				
+		defender = {
+			state = 731
+			num_provinces = 2
+			on_win = twrGreeceSBRaid.3
+			on_lose = twrGreeceSBRaid.4
+			on_cancel = twrGreeceSBRaid.4
+				}
+			}
+		}
+	}
+	
+	GRE_Raid_the_Sofian_Border = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_Fuel_from_Border_Raids
+			OR = {
+				is_neighbor_of = BUL
+				is_neighbor_of = BLC
+			}
+			GRE = {
+				owns_state = 1009
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		visible = {
+			GRE = {
+				owns_state = 1009
+			}
+		}
+		
+		days_remove = 60
+		
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+			state = 1009
+			num_provinces = 2
+			on_win = twrGreeceSBRaid.1
+			on_lose = twrGreeceSBRaid.2
+			on_cancel = twrGreeceSBRaid.2
+		}
+				
+		defender = {
+			state = 48
+			num_provinces = 2
+			on_win = twrGreeceSBRaid.3
+			on_lose = twrGreeceSBRaid.4
+			on_cancel = twrGreeceSBRaid.4
+				}
+			}
+		}
+	}
+	
+	GRE_Raid_the_Plovdiv_Border = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_Fuel_from_Border_Raids
+			OR = {
+				is_neighbor_of = BUL
+				is_neighbor_of = BLC
+			}
+			GRE = {
+				owns_state = 184
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		visible = {
+			GRE = {
+				owns_state = 184
+			}
+		}
+		
+		days_remove = 60
+		
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+			state = 184
+			num_provinces = 3
+			on_win = twrGreeceSBRaid.1
+			on_lose = twrGreeceSBRaid.2
+			on_cancel = twrGreeceSBRaid.2
+		}
+				
+		defender = {
+			state = 212
+			num_provinces = 3
+			on_win = twrGreeceSBRaid.3
+			on_lose = twrGreeceSBRaid.4
+			on_cancel = twrGreeceSBRaid.4
+				}
+			}
+		}
+	}
+	
+	GRE_Raid_the_Turkish_Border = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_Fuel_from_Border_Raids
+			OR = {
+				is_neighbor_of = BUL
+				is_neighbor_of = BLC
+			}
+			GRE = {
+				owns_state = 184
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		visible = {
+			GRE = {
+				owns_state = 184
+			}
+		}
+		
+		days_remove = 60
+		
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+			state = 184
+			num_provinces = 1
+			on_win = twrGreeceSBRaid.1
+			on_lose = twrGreeceSBRaid.2
+			on_cancel = twrGreeceSBRaid.2
+		}
+				
+		defender = {
+			state = 314
+			num_provinces = 3
+			on_win = twrGreeceSBRaid.3
+			on_lose = twrGreeceSBRaid.4
+			on_cancel = twrGreeceSBRaid.4
+				}
+			}
+		}
+	}
+	
+	GRE_Raid_Corfu = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_Fuel_from_Border_Raids
+			is_neighbor_of = ITA
+			NOT = {
+				owns_state = 876
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		days_remove = 60
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+			state = 185
+			num_provinces = 1
+			on_win = twrGreeceSBRaid.1
+			on_lose = twrGreeceSBRaid.2
+			on_cancel = twrGreeceSBRaid.2
+		}
+				
+		defender = {
+			state = 876
+			num_provinces = 1
+			on_win = twrGreeceSBRaid.3
+			on_lose = twrGreeceSBRaid.4
+			on_cancel = twrGreeceSBRaid.4
+				}
+			}
+		}
+	}
+}
+
+GRE_Foreign_Expedition_Security_Battalions = {
+	
+	GRE_Cleanse_the_Communist_Scum_from_Albania = {
+		icon = generic_scorched_earth
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_The_Black_Bannerists
+			is_neighbor_of = ALB
+			NOT = {
+				ALB = { is_puppet_of = ROOT }
+			}
+			ALB = { has_government = marxist_leninist }
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		fire_only_once = yes
+		
+		cost = 50
+		
+		complete_effect = {
+			declare_war_on = {
+			target = ALB
+			type = annex_everything
+			}
+		}
+	}
+	
+	GRE_Reclaim_the_Northern_Lands = {
+		icon = generic_ignite_civil_war
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_The_Black_Bannerists
+			OR = {
+				is_neighbor_of = BUL
+				is_neighbor_of = BLC
+			}
+			OR = {
+				BLC = {
+					owns_state = 1009
+					owns_state = 184
+				}
+				BUL = {
+					owns_state = 1009
+					owns_state = 184
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		fire_only_once = yes
+		
+		cost = 50
+		
+		complete_effect = {
+			if = {
+				limit = {
+					country_exists = BUL
+				}
+				declare_war_on = {
+					target = BUL
+					type = take_core_state
+				}
+			}
+			else_if = {
+				limit = {
+					country_exists = BLC
+				}
+				declare_war_on = {
+					target = BLC
+					type = take_core_state
+				}
+			}
+			hidden_effect = {
+			set_country_flag = SBInvasion
+			}
+		}
+	}
+	
+}
+
+GRE_Show_Italians_Our_Strength = {
+	
+	GRE_Retake_Corfu = {
+		icon = generic_ignite_civil_war
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_A_Whip_Aimed_At_Rome
+			is_neighbor_of = ITA
+			NOT = {
+				owns_state = 876
+			}
+		}
+		
+		days_remove = 180
+		
+		cost = 50
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 185
+				num_provinces = 1
+				on_win = twrGreeceSB.8
+				on_lose = twrGreeceSB.801
+				on_cancel = twrGreeceSB.801
+				}
+				
+			defender = {
+				state = 876
+				num_provinces = 1
+				on_win = twrGreeceSB.802
+				on_lose = twrGreeceSB.803
+				on_cancel = twrGreeceSB.803
+				}
+			}
+		}
+	}
+	
+}
+
+GRE_Balkan-Ordnungspakt = {
+
+	GRE_Establish_the_Balkan-Ordnungspakt = {
+		icon = generic_form_nation
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_The_Hellenic_Reich
+			is_in_faction = no
+			is_subject = no
+		}
+		
+		fire_only_once = yes
+		
+		cost = 10
+		
+		complete_effect = {
+			create_faction = GRE_SB_BO
+			set_country_flag = ORDNUNGSPAKT_GRE
+		}
+	}
+	
+	GRE_Invite_our_Bulgarian_Comrades = {
+		icon = generic_form_nation
+		allowed = { tag = GRE }
+		available = {
+			has_completed_focus = GRE_The_Hellenic_Reich
+			BUL = {
+				has_government = national_socialist
+				NOT = {
+				is_in_faction = no
+				}
+			}
+		}
+		
+		fire_only_once = yes
+		
+		cost = 50
+		
+		complete_effect = {
+			BUL = {
+			country_event = { id = twrinvitetofac.1 days = 2 }
+			}
+		}
+	}
+	
+	GRE_Operation_Green_Sun = {
+		icon = generic_ignite_civil_war
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_The_Black_Bannerists
+			OR = {
+				is_neighbor_of = BUL
+				is_neighbor_of = BLC
+			}
+			OR = {
+				BLC = {
+					owns_state = 1009
+					owns_state = 184
+				}
+				BUL = {
+					owns_state = 1009
+					owns_state = 184
+				}
+			}
+		}
+		
+		fire_only_once = yes
+		
+		cost = 25
+		
+		complete_effect = {
+			if = {
+				limit = { country_exists = BUL }
+				declare_war_on = {
+					target = BUL
+					type = take_core_state
+				}
+			}
+			else_if = {
+				limit = { country_exists = BLC }
+				declare_war_on = {
+					target = BLC
+					type = take_core_state
+				}
+			}
+			hidden_effect = {
+				set_country_flag = SBBulgarianOrder
+			}
+		}
+	}
+	
+	GRE_The_North_Macedonian_Reichkommissariat = {
+		icon = generic_form_nation
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_The_Hellenic_Reich
+			ROOT = {
+				owns_state = 106
+			}
+		}
+		
+		fire_only_once = yes
+		
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 10
+		
+		complete_effect = {
+			release_puppet = MCD
+			hidden_effect = {
+			MCD = {
+			set_politics = {
+			ruling_party = national_socialist
+			}
+			set_party_name = { 
+			ideology = national_socialist 
+			long_name = GRE_SB_Macedonia_long
+			name = GRE_SB_Macedonia
+				}
+			retire_ideology_leader = national_socialist
+			create_country_leader = {
+			name = "Gunther Anhalt"
+			desc = ""
+			picture = "Gunther_Anhalt.dds"
+			expire = "1982.1.1"
+			ideology = ultranationalism
+			traits = { }
+				}
+			set_cosmetic_tag = SBMAC
+			load_focus_tree = TWR_Reorganised_Macedonia
+			add_ideas = GRE_A_Nation_in_Criminal_Chaos
+			add_ideas = GRE_A_Puppet_of_Raiders
+			create_corps_commander = {
+				name = "Gunther Anhalt"
+				picture = "Gunther_Anhalt.dds"
+				traits = { }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 1
+					}
+				}
+			add_ideas = fanatical_dictatorship
+			add_ideas = agrarian_nation
+			}
+		}
+	}
+	
+	GRE_Arm_the_Macedonians = {
+		fire_only_once = yes
+		icon = generic_prepare_civil_war
+		allowed = { original_tag = GRE }
+		available = {
+		country_exists = MCD
+		MCD = {
+		is_puppet_of = ROOT
+		}
+			}
+		ai_will_do = {
+			factor = 50
+		}
+		
+		cost = 35
+		
+		complete_effect = {
+		add_manpower = -1500
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -1000
+			producer = GRE
+			}
+		hidden_effect = {
+			MCD = {
+				division_template = {
+				name = "Bataljon Za Bezbednost"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 1 y = 0 }
+					militia = { x = 1 y = 1 }
+					militia = { x = 1 y = 2 }
+					}
+				}
+				create_unit = {
+				division = "name = \"1. Bataljon Za Bezbednost\" division_template = \"Bataljon Za Bezbednost\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MCD
+					}
+				create_unit = {
+				division = "name = \"2. Bataljon Za Bezbednost\" division_template = \"Bataljon Za Bezbednost\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MCD
+					}
+				add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = GRE
+					}
+				}
+			
+			}
+		}
+	}
+	
+	GRE_Operation_Struck_Eagle = {
+		icon = generic_ignite_civil_war
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_The_Hellenic_Reich
+			is_neighbor_of = ALB
+			NOT = {
+				ALB = { is_puppet_of = ROOT }
+			}
+			ALB = { has_government = marxist_leninist }
+		}
+		
+		fire_only_once = yes
+		
+		cost = 50
+		
+		complete_effect = {
+			declare_war_on = {
+			target = ALB
+			type = annex_everything
+			}
+		}
+	}
+	
+	GRE_The_Albanian_Reichkommissariat = {
+		icon = generic_form_nation
+		allowed = { original_tag = GRE }
+		available = {
+			has_completed_focus = GRE_The_Hellenic_Reich
+			OR = {
+			AND = {
+				GRE = {
+					has_war_with = ALB
+					}
+				ALB = {
+				has_capitulated = yes
+					}
+				}
+			ROOT = {
+			owns_state = 44
+			owns_state = 980
+			owns_state = 818
+					}
+			}
+		}
+		
+		fire_only_once = yes
+		
+		cost = 50
+		
+		complete_effect = {
+			country_event = { id = twrGreeceSB.6 } 
+		}
+	}
+	
+	GRE_Arm_the_Albanians = {
+		fire_only_once = yes
+		icon = generic_prepare_civil_war
+		allowed = { original_tag = GRE }
+		available = {
+		country_exists = ALB
+		ALB = {
+		is_puppet_of = ROOT
+		}
+			}
+		ai_will_do = {
+			factor = 50
+		}
+		
+		cost = 35
+		
+		complete_effect = {
+		add_manpower = -1500
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -1000
+			producer = GRE
+			}
+		hidden_effect = {
+			ALB = {
+				create_unit = {
+				division = "name = \"1. Brigada Vullnetare\" division_template = \"Vulnetari\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = ALB
+					}
+				create_unit = {
+				division = "name = \"2. Brigada Vullnetare\" division_template = \"Vulnetari\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = ALB
+					}
+				add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = GRE
+					}
+				}
+			
+			}
+		}
+	}
+}
+
+GRE_Merkourist_Military = {
+	
+	GRE_Merkouris_Line_Epirus = {
+		
+		fire_only_once = yes
+		cost = 50
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Construct_the_Merkouris_Line
+		}
+		available = {
+			num_of_civilian_factories_available_for_projects > 2
+		}
+		days_remove = 100
+		modifier = {
+			civilian_factory_use = 2
+		}
+		remove_effect = {
+			custom_effect_tooltip = Epirus_Bunkers_tt
+			hidden_effect = {
+				185 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+		}
+		icon = generic_artillery
+	}
+	
+	GRE_Merkouris_Line_Macedonia = {
+		
+		fire_only_once = yes
+		cost = 50
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Construct_the_Merkouris_Line
+		}
+		available = {
+			num_of_civilian_factories_available_for_projects > 2
+		}
+		days_remove = 100
+		modifier = {
+			civilian_factory_use = 2
+		}
+		remove_effect = {
+			custom_effect_tooltip = Macedonia_Bunkers_tt
+			hidden_effect = {
+				731 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+		}
+		icon = generic_artillery
+	}
+	
+	GRE_Merkouris_Line_Aegean_Islands = {
+		
+		fire_only_once = yes
+		cost = 50
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Construct_the_Merkouris_Line
+		}
+		available = {
+			num_of_civilian_factories_available_for_projects > 2
+		}
+		days_remove = 100
+		modifier = {
+			civilian_factory_use = 2
+		}
+		remove_effect = {
+			custom_effect_tooltip = Aegean_Coastal_Bunkers_tt
+			hidden_effect = {
+				187 = {
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+			}
+		}
+		icon = generic_naval
+	}
+	
+	GRE_Establish_Tagma_Efodou_Merkouris = {
+	
+		fire_only_once = yes
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Establish_the_Hellenic_Storm_Detachments
+		}
+		available = {
+			has_manpower > 8500
+			command_power > 15
+			has_equipment = {
+				infantry_equipment > 999
+			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = Merkouris_Division_tt
+			hidden_effect = {
+				add_manpower = -8500
+				add_command_power = -15
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -1000
+					producer = GRE
+				}
+				877 = {
+					create_unit = {
+						division = "name = \"Tagma Efodou Merkouris\" division_template = \"Tagma Efodou\" start_experience_factor = 0.1 start_equipment_factor = 1"
+						owner = GRE
+						prioritize_location = 4109
+					}
+				}
+			}
+		}
+		icon = generic_prepare_civil_war
+	}
+	
+	GRE_Establish_Athinaiko_Tagma_Asfaleias = {
+	
+		fire_only_once = yes
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Establish_the_Hellenic_Storm_Detachments
+		}
+		available = {
+			has_manpower > 8500
+			command_power > 15
+			has_equipment = {
+				infantry_equipment > 999
+			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = Athinaiko_Division_tt
+			hidden_effect = {
+				add_manpower = -8500
+				add_command_power = -15
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -1000
+					producer = GRE
+				}
+				877 = {
+					create_unit = {
+						division = "name = \"Athinaiko Tagma Asfaleias\" division_template = \"Tagma Efodou\" start_experience_factor = 0.1 start_equipment_factor = 1"
+						owner = GRE
+						prioritize_location = 4109
+					}
+				}
+			}
+		}
+		icon = generic_prepare_civil_war
+	}
+	
+	GRE_Learn_from_the_German_Blitzkrieg = {
+		fire_only_once = yes
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Establish_the_Hellenic_Storm_Detachments
+			OR = {
+				NOT = { has_tech = motorised_infantry }
+				NOT = { has_tech = MBT_1950 }
+			}
+		}
+		available = {
+			command_power > 15
+			has_army_experience > 10
+		}
+		days_remove = 30
+		complete_effect = {
+			add_command_power = -15
+			army_experience = -10
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					NOT = { has_tech = motorised_infantry }
+				}
+				set_technology = { motorised_infantry = 1 }
+			}
+			if = {
+				limit = {
+					NOT = { has_tech = MBT_1950 }
+				}
+				set_technology = { MBT_1950 = 1 }
+			}
+		}
+		icon = generic_operation
+	}
+	
+	GRE_Establish_Tethorakismeno_Tagma_Strasser = {
+	
+		fire_only_once = yes
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Establish_the_Hellenic_Storm_Detachments
+			has_tech = motorised_infantry
+			has_tech = MBT_1950
+		}
+		available = {
+			has_manpower > 10000
+			command_power > 25
+			has_equipment = {
+				infantry_equipment > 1499
+			}
+			has_equipment = {
+				anti_tank_equipment > 199
+			}
+		}
+		complete_effect = {
+			custom_effect_tooltip = Tethorakismeno_Division_tt
+			hidden_effect = {
+				add_manpower = -10000
+				add_command_power = -25
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -1500
+					producer = GRE
+				}
+				add_equipment_to_stockpile = {
+					type = anti_tank_equipment
+					amount =  -200
+					producer = GRE
+				}
+				877 = {
+					create_unit = {
+						division = "name = \"Tethorakismeno Tagma Strasser\" division_template = \"Tethorakismeno Tagma Efodou\" start_experience_factor = 0.1 start_equipment_factor = 1"
+						owner = GRE
+						prioritize_location = 4109
+					}
+				}
+			}
+		}
+		icon = generic_tank
+	}
+}
+
+GRE_Operation_Othomanos_decisions = {
+
+	GRE_Arm_the_Union_of_Dodecanese_Liberators = {
+	
+		fire_only_once = yes
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Operation_Othomanos
+		}
+		available = {
+			has_equipment = {
+				infantry_equipment > 249
+			}
+		}
+		days_remove = 20
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+				producer = GRE
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = Arm_the_Union_of_Dodecanese_Liberators_tt
+			hidden_effect = {
+				ITA = {
+					country_event = {
+						id = twrGreeceReworkMerkourism.200
+						hours = 1
+					}
+				}
+			}
+		}
+		icon = generic_civil_support
+	}
+	
+	GRE_Arm_the_Guild_of_the_Northern_Aegean = {
+	
+		fire_only_once = yes
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Operation_Othomanos
+		}
+		available = {
+			has_equipment = {
+				infantry_equipment > 249
+			}
+			has_country_flag = GRERebellionsSuccessful1
+		}
+		days_remove = 20
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+				producer = GRE
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = Arm_the_Guild_of_the_Northern_Aegean_tt
+			hidden_effect = {
+				ITA = {
+					country_event = {
+						id = twrGreeceReworkMerkourism.201
+						hours = 1
+					}
+				}
+			}
+		}
+		icon = generic_civil_support
+	}
+	
+	GRE_Arm_the_Syndicate_of_Crete = {
+	
+		fire_only_once = yes
+		allowed = {
+			original_tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_Operation_Othomanos
+		}
+		available = {
+			has_equipment = {
+				infantry_equipment > 499
+			}
+			has_country_flag = GRERebellionsSuccessful2
+		}
+		days_remove = 30
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+				producer = GRE
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = Arm_the_Syndicate_of_Crete_tt
+			hidden_effect = {
+				ITA = {
+					country_event = {
+						id = twrGreeceReworkMerkourism.202
+						hours = 1
+					}
+				}
+			}
+		}
+		icon = generic_civil_support
+	}
+	
+}
+
+GRE_The_Greek_Independence_War = {
+
+	GRE_ITA_PeaceTimer = {
+		allowed = {
+			OR = {
+				tag = ITA
+				tag = GRE
+			}
+		}
+		available = {
+			GRE = {
+				exists = no
+			}
+		}
+		activation = {
+			GRE = {
+				has_war_with = ITA
+			}
+		}
+		is_good = no
+		days_mission_timeout = 180
+		timeout_effect = {
+			ITA = {
+				country_event = twrGreeceReworkMerkourism.303
+			}
+		}
+		icon = generic_ignite_civil_war
+	}
+	
+}
+
+GRE_The_Thracian_Liberation_Army_decisions = {
+
+	GRE_Rally_the_Local_Populace = {
+	
+		fire_only_once = yes
+		cost = 50
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Thracian_Liberation_Army
+		}
+		days_remove = 30
+		remove_effect = {
+			hidden_effect = {
+				set_country_flag = TLARalliedthePopulace
+			}
+		}
+		icon = generic_civil_support
+	}
+	
+	GRE_Smuggle_Weapons = {
+	
+		fire_only_once = yes
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Thracian_Liberation_Army
+		}
+		available = {
+			has_equipment ={
+				infantry_equipment > 499
+			}
+		}
+		days_remove = 15
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+		}
+		remove_effect = {
+			set_country_flag = TLASmuggledWeapons
+		}
+		icon = generic_prepare_civil_war
+	}
+	
+	GRE_Send_Undercover_Officers = {
+	
+		fire_only_once = yes
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Thracian_Liberation_Army
+		}
+		available = {
+			command_power > 20
+		}
+		days_remove = 15
+		complete_effect = {
+			add_command_power = -20
+		}
+		remove_effect = {
+			set_country_flag = TLASentUndercoverOfficers
+		}
+		icon = infiltrate_state
+	}
+	
+	GRE_Plan_the_Xanthi_Incident = {
+	
+		fire_only_once = yes
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Thracian_Liberation_Army
+		}
+		available = {
+			has_country_flag = TLARalliedthePopulace
+			has_country_flag = TLASentUndercoverOfficers
+			has_country_flag = TLASmuggledWeapons
+			has_manpower > 250
+		}
+		days_remove = 7
+		complete_effect = {
+			add_manpower = -250
+		}
+		remove_effect = {
+			set_country_flag = TLAPlannedtheXanthiIncident
+		}
+		icon = hol_draw_up_staff_plans
+	}
+	
+	GRE_The_Xanthi_Incident = {
+	
+		fire_only_once = yes
+		cost = 10
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Thracian_Liberation_Army
+		}
+		available = {
+			has_country_flag = TLAPlannedtheXanthiIncident
+		}
+		complete_effect = {
+			add_manpower = -250
+		}
+		remove_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						country_exists = BUL
+					}
+					BUL = {
+						country_event = {
+							id = twrGreeceReworkMerkourism.400
+							days = 1
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						country_exists = BLC
+					}
+					BLC = {
+						country_event = {
+							id = twrGreeceReworkMerkourism.400
+							days = 1
+						}
+					}
+				}
+			}
+		}
+		icon = generic_ignite_civil_war
+	}
+	
+}
+
+GRE_The_Air_Pirate_Program_decisions = {
+
+	GRE_Buy_Italian_Planes = {
+		
+		cost = 75
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Air_Pirate_Program
+		}
+		available = {
+			ITA = {
+				exists = yes
+				has_government = fascist
+			}
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 50
+				producer = ITA
+			}
+			add_equipment_to_stockpile ={
+				type = CAS_equipment
+				amount = 25
+				producer = ITA
+			}
+			
+		}
+	}
+	
+	GRE_Buy_German_Planes = {
+		
+		cost = 75
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Air_Pirate_Program
+		}
+		available = {
+			GER = {
+				exists = yes
+				OR = {
+					has_government = national_socialist
+					has_government = fascist
+				}
+				has_civil_war = no
+			}
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 50
+				producer = GER
+			}
+			add_equipment_to_stockpile ={
+				type = tac_bomber_equipment
+				amount = 20
+				producer = GER
+			}
+			
+		}
+	}
+	
+	GRE_Buy_French_Planes = {
+		
+		cost = 50
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Air_Pirate_Program
+		}
+		available = {
+			FRA = {
+				exists = yes
+				has_government = paternal_autocrat
+			}
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 30
+				producer = FRA
+			}
+			add_equipment_to_stockpile ={
+				type = interceptor_equipment
+				amount = 10
+				producer = FRA
+			}
+			
+		}
+	}
+	
+	GRE_Smuggle_British_Planes = {
+		
+		cost = 25
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Air_Pirate_Program
+		}
+		available = {
+			ENG = {
+				exists = yes
+			}
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 10
+				producer = ENG
+			}
+			add_equipment_to_stockpile ={
+				type = strat_bomber_equipment
+				amount = 5
+				producer = ENG
+			}
+			
+		}
+	}
+	
+	GRE_Smuggle_Soviet_Planes = {
+		
+		cost = 25
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Air_Pirate_Program
+		}
+		available = {
+			SOV = {
+				exists = yes
+			}
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 10
+				producer = SOV
+			}
+			add_equipment_to_stockpile ={
+				type = CAS_equipment
+				amount = 5
+				producer = SOV
+			}
+			
+		}
+	}
+}
+
+GRE_Italian_Loans = {
+
+	GRE_Small_Loan = {
+	
+		cost = 25
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Greco_Italian_Bank_of_Athens
+		}
+		available = {
+			ITA = {
+				has_war = no
+			}
+			NOT = {
+				has_country_flag = GRE_Loan_Taken
+			}
+			is_in_faction_with = ITA
+		}
+		modifier = {
+			consumer_goods_factor = -0.05
+		}
+		days_re_enable = 200
+		days_remove = 100
+		complete_effect = {
+			set_country_flag = GRE_Loan_Taken
+		}
+		remove_effect = {
+			clr_country_flag = GRE_Loan_Taken
+		}
+	}
+	
+	GRE_Medium_Loan = {
+	
+		cost = 50
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Greco_Italian_Bank_of_Athens
+		}
+		available = {
+			ITA = {
+				has_war = no
+			}
+			NOT = {
+				has_country_flag = GRE_Loan_Taken
+			}
+			is_in_faction_with = ITA
+		}
+		modifier = {
+			consumer_goods_factor = -0.10
+		}
+		days_re_enable = 200
+		days_remove = 100
+		complete_effect = {
+			set_country_flag = GRE_Loan_Taken
+		}
+		remove_effect = {
+			clr_country_flag = GRE_Loan_Taken
+		}
+	}
+	
+	GRE_Large_Loan = {
+	
+		cost = 100
+		allowed = {
+			tag = GRE
+		}
+		visible = {
+			has_completed_focus = GRE_The_Greco_Italian_Bank_of_Athens
+		}
+		available = {
+			ITA = {
+				has_war = no
+			}
+			NOT = {
+				has_country_flag = GRE_Loan_Taken
+			}
+			is_in_faction_with = ITA
+		}
+		modifier = {
+			consumer_goods_factor = -0.20
+		}
+		days_re_enable = 200
+		days_remove = 100
+		complete_effect = {
+			set_country_flag = GRE_Loan_Taken
+		}
+		remove_effect = {
+			clr_country_flag = GRE_Loan_Taken
+		}
+	}
+	
+}

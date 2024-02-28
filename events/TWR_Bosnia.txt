@@ -1,0 +1,409 @@
+add_namespace = twr_bosnia
+add_namespace = twr_bosnia_chetnik
+add_namespace = twr_bosnia_news
+
+country_event = { #Serbian Chetniks Arise in Bosnia (Croatia)
+	id = twr_bosnia_chetnik.1
+	title = twr_bosnia_chetnik.1.t
+	desc = twr_bosnia_chetnik.1.d
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+	
+	option = { #Damn them
+		name = twr_bosnia_chetnik.1.a
+		hidden_effect = {
+			981 = {
+				add_dynamic_modifier = {
+					modifier = serbian_bosnian_chetnik_hq
+				}
+			}
+			country_event = { id = twr_bosnia_chetnik.3 days = 5 }
+		}
+	}
+
+	option = { #Send in the Bojnica to crush them
+		name = twr_bosnia_chetnik.1.b
+		trigger = {
+			has_country_flag = CRO_Artukovic_Bojnica
+		}
+		hidden_effect = {
+			clr_country_flag = CRO_Artukovic_Bojnica
+			981 = {
+				add_dynamic_modifier = {
+					modifier = serbian_bosnian_chetnik_hq
+				}
+			}
+			country_event = { id = twr_bosnia_chetnik.2 days = 5 }
+		}
+	}
+}
+
+country_event = { #Artukovic fucking dies (Croatia)
+	id = twr_bosnia_chetnik.2
+	title = twr_bosnia_chetnik.2.t
+	desc = twr_bosnia_chetnik.2.d
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+	
+	option = { #Damn them
+		name = twr_bosnia_chetnik.2.a
+		add_manpower = -500
+		add_stability = -0.1
+		add_political_power = -50
+		custom_effect_tooltip = CRO_Artukovic_Dies_tt
+		hidden_effect = {
+			set_country_flag = CRO_Artukovic_DEAD
+			set_variable = {
+				var = CRO_Artukovic_Loyalty
+				value = 0
+			}
+			set_variable = {
+				var = CRO_Artukovic_Influence
+				value = 0
+			}
+			set_country_flag = Andrija_Artukovic_unavailable
+			981 = {
+				remove_dynamic_modifier = {
+					modifier = serbian_bosnian_chetnik_hq
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Serbian Chetniks Rise Up
+	id = twr_bosnia_chetnik.3
+	title = twr_bosnia_chetnik.3.t
+	desc = twr_bosnia_chetnik.3.d
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			BOS = {
+				transfer_state = 981
+				set_cosmetic_tag = BOS_CHE
+				load_oob = "BOS_CHE_oob"
+				add_ideas = BOS_For_Bosnia
+				set_politics = {
+					ruling_party = paternal_autocrat
+				}
+                set_party_name = {
+                    ideology = paternal_autocrat
+                    name = BOS_CHE_party
+                    long_name = BOS_CHE_party_long
+                }
+				set_popularities = {
+					national_socialist = 2
+					fascist = 8
+					paternal_autocrat = 82
+					conservative = 8
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				create_country_leader = {
+					name = "Boško Todorović"
+					desc = "Bosko_Todorovic_DESC"
+					picture = "Bosko_Todorovic.dds"
+					expire = "1965.1.1"
+					ideology = reactionary_nationalism
+					traits = { 
+						# 
+					}
+				}
+				981 = {
+					add_building_construction = {
+						type = supply_node
+						level = 1
+						instant_build = yes
+					}
+				}
+				declare_war_on = {
+					target = CRO
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = CRP
+					type = annex_everything
+				}
+				CRO = {
+					activate_mission = CRO_Bosnian_Chetnik_Ceasefire
+				}
+				if = {
+					limit = {
+						CRP = {
+							exists = yes
+						}
+					}
+					BOS = {
+						declare_war_on = {
+							target = CRP
+							type = annex_everything
+						}
+					}
+					CRP = {
+						activate_mission = CRO_Bosnian_Chetnik_Ceasefire
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #Kill them all!
+		name = twr_bosnia_chetnik.3.a
+		hidden_effect = {
+			if = {
+				limit = {
+					any_country = {
+						original_tag = SER
+						OR = {
+							has_cosmetic_tag = SER_CHE
+							has_government = paternal_autocrat
+						}
+					}
+				}
+				country_event = { id = twr_bosnia_chetnik.4 days = 2 } #Serbian event
+				else_if = {
+					limit = {
+						any_country = {
+							original_tag = SER
+							has_idea = SER_chetnik_issue
+						}
+					}
+					random_country = {
+						limit = {
+							original_tag = SER
+							has_idea = SER_chetnik_issue
+						}
+						country_event = { id = twr_bosnia_chetnik.5 days = 2 } #Serbian Chetniks leaving for Bosnia event
+					}
+				}
+			}
+		}
+	}
+
+	option = { #Rise Brothers!
+		name = twr_bosnia_chetnik.3.b
+		BOS = { change_tag_from = ROOT }
+		hidden_effect = {
+			if = {
+				limit = {
+					any_country = {
+						original_tag = SER
+						OR = {
+							has_cosmetic_tag = SER_CHE
+							has_government = paternal_autocrat
+						}
+					}
+				}
+				random_country = {
+					limit = {
+						original_tag = SER
+						OR = {
+							has_cosmetic_tag = SER_CHE
+							has_government = paternal_autocrat
+						}
+					}
+					country_event = { id = twr_bosnia_chetnik.4 days = 2 } #Serbian event
+				}
+				else_if = {
+					limit = {
+						any_country = {
+							original_tag = SER
+							has_idea = SER_chetnik_issue
+						}
+					}
+					random_country = {
+						limit = {
+							original_tag = SER
+							has_idea = SER_chetnik_issue
+						}
+						country_event = { id = twr_bosnia_chetnik.5 days = 2 } #Serbian Chetniks leaving for Bosnia event
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Our Brothers in Bosnia
+	id = twr_bosnia_chetnik.4
+	title = twr_bosnia_chetnik.4.t
+	desc = twr_bosnia_chetnik.4.d
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+	
+	option = { #We will always help our brothers!
+		name = twr_bosnia_chetnik.4.a
+		 
+		unlock_decision_category_tooltip = bosnian_chetniks_category
+	}
+}
+
+country_event = { #Chetniks leave for Bosnia
+	id = twr_bosnia_chetnik.5
+	title = twr_bosnia_chetnik.5.t
+	desc = twr_bosnia_chetnik.5.d
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+	
+	option = { #We will always help our brothers!
+		name = twr_bosnia_chetnik.5.a
+		
+		effect_tooltip = {
+			remove_ideas = SER_chetnik_issue
+		}
+		retire_ideology_leader = paternal_autocrat
+		create_country_leader = {
+			name = "Power Vacuum"
+			#desc = ""
+			#picture = ".dds"
+			expire = "1965.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+				#
+			}
+		}
+		BOS = {
+			country_event = { days = 4 id = twr_bosnia_chetnik.6 }
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					has_idea = SER_chetnik_issue
+				}
+				remove_ideas = SER_chetnik_issue
+			}
+		}
+	}
+}
+
+country_event = { #Chetnik from Serbia arrive
+	id = twr_bosnia_chetnik.6
+	title = twr_bosnia_chetnik.6.t
+	desc = twr_bosnia_chetnik.6.d
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+	
+	option = { #We will always help our brothers!
+		name = twr_bosnia_chetnik.6.a
+
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = DRAZA_DEAD
+				}
+			}
+			set_global_flag = DRAZA_ESCAPES_TO_BOSNIA
+			create_field_marshal = {
+				name = "Dragoljub Mihailović"
+				picture = "SER_Dragoljub_Mihailovic.dds"
+				traits = { hill_fighter infantry_officer chetnik_general }
+				skill = 4
+				attack_skill = 3
+				defense_skill = 4
+				planning_skill = 2
+				logistics_skill = 2
+			}
+		}
+		 
+		create_corps_commander = {
+			name = "Momčilo Đujić"
+			picture = "Momcilo_Dujic.dds"
+			traits = { harsh_leader chetnik_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}	
+		create_corps_commander = {
+			name = "Milka Baković"
+			picture = "SER_Milka_Bakovic.dds"
+			traits = { infantry_officer chetnik_general }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}		
+		create_corps_commander = {
+			name = "Vlado Šipčić"
+			picture = "SER_Vlado_Sipcic.dds"
+			traits = { old_guard chetnik_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Miodrag Damjanović"
+			picture = "SER_Miodrag_Damjanovic.dds"
+			traits = { politically_connected chetnik_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 2
+		}
+	}
+}
+
+country_event = { #Victory!
+	id = twr_bosnia_chetnik.7
+	title = twr_bosnia_chetnik.7.t
+	desc = twr_bosnia_chetnik.7.d
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+	
+	option = { #Hoorah!
+		name = twr_bosnia_chetnik.7.a
+		remove_ideas = BOS_For_Bosnia
+		        add_timed_idea = {
+			        idea = BOS_Stabilizing_our_State
+			        days = 220
+		        }
+		hidden_effect = {
+			if = {
+				limit = {
+					SER = {
+						OR = {
+							has_cosmetic_tag = SER_CHE
+							has_government = paternal_autocrat
+							is_democratic = yes
+						}
+					}
+				}
+				SER = {
+					country_event = { days = 1 id = twr_bosnia_chetnik.8 }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Chenik Victory in Bosnia!
+	id = twr_bosnia_chetnik.8
+	title = twr_bosnia_chetnik.8.t
+	desc = twr_bosnia_chetnik.8.d
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+	
+	option = { #Finally!
+		name = twr_bosnia_chetnik.8.a
+		
+		add_political_power = 75
+	}
+}

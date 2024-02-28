@@ -1,0 +1,519 @@
+shared_focus = {
+	id = CRO_Formalise_the_Duumvirate
+	icon = GFX_CRO_Formalise_the_Duumvirate
+	cost = 5
+	x = 14
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_The_Peasants_Plot"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		hidden_effect = {
+		IF = {
+			limit = {
+			BOS = { is_subject_of = CRO }
+                                }
+           		BOS = {
+		set_politics = {
+			ruling_party = paternal_autocrat
+			last_election = "1935.6.9"
+			election_frequency = 12
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.51
+			}
+		}
+	        	}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Embrace_Italo_Fascist_Doctrine
+	icon = GFX_goal_generic_support_fascism
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Formalise_the_Duumvirate
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Formalise_the_Duumvirate
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_What_Direction"
+        custom_effect_tooltip = CRO_Army_Angy_tt
+        hidden_effect = { country_event = { id = croatia_vokic_coup.1 hours = 72 } }
+		add_political_power = -150
+		add_stability = -0.30
+		add_ideas = dictatorship
+		set_politics = {
+			ruling_party = fascist
+			last_election = "1935.6.9"
+			election_frequency = 12
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.40
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Croatian_Corporatism
+	icon = GFX_GENERIC_planned_economy
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Embrace_Italo_Fascist_Doctrine
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Embrace_Italo_Fascist_Doctrine
+	}
+    available = {
+        NOT = { has_country_flag = cro_army_unrest_flag }
+        }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Croatian_Corporatism"
+               add_ideas = CRO_actual_corporatism_idea 
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Destroy_Natsocs
+	icon = GFX_CRO_Pavelic_Dead
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Embrace_Italo_Fascist_Doctrine
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Embrace_Italo_Fascist_Doctrine
+	}
+    available = {
+        NOT = { has_country_flag = cro_army_unrest_flag }
+        }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Destroy_Natsocs"
+                 country_event = { id = twrcroatia.238 }
+		add_ideas = CRO_Oruznistvo_idea 
+	}
+}
+
+shared_focus = {
+	id = CRO_Illyrian_Trade
+	icon = GFX_CRO_Italian_Trade
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Embrace_Italo_Fascist_Doctrine
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Embrace_Italo_Fascist_Doctrine
+	}
+    available = {
+        NOT = { has_country_flag = cro_army_unrest_flag }
+        }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Illyrian_Trade"
+		add_ideas = CRO_Illyrian_Trade_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Rebuild_the_Countryside_Duumvirate
+	icon = GFX_GENERIC_Factory_Complex_Green
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Croatian_Corporatism
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Croatian_Corporatism
+	}
+	prerequisite = {
+		focus = CRO_Destroy_Natsocs
+	}
+	prerequisite = {
+		focus = CRO_Illyrian_Trade
+	}
+    available = {
+        NOT = { has_country_flag = cro_army_unrest_flag }
+        }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Rebuild_the_Countryside_Duumvirate"
+		163 = { add_extra_state_shared_building_slots = 1 }
+		983 = { add_extra_state_shared_building_slots = 1 }
+		1016 = { add_extra_state_shared_building_slots = 1 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Ease_Taxes_on_Our_Farmers_Duumvirate
+	icon = GFX_SER_focus_farmer_battalions
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Illyrian_Trade
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Croatian_Corporatism
+	}
+	prerequisite = {
+		focus = CRO_Destroy_Natsocs
+	}
+	prerequisite = {
+		focus = CRO_Illyrian_Trade
+	}
+    available = {
+        NOT = { has_country_flag = cro_army_unrest_flag }
+        }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Ease_Taxes_on_Our_Farmers_Duumvirate"
+		add_timed_idea = {
+			idea = CRO_Eased_Taxes_idea
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Social_Republic
+	icon = GFX_CRO_Social_Republic
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Destroy_Natsocs
+	prerequisite = {
+		focus = CRO_Rebuild_the_Countryside_Duumvirate
+	}
+	prerequisite = {
+		focus = CRO_Ease_Taxes_on_Our_Farmers_Duumvirate
+	}
+    available = {
+        NOT = { has_country_flag = cro_army_unrest_flag }
+        }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Social_Republic"
+        set_cosmetic_tag = CRO_Social_Republic
+				set_party_name = {
+					ideology = fascist
+					name = HNFS
+					long_name = HNFS_long
+				}
+	}
+}
+
+shared_focus = {
+	id = CRO_Join_Our_Fascist_Brothers
+	icon = GFX_GENERIC_Alliance_with_Italy
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Social_Republic
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Social_Republic
+	}
+    available = {
+        NOT = { has_country_flag = cro_army_unrest_flag }
+        }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Join_Our_Fascist_Brothers"
+			ITA = {
+			country_event = {
+				id = twrcroatia.42
+			}
+		}	
+	}
+}
+
+shared_focus = {
+	id = CRO_The_Vatican_Connection
+	icon = GFX_GENERIC_Catholic_Government
+	cost = 5
+	x = 3
+	y = 1
+	relative_position_id = CRO_Join_Our_Fascist_Brothers
+	prerequisite = {
+		focus = CRO_Join_Our_Fascist_Brothers
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_The_Vatican_Connection"
+		add_stability = 0.1
+		add_political_power = 150
+	}
+}
+
+shared_focus = {
+	id = CRO_Blessings_From_the_Church_Duumvirate
+	icon = GFX_GENERIC_Catholic_Government
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_The_Vatican_Connection
+	cancelable = no
+	prerequisite = {
+		focus = CRO_The_Vatican_Connection
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Blessings_From_the_Church_Duumvirate"
+		country_event = {
+			id = twrcroatia.43
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Condemn_The_Northern_Protestants
+	icon = GFX_GENERIC_destroy_nazism
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Blessings_From_the_Church_Duumvirate
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Blessings_From_the_Church_Duumvirate
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Blessings_From_the_Church_Duumvirate"
+			855 = {
+			owner = {
+				add_opinion_modifier = {
+					target = CRO
+					modifier = faction_traitor
+				}
+			}
+		}		
+	}
+}
+
+shared_focus = {
+	id = CRO_Croatian_Exceptionalism
+	icon = GFX_CRO_Croatian_Exceptionalism
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Join_Our_Fascist_Brothers
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Join_Our_Fascist_Brothers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Croatian_Exceptionalism"
+				add_ideas = CRO_Croatian_Exceptionalism_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Croatian_Cultural_Golden_Age_Duumvirate
+	icon = GFX_CRO_Golden_Age
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Croatian_Exceptionalism
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Croatian_Exceptionalism
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Croatian_Cultural_Golden_Age_Duumvirate"
+		add_ideas = CRO_Croatian_Cultural_Golden_Age_idea
+		unlock_decision_category_tooltip = Croatian_Culture_category
+		set_country_flag = cro_culture_decisions_flag
+                add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = CRO_Renewed_Croatia
+	icon = GFX_CRO_Cast_Them_Away
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Croatian_Cultural_Golden_Age_Duumvirate
+	prerequisite = {
+		focus = CRO_Croatian_Cultural_Golden_Age_Duumvirate
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Renewed_Croatia"
+			add_state_core = 104  
+			add_state_core = 983   
+			add_state_core = 163  
+			add_state_core = 815   
+                        add_state_core = 981
+                        add_state_core = 982
+                        add_state_core = 819
+                        add_state_core = 736   
+		IF = {
+			limit = {
+			45 = { is_owned_by = CRO }
+                                }
+           		add_state_core = 45
+	        }  
+		IF = {
+			limit = {
+			BOS = { is_subject_of = CRO }
+                                }
+           		annex_country = { target = BOS transfer_troops = yes }
+	        }
+	}
+}
+
+shared_focus = {
+	id = CRO_Med_Pact_Peacekeepers
+	icon = GFX_ITA_Med_Pact
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Join_Our_Fascist_Brothers
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Join_Our_Fascist_Brothers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Med_Pact_Peacekeepers"
+		add_ideas = CRO_Mediterranean_Pact_Peacekeepers_idea	
+		IF = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			cro_create_intelligence_agency = yes
+		}		
+	}
+}
+
+shared_focus = {
+	id = CRO_Il_Duces_State_Visit_to_Split
+	icon = GFX_ITA_Viva_Mussolini 
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Med_Pact_Peacekeepers
+	prerequisite = {
+		focus = CRO_Med_Pact_Peacekeepers
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Il_Duces_State_Visit_to_Split"
+		country_event = {
+			id = twrcroatia.48
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Ask_For_Dalmatia
+	icon = GFX_CRO_Dalmatia
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Med_Pact_Peacekeepers
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Med_Pact_Peacekeepers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Ask_For_Dalmatia"
+		ITA = {
+			country_event = {
+				id = twrcroatia.52
+			}
+		}		
+	}
+}
+
+shared_focus = {
+	id = CRO_Expanding_The_Med_Pact
+	icon = GFX_ITA_Italian_Empire
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Med_Pact_Peacekeepers
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Il_Duces_State_Visit_to_Split
+	}
+	prerequisite = {
+		focus = CRO_Ask_For_Dalmatia
+	}
+	available = {
+		has_completed_focus = CRO_The_Worst_is_Behind_Us
+		has_completed_focus = CRO_Mediterranean_Navy_Expansion
+		has_completed_focus = CRO_Modernise_Our_Land_Forces
+		has_completed_focus = CRO_Improving_The_Airforce
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Expanding_The_Med_Pact"
+		unlock_decision_category_tooltip = cro_expanding_med_pact_category	
+		ITA = { country_event = { id = cro_diplomacy.11 hours = 2 } }
+	}
+}
+
+shared_focus = {
+	id = CRO_At_Equal_Ground
+	icon = GFX_ITA_A_King_for_Land
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Renewed_Croatia
+	prerequisite = {
+		focus = CRO_Renewed_Croatia
+	}
+	prerequisite = {
+		focus = CRO_Expanding_The_Med_Pact
+	}
+	prerequisite = {
+		focus = CRO_Condemn_The_Northern_Protestants
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_At_Equal_Ground"
+        add_stability = 0.05
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_A_New_Croatia
+	icon = GFX_CRO_A_Dream_Come_True
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_At_Equal_Ground
+	prerequisite = {
+		focus = CRO_At_Equal_Ground
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Our_Roman_Heritage"
+                custom_effect_tooltip = CRO_reunification_decision_tt
+                set_country_flag = CRO_Reunify_Croatia_decision_flag
+				
+	}
+}
+
+

@@ -1,0 +1,151 @@
+RSB_karbyshevs_health_category = {
+	RSB_Give_a_Speech_decision = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RSB
+		}
+		available = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RMO
+				has_war_with = RMD
+			}
+		}
+		visible = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RMO
+				has_war_with = RMD
+			}
+		}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RSB_Give_a_Speech_decision"
+			add_war_support = 0.05
+		}
+	}
+	RSB_Execute_Fascist_Officers_decision = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RSB
+		}
+		available = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RMO
+				has_war_with = RMD
+			}
+		}
+		visible = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RMO
+				has_war_with = RMD
+			}
+		}
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RSB_Execute_Fascist_Officers_decision"
+			add_war_support = 0.05
+			add_timed_idea = {
+				idea = RSB_Antifascism_idea
+				days = 50
+			}
+		}
+	}
+	RSB_Distribute_Bread_decision = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RSB
+		}
+		available = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RMO
+				has_war_with = RMD
+			}
+		}
+		visible = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RMO
+				has_war_with = RMD
+			}
+		}
+
+		cost = 15
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RSB_Distribute_Bread_decision"
+			add_war_support = 0.15
+			add_timed_idea = {
+				idea = RSB_Bread_for_the_People_idea
+				days = 50
+			}
+		}
+	}
+	
+	RSB_karbyshev_fucking_dies_mission = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RSB
+		}
+		available = {
+			has_war_support > 0.1
+		}
+		activation = {
+			has_country_leader = {
+				name = "Dmitry Karbyshev"
+				ruling_only = yes
+			}
+		}
+		is_good = no
+		days_mission_timeout = 30
+		timeout_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = RSB_The_World_Cannot_Remain_Silent
+					}
+				}
+				country_event = {
+					id = freed.7
+				}
+			}
+			else = {
+				country_event = {
+					id = freed.8
+				}
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RSB_karbyshev_fucking_dies_mission"
+			custom_effect_tooltip = RSB_karbyshev_lives_tt
+			IF = {
+				limit = {
+					has_completed_focus = RSB_The_World_Cannot_Remain_Silent
+				}
+				country_event = {
+					id = freed.8
+				}
+			}
+		}
+	}
+}

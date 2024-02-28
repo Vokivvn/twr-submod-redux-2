@@ -1,0 +1,673 @@
+#########################################################################
+#East Germany
+#########################################################################
+DDR_frankfurt_uprising = {
+	begin_frankfurt_uprising = {
+		icon = decision_revolt
+		
+		available = {
+			DDR = {
+				has_completed_focus = DDR_Call_to_Arms
+			}
+		}
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+				exists = yes
+				is_puppet = no
+				has_completed_focus = DDR_Call_to_Arms
+		}
+
+		fire_only_once = yes
+		
+		days_remove = 5
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision begin_frankfurt_uprising"
+		}
+		remove_effect = {
+			DDR = {
+				country_event = tgcw.3
+			}
+			every_enemy_country = { 
+			country_event = tgcw.3
+			}
+		}
+	}
+	begin_thurigen_uprising = {
+		icon = decision_revolt
+		
+		available = {
+			DDR = {
+				has_completed_focus = DDR_Call_to_Arms
+			}
+		}
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+				exists = yes
+				is_puppet = no
+				has_completed_focus = DDR_Call_to_Arms
+		}
+
+		fire_only_once = yes
+		
+		days_remove = 5
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision begin_thurigen_uprising"
+		}
+		remove_effect = {
+			DDR = {
+				country_event = tgcw.4
+			}
+			every_enemy_country = { 
+			country_event = tgcw.4
+			}
+		}
+	}
+}
+DDR_reichstag = {
+	rename_germania = {
+		icon = eng_trade_unions_support
+		
+		available = {
+			has_completed_focus = DDR_Successful_Revolution
+		}
+
+		cost = 35
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			has_completed_focus = DDR_Successful_Revolution
+		}
+		fire_only_once = yes
+		
+		days_remove = 15
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision rename_germania"
+		}
+		remove_effect = {
+		DDR = { set_capital = {state = 855} }
+		add_stability = 0.03
+		set_province_name = {
+    	id = 6521
+    	name = "Berlin"
+			}
+		855 = {
+		set_state_name = "Berlin"
+			}
+		news_event = twrddr.49
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	end_the_enabling_act = {
+		icon = eng_trade_unions_support
+		
+		available = {
+			has_completed_focus = DDR_Successful_Revolution
+		}
+
+		cost = 15
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+				exists = yes
+				is_puppet = no
+				has_completed_focus = DDR_Successful_Revolution
+
+		}
+		fire_only_once = yes
+		
+		days_remove = 25
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision end_the_enabling_act"
+		}
+		remove_effect = {
+		country_event = twrddr.50
+		}
+	}
+	ending_prussia = {
+		icon = eng_trade_unions_support
+		
+		available = {
+			has_completed_focus = DDR_First_President
+		}
+
+		cost = 35
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+				exists = yes
+				is_puppet = no
+				has_completed_focus = DDR_First_President
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		fire_only_once = yes
+		
+		days_remove = 25
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ending_prussia"
+		}
+		remove_effect = {
+		country_event = twrddr.15
+		}
+	}
+	GER_joining_the_UN = {
+		icon = eng_trade_unions_support
+		
+		available = {
+			has_completed_focus = DDR_First_President
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+				exists = yes
+				is_puppet = no
+				has_completed_focus = DDR_First_President
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		fire_only_once = yes
+		
+		days_remove = 25
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_joining_the_UN"
+		}
+		remove_effect = {
+		add_stability = 0.1
+		news_event = twrnews.155
+		hidden_effect = {
+		TWR_add_to_un = yes
+			}
+		}
+	}
+	secure_political_support = {
+		icon = eng_trade_unions_support
+		
+		available = {
+		OR = {
+		has_completed_focus = DDR_Compromise_with_Moderates
+		has_completed_focus = DDR_Moderate_Policies
+		has_completed_focus = DDR_Third_Way
+		has_completed_focus = DDR_Coalition_With_SocDem
+		has_completed_focus = DDR_Uphold_The_Federation
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+				exists = yes
+				is_puppet = no
+				has_completed_focus = DDR_First_President
+		}
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.01
+			master_ideology_drift = 0.1
+		}
+		fire_only_once = no
+		
+		days_remove = 35
+		days_re_enable = 45
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision secure_political_support"
+		}
+	}
+	ddr_welfare = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+			OR = {
+			has_government = social_democrat
+			has_completed_focus = DDR_Coalition_With_SocDem
+			has_completed_focus = DDR_Grand_Coalition
+			}
+		}
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			has_completed_focus = DDR_First_President		
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			consumer_goods_factor = 0.03
+			production_factory_efficiency_gain_factor = 0.02
+			MONTHLY_POPULATION = 0.1
+		}
+
+		days_remove = 45
+		days_re_enable = 60
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision ddr_welfare"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				has_war = no
+			}
+		}
+	}
+	ddr_independent_union = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+			OR = {
+			has_government = social_democrat
+			has_completed_focus = DDR_Liberal_Coalition_Party
+			}
+		}
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			OR = {
+			has_government = social_democrat
+			has_completed_focus = DDR_Liberal_Coalition_Party
+			}
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+		political_power_factor = -0.1
+		consumer_goods_factor = 0.05
+		}
+
+		days_remove = 45
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision ddr_independent_union"
+		}
+		remove_effect = {
+		add_offsite_building = { type = industrial_complex level = 2 }
+		add_stability = 0.05
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				has_war = no
+			}
+		}
+	}
+	ddr_reformed_union = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+			OR = {
+			has_completed_focus = DDR_UDP_Coalition
+			has_completed_focus = DDR_Conservative_Victory
+			}
+		}
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			OR = {
+			has_completed_focus = DDR_UDP_Coalition
+			has_completed_focus = DDR_Conservative_Victory
+			}
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+		political_power_factor = -0.2
+		}
+
+		days_remove = 45
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision ddr_independent_union"
+		}
+		remove_effect = {
+		add_offsite_building = { type = industrial_complex level = 3 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				has_war = no
+			}
+		}
+	}
+	ddr_expand_firearms_rights = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+		social_democrat > 0.5
+		}
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			OR = {
+			has_completed_focus = DDR_Power_To_The_People
+			}
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+		political_power_factor = -0.2
+		}
+
+		days_remove = 45
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision ddr_expand_firearms_rights"
+		}
+		remove_effect = {
+		add_equipment_to_stockpile = {
+	    type = infantry_equipment_0
+	    amount = 7000
+	    producer = DDR
+		}
+		division_template = {
+			name = "Milizformationen"		
+
+			regiments = {
+				militia = { x = 0 y = 0 }
+				militia = { x = 0 y = 1 }
+				militia = { x = 0 y = 2 }
+			}
+		}
+		capital_scope = {
+			create_unit = {
+		    division = "name = \"1. Milizformationen\" division_template = \"Milizformationen\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			create_unit = {
+		    division = "name = \"2. Milizformationen\" division_template = \"Milizformationen\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			create_unit = {
+		    division = "name = \"3. Milizformationen\" division_template = \"Milizformationen\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			create_unit = {
+		    division = "name = \"4. Milizformationen\" division_template = \"Milizformationen\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			}
+		country_event = twrddr.51
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				has_war = no
+			}
+		}
+	}	
+	ddr_austrian = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+			OR = {
+			has_completed_focus = DDR_Liberal_System
+			}
+		}
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			OR = {
+			has_completed_focus = DDR_Liberal_System
+			}
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+		political_power_factor = -0.2
+		}
+
+		days_remove = 45
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision ddr_austrian"
+		}
+		remove_effect = {
+		country_event = twrddr.40
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				has_war = no
+			}
+		}
+	}
+	ddr_military_standardnization_budget = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+		conservative > 0.5
+		}
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			OR = {
+			has_completed_focus = DDR_Build_The_Bundeswehr
+			}
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+		political_power_factor = -0.2
+		}
+
+		days_remove = 45
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision ddr_military_standardnization_budget"
+		}
+		remove_effect = {
+		division_template = {
+			name = "Infanterie-Abteilung"		
+
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+				infantry = { x = 2 y = 0 }
+				infantry = { x = 2 y = 1 }
+				infantry = { x = 2 y = 2 }
+			}
+		}
+		capital_scope = {
+			create_unit = {
+		    division = "name = \"1. Infanterie-Abteilung\" division_template = \"Infanterie-Abteilung\" start_experience_factor = 0.1 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			create_unit = {
+		    division = "name = \"2. Infanterie-Abteilung\" division_template = \"Infanterie-Abteilung\" start_experience_factor = 0.1 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			create_unit = {
+		    division = "name = \"3. Infanterie-Abteilung\" division_template = \"Infanterie-Abteilung\" start_experience_factor = 0.1 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			create_unit = {
+		    division = "name = \"4. Infanterie-Abteilung\" division_template = \"Infanterie-Abteilung\" start_experience_factor = 0.1 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			create_unit = {
+		    division = "name = \"5. Infanterie-Abteilung\" division_template = \"Infanterie-Abteilung\" start_experience_factor = 0.1 start_equipment_factor = 0.6"
+		    owner = DDR
+				}
+			}
+		news_event = twrddr.52
+		add_ideas = DDR_Rebuilding_Arms_Industry
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				has_war = no
+			}
+		}
+	}
+	ddr_european_economic_union = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+		OR = {
+		has_completed_focus = DDR_Encourage_Pan_Europeanism
+		has_completed_focus = DDR_Zentraleuropa_Buro
+			}
+		}
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			OR = {
+			has_completed_focus = DDR_Encourage_Pan_Europeanism
+			has_completed_focus = DDR_Zentraleuropa_Buro
+			}
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+		political_power_factor = -0.1
+		}
+
+		days_remove = 45
+
+		cost = 90
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision ddr_european_economic_union"
+		}
+		remove_effect = {
+		set_country_flag = EU_DDR_FORMED
+		news_event = twrddr.61
+		add_dynamic_modifier = { 
+			modifier = GER_ETC
+		}
+		if = {
+		limit = { FRA = { is_democratic = yes } }
+			}
+		}
+		ai_will_do = {
+			base = 5
+			modifier = {
+				add = 10
+				FRA = { is_democratic = yes }
+			}
+		}
+	}
+	ddr_disband_reichstag = {
+
+		icon = eng_trade_unions_support
+
+		available = {
+		bolshevik_leninist > 0.8
+		}
+
+		visible = {
+			exists = yes
+			is_puppet = no
+			OR = {
+			has_completed_focus = DDR_Mimic_Soviet_System
+			}
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+		political_power_factor = -0.1
+		}
+
+		days_remove = 45
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision ddr_disband_reichstag"
+		}
+		remove_effect = {
+		set_country_flag = DISBANDED_REICHSTAG_DDR
+		news_event = twrddr.53
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				has_war = no
+			}
+		}
+	}	
+}

@@ -1,0 +1,2497 @@
+DISSOLVE_RELATIONS_WITH_USA = {
+	clr_country_flag = CIA_active
+	diplomatic_relation = {
+		country = USA
+		relation = guarantee
+		active = no
+	}
+	diplomatic_relation = {
+		country = USA
+		relation = military_access
+		active = no
+	}
+	if = {
+		limit = {
+			is_in_faction_with = USA
+		}
+		leave_faction = yes
+	}
+	add_opinion_modifier = {
+		target = USA
+		modifier = relations_broken
+	}
+	reverse_add_opinion_modifier = {
+		target = USA
+		modifier = relations_broken
+	}
+	set_country_flag = relations_broken_with_usa
+	remove_opinion_modifier = {
+		target = USA
+		modifier = russian_american_relations
+	}
+	USA = {
+		remove_opinion_modifier = {
+			target = RUS
+			modifier = russian_american_relations
+		}
+	}
+}
+
+RUS_clamp_IVANAOMIKA = {
+	clamp_variable = { var = RUS_Ivanomika_consciousness min = 0 max = 100 }
+	clamp_variable = { var = RUS_Ivanomika_spending min = 0 max = 8000 }
+}
+
+RUS_improve_economy_effect = {
+	if = {
+		limit = { has_idea = RUS_far_east_crash_idea }
+		swap_ideas = {
+			remove_idea = RUS_far_east_crash_idea
+			add_idea = RUS_far_east_crash_1_idea
+		}
+	}
+	else_if = {
+		limit = { has_idea = RUS_far_east_crash_1_idea }
+		swap_ideas = {
+			remove_idea = RUS_far_east_crash_1_idea
+			add_idea = RUS_far_east_crash_2_idea
+		}
+	}
+	else_if = {
+		limit = { has_idea = RUS_far_east_crash_2_idea }
+		swap_ideas = {
+			remove_idea = RUS_far_east_crash_2_idea
+			add_idea = RUS_far_east_crash_3_idea
+			}
+	}
+	else_if = {
+		limit = { has_idea = RUS_far_east_crash_3_idea }
+		swap_ideas = {
+			remove_idea = RUS_far_east_crash_3_idea
+			add_idea = RUS_far_east_crash_4_idea
+		}
+	}
+}
+
+# Duma
+RUS_duma_bill_setup = {
+	set_variable = { RUS_duma_interaction_progress = 100 }
+
+	5 = {
+		set_variable = { RUS_duma_support_percent = 0.50 }
+	}
+
+	if = {
+		limit = {
+			check_variable = { RUS_duma_amendment_count > 0 }
+		}
+		for_loop_effect = {
+			start = 1
+			end = RUS_duma_amendment_count
+			compare = less_than_or_equals
+
+			add_to_array = { RUS_duma_amendment_array = v }
+		}
+	}
+
+	for_each_scope_loop = {
+		array = RUS_duma_party_array
+
+		set_variable = { RUS_duma_support_seat = RUS_duma_support_percent }
+		multiply_variable = { RUS_duma_support_seat = RUS_duma_seat }
+		round_variable = RUS_duma_support_seat
+	}
+
+	set_country_flag = RUS_duma_support_view
+
+	RUS_duma_reload_support = yes
+
+	hidden_effect = {
+		# fire the timer
+		country_event = { id = rus_duma.15 hours = 24 }
+	}
+}
+
+RUS_duma_bill_1_effect = {
+	set_temp_variable = { temp_bill = 1 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 1 }
+	set_variable = { RUS_duma_bill_timer = 35 }
+
+	1 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.35 max = 0.55 } # Left SRs 35% - 55% Support
+	}
+	2 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.35 max = 0.55 } # SRs 35% - 55% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.20 max = 0.40 } # Kadets 20% - 40% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.20 } # Octobrists 0% - 20% Support
+	}
+
+	set_variable = { RUS_duma_amendment_count = 1 }
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_bill_2_effect = {
+	set_temp_variable = { temp_bill = 2 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 2 }
+	set_variable = { RUS_duma_bill_timer = 35 }
+
+	1 = {
+		set_variable = { RUS_duma_support_percent = 0 } # Left SRs 0% Support
+	}
+	2 = {
+		set_variable = { RUS_duma_support_percent = 0 } # SRs 0% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.05 max = 0.25 } # Kadets 5% - 25% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.25 max = 0.45 } # Octobrists 25% - 45% Support
+	}
+
+	set_variable = { RUS_duma_amendment_count = 2 }
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_bill_3_effect = {
+	set_temp_variable = { temp_bill = 3 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 3 }
+	set_variable = { RUS_duma_bill_timer = 35 }
+
+	1 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.25 max = 0.45 } # Left SRs 25% - 45% Support
+	}
+	2 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.25 max = 0.45 } # SRs 25% - 45% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.20 } # Kadets 0% - 20% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.30 max = 0.50 } # Octobrists 30% - 50% Support
+	}
+
+	set_variable = { RUS_duma_amendment_count = 1 }
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_bill_4_effect = {
+	set_temp_variable = { temp_bill = 4 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 4 }
+	set_variable = { RUS_duma_bill_timer = 35 }
+
+	1 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.20 } # Left SRs 0% - 20% Support
+	}
+	2 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.20 } # SRs 0% - 20% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.15 max = 0.35 } # Kadets 15% - 35% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.25 max = 0.45 } # Octobrists 25% - 45% Support
+	}
+
+	set_variable = { RUS_duma_amendment_count = 1 }
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_bill_5_effect = {
+	set_temp_variable = { temp_bill = 5 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 5 }
+	set_variable = { RUS_duma_bill_timer = 35 }
+
+	1 = {
+		set_variable = { RUS_duma_support_percent = 0 } # Left SRs 0% Support
+	}
+	2 = {
+		set_variable = { RUS_duma_support_percent = 0 } # SRs 0% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.20 } # Kadets 0% - 20% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.30 max = 0.50 } # Octobrists 30% - 50% Support
+	}
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_bill_6_effect = {
+	set_temp_variable = { temp_bill = 6 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 6 }
+	set_variable = { RUS_duma_bill_timer = 35 }
+
+	1 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.20 max = 0.40 } # Left SRs 20% - 40% Support
+	}
+	2 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.20 max = 0.40 } # SRs 20% - 40% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.10 max = 0.30 } # Kadets 10% - 30% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.10 } # Octobrists 0% - 10% Support
+	}
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_bill_7_effect = {
+	set_temp_variable = { temp_bill = 7 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 7 }
+	set_variable = { RUS_duma_bill_timer = 35 }
+
+	1 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.30 max = 0.50 } # Left SRs 30% - 50% Support
+	}
+	2 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.30 max = 0.50 } # SRs 30% - 50% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.10 max = 0.30 } # Kadets 10% - 30% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.10 } # Octobrists 0% - 10% Support
+	}
+
+	set_variable = { RUS_duma_amendment_count = 1 }
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_bill_8_effect = {
+	set_temp_variable = { temp_bill = 8 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 8 }
+	set_variable = { RUS_duma_bill_timer = 35 }
+
+	1 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.20 max = 0.40 } # Left SRs 20% - 40% Support
+	}
+	2 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.20 max = 0.40 } # SRs 20% - 40% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.20 } # Kadets 0% - 20% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.15 max = 0.35 } # Octobrists 15% - 35% Support
+	}
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_bill_9_effect = {
+	set_temp_variable = { temp_bill = 9 }
+	custom_effect_tooltip = RUS_duma_bill_effect_tt
+
+	set_variable = { RUS_duma_bill = 9 }
+	set_variable = { RUS_duma_bill_timer = 70 }
+
+	1 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.30 max = 0.50 } # Left SRs 30% - 50% Support
+	}
+	2 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0.30 max = 0.50 } # SRs 30% - 50% Support
+	}
+	3 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.15 } # Kadets 0% - 15% Support
+	}
+	4 = {
+		randomize_variable = { var = RUS_duma_support_percent distribution = uniform min = 0 max = 0.10 } # Octobrists 0% - 10% Support
+	}
+
+	set_variable = { RUS_duma_amendment_count = 1 }
+
+	RUS_duma_bill_setup = yes
+}
+
+RUS_duma_negotiate_effect = {
+	if = {
+		limit = {
+			check_variable = { RUS_duma_alignment = 1 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -5 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.05 }
+			set_temp_variable = { temp_party = v }
+			RUS_duma_modify_support = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_alignment = 4 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -15 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.05 }
+			set_temp_variable = { temp_party = v }
+			RUS_duma_modify_support = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_alignment = 3 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -10 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.05 }
+			set_temp_variable = { temp_party = v }
+			RUS_duma_modify_support = yes
+		}
+	}
+}
+
+RUS_duma_modify_support = {
+	set_temp_variable = { temp_before = temp_party:RUS_duma_support_percent }
+	set_temp_variable = { temp_after = temp_party:RUS_duma_support_percent }
+	add_to_temp_variable = { temp_after = temp_support }
+
+	if = {
+		limit = {
+			check_variable = { temp_after < 0 }
+		}
+		set_temp_variable = { temp_after = 0 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { temp_after > 1 }
+		}
+		set_temp_variable = { temp_after = 1 }
+	}
+
+	set_variable = { temp_party:RUS_duma_support_percent = temp_after }
+
+	set_variable = { temp_party:RUS_duma_support_seat = temp_party:RUS_duma_support_percent }
+	multiply_variable = { temp_party:RUS_duma_support_seat = temp_party:RUS_duma_seat }
+	round_variable = temp_party:RUS_duma_support_seat
+
+	custom_effect_tooltip = RUS_duma_modify_support_tt
+
+	RUS_duma_reload_support = yes
+}
+
+RUS_duma_modify_interaction_point = {
+	set_temp_variable = { temp_before = RUS_duma_interaction_progress }
+	set_temp_variable = { temp_after = RUS_duma_interaction_progress }
+	add_to_temp_variable = { temp_after = temp_point }
+
+	if = {
+		limit = {
+			check_variable = { temp_after < 0 }
+		}
+		set_temp_variable = { temp_after = 0 }
+	}
+
+	set_variable = { RUS_duma_interaction_progress = temp_after }
+
+	custom_effect_tooltip = RUS_duma_modify_interaction_point_tt
+}
+
+RUS_duma_end_bill_effect = {
+	set_variable = { RUS_duma_bill_event = RUS_duma_bill }
+
+	if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 1 } # Female Employment Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1.RUS_duma_amendment_set = 1 }
+					check_variable = { 2.RUS_duma_amendment_set = 1 }
+				}
+				add_ideas = RUS_duma_female_employment_act_4
+			}
+			else_if = {
+				limit = {
+					check_variable = { 1.RUS_duma_amendment_set = 1 }
+				}
+				add_ideas = RUS_duma_female_employment_act_3
+			}
+			else_if = {
+				limit = {
+					check_variable = { 2.RUS_duma_amendment_set = 1 }
+				}
+				add_ideas = RUS_duma_female_employment_act_2
+			}
+			else = {
+				add_ideas = RUS_duma_social_economic_reform_act_1
+			}
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 2 } # Religious Schooling Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1.RUS_duma_amendment_set = 1 }
+				}
+				add_ideas = RUS_duma_religious_schooling_act_2
+			}
+			else = {
+				add_ideas = RUS_duma_religious_schooling_act_1
+			}
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 3 } # Religious Institution Tax Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1.RUS_duma_amendment_set = 1 }
+				}
+				add_ideas = RUS_duma_religious_institution_tax_act_2
+			}
+			else = {
+				add_ideas = RUS_duma_religious_institution_tax_act_1
+			}
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 4 } # Immigration Vetting Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1.RUS_duma_amendment_set = 1 }
+				}
+				add_ideas = RUS_duma_immigration_vetting_act_2
+			}
+			else = {
+				add_ideas = RUS_duma_immigration_vetting_act_1
+			}
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 5 } # Welfare Exemption Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}	
+			add_ideas = RUS_duma_welfare_exemption_act
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 6 } # Female Wage Reimbursement Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}
+			add_ideas = RUS_duma_female_wage_reimbursement_act
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 7 } # Civil Rights Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1.RUS_duma_amendment_set = 1 }
+				}
+				add_ideas = RUS_duma_civil_rights_act_2
+			}
+			else = {
+				add_ideas = RUS_duma_civil_rights_act_1
+			}
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 8 } # Farm Foreclosure Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}
+			add_ideas = RUS_duma_farm_foreclosure_act
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 9 } # Socioeconomic Reform Act
+		}
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_support_total > RUS_duma_seat_majority }
+					check_variable = { RUS_duma_support_total = RUS_duma_seat_majority }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1.RUS_duma_amendment_set = 1 }
+				}
+				add_ideas = RUS_duma_social_economic_reform_act_2
+			}
+			else = {
+				add_ideas = RUS_duma_social_economic_reform_act_1
+			}
+
+			custom_effect_tooltip = RUS_duma_bill_passed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.13 days = 0 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = RUS_duma_bill_failed_tt
+			hidden_effect = {
+				country_event = { id = rus_duma.14 days = 0 }
+			}
+		}
+	}
+
+	for_each_loop = {
+		array = RUS_duma_amendment_array
+
+		clear_variable = v:RUS_duma_amendment_set
+	}
+
+	clear_variable = RUS_duma_bill
+	clear_variable = RUS_duma_bill_timer
+	clear_variable = RUS_duma_interaction_progress
+	clear_variable = RUS_duma_amendment_count
+	clear_array = RUS_duma_amendment_array
+
+	if = {
+		limit = { has_country_flag = RUS_duma_support_view }
+		clr_country_flag = RUS_duma_support_view
+		RUS_duma_reload_normal = yes
+	}
+	else = {
+		RUS_duma_refresh = yes
+	}
+}
+
+RUS_duma_amendment_add_effect = {
+	set_variable = { v:RUS_duma_amendment_set = 1 }
+
+	if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 1 }
+			check_variable = { v = 1 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -5 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 3 }
+			RUS_duma_modify_support = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 1 }
+			check_variable = { v = 2 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -5 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.05 }
+			set_temp_variable = { temp_party = 3 }
+			RUS_duma_modify_support = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 4 }
+			RUS_duma_modify_support = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 2 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -5 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 1 }
+			RUS_duma_modify_support = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 2 }
+			RUS_duma_modify_support = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 3 }
+			RUS_duma_modify_support = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 3 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -5 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.20 }
+			set_temp_variable = { temp_party = 3 }
+			RUS_duma_modify_support = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 4 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -5 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 1 }
+			RUS_duma_modify_support = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 2 }
+			RUS_duma_modify_support = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 3 }
+			RUS_duma_modify_support = yes
+
+			set_temp_variable = { temp_support = 0.10 }
+			set_temp_variable = { temp_party = 4 }
+			RUS_duma_modify_support = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 7 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -5 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.5 }
+			set_temp_variable = { temp_party = 3 }
+			RUS_duma_modify_support = yes
+
+			set_temp_variable = { temp_support = 0.5 }
+			set_temp_variable = { temp_party = 4 }
+			RUS_duma_modify_support = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { RUS_duma_bill = 9 }
+		}
+		ROOT = {
+			set_temp_variable = { temp_point = -5 }
+			RUS_duma_modify_interaction_point = yes
+
+			set_temp_variable = { temp_support = 0.2 }
+			set_temp_variable = { temp_party = 3 }
+			RUS_duma_modify_support = yes
+
+			set_temp_variable = { temp_support = 0.3 }
+			set_temp_variable = { temp_party = 4 }
+			RUS_duma_modify_support = yes
+		}
+	}
+}
+
+RUS_duma_initial = {
+	custom_effect_tooltip = RUS_duma_initial_tt
+
+	set_country_flag = RUS_duma_enabled
+
+	clear_array = RUS_duma_party_array
+	clear_array = RUS_duma_submenu_array
+
+	set_variable = { RUS_duma_seat_total = 50 }
+	set_variable = { RUS_duma_seat_majority = 26 }
+
+	add_to_array = { RUS_duma_party_array = 5 }
+
+	# independents always neutral
+	5 = {
+		set_variable = { RUS_duma_seat = ROOT.RUS_duma_seat_total }
+		set_variable = { RUS_duma_alignment = 3 }
+	}
+	# representing vacant
+	6 = {
+		set_variable = { RUS_duma_seat = 410 }
+		subtract_from_variable = { RUS_duma_seat = ROOT.RUS_duma_seat_total }
+		set_variable = { RUS_duma_alignment = 5 }
+	}
+
+	add_to_array = { RUS_duma_submenu_array = 1 }
+
+	RUS_duma_reload_normal = yes
+}
+
+RUS_duma_add_seat = {
+	custom_effect_tooltip = RUS_duma_add_seat_tt
+
+	add_to_variable = { RUS_duma_seat_total = temp_seat_change }
+	set_variable = { RUS_duma_seat_majority = RUS_duma_seat_total }
+	divide_variable = { RUS_duma_seat_majority = 2 }
+	round_variable = RUS_duma_seat_majority
+
+	if = {
+		limit = {
+			set_temp_variable = { temp_adjustment = RUS_duma_seat_majority }
+			multiply_temp_variable = { temp_adjustment = 2 }
+			check_variable = { temp_adjustment < RUS_duma_seat_total }
+		}
+		add_to_variable = { RUS_duma_seat_majority = 1 }
+	}
+
+	6 = {
+		set_variable = { RUS_duma_seat = 410 }
+		subtract_from_variable = { RUS_duma_seat = ROOT.RUS_duma_seat_total }
+	}
+
+	for_each_loop = {
+		array = RUS_duma_popularity_array
+
+		set_temp_variable = { temp_popularity = RUS_duma_popularity_array^i }
+		multiply_temp_variable = { temp_popularity = RUS_duma_seat_total }
+		round_temp_variable = temp_popularity
+		add_to_temp_variable = { temp_total = temp_popularity }
+		add_to_temp_array = { temp_popularity_array = temp_popularity }
+	}
+
+	if = {
+		limit = {
+			check_variable = { temp_total < RUS_duma_seat_total }
+		}
+		set_temp_variable = { temp_seat = RUS_duma_seat_total }
+		subtract_from_temp_variable = { temp_seat = temp_total }
+		find_highest_in_array = { array = temp_popularity_array index = highest_index }
+		add_to_temp_variable = { temp_popularity_array^highest_index = temp_seat }
+	}
+	else_if = {
+		limit = {
+			check_variable = { temp_total > RUS_duma_seat_total }
+		}
+		subtract_from_temp_variable = { temp_total = RUS_duma_seat_total }
+		find_highest_in_array = { array = temp_popularity_array index = highest_index }
+		subtract_from_temp_variable = { temp_popularity_array^highest_index = temp_total }
+	}
+
+	for_each_loop = {
+		array = RUS_duma_party_array
+
+		set_variable = { v:RUS_duma_seat = temp_popularity_array^i }
+	}
+
+	RUS_duma_reload_normal = yes
+}
+
+RUS_duma_election_setup = {
+	custom_effect_tooltip = RUS_duma_election_setup_tt
+
+	clear_array = RUS_duma_party_array
+	clear_array = RUS_duma_popularity_array
+
+	for_loop_effect = {
+		start = 1
+		end = 5
+		compare = less_than_or_equals
+
+		add_to_array = { RUS_duma_party_array = v }
+	}
+
+	add_to_array = { RUS_duma_popularity_array = party_popularity@socialist }
+	add_to_array = { RUS_duma_popularity_array = party_popularity@social_democrat }
+	add_to_array = { RUS_duma_popularity_array = party_popularity@liberal }
+	add_to_array = { RUS_duma_popularity_array = party_popularity@conservative }
+
+	find_highest_in_array = { array = RUS_duma_popularity_array index = highest_index_later }
+
+	for_each_loop = {
+		array = RUS_duma_popularity_array
+
+		add_to_temp_variable = { temp_popularity_total = RUS_duma_popularity_array^i }
+	}
+
+	# independents will be other popularities
+	set_temp_variable = { temp_independent_popularity = 1 }
+	subtract_from_temp_variable = { temp_independent_popularity = temp_popularity_total }
+
+	add_to_array = { RUS_duma_popularity_array = temp_independent_popularity }
+
+	for_each_loop = {
+		array = RUS_duma_popularity_array
+
+		set_temp_variable = { temp_popularity = RUS_duma_popularity_array^i }
+		multiply_temp_variable = { temp_popularity = RUS_duma_seat_total }
+		round_temp_variable = temp_popularity
+		add_to_temp_variable = { temp_total = temp_popularity }
+		add_to_temp_array = { temp_popularity_array = temp_popularity }
+	}
+
+	if = {
+		limit = {
+			check_variable = { temp_total < RUS_duma_seat_total }
+		}
+		set_temp_variable = { temp_seat = RUS_duma_seat_total }
+		subtract_from_temp_variable = { temp_seat = temp_total }
+		find_highest_in_array = { array = temp_popularity_array index = highest_index }
+		add_to_temp_variable = { temp_popularity_array^highest_index = temp_seat }
+	}
+	else_if = {
+		limit = {
+			check_variable = { temp_total > RUS_duma_seat_total }
+		}
+		subtract_from_temp_variable = { temp_total = RUS_duma_seat_total }
+		find_highest_in_array = { array = temp_popularity_array index = highest_index }
+		subtract_from_temp_variable = { temp_popularity_array^highest_index = temp_total }
+	}
+
+	for_each_loop = {
+		array = RUS_duma_party_array
+
+		set_variable = { v:RUS_duma_seat = temp_popularity_array^i }
+
+		# SRs always in coalition?
+		if = {
+			limit = {
+				OR = {
+					check_variable = { highest_index_later = 0 }
+					check_variable = { highest_index_later = 1 }
+				}
+				OR = {
+					check_variable = { i = 0 }
+					check_variable = { i = 1 }
+				}
+			}
+			set_variable = { v:RUS_duma_alignment = 1 }
+			set_variable = { v:RUS_duma_alignment = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { i = highest_index_later }
+			}
+			set_variable = { v:RUS_duma_alignment = 1 }
+		}
+		else_if = {
+			limit = {
+				NOT = {
+					check_variable = { v = 5 }
+				}
+			}
+			set_variable = { v:RUS_duma_alignment = 4 }
+		}
+	}
+
+	add_to_array = { RUS_duma_party_array = 6 }
+
+	RUS_duma_reload_normal = yes
+}
+
+RUS_duma_government_formation_1 = {
+	custom_effect_tooltip = RUS_duma_government_formation_tt
+
+	set_variable = { RUS_duma_screen = 1 }
+
+	clear_array = RUS_duma_government_leader_array
+	clear_variable = 100.RUS_duma_government_leader
+
+	RUS_duma_clear_government = yes
+
+	add_to_array = { RUS_duma_government_leader_array = 1 }
+	add_to_array = { RUS_duma_government_leader_array = 2 }
+	add_to_array = { RUS_duma_government_leader_array = 3 }
+
+	RUS_duma_reload_normal = yes
+}
+
+RUS_duma_load_government_leader = {
+	set_variable = { 100.RUS_duma_government_leader = v }
+
+	for_each_scope_loop = {
+		array = ROOT.RUS_duma_party_array
+
+		set_variable = { RUS_duma_alignment = 3 }
+	}
+
+	5 = {
+		set_variable = { RUS_duma_alignment = 4 }
+	}
+	6 = {
+		set_variable = { RUS_duma_alignment = 5 }
+	}
+
+	if = {
+		limit = {
+			check_variable = { 100.RUS_duma_government_leader = 1 }
+		}
+		1 = {
+			set_variable = { RUS_duma_alignment = 2 }
+		}
+		2 = {
+			set_variable = { RUS_duma_alignment = 1 }
+		}
+		3 = {
+			set_variable = { RUS_duma_alignment = 3 }
+		}
+		4 = {
+			set_variable = { RUS_duma_alignment = 4 }
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { 100.RUS_duma_government_leader = 2 }
+		}
+		1 = {
+			set_variable = { RUS_duma_alignment = 3 }
+		}
+		2 = {
+			set_variable = { RUS_duma_alignment = 3 }
+		}
+		3 = {
+			set_variable = { RUS_duma_alignment = 1 }
+		}
+		4 = {
+			set_variable = { RUS_duma_alignment = 3 }
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { 100.RUS_duma_government_leader = 3 }
+		}
+		1 = {
+			set_variable = { RUS_duma_alignment = 4 }
+		}
+		2 = {
+			set_variable = { RUS_duma_alignment = 4 }
+		}
+		3 = {
+			set_variable = { RUS_duma_alignment = 3 }
+		}
+		4 = {
+			set_variable = { RUS_duma_alignment = 1 }
+		}
+	}
+
+	ROOT = {
+		RUS_duma_reload_normal = yes
+	}
+}
+
+RUS_duma_confirm_government_leader = {
+	custom_effect_tooltip = RUS_duma_confirm_government_leader_tt
+
+	if = {
+		limit = {
+			OR = {
+				1 = {
+					check_variable = { RUS_duma_alignment = 1 }
+				}
+				2 = {
+					check_variable = { RUS_duma_alignment = 1 }
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = ROGOZHIN_government }
+			retire_country_leader = yes
+		}
+		set_politics = {
+			ruling_party = social_democrat
+		}
+		clr_country_flag = ROGOZHIN_government
+		clr_country_flag = NABOKOV_government
+		clr_country_flag = SOLZHENITSYN_government
+		set_country_flag = SOROKIN_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_HoG_Mark_Vishniak
+				RUS_FM_Vladimir_Zenzinov
+				RUS_AM_Vasily_Leontyev
+			}
+			load_focus_tree = RUS_esery_tree
+		}
+	}
+	else_if = {
+		limit = {
+			3 = {
+				check_variable = { RUS_duma_alignment = 1 }
+			}
+		}
+		if = {
+			limit = { has_country_flag = ROGOZHIN_government }
+			retire_country_leader = yes
+		}
+		set_politics = {
+			ruling_party = liberal
+		}
+		clr_country_flag = ROGOZHIN_government
+		clr_country_flag = SOROKIN_government
+		clr_country_flag = SOLZHENITSYN_government
+		set_country_flag = NABOKOV_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_HoG_Boris_Pasternak
+				RUS_FM_Viktor_Nekrasov
+				RUS_AM_Igor_Ansov
+			}
+			load_focus_tree = RUS_kadety_tree
+		}
+	}
+	else_if = {
+		limit = {
+			4 = {
+				check_variable = { RUS_duma_alignment = 1 }
+			}
+		}
+		if = {
+			limit = { has_country_flag = ROGOZHIN_government }
+			retire_country_leader = yes
+		}
+		set_politics = {
+			ruling_party = conservative
+		}
+		clr_country_flag = ROGOZHIN_government
+		clr_country_flag = SOROKIN_government
+		clr_country_flag = NABOKOV_government
+		set_country_flag = SOLZHENITSYN_government
+		hidden_effect = {
+			add_ideas = {
+				RUS_AM_Pyotr_Savitsky
+				RUS_FM_Georgy_Vernadsky
+				RUS_HoG_Pyotr_Suvchinsky
+			}
+			load_focus_tree = RUS_octobrist_tree
+		}
+	}
+
+	for_each_scope_loop = {
+		array = RUS_duma_party_array
+
+		if = {
+			limit = {
+				check_variable = { RUS_duma_alignment = 2 }
+			}
+			set_variable = { RUS_duma_alignment = 1 }
+		}
+	}
+
+	5 = {
+		set_variable = { RUS_duma_alignment = 3 }
+	}
+	6 = {
+		set_variable = { RUS_duma_alignment = 5 }
+	}
+
+	clear_variable = 100.RUS_duma_government_leader
+	clear_variable = RUS_duma_screen
+
+	RUS_duma_reload_normal = yes
+}
+
+RUS_duma_clear_government = {
+	for_each_scope_loop = {
+		array = RUS_duma_party_array
+
+		if = {
+			limit = {
+				check_variable = { RUS_duma_alignment = 4 }
+			}
+			set_variable = { RUS_duma_alignment = 3 }
+		}
+	}
+
+	5 = {
+		set_variable = { RUS_duma_alignment = 4 }
+	}
+	6 = {
+		set_variable = { RUS_duma_alignment = 5 }
+	}
+}
+
+RUS_duma_add_to_coalition = {
+	set_variable = { RUS_duma_alignment = 2 }
+
+	ROOT = {
+		add_political_power = -20
+		RUS_duma_reload_normal = yes
+	}
+
+	if = {
+		limit = {
+			OR = {
+				check_variable = { ROOT.RUS_duma_government_seat_total = ROOT.RUS_duma_seat_majority }
+				check_variable = { ROOT.RUS_duma_government_seat_total > ROOT.RUS_duma_seat_majority }
+			}
+		}
+		for_each_scope_loop = {
+			array = ROOT.RUS_duma_neutral_array
+
+			set_variable = { RUS_duma_alignment = 4 }
+		}
+
+		5 = {
+			set_variable = { RUS_duma_alignment = 4 }
+		}
+		6 = {
+			set_variable = { RUS_duma_alignment = 5 }
+		}
+
+		ROOT = {
+			RUS_duma_reload_normal = yes
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { ROOT.RUS_duma_neutral_array^num = 0 }
+		}
+		for_each_scope_loop = {
+			array = ROOT.RUS_duma_opposition_array
+
+			set_variable = { RUS_duma_alignment = 3 }
+		}
+
+		5 = {
+			set_variable = { RUS_duma_alignment = 4 }
+		}
+		6 = {
+			set_variable = { RUS_duma_alignment = 5 }
+		}
+
+		ROOT = {
+			RUS_duma_reload_normal = yes
+		}
+	}
+}
+
+RUS_duma_remove_from_coalition = {
+	set_variable = { RUS_duma_alignment = 3 }
+
+	ROOT = {
+		add_political_power = -10
+		RUS_duma_reload_normal = yes
+	}
+
+	if = {
+		limit = {
+			check_variable = { ROOT.RUS_duma_government_seat_total < ROOT.RUS_duma_seat_majority }
+			check_variable = { ROOT.RUS_duma_neutral_array^num = 0 }
+		}
+		for_each_scope_loop = {
+			array = ROOT.RUS_duma_opposition_array
+
+			set_variable = { RUS_duma_alignment = 4 }
+		}
+
+		5 = {
+			set_variable = { RUS_duma_alignment = 4 }
+		}
+		6 = {
+			set_variable = { RUS_duma_alignment = 5 }
+		}
+
+		ROOT = {
+			RUS_duma_reload_normal = yes
+		}
+	}
+}
+
+RUS_duma_reload_normal = {
+	clear_array = RUS_duma_main_array
+	clear_array = RUS_duma_cosmetic_party_array
+	clear_array = RUS_duma_government_array
+	clear_array = RUS_duma_neutral_array
+	clear_array = RUS_duma_opposition_array
+	clear_variable = RUS_duma_government_seat_total
+	clear_variable = RUS_duma_neutral_seat_total
+	clear_variable = RUS_duma_opposition_seat_total
+
+	for_each_loop = {
+		array = RUS_duma_party_array
+
+		var:v = {
+			if = {
+				limit = {
+					OR = {
+						check_variable = { RUS_duma_alignment = 1 }
+						check_variable = { RUS_duma_alignment = 2 }
+					}
+				}
+				add_to_array = { ROOT.RUS_duma_government_array = ROOT.RUS_duma_party_array^i }
+			}
+			else_if = {
+				limit = {
+					check_variable = { RUS_duma_alignment = 3 }
+				}
+				add_to_array = { ROOT.RUS_duma_neutral_array = ROOT.RUS_duma_party_array^i }
+			}
+			else_if = {
+				limit = {
+					check_variable = { RUS_duma_alignment = 4 }
+				}
+				add_to_array = { ROOT.RUS_duma_opposition_array = ROOT.RUS_duma_party_array^i }
+			}
+		}
+	}
+
+	set_temp_variable = { temp_array_sort = 1 }
+	set_temp_variable = { temp_value_sort = 1 }
+	scoped_quicksort = yes
+
+	set_temp_variable = { temp_array_sort = 2 }
+	set_temp_variable = { temp_value_sort = 1 }
+	scoped_quicksort = yes
+
+	set_temp_variable = { temp_array_sort = 3 }
+	set_temp_variable = { temp_value_sort = 1 }
+	scoped_quicksort = yes
+
+	for_each_loop = {
+		array = RUS_duma_government_array
+
+		add_to_array = { RUS_duma_cosmetic_party_array = RUS_duma_government_array^i }
+	}
+
+	for_each_loop = {
+		array = RUS_duma_neutral_array
+
+		add_to_array = { RUS_duma_cosmetic_party_array = RUS_duma_neutral_array^i }
+	}
+
+	for_each_loop = {
+		array = RUS_duma_opposition_array
+
+		add_to_array = { RUS_duma_cosmetic_party_array = RUS_duma_opposition_array^i }
+	}
+
+	for_each_loop = {
+		array = RUS_duma_cosmetic_party_array
+
+		set_temp_variable = { global.seat_id = v }
+
+		var:v = {
+			if = {
+				limit = {
+					check_variable = { RUS_duma_seat > 0 }
+				}
+				for_loop_effect = {
+					start = 1
+					end = RUS_duma_seat
+					compare = less_than_or_equals
+
+					add_to_array = { ROOT.RUS_duma_main_array = global.seat_id }
+				}
+			}
+		}
+	}
+
+	resize_array = { array = RUS_duma_main_array value = 6 size = 410 }
+
+	if = {
+		limit = {
+			NOT = {
+				check_variable = { ROOT.RUS_duma_screen = 1 }
+			}
+		}
+		add_to_array  = { RUS_duma_neutral_array = 6 }
+
+		set_temp_variable = { temp_array_sort = 2 }
+		set_temp_variable = { temp_value_sort = 1 }
+		scoped_quicksort = yes
+	}
+	else = {
+		add_to_array  = { RUS_duma_opposition_array = 6 }
+	}
+
+	for_each_scope_loop = {
+		array = RUS_duma_party_array
+
+		if = {
+			limit = {
+				OR = {
+					check_variable = { RUS_duma_alignment = 1 }
+					check_variable = { RUS_duma_alignment = 2 }
+				}
+			}
+			add_to_variable = { ROOT.RUS_duma_government_seat_total = RUS_duma_seat }
+		}
+		else_if = {
+			limit = {
+				check_variable = { RUS_duma_alignment = 3 }
+			}
+			add_to_variable = { ROOT.RUS_duma_neutral_seat_total = RUS_duma_seat }
+		}
+		else_if = {
+			limit = {
+				check_variable = { RUS_duma_alignment = 4 }
+			}
+			add_to_variable = { ROOT.RUS_duma_opposition_seat_total = RUS_duma_seat }
+		}
+	}
+
+	for_each_loop = {
+		array = RUS_duma_main_array
+
+		if = {
+			limit = {
+				var:v = {
+					check_variable = { RUS_duma_alignment = 3 }
+				}
+			}
+			set_temp_variable = { start_index = i }
+			set_temp_variable = { break = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { start_index = 0 }
+		}
+		set_temp_variable = { start_index = 410 }
+	}
+
+	set_variable = { end_index = start_index }
+	add_to_variable = { end_index = RUS_duma_neutral_seat_total }
+	subtract_from_variable = { end_index = 1 }
+
+	RUS_duma_semicircle = yes
+
+	if = {
+		limit = {
+			check_variable = { RUS_duma_seat_total > 100 }
+		}
+		if = {
+			limit = {
+				check_variable = { start_index < 170 }
+			}
+			set_variable = { left_y = 10 }
+		}
+		else = {
+			set_variable = { left_y = 0 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { end_index > 240 }
+			}
+			set_variable = { right_y = 10 }
+		}
+		else = {
+			set_variable = { right_y = 0 }
+		}
+
+		for_each_loop = {
+			array = RUS_duma_x_array
+
+			if = {
+				limit = {
+					check_variable = { i = start_index }
+				}
+				set_temp_variable = { break = 1 }
+			}
+			else = {
+				add_to_variable = { RUS_duma_x_array^i = -10 }
+				add_to_variable = { RUS_duma_y_array^i = left_y }
+			}
+		}
+
+		clear_variable = start_end_index
+
+		for_each_loop = {
+			array = RUS_duma_x_array
+
+			if = {
+				limit = {
+					check_variable = { start_end_index = 1 }
+				}
+				add_to_variable = { RUS_duma_x_array^i = 10 }
+				add_to_variable = { RUS_duma_y_array^i = right_y }
+			}
+			else_if = {
+				limit = {
+					check_variable = { i = end_index }
+				}
+				set_variable = { start_end_index = 1 }
+			}
+		}
+	}
+
+	RUS_duma_refresh = yes
+}
+
+RUS_duma_reload_support = {
+	clear_array = RUS_duma_main_array
+	clear_array = RUS_duma_support_array
+	clear_variable = RUS_duma_support_total
+
+	for_each_loop = {
+		array = RUS_duma_party_array
+
+		set_temp_variable = { global.seat_id = v }
+
+		var:v = {
+			if = {
+				limit = {
+					check_variable = { RUS_duma_seat > 0 }
+				}
+				for_loop_effect = {
+					start = 1
+					end = RUS_duma_support_seat
+					compare = less_than_or_equals
+
+					add_to_array = { ROOT.RUS_duma_main_array = global.seat_id }
+					add_to_variable = { ROOT.RUS_duma_support_total = 1 }
+				}
+			}
+		}
+	}
+
+	for_each_loop = {
+		array = RUS_duma_party_array
+
+		set_temp_variable = { global.seat_id = v }
+
+		var:v = {
+			if = {
+				limit = {
+					check_variable = { RUS_duma_seat > 0 }
+				}
+				set_temp_variable = { temp_not_support = RUS_duma_seat }
+				subtract_from_temp_variable = { temp_not_support = RUS_duma_support_seat }
+
+				for_loop_effect = {
+					start = 1
+					end = temp_not_support
+					compare = less_than_or_equals
+
+					add_to_array = { ROOT.RUS_duma_main_array = global.seat_id }
+				}
+			}
+		}
+	}
+
+	RUS_duma_semicircle = yes
+
+	for_each_loop = {
+		array = RUS_duma_x_array
+
+		if = {
+			limit = {
+				check_variable = { RUS_duma_support_total > temp_count }
+			}
+			add_to_temp_variable = { temp_count = 1 }
+			if = {
+				limit = {
+					check_variable = { RUS_duma_seat_total > 100 }
+				}
+				add_to_variable = { RUS_duma_x_array^i = -10 }
+			}
+			add_to_array = { RUS_duma_support_array = 1 }
+		}
+		else = {
+			if = {
+				limit = {
+					check_variable = { RUS_duma_seat_total > 100 }
+				}
+				add_to_variable = { RUS_duma_x_array^i = 10 }
+			}
+			add_to_array = { RUS_duma_support_array = 0 }
+		}
+	}
+
+	RUS_duma_refresh = yes
+}
+
+RUS_duma_refresh = {
+	add_to_variable = { ROOT.show_RUS_duma = 1 }
+}
+
+RUS_duma_semicircle = {
+	clear_array = RUS_duma_x_array
+	clear_array = RUS_duma_y_array
+
+	add_to_array = { RUS_duma_x_array = 0 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 12 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 23 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 35 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 46 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 58 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 70 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 81 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 93 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 104 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 1 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 13 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 116 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 24 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 36 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 48 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 59 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 71 }
+	add_to_array = { RUS_duma_y_array = 181 }
+	add_to_array = { RUS_duma_x_array = 3 }
+	add_to_array = { RUS_duma_y_array = 168 }
+	add_to_array = { RUS_duma_x_array = 83 }
+	add_to_array = { RUS_duma_y_array = 181 }
+	add_to_array = { RUS_duma_x_array = 14 }
+	add_to_array = { RUS_duma_y_array = 168 }
+	add_to_array = { RUS_duma_x_array = 26 }
+	add_to_array = { RUS_duma_y_array = 168 }
+	add_to_array = { RUS_duma_x_array = 94 }
+	add_to_array = { RUS_duma_y_array = 181 }
+	add_to_array = { RUS_duma_x_array = 38 }
+	add_to_array = { RUS_duma_y_array = 169 }
+	add_to_array = { RUS_duma_x_array = 50 }
+	add_to_array = { RUS_duma_y_array = 169 }
+	add_to_array = { RUS_duma_x_array = 106 }
+	add_to_array = { RUS_duma_y_array = 181 }
+	add_to_array = { RUS_duma_x_array = 5 }
+	add_to_array = { RUS_duma_y_array = 156 }
+	add_to_array = { RUS_duma_x_array = 61 }
+	add_to_array = { RUS_duma_y_array = 169 }
+	add_to_array = { RUS_duma_x_array = 17 }
+	add_to_array = { RUS_duma_y_array = 156 }
+	add_to_array = { RUS_duma_x_array = 118 }
+	add_to_array = { RUS_duma_y_array = 182 }
+	add_to_array = { RUS_duma_x_array = 73 }
+	add_to_array = { RUS_duma_y_array = 170 }
+	add_to_array = { RUS_duma_x_array = 29 }
+	add_to_array = { RUS_duma_y_array = 156 }
+	add_to_array = { RUS_duma_x_array = 41 }
+	add_to_array = { RUS_duma_y_array = 157 }
+	add_to_array = { RUS_duma_x_array = 85 }
+	add_to_array = { RUS_duma_y_array = 170 }
+	add_to_array = { RUS_duma_x_array = 8 }
+	add_to_array = { RUS_duma_y_array = 145 }
+	add_to_array = { RUS_duma_x_array = 53 }
+	add_to_array = { RUS_duma_y_array = 157 }
+	add_to_array = { RUS_duma_x_array = 97 }
+	add_to_array = { RUS_duma_y_array = 170 }
+	add_to_array = { RUS_duma_x_array = 20 }
+	add_to_array = { RUS_duma_y_array = 145 }
+	add_to_array = { RUS_duma_x_array = 65 }
+	add_to_array = { RUS_duma_y_array = 158 }
+	add_to_array = { RUS_duma_x_array = 32 }
+	add_to_array = { RUS_duma_y_array = 145 }
+	add_to_array = { RUS_duma_x_array = 109 }
+	add_to_array = { RUS_duma_y_array = 171 }
+	add_to_array = { RUS_duma_x_array = 77 }
+	add_to_array = { RUS_duma_y_array = 159 }
+	add_to_array = { RUS_duma_x_array = 44 }
+	add_to_array = { RUS_duma_y_array = 146 }
+	add_to_array = { RUS_duma_x_array = 12 }
+	add_to_array = { RUS_duma_y_array = 133 }
+	add_to_array = { RUS_duma_x_array = 89 }
+	add_to_array = { RUS_duma_y_array = 159 }
+	add_to_array = { RUS_duma_x_array = 121 }
+	add_to_array = { RUS_duma_y_array = 172 }
+	add_to_array = { RUS_duma_x_array = 56 }
+	add_to_array = { RUS_duma_y_array = 146 }
+	add_to_array = { RUS_duma_x_array = 24 }
+	add_to_array = { RUS_duma_y_array = 133 }
+	add_to_array = { RUS_duma_x_array = 37 }
+	add_to_array = { RUS_duma_y_array = 134 }
+	add_to_array = { RUS_duma_x_array = 69 }
+	add_to_array = { RUS_duma_y_array = 147 }
+	add_to_array = { RUS_duma_x_array = 101 }
+	add_to_array = { RUS_duma_y_array = 160 }
+	add_to_array = { RUS_duma_x_array = 17 }
+	add_to_array = { RUS_duma_y_array = 122 }
+	add_to_array = { RUS_duma_x_array = 49 }
+	add_to_array = { RUS_duma_y_array = 135 }
+	add_to_array = { RUS_duma_x_array = 81 }
+	add_to_array = { RUS_duma_y_array = 149 }
+	add_to_array = { RUS_duma_x_array = 29 }
+	add_to_array = { RUS_duma_y_array = 122 }
+	add_to_array = { RUS_duma_x_array = 61 }
+	add_to_array = { RUS_duma_y_array = 136 }
+	add_to_array = { RUS_duma_x_array = 113 }
+	add_to_array = { RUS_duma_y_array = 161 }
+	add_to_array = { RUS_duma_x_array = 93 }
+	add_to_array = { RUS_duma_y_array = 149 }
+	add_to_array = { RUS_duma_x_array = 42 }
+	add_to_array = { RUS_duma_y_array = 123 }
+	add_to_array = { RUS_duma_x_array = 22 }
+	add_to_array = { RUS_duma_y_array = 111 }
+	add_to_array = { RUS_duma_x_array = 74 }
+	add_to_array = { RUS_duma_y_array = 136 }
+	add_to_array = { RUS_duma_x_array = 54 }
+	add_to_array = { RUS_duma_y_array = 125 }
+	add_to_array = { RUS_duma_x_array = 125 }
+	add_to_array = { RUS_duma_y_array = 163 }
+	add_to_array = { RUS_duma_x_array = 35 }
+	add_to_array = { RUS_duma_y_array = 112 }
+	add_to_array = { RUS_duma_x_array = 106 }
+	add_to_array = { RUS_duma_y_array = 150 }
+	add_to_array = { RUS_duma_x_array = 86 }
+	add_to_array = { RUS_duma_y_array = 139 }
+	add_to_array = { RUS_duma_x_array = 67 }
+	add_to_array = { RUS_duma_y_array = 126 }
+	add_to_array = { RUS_duma_x_array = 28 }
+	add_to_array = { RUS_duma_y_array = 101 }
+	add_to_array = { RUS_duma_x_array = 48 }
+	add_to_array = { RUS_duma_y_array = 112 }
+	add_to_array = { RUS_duma_x_array = 60 }
+	add_to_array = { RUS_duma_y_array = 115 }
+	add_to_array = { RUS_duma_x_array = 99 }
+	add_to_array = { RUS_duma_y_array = 140 }
+	add_to_array = { RUS_duma_x_array = 41 }
+	add_to_array = { RUS_duma_y_array = 102 }
+	add_to_array = { RUS_duma_x_array = 80 }
+	add_to_array = { RUS_duma_y_array = 126 }
+	add_to_array = { RUS_duma_x_array = 119 }
+	add_to_array = { RUS_duma_y_array = 151 }
+	add_to_array = { RUS_duma_x_array = 34 }
+	add_to_array = { RUS_duma_y_array = 91 }
+	add_to_array = { RUS_duma_x_array = 92 }
+	add_to_array = { RUS_duma_y_array = 129 }
+	add_to_array = { RUS_duma_x_array = 73 }
+	add_to_array = { RUS_duma_y_array = 116 }
+	add_to_array = { RUS_duma_x_array = 54 }
+	add_to_array = { RUS_duma_y_array = 102 }
+	add_to_array = { RUS_duma_x_array = 112 }
+	add_to_array = { RUS_duma_y_array = 141 }
+	add_to_array = { RUS_duma_x_array = 131 }
+	add_to_array = { RUS_duma_y_array = 154 }
+	add_to_array = { RUS_duma_x_array = 47 }
+	add_to_array = { RUS_duma_y_array = 92 }
+	add_to_array = { RUS_duma_x_array = 66 }
+	add_to_array = { RUS_duma_y_array = 105 }
+	add_to_array = { RUS_duma_x_array = 86 }
+	add_to_array = { RUS_duma_y_array = 117 }
+	add_to_array = { RUS_duma_x_array = 41 }
+	add_to_array = { RUS_duma_y_array = 81 }
+	add_to_array = { RUS_duma_x_array = 105 }
+	add_to_array = { RUS_duma_y_array = 130 }
+	add_to_array = { RUS_duma_x_array = 61 }
+	add_to_array = { RUS_duma_y_array = 93 }
+	add_to_array = { RUS_duma_x_array = 80 }
+	add_to_array = { RUS_duma_y_array = 106 }
+	add_to_array = { RUS_duma_x_array = 125 }
+	add_to_array = { RUS_duma_y_array = 142 }
+	add_to_array = { RUS_duma_x_array = 99 }
+	add_to_array = { RUS_duma_y_array = 120 }
+	add_to_array = { RUS_duma_x_array = 55 }
+	add_to_array = { RUS_duma_y_array = 82 }
+	add_to_array = { RUS_duma_x_array = 74 }
+	add_to_array = { RUS_duma_y_array = 96 }
+	add_to_array = { RUS_duma_x_array = 49 }
+	add_to_array = { RUS_duma_y_array = 72 }
+	add_to_array = { RUS_duma_x_array = 119 }
+	add_to_array = { RUS_duma_y_array = 132 }
+	add_to_array = { RUS_duma_x_array = 94 }
+	add_to_array = { RUS_duma_y_array = 108 }
+	add_to_array = { RUS_duma_x_array = 69 }
+	add_to_array = { RUS_duma_y_array = 84 }
+	add_to_array = { RUS_duma_x_array = 137 }
+	add_to_array = { RUS_duma_y_array = 146 }
+	add_to_array = { RUS_duma_x_array = 112 }
+	add_to_array = { RUS_duma_y_array = 122 }
+	add_to_array = { RUS_duma_x_array = 88 }
+	add_to_array = { RUS_duma_y_array = 98 }
+	add_to_array = { RUS_duma_x_array = 63 }
+	add_to_array = { RUS_duma_y_array = 73 }
+	add_to_array = { RUS_duma_x_array = 81 }
+	add_to_array = { RUS_duma_y_array = 87 }
+	add_to_array = { RUS_duma_x_array = 57 }
+	add_to_array = { RUS_duma_y_array = 63 }
+	add_to_array = { RUS_duma_x_array = 106 }
+	add_to_array = { RUS_duma_y_array = 112 }
+	add_to_array = { RUS_duma_x_array = 133 }
+	add_to_array = { RUS_duma_y_array = 134 }
+	add_to_array = { RUS_duma_x_array = 77 }
+	add_to_array = { RUS_duma_y_array = 75 }
+	add_to_array = { RUS_duma_x_array = 102 }
+	add_to_array = { RUS_duma_y_array = 100 }
+	add_to_array = { RUS_duma_x_array = 71 }
+	add_to_array = { RUS_duma_y_array = 65 }
+	add_to_array = { RUS_duma_x_array = 127 }
+	add_to_array = { RUS_duma_y_array = 124 }
+	add_to_array = { RUS_duma_x_array = 96 }
+	add_to_array = { RUS_duma_y_array = 90 }
+	add_to_array = { RUS_duma_x_array = 65 }
+	add_to_array = { RUS_duma_y_array = 55 }
+	add_to_array = { RUS_duma_x_array = 90 }
+	add_to_array = { RUS_duma_y_array = 79 }
+	add_to_array = { RUS_duma_x_array = 120 }
+	add_to_array = { RUS_duma_y_array = 114 }
+	add_to_array = { RUS_duma_x_array = 114 }
+	add_to_array = { RUS_duma_y_array = 104 }
+	add_to_array = { RUS_duma_x_array = 145 }
+	add_to_array = { RUS_duma_y_array = 139 }
+	add_to_array = { RUS_duma_x_array = 86 }
+	add_to_array = { RUS_duma_y_array = 67 }
+	add_to_array = { RUS_duma_x_array = 81 }
+	add_to_array = { RUS_duma_y_array = 57 }
+	add_to_array = { RUS_duma_x_array = 75 }
+	add_to_array = { RUS_duma_y_array = 47 }
+	add_to_array = { RUS_duma_x_array = 111 }
+	add_to_array = { RUS_duma_y_array = 92 }
+	add_to_array = { RUS_duma_x_array = 105 }
+	add_to_array = { RUS_duma_y_array = 82 }
+	add_to_array = { RUS_duma_x_array = 99 }
+	add_to_array = { RUS_duma_y_array = 72 }
+	add_to_array = { RUS_duma_x_array = 141 }
+	add_to_array = { RUS_duma_y_array = 127 }
+	add_to_array = { RUS_duma_x_array = 135 }
+	add_to_array = { RUS_duma_y_array = 117 }
+	add_to_array = { RUS_duma_x_array = 129 }
+	add_to_array = { RUS_duma_y_array = 107 }
+	add_to_array = { RUS_duma_x_array = 96 }
+	add_to_array = { RUS_duma_y_array = 60 }
+	add_to_array = { RUS_duma_x_array = 123 }
+	add_to_array = { RUS_duma_y_array = 97 }
+	add_to_array = { RUS_duma_x_array = 90 }
+	add_to_array = { RUS_duma_y_array = 50 }
+	add_to_array = { RUS_duma_x_array = 84 }
+	add_to_array = { RUS_duma_y_array = 40 }
+	add_to_array = { RUS_duma_x_array = 120 }
+	add_to_array = { RUS_duma_y_array = 85 }
+	add_to_array = { RUS_duma_x_array = 114 }
+	add_to_array = { RUS_duma_y_array = 75 }
+	add_to_array = { RUS_duma_x_array = 109 }
+	add_to_array = { RUS_duma_y_array = 65 }
+	add_to_array = { RUS_duma_x_array = 153 }
+	add_to_array = { RUS_duma_y_array = 133 }
+	add_to_array = { RUS_duma_x_array = 106 }
+	add_to_array = { RUS_duma_y_array = 53 }
+	add_to_array = { RUS_duma_x_array = 100 }
+	add_to_array = { RUS_duma_y_array = 43 }
+	add_to_array = { RUS_duma_x_array = 94 }
+	add_to_array = { RUS_duma_y_array = 33 }
+	add_to_array = { RUS_duma_x_array = 144 }
+	add_to_array = { RUS_duma_y_array = 111 }
+	add_to_array = { RUS_duma_x_array = 150 }
+	add_to_array = { RUS_duma_y_array = 121 }
+	add_to_array = { RUS_duma_x_array = 138 }
+	add_to_array = { RUS_duma_y_array = 101 }
+	add_to_array = { RUS_duma_x_array = 133 }
+	add_to_array = { RUS_duma_y_array = 91 }
+	add_to_array = { RUS_duma_x_array = 119 }
+	add_to_array = { RUS_duma_y_array = 59 }
+	add_to_array = { RUS_duma_x_array = 124 }
+	add_to_array = { RUS_duma_y_array = 69 }
+	add_to_array = { RUS_duma_x_array = 130 }
+	add_to_array = { RUS_duma_y_array = 79 }
+	add_to_array = { RUS_duma_x_array = 105 }
+	add_to_array = { RUS_duma_y_array = 27 }
+	add_to_array = { RUS_duma_x_array = 111 }
+	add_to_array = { RUS_duma_y_array = 37 }
+	add_to_array = { RUS_duma_x_array = 116 }
+	add_to_array = { RUS_duma_y_array = 47 }
+	add_to_array = { RUS_duma_x_array = 162 }
+	add_to_array = { RUS_duma_y_array = 128 }
+	add_to_array = { RUS_duma_x_array = 143 }
+	add_to_array = { RUS_duma_y_array = 86 }
+	add_to_array = { RUS_duma_x_array = 129 }
+	add_to_array = { RUS_duma_y_array = 54 }
+	add_to_array = { RUS_duma_x_array = 148 }
+	add_to_array = { RUS_duma_y_array = 96 }
+	add_to_array = { RUS_duma_x_array = 116 }
+	add_to_array = { RUS_duma_y_array = 22 }
+	add_to_array = { RUS_duma_x_array = 135 }
+	add_to_array = { RUS_duma_y_array = 64 }
+	add_to_array = { RUS_duma_x_array = 154 }
+	add_to_array = { RUS_duma_y_array = 106 }
+	add_to_array = { RUS_duma_x_array = 121 }
+	add_to_array = { RUS_duma_y_array = 32 }
+	add_to_array = { RUS_duma_x_array = 141 }
+	add_to_array = { RUS_duma_y_array = 74 }
+	add_to_array = { RUS_duma_x_array = 127 }
+	add_to_array = { RUS_duma_y_array = 42 }
+	add_to_array = { RUS_duma_x_array = 160 }
+	add_to_array = { RUS_duma_y_array = 116 }
+	add_to_array = { RUS_duma_x_array = 127 }
+	add_to_array = { RUS_duma_y_array = 18 }
+	add_to_array = { RUS_duma_x_array = 140 }
+	add_to_array = { RUS_duma_y_array = 50 }
+	add_to_array = { RUS_duma_x_array = 132 }
+	add_to_array = { RUS_duma_y_array = 28 }
+	add_to_array = { RUS_duma_x_array = 153 }
+	add_to_array = { RUS_duma_y_array = 82 }
+	add_to_array = { RUS_duma_x_array = 146 }
+	add_to_array = { RUS_duma_y_array = 60 }
+	add_to_array = { RUS_duma_x_array = 138 }
+	add_to_array = { RUS_duma_y_array = 38 }
+	add_to_array = { RUS_duma_x_array = 159 }
+	add_to_array = { RUS_duma_y_array = 92 }
+	add_to_array = { RUS_duma_x_array = 151 }
+	add_to_array = { RUS_duma_y_array = 70 }
+	add_to_array = { RUS_duma_x_array = 164 }
+	add_to_array = { RUS_duma_y_array = 102 }
+	add_to_array = { RUS_duma_x_array = 172 }
+	add_to_array = { RUS_duma_y_array = 124 }
+	add_to_array = { RUS_duma_x_array = 138 }
+	add_to_array = { RUS_duma_y_array = 14 }
+	add_to_array = { RUS_duma_x_array = 170 }
+	add_to_array = { RUS_duma_y_array = 113 }
+	add_to_array = { RUS_duma_x_array = 144 }
+	add_to_array = { RUS_duma_y_array = 24 }
+	add_to_array = { RUS_duma_x_array = 151 }
+	add_to_array = { RUS_duma_y_array = 46 }
+	add_to_array = { RUS_duma_x_array = 150 }
+	add_to_array = { RUS_duma_y_array = 34 }
+	add_to_array = { RUS_duma_x_array = 157 }
+	add_to_array = { RUS_duma_y_array = 56 }
+	add_to_array = { RUS_duma_x_array = 164 }
+	add_to_array = { RUS_duma_y_array = 78 }
+	add_to_array = { RUS_duma_x_array = 162 }
+	add_to_array = { RUS_duma_y_array = 67 }
+	add_to_array = { RUS_duma_x_array = 149 }
+	add_to_array = { RUS_duma_y_array = 10 }
+	add_to_array = { RUS_duma_x_array = 169 }
+	add_to_array = { RUS_duma_y_array = 89 }
+	add_to_array = { RUS_duma_x_array = 155 }
+	add_to_array = { RUS_duma_y_array = 21 }
+	add_to_array = { RUS_duma_x_array = 162 }
+	add_to_array = { RUS_duma_y_array = 43 }
+	add_to_array = { RUS_duma_x_array = 175 }
+	add_to_array = { RUS_duma_y_array = 99 }
+	add_to_array = { RUS_duma_x_array = 161 }
+	add_to_array = { RUS_duma_y_array = 31 }
+	add_to_array = { RUS_duma_x_array = 168 }
+	add_to_array = { RUS_duma_y_array = 54 }
+	add_to_array = { RUS_duma_x_array = 182 }
+	add_to_array = { RUS_duma_y_array = 122 }
+	add_to_array = { RUS_duma_x_array = 161 }
+	add_to_array = { RUS_duma_y_array = 8 }
+	add_to_array = { RUS_duma_x_array = 181 }
+	add_to_array = { RUS_duma_y_array = 110 }
+	add_to_array = { RUS_duma_x_array = 175 }
+	add_to_array = { RUS_duma_y_array = 76 }
+	add_to_array = { RUS_duma_x_array = 174 }
+	add_to_array = { RUS_duma_y_array = 64 }
+	add_to_array = { RUS_duma_x_array = 167 }
+	add_to_array = { RUS_duma_y_array = 19 }
+	add_to_array = { RUS_duma_x_array = 174 }
+	add_to_array = { RUS_duma_y_array = 41 }
+	add_to_array = { RUS_duma_x_array = 180 }
+	add_to_array = { RUS_duma_y_array = 87 }
+	add_to_array = { RUS_duma_x_array = 173 }
+	add_to_array = { RUS_duma_y_array = 29 }
+	add_to_array = { RUS_duma_x_array = 173 }
+	add_to_array = { RUS_duma_y_array = 6 }
+	add_to_array = { RUS_duma_x_array = 180 }
+	add_to_array = { RUS_duma_y_array = 52 }
+	add_to_array = { RUS_duma_x_array = 186 }
+	add_to_array = { RUS_duma_y_array = 98 }
+	add_to_array = { RUS_duma_x_array = 179 }
+	add_to_array = { RUS_duma_y_array = 17 }
+	add_to_array = { RUS_duma_x_array = 186 }
+	add_to_array = { RUS_duma_y_array = 74 }
+	add_to_array = { RUS_duma_x_array = 185 }
+	add_to_array = { RUS_duma_y_array = 63 }
+	add_to_array = { RUS_duma_x_array = 185 }
+	add_to_array = { RUS_duma_y_array = 40 }
+	add_to_array = { RUS_duma_x_array = 185 }
+	add_to_array = { RUS_duma_y_array = 28 }
+	add_to_array = { RUS_duma_x_array = 192 }
+	add_to_array = { RUS_duma_y_array = 120 }
+	add_to_array = { RUS_duma_x_array = 185 }
+	add_to_array = { RUS_duma_y_array = 5 }
+	add_to_array = { RUS_duma_x_array = 191 }
+	add_to_array = { RUS_duma_y_array = 109 }
+	add_to_array = { RUS_duma_x_array = 191 }
+	add_to_array = { RUS_duma_y_array = 86 }
+	add_to_array = { RUS_duma_x_array = 191 }
+	add_to_array = { RUS_duma_y_array = 51 }
+	add_to_array = { RUS_duma_x_array = 191 }
+	add_to_array = { RUS_duma_y_array = 16 }
+	add_to_array = { RUS_duma_x_array = 197 }
+	add_to_array = { RUS_duma_y_array = 97 }
+	add_to_array = { RUS_duma_x_array = 197 }
+	add_to_array = { RUS_duma_y_array = 74 }
+	add_to_array = { RUS_duma_x_array = 197 }
+	add_to_array = { RUS_duma_y_array = 62 }
+	add_to_array = { RUS_duma_x_array = 197 }
+	add_to_array = { RUS_duma_y_array = 39 }
+	add_to_array = { RUS_duma_x_array = 197 }
+	add_to_array = { RUS_duma_y_array = 28 }
+	add_to_array = { RUS_duma_x_array = 197 }
+	add_to_array = { RUS_duma_y_array = 5 }
+	add_to_array = { RUS_duma_x_array = 203 }
+	add_to_array = { RUS_duma_y_array = 16 }
+	add_to_array = { RUS_duma_x_array = 203 }
+	add_to_array = { RUS_duma_y_array = 51 }
+	add_to_array = { RUS_duma_x_array = 203 }
+	add_to_array = { RUS_duma_y_array = 86 }
+	add_to_array = { RUS_duma_x_array = 202 }
+	add_to_array = { RUS_duma_y_array = 109 }
+	add_to_array = { RUS_duma_x_array = 209 }
+	add_to_array = { RUS_duma_y_array = 5 }
+	add_to_array = { RUS_duma_x_array = 202 }
+	add_to_array = { RUS_duma_y_array = 120 }
+	add_to_array = { RUS_duma_x_array = 209 }
+	add_to_array = { RUS_duma_y_array = 28 }
+	add_to_array = { RUS_duma_x_array = 209 }
+	add_to_array = { RUS_duma_y_array = 40 }
+	add_to_array = { RUS_duma_x_array = 209 }
+	add_to_array = { RUS_duma_y_array = 63 }
+	add_to_array = { RUS_duma_x_array = 208 }
+	add_to_array = { RUS_duma_y_array = 74 }
+	add_to_array = { RUS_duma_x_array = 215 }
+	add_to_array = { RUS_duma_y_array = 17 }
+	add_to_array = { RUS_duma_x_array = 208 }
+	add_to_array = { RUS_duma_y_array = 98 }
+	add_to_array = { RUS_duma_x_array = 214 }
+	add_to_array = { RUS_duma_y_array = 52 }
+	add_to_array = { RUS_duma_x_array = 221 }
+	add_to_array = { RUS_duma_y_array = 6 }
+	add_to_array = { RUS_duma_x_array = 221 }
+	add_to_array = { RUS_duma_y_array = 29 }
+	add_to_array = { RUS_duma_x_array = 214 }
+	add_to_array = { RUS_duma_y_array = 87 }
+	add_to_array = { RUS_duma_x_array = 220 }
+	add_to_array = { RUS_duma_y_array = 41 }
+	add_to_array = { RUS_duma_x_array = 227 }
+	add_to_array = { RUS_duma_y_array = 19 }
+	add_to_array = { RUS_duma_x_array = 220 }
+	add_to_array = { RUS_duma_y_array = 64 }
+	add_to_array = { RUS_duma_x_array = 219 }
+	add_to_array = { RUS_duma_y_array = 76 }
+	add_to_array = { RUS_duma_x_array = 213 }
+	add_to_array = { RUS_duma_y_array = 110 }
+	add_to_array = { RUS_duma_x_array = 233 }
+	add_to_array = { RUS_duma_y_array = 8 }
+	add_to_array = { RUS_duma_x_array = 212 }
+	add_to_array = { RUS_duma_y_array = 122 }
+	add_to_array = { RUS_duma_x_array = 226 }
+	add_to_array = { RUS_duma_y_array = 54 }
+	add_to_array = { RUS_duma_x_array = 233 }
+	add_to_array = { RUS_duma_y_array = 31 }
+	add_to_array = { RUS_duma_x_array = 219 }
+	add_to_array = { RUS_duma_y_array = 99 }
+	add_to_array = { RUS_duma_x_array = 232 }
+	add_to_array = { RUS_duma_y_array = 43 }
+	add_to_array = { RUS_duma_x_array = 239 }
+	add_to_array = { RUS_duma_y_array = 21 }
+	add_to_array = { RUS_duma_x_array = 225 }
+	add_to_array = { RUS_duma_y_array = 89 }
+	add_to_array = { RUS_duma_x_array = 244 }
+	add_to_array = { RUS_duma_y_array = 10 }
+	add_to_array = { RUS_duma_x_array = 231 }
+	add_to_array = { RUS_duma_y_array = 67 }
+	add_to_array = { RUS_duma_x_array = 230 }
+	add_to_array = { RUS_duma_y_array = 78 }
+	add_to_array = { RUS_duma_x_array = 237 }
+	add_to_array = { RUS_duma_y_array = 56 }
+	add_to_array = { RUS_duma_x_array = 244 }
+	add_to_array = { RUS_duma_y_array = 34 }
+	add_to_array = { RUS_duma_x_array = 243 }
+	add_to_array = { RUS_duma_y_array = 46 }
+	add_to_array = { RUS_duma_x_array = 250 }
+	add_to_array = { RUS_duma_y_array = 24 }
+	add_to_array = { RUS_duma_x_array = 224 }
+	add_to_array = { RUS_duma_y_array = 113 }
+	add_to_array = { RUS_duma_x_array = 256 }
+	add_to_array = { RUS_duma_y_array = 14 }
+	add_to_array = { RUS_duma_x_array = 222 }
+	add_to_array = { RUS_duma_y_array = 124 }
+	add_to_array = { RUS_duma_x_array = 229 }
+	add_to_array = { RUS_duma_y_array = 102 }
+	add_to_array = { RUS_duma_x_array = 243 }
+	add_to_array = { RUS_duma_y_array = 70 }
+	add_to_array = { RUS_duma_x_array = 235 }
+	add_to_array = { RUS_duma_y_array = 92 }
+	add_to_array = { RUS_duma_x_array = 256 }
+	add_to_array = { RUS_duma_y_array = 38 }
+	add_to_array = { RUS_duma_x_array = 248 }
+	add_to_array = { RUS_duma_y_array = 60 }
+	add_to_array = { RUS_duma_x_array = 241 }
+	add_to_array = { RUS_duma_y_array = 82 }
+	add_to_array = { RUS_duma_x_array = 261 }
+	add_to_array = { RUS_duma_y_array = 28 }
+	add_to_array = { RUS_duma_x_array = 254 }
+	add_to_array = { RUS_duma_y_array = 50 }
+	add_to_array = { RUS_duma_x_array = 267 }
+	add_to_array = { RUS_duma_y_array = 18 }
+	add_to_array = { RUS_duma_x_array = 234 }
+	add_to_array = { RUS_duma_y_array = 116 }
+	add_to_array = { RUS_duma_x_array = 267 }
+	add_to_array = { RUS_duma_y_array = 42 }
+	add_to_array = { RUS_duma_x_array = 253 }
+	add_to_array = { RUS_duma_y_array = 74 }
+	add_to_array = { RUS_duma_x_array = 273 }
+	add_to_array = { RUS_duma_y_array = 32 }
+	add_to_array = { RUS_duma_x_array = 240 }
+	add_to_array = { RUS_duma_y_array = 106 }
+	add_to_array = { RUS_duma_x_array = 259 }
+	add_to_array = { RUS_duma_y_array = 64 }
+	add_to_array = { RUS_duma_x_array = 278 }
+	add_to_array = { RUS_duma_y_array = 22 }
+	add_to_array = { RUS_duma_x_array = 246 }
+	add_to_array = { RUS_duma_y_array = 96 }
+	add_to_array = { RUS_duma_x_array = 265 }
+	add_to_array = { RUS_duma_y_array = 54 }
+	add_to_array = { RUS_duma_x_array = 251 }
+	add_to_array = { RUS_duma_y_array = 86 }
+	add_to_array = { RUS_duma_x_array = 232 }
+	add_to_array = { RUS_duma_y_array = 128 }
+	add_to_array = { RUS_duma_x_array = 278 }
+	add_to_array = { RUS_duma_y_array = 47 }
+	add_to_array = { RUS_duma_x_array = 283 }
+	add_to_array = { RUS_duma_y_array = 37 }
+	add_to_array = { RUS_duma_x_array = 289 }
+	add_to_array = { RUS_duma_y_array = 27 }
+	add_to_array = { RUS_duma_x_array = 264 }
+	add_to_array = { RUS_duma_y_array = 79 }
+	add_to_array = { RUS_duma_x_array = 270 }
+	add_to_array = { RUS_duma_y_array = 69 }
+	add_to_array = { RUS_duma_x_array = 275 }
+	add_to_array = { RUS_duma_y_array = 59 }
+	add_to_array = { RUS_duma_x_array = 261 }
+	add_to_array = { RUS_duma_y_array = 91 }
+	add_to_array = { RUS_duma_x_array = 255 }
+	add_to_array = { RUS_duma_y_array = 101 }
+	add_to_array = { RUS_duma_x_array = 244 }
+	add_to_array = { RUS_duma_y_array = 121 }
+	add_to_array = { RUS_duma_x_array = 250 }
+	add_to_array = { RUS_duma_y_array = 111 }
+	add_to_array = { RUS_duma_x_array = 300 }
+	add_to_array = { RUS_duma_y_array = 33 }
+	add_to_array = { RUS_duma_x_array = 294 }
+	add_to_array = { RUS_duma_y_array = 43 }
+	add_to_array = { RUS_duma_x_array = 288 }
+	add_to_array = { RUS_duma_y_array = 53 }
+	add_to_array = { RUS_duma_x_array = 241 }
+	add_to_array = { RUS_duma_y_array = 133 }
+	add_to_array = { RUS_duma_x_array = 285 }
+	add_to_array = { RUS_duma_y_array = 65 }
+	add_to_array = { RUS_duma_x_array = 279 }
+	add_to_array = { RUS_duma_y_array = 75 }
+	add_to_array = { RUS_duma_x_array = 274 }
+	add_to_array = { RUS_duma_y_array = 85 }
+	add_to_array = { RUS_duma_x_array = 310 }
+	add_to_array = { RUS_duma_y_array = 40 }
+	add_to_array = { RUS_duma_x_array = 304 }
+	add_to_array = { RUS_duma_y_array = 50 }
+	add_to_array = { RUS_duma_x_array = 271 }
+	add_to_array = { RUS_duma_y_array = 97 }
+	add_to_array = { RUS_duma_x_array = 298 }
+	add_to_array = { RUS_duma_y_array = 60 }
+	add_to_array = { RUS_duma_x_array = 265 }
+	add_to_array = { RUS_duma_y_array = 107 }
+	add_to_array = { RUS_duma_x_array = 259 }
+	add_to_array = { RUS_duma_y_array = 117 }
+	add_to_array = { RUS_duma_x_array = 253 }
+	add_to_array = { RUS_duma_y_array = 127 }
+	add_to_array = { RUS_duma_x_array = 295 }
+	add_to_array = { RUS_duma_y_array = 72 }
+	add_to_array = { RUS_duma_x_array = 289 }
+	add_to_array = { RUS_duma_y_array = 82 }
+	add_to_array = { RUS_duma_x_array = 283 }
+	add_to_array = { RUS_duma_y_array = 92 }
+	add_to_array = { RUS_duma_x_array = 319 }
+	add_to_array = { RUS_duma_y_array = 47 }
+	add_to_array = { RUS_duma_x_array = 313 }
+	add_to_array = { RUS_duma_y_array = 57 }
+	add_to_array = { RUS_duma_x_array = 307 }
+	add_to_array = { RUS_duma_y_array = 67 }
+	add_to_array = { RUS_duma_x_array = 249 }
+	add_to_array = { RUS_duma_y_array = 139 }
+	add_to_array = { RUS_duma_x_array = 280 }
+	add_to_array = { RUS_duma_y_array = 104 }
+	add_to_array = { RUS_duma_x_array = 273 }
+	add_to_array = { RUS_duma_y_array = 114 }
+	add_to_array = { RUS_duma_x_array = 304 }
+	add_to_array = { RUS_duma_y_array = 79 }
+	add_to_array = { RUS_duma_x_array = 328 }
+	add_to_array = { RUS_duma_y_array = 55 }
+	add_to_array = { RUS_duma_x_array = 298 }
+	add_to_array = { RUS_duma_y_array = 90 }
+	add_to_array = { RUS_duma_x_array = 267 }
+	add_to_array = { RUS_duma_y_array = 124 }
+	add_to_array = { RUS_duma_x_array = 322 }
+	add_to_array = { RUS_duma_y_array = 65 }
+	add_to_array = { RUS_duma_x_array = 292 }
+	add_to_array = { RUS_duma_y_array = 100 }
+	add_to_array = { RUS_duma_x_array = 316 }
+	add_to_array = { RUS_duma_y_array = 75 }
+	add_to_array = { RUS_duma_x_array = 261 }
+	add_to_array = { RUS_duma_y_array = 134 }
+	add_to_array = { RUS_duma_x_array = 288 }
+	add_to_array = { RUS_duma_y_array = 112 }
+	add_to_array = { RUS_duma_x_array = 337 }
+	add_to_array = { RUS_duma_y_array = 63 }
+	add_to_array = { RUS_duma_x_array = 312 }
+	add_to_array = { RUS_duma_y_array = 87 }
+	add_to_array = { RUS_duma_x_array = 331 }
+	add_to_array = { RUS_duma_y_array = 73 }
+	add_to_array = { RUS_duma_x_array = 306 }
+	add_to_array = { RUS_duma_y_array = 98 }
+	add_to_array = { RUS_duma_x_array = 281 }
+	add_to_array = { RUS_duma_y_array = 122 }
+	add_to_array = { RUS_duma_x_array = 256 }
+	add_to_array = { RUS_duma_y_array = 146 }
+	add_to_array = { RUS_duma_x_array = 325 }
+	add_to_array = { RUS_duma_y_array = 84 }
+	add_to_array = { RUS_duma_x_array = 300 }
+	add_to_array = { RUS_duma_y_array = 108 }
+	add_to_array = { RUS_duma_x_array = 275 }
+	add_to_array = { RUS_duma_y_array = 132 }
+	add_to_array = { RUS_duma_x_array = 345 }
+	add_to_array = { RUS_duma_y_array = 72 }
+	add_to_array = { RUS_duma_x_array = 320 }
+	add_to_array = { RUS_duma_y_array = 96 }
+	add_to_array = { RUS_duma_x_array = 339 }
+	add_to_array = { RUS_duma_y_array = 82 }
+	add_to_array = { RUS_duma_x_array = 295 }
+	add_to_array = { RUS_duma_y_array = 120 }
+	add_to_array = { RUS_duma_x_array = 269 }
+	add_to_array = { RUS_duma_y_array = 142 }
+	add_to_array = { RUS_duma_x_array = 314 }
+	add_to_array = { RUS_duma_y_array = 106 }
+	add_to_array = { RUS_duma_x_array = 333 }
+	add_to_array = { RUS_duma_y_array = 93 }
+	add_to_array = { RUS_duma_x_array = 289 }
+	add_to_array = { RUS_duma_y_array = 130 }
+	add_to_array = { RUS_duma_x_array = 353 }
+	add_to_array = { RUS_duma_y_array = 81 }
+	add_to_array = { RUS_duma_x_array = 307 }
+	add_to_array = { RUS_duma_y_array = 117 }
+	add_to_array = { RUS_duma_x_array = 328 }
+	add_to_array = { RUS_duma_y_array = 105 }
+	add_to_array = { RUS_duma_x_array = 346 }
+	add_to_array = { RUS_duma_y_array = 92 }
+	add_to_array = { RUS_duma_x_array = 263 }
+	add_to_array = { RUS_duma_y_array = 154 }
+	add_to_array = { RUS_duma_x_array = 282 }
+	add_to_array = { RUS_duma_y_array = 141 }
+	add_to_array = { RUS_duma_x_array = 340 }
+	add_to_array = { RUS_duma_y_array = 102 }
+	add_to_array = { RUS_duma_x_array = 321 }
+	add_to_array = { RUS_duma_y_array = 116 }
+	add_to_array = { RUS_duma_x_array = 302 }
+	add_to_array = { RUS_duma_y_array = 129 }
+	add_to_array = { RUS_duma_x_array = 360 }
+	add_to_array = { RUS_duma_y_array = 91 }
+	add_to_array = { RUS_duma_x_array = 275 }
+	add_to_array = { RUS_duma_y_array = 151 }
+	add_to_array = { RUS_duma_x_array = 314 }
+	add_to_array = { RUS_duma_y_array = 126 }
+	add_to_array = { RUS_duma_x_array = 353 }
+	add_to_array = { RUS_duma_y_array = 102 }
+	add_to_array = { RUS_duma_x_array = 295 }
+	add_to_array = { RUS_duma_y_array = 140 }
+	add_to_array = { RUS_duma_x_array = 334 }
+	add_to_array = { RUS_duma_y_array = 115 }
+	add_to_array = { RUS_duma_x_array = 346 }
+	add_to_array = { RUS_duma_y_array = 112 }
+	add_to_array = { RUS_duma_x_array = 366 }
+	add_to_array = { RUS_duma_y_array = 101 }
+	add_to_array = { RUS_duma_x_array = 327 }
+	add_to_array = { RUS_duma_y_array = 126 }
+	add_to_array = { RUS_duma_x_array = 308 }
+	add_to_array = { RUS_duma_y_array = 139 }
+	add_to_array = { RUS_duma_x_array = 288 }
+	add_to_array = { RUS_duma_y_array = 150 }
+	add_to_array = { RUS_duma_x_array = 359 }
+	add_to_array = { RUS_duma_y_array = 112 }
+	add_to_array = { RUS_duma_x_array = 269 }
+	add_to_array = { RUS_duma_y_array = 163 }
+	add_to_array = { RUS_duma_x_array = 340 }
+	add_to_array = { RUS_duma_y_array = 125 }
+	add_to_array = { RUS_duma_x_array = 320 }
+	add_to_array = { RUS_duma_y_array = 136 }
+	add_to_array = { RUS_duma_x_array = 372 }
+	add_to_array = { RUS_duma_y_array = 111 }
+	add_to_array = { RUS_duma_x_array = 352 }
+	add_to_array = { RUS_duma_y_array = 123 }
+	add_to_array = { RUS_duma_x_array = 301 }
+	add_to_array = { RUS_duma_y_array = 149 }
+	add_to_array = { RUS_duma_x_array = 280 }
+	add_to_array = { RUS_duma_y_array = 161 }
+	add_to_array = { RUS_duma_x_array = 333 }
+	add_to_array = { RUS_duma_y_array = 136 }
+	add_to_array = { RUS_duma_x_array = 365 }
+	add_to_array = { RUS_duma_y_array = 122 }
+	add_to_array = { RUS_duma_x_array = 313 }
+	add_to_array = { RUS_duma_y_array = 149 }
+	add_to_array = { RUS_duma_x_array = 345 }
+	add_to_array = { RUS_duma_y_array = 135 }
+	add_to_array = { RUS_duma_x_array = 377 }
+	add_to_array = { RUS_duma_y_array = 122 }
+	add_to_array = { RUS_duma_x_array = 293 }
+	add_to_array = { RUS_duma_y_array = 160 }
+	add_to_array = { RUS_duma_x_array = 325 }
+	add_to_array = { RUS_duma_y_array = 147 }
+	add_to_array = { RUS_duma_x_array = 357 }
+	add_to_array = { RUS_duma_y_array = 134 }
+	add_to_array = { RUS_duma_x_array = 370 }
+	add_to_array = { RUS_duma_y_array = 133 }
+	add_to_array = { RUS_duma_x_array = 337 }
+	add_to_array = { RUS_duma_y_array = 146 }
+	add_to_array = { RUS_duma_x_array = 273 }
+	add_to_array = { RUS_duma_y_array = 172 }
+	add_to_array = { RUS_duma_x_array = 305 }
+	add_to_array = { RUS_duma_y_array = 159 }
+	add_to_array = { RUS_duma_x_array = 382 }
+	add_to_array = { RUS_duma_y_array = 133 }
+	add_to_array = { RUS_duma_x_array = 350 }
+	add_to_array = { RUS_duma_y_array = 146 }
+	add_to_array = { RUS_duma_x_array = 317 }
+	add_to_array = { RUS_duma_y_array = 159 }
+	add_to_array = { RUS_duma_x_array = 285 }
+	add_to_array = { RUS_duma_y_array = 171 }
+	add_to_array = { RUS_duma_x_array = 361 }
+	add_to_array = { RUS_duma_y_array = 145 }
+	add_to_array = { RUS_duma_x_array = 329 }
+	add_to_array = { RUS_duma_y_array = 158 }
+	add_to_array = { RUS_duma_x_array = 374 }
+	add_to_array = { RUS_duma_y_array = 145 }
+	add_to_array = { RUS_duma_x_array = 297 }
+	add_to_array = { RUS_duma_y_array = 170 }
+	add_to_array = { RUS_duma_x_array = 341 }
+	add_to_array = { RUS_duma_y_array = 157 }
+	add_to_array = { RUS_duma_x_array = 386 }
+	add_to_array = { RUS_duma_y_array = 145 }
+	add_to_array = { RUS_duma_x_array = 309 }
+	add_to_array = { RUS_duma_y_array = 170 }
+	add_to_array = { RUS_duma_x_array = 353 }
+	add_to_array = { RUS_duma_y_array = 157 }
+	add_to_array = { RUS_duma_x_array = 365 }
+	add_to_array = { RUS_duma_y_array = 156 }
+	add_to_array = { RUS_duma_x_array = 321 }
+	add_to_array = { RUS_duma_y_array = 170 }
+	add_to_array = { RUS_duma_x_array = 276 }
+	add_to_array = { RUS_duma_y_array = 182 }
+	add_to_array = { RUS_duma_x_array = 377 }
+	add_to_array = { RUS_duma_y_array = 156 }
+	add_to_array = { RUS_duma_x_array = 332 }
+	add_to_array = { RUS_duma_y_array = 169 }
+	add_to_array = { RUS_duma_x_array = 389 }
+	add_to_array = { RUS_duma_y_array = 156 }
+	add_to_array = { RUS_duma_x_array = 288 }
+	add_to_array = { RUS_duma_y_array = 181 }
+	add_to_array = { RUS_duma_x_array = 344 }
+	add_to_array = { RUS_duma_y_array = 169 }
+	add_to_array = { RUS_duma_x_array = 356 }
+	add_to_array = { RUS_duma_y_array = 169 }
+	add_to_array = { RUS_duma_x_array = 300 }
+	add_to_array = { RUS_duma_y_array = 181 }
+	add_to_array = { RUS_duma_x_array = 368 }
+	add_to_array = { RUS_duma_y_array = 168 }
+	add_to_array = { RUS_duma_x_array = 379 }
+	add_to_array = { RUS_duma_y_array = 168 }
+	add_to_array = { RUS_duma_x_array = 311 }
+	add_to_array = { RUS_duma_y_array = 181 }
+	add_to_array = { RUS_duma_x_array = 391 }
+	add_to_array = { RUS_duma_y_array = 168 }
+	add_to_array = { RUS_duma_x_array = 323 }
+	add_to_array = { RUS_duma_y_array = 181 }
+	add_to_array = { RUS_duma_x_array = 335 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 346 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 358 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 370 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 278 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 381 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 393 }
+	add_to_array = { RUS_duma_y_array = 180 }
+	add_to_array = { RUS_duma_x_array = 290 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 301 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 313 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 324 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 336 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 348 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 359 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 371 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 382 }
+	add_to_array = { RUS_duma_y_array = 192 }
+	add_to_array = { RUS_duma_x_array = 394 }
+	add_to_array = { RUS_duma_y_array = 192 }
+}

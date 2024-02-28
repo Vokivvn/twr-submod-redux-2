@@ -1,0 +1,394 @@
+bormann_project = {
+	BGR_diplomacy_with_fash_europe = {
+		icon = ger_reichskommissariats
+		available = {
+		has_war = no
+		NOT = {
+		has_idea = GER_grand_power_struggles
+			}
+		}
+		visible = {
+		has_war = no
+		NOT = {
+		has_idea = GER_grand_power_struggles
+			}
+		FROM = {
+		exists = yes
+		OR = {
+		is_fascist = yes
+		has_government = paternal_autocrat
+		}
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+		has_country_flag = GERMAN_COOPERATION_NATION
+				}
+		is_subject = no
+			}
+		}
+		target_trigger = {
+			FROM = {
+			AND = {
+			capital_scope = {
+			is_on_continent = europe
+			}
+			OR = {
+			is_fascist = yes
+			has_government = paternal_autocrat
+			has_government = conservative
+			}
+			is_subject = no
+			NOT = {
+			is_in_faction_with = USA
+			has_country_flag = GERMAN_COOPERATION_NATION
+			tag = ITA
+			}
+			exists = yes
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 50
+
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision GGR_diplomacy_with_fash_europe"
+		FROM = {
+		country_event = { id = twrgoering.19 hours = 5 }
+			}
+		}
+	}
+	BGR_conquest_of_the_greater_reich = {
+		icon = ger_reichskommissariats
+		available = {
+		has_war = no
+		RUK = {
+		is_subject_of = ROOT
+			}
+		ROS = {
+		is_subject_of = ROOT
+			}
+		RMO = {
+		is_subject_of = ROOT
+			}
+		RKA = {
+		is_subject_of = ROOT
+			}
+		NOT = {
+		has_idea = GER_grand_power_struggles
+			}
+		has_completed_focus = BGR_Meetings_With_The_Army
+		}
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			AND = {
+			OR = {
+			tag = ROM
+			tag = HUN
+			tag = CRO
+			tag = ALB
+			tag = GRE
+			tag = BOS
+			tag = BUL
+			tag = BLC
+			tag = SER
+			tag = CKR
+			tag = MOL
+			tag = NUK
+			tag = WCH
+			}
+			is_subject = no
+			has_war = no
+			is_fascist = no
+			NOT = {
+			OR = {
+			is_in_faction_with = USA
+			is_in_faction_with = ITA
+				}
+			}
+			exists = yes
+				}
+			}
+		}
+
+		fire_only_once = yes
+		war_with_target_on_timeout = yes
+		ai_will_do = {
+			factor = 500
+			modifier = { #Only attack neighboring countries
+				factor = 0
+				NOT = {
+					FROM = {
+						any_neighbor_country = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+								is_in_faction_with = ROOT
+							}
+						}
+					}
+				}
+			}
+		}
+		visible = {
+		has_war = no
+		RUK = {
+		is_subject_of = ROOT
+			}
+		ROS = {
+		is_subject_of = ROOT
+			}
+		RMO = {
+		is_subject_of = ROOT
+			}
+		RKA = {
+		is_subject_of = ROOT
+			}
+		NOT = {
+		has_idea = GER_grand_power_struggles
+			}
+		has_completed_focus = BGR_Meetings_With_The_Army
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+		has_country_flag = GERMAN_COOPERATION_NATION
+				}
+		is_subject = no
+			}
+		}
+		cost = 70
+		days_remove = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BGR_conquest_of_the_greater_reich"
+		}
+		remove_effect = {
+		create_wargoal = {
+    	type = annex_everything
+    	target = FROM
+			}
+		}
+	}
+	# Bormann Flee
+	BORMANN_FLEEING = {
+		icon = generic_army_support
+		allowed = {
+		always = yes
+		}
+		activation = {
+		AND = {
+		has_country_flag = Bormann_Executed
+		has_country_flag = BORMANN_SECRET_PLAN
+			}
+		}
+		selectable_mission = no
+		days_mission_timeout = 5
+		is_good = no
+		fire_only_once = yes
+		cancel_trigger = {
+		NOT = {
+		AND = {
+		has_country_flag = Bormann_Executed
+		has_country_flag = BORMANN_SECRET_PLAN
+				}		
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BORMANN_FLEEING"
+			country_event = twrbormann.34
+			set_country_flag = BORMANN_ESCAPED
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout BORMANN_FLEEING"
+			country_event = twrbormann.34
+			set_country_flag = BORMANN_ESCAPED
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+	BORMANN_intimidate_the_old_guards = {
+		icon = eng_blackshirt_march
+
+		available = {
+		has_completed_focus = BGR_Bormanns_Death_Squads
+		has_country_flag = GER_allies_defiant_smh
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BORMANN_intimidate_the_old_guards"
+			random_list = {
+			60 = { country_event = { id = twrbormann.6 days = 3 } }
+			40 = { country_event = { id = twrbormann.411 days = 3 } }
+			}
+		}
+	}
+	BORMANN_intimidate_the_SS = {
+		icon = eng_blackshirt_march
+
+		available = {
+		has_completed_focus = BGR_Bormanns_Death_Squads
+		has_country_flag = GER_allies_defiant_smh
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BORMANN_intimidate_the_SS"
+			random_list = {
+			60 = { country_event = { id = twrbormann.3 days = 3 } }
+			40 = { country_event = { id = twrbormann.411 days = 3 } }
+			}
+		}
+	}
+	BORMANN_cooperate_with_himmler = {
+		icon = ger_reichskommissariats
+
+		available = {
+		SSB = {
+		is_subject_of = ROOT
+		has_country_leader = {
+    	name = "Heinrich Himmler"
+    	ruling_only = yes
+				}
+			}
+		}
+
+		cost = 75
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BORMANN_cooperate_with_himmler"
+			add_stability = 0.15
+			custom_effect_tooltip = BORMANN_COOP_WITH_HIMMLER
+			hidden_effect = {
+			set_country_flag = BORMANN_HIMMLER_COOP
+			}
+		}
+	}
+	BORMANN_build_a_secret_plan = {
+		icon = generic_construction
+
+		available = {
+		has_completed_focus = BGR_Secret_Bunker
+		}
+
+		cost = 150
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BORMANN_build_a_secret_plan"
+			remove_country_leader_trait = paranoid_powermonger
+			add_stability = 0.05
+			hidden_effect = {
+			set_country_flag = BORMANN_SECRET_PLAN
+			}
+		}
+	}
+	BORMANN_scatter_the_speerites = {
+		icon = eng_blackshirt_march
+
+		visible = {
+		has_country_flag = Albert_Speer_unavailable
+		NOT = {
+		has_country_flag = speer_sphere_purged
+		}
+		}
+
+		cost = 75
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BORMANN_scatter_the_speerites"
+			add_stability = 0.15
+			custom_effect_tooltip = SPEER_SPHERE_PURGES
+			hidden_effect = {
+			set_country_flag = speer_sphere_purged
+			}
+		}
+	}
+	BORMANN_scatter_the_goebbelite = {
+		icon = eng_blackshirt_march
+
+		visible = {
+		has_country_flag = Joseph_Goebbels_unavailable
+		NOT = {
+		has_country_flag = goebbels_sphere_purged
+		}
+		}
+
+		cost = 75
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BORMANN_scatter_the_goebbelite"
+			add_stability = 0.15
+			custom_effect_tooltip = GOEBBELS_SPHERE_PURGES
+			hidden_effect = {
+			set_country_flag = goebbels_sphere_purged
+			}
+		}
+	}
+	BORMANN_shaking_the_politician_base = {
+		icon = generic_construction
+
+		available = {
+		has_completed_focus = BGR_Monthly_Purges
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BORMANN_shaking_the_politician_base"
+			add_stability = 0.01
+			add_war_support = 0.01
+		}
+	}
+}

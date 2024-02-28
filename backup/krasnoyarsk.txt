@@ -1,0 +1,840 @@
+#focus_tree = {
+#	id = KRA_focus
+#	country = {
+#		factor = 0#
+
+#		modifier = {
+#			add = 100
+#			tag = KRA
+#		}
+#	}
+#	continuous_focus_position = { x = 50 y = 2000 }
+	
+	
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_land_of_christ #Stability Restored
+		icon = GFX_GENERIC_socialist_announcement
+		mutually_exclusive = { focus = KRA_officially_leave_church }
+		x = 29
+		y = 0
+		cost = 8
+		available = {
+		always = no
+		}
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_land_of_christ"
+			add_stability = 0.1
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_official_vatican_ties #Destroy The Cultists
+		icon = GFX_GENERIC_Crosses
+		prerequisite = { focus = KRA_land_of_christ }
+		relative_position_id = KRA_land_of_christ
+		x = -2
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_official_vatican_ties"
+			country_event = {
+				id = krasnoyarsk.3
+			}
+			add_stability = -0.05
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_official_patriarchal_ties #Expand the GULAGs
+		icon = GFX_GENERIC_imprison_opposition
+		prerequisite = { focus = KRA_land_of_christ }
+		relative_position_id = KRA_land_of_christ
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_official_patriarchal_ties"
+			add_political_power = 10
+			swap_ideas = {
+				remove_idea = KRA_Orthodox_GULAGs
+				add_idea = KRA_Orthodox_GULAGs_2
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_christ_seeks_investment #Our Five Year Plan
+		icon = GFX_GER_first_plan
+		prerequisite = { focus = KRA_land_of_christ }
+		relative_position_id = KRA_land_of_christ
+		x = 2
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_christ_seeks_investment"
+			country_event = {
+				id = krasnoyarsk.1
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_a_new_bishopric #Expel the Poles
+		icon = GFX_GENERIC_deport_people
+		prerequisite = { focus = KRA_official_vatican_ties }
+		relative_position_id = KRA_official_vatican_ties
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_a_new_bishopric"
+			add_stability = 0.05
+			add_timed_idea = {
+			    idea = KRA_mass_expulsions
+			    days = 100
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_monastic_order_investments #Funding for our NKVD
+		icon = GFX_SOV_intact_nkvd
+		prerequisite = { focus = KRA_official_patriarchal_ties }
+		relative_position_id = KRA_official_patriarchal_ties
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_monastic_order_investments"
+			swap_ideas = {
+				remove_idea = KRA_A_Miniture_NKVD
+				add_idea = KRA_A_Miniture_NKVD_2
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_christian_trade_organization #Introduce Labour Troopers
+		icon = GFX_GENERIC_Soviet_Soldier
+		prerequisite = { focus = KRA_christ_seeks_investment }
+		relative_position_id = KRA_christ_seeks_investment
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_christian_trade_organization"
+			add_ideas = KRA_labour_troopers
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_theocratic_socialism #The First Soviet Congress
+		icon = GFX_focus_generic_soviet_politics
+		prerequisite = { focus = KRA_christian_trade_organization }
+		prerequisite = { focus = KRA_a_new_bishopric }
+		prerequisite = { focus = KRA_monastic_order_investments }
+		relative_position_id = KRA_monastic_order_investments
+		x = 0
+		y = 1
+		cost = 12
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_theocratic_socialism"
+			add_political_power = 50
+			remove_ideas = KRA_com_pol_conflict
+			country_event = {
+				id = krasnoyarsk.2
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_distributist_economics #The Independent Republic
+		icon = GFX_KRA_flag_icon
+		prerequisite = { focus = KRA_theocratic_socialism }
+		mutually_exclusive = { focus = KRA_christian_syncretism }
+		relative_position_id = KRA_theocratic_socialism
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_distributist_economics"
+			add_political_power = 50
+			add_ideas = KRA_self_sufficiency
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_christian_syncretism #Looking Southward
+		icon = GFX_TAN_tuvan_drill
+		prerequisite = { focus = KRA_theocratic_socialism }
+		mutually_exclusive = { focus = KRA_distributist_economics }
+		relative_position_id = KRA_theocratic_socialism
+		available = {
+		    country_exists = TAN
+		}
+		x = 1
+		y = 1
+		cost = 12
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_christian_syncretism"
+			add_political_power = -150
+			TAN = {
+				country_event = {
+					id = krasnoyarsk.4
+				}
+			}
+			set_country_flag = KRA_decisions_available
+			custom_effect_tooltip = KRA_foreign_policy_tt
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_church_based_distrubtion #Develop the Heartlands
+		icon = GFX_GENERIC_Steel_Industry
+		prerequisite = { focus = KRA_distributist_economics }
+		mutually_exclusive = { focus = KRA_collectivize_non_chrisitan_buildings }
+		relative_position_id = KRA_distributist_economics
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_church_based_distrubtion"
+			add_offsite_building = { type = industrial_complex level = 1 }
+			568 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_collectivize_non_chrisitan_buildings #Restarting Soviet Factories
+		icon = GFX_GENERIC_arms_industry
+		prerequisite = { focus = KRA_distributist_economics focus = KRA_christian_syncretism}
+		mutually_exclusive = { focus = KRA_a_third_way_in_christ focus = KRA_church_based_distrubtion }
+		relative_position_id = KRA_distributist_economics
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_collectivize_non_chrisitan_buildings"
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_timed_idea = {
+			    idea = KRA_rebuilding_soviet_factories
+			    days = 200
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_a_third_way_in_christ #From Altai to Krasnoyarsk
+		icon = GFX_GENERIC_Cogs_For_Factory
+		prerequisite = { focus = KRA_christian_syncretism }
+		mutually_exclusive = { focus = KRA_collectivize_non_chrisitan_buildings }
+		relative_position_id = KRA_christian_syncretism
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_a_third_way_in_christ"
+			568 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			875 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			329 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+
+shared_focus = {
+		cancelable = no
+		id = KRA_officially_leave_church #The GULAG Revolt
+		icon = GFX_SOV_Chaos_at_the_Soviet
+		relative_position_id = KRA_land_of_christ
+		mutually_exclusive = { focus = KRA_land_of_christ }
+		x = 10
+		y = 0
+		cost = 8
+		ai_will_do = {
+			
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_officially_leave_church"
+			add_stability = -0.3
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_new_ecumenical_council #The Interim Regime
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = KRA_officially_leave_church }
+		relative_position_id = KRA_officially_leave_church
+		x = 0
+		y = 1
+		cost = 12
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_new_ecumenical_council"
+			add_political_power = -100
+			hidden_effect = {
+				country_event = {
+					id = krasnoyarsk.11 hours = 5 
+				}
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_the_primacy #The Politburo's Counter Revolution
+		icon = GFX_focus_attack_soviet
+		prerequisite = { focus = KRA_new_ecumenical_council }
+		mutually_exclusive = { focus = KRA_the_otets }
+		relative_position_id = KRA_new_ecumenical_council
+		x = -3
+		y = 1
+		cost = 8
+		available = {
+		always = no
+		}
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_the_primacy"
+			add_political_power = 50
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_ordination_reform #Expanding the Security Forces
+		icon = GFX_SOV_deport_officers
+		prerequisite = { focus = KRA_the_primacy }
+		relative_position_id = KRA_the_primacy
+		x = -2
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_ordination_reform"
+			add_political_power = 50
+			swap_ideas = {
+				remove_idea = KRA_A_Miniture_NKVD
+				add_idea = KRA_A_Miniture_NKVD_2
+			}
+			swap_ideas = {
+				remove_idea = KRA_Workers_Red_Army
+				add_idea = KRA_Workers_Red_Army_2
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_christ_helps_poor #Disband the GULAGs
+		icon = GFX_GENERIC_Fist_Chain
+		prerequisite = { focus = KRA_the_primacy }
+		relative_position_id = KRA_the_primacy
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_christ_helps_poor"
+			remove_ideas = KRA_Orthodox_GULAGs
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_god_of_all #Approve Kalininism
+		icon = GFX_SOV_legacy_of_kalinin
+		prerequisite = { focus = KRA_the_primacy }
+		relative_position_id = KRA_the_primacy
+		x = 2
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_god_of_all"
+			add_political_power = 150
+			remove_ideas = KRA_com_pol_conflict
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_communal_distribution_charity #Abandon Zhdanovshchina
+		icon = GFX_GENERIC_Hammer_Sickle
+		prerequisite = { focus = KRA_ordination_reform }
+		relative_position_id = KRA_ordination_reform
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_communal_distribution_charity"
+			add_political_power = 50
+			add_stability = 0.05
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_god_defends_weak #Compromise With the Poles
+		icon = GFX_GENERIC_sniper_defense
+		prerequisite = { focus = KRA_christ_helps_poor }
+		relative_position_id = KRA_christ_helps_poor
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_god_defends_weak"
+			add_political_power = -100
+			add_stability = 0.1
+			add_war_support = 0.1
+			country_event = {
+				id = krasnoyarsk.8
+			}
+			create_corps_commander = {
+				name = "Jerzy Bordziłowski"
+				picture = "Jerzy_Bordzilowski.dds"
+				traits = { trait_engineer }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_fly_in_converts #Soviet Equipment
+		icon = GFX_SOV_kalashnikov_rifle
+		prerequisite = { focus = KRA_god_of_all }
+		relative_position_id = KRA_god_of_all
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_fly_in_converts"
+			custom_effect_tooltip = KRA_foreign_policy_tt
+			set_country_flag = KRA_decisions_available
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_the_righteous #A Fortress Republic
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = KRA_god_defends_weak }
+		prerequisite = { focus = KRA_communal_distribution_charity }
+		mutually_exclusive = { focus = KRA_those_who_sin }
+		relative_position_id = KRA_god_defends_weak
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_the_righteous"
+			add_political_power = 10
+			add_ideas = KRA_self_sufficiency
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_those_who_sin #Rejoin the Soviets
+		icon = GFX_focus_chi_mission_to_the_soviet_union
+		prerequisite = { focus = KRA_god_defends_weak }
+		prerequisite = { focus = KRA_fly_in_converts }
+		mutually_exclusive = { focus = KRA_the_righteous }
+		relative_position_id = KRA_god_defends_weak
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 0
+		}
+		available = {
+			SOV = {
+				exists = yes
+				OR = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+					has_government = social_democrat
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_those_who_sin"
+			custom_effect_tooltip = KRA_foreign_policy_tt
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_the_otets
+		icon = GFX_RUS_russian_spirit
+		prerequisite = { focus = KRA_new_ecumenical_council }
+		mutually_exclusive = { focus = KRA_the_primacy }
+		relative_position_id = KRA_new_ecumenical_council
+		x = 3
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+		remove_ideas = KRA_com_pol_conflict
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_the_otets"
+			set_politics = {	
+			ruling_party = paternal_autocrat
+			}
+			add_popularity = {
+    		ideology = paternal_autocrat
+    		popularity = 0.3
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_siberian_christendom
+		icon = GFX_RUS_expand_russia
+		prerequisite = { focus = KRA_the_otets }
+		relative_position_id = KRA_the_otets
+		x = -2
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_siberian_christendom"
+			set_country_flag = KRA_decisions_available
+			custom_effect_tooltip = KRA_foreign_policy_tt
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_filioque
+		icon = GFX_GER_trip_to_argentina
+		prerequisite = { focus = KRA_the_otets }
+		relative_position_id = KRA_the_otets
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_filioque"
+			add_political_power = -50
+			country_event = {
+				id = krasnoyarsk.12
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_appeasing_old_believers #The Polish Officer Corp
+		icon = GFX_GENERIC_liberation
+		prerequisite = { focus = KRA_the_otets }
+		relative_position_id = KRA_the_otets
+		x = 2
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_appeasing_old_believers"
+
+			create_field_marshal = {
+				name = "Mieczysław Boruta-Spiechowicz"
+				picture = "Mieczyslaw_Boruta-Spiechowicz.dds"
+				traits = { defensive_doctrine }
+				skill = 3
+				attack_skill = 1
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			create_corps_commander = {
+				name = "Jerzy Bordziłowski"
+				picture = "Jerzy_Bordzilowski.dds"
+				traits = { trait_engineer }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Józef Czapski"
+				picture = "Jozef_Czapski.dds"
+				traits = { cavalry_officer }
+				skill = 2
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Władysław Bukowiński"
+				picture = "Wladyslaw_Bukowinski.dds"
+				traits = { old_guard politically_connected }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_the_hinterland
+		icon = GFX_TRV_via_volga
+		prerequisite = { focus = KRA_siberian_christendom }
+		relative_position_id = KRA_siberian_christendom
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_the_hinterland"
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_timed_idea = {
+			    idea = KRA_infrastructure_effort
+			    days = 200
+			}
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_codify_new_doctrine
+		icon = GFX_GENERIC_doctrine
+		prerequisite = { focus = KRA_filioque }
+		relative_position_id = KRA_filioque
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_codify_new_doctrine"
+			add_political_power = 50
+			add_stability = 0.05
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_adoption_of_eastern_sainthoods #Our New Fatherland
+		icon = GFX_GENERIC_Lone_Officer
+		prerequisite = { focus = KRA_appeasing_old_believers }
+		relative_position_id = KRA_appeasing_old_believers
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_adoption_of_eastern_sainthoods"
+			add_ideas = KRA_A_Kingdom_of_God
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_new_land_of_wonder # a new land of wonder
+		icon = GFX_NRI_flag_icon
+		prerequisite = { focus = KRA_the_hinterland }
+		prerequisite = { focus = KRA_codify_new_doctrine }
+		mutually_exclusive = { focus = KRA_old_land_of_pain }
+		relative_position_id = KRA_the_hinterland
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_new_land_of_wonder" #This probably means invading Norilsk
+			add_ideas = KRA_self_sufficiency
+		}
+
+	}
+	
+shared_focus = {
+		cancelable = no
+		id = KRA_old_land_of_pain #A Telegraph to Russia
+		icon = GFX_GENERIC_Align_Russia
+		prerequisite = { focus = KRA_codify_new_doctrine }
+		prerequisite = { focus = KRA_adoption_of_eastern_sainthoods }
+		mutually_exclusive = { focus = KRA_new_land_of_wonder }
+		relative_position_id = KRA_codify_new_doctrine
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			
+		}
+		available = {
+		RUS = {
+		exists = yes
+		is_subject = no
+		}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KRA_old_land_of_pain" #Russian support and protection but you become puppet
+			RUS = {
+				country_event = {
+					id = krasnoyarsk.20
+				}
+			}
+		}
+
+	}
+	

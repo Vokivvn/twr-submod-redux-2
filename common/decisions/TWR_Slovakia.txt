@@ -1,0 +1,751 @@
+SLO_DEBT = {
+  
+        SLO_Payoff_The_Remaining_Debt = {
+		icon = GFX_decision_ger_mefo_bills
+            cost = 15 
+                visible = { 
+                        NOT = {
+                        check_variable = { SLO_Koruna = 0 } 
+                        }
+                        check_variable = { SLO_Koruna = 1 } 
+                        original_tag = SLO 
+                        NOT = {
+                        has_country_flag = SLO_PAYING_DEBT
+                        } 
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_re_enable = 5
+                days_remove = 30
+                complete_effect = { 
+                set_country_flag = SLO_PAYING_DEBT
+                }
+		remove_effect = {
+                clr_country_flag = SLO_PAYING_DEBT
+                custom_effect_tooltip = Slovakia6tooltip
+               set_variable = {
+	           var = SLO_Koruna
+	           value = 0
+            }
+        }
+	}
+        SLO_Pay_Small_Debt = {
+		icon = GFX_decision_ger_mefo_bills
+            cost = 40
+                visible = {
+                    NOT = { 
+                    check_variable = { SLO_Koruna < 2 }
+                    }
+                    original_tag = SLO 
+                    NOT = {
+                    has_country_flag = SLO_PAYING_DEBT
+                    } 
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_re_enable = 5
+                days_remove = 30
+                complete_effect = { 
+                set_country_flag = SLO_PAYING_DEBT
+                }
+		remove_effect = {
+                clr_country_flag = SLO_PAYING_DEBT
+                custom_effect_tooltip = Slovakia3tooltip
+                add_to_variable = {
+	        var = SLO_Koruna
+	        value = -2
+                }
+                }
+	}
+        SLO_Pay_Small_Medium = {
+		icon = GFX_decision_ger_mefo_bills
+                cost = 60
+                visible = {
+                        OR = {
+                        check_variable = { SLO_Koruna > 4 } 
+                        check_variable = { SLO_Koruna = 4 }
+                        }
+                        original_tag = SLO
+                        NOT = {
+                        has_country_flag = SLO_PAYING_DEBT
+                        }                       
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                complete_effect = { 
+                set_country_flag = SLO_PAYING_DEBT
+                }
+		remove_effect = {
+                clr_country_flag = SLO_PAYING_DEBT
+                custom_effect_tooltip = Slovakia4tooltip
+                add_to_variable = {
+	        var = SLO_Koruna
+	        value = -4
+            }
+        }
+	}
+        SLO_Pay_Small_Large = {
+		icon = GFX_decision_ger_mefo_bills
+                cost = 90
+                visible = {
+                        OR = {
+                        check_variable = { SLO_Koruna > 8 } 
+                        check_variable = { SLO_Koruna = 8 }
+                        }
+                        original_tag = SLO
+                        NOT = {
+                        has_country_flag = SLO_PAYING_DEBT
+                        } 
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_re_enable = 5
+                days_remove = 30
+                complete_effect = { 
+                set_country_flag = SLO_PAYING_DEBT
+                }
+		remove_effect = {
+                clr_country_flag = SLO_PAYING_DEBT
+                custom_effect_tooltip = Slovakia5tooltip
+                add_to_variable = {
+	        var = SLO_Koruna
+	        value = -8
+                }
+                }
+	}
+        SLO_Debt_No_More = {
+		icon = GFX_decision_ger_mefo_bills
+                cost = 0
+                visible = {
+                        check_variable = { SLO_Koruna = 0 } 
+                        original_tag = SLO
+                        NOT = {
+                        has_country_flag = SLO_PAYING_DEBT
+                        } 
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                complete_effect = { 
+                set_country_flag = SLO_DEBT_PAID
+                remove_ideas = { SLO_Debt_To_The_Germans }
+                add_stability = 0.05 
+                }        
+	}
+}
+
+SLO_Governor = {
+      
+       SLO_New_Mines = {
+		icon = GFX_decision_steel
+                cost = 50
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                modifier = { production_speed_buildings_factor = -0.05 }
+                fire_only_once = yes
+                remove_effect = {  
+                71 = {
+                     add_resource = {
+                            type = steel
+		            amount = 10
+                     }
+                }
+                }        
+	}
+        SLO_New_Schools = {
+		icon = GFX_decision_generic_research
+                cost = 25
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 60
+                modifier = { research_speed_factor = 0.05 }
+                fire_only_once = yes
+                remove_effect = {  
+                }        
+	}
+        SLO_Encourage_Foreign_Investments = {
+		icon = GFX_decision_hol_attract_foreign_investors
+                cost = 60
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                modifier = { political_power_gain = -0.35 }
+                fire_only_once = yes
+                remove_effect = {  
+                add_offsite_building = { type = industrial_complex level = 1 }
+                }        
+	}
+        SLO_Rebuild_The_Bratislava_Airport = {
+		icon = GFX_decision_generic_construction
+                cost = 40
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                modifier = { production_speed_buildings_factor = -0.05 }
+                fire_only_once = yes
+                remove_effect = {  
+                71 = {
+			add_building_construction = {
+			type = air_base
+			level = 2
+			instant_build = yes
+			}
+                }
+                }        
+	}
+        SLO_Invest_In_Radio_Slovakia = {
+		icon = GFX_decision_eng_propaganda_campaigns
+                cost = 60
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                modifier = { production_speed_buildings_factor = -0.05 consumer_goods_factor = 0.02 }
+                fire_only_once = yes
+                remove_effect = {  
+                70 = {
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+                }
+                }        
+	}
+        SLO_Encourage_Immigration = {
+		icon = GFX_decision_eng_blackshirt_march
+                cost = 20
+                visible = {
+                SLO = {
+                has_completed_focus = SLO_An_Independent_Advisor
+                }
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                fire_only_once = yes
+                remove_effect = {  
+                70 = {
+		add_manpower = 25000
+                }
+                71 = {
+		add_manpower = 15000
+                }
+                }        
+	}
+        SLO_Build_Eastern_Slovakian_Highways = {
+		icon = GFX_decision_generic_construction
+                cost = 20
+                visible = {
+                SLO = {
+                has_completed_focus = SLO_An_Independent_Advisor
+                }
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 60
+                modifier = { production_speed_buildings_factor = -0.05 consumer_goods_factor = 0.02 }
+                fire_only_once = yes
+                remove_effect = {  
+                        71 = {
+                                add_building_construction = {
+			                type = infrastructure
+			                level = 1
+			                instant_build = yes
+                                }
+                        }
+                        build_railway = {
+                                level = 1
+                                path = { 11539 581 3550 3581 6586 }
+                        }
+                }        
+	}
+        SLO_Build_Silos = {
+		icon = GFX_decision_generic_construction
+                cost = 45
+                visible = {
+                SLO = {
+                has_completed_focus = SLO_An_Independent_Advisor
+                }
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 35
+                modifier = { production_speed_buildings_factor = -0.05 }
+                fire_only_once = yes
+                remove_effect = {  
+                71 = {
+                    add_building_construction = {
+			  type = fuel_silo
+			  level = 1
+			  instant_build = yes
+                          }
+                } 
+                70 = {
+                    add_building_construction = {
+			  type = fuel_silo
+			  level = 1
+			  instant_build = yes
+                          }
+                }
+                }        
+	}
+        SLO_Synthetic_Processing = {
+		icon = GFX_decision_oil
+                cost = 50
+                visible = {
+                SLO = {
+                has_completed_focus = SLO_An_Independent_Advisor
+                }
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 60
+                modifier = { production_speed_buildings_factor = -0.05 consumer_goods_factor = 0.02 }
+                fire_only_once = yes
+                remove_effect = {  
+                71 = {
+                    add_building_construction = {
+			  type = synthetic_refinery
+			  level = 1
+			  instant_build = yes
+                          }
+                } 
+                modify_building_resources = {
+        	   building = synthetic_refinery
+        	   resource = oil
+        	   amount = 2
+        	}
+                }        
+	}
+}
+
+SLO_Secretary = {
+      
+       SLO_Expand_The_Power_Plants = {
+		icon = GFX_decision_generic_construction
+                cost = 70
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                modifier = { production_speed_buildings_factor = -0.05 }
+                fire_only_once = yes
+                remove_effect = {  
+                70 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+                }        
+	}
+        SLO_Bunker_Construction_Efforts = {
+		icon = GFX_decision_generic_construction
+                cost = 25
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 60
+                modifier = { production_speed_buildings_factor = -0.05 }
+                fire_only_once = yes
+                remove_effect = {  
+                70 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9692
+					instant_build = yes
+				}
+                }
+                }        
+	}
+        SLO_Encourage_German_Investments = {
+		icon = GFX_decision_eng_trade_unions_support
+                cost = 50
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                modifier = { political_power_gain = -0.35 }
+                fire_only_once = yes
+                remove_effect = {  
+                add_offsite_building = { type = arms_factory level = 1 }
+                }        
+	}
+        SLO_Build_Pak_Guns = {
+		icon = GFX_decision_generic_artillery
+                cost = 40
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                modifier = { production_speed_buildings_factor = -0.05 }
+                fire_only_once = yes
+                remove_effect = {  
+                70 = {
+                add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+					}
+                }
+                71 = {
+                add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+					}
+                }
+                }        
+	}
+        SLO_Build_Road_Networks = {
+		icon = GFX_decision_generic_wheel
+                cost = 30
+                visible = {
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                modifier = { production_speed_buildings_factor = -0.05 consumer_goods_factor = 0.02 }
+                fire_only_once = yes
+                remove_effect = {  
+                        71 = {
+                                add_building_construction = {
+			                type = infrastructure
+			                level = 1
+			                instant_build = yes
+                                }
+                        } 
+                        build_railway = {
+                                level = 1
+                                path = { 11539 581 3550 3581 6586 }
+                        }
+                }        
+	}
+        SLO_Expand_Military_Services = {
+		icon = GFX_decision_eng_blackshirt_march
+                cost = 20
+                visible = {
+                SLO = {
+                has_completed_focus = SLO_Puppet_To_The_Chairman
+                }
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 30
+                fire_only_once = yes
+                remove_effect = {  
+		add_manpower = 40000
+                }        
+	}
+        SLO_Build_Weapons_Depot = {
+		icon = GFX_decision_generic_construction
+                cost = 50
+                visible = {
+                SLO = {
+                has_completed_focus = SLO_Puppet_To_The_Chairman
+                }
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_remove = 60
+                modifier = { production_speed_buildings_factor = -0.05 consumer_goods_factor = 0.02 }
+                fire_only_once = yes
+                remove_effect = {  
+                70 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+                }        
+	}
+}
+
+SLO_Military_Professionalism = {
+
+	SLO_Military_Exercises = {
+		icon = GFX_decision_generic_operation
+                visible = {
+                NOT = {
+                check_variable = { SLO_ARMY_EXP > 89 }  
+                has_country_flag = SLO_Army_Reforms 
+                }
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+		modifier = {
+			political_power_gain = -0.1
+		}
+
+		days_remove = 30
+
+		days_re_enable = 5
+
+		custom_cost_trigger = { command_power > 15 }
+		custom_cost_text = decision_cost_5_cp
+
+		complete_effect = {
+                        set_country_flag = SLO_Army_Reforms 
+			add_command_power = -15
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = TWR_SLO_Professionalism_Increase
+
+			if = {
+				limit = {
+					check_variable = { SLO_ARMY_EXP < 100 }
+				}
+				add_to_variable = {
+					var = SLO_ARMY_EXP
+					value = 2
+				}
+			}
+			clr_country_flag = SLO_Army_Reforms
+		}
+	}
+
+	SLO_Enforce_Discipline_Quotas= {
+		icon = GFX_decision_generic_operation
+                cost = 50
+                visible = {
+                NOT = {
+                check_variable = { SLO_ARMY_EXP > 89 } 
+                has_country_flag = SLO_Army_Reforms 
+                }
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+		modifier = {
+			political_power_gain = -0.1
+		}
+
+		days_remove = 30
+
+		days_re_enable = 5
+
+		custom_cost_trigger = { command_power > 30 }
+		custom_cost_text = decision_cost_10_cp 
+
+		complete_effect = {
+            set_country_flag = SLO_Army_Reforms 
+			add_command_power = -30
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = TWR_SLO_Professionalism_Increase_Average
+
+			if = {
+				limit = {
+					check_variable = { SLO_ARMY_EXP < 100 }
+				}
+				add_to_variable = {
+					var = SLO_ARMY_EXP
+					value = 6
+				}
+			}
+			clr_country_flag = SLO_Army_Reforms
+		}
+	}
+
+	SLO_Update_Manuals = {
+		icon = GFX_decision_generic_operation
+                visible = {
+                NOT = {
+                check_variable = { SLO_ARMY_EXP > 89 } 
+                has_country_flag = SLO_Army_Reforms 
+                }
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+		modifier = {
+			political_power_gain = -0.1
+		}
+
+		days_remove = 30
+
+		days_re_enable = 5
+
+		custom_cost_trigger = { has_army_experience > 10 }
+		custom_cost_text = decision_cost_10_army_experience
+
+		complete_effect = {
+            set_country_flag = SLO_Army_Reforms 
+			army_experience = -10
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = TWR_SLO_Professionalism_Increase_Average
+
+			if = {
+				limit = {
+					check_variable = { SLO_ARMY_EXP < 100 }
+				}
+				add_to_variable = {
+					var = SLO_ARMY_EXP
+					value = 10
+				}
+			}
+			clr_country_flag = SLO_Army_Reforms
+		}
+	}
+
+        SLO_Final_Reforms = {
+		icon = GFX_decision_eng_trade_unions_support
+                visible = {
+                check_variable = { SLO_ARMY_EXP > 89 } 
+                NOT = {
+                has_country_flag = SLO_Army_Reforms 
+                }
+                tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                modifier = {
+			political_power_gain = -0.1
+		}
+
+		days_remove = 30
+
+		days_re_enable = 5
+
+		custom_cost_trigger = { has_army_experience > 20 }
+		custom_cost_text = decision_cost_20_army_experience
+
+		complete_effect = {
+            set_country_flag = SLO_Army_Reforms 
+			army_experience = -20
+		}
+
+            remove_effect = {
+            clr_country_flag = SLO_Army_Reforms
+			custom_effect_tooltip = TWR_SLO_Professionalism_Increase_Finish
+			set_variable = {
+				var = SLO_ARMY_EXP
+				value = 100
+			}
+		}
+	}
+
+        SLO_Army_Modernisation = {
+		icon = GFX_decision_eng_blackshirt_march
+                visible = {
+                        OR = {                 
+		                check_variable = { SLO_ARMY_EXP = 100 }    
+                                check_variable = { SLO_ARMY_EXP > 100 }         
+	                }
+                        tag = SLO
+                }
+		ai_will_do = {
+			factor = 500
+		}
+                days_re_enable = 1
+                days_remove = 60
+		modifier = {  
+                        training_time_army_factor = 0.3
+                        max_planning = -0.3
+                        planning_speed = -0.3
+                        army_org_factor = -0.3
+                }
+                complete_effect = {
+                        set_country_flag = SLO_Army_Reforms 
+                        add_political_power = -25
+                }
+                remove_effect = { 
+                        set_country_flag = SLO_Army_Modern
+                        custom_effect_tooltip = Slovakia24tooltip
+                }
+	}
+}
+
+SLO_Support_Czech_Brothers = {
+    SLO_organize_the_czechoslovak_expedition = {
+
+        icon = generic_ignite_civil_war
+
+        available = {
+            original_tag = SLO
+            country_exists = CZE
+            CZE = {
+            has_war = yes
+            }
+        }
+
+        cost = 20
+
+        ai_will_do = {
+            factor = 10
+        }
+
+        visible = {
+            original_tag = SLO
+            country_exists = CZE
+            CZE = {
+            has_war = yes
+            }
+        }
+
+        fire_only_once = yes
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision SLO_organize_the_czechoslovak_expedition"
+            add_ideas = SLO_CZE_legion_support
+        }
+    }
+}

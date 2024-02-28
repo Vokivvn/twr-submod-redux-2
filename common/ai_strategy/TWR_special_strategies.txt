@@ -1,0 +1,348 @@
+USA_help_russia = {
+	enable = {
+		tag = USA
+		RUS = {
+			OR = {
+				#has_completed_focus = RUS_support_us_military_bases
+			}
+		}
+	}
+
+	abort = {
+		OR = {
+			has_opinion = {
+				target = RUS
+				value < 0 # not if we hate RUS
+			}
+			has_war_with = RUS
+		}
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = 100
+	}
+	ai_strategy = {
+		type = protect
+		id = "RUS"
+		value = 200
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "RUS"
+		value = 50
+	}
+	ai_strategy = {
+		type = support
+		id = "RUS"
+		value = 200
+	}
+}
+USA_stop_russians_from_falling = {
+	enable = {
+		tag = USA
+		has_war = no
+		num_divisions > 85 # we must have some divisions ourselves
+
+		NOT = { is_fascist = yes }
+		NOT = { is_in_faction_with = RUS }
+		NOT = { has_war_with = SOV }
+		RUS = { 
+			has_war_with = SOV 
+		}
+		RUS = {
+			surrender_progress > 0.05
+			has_capitulated = no
+		}
+	}
+	abort = {
+		OR = {
+			has_opinion = {
+				target = RUS
+				value < 0 # not if we hate RUS
+			}
+			has_war_with = RUS
+		}
+	}
+
+	ai_strategy = {
+		type = support
+		id = "RUS"
+		value = 500
+	}
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = RUS		
+		value = 1000
+	}	
+}
+USA_help_france = {
+	enable = {
+		is_in_faction_with = USA
+		USA = {	
+		is_faction_leader = yes
+		has_war = no
+		}
+		has_global_flag = TA_BACK_FRANCE
+		FRA = {
+		is_democratic = yes
+		has_defensive_war = yes
+		}
+	}
+
+	abort = {
+		FRA = {
+		has_defensive_war = no
+		}
+		NOT = {
+		has_global_flag = TA_BACK_FRANCE
+		}
+		has_war = yes
+	}
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "FRA"
+		value = 100
+	}
+	ai_strategy = {
+		type = support
+		id = "FRA"
+		value = 200
+	}
+}
+USA_UK_help_GKK = {
+	enable = {
+		OR = {
+		tag = ENG
+		tag = USA
+		}
+		country_exists = GKK
+		GRE = { has_civil_war = yes }
+	}
+
+	abort = {
+	GRE = { has_civil_war = no }
+	has_war = yes
+	}
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "GKK"
+		value = 100
+	}
+	ai_strategy = {
+		type = support
+		id = "GKK"
+		value = 100
+	}
+}
+GER_help_GKK = {
+	enable = {
+		tag = GER
+		country_exists = GSB
+		GRE = { has_civil_war = yes }
+	}
+
+	abort = {
+	GRE = { has_civil_war = no }
+	has_war = yes
+	}
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "GSB"
+		value = 100
+	}
+	ai_strategy = {
+		type = support
+		id = "GSB"
+		value = 100
+	}
+}
+USA_UK_help_EGY = {
+	enable = {
+		OR = {
+		tag = ENG
+		tag = USA
+		}
+		EGY = { has_civil_war = yes }
+
+	}
+
+	abort = {
+	EGY = { has_civil_war = no }
+	country_exists = EGG
+	has_war = yes
+	}
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "EGG"
+		value = 100
+	}
+	ai_strategy = {
+		type = support
+		id = "EGG"
+		value = 100
+	}
+}
+ITA_help_EGY = {
+	enable = {
+		tag = ITA
+		EGY = { has_civil_war = yes }
+		EGY = {
+		has_cosmetic_tag = EGY_ITA
+		}
+	}
+
+	abort = {
+	EGY = { has_civil_war = no }
+	has_war = yes
+	}
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "EGY"
+		value = 100
+	}
+	ai_strategy = {
+		type = support
+		id = "EGY"
+		value = 100
+	}
+}
+
+CRO_SER_rivals = {
+	enable = {
+		tag = CRO
+		country_exists = SER
+	}
+	abort = {
+		NOT = { country_exists = SER }
+	}
+	
+	ai_strategy = {
+		type = befriend
+		id = "SER"			
+		value = -200
+	}
+	ai_strategy = {
+		type = alliance
+		id = "SER"			
+		value = -200
+	}	
+	ai_strategy = {
+		type = support
+		id = "SER"			
+		value = -200
+	}	
+}
+
+SER_CRO_rivals = {
+	enable = {
+		tag = SER
+		country_exists = CRO
+	}
+	abort = {
+		NOT = { country_exists = CRO }
+	}
+	
+	ai_strategy = {
+		type = befriend
+		id = "CRO"			
+		value = -200
+	}
+	ai_strategy = {
+		type = alliance
+		id = "CRO"			
+		value = -200
+	}	
+	ai_strategy = {
+		type = support
+		id = "CRO"			
+		value = -200
+	}	
+}
+ITA_DO_NOT_JOIN_CRETE_REBELLION_WAR = {
+	enable = {
+		is_in_faction_with = GRE
+		GRE = {
+		has_war_with = CRE
+		}
+	}
+	abort = {
+		NOT = {
+		GRE = {
+		has_war_with = CRE
+			}		
+		}
+	}
+
+	ai_strategy = {
+		type = dont_join_wars_with
+		id = "GRE"
+		value = 500
+	}	
+}
+ITA_DO_NOT_JOIN_NATSOC_BUL_WAR = {
+	enable = {
+		is_in_faction_with = GRE
+		GRE = {
+		has_war_with = BUL
+		has_government = national_socialist
+		}
+	}
+	abort = {
+		NOT = {
+		GRE = {
+		has_war_with = BUL
+			}		
+		}
+	}
+
+	ai_strategy = {
+		type = dont_join_wars_with
+		id = "GRE"
+		value = 500
+	}	
+}
+SLO_help_CZE = {
+	enable = {
+		tag = SLO
+		SLO = {
+		has_completed_focus = SLO_Czechoslovak_Ideals
+		}
+		has_global_flag = czech_revolt
+        country_exists = CZE
+        CZE = {
+        has_war = yes
+        }
+        has_global_flag = german_civil_war_started
+	}
+
+	abort = {
+		OR = {
+			has_war_with = CZE
+			NOT = {
+			has_country_flag = SLO_CZECHOSLOVAK
+			}
+			CZE = {
+			exists = no
+			}
+		}
+	}
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "CZE"
+		value = 200
+	}
+	ai_strategy = {
+		type = support
+		id = "CZE"
+		value = 200
+	}
+}

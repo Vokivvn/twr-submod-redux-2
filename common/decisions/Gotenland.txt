@@ -1,0 +1,586 @@
+#########################################################################
+#  Gotenland
+#########################################################################
+RGO_matters = {
+	RGO_restore_order = {
+		icon = ger_reichskommissariats
+
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			AND = {
+			OR = {
+			tag = DON
+			tag = MTR 
+			tag = AZR 
+			tag = KAM 
+			tag = NOG 
+			tag = RAC 
+			tag = LZG 
+			tag = UKR 
+			tag = SUK 
+			tag = UKW 
+			tag = SMO 
+			tag = WRM 
+			tag = TMS 
+			tag = RMD 
+			tag = BLR 
+			tag = LAT
+			tag = EST 
+			tag = LIT 
+			tag = CDA
+			tag = UIA
+			tag = KMY
+			tag = RKA
+			tag = ROS
+			tag = RMO
+			tag = RUK
+			tag = GEO
+			tag = ARM
+			tag = BKU 
+			tag = PET 
+			tag = STR 
+			tag = WSP 
+			tag = BGS
+			tag = ZHU
+			}
+			exists = yes
+			is_owner_neighbor_of = ROOT
+				}
+			}
+		} 
+		available = {
+		has_war = no
+		}
+		visible = {
+		has_completed_focus = RGO_Proclaim_The_Gotsiche_Reich
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+				}
+		is_subject = no
+			}
+		}
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		days_remove = 10
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RGO_restore_order"
+		}
+		remove_effect = {
+		create_wargoal = {
+    	type = annex_everything
+    	target = FROM
+			}
+		}
+	}
+	RGO_forting_the_silos = {
+		icon = generic_ignite_civil_war
+
+		available = {
+			has_completed_focus = RGO_fortified_silos
+			rocket_site  > 1
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			TAG = RGO
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			local_resources_factor = -0.1
+			production_speed_buildings_factor = -0.1
+		}
+		days_remove = 90        
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RGO_forting_the_silos"
+			add_stability = 0.05
+			add_equipment_to_stockpile = {
+				type = icbm_equipment
+				amount = 20
+				producer = RGO
+			}
+			hidden_effect = {
+				set_country_flag = silos_enforced
+			} 
+		}
+	}
+	RGO_the_tiwaz = {
+		icon = generic_ignite_civil_war
+
+		available = {
+			has_completed_focus = RGO_the_fingers_of_tiwaz
+		}
+
+		cost = 60
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			TAG = RGO
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			local_resources_factor = -0.1
+			production_speed_buildings_factor = -0.1
+		}
+		days_remove = 90        
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RGO_the_tiwaz"
+			add_war_support = 0.10
+			add_nuclear_bombs = 3
+		}
+	}
+	RGO_nuclear_warhead_smuggling = {
+		icon = generic_ignite_civil_war
+
+		available = {
+			has_completed_focus = RGO_the_fingers_of_tiwaz
+		}
+
+		cost = 30
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			TAG = RGO
+			has_global_flag = german_civil_war_started
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			local_resources_factor = -0.1
+			production_speed_buildings_factor = -0.1
+		}
+		days_remove = 120        
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RGO_nuclear_warhead_smuggling"
+			add_nuclear_bombs = 15
+			add_political_power = -100
+		}
+	}
+	RGO_integrate_ukraine = {
+		icon = generic_ignite_civil_war
+
+		available = {
+			is_subject = no
+			controls_ruk = yes
+		}
+		fire_only_once = yes
+		cost = 150
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			TAG = RGO
+			has_completed_focus = RGO_Proclaim_The_Gotsiche_Reich
+		}
+		modifier = {
+			political_power_factor = -0.25
+		}
+		days_remove = 120        
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RGO_integrate_ukraine"
+			992 = {
+				add_core_of = RGO
+			}
+			990 = {
+				add_core_of = RGO
+			}
+			991 = {
+				add_core_of = RGO
+			}
+			989 = {
+				add_core_of = RGO
+			}
+			987 = {
+				add_core_of = RGO
+			}
+			988 = {
+				add_core_of = RGO
+			}
+			986 = {
+				add_core_of = RGO
+			}
+			94 = {
+				add_core_of = RGO
+			}
+			93 = {
+				add_core_of = RGO
+			}
+			260 = {
+				add_core_of = RGO
+			}
+			258 = {
+				add_core_of = RGO
+			}
+			259 = {
+				add_core_of = RGO
+			}
+			257 = {
+				add_core_of = RGO
+			}
+			241 = {
+				add_core_of = RGO
+			}
+			240 = {
+				add_core_of = RGO
+			}
+			227 = {
+				add_core_of = RGO
+			}
+			228 = {
+				add_core_of = RGO
+			}
+			225 = {
+				add_core_of = RGO
+			}
+			226 = {
+				add_core_of = RGO
+			}
+			224 = {
+				add_core_of = RGO
+			}
+			221 = {
+				add_core_of = RGO
+			}
+			222 = {
+				add_core_of = RGO
+			}
+			220 = {
+				add_core_of = RGO
+			}
+			202 = {
+				add_core_of = RGO
+			}
+			203 = {
+				add_core_of = RGO
+			}
+			201 = {
+				add_core_of = RGO
+			}
+			199 = {
+				add_core_of = RGO
+			}
+			197 = {
+				add_core_of = RGO
+			}
+			193 = {
+				add_core_of = RGO
+			}
+			194 = {
+				add_core_of = RGO
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RGO_integrate_ukraine"
+		}
+	}
+	RGO_integrate_ostland = {
+		icon = generic_ignite_civil_war
+
+		available = {
+			is_subject = no
+			controls_ostland = yes
+		}
+		fire_only_once = yes
+		cost = 150
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			TAG = RGO
+			has_completed_focus = RGO_Proclaim_The_Gotsiche_Reich
+		}
+		modifier = {
+			political_power_factor = -0.25
+		}
+		days_remove = 120        
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RGO_integrate_ostland"
+			96 = {
+				add_core_of = RGO
+			}
+			95 = {
+				add_core_of = RGO
+			}
+			928 = {
+				add_core_of = RGO
+			}
+			805 = {
+				add_core_of = RGO
+			}
+			263 = {
+				add_core_of = RGO
+			}
+			210 = {
+				add_core_of = RGO
+			}
+			209 = {
+				add_core_of = RGO
+			}
+			208 = {
+				add_core_of = RGO
+			}
+			206 = {
+				add_core_of = RGO
+			}
+			207 = {
+				add_core_of = RGO
+			}
+			204 = {
+				add_core_of = RGO
+			}
+			191 = {
+				add_core_of = RGO
+			}
+			190 = {
+				add_core_of = RGO
+			}
+			189 = {
+				add_core_of = RGO
+			}
+			13 = {
+				add_core_of = RGO
+			}
+			12 = {
+				add_core_of = RGO
+			}
+			11 = {
+				add_core_of = RGO
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RGO_integrate_ostland"
+		}
+	}
+	RGO_integrate_rka = {
+		icon = generic_ignite_civil_war
+
+		available = {
+			is_subject = no
+			controls_rka = yes
+		}
+		fire_only_once = yes
+		cost = 200
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			TAG = RGO
+			has_completed_focus = RGO_Proclaim_The_Gotsiche_Reich
+		}
+		modifier = {
+			political_power_factor = -0.25
+		}
+		days_remove = 120        
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RGO_integrate_rka"
+			976 = {
+				add_core_of = RGO
+			}
+			977 = {
+				add_core_of = RGO
+			}
+			974 = {
+				add_core_of = RGO
+			}
+			975 = {
+				add_core_of = RGO
+			}
+			972 = {
+				add_core_of = RGO
+			}
+			973 = {
+				add_core_of = RGO
+			}
+			970 = {
+				add_core_of = RGO
+			}
+			971 = {
+				add_core_of = RGO
+			}
+			969 = {
+				add_core_of = RGO
+			}
+			967 = {
+				add_core_of = RGO
+			}
+			968 = {
+				add_core_of = RGO
+			}
+			964 = {
+				add_core_of = RGO
+			}
+			265 = {
+				add_core_of = RGO
+			}
+			245 = {
+				add_core_of = RGO
+			}
+			238 = {
+				add_core_of = RGO
+			}
+			237 = {
+				add_core_of = RGO
+			}
+			233 = {
+				add_core_of = RGO
+			}
+			234 = {
+				add_core_of = RGO
+			}
+			235 = {
+				add_core_of = RGO
+			}
+			232 = {
+				add_core_of = RGO
+			}
+			229 = {
+				add_core_of = RGO
+			}
+			217 = {
+				add_core_of = RGO
+			}
+			218 = {
+				add_core_of = RGO
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RGO_integrate_rka"
+		}
+	}
+	RGO_integrate_rmo = {
+		icon = generic_ignite_civil_war
+
+		available = {
+			is_subject = no
+			controls_moskow = yes
+		}
+		fire_only_once = yes
+		cost = 200
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			TAG = RGO
+			has_completed_focus = RGO_Proclaim_The_Gotsiche_Reich
+		}
+		modifier = {
+			political_power_factor = -0.25
+		}
+		days_remove = 120        
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RGO_integrate_rmo"
+			999 = {
+				add_core_of = RGO
+			}
+			351 = {
+				add_core_of = RGO
+			}
+			264 = {
+				add_core_of = RGO
+			}
+			254 = {
+				add_core_of = RGO
+			}
+			253 = {
+				add_core_of = RGO
+			}
+			248 = {
+				add_core_of = RGO
+			}
+			246 = {
+				add_core_of = RGO
+			}
+			247 = {
+				add_core_of = RGO
+			}
+			244 = {
+				add_core_of = RGO
+			}
+			242 = {
+				add_core_of = RGO
+			}
+			243 = {
+				add_core_of = RGO
+			}
+			223 = {
+				add_core_of = RGO
+			}
+			219 = {
+				add_core_of = RGO
+			}
+			205 = {
+				add_core_of = RGO
+			}
+			1006 = {
+				add_core_of = RGO
+			}
+			1007 = {
+				add_core_of = RGO
+			}
+			1004 = {
+				add_core_of = RGO
+			}
+			1005 = {
+				add_core_of = RGO
+			}
+			1002 = {
+				add_core_of = RGO
+			}
+			1003 = {
+				add_core_of = RGO
+			}
+			1000 = {
+				add_core_of = RGO
+			}
+			1001 = {
+				add_core_of = RGO
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RGO_integrate_rmo"
+		}
+	}
+}

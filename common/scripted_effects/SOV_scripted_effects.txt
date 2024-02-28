@@ -1,0 +1,576 @@
+SOV_clamp_variables_ps = {
+clamp_variable = {
+	var = SOV_kalininist_influence
+	min = 0
+	max = 100
+	}
+clamp_variable = {
+	var = SOV_nkvd_influence
+	min = 0
+	max = 100
+	}
+clamp_variable = {
+	var = SOV_reformist_influence
+	min = 0
+	max = 100
+	}
+clamp_variable = {
+	var = SOV_orthodox_influence
+	min = 0
+	max = 100
+	}
+clamp_variable = {
+	var = SUS_RED_ARMY_VAR
+	min = 0
+	max = 10
+	}
+clamp_variable = {
+	var = SUS_FM_VAR
+	min = 0
+	max = 10
+	}
+clamp_variable = {
+	var = SUS_AGITROP_VAR
+	min = 0
+	max = 10
+	}
+}
+#TURKENICH
+SOV_clamp_variables_TURKENICH = {
+clamp_variable = {
+	var = YOUNG_GUARD_VAR
+	min = 0
+	max = 5
+	}
+clamp_variable = {
+	var = KOSOMOL_VAR
+	min = 0
+	max = 5
+	}
+}
+SOV_YG_add_1 = {
+	add_to_variable = {
+	var = YOUNG_GUARD_VAR
+	value = 1
+	}
+	if = {
+	limit = { 
+	check_variable = {
+    var = KOSOMOL_VAR
+    value = 5
+    compare = greater_than_or_equals
+			}
+		}
+	subtract_from_variable = {
+	var = KOSOMOL_VAR
+	value = 1
+		}	
+	}
+	if = {
+	limit = { has_idea = SOV_TURKENICH_DEFAULT }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_DEFAULT
+	add_idea = SOV_TURKENICH_YG_LIGHT
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_YG_LIGHT }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_YG_LIGHT
+	add_idea = SOV_TURKENICH_YG_MILD
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_YG_MILD }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_YG_MILD
+	add_idea = SOV_TURKENICH_YG_HEAVILY_BIASED
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_YG_HEAVILY_BIASED }
+	random_list = {}
+	}
+
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_KOS_LIGHT }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_KOS_LIGHT
+	add_idea = SOV_TURKENICH_DEFAULT
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_KOS_MILD }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_KOS_MILD
+	add_idea = SOV_TURKENICH_KOS_LIGHT
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_KOS_HEAVILY_BIASED }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_KOS_HEAVILY_BIASED
+	add_idea = SOV_TURKENICH_KOS_MILD
+		}
+	}
+}
+SOV_KOS_add_1 = {
+	add_to_variable = {
+	var = KOSOMOL_VAR
+	value = 1
+	}
+	if = {
+	limit = { 
+	check_variable = {
+    var = YOUNG_GUARD_VAR
+    value = 5
+    compare = greater_than_or_equals
+			}
+		}
+	subtract_from_variable = {
+	var = YOUNG_GUARD_VAR
+	value = 1
+		}	
+	}
+	if = {
+	limit = { has_idea = SOV_TURKENICH_DEFAULT }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_DEFAULT
+	add_idea = SOV_TURKENICH_KOS_LIGHT
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_KOS_LIGHT }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_KOS_LIGHT
+	add_idea = SOV_TURKENICH_KOS_MILD
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_KOS_MILD }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_KOS_MILD
+	add_idea = SOV_TURKENICH_KOS_HEAVILY_BIASED
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_KOS_HEAVILY_BIASED }
+	random_list = {}
+	}
+
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_YG_LIGHT }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_YG_LIGHT
+	add_idea = SOV_TURKENICH_DEFAULT
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_YG_MILD }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_YG_MILD
+	add_idea = SOV_TURKENICH_YG_LIGHT
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_TURKENICH_YG_HEAVILY_BIASED }
+	swap_ideas = {
+	remove_idea = SOV_TURKENICH_YG_HEAVILY_BIASED
+	add_idea = SOV_TURKENICH_YG_MILD
+		}
+	}
+}
+#TURKENICH END
+
+#BULGANIN
+BULGANIN_clamp_var = {
+clamp_variable = {
+	var = SOV_BC_VAR
+	min = 0
+	max = 10
+	}
+clamp_variable = {
+	var = SOV_RURAL_VAR
+	min = 0
+	max = 10
+	}
+clamp_variable = {
+	var = SOV_NATSEC_VAR
+	min = 0
+	max = 10
+	}
+}
+#END BULGANIN
+SOV_leadership_distrust_effect = {
+	if = {
+	limit = { has_idea = SOV_leadership_distrust }
+	swap_ideas = {
+	remove_idea = SOV_leadership_distrust
+	add_idea = SOV_leadership_distrust_2
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_leadership_distrust_2 }
+	swap_ideas = {
+	remove_idea = SOV_leadership_distrust_2
+	add_idea = SOV_leadership_distrust_3
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_leadership_distrust_3 }
+	swap_ideas = {
+	remove_idea = SOV_leadership_distrust_3
+	add_idea = SOV_leadership_distrust_4
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_leadership_distrust_4 }
+	remove_ideas = SOV_leadership_distrust_4
+	}
+	else_if = {
+	limit = {
+	NOT = {
+	has_idea = SOV_leadership_distrust
+	has_idea = SOV_leadership_distrust_2
+	has_idea = SOV_leadership_distrust_3
+	has_idea = SOV_leadership_distrust_4
+	}
+		}
+	add_stability = 0.05
+	}
+}
+#SOVIET REVOLT
+SOV_anti_soviet_revolt_startup = {
+set_country_flag = POSSIBLE_RUZ_TAG_FLAG
+add_ideas = SOV_peasants_revolt
+create_country_leader = {
+	name = "Anti-Soviet Armies"
+	desc = "POLITICS_ANTI_SOVIET_ARMIES_DSC"
+	picture =  "Anti_Soviet_Peasant_Army.dds"
+	expire = "1965.1.1"
+	ideology = agrarian_socialism
+	traits = { SOV_communes }
+	}
+	create_corps_commander = {
+		name = "Kim Hong Bin"
+		gfx = "GFX_Portrait_Kim_Hong_Bin"
+		traits = { }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+	}
+	create_corps_commander = {
+		name = "Leonty Akchurin"
+		gfx = "GFX_Portrait_Leonty_Akchurin"
+		traits = { }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+	}
+	create_corps_commander = {
+		name = "Nikolay Proskokov"
+		gfx = "GFX_Portrait_Nikolay_Proskokov"
+		traits = { }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+	}
+	set_politics = {
+	ruling_party = socialist
+	elections_allowed = no
+	}
+	set_popularities = {
+	socialist = 100
+	}
+	set_research_slots = 2
+	add_ideas = extensive_conscription
+	add_ideas = established_democracy
+	add_ideas = agrarian_nation
+	load_focus_tree = generic
+	add_war_support = 0.6
+	division_template = {
+    name = "Dobrovol'cheskiye Sily Oborony"
+    division_names_group = RUS_GAR_01
+    priority = 0
+    regiments = {
+        militia = { x = 0 y = 0 }
+        militia = { x = 0 y = 1 }
+        militia = { x = 0 y = 2 }
+        militia = { x = 0 y = 3 }
+    	}
+	}
+}
+TRV_anti_soviet_revolt_startup = {
+set_country_flag = POSSIBLE_RUZ_TAG_FLAG
+create_country_leader = {
+	name = "Anti-Soviet Armies"
+	desc = "POLITICS_ANTI_SOVIET_ARMIES_DSC"
+	picture =  "Russian_Warlord.dds"
+	expire = "1965.1.1"
+	ideology = reactionary_nationalism
+	traits = { cabinet_crisis }
+	}
+	create_corps_commander = {
+		name = "Ivan Frolov"
+		picture = "gfx//leaders//RMO//RONA//Ivan_Frolov.dds"
+		traits = { infantry_officer }
+		skill = 3
+		attack_skill = 2
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 3
+	}
+	create_corps_commander = {
+		name = "Aisin-Gioro Puyi"
+		gfx = "gfx//leaders//RUS//Puyi"
+		traits = { media_personality }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+	}
+	create_corps_commander = {
+		name = "Nikolay Proskokov"
+		gfx = "GFX_Portrait_Nikolay_Proskokov"
+		traits = { }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+	}
+	set_politics = {
+	ruling_party = paternal_autocrat
+	elections_allowed = no
+	}
+	set_popularities = {
+	paternal_autocrat = 100
+	}
+	set_research_slots = 2
+	add_ideas = extensive_conscription
+	add_ideas = dictatorship
+	add_ideas = agrarian_nation
+	load_focus_tree = generic
+	add_war_support = 0.5
+	division_template = {
+    name = "Belaya Gvardiya"
+    division_names_group = RUS_GAR_01
+    priority = 0
+    regiments = {
+        light_infantry = { x = 0 y = 0 }
+        light_infantry = { x = 0 y = 1 }
+        light_infantry = { x = 0 y = 2 }
+        light_infantry = { x = 0 y = 3 }
+    	}
+	}
+}
+#CONTENT
+SOV_beria_thaw_effect = {
+	if = {
+	limit = { has_idea = SOV_public_discontent }
+	swap_ideas = {
+	remove_idea = SOV_public_discontent
+	add_idea = SOV_public_discontent_1
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_public_discontent_1 }
+	swap_ideas = {
+	remove_idea = SOV_public_discontent_1
+	add_idea = SOV_public_discontent_2
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_public_discontent_2 }
+	swap_ideas = {
+	remove_idea = SOV_public_discontent_2
+	add_idea = SOV_public_discontent_3
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_public_discontent_3 }
+	swap_ideas = {
+	remove_idea = SOV_public_discontent_3
+	add_idea = SOV_public_discontent_4
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_public_discontent_4 }
+	swap_ideas = {
+	remove_idea = SOV_public_discontent_4
+	add_idea = SOV_public_discontent_5
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_public_discontent_5 }
+	swap_ideas = {
+	remove_idea = SOV_public_discontent_5
+	add_idea = SOV_public_discontent_6
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_public_discontent_6 }
+	swap_ideas = {
+	remove_idea = SOV_public_discontent_6
+	add_idea = SOV_public_discontent_7
+		}
+	}
+	else_if = {
+	limit = { has_idea = SOV_public_discontent_7 }
+	remove_ideas = SOV_public_discontent_7
+	}
+	else_if = {
+	limit = {
+	NOT = {
+	has_idea = SOV_public_discontent
+	has_idea = SOV_public_discontent_1
+	has_idea = SOV_public_discontent_2
+	has_idea = SOV_public_discontent_3
+	has_idea = SOV_public_discontent_4
+	has_idea = SOV_public_discontent_5
+	has_idea = SOV_public_discontent_6
+	has_idea = SOV_public_discontent_7
+	}
+		}
+	add_stability = 0.03
+	}
+}
+
+#VLASOV
+KAZ_clamp_variables = {
+clamp_variable = {
+	var = KAZ_influence_rakov
+	min = 0
+	max = 100
+	}
+clamp_variable = {
+	var = KAZ_influence_vlasov
+	min = 0
+	max = 100
+	}
+}
+KAZ_socialist_lean = {
+	if = {
+	limit = { has_idea = KAZ_balanced_economic_direction }
+	swap_ideas = {
+	remove_idea = KAZ_balanced_economic_direction
+	add_idea = KAZ_socialist_economic_direction
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_socialist_economic_direction }
+	swap_ideas = {
+	remove_idea = KAZ_socialist_economic_direction
+	add_idea = KAZ_socialist_economic_direction_1
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_socialist_economic_direction_1 }
+	swap_ideas = {
+	remove_idea = KAZ_socialist_economic_direction_1
+	add_idea = KAZ_socialist_economic_direction_2
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_socialist_economic_direction_2 }
+	swap_ideas = {
+	remove_idea = KAZ_socialist_economic_direction_2
+	add_idea = KAZ_socialist_economic_direction_3
+		}
+	}
+
+	else_if = {
+	limit = { has_idea = KAZ_capitalist_economic_direction }
+	swap_ideas = {
+	remove_idea = KAZ_capitalist_economic_direction
+	add_idea = KAZ_balanced_economic_direction
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_capitalist_economic_direction_1 }
+	swap_ideas = {
+	remove_idea = KAZ_capitalist_economic_direction_1
+	add_idea = KAZ_capitalist_economic_direction
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_capitalist_economic_direction_2 }
+	swap_ideas = {
+	remove_idea = KAZ_capitalist_economic_direction_2
+	add_idea = KAZ_capitalist_economic_direction_1
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_capitalist_economic_direction_3 }
+	swap_ideas = {
+	remove_idea = KAZ_capitalist_economic_direction_3
+	add_idea = KAZ_capitalist_economic_direction_2
+		}
+	}
+}
+KAZ_bourgie_lean = {
+	if = {
+	limit = { has_idea = KAZ_balanced_economic_direction }
+	swap_ideas = {
+	remove_idea = KAZ_balanced_economic_direction
+	add_idea = KAZ_capitalist_economic_direction
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_capitalist_economic_direction }
+	swap_ideas = {
+	remove_idea = KAZ_capitalist_economic_direction
+	add_idea = KAZ_capitalist_economic_direction_1
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_capitalist_economic_direction_1 }
+	swap_ideas = {
+	remove_idea = KAZ_capitalist_economic_direction_1
+	add_idea = KAZ_capitalist_economic_direction_2
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_capitalist_economic_direction_2 }
+	swap_ideas = {
+	remove_idea = KAZ_capitalist_economic_direction_2
+	add_idea = KAZ_capitalist_economic_direction_3
+		}
+	}
+
+	else_if = {
+	limit = { has_idea = KAZ_socialist_economic_direction }
+	swap_ideas = {
+	remove_idea = KAZ_socialist_economic_direction
+	add_idea = KAZ_balanced_economic_direction
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_socialist_economic_direction_1 }
+	swap_ideas = {
+	remove_idea = KAZ_socialist_economic_direction_1
+	add_idea = KAZ_socialist_economic_direction
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_socialist_economic_direction_2 }
+	swap_ideas = {
+	remove_idea = KAZ_socialist_economic_direction_2
+	add_idea = KAZ_socialist_economic_direction_1
+		}
+	}
+	else_if = {
+	limit = { has_idea = KAZ_socialist_economic_direction_3 }
+	swap_ideas = {
+	remove_idea = KAZ_socialist_economic_direction_3
+	add_idea = KAZ_socialist_economic_direction_2
+		}
+	}
+}

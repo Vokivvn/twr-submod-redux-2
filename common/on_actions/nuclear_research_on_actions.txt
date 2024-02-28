@@ -1,0 +1,44 @@
+on_actions = {
+    on_startup = {
+        effect = {
+            every_country = {
+                set_variable = { fissile_material_production_modifier = 1 }
+                set_variable = { nuclear_research_speed_modifier = 1 }
+                set_variable = { moderator_research_speed_modifier = 1 }
+                set_variable = { nuclear_assembly_speed_modifier = 1 }
+            }
+        }
+    }
+    on_daily = {
+        effect = {
+            set_scientist_level = yes
+            ### Nuclear Research, only for countries with a researcher ###
+                if = {
+                    limit = { has_researcher = yes }
+
+                    ### These will only add if you have a scientist in respective category ###
+                    add_nuclear_variable = yes
+                    add_fissile_material_variable = yes
+                    add_moderator_research_variable = yes
+                    add_nuclear_assembly_variable = yes
+                }
+            ###
+        }
+    }
+
+
+    #Removing nuclear reactors #
+    on_monthly = {
+        effect = {
+
+            #AI Nuclear progress, AI is dumb and doesnt use it so they get a flat modifier
+            if = {
+                limit = {
+                    is_ai = yes
+                    has_free_researcher = yes
+                }
+                ai_add_nuke_progress = yes
+            }
+        }
+    }
+}

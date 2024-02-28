@@ -1,0 +1,7254 @@
+﻿###########################STARTING FOCUS EVENTS###########################
+add_namespace = twrgermany
+add_namespace = osttreffen
+add_namespace = twrgernews
+add_namespace = twrgermaneducation
+add_namespace = germanps
+add_namespace = germanspying
+add_namespace = germanostshits
+add_namespace = hitlerfuneral
+add_namespace = psnews
+add_namespace = germanflavours
+add_namespace = testevent
+add_namespace = gern
+
+country_event = { #Walther Funk resigns
+	id = gern.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.0"}
+	title = gern.0.t
+	desc = gern.0.d
+	picture = GFX_report_event_walther_funk
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = { #question of reforms
+		name = gern.0.a
+		add_political_power = -5
+		add_ideas = GER_AM_Franz_Hayler
+		hidden_effect = {
+			set_country_flag = Walther_Funk_unavailable
+			country_event = { id = gern.1 days = 3 }
+		}
+	}
+}
+
+country_event = { #speer suggesting economic reform
+	id = gern.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.1"}
+	title = gern.1.t
+	desc = gern.1.d
+	picture = GFX_report_event_hitler_and_speer
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = gern.2 days = 5 random = 300 }
+		}
+	}
+	option = { #Hitler agrees with Speer
+		trigger = { NOT = { has_country_flag = m_dis_speer } }
+		name = gern.1.a
+		add_stability = 0.05
+		custom_effect_tooltip = SPEER_BOOST
+		country_event = { id = gern.2 hours = 2 }
+		hidden_effect = {
+			add_to_variable = {
+				var = speertrust
+				value = 1
+			}
+		}
+	}
+	option = { #Hitler is suspecting Speer
+		trigger = { NOT = { has_country_flag = m_dis_speer } }
+		name = gern.1.b
+		hidden_effect = { set_country_flag = m_dis_speer }
+	}
+	option = { #Hitler distance himself from Speer
+		trigger = { has_country_flag = m_dis_speer }
+		name = gern.1.c
+		custom_effect_tooltip = SPEER_FALL
+		hidden_effect = { 
+			subtract_from_variable = {
+				var = speertrust
+				value = 1
+			}
+			clr_country_flag = m_dis_speer
+		}
+	}
+}
+
+country_event = { #hitler summons the leaders for economic reform
+	id = gern.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.2"}
+	title = gern.2.t
+	desc = gern.2.d
+	picture = GFX_report_event_reich_economy
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Hitler meeting
+		name = gern.2.a
+		add_political_power = 50
+		hidden_effect = {
+			country_event = { id = gern.3 days = 1 random = 300 }
+		}
+	}
+}
+
+country_event = { #Suggested plans
+	id = gern.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.3"}
+	title = gern.3.t
+	desc = gern.3.d
+	picture = GFX_report_event_reich_economy
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Speer Plan
+		name = gern.3.a
+		complete_national_focus = GER_Idealistic_Germany
+		add_ideas = GER_AM_Albert_Speer
+		custom_effect_tooltip = SPEER_BOOST
+		hidden_effect = {
+			add_to_variable = {
+				var = speerpower
+				value = 0.4
+			}
+		}
+	}
+	option = { #Goebbels Plan
+		name = gern.3.b
+		complete_national_focus = GER_Peoples_Plan
+		add_ideas = GER_AM_Wilhelm_Decker
+		custom_effect_tooltip = GOEBBELS_BOOST
+		hidden_effect = {
+			add_to_variable = {
+				var = goebbelspower
+				value = 0.4
+			}
+		}
+	}
+	option = { #Goering Plan
+		name = gern.3.c
+		complete_national_focus = GER_New_Four_Year_Plan
+		add_ideas = GER_AM_Hermann_Goering
+		custom_effect_tooltip = GOERING_BOOST
+		add_to_variable = {
+			var = goeringpower
+			value = 0.2
+		}
+		add_to_variable = {
+			var = goeringtrust
+			value = 1
+		}
+	}
+	option = { #Hitler Shuts down all plans
+		name = gern.3.e
+		add_political_power = 200
+		add_stability = 0.05
+		custom_effect_tooltip = EVERYONE_DROPS
+		hidden_effect = { 
+			subtract_from_variable = {
+				var = speertrust
+				value = 1
+			}
+			subtract_from_variable = {
+				var = goeringtrust
+				value = 1
+			}
+			subtract_from_variable = {
+				var = bormanntrust
+				value = 1
+			}
+			subtract_from_variable = {
+				var = goebbelstrust
+				value = 1
+			}
+			subtract_from_variable = {
+				var = himmlertrust
+				value = 1
+			}
+		}		
+	}
+}
+
+country_event = { #goering exposed
+	id = gern.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.4"}
+	title = gern.4.t
+	desc = gern.4.d
+	picture = GFX_report_event_goering_pic
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Hitler warns goering
+		name = gern.4.a
+		add_political_power = -90
+		add_stability = -0.15
+		custom_effect_tooltip = GOERING_FALL
+		hidden_effect = {
+			subtract_from_variable = {
+				var = goeringtrust
+				value = 1
+			}
+			subtract_from_variable = {
+				var = goeringpower
+				value = 0.2
+			}
+		}
+	}
+	option = { #Hitler orders the end of four year plan
+		name = gern.4.b
+		add_political_power = -150
+		hidden_effect = {
+			set_country_flag = economichalt
+			subtract_from_variable = {
+				var = goeringtrust
+				value = 1
+			}
+			subtract_from_variable = {
+				var = goeringpower
+				value = 0.4
+			}
+		}
+	}
+}
+
+country_event = { #reactor failure
+	id = gern.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.5"}
+	title = gern.5.t
+	desc = gern.5.d
+	picture = GFX_report_event_ruined_german_factories
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Hitler stops the peoples plan
+		name = gern.5.a
+		add_political_power = -150
+		add_manpower = -1500
+		custom_effect_tooltip = GOEBBELS_FALL
+		hidden_effect = {
+			set_country_flag = economichalt
+			subtract_from_variable = {
+				var = goebbelstrust
+				value = 1
+			}
+			subtract_from_variable = {
+				var = goebbelspower
+				value = 0.4
+			}
+		}
+	}
+}
+
+country_event = { #effects of the reform
+	id = gern.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.6"}
+	title = gern.6.t
+	desc = gern.6.d
+	picture = GFX_report_event_speer_hi
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #good job
+		name = gern.6.a
+		add_political_power = 200
+		add_stability = 0.20
+		add_ideas = GER_reformed_buff
+	}
+}
+
+country_event = { #reform backfired
+	id = gern.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.7"}
+	title = gern.7.t
+	desc = gern.7.d
+	picture = GFX_report_event_speer_speech
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Hitler stops the reform
+		name = gern.7.a
+		add_stability = -0.25
+		custom_effect_tooltip = SPEER_FALL
+		hidden_effect = {
+			set_country_flag = economichalt
+			subtract_from_variable = {
+				var = speertrust
+				value = 1
+			}
+			subtract_from_variable = {
+				var = speerpower
+				value = 0.4
+			}			
+		}
+	}
+}
+
+country_event = { #soviet proxy
+	id = gern.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.8"}
+	title = gern.8.t
+	desc = gern.8.d
+	picture = GFX_report_event_soviet_war
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #luftwaffe take charge goering
+		name = gern.8.a
+		custom_effect_tooltip = GOERING_BOOST
+		hidden_effect = {
+			add_to_variable = {
+				var = goeringpower
+				value = 0.2
+			}
+			random_list = {
+				50 = { 
+					country_event = { id = gern.9901 days = 15 } 
+					SOV = {
+						country_event = { id = gern.9903 days = 15 }
+					}
+				}
+				50 = {
+					country_event = { id = gern.9902 days = 15 } 
+					SOV = {
+						country_event = { id = gern.9904 days = 15 }
+					}
+				}
+			}
+		}
+	}
+	option = { #ground take charge speer
+		name = gern.8.b
+		random_list = {
+			50 = { 
+				country_event = { id = gern.9905 days = 15 } 
+				SOV = {
+					country_event = { id = gern.9907 days = 15 }
+				}
+			}
+			50 = {
+				country_event = { id = gern.9906 days = 15 } 
+				SOV = {
+					country_event = { id = gern.9908 days = 15 }
+				}
+			}
+		}		
+	}
+	option = { #waffen SS himmler
+		name = gern.8.c
+		custom_effect_tooltip = HIMMLER_BOOST
+			random_list = {
+				50 = { 
+					country_event = { id = gern.9909 days = 15 } 
+					SOV = {
+						country_event = { id = gern.9907 days = 15 }
+					}
+				}
+				50 = {
+					country_event = { id = gern.9910 days = 15 } #fail
+					SOV = {
+						country_event = { id = gern.9908 days = 15 }
+					}
+				}
+			}
+		hidden_effect = {
+			add_to_variable = {
+				var = himmlerpower
+				value = 0.2
+			}
+		}
+	}
+	option = { #outsource the task to Einsatzgruppen
+		name = gern.8.e
+		custom_effect_tooltip = BORMANN_BOOST
+			random_list = {
+				50 = { 
+					country_event = { id = gern.9911 days = 15 } 
+					SOV = {
+						country_event = { id = gern.9907 days = 15 }
+					}
+				}
+				50 = {
+					country_event = { id = gern.9912 days = 15 } #fail
+					SOV = {
+						country_event = { id = gern.9908 days = 15 }
+					}
+				}
+			}
+		hidden_effect = {
+			add_to_variable = {
+				var = bormannpower
+				value = 0.2
+			}
+		}
+	}
+}
+
+country_event = { #Dirlewanger Death
+	id = gern.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9"}
+	title = gern.9.t
+	desc = gern.9.d
+	picture = GFX_report_event_dirly_death
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Dirlewanger Death
+		name = gern.9.a
+		add_political_power = -20
+		random_unit_leader = {
+			limit = { 
+				has_id = 937 
+			}
+			retire = yes
+		}
+		hidden_effect = {
+			country_event = { id = gern.10 days = 3 random = 300 }
+		}
+	}
+}
+country_event = { #Helmut Bischoff Death
+	id = gern.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.10"}
+	title = gern.10.t
+	desc = gern.10.d
+	picture = GFX_report_event_helmut_death
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Bischoff strange
+		name = gern.10.a
+		add_political_power = -40
+		hidden_effect = {
+			country_event = { id = gern.11 days = 4 random = 300 }
+		}
+	}
+}
+country_event = { # Josef Mengele died
+	id = gern.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.11"}
+	title = gern.11.t
+	desc = gern.11.d
+	picture = GFX_report_event_death_of_josef
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Bischoff strange
+		name = gern.11.a
+		add_stability = -0.02
+		hidden_effect = {
+			country_event = { id = gern.12 days = 3 random = 300 }
+		}
+	}
+}
+country_event = { # karl_gebhardt_death
+	id = gern.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.12"}
+	title = gern.12.t
+	desc = gern.12.d
+	picture = GFX_report_event_karl_gebhardt_death
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #oh no
+		name = gern.12.a
+		add_stability = -0.03
+		hidden_effect = {
+			country_event = { id = gern.13 days = 2 random = 300 }
+			country_event = { id = gern.16 days = 4 random = 300 }
+		}
+	}
+}
+country_event = { # Albert Forster
+	id = gern.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.13"}
+	title = gern.13.t
+	desc = gern.13.d
+	picture = GFX_report_event_death_of_forster
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #fuck
+		name = gern.13.a
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = gern.14 days = 2 random = 300 }
+		}
+	}
+}
+country_event = { # Hans Frank attempt
+	id = gern.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.14"}
+	title = gern.14.t
+	desc = gern.14.d
+	picture = GFX_report_event_hans_frank_attempt
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #fuck
+		name = gern.14.a
+		add_stability = -0.1
+		hidden_effect = {
+			country_event = { id = gern.15 days = 2 random = 300 }
+		}
+	}
+}
+country_event = { # Hitler speech
+	id = gern.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.15"}
+	title = gern.15.t
+	desc = gern.15.d
+	picture = GFX_report_event_hitler_speech
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #calm down
+		name = gern.15.a
+		add_stability = -0.1
+		add_war_support = -0.05
+		add_political_power = -30
+	}
+}
+country_event = { # Kriminalpolizei investigation
+	id = gern.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.16"}
+	title = gern.16.t
+	desc = gern.16.d
+	picture = GFX_report_event_police_investigation
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #work on the cas
+		name = gern.16.a
+		hidden_effect = {
+			country_event = {
+				id = gern.17 days = 7 random = 300
+			}
+		}
+	}
+}
+country_event = { # Security Service Steps in
+	id = gern.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.17"}
+	title = gern.17.t
+	desc = gern.17.d
+	picture = GFX_report_event_hitler_speech
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #calm down
+		name = gern.17.a
+		hidden_effect = {
+			set_country_flag = GERSTRINGOFKILLINGS
+			country_event = {
+				id = gern.18 days = 5 random = 300
+			}
+		}
+	}
+}
+country_event = { #Arrested case closed
+	id = gern.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.18"}
+	title = gern.18.t
+	desc = gern.18.d
+	picture = GFX_report_event_orpo_jew_hunt
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Evidence lead to Home Army
+		name = gern.18.a
+		add_political_power = 10
+		add_war_support = 0.05
+		hidden_effect = {
+			set_country_flag = a_strange_case
+		}
+	}
+}
+country_event = { #luftwaffe bombs
+	id = gern.9901
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9901"}
+	title = gern.9901.t
+	desc = gern.9901.d
+	picture = GFX_report_event_german_air_war
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #air raiding
+		name = gern.9901.a
+		add_war_support = 0.1
+		hidden_effect = {
+			add_to_variable = {
+				var = goeringpower
+				value = 0.1
+			}
+		}
+	}
+}
+country_event = { #luftwaffe major failure
+	id = gern.9902
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9902"}
+	title = gern.9902.t
+	desc = gern.9902.d
+	picture = GFX_report_event_german_air_war
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #air raiding
+		name = gern.9902.a
+		add_stability = -0.15
+		add_war_support = -0.15
+		add_manpower = -1000
+		custom_effect_tooltip = GOERING_FALL
+		hidden_effect = {
+			subtract_from_variable = {
+				var = goeringpower
+				value = 0.4
+			}
+		}
+	}
+}
+
+country_event = { #luftwaffe bombs soviets to oblivion
+	id = gern.9903
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9903"}
+	title = gern.9903.t
+	desc = gern.9903.d
+	picture = GFX_report_event_generic_soviet_aa
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #air raiding
+		name = gern.9903.a
+		random_owned_state = { 
+			damage_building = {
+				type = infrastructure
+				damage = 2
+			}
+		}
+	}
+}
+country_event = { #soviet shoots them down
+	id = gern.9904
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9904"}
+	title = gern.9904.t
+	desc = gern.9904.d
+	picture = GFX_report_event_generic_soviet_aa
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #air raiding
+		name = gern.9904.a
+		add_political_power = 150
+		add_stability = 0.1
+	}
+}
+
+country_event = { #border war successful
+	id = gern.9905
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9905"}
+	title = gern.9905.t
+	desc = gern.9905.d
+	picture = GFX_report_event_heer_victory
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #border wars
+		name = gern.9905.a
+		add_political_power = 100
+		add_war_support = 0.1
+		hidden_effect = {
+			set_country_flag = HEERTOOKTHEBALL
+		}
+	}
+}
+
+country_event = { #border war defeated
+	id = gern.9906
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9906"}
+	title = gern.9906.t
+	desc = gern.9906.d
+	picture = GFX_report_event_heer_defiance
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #border wars
+		name = gern.9906.a
+		add_manpower = -4000
+		add_war_support = -0.1
+		add_political_power = -150
+	}
+}
+country_event = { #soviet defeated
+	id = gern.9907
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9907"}
+	title = gern.9907.t
+	desc = gern.9907.d
+	picture = GFX_report_event_generic_soviet_aa
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #air raiding
+		name = gern.9907.a
+		add_political_power = -50
+		add_manpower = -4000
+		random_owned_state = { 
+			damage_building = {
+				type = infrastructure
+				damage = 2
+			}
+		}
+	}
+}
+country_event = { #soviet victory
+	id = gern.9908
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9908"}
+	title = gern.9908.t
+	desc = gern.9908.d
+	picture = GFX_report_event_generic_soviet_aa
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #air raiding
+		name = gern.9908.a
+		add_political_power = 250
+		add_manpower = -2000
+		add_war_support = 0.05
+		add_stability = 0.05
+	}
+}
+country_event = { #SS Victory
+	id = gern.9909
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9909"}
+	title = gern.9909.t
+	desc = gern.9909.d
+	picture = GFX_report_event_SS_moving
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Waffen SS victory
+		name = gern.9909.a
+		add_war_support = 0.1
+	}
+}
+country_event = { #SS Defeat
+	id = gern.9910
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9910"}
+	title = gern.9910.t
+	desc = gern.9910.d
+	picture = GFX_report_event_SS_moving
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = gern.9910.a
+		add_stability = -0.05
+		add_war_support = -0.05
+		add_manpower = -3000
+		hidden_effect = {
+			subtract_from_variable = {
+				var = himmlerpower
+				value = 0.4
+			}
+		}
+	}
+}
+country_event = { #Einsatzgruppen victory
+	id = gern.9911
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9911"}
+	title = gern.9911.t
+	desc = gern.9911.d
+	picture = GFX_report_event_SS_moving
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Waffen SS victory
+		name = gern.9911.a
+		add_stability = 0.1
+		hidden_effect = {
+			add_to_variable = {
+				var = bormannpower
+				value = 0.1
+			}
+		}
+	}
+}
+country_event = { #Einsatzgruppen Defeat
+	id = gern.9912
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9912"}
+	title = gern.9912.t
+	desc = gern.9912.d
+	picture = GFX_report_event_SS_moving
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = gern.9912.a
+		add_stability = -0.05
+		add_war_support = -0.1
+		hidden_effect = {
+			subtract_from_variable = {
+				var = bormannpower
+				value = 0.3
+			}
+		}
+	}
+}
+country_event = { #Einsatzgruppen RMO RKA
+	id = gern.9913
+	immediate = {log = "[GetDateText]: [Root.GetName]: event gern.9913"}
+	title = gern.9913.t
+	desc = gern.9913.d
+	picture = GFX_report_event_SS_moving
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #Forced deployment
+		name = gern.9913.a
+		add_war_support = -0.05
+		add_manpower = -2000
+	}
+}
+#OLD STUFF#
+
+country_event = { #goebbels-speer tree load
+	id = germanps.10401
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.10401"}
+	title = testevent.10401.t
+	desc = testevent.10401.d
+	#picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = testevent.10401.a
+		hidden_effect = {
+			activate_decision = GER_sg_load_tree
+		}
+	}
+}
+
+country_event = { #goering
+	id = germanps.10402
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.10402"}
+	title = testevent.10402.t
+	desc = testevent.10402.d
+	#picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = testevent.10402.a
+		hidden_effect = {
+			activate_decision = GER_goe_load_tree
+		}
+	}
+}
+
+country_event = { #council
+	id = germanps.10403
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.10403"}
+	title = testevent.10403.t
+	desc = testevent.10403.d
+	#picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = testevent.10403.a
+		hidden_effect = {
+			activate_decision = GER_council_load_tree
+		}
+	}
+}
+
+country_event = { #himmler
+	id = germanps.10404
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.10404"}
+	title = testevent.10404.t
+	desc = testevent.10404.d
+	#picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = testevent.10404.a
+		hidden_effect = {
+			activate_decision = GER_himmler_load_tree
+		}
+	}
+}
+
+country_event = { #heer
+	id = germanps.10405
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.10405"}
+	title = testevent.10405.t
+	desc = testevent.10405.d
+	#picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = testevent.10405.a
+		hidden_effect = {
+			activate_decision = GER_heer_load_tree
+		}
+	}
+}
+
+country_event = { #bormann
+	id = germanps.10406
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.10406"}
+	title = testevent.10406.t
+	desc = testevent.10406.d
+	#picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = testevent.10406.a
+		hidden_effect = {
+			activate_decision = GER_b_load_tree
+		}
+	}
+}
+country_event = { #heer
+	id = testevent.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event testevent.10405"}
+	title = testevent.10405.t
+	desc = testevent.10405.d
+	#picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = testevent.10405.a
+		hidden_effect = {
+		set_country_flag = himmler_picked
+		set_country_flag = goebbels_picked
+		set_country_flag = speer_picked
+		set_country_flag = bormann_picked
+		set_country_flag = goering_picked
+		}
+	}
+}
+country_event = {
+	id = testevent.1000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event testevent.1000"}
+	title = testevent.1000.t
+	desc = testevent.1000.d
+	#picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = testevent.1000.1.a
+	}
+	option = {
+		name = testevent.1000.1.b
+	}
+	option = {
+		name = testevent.1000.1.c
+	}
+	option = {
+		name = testevent.1000.1.e
+	}
+	option = {
+		name = testevent.1000.1.f
+	}
+}
+country_event = {
+	id = twrgermaneducation.1 #Aryan Education
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermaneducation.1"}
+	title = twrgermaneducation.1.t
+	desc = twrgermaneducation.1.d
+	picture = GFX_report_event_uk_school
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermaneducation.1.a
+	}
+}
+
+country_event = {
+	id = twrgermany.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.1"}
+	title = twrgermany.1.t
+	desc = twrgermany.1.d
+	picture = GFX_report_event_swabian_nights
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.1.a
+		hidden_effect = {
+		country_event = twrmakebuilding.1
+		country_event = twrmakebuilding.2
+		country_event = twrmakebuilding.5
+		country_event = twrmakebuilding.6
+		country_event = twrmakebuilding.7
+		country_event = twrmakebuilding.8
+		country_event = twrmakebuilding.9
+		country_event = twrmakebuilding.10
+		}
+		country_event = twrgermany.2
+	}
+
+	option = {
+		name = twrgermany.1.b
+		hidden_effect = {
+		country_event = twrmakebuilding.1
+		country_event = twrmakebuilding.2
+		country_event = twrmakebuilding.5
+		country_event = twrmakebuilding.6
+		country_event = twrmakebuilding.7
+		country_event = twrmakebuilding.8
+		country_event = twrmakebuilding.9
+		country_event = twrmakebuilding.10
+		}
+		
+	}
+}
+
+country_event = {
+	id = twrgermany.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.2"}
+	title = twrgermany.2.t
+	desc = twrgermany.2.d
+	picture = GFX_report_event_1948_incident
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.2.a
+	}
+}
+
+country_event = {
+	id = twrgermany.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.3"}
+	title = twrgermany.3.t
+	desc = twrgermany.3.d
+	picture = GFX_report_event_current_reich
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.3.a
+		hidden_effect = { set_country_flag = germany_start }
+	}
+}
+
+country_event = {
+	id = twrgermany.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.4"}
+	title = twrgermany.4.t
+	desc = twrgermany.4.d
+	picture = GFX_report_event_nazi_politics
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.4.a
+		add_political_power = 80
+	}
+}
+country_event = {
+	id = twrgermany.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.5"}
+	title = twrgermany.5.t
+	desc = twrgermany.5.d
+	picture = GFX_report_event_german_spying
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.5.a #use the Gestapo
+		add_ideas = GER_spying
+		hidden_effect = { 
+			set_country_flag = spying_on_tops 
+			set_country_flag = usingthegestapo
+			add_to_variable = {
+				var = himmlerpower
+				value = 0.3
+			}
+			add_to_variable = {
+				var = himmlertrust
+				value = 1
+			}
+		}
+	}
+	option = {
+		name = twrgermany.5.b #use a special party detachment
+		add_ideas = GER_spying
+		hidden_effect = { 
+			set_country_flag = spying_on_tops
+			set_country_flag = bormanninvestigating 
+			add_to_variable = {
+				var = bormannpower
+				value = 0.3
+			}
+			add_to_variable = {
+				var = bormanntrust
+				value = 1
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgermany.6 #matters on his health
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.6"}
+	title = twrgermany.6.t
+	desc = twrgermany.6.d
+	picture = GFX_report_event_business_as_usual
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.6.a #keep it to the inner circle
+		ai_chance = { 
+			factor = 80
+		}
+		add_stability = 0.10
+	}
+}
+country_event = {
+	id = twrgermany.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.8"}
+	title = twrgermany.8.t
+	desc = twrgermany.8.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.8.a
+		custom_effect_tooltip = GER_TWRGERMANY8
+		hidden_effect = { 
+			country_event = {
+				id = gern.0 days = 7 random = 300
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgermany.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.9"}
+	title = twrgermany.9.t
+	desc = twrgermany.9.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.9.a
+		64 = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = arms_factory
+				level = 4
+				instant_build = yes
+			}
+			set_state_flag = military_employment
+		}
+		hidden_effect = { set_country_flag = german_military_employment }
+	}
+}
+country_event = {
+	id = twrgermany.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.10"}
+	title = twrgermany.10.t
+	desc = twrgermany.10.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.10.a
+		4 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 3
+				instant_build = yes
+			}
+			set_state_flag = project_one_germany
+		}
+		4 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 3
+				instant_build = yes
+			}
+			set_state_flag = vienna_project
+		}
+		4 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type =  arms_factory
+				level = 3
+				instant_build = yes
+			}
+			set_state_flag = vienna_project_arms
+		}
+		hidden_effect = { set_country_flag = german_project_1 }
+	}
+}
+
+country_event = {
+	id = twrgermany.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.11"}
+	title = twrgermany.11.t
+	desc = twrgermany.11.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.11.a
+		808 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 3
+				instant_build = yes
+			}
+			set_state_flag = project_two_germany
+		}
+		808 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_state_flag = frankfurt_project
+		}
+		808 = {
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = frankfurt_project_air
+		}
+		808 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type =  arms_factory
+				level = 3
+				instant_build = yes
+			}
+			set_state_flag = frankfurt_porject_ii
+		}
+		hidden_effect = { set_country_flag = german_project_1 }
+	}
+}
+country_event = {
+	id = twrgermany.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.12"}
+	title = twrgermany.12.t
+	desc = twrgermany.12.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.12.a
+		add_political_power = 100
+		add_ideas = GER_germanic_pride
+
+	}
+}
+
+country_event = {
+	id = twrgermany.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.13"}
+	title = twrgermany.13.t
+	desc = twrgermany.13.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.13.a
+		add_political_power = 50
+	}
+}
+
+country_event = {
+	id = twrgermany.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.14"}
+	title = twrgermany.14.t
+	desc = twrgermany.14.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.14.a
+		add_war_support = 0.1
+	}
+}
+
+country_event = {
+	id = twrgermany.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.15"}
+	title = twrgermany.15.t
+	desc = twrgermany.15.d
+	picture = GFX_report_event_nazi_flag
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrgermany.15.a
+		navy_experience = 20
+		add_ideas = GER_alantic_patrol
+	}
+}
+#Reaction#
+country_event = {
+	id = twrgermany.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.16"}
+	title = twrgermany.16.t
+	desc = twrgermany.16.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.a
+		add_political_power = 50
+	}
+}
+
+country_event = {
+	id = twrgermany.1688
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.1688"}
+	title = twrgermany.1688.t
+	desc = twrgermany.1688.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.b
+	}
+}
+
+country_event = {
+	id = twrgermany.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.17"}
+	title = twrgermany.17.t
+	desc = twrgermany.17.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.c
+	}
+
+	option = {
+		name = twrgermany.generic.b
+		add_political_power = -150
+		add_stability = -0.3
+		FRA = { country_event = { days = 0 id = twrcountfrance.1 } }
+	}
+}
+
+
+country_event = {
+	id = twrgermany.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.18"}
+	title = twrgermany.18.t
+	desc = twrgermany.18.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.a
+	}
+}
+
+country_event = {
+	id = twrgermany.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.19"}
+	title = twrgermany.19.t
+	desc = twrgermany.19.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.c
+	}
+}
+
+country_event = {
+	id = twrgermany.20 #Romania Conscription Done
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.20"}
+	title = twrgermany.20.t
+	desc = twrgermany.20.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = romania_accepts
+		original_tag = GER
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = twrgermany.generic.a
+		custom_effect_tooltip = GER_ROMSS
+		hidden_effect = {
+			load_oob = "GER_ROM_SS"
+		}
+	}
+}
+
+country_event = {
+	id = twrgermany.21 #Hungary Conscription Done
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.21"}
+	title = twrgermany.21.t
+	desc = twrgermany.21.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = hungary_accepts
+		original_tag = GER
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = twrgermany.generic.a
+		custom_effect_tooltip = GER_ROMSS
+		hidden_effect = {
+			load_oob = "GER_HUN_SS"
+		}
+	}
+}
+
+country_event = {
+	id = twrgermany.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.22"}
+	title = twrgermany.22.t
+	desc = twrgermany.22.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.c
+	}
+}
+
+country_event = {
+	id = twrgermany.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.23"}
+	title = twrgermany.23.t
+	desc = twrgermany.23.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.c
+	}
+}
+
+country_event = {
+	id = twrgermany.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.24"}
+	title = twrgermany.24.t
+	desc = twrgermany.24.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.a
+	}
+}
+
+country_event = {
+	id = twrgermany.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.25"}
+	title = twrgermany.25.t
+	desc = twrgermany.25.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.c
+	}
+}
+
+country_event = {
+	id = twrgermany.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.26"}
+	title = twrgermany.26.t
+	desc = twrgermany.26.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.generic.a
+	}
+}
+
+country_event = {
+	id = twrgermany.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.27"}
+	title = twrgermany.27.t
+	desc = twrgermany.27.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.27.a
+	}
+}
+
+country_event = {
+	id = twrgermany.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.28"}
+	title = twrgermany.28.t
+	desc = twrgermany.28.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.28.a
+		add_war_support = 0.3
+		add_political_power = 150
+	}
+}
+
+country_event = {
+	id = twrgermany.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.29"}
+	title = twrgermany.29.t
+	desc = twrgermany.29.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.29.a
+		hidden_effect = { GER = { country_event = { days = 5 id = twrgermanengland.1000 } } }
+	}
+
+	option = {
+		name = twrgermany.29.b
+		add_stability = -0.3
+		add_named_threat = { 
+			threat = 15
+			name = GER_pushed_on
+		}
+		hidden_effect = { GER = { country_event = { days = 5 id = twrgermanengland.2 } } }
+	}
+}
+
+country_event = {
+	id = twrgermany.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.30"}
+	title = twrgermany.30.t
+	desc = twrgermany.30.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.30.a
+		add_stability = 0.3
+		hidden_effect = { GER = { country_event = { days = 5 id = twrgermanengland.1000 } } }
+	}
+
+	option = {
+		name = twrgermany.30.b
+		add_stability = -0.3
+		add_named_threat = { 
+			threat = 5 
+			name = GER_diplomatic_lockdown
+		}
+		hidden_effect = { GER = { country_event = { days = 5 id = twrgermanengland.3 } } }
+	}
+}
+
+country_event = {
+	id = twrgermany.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.31"}
+	title = twrgermany.31.t
+	desc = twrgermany.31.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.31.a
+		hidden_effect = { GER = { country_event = { days = 5 id = twrgermanengland.3 } } }
+	}
+
+	option = {
+		name = twrgermany.31.b
+		add_stability = -0.3
+		declare_war_on = {
+			target = ENG
+			type = topple_government
+		}
+		hidden_effect = { set_global_flag = german_british_war }
+	}
+}
+
+country_event = {
+	id = twrgermany.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.32"}
+	title = twrgermany.32.t
+	desc = twrgermany.32.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.32.a
+		add_war_support = 0.05
+		hidden_effect = { set_country_flag = hitler_likes_touching_shits }
+	}
+
+	option = {
+		name = twrgermany.32.b
+		add_stability = 0.05
+		hidden_effect = { set_country_flag = relaxed_hitler_twat }
+	}
+}
+country_event = {
+	id = twrgermany.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.33"}
+	title = twrgermany.33.t
+	desc = twrgermany.33.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.33.a #pick someone
+		add_stability = -0.1
+		hidden_effect = {
+			set_country_flag = ALLOWPICK
+		}
+	}
+	option = {
+		name = twrgermany.33.b
+		add_stability = 0.05
+		add_country_leader_trait = cornered_fox
+	}
+}
+
+country_event = {
+	id = twrgermany.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.34"}
+	title = twrgermany.34.t
+	desc = twrgermany.34.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.34.a
+		hidden_effect = {
+			set_global_flag = freeroaming_ost
+		}
+	}
+	option = {
+		name = twrgermany.34.b
+		hidden_effect = {
+			set_global_flag = governmentappointed_ost
+		}
+	}
+}
+
+country_event = {
+	id = twrgermany.35 #Military reform
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.35"}
+	title = twrgermany.35.t
+	desc = twrgermany.35.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = twrgermany.35.a #enact reforms
+		ai_chance = {
+			factor = 20
+		}
+		add_political_power = -150
+		add_war_support = -0.05
+		hidden_effect = {
+			set_country_flag = hitlermilitaryreform
+			set_global_flag = hitlersreserve
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 75
+		}
+		name = twrgermany.35.b #ignore reforms
+		add_stability = 0.1
+		add_war_support = 0.1
+	}
+}
+
+country_event = {
+	id = twrgermany.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.36"}
+	title = twrgermany.36.t
+	desc = twrgermany.36.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.36.a
+		hidden_effect = { set_global_flag = gotenland_gotenland_model }
+	}
+}
+
+country_event = {
+	id = twrgermany.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.37"}
+	title = twrgermany.37.t
+	desc = twrgermany.37.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.37.a
+		custom_effect_tooltip = HIMMLER_BOOST
+		hidden_effect = {
+			add_to_variable = {
+				var = himmlerpower
+				value = 0.2
+			}
+		set_global_flag = himmlersvisionstuff 
+		}
+	}
+}
+
+country_event = {
+	id = twrgermany.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.38"}
+	title = twrgermany.38.t
+	desc = twrgermany.38.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.38.a
+		763 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 3
+				instant_build = yes
+			}
+		}
+		hidden_effect = { set_global_flag = himmleroverseeingburgundy }
+	}
+}
+
+country_event = {
+	id = twrgermany.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.39"}
+	title = twrgermany.39.t
+	desc = twrgermany.39.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.39.a
+		add_stability = 0.03
+		remove_ideas = GER_SS_Infightings
+	}
+}
+country_event = {
+	id = twrgermany.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.40"}
+	title = twrgermany.40.t
+	desc = twrgermany.40.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.40.a #reform or die
+		add_ideas = GER_Nazi_Reformed
+	}
+	option = {
+		name = twrgermany.40.b #ignore reforms
+		add_ideas = GER_Same_Nazis
+	}
+}
+country_event = {
+	id = twrgermany.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.41"}
+	title = twrgermany.41.t
+	desc = twrgermany.41.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.41.a
+		hidden_effect = { set_global_flag = oldguardsreformed }
+	}
+	option = {
+		name = twrgermany.41.b
+		add_stability = 0.05
+		hidden_effect = { set_global_flag = oldguardsleftalone }
+	}
+}
+country_event = {
+	id = twrgermany.4241 #consitution
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.4241"}
+	title = twrgermany.4241.t
+	desc = twrgermany.4241.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.4241.a
+		custom_effect_tooltip = BORMANN_BOOST
+		add_stability = -0.05
+		add_political_power = 150
+		hidden_effect = {
+			add_to_variable = {
+				var = bormannpower
+				value = 0.2
+			}
+			add_to_variable = {
+				var = bormanntrust
+				value = 1
+			}
+		}
+	}
+	option = {
+		name = twrgermany.4241.b
+		custom_effect_tooltip = GOERING_BOOST #another event later on
+		hidden_effect = {
+			add_to_variable = {
+				var = goeringpower
+				value = 0.3
+			}
+		}
+	}
+}
+country_event = {
+	id = twrgermany.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.42"}
+	title = twrgermany.42.t
+	desc = twrgermany.42.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.42.a
+		add_political_power = 200
+		add_stability = 0.1
+		add_manpower = 20000
+	}
+}
+country_event = { #senate debate
+	id = twrgermany.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.43"}
+	title = twrgermany.43.t
+	desc = twrgermany.43.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.43.a
+		random_list = {
+			25 = {
+				country_event = {
+					id = twrgermany.44
+					days = 2
+				}
+			}
+			25 = {
+				country_event = {
+					id = twrgermany.45
+					days = 2
+				}
+			}
+			25 = {
+				country_event = {
+					id = twrgermany.46
+					days = 2
+				}
+			}
+			25 = {
+				country_event = {
+					id = twrgermany.47
+					days = 2
+				}
+			}
+		}
+	}
+
+	option = {
+		name = twrgermany.43.b #attack someone
+		country_event = { id = twrgermany.43991 days = 2 }
+	}
+
+	option = {
+		name = twrgermany.43.b #praise someone
+		country_event = { id = twrgermany.43992 days = 2 }
+	}
+}
+country_event = { #They attacked...
+	id = twrgermany.43991
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.43991"}
+	title = twrgermany.43991.t
+	desc = twrgermany.43991.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.43991.a #Goebbels
+		custom_effect_tooltip = GOEBBELS_FALL
+		subtract_from_variable = {
+		var = goebbelspower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.b #Speer
+		custom_effect_tooltip = SPEER_FALL
+		subtract_from_variable = {
+		var = speerssupport
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.c #Goering
+		custom_effect_tooltip = GOERING_FALL
+		subtract_from_variable = {
+		var = goeringpower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.e #Himmler
+		custom_effect_tooltip = HIMMLER_FALL
+		trigger = {
+		is_ai = yes
+		}
+		subtract_from_variable = {
+		var = himmlerpower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.f #Bormann
+		custom_effect_tooltip = BORMANN_FALL
+		trigger = {
+		is_ai = yes
+		}
+		subtract_from_variable = {
+		var = bormannpower
+		value = 1		
+		}
+	}
+	option = {
+		name = twrgermany.43991.sp #Another page...
+		trigger = {
+		is_ai = no
+		}
+		country_event = twrgermany.439912
+	}
+}
+country_event = { #They attacked...
+	id = twrgermany.439912
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.439912"}
+	title = twrgermany.43991.t
+	desc = twrgermany.43991.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.43991.e #Himmler
+		custom_effect_tooltip = HIMMLER_FALL
+		subtract_from_variable = {
+		var = himmlerpower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.f #Bormann
+		custom_effect_tooltip = BORMANN_FALL
+		subtract_from_variable = {
+		var = bormannpower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.bc #Go back
+		country_event = twrgermany.43991
+	}
+}
+
+country_event = { #They praised...
+	id = twrgermany.43992
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.43992"}
+	title = twrgermany.43992.t
+	desc = twrgermany.43992.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.43991.a #Goebbels
+		custom_effect_tooltip = GOEBBELS_BOOST
+		add_to_variable = {
+		var = goebbelspower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.b #Speer
+		custom_effect_tooltip = SPEER_BOOST
+		add_to_variable = {
+		var = speerssupport
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.c #Goering
+		custom_effect_tooltip = GOERING_BOOST
+		add_to_variable = {
+		var = goeringpower
+		value = 1		
+		}
+	}
+	option = {
+		name = twrgermany.43991.e #Himmler
+		trigger = {
+		is_ai = yes
+		}
+		custom_effect_tooltip = HIMMLER_BOOST
+		add_to_variable = {
+		var = himmlerpower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.f #Bormann
+		trigger = {
+		is_ai = yes
+		}
+		custom_effect_tooltip = BORMANN_BOOST
+		add_to_variable = {
+		var = bormannpower
+		value = 1		
+		}
+	}
+	option = {
+		name = twrgermany.43991.sp #Another page...
+		trigger = {
+		is_ai = no
+		}
+		country_event = twrgermany.439912
+	}
+}
+country_event = { #They praised...
+	id = twrgermany.439922
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.439922"}
+	title = twrgermany.43992.t
+	desc = twrgermany.43992.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.43991.e #Himmler
+		custom_effect_tooltip = HIMMLER_BOOST
+		add_to_variable = {
+		var = himmlerpower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.f #Bormann
+		custom_effect_tooltip = BORMANN_BOOST
+		add_to_variable = {
+		var = bormannpower
+		value = 1		
+		}
+	}
+
+	option = {
+		name = twrgermany.43991.bc #Go back
+		country_event = twrgermany.43991
+	}
+}
+
+country_event = { #senate undecided
+	id = twrgermany.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.44"}
+	title = twrgermany.44.t
+	desc = twrgermany.44.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.44.a
+
+	}
+}
+country_event = { #senate army focus
+	id = twrgermany.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.45"}
+	title = twrgermany.45.t
+	desc = twrgermany.45.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.45.a
+		add_timed_idea = { idea = GER_Recruitment_Drive days = 50 }
+		army_experience = 20
+	}
+}
+country_event = { #senate research
+	id = twrgermany.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.46"}
+	title = twrgermany.46.t
+	desc = twrgermany.46.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.46.a
+		add_timed_idea = { idea = GER_Research_Drive days = 50 }
+	}
+}
+country_event = { #senate industry
+	id = twrgermany.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.47"}
+	title = twrgermany.47.t
+	desc = twrgermany.47.d
+	picture = GFX_report_event_nazi_flag
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = twrgermany.47.a
+		add_timed_idea = { idea = GER_Industrial_Drive days = 40 }
+	}
+}
+country_event = { #Germany demands our subjugation no exception
+	id = twrgermany.48
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrgermany.48" }
+	title = twrgermany.48.t
+	desc = twrgermany.48.d
+	picture = GFX_report_event_nazi_flag
+	is_triggered_only = yes
+
+	option = { #yes
+		name = twrgermany.48.a
+		trigger = {
+		OR = {
+		NOT = {
+		has_completed_focus = RGO_Proclaim_The_Gotsiche_Reich
+		}
+		NOT = {
+		has_completed_focus = SBA_Sudschwaben_Reich
+				}
+			}
+		}
+		ai_chance = {
+			base = 75
+		}
+		GRM = { annex_country = { target = RGO } }
+		GRM = { puppet = RGO }
+		RGO = {
+		transfer_state = 137
+		transfer_state = 196
+		transfer_state = 200
+		}
+		
+		FROM = {
+		set_autonomy = {
+		target = ROOT
+		autonomous_state = autonomy_reichskommissariat
+		}
+		country_event = twrgermany.49
+		}
+		if = {
+		limit = {
+		tag = SBA
+			}
+
+			
+			
+		set_cosmetic_tag = BANATRK
+		create_country_leader = {
+		name = "Colonial Council"
+		desc = "COLONIAL_COUNCIL_NAZI"
+		picture = "gfx/leaders/GER/NSDAP_Logo.dds" 
+		expire = "1965.1.1"
+		ideology = national_socialism
+		traits = {
+		
+				}
+			}
+		set_party_name = { 
+    	ideology = national_socialist 
+    	long_name = RMO_national_socialist_party 
+    	name = RMO_national_socialist_party 
+			}
+		}
+		if = {
+		limit = {
+		tag = RGO
+			}
+		set_cosmetic_tag = RGORK
+		create_country_leader = {
+		name = "Colonial Council"
+		desc = "COLONIAL_COUNCIL_NAZI"
+		picture = "gfx/leaders/GER/NSDAP_Logo.dds" 
+		expire = "1965.1.1"
+		ideology = national_socialism
+		traits = {
+		
+				}
+			}
+		set_party_name = { 
+    	ideology = national_socialist 
+    	long_name = RMO_national_socialist_party 
+    	name = RMO_national_socialist_party 
+			}
+		}
+		if = {
+			limit = {
+				tag = ROS
+				has_cosmetic_tag = BLR_CENTRAL_RADA
+			}
+			set_politics = {
+			ruling_party = fascist
+			}
+			add_popularity = {
+		    ideology = fascist
+		    popularity = 0.5
+			}
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = BLR_CENTRAL_RADA_SPEC
+		}
+		hidden_effect = {
+		set_country_flag = RETURN_TO_GERMAN_RULE
+		}
+	}
+	option = { #no
+		name = twrgermany.48.b
+		ai_chance = {
+			base = 10
+		}
+		FROM = {
+			country_event = twrgermany.50
+		}
+	}
+}
+country_event = { #Germany demands our subjugation no exception SS
+	id = twrgermany.48999
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrgermany.48999" }
+	title = twrgermany.48.t
+	desc = twrgermany.48.d
+	picture = GFX_report_event_nazi_flag
+	is_triggered_only = yes
+
+	option = { #yes
+		name = twrgermany.48.a
+		ai_chance = {
+			base = 75
+		}
+		set_country_flag = is_ss_puppet
+		FROM = {
+			set_autonomy = {
+				target = ROOT
+				autonomous_state = autonomy_SS_Ordenstaat
+			}
+			country_event = twrgermany.49
+		}
+		if = {
+			limit = {
+				tag = SBA
+			}
+			set_cosmetic_tag = SBA
+		}
+		if = {
+			limit = {
+				tag = RGO
+			}
+			set_cosmetic_tag = RGO
+		}
+		if = {
+			limit = {
+				tag = ROS
+				NOT = {
+				has_cosmetic_tag = BLR_CENTRAL_RADA
+				}
+			}
+			create_country_leader = {
+				name = "Fritz Wächtler"
+				desc = "Fritz_Wachtler_DESC"
+				picture = "Fritz_Wachtler.dds"
+				expire = "1965.1.1"
+				ideology = national_socialism
+				traits = {
+				}
+			}
+			set_cosmetic_tag = ROS_SS
+		}
+		if = {
+			limit = {
+				tag = ROS
+				has_cosmetic_tag = BLR_CENTRAL_RADA
+			}
+			create_country_leader = {
+				name = "Hans Seigling"
+				desc = "Hans_Seigling_DESC"
+				picture = "Hans_Seigling.dds"
+				expire = "1965.1.1"
+				ideology = national_socialism
+				traits = {
+				}
+			}
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = ROS_SPEC_SS
+		}
+		if = {
+			limit = {
+				tag = RUK
+			}
+			create_country_leader = {
+				name = "Fritz Freitag"
+				desc = "Fritz_Freitag_DESC"
+				picture = "Fritz_Freitag.dds"
+				expire = "1965.1.1"
+				ideology = national_socialism
+				traits = {
+				}
+			}
+			set_cosmetic_tag = RUK_SS
+		}
+		if = {
+			limit = {
+				tag = RKA
+			}
+			create_country_leader = {
+				name = "Herbert Backe"
+				desc = "Herbert_Backe_DESC"
+				picture = "Herbert_Backe.dds"
+				expire = "1965.1.1"
+				ideology = national_socialism
+				traits = {
+				}
+			}
+			set_cosmetic_tag = RKA_SS
+		}
+		if = {
+			limit = {
+				tag = RMO
+			}
+			create_country_leader = {
+				name = "Herbert-Ernst Vahl"
+				desc = "Herbert-Ernst_Vahl_DESC"
+				picture = "Herbert-Ernst_Vahl.dds"
+				expire = "1965.1.1"
+				ideology = national_socialism
+				traits = {
+				}
+			}
+			set_cosmetic_tag = RMO_SS
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = SBA
+					tag = RGO
+				}
+			}
+			set_popularities = {
+				national_socialist = 100
+				fascist = 0
+				paternal_autocrat = 0
+				conservative = 0
+				liberal = 0
+				social_democrat = 0
+				socialist = 0
+				bolshevik_leninist = 0
+				marxist_leninist = 0
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = ROS
+					tag = RMO
+					tag = RUK
+					tag = RKA
+				}
+			}
+			set_party_name = {
+				ideology = national_socialist
+				long_name = "Schutzstaffel"
+				name = "SS"
+			}
+			set_popularities = {
+				national_socialist = 100
+				fascist = 0
+				paternal_autocrat = 0
+				conservative = 0
+				liberal = 0
+				social_democrat = 0
+				socialist = 0
+				bolshevik_leninist = 0
+				marxist_leninist = 0
+			}
+		}
+		hidden_effect = {
+			set_country_flag = RETURN_TO_GERMAN_RULE
+		}
+	}
+	option = { #no
+		name = twrgermany.48.b
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 50
+				has_completed_focus = RGO_Proclaim_The_Gotsiche_Reich
+			}
+			modifier = {
+				factor = 50
+				has_completed_focus = SBA_Sudschwaben_Reich
+			}
+		}
+		FROM = {
+			country_event = twrgermany.50
+		}
+	}
+}
+country_event = { #Germany demands our subjugation
+	id = twrgermany.49
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrgermany.49" }
+	title = twrgermany.49.t
+	desc = twrgermany.49.d
+	picture = GFX_report_event_nazi_flag
+	is_triggered_only = yes
+
+	option = { #great
+		name = twrgermany.49.a
+		if = {
+			limit = {
+				FROM = {
+					tag = GGP
+				}
+			}
+			annex_country = {
+				target = GGP
+				transfer_troops = no
+			}
+		}
+	}
+}
+country_event = { #Germany demands our subjugation
+	id = twrgermany.50
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrgermany.50" }
+	title = twrgermany.50.t
+	desc = twrgermany.50.d
+	picture = GFX_report_event_nazi_flag
+	is_triggered_only = yes
+
+	option = { # fools
+		name = twrgermany.50.a
+		create_wargoal = {
+			type = annex_everything
+			target = FROM
+		}
+	}
+}
+country_event = { #Germany demands our subjugation
+	id = twrgermany.51
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrgermany.50" }
+	title = twrgermany.51.t
+	desc = twrgermany.51.d
+	picture = GFX_report_event_nazi_flag
+	is_triggered_only = yes
+
+	option = { # fools
+		name = twrgermany.51.a
+		add_manpower = 50000
+		add_ideas = RK_GERMAN_ADVISORS
+	}
+}
+news_event = { #RK Ost
+	id = twrgermany.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermany.52"}
+	title = twrgermany.52.t
+	desc = twrgermany.52.d
+	picture = GFX_news_event_rosenberg_appointed
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrgermany.52.a #thus, a monster was born
+	}
+}
+
+country_event = { #Fanatical Defence against TA
+	id = twrgermany.53
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrgermany.53" }
+	title = twrgermany.53.t
+	desc = twrgermany.53.d
+	picture = GFX_report_event_nazi_flag
+	is_triggered_only = yes
+
+	option = { # fools
+		name = twrgermany.53.a
+		custom_effect_tooltip = FANATIC_DEFENCE_TT
+	}
+}
+
+##############OSTTREFFEN EVENTS##################
+country_event = {
+	id = osttreffen.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event osttreffen.1"}
+	title = osttreffen.1.t
+	desc = osttreffen.1.d
+	picture = GFX_report_event_osttreffen
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = { 
+			country_event = { id = osttreffen.2 days = 3 } 
+		}
+	}
+
+	option = {
+		name = osttreffen.1.a
+		add_political_power = 20
+	}
+}
+
+country_event = {
+	id = osttreffen.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event osttreffen.2"}
+	title = osttreffen.2.t
+	desc = osttreffen.2.d
+	picture = GFX_report_event_osttreffen
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = { 
+			country_event = { id = osttreffen.3 days = 3 } 
+			RMO = { country_event = osttreffenrk.1 }
+			RGO = { country_event = osttreffenrk.1 }
+			RUK = { country_event = osttreffenrk.1 }
+			ROS = { country_event = osttreffenrk.1 }
+			SBA = { country_event = osttreffenrk.1 }
+			RKA = { country_event = osttreffenrk.1 }
+		}
+	}
+
+
+	option = {
+		name = osttreffen.2.a
+		add_political_power = 50
+	}
+}
+
+country_event = {
+	id = osttreffen.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event osttreffen.3"}
+	title = osttreffen.3.t
+	desc = osttreffen.3.d
+	picture = GFX_report_event_osttreffen
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+
+	immediate = {
+		hidden_effect = { 
+			country_event = { id = osttreffen.4 days = 3 } 
+			RMO = { country_event = osttreffenrk.2 }
+			RGO = { country_event = osttreffenrk.2 }
+			RUK = { country_event = osttreffenrk.2 }
+			ROS = { country_event = osttreffenrk.2 }
+			SBA = { country_event = osttreffenrk.2 }
+			RKA = { country_event = osttreffenrk.2 }
+		}
+	}
+
+
+	option = {
+		name = osttreffen.3.a
+		add_offsite_building = { type = arms_factory level = 1 }
+	}
+}
+country_event = {
+	id = osttreffen.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event osttreffen.4"}
+	title = osttreffen.4.t
+	desc = osttreffen.4.d
+	picture = GFX_report_event_osttreffen
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = { 
+			set_global_flag = osttreffen_germanisation
+			country_event = { id = osttreffen.5 days = 5 } 
+			RMO = { country_event = osttreffenrk.3 }
+			RGO = { country_event = osttreffenrk.3 }
+			RUK = { country_event = osttreffenrk.3 }
+			ROS = { country_event = osttreffenrk.3 }
+			SBA = { country_event = osttreffenrk.3 }
+			RKA = { country_event = osttreffenrk.3 }
+		}
+	}
+
+	option = {
+		name = osttreffen.4.a
+		capital_scope = { add_manpower = 20000 }
+	}
+}
+country_event = {
+	id = osttreffen.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event osttreffen.5"}
+	title = osttreffen.5.t
+	desc = osttreffen.5.d
+	picture = GFX_report_event_osttreffen
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = { 
+			set_global_flag = osttreffen_trade
+			country_event = { id = osttreffen.6 days = 5 } 
+			RMO = { country_event = osttreffenrk.4 }
+			RGO = { country_event = osttreffenrk.4 }
+			RUK = { country_event = osttreffenrk.4 }
+			ROS = { country_event = osttreffenrk.4 }
+			SBA = { country_event = osttreffenrk.4 }
+			RKA = { country_event = osttreffenrk.4 }
+		}
+	}
+
+	option = {
+		name = osttreffen.5.a
+		add_resource = {
+    	type = oil
+    	amount = 30
+    	state = 855
+		}
+	}
+}
+country_event = {
+	id = osttreffen.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event osttreffen.6"}
+	title = osttreffen.6.t
+	desc = osttreffen.6.d
+	picture = GFX_report_event_osttreffen
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			set_global_flag = osttreffen_ends
+			RMO = { country_event = osttreffenrk.5 }
+			RGO = { country_event = osttreffenrk.5 }
+			RUK = { country_event = osttreffenrk.5 }
+			ROS = { country_event = osttreffenrk.5 }
+			SBA = { country_event = osttreffenrk.5 }
+			RKA = { country_event = osttreffenrk.5 }
+		}
+	}
+
+	option = {
+		name = osttreffen.5.a
+		add_political_power = 50
+	}
+}
+##############GERMAN POWER STRUGGLE##################
+country_event = {
+	id = germanps.1
+	immediate = {
+	log = "[GetDateText]: [Root.GetName]: event germanps.1"
+	set_country_flag = START_OF_CRISIS_CHAIN
+	}
+	title = germanps.1.t #start of the stuff
+	desc = germanps.1.d
+	picture = GFX_report_event_sickly_hitler
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.1.a #Normal coalition power struggle
+		trigger = {
+		NOT = {
+		has_country_flag = goebbelsopted
+		has_country_flag = goeringopted
+		has_country_flag = speeropted
+		has_country_flag = bormannopted
+		has_country_flag = himmleropted
+		has_country_flag = goebbels_picked
+		has_country_flag = goering_picked
+		has_country_flag = speer_picked
+		has_country_flag = bormann_picked
+		has_country_flag = himmler_picked
+			}
+		}
+		add_stability = 0.05
+		hidden_effect = { 
+			6 = { set_demilitarized_zone = yes }
+			35 = { set_demilitarized_zone = yes }
+			51 = { set_demilitarized_zone = yes }
+			7 = { set_demilitarized_zone = yes }
+			34 = { set_demilitarized_zone = yes }
+			802 = { set_demilitarized_zone = yes }
+			8 = { set_demilitarized_zone = yes }
+			42 = { set_demilitarized_zone = yes }
+			806 = { set_demilitarized_zone = yes }
+			28 = { set_demilitarized_zone = yes }
+			3 = { set_demilitarized_zone = yes }
+			17 = { set_demilitarized_zone = yes }
+			763 = { set_demilitarized_zone = yes }
+			762 = { set_demilitarized_zone = yes }
+			808 = { set_demilitarized_zone = yes }
+			806 = { set_demilitarized_zone = yes }
+			807 = { set_demilitarized_zone = yes }
+			698 = { set_demilitarized_zone = yes }
+			50 = { set_demilitarized_zone = yes }
+			151 = { set_demilitarized_zone = yes }
+			56 = { set_demilitarized_zone = yes }
+			809 = { set_demilitarized_zone = yes }
+			55 = { set_demilitarized_zone = yes }
+			57 = { set_demilitarized_zone = yes }
+			36 = { set_demilitarized_zone = yes }
+			set_country_flag = hitlerbrainlet 
+		}
+	}
+
+	option = {
+		name = germanps.1.b #Special power struggle doctors
+		trigger = {
+			OR = {
+				has_country_flag = goebbelsopted
+				has_country_flag = goeringopted
+				has_country_flag = speeropted
+				has_country_flag = bormannopted
+				has_country_flag = himmleropted
+			}
+			NOT = {
+				has_country_flag = goebbels_picked
+				has_country_flag = goering_picked
+				has_country_flag = speer_picked
+				has_country_flag = bormann_picked
+				has_country_flag = himmler_picked
+			}
+		}
+		add_political_power = -200
+		random_list = {
+			50 = {
+				country_event = {
+					id = germanps.2 #Hitler stabilized
+					days = 0
+				}
+			}
+			50 = {
+				country_event = {
+					id = germanps.5 #Hitler refuses treatment
+					days = 0
+				}
+				modifier = {
+				factor = 2
+				has_country_leader_with_trait = cornered_fox
+				}
+			}
+		}
+	}
+	option = {
+		name = germanps.1.c #My time has come
+		add_political_power = 50
+		trigger = {
+			OR = {
+				has_country_flag = goebbels_picked
+				has_country_flag = goering_picked
+				has_country_flag = speer_picked
+				has_country_flag = bormann_picked
+				has_country_flag = himmler_picked
+			}
+		}
+	}
+	option = {
+		name = germanps.1.e #Hitlers last will start event chain
+		trigger = {
+			AND = {
+				OR = {
+					has_country_flag = goebbelsopted
+					has_country_flag = goeringopted
+					has_country_flag = speeropted
+					has_country_flag = bormannopted
+					has_country_flag = himmleropted
+				}
+				NOT = {
+					has_country_flag = goebbels_picked
+					has_country_flag = goering_picked
+					has_country_flag = speer_picked
+					has_country_flag = bormann_picked
+					has_country_flag = himmler_picked
+				}
+			}
+		}
+		add_political_power = 50
+		hidden_effect = {
+			set_country_flag = hitlerslastwill
+		}
+	}
+}
+
+country_event = {
+	id = germanps.2 #announcing the successor
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.2"}
+	title = germanps.2.t
+	desc = germanps.2.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			remove_ideas = GER_praise_hitler
+		}
+	}
+
+	option = {
+		name = germanps.2.a
+		add_stability = -0.5
+		trigger = {
+			has_country_flag = speeropted
+		}
+		hidden_effect = { 
+			set_country_flag = speer_picked 
+			set_country_flag = hitlerpickedatwat
+		}
+	}
+
+	option = {
+		name = germanps.2.b
+		add_stability = -0.5
+		trigger = {
+			has_country_flag = bormannopted
+		}
+		hidden_effect = { 
+			set_country_flag = bormann_picked 
+			set_country_flag = hitlerpickedatwat
+		}
+	}
+
+	option = {
+		name = germanps.2.c
+		add_stability = -0.5
+		trigger = {
+			has_country_flag = goebbelsopted
+		}
+		hidden_effect = { 
+			set_country_flag = goebbels_picked 
+			set_country_flag = hitlerpickedatwat
+		}
+	}
+
+	option = {
+		name = germanps.2.e
+		add_stability = -0.5
+		trigger = {
+			has_country_flag = himmleropted
+		}
+		hidden_effect = { 
+			set_country_flag = himmler_picked 
+			set_country_flag = hitlerpickedatwat
+		}
+	}
+
+	option = {
+		name = germanps.2.f
+		add_stability = -0.5
+		trigger = {
+			has_country_flag = goeringopted
+		}
+		hidden_effect = { 
+			set_country_flag = goering_picked 
+			set_country_flag = hitlerpickedatwat
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.3"}
+	title = germanps.3.t #creating the leader
+	desc = germanps.3.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		set_global_flag = gcw_avoided
+	}
+
+	option = {
+		name = germanps.3.a
+		trigger = {
+			TAG = GER
+			has_country_flag = speer_picked
+			has_global_flag = hitler_is_dead
+		}
+		clr_country_flag = deadlock_path
+		retire_country_leader = yes
+		custom_effect_tooltip = GCW_VOIDED
+		create_country_leader = {
+			name = "Albert Speer"
+			desc = "Albert_Speer_DESC"
+			picture = "Albert_Speer.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				dubious_figure
+			}
+		}
+		add_ideas = {
+			GER_HoG_Robert_Ley
+			GER_AM_Alfried_Krupp_von_Bohlen_und_Halbach
+			GER_MoS_Karl_Hanke
+			GER_FM_Walther_Hewel
+			GER_CoS_Alfred_Jodl
+			GER_CoA_Erwin_Rommel
+		}
+		hidden_effect = {
+			activate_decision = GER_sg_load_tree
+			news_event = { id = germannews.9002 hours = 1 }
+		}
+	}
+
+	option = {
+		name = germanps.3.b
+		trigger = {
+			TAG = GER
+			has_country_flag = bormann_picked
+			has_global_flag = hitler_is_dead
+		}
+		custom_effect_tooltip = GCW_VOIDED
+		clr_country_flag = deadlock_path
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Martin Bormann"
+			desc = "Bormann_DESC"
+			picture = "Martin_Bormann.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				paranoid_powermonger
+			}
+		}
+		add_ideas = {
+			GER_HoG_Gerhard_Klopfer
+			GER_AM_Oswald_Pohl
+			GER_MoS_Otto_Georg_Thierack
+			GER_FM_Joachim_von_Ribbentrop
+			GER_CoS_Wilhelm_Keitel
+			GER_CoA_Hans_Krebs
+			GER_CoAi_Alfred_Keller
+		}
+		hidden_effect = {
+			activate_decision = GER_b_load_tree
+			news_event = { id = germannews.9002 hours = 1 }
+		}
+	}
+
+	option = {
+		name = germanps.3.c
+		trigger = {
+			TAG = GER
+			has_country_flag = goebbels_picked
+			has_global_flag = hitler_is_dead
+		}
+		custom_effect_tooltip = GCW_VOIDED
+		clr_country_flag = deadlock_path
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Joseph Goebbels"
+			desc = "GOEBBELS_DESC"
+			picture = "Joseph_Goebbels.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				minister_of_propaganda
+			}
+		}
+		add_ideas = {
+			GER_HoG_Arthur_Axmann
+			GER_AM_Wilhelm_Decker
+			GER_MoS_Roland_Freisler
+			GER_FM_Heinrich_Georg_Stahmer
+			GER_CoS_Wilhelm_Keitel
+			GER_CoA_Ferdinand_Schorner
+		}
+		hidden_effect = {
+			activate_decision = GER_sg_load_tree
+			news_event = { id = germannews.9002 hours = 1 }
+		}
+	}
+
+	option = {
+		name = germanps.3.e
+		trigger = {
+			TAG = GER
+			has_country_flag = himmler_picked
+			has_global_flag = hitler_is_dead
+		}
+		custom_effect_tooltip = GCW_VOIDED
+		clr_country_flag = deadlock_path
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Heinrich Himmler"
+			desc = "Heinrich_Himmler_DESC"
+			picture = "Henrich_Himmler.dds"
+			expire = "1965.1.1"
+			ideology = esoteric_national_socialism
+			traits = {
+				reichsfuhrer
+			}
+		}
+		add_ideas = {
+			GER_HoG_Hans_Lammers
+			GER_AM_Oswald_Pohl
+			GER_CoS_Paul_Hausser
+			GER_CoA_Sepp_Dietrich
+			GER_CoAi_Hans_Baur
+		}	
+		hidden_effect = {
+			activate_decision = GER_himmler_load_tree
+			set_cosmetic_tag = GER_himmler_no_civil_war
+			news_event = { id = germannews.9002 hours = 1 }
+		}
+	}
+	option = {
+		name = germanps.3.f
+		trigger = {
+			TAG = GER
+			has_country_flag = goering_picked
+			has_global_flag = hitler_is_dead
+		}
+		custom_effect_tooltip = GCW_VOIDED
+		clr_country_flag = deadlock_path
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Hermann Göring"
+			desc = "Goering_DESC"
+			picture = "Hermann_Goering.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				reichsmarschall substance_abuser
+			}
+		}
+		add_ideas = {
+			GER_HoG_Hermann_Goering
+			GER_AM_Hermann_Goering
+			GER_MoS_Baldur_von_Schirach
+			GER_FM_Walther_Hewel
+			GER_CoS_Wilhelm_Keitel
+			GER_CoA_Erwin_Rommel
+		}	
+		hidden_effect = {
+			activate_decision = GER_goe_load_tree
+			news_event = { id = germannews.9002 hours = 1 }
+		}
+	}
+} 
+country_event = {
+	id = germanps.4 #cabinet slight doubt
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.4"}
+	title = germanps.4.t
+	desc = germanps.4.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.4.a
+		hidden_effect = {
+			country_event = {
+				id = germanps.440 days = 5 random = 300
+			}
+		}
+	}
+} 
+country_event = {
+	id = germanps.440 #goebbels defend the fuhrer
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.440"}
+	title = germanps.440.t
+	desc = germanps.440.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.440.a
+		hidden_effect = {
+			add_to_variable = {
+				var = goebbelstrust
+				value = 1
+			}
+			add_to_variable = {
+				var = goebbelspower
+				value = 0.1
+			}
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.479 #announce to world decision SI
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.479"}
+	title = germanps.479.t
+	desc = germanps.479.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.479.a #announce it
+		country_event = { id = germanps.2 days = 1 }
+		add_stability = -0.3
+		add_war_support = -0.3
+		hidden_effect = {
+			set_country_flag = announcedshits
+		}
+	}
+	option = {
+		name = germanps.479.b #keep it hidden from the public, for now
+		add_stability = 0.1
+	}
+} 
+
+country_event = {
+	id = germanps.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.5"}
+	title = germanps.5.t
+	desc = germanps.5.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.5.a
+		hidden_effect = { 
+			6 = { set_demilitarized_zone = yes }
+			35 = { set_demilitarized_zone = yes }
+			51 = { set_demilitarized_zone = yes }
+			7 = { set_demilitarized_zone = yes }
+			34 = { set_demilitarized_zone = yes }
+			802 = { set_demilitarized_zone = yes }
+			8 = { set_demilitarized_zone = yes }
+			42 = { set_demilitarized_zone = yes }
+			806 = { set_demilitarized_zone = yes }
+			28 = { set_demilitarized_zone = yes }
+			3 = { set_demilitarized_zone = yes }
+			17 = { set_demilitarized_zone = yes }
+			763 = { set_demilitarized_zone = yes }
+			762 = { set_demilitarized_zone = yes }
+			808 = { set_demilitarized_zone = yes }
+			806 = { set_demilitarized_zone = yes }
+			807 = { set_demilitarized_zone = yes }
+			698 = { set_demilitarized_zone = yes }
+			50 = { set_demilitarized_zone = yes }
+			151 = { set_demilitarized_zone = yes }
+			56 = { set_demilitarized_zone = yes }
+			59 = { set_demilitarized_zone = yes }
+			58 = { set_demilitarized_zone = yes }
+			804 = { set_demilitarized_zone = yes }
+			56 = { set_demilitarized_zone = yes }
+			809 = { set_demilitarized_zone = yes }
+			55 = { set_demilitarized_zone = yes }
+			57 = { set_demilitarized_zone = yes }
+			36 = { set_demilitarized_zone = yes }
+
+			set_country_flag = hitlerbrainlet 
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.7 #Heer momento
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.7"}
+	title = germanps.7.t
+	desc = germanps.7.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_country_flag = ticking_timer
+		}
+	}
+
+	option = {
+		name = germanps.7.a
+		hidden_effect = { set_country_flag = heer_neutral } #Neutral Heer
+	}
+	option = {
+		name = germanps.7.b
+		hidden_effect = { set_country_flag = side_with_speer_and_goebbels } #Speer Goebbels Heer
+	}
+	option = {
+		name = germanps.7.c
+		hidden_effect = { set_country_flag = side_with_the_senate } #Bormann Heer
+	}
+	option = {
+		name = germanps.7.e
+		hidden_effect = { set_country_flag = side_with_the_goering } #Goering Heer
+	}
+} 
+
+country_event = { #COUNCIL PATH START HERE#
+	id = germanps.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.8"}
+	title = germanps.8.t
+	desc = germanps.8.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { days = 10 id = germanps.10 random = 300 }
+			country_event = { days = 5 id = germanps.7 }
+			set_country_flag = deadlock_path
+			add_ideas = {
+				GER_HoG_Emergency_Senate
+				GER_FM_Emergency_Senate
+				GER_AM_Emergency_Senate
+				GER_MoS_Emergency_Senate
+				GER_CoS_Emergency_Senate
+				GER_CoA_Emergency_Senate
+				GER_CoN_Emergency_Senate
+				GER_CoAi_Emergency_Senate
+			}
+		}
+	}
+
+	option = {
+		name = germanps.8.a
+
+	}
+}
+country_event = {
+	id = germanps.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.9"}
+	title = germanps.9.t
+	desc = germanps.9.d
+	picture = GFX_report_event_tv_rommel_speech
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.9.a
+		add_political_power = 10
+	}
+} 
+
+country_event = {
+	id = germanps.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.10"}
+	title = germanps.10.t
+	desc = germanps.10.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.10.a
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { days = 10 id = germanps.11 }
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.11"}
+	title = germanps.11.t
+	desc = germanps.11.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.11.a
+		add_political_power = -100
+		add_stability = -0.1
+		country_event = { days = 15 id = germanps.12 }
+	}
+} 
+
+country_event = {
+	id = germanps.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.12"}
+	title = germanps.12.t
+	desc = germanps.12.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = SSrelatedps
+			country_event = { days = 15 id = germanps.15 }
+		}
+	}
+
+	option = {
+		name = germanps.12.a
+		hidden_effect = { set_country_flag = sssolelyforce #SS Great Influence
+			country_event = { days = 10 id = germanps.14 }
+		}
+	}
+
+	option = {
+		name = germanps.12.b
+		hidden_effect = { 
+			set_country_flag = himmlerbormannbloc #SS-Bormann Influence
+			country_event = { days = 10 id = germanps.14 }
+		}
+	}
+
+	option = {
+		name = germanps.12.c
+
+		hidden_effect = { 
+			set_country_flag = ssrefusedbormann #SS refused
+			country_event = { days = 15 id = germanps.14 }
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.13"}
+	title = germanps.13.t #heer change side
+	desc = germanps.13.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = side_with_the_senate
+		}
+	}
+
+	option = {
+		name = germanps.13.a
+		hidden_effect = { set_country_flag = side_with_speer_and_goebbels } #Speer Goebbels Heer
+	}
+
+	option = {
+		name = germanps.13.b
+		hidden_effect = { set_country_flag = heer_neutral } #Neutral Heer 
+	}
+
+	option = {
+		name = germanps.13.c
+		hidden_effect = { set_country_flag = side_with_the_goering } #Goering Heer
+	}
+} 
+
+country_event = {
+	id = germanps.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.14"}
+	title = germanps.14.t
+	desc = germanps.14.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { days = 15 id = germanps.14 }
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = germanps.14.a
+		add_political_power = -200
+		hidden_effect = { 
+			set_country_flag = senate_division 
+			country_event = { days = 5 id = germanps.16 }
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.15"}
+	title = germanps.15.t
+	desc = germanps.15.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.15.a
+		add_stability = -0.05
+		add_political_power = -200
+		hidden_effect = { 
+			set_country_flag = ssfaffdiscovered 
+			country_event = { days = 7 id = germanps.990 }
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.990
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.990"}
+	title = germanps.990.t #goering senate
+	desc = germanps.990.d
+	picture = GFX_report_event_nazi_grand_council
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.990.a
+	}
+	option = {
+		name = germanps.990.b
+		hidden_effect = { 
+			set_country_flag = goering_chain
+		}
+	}
+}
+
+country_event = {
+	id = germanps.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.16"}
+	title = germanps.16.t
+	desc = germanps.16.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.16.a
+		add_political_power = -200
+		hidden_effect = { 
+			set_country_flag = bormannoverpowered 
+			country_event = { days = 7 id = germanps.17 }
+		}
+	}
+
+	option = {
+		name = germanps.16.b
+		add_political_power = -400
+		hidden_effect = { 
+			set_country_flag = bormannlistensabit 
+			country_event = { days = 5 id = germanps.20 }
+		}
+	}
+
+	option = {
+		trigger = {
+			has_country_flag = goering_chain	
+		}
+		name = germanps.16.c
+		hidden_effect = { 
+			country_event = { days = 5 id = germanps.992 }
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.992
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.992"}
+	title = germanps.992.t #goering secret speech
+	desc = germanps.992.d
+	picture = GFX_report_event_nazi_grand_council
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.992.a
+		hidden_effect = {
+			country_event = { days = 5 id = germanps.993 }	
+		}
+	}
+	option = {
+		name = germanps.992.b
+		trigger = {
+			has_country_flag = side_with_the_goering
+		}
+		hidden_effect = {
+			country_event = { days = 5 id = germanps.996 }	
+		}
+	}
+}
+
+country_event = {
+	id = germanps.993
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.993"}
+	title = germanps.993.t #goering asks council support
+	desc = germanps.993.d
+	picture = GFX_report_event_nazi_grand_council
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.993.a
+		add_stability = -0.10
+		custom_effect_tooltip = GOERING_COUP_BASE_ON_INFLUENCE
+		hidden_effect = {
+		random_list = {
+			50 = {
+			country_event = { days = 2 id = germanps.994 }
+			modifier = {
+			factor = 2
+			check_variable = { var = goeringpower value = 0.6 compare = greater_than_or_equals }
+				}
+			modifier = {
+			add = 20
+			check_variable = { var = goeringpower value = 0.2 compare = greater_than_or_equals }
+			check_variable = { var = goeringpower value = 0.6 compare = less_than }
+				}
+			modifier = {
+			factor = 0
+			check_variable = { var = goeringpower value = 0.2 compare = less_than }
+				}
+			}
+			50 = {
+			country_event = { days = 2 id = germanps.995 }
+			modifier = {
+			factor = 0
+			check_variable = { var = goeringpower value = 0.6 compare = greater_than_or_equals }
+					}
+			modifier = {
+			factor = 2
+			check_variable = { var = goeringpower value = 0.2 compare = less_than }
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = germanps.994
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.994"}
+	title = germanps.994.t #goering in power
+	desc = germanps.994.d
+	picture = GFX_report_event_nazi_grand_council
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.994.a
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		hidden_effect = {
+			country_event = { days = 1 id = germanps.991 }	
+		}
+	}
+}
+
+country_event = {
+	id = germanps.995
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.995"}
+	title = germanps.995.t #goering exposed
+	desc = germanps.995.d
+	picture = GFX_report_event_nazi_grand_council
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.995.a
+		custom_effect_tooltip = GCW_pleases_nobody
+		hidden_effect = {
+			set_country_flag = Martin_Bormann_unavailable
+			set_country_flag = Hermann_Goering_unavailable
+			country_event = { days = 1 id = germanps.29 }	
+		}
+	}
+}
+
+country_event = {
+	id = germanps.996
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.996"}
+	title = germanps.996.t #goering coup
+	desc = germanps.996.d
+	picture = GFX_report_event_nazi_grand_council
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.996.a
+		custom_effect_tooltip = GOERING_COUP_BASE_ON_INFLUENCE
+		hidden_effect = {
+		random_list = {
+			50 = {
+			country_event = { days = 2 id = germanps.994 }
+			modifier = {
+			factor = 2
+			check_variable = { var = goeringpower value = 0.6 compare = greater_than_or_equals }
+				}
+			modifier = {
+			add = 30
+			check_variable = { var = goeringpower value = 0.2 compare = greater_than_or_equals }
+			check_variable = { var = goeringpower value = 0.6 compare = less_than }
+				}
+			modifier = {
+			factor = 0
+			check_variable = { var = goeringpower value = 0.2 compare = less_than }
+				}
+			}
+			50 = {
+			country_event = { days = 2 id = germanps.995 }
+			modifier = {
+			factor = 0
+			check_variable = { var = goeringpower value = 0.6 compare = greater_than_or_equals }
+				}
+			modifier = {
+			factor = 2
+			check_variable = { var = goeringpower value = 0.2 compare = less_than }
+					}
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.17"}
+	title = germanps.17.t
+	desc = germanps.17.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.17.a
+		add_political_power = -100
+		add_stability = -0.05
+		custom_effect_tooltip = GCW_SOONISH
+		hidden_effect = { 
+			set_country_flag = senate_boiling_point 
+			country_event = { days = 5 id = germanps.19 }
+		}
+	}
+
+	option = {
+		name = germanps.17.b
+		add_political_power = -200
+		hidden_effect = { 
+			set_country_flag = senate_tempappeased 
+			country_event = { days = 5 id = germanps.20 }
+		}
+	}
+} 
+
+
+country_event = {
+	id = germanps.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.19"}
+	title = germanps.19.t
+	desc = germanps.19.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.19.a
+		add_political_power = -100
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { days = 0 id = germanps.26 }
+			set_country_flag = bormannousted
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.20"}
+	title = germanps.20.t
+	desc = germanps.20.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.20.a
+		add_political_power = 100
+		add_stability = 0.05
+		hidden_effect = { 
+			set_country_flag = election_promised 
+			country_event = { days = 10 id = germanps.25 }
+		}
+	}
+	option = {
+		name = germanps.20.b
+		trigger = {
+			has_country_flag = sssolelyforce
+		}
+		custom_effect_tooltip = SS_MAKES_THEIR_MOVES
+		add_political_power = -100
+		add_stability = -0.1
+		hidden_effect = {
+		random_list = {
+			50 = {
+			country_event = { days = 0 id = germanps.21 } #SS Coup
+			modifier = {
+			factor = 2
+			check_variable = { var = himmlerpower value = 0.8 compare = greater_than_or_equals }
+			NOT = {
+			check_variable = { var = bormannpower value = 0.8 compare = greater_than_or_equals }
+				}
+			}
+			modifier = {
+			factor = 2
+			check_variable = { var = bormannpower value = 0.2 compare = less_than }
+				}
+			modifier = {
+			add = 20
+			check_variable = { var = himmlerpower value = 0.2 compare = greater_than_or_equals }
+			check_variable = { var = himmlerpower value = 0.8 compare = less_than }
+				}
+			modifier = {
+			add = 0
+			check_variable = { var = himmlerpower value = 0.2 compare = less_than }
+				}
+			}
+			50 = {
+			country_event = { days = 0 id = germanps.22 } #Bormann in power
+			modifier = {
+			factor = 2
+			check_variable = { var = bormannpower value = 0.8 compare = greater_than_or_equals }
+			NOT = {
+			check_variable = { var = himmlerpower value = 0.8 compare = greater_than_or_equals }
+					}
+				}
+			modifier = {
+			factor = 1.5
+			check_variable = { var = bormannpower value = 0.8 compare = less_than }
+			check_variable = { var = bormannpower value = 0.6 compare = greater_than_or_equals }
+				}
+			modifier = {
+			add = 20
+			check_variable = { var = bormannpower value = 0.2 compare = greater_than_or_equals }
+			check_variable = { var = bormannpower value = 0.6 compare = less_than }
+					}
+			modifier = {
+			factor = 0
+			check_variable = { var = bormannpower value = 0.2 compare = less_than }
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = germanps.20.c
+		trigger = {
+			has_country_flag = side_with_the_senate
+		}
+		add_political_power = -100
+		add_stability = -0.1
+		custom_effect_tooltip = HEER_MOVE_TIME_GCW
+		hidden_effect = {
+		random_list = {
+			50 = {
+			country_event = { days = 0 id = germanps.23 } #Military betryal
+			modifier = {
+			factor = 2
+			check_variable = { var = bormannpower value = 0.2 compare = less_than }
+				}
+			}
+			50  = {
+			country_event = { days = 0 id = germanps.24 } #Bormann in
+			modifier = {
+			factor = 2
+			check_variable = { var = bormannpower value = 0.8 compare = greater_than_or_equals }
+					}
+			modifier = {
+			factor = 1.5
+			check_variable = { var = bormannpower value = 0.8 compare = less_than }
+			check_variable = { var = bormannpower value = 0.6 compare = greater_than }
+					}
+			modifier = {
+			add = 20
+			check_variable = { var = bormannpower value = 0.2 compare = greater_than_or_equals }
+			check_variable = { var = bormannpower value = 0.6 compare = less_than }
+					}
+			modifier = {
+			factor = 0
+			check_variable = { var = bormannpower value = 0.2 compare = less_than }
+					}
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.21"}
+	title = germanps.21.t
+	desc = germanps.21.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.21.a
+		add_political_power = 150
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		add_stability = -0.1
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Heinrich Himmler"
+			desc = "Heinrich_Himmler_DESC"
+			picture = "Henrich_Himmler.dds"
+			expire = "1965.1.1"
+			ideology = esoteric_national_socialism
+			traits = {
+				reichsfuhrer
+			}
+		}
+		hidden_effect = { 
+		add_ideas = {
+			GER_HoG_Hans_Lammers
+			GER_AM_Oswald_Pohl
+			GER_CoS_Paul_Hausser
+			GER_CoA_Sepp_Dietrich
+			GER_CoAi_Hans_Baur
+		}	
+			complete_national_focus = GER_SS_Security_Coup
+			clr_country_flag = deadlock_path
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.22"}
+	title = germanps.22.t
+	desc = germanps.22.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.22.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Martin Bormann"
+			desc = "Bormann_DESC"
+			picture = "Martin_Bormann.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				paranoid_powermonger
+			}
+		}
+		add_political_power = 100
+		add_stability = -0.1
+		hidden_effect = { 
+		add_ideas = {
+			GER_HoG_Gerhard_Klopfer
+			GER_AM_Oswald_Pohl
+			GER_MoS_Otto_Georg_Thierack
+			GER_FM_Joachim_von_Ribbentrop
+			GER_CoS_Wilhelm_Keitel
+			GER_CoA_Hans_Krebs
+			GER_CoAi_Alfred_Keller
+		}
+			complete_national_focus = GER_Bormann_On_Top
+			set_country_flag = ss_supported_bormann_last
+			clr_country_flag = deadlock_path
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.23"}
+	title = germanps.23.t
+	desc = germanps.23.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.23.a
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Erich von Manstein"
+			desc = ""
+			picture = "Von_Manstein.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				HoG_Old_General
+			}
+		}
+		add_ideas = {
+		GER_HoG_Franz_Halder
+		GER_FM_Hans_Speidel
+		GER_MoS_Georg_Hansen
+		GER_AM_Paul_Lejeune-Jung 
+		GER_CoS_Erwin_Rommel
+		GER_CoA_Friedrich_Olbricht
+		GER_CoN_Friedrich_Ruge
+		GER_CoAi_Werner_Kreipe
+		}
+		add_political_power = -100
+		add_stability = 0.05
+		set_politics = { 
+			ruling_party = national_socialist
+			elections_allowed = no  
+		}
+		complete_national_focus = GER_Emergency_Coup
+	}
+} 
+
+country_event = {
+	id = germanps.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.24"}
+	title = germanps.24.t
+	desc = germanps.24.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.24.a
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Martin Bormann"
+			desc = "Bormann_DESC"
+			picture = "Martin_Bormann.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				paranoid_powermonger
+			}
+		}
+		add_political_power = 100
+		add_stability = -0.1
+		hidden_effect = { 
+		add_ideas = {
+			GER_HoG_Hans_Lammers
+			GER_AM_Oswald_Pohl
+			GER_CoS_Paul_Hausser
+			GER_CoA_Sepp_Dietrich
+			GER_CoAi_Hans_Baur
+		}
+			complete_national_focus = GER_Bormann_On_Top
+			set_country_flag = army_supported_bormann_in_last
+		}
+	}
+} 
+
+country_event = {
+	id = germanps.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.25"}
+	title = germanps.25.t
+	desc = germanps.25.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.25.a
+		add_political_power = 100
+		add_stability = 0.1
+		hidden_effect = {
+		random_list = {
+			60 = {
+			country_event = { days = 0 id = germanps.26 } #Bormann Oust
+			modifier = {
+			add = 40
+			check_variable = { var = bormannpower value = 0.2 compare = less_than }
+				}
+			}
+			40  = {
+			country_event = { days = 0 id = germanps.27 } #Bormann Stays
+			modifier = {
+			add = 60
+			check_variable = { var = bormannpower value = 0.6 compare = greater_than }
+					}
+			modifier = {
+			factor = 0
+			check_variable = { var = bormannpower value = 0.2 compare = less_than }
+					}
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			OR = {
+				has_country_flag = himmlerbormannbloc
+				has_country_flag = sssolelyforce
+			}
+		}
+		name = germanps.25.b
+		add_political_power = 100
+		add_stability = 0.1
+		random_list = {
+			50 = {
+				country_event = { days = 0 id = germanps.26 } #Bormann Oust
+			}
+			50  = {
+				country_event = { days = 0 id = germanps.27 } #Bormann in power
+			}
+		}
+	}
+	option = {
+		name = germanps.25.c
+		add_political_power = -500
+		add_stability = -0.3
+		add_war_support = -0.3
+		country_event = { days = 0 id = germanps.28 }
+	}
+} 
+
+country_event = {
+	id = germanps.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.26"}
+	title = germanps.26.t
+	desc = germanps.26.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.26.a
+		set_country_flag = Martin_Bormann_unavailable
+		add_political_power = 300
+		add_stability = 0.05
+		custom_effect_tooltip = GCW_pleases_nobody
+		country_event = { days = 0 id = germanps.29 }
+	}
+
+	option = {
+		name = germanps.26.b
+		trigger = {
+			OR = { 
+			has_country_flag = bormannousted
+			has_country_flag = side_with_speer_and_goebbels
+			has_country_flag = senate_division
+			}
+		}
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		country_event = { days = 0 id = germanps.30 }
+	}
+
+	option = {
+		name = germanps.26.c
+		trigger = {
+			OR = {
+			has_country_flag = side_with_the_senate 
+			has_country_flag = heer_neutral
+			}
+		}
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		country_event = { days = 0 id = germanps.31 }
+	}
+
+	option = {
+		name = germanps.26.e
+		trigger = {
+			OR = {
+			has_country_flag = sssolelyforce
+			has_country_flag = ssrefusedbormann
+
+			}
+		}
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		country_event = { days = 0 id = germanps.32 }
+	}
+
+	option = {
+		name = germanps.26.f
+		trigger = {
+			OR = { 
+				has_country_flag = bormannousted
+				has_country_flag = side_with_the_goering
+				has_country_flag = senate_division
+			}
+		}
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		country_event = { days = 0 id = germanps.991 }
+	}
+}
+country_event = {
+	id = germanps.991
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.991"}
+	title = germanps.991.t #goering inpower
+	desc = germanps.991.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.991.a
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Hermann Göring"
+			desc = "Goering_DESC"
+			picture = "Hermann_Goering.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				reichsmarschall substance_abuser
+			}
+		}
+		hidden_effect = {
+		complete_national_focus = GER_Goering_In
+		add_ideas = {
+			GER_HoG_Hermann_Goering
+			GER_AM_Hermann_Goering
+			GER_MoS_Baldur_von_Schirach
+			GER_FM_Walther_Hewel
+			GER_CoS_Wilhelm_Keitel
+			GER_CoA_Erwin_Rommel
+			}	
+		}
+	}
+}
+country_event = {
+	id = germanps.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.27"}
+	title = germanps.27.t
+	desc = germanps.27.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.27.a
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Martin Bormann"
+			desc = "Bormann_DESC"
+			picture = "Martin_Bormann.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				paranoid_powermonger
+			}
+		}
+		hidden_effect = {
+		add_ideas = {
+			GER_HoG_Hans_Lammers
+			GER_AM_Oswald_Pohl
+			GER_CoS_Paul_Hausser
+			GER_CoA_Sepp_Dietrich
+			GER_CoAi_Hans_Baur
+		}
+		complete_national_focus = GER_Bormann_On_Top
+		}
+	}
+}
+country_event = {
+	id = germanps.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.28"}
+	title = germanps.28.t
+	desc = germanps.28.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.28.a
+		trigger = {
+		OR = {
+			has_country_flag = himmlerbormannbloc
+			has_country_flag = side_with_the_senate
+			check_variable = { var = bormannpower value = 0.6 compare = greater_than }
+		}
+		NOT = { has_country_flag = sssolelyforce }
+		NOT = {
+		check_variable = { var = bormannpower value = 0.2 compare = less_than }
+			}
+		}
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Martin Bormann"
+			desc = "Bormann_DESC"
+			picture = "Martin_Bormann.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				paranoid_powermonger
+			}
+		}
+		hidden_effect = {
+		add_ideas = {
+			GER_HoG_Hans_Lammers
+			GER_AM_Oswald_Pohl
+			GER_CoS_Paul_Hausser
+			GER_CoA_Sepp_Dietrich
+			GER_CoAi_Hans_Baur
+		}
+			complete_national_focus = GER_Bormann_On_Top
+			set_country_flag = bormanncollapse
+		}
+	}
+
+	option = {
+		name = germanps.28.b
+		trigger = {
+			OR = {
+				has_country_flag = himmlerbormannbloc 
+				has_country_flag = sssolelyforce
+				check_variable = { var = himmlerpower value = 0.6 compare = greater_than }
+			}
+		}
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Heinrich Himmler"
+			desc = "Heinrich_Himmler_DESC"
+			picture = "Henrich_Himmler.dds"
+			expire = "1965.1.1"
+			ideology = esoteric_national_socialism
+			traits = {
+				reichsfuhrer 
+			}
+		}
+		hidden_effect = {
+		add_ideas = {
+			GER_HoG_Hans_Lammers
+			GER_AM_Oswald_Pohl
+			GER_CoS_Paul_Hausser
+			GER_CoA_Sepp_Dietrich
+			GER_CoAi_Hans_Baur
+		}	
+		complete_national_focus = GER_SS_Security_Coup
+		}
+	}
+
+	option = {
+		name = germanps.28.c
+		add_stability = 0.03
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		trigger = {
+		OR = {
+			has_country_flag = side_with_speer_and_goebbels
+			check_variable = { var = goebbelspower value = 0.4 compare = greater_than_or_equals }
+			check_variable = { var = speerpower value = 0.4 compare = greater_than_or_equals }
+			}
+		}
+		country_event = { days = 0 id = germanps.30 }
+	}
+
+	option = {
+		name = germanps.26.f
+		trigger = {
+		OR = {
+			has_country_flag = side_with_the_goering
+			check_variable = { var = goeringpower value = 0.4 compare = greater_than_or_equals }
+			}
+		}
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		country_event = { days = 0 id = germanps.991 }
+	}
+
+
+	option = {
+		name = germanps.26.c
+		trigger = {
+			OR = { 
+				has_country_flag = side_with_the_senate
+				has_country_flag = heer_neutral
+			}
+		}
+		remove_ideas = GER_HoG_Martin_Bormann
+		set_country_flag = Martin_Bormann_unavailable
+		country_event = { days = 0 id = germanps.31 }
+	}
+}
+country_event = {
+	id = germanps.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.29"}
+	title = germanps.29.t
+	desc = germanps.29.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_global_flag = council_germany
+		}
+	}
+	option = {
+		name = germanps.29.a
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Karl Dönitz"
+			desc = ""
+			picture = "Karl_Donitz.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				grand_admiral
+			}
+		}
+		hidden_effect = { 
+			news_event = { id = germannews.9002 hours = 1 }
+			set_global_flag = karlelected
+			set_country_flag = germany_dead_nation
+			country_event = {
+				id = germanps.500
+				days = 9
+			}
+		}
+	}
+
+	option = {
+		name = germanps.29.b
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Joachim von Ribbentrop"
+			desc = "Ribbentrop_DESC"
+			picture = "Joachim_von_Ribbentrop.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+			}
+		}
+		hidden_effect = {
+			news_event = { id = germannews.9002 hours = 1 }
+			set_global_flag = vonribelected
+			set_country_flag = germany_dead_nation
+			country_event = {
+				id = germanps.500
+				days = 9
+			}
+		}
+	}
+
+	option = {
+		name = germanps.29.c
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Ernst Kaltenbrunner"
+			desc = "Kaltenbrunner_DESC"
+			picture = "Ernst_Kaltenbrunner.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				prince_of_terror
+			}
+		}
+		hidden_effect = { 
+			news_event = { id = germannews.9002 hours = 1 }
+			country_event = { days = 5 id = germanps.500 } 
+			set_global_flag = ernstelected
+			set_country_flag = germany_dead_nation
+		}
+	}
+
+	option = {
+		name = germanps.29.e
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Arthur Seyss-Inquart"
+			desc = "Arthur_Seyss-Inquart_DESC"
+			picture = "Arthur_Seyss-Inquart.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+
+			}
+		}
+		hidden_effect = {
+			news_event = { id = germannews.9002 hours = 1 }
+			set_global_flag = arthurelected
+			set_country_flag = germany_dead_nation
+			country_event = {
+				id = germanps.500
+				days = 5
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.30"}
+	title = germanps.30.t
+	desc = germanps.30.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.30.a
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Joseph Goebbels"
+			desc = "GOEBBELS_DESC"
+			picture = "Joseph_Goebbels.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				minister_of_propaganda
+			}
+		}
+		hidden_effect = {
+		complete_national_focus = GER_Speer_Goebbels_Bloc
+		add_ideas = {
+			GER_HoG_Arthur_Axmann
+			GER_AM_Wilhelm_Decker
+			GER_MoS_Roland_Freisler
+			GER_FM_Heinrich_Georg_Stahmer
+			GER_CoS_Wilhelm_Keitel
+			GER_CoA_Ferdinand_Schorner
+		}
+		}
+	}
+
+	option = {
+		name = germanps.30.b
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Albert Speer"
+			desc = "Albert_Speer_DESC"
+			picture = "Albert_Speer.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				dubious_figure
+			}
+		}
+		hidden_effect = {
+		add_ideas = {
+			GER_HoG_Robert_Ley
+			GER_AM_Alfried_Krupp_von_Bohlen_und_Halbach
+			GER_MoS_Karl_Hanke
+			GER_FM_Walther_Hewel
+			GER_CoS_Alfred_Jodl
+			GER_CoA_Erwin_Rommel
+		}
+		complete_national_focus = GER_Speer_Goebbels_Bloc
+		}
+	}
+}
+country_event = {
+	id = germanps.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.31"}
+	title = germanps.31.t
+	desc = germanps.31.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.31.a
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Erich von Manstein"
+			desc = ""
+			picture = "Von_Manstein.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				HoG_Old_General
+			}
+		}
+		add_ideas = {
+		GER_HoG_Franz_Halder
+		GER_FM_Hans_Speidel
+		GER_MoS_Georg_Hansen
+		GER_AM_Paul_Lejeune-Jung 
+		GER_CoS_Erwin_Rommel
+		GER_CoA_Friedrich_Olbricht
+		GER_CoN_Friedrich_Ruge
+		GER_CoAi_Werner_Kreipe
+		}
+		complete_national_focus = GER_Emergency_Coup
+	}
+}
+country_event = {
+	id = germanps.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.32"}
+	title = germanps.32.t
+	desc = germanps.32.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.32.a
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Heinrich Himmler"
+			desc = "Heinrich_Himmler_DESC"
+			picture = "Henrich_Himmler.dds"
+			expire = "1965.1.1"
+			ideology = esoteric_national_socialism
+			traits = {
+				reichsfuhrer
+			}
+		}
+		hidden_effect = {
+		add_ideas = {
+			GER_HoG_Hans_Lammers
+			GER_AM_Oswald_Pohl
+			GER_CoS_Paul_Hausser
+			GER_CoA_Sepp_Dietrich
+			GER_CoAi_Hans_Baur
+		}	
+		complete_national_focus = GER_SS_Security_Coup
+		}
+	}
+}
+country_event = {
+	id = germanps.33 #SI BURG 2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.33"}
+	title = germanps.33.t
+	desc = germanps.33.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.33.a
+		random_list = {
+			20 = {
+				country_event = {
+					id = germanps.34
+					days = 1
+				}
+				modifier = {
+					factor = 0
+					check_variable = { var = himmlerpower value = 0.6 compare = greater_than_or_equals }
+				}	
+				modifier = {
+					add = 30
+					check_variable = { var = himmlerpower value = 0.4 compare = less_than }
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_GER_GCW_FORCE
+				}
+			}
+			80 = {
+				country_event = {
+					id = germanps.500
+					days = 1
+				}	
+				modifier = {
+					add = -30
+					check_variable = { var = himmlerpower value = 0.4 compare = less_than }
+				}	
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.34"}
+	title = germanps.34.t
+	desc = germanps.34.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.34.a
+		custom_effect_tooltip = GCW_VOIDED
+		add_political_power = 100
+		add_stability = 0.1
+		set_technology = {
+			waffen_ss = 0
+		}
+		remove_ideas = GER_MoS_Heinrich_Himmler
+		remove_ideas = GER_HoI_Ernst_Kaltenbrunner
+		delete_unit_template_and_units = {
+			division_template = "SS Panzer-Division"
+		}
+		delete_unit_template_and_units = {
+			division_template = "SS-Infanterie-Division"
+		}
+		GER = {		
+			every_army_leader = {
+				limit = { has_trait = ss_general }
+				retire = yes
+			}
+		}
+		hidden_effect = { 
+		set_global_flag = ss_disarmed_by_sg
+		set_country_flag = SS_appeased_or_gone
+		set_country_flag = Heinrich_Himmler_unavailable
+		}
+	}
+}
+country_event = {
+	id = germanps.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.36"}
+	title = germanps.36.t
+	desc = germanps.36.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.36.a
+		set_technology = {
+			waffen_ss = 0
+		}
+		delete_unit_template_and_units = {
+			division_template = "SS Panzer-Division"
+		}
+		delete_unit_template_and_units = {
+			division_template = "SS-Infanterie-Division"
+		}
+		hidden_effect = { 
+			set_global_flag = ss_revolted_against_sg
+			HSS = {
+				transfer_state = 7
+				transfer_state = 35
+				transfer_state = 51
+				transfer_state = 6
+				transfer_state = 34
+				transfer_state = 802
+				transfer_state = 8
+				transfer_state = 42
+				transfer_state = 806
+				transfer_state = 28
+				transfer_state = 3
+				transfer_state = 17
+				transfer_state = 763
+				transfer_state = 762
+				transfer_state = 808
+				transfer_state = 807
+				transfer_state = 50
+				transfer_state = 151
+				transfer_state = 56
+				transfer_state = 59
+				transfer_state = 58
+				transfer_state = 804
+				transfer_state = 57
+				transfer_state = 809
+				transfer_state = 55
+				transfer_state = 36
+
+				set_country_flag = himmler_side_civil_war
+				load_oob = "HSS_GCW"
+				declare_war_on = {
+					target = GER
+					type = annex_everything
+				}
+			}
+			GER = {	
+				set_country_flag = SS_appeased_or_gone
+				set_country_flag = Heinrich_Himmler_unavailable
+				every_army_leader = {
+					limit = { has_trait = ss_general }
+					set_nationality = HSS
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.37 #SI BURG FORM
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.37"}
+	title = germanps.37.t
+	desc = germanps.37.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.37.a
+		trigger = {
+			OR = {
+				NOT = { 
+					has_completed_focus = GER_Appease_The_SS
+				}
+				has_global_flag = COUNTRY_PATH_GER_GCW_FORCE
+			}
+		}
+		random_list = {
+			80 = {
+				country_event = {
+					id = germanps.38
+					days = 0
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_GER_GCW_FORCE
+				}
+			}
+			20 = {
+				country_event = {
+					id = germanps.39
+					days = 0
+				}	
+				modifier = {
+					factor = 3.5
+					check_variable = { var = himmlerpower value = 0.6 compare = greater_than_or_equals }
+				}	
+			}
+		}
+	}
+	option = {
+		name = germanps.37.b
+		trigger = {
+			has_completed_focus = GER_Appease_The_SS
+			NOT = {
+				has_global_flag = COUNTRY_PATH_GER_GCW_FORCE
+			}
+		}
+		add_stability = 0.05
+		hidden_effect = {
+			set_country_flag = HIMMLER_BURGUNDY_DEAL_BORMANN
+		}
+	}
+	option = {
+		name = germanps.37.c #No deal
+		country_event = {
+		id = germanps.500
+		days = 3
+		}	
+	}
+}
+country_event = {
+	id = germanps.38 #SI BURG
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.38"}
+	title = germanps.38.t
+	desc = germanps.38.d
+	picture = GFX_report_event_burgundy_forming
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.38.a
+		custom_effect_tooltip = GCW_VOIDED
+		set_technology = {
+			waffen_ss = 0
+		}
+		762 = {
+			add_core_of = SSB
+		}
+		34 = {
+			add_core_of = SSB
+		}
+		763 = {
+			add_core_of = SSB
+		}
+		16 = {
+			add_core_of = SSB
+		}	
+		3 = {
+			add_core_of = SSB
+		}
+		SSB = {
+			transfer_state = 762
+			transfer_state = 34
+			transfer_state = 763
+			transfer_state = 17
+			transfer_state = 3
+		}
+		every_army_leader = {
+			limit = { has_trait = ss_general }
+			set_nationality = SSB
+		}
+		set_autonomy = {
+			target = SSB
+			autonomy_state = autonomy_SS_Ordenstaat
+		}
+		delete_unit_template_and_units = {
+			division_template = "SS Panzer-Division"
+		}
+		delete_unit_template_and_units = {
+			division_template = "SS-Infanterie-Division"
+		}
+		hidden_effect = {
+			news_event = { id = germannews.6 days = 1 }
+			set_country_flag = SS_appeased_or_gone
+			set_country_flag = Heinrich_Himmler_unavailable
+			6 = { set_demilitarized_zone = no }
+			35 = { set_demilitarized_zone = no }
+			51 = { set_demilitarized_zone = no }
+			7 = { set_demilitarized_zone = no }
+			34 = { set_demilitarized_zone = no }
+			802 = { set_demilitarized_zone = no }
+			8 = { set_demilitarized_zone = no }
+			42 = { set_demilitarized_zone = no }
+			806 = { set_demilitarized_zone = no }
+			28 = { set_demilitarized_zone = no }
+			3 = { set_demilitarized_zone = no }
+			17 = { set_demilitarized_zone = no }
+			763 = { set_demilitarized_zone = no }
+			762 = { set_demilitarized_zone = no }
+			808 = { set_demilitarized_zone = no }
+			806 = { set_demilitarized_zone = no }
+			807 = { set_demilitarized_zone = no }
+			698 = { set_demilitarized_zone = no }
+			50 = { set_demilitarized_zone = no }
+			151 = { set_demilitarized_zone = no }
+			56 = { set_demilitarized_zone = no }
+			809 = { set_demilitarized_zone = no }
+			55 = { set_demilitarized_zone = no }
+			57 = { set_demilitarized_zone = no }
+			36 = { set_demilitarized_zone = no }
+			SSB = {
+			load_oob = "SSB_LOAD"
+			}
+		}
+	}
+	option = {
+		name = germanps.38.b
+		custom_effect_tooltip = GCW_VOIDED_PLAY_AS_SSB
+		762 = {
+			add_core_of = SSB
+		}
+		34 = {
+			add_core_of = SSB
+		}
+		763 = {
+			add_core_of = SSB
+		}
+		16 = {
+			add_core_of = SSB
+		}	
+		3 = {
+			add_core_of = SSB
+		}
+		set_technology = {
+			waffen_ss = 0
+		}
+		SSB = {
+			transfer_state = 762
+			transfer_state = 34
+			transfer_state = 763
+			transfer_state = 17
+			transfer_state = 3
+		}
+		every_army_leader = {
+			limit = { has_trait = ss_general }
+			set_nationality = SSB
+		}
+		set_autonomy = {
+			target = SSB
+			autonomy_state = autonomy_SS_Ordenstaat
+		}
+		delete_unit_template_and_units = {
+			division_template = "SS Panzer-Division"
+		}
+		delete_unit_template_and_units = {
+			division_template = "SS-Infanterie-Division"
+		}
+
+		hidden_effect = {
+			news_event = { id = germannews.6 days = 1 }
+			set_country_flag = SS_appeased_or_gone
+			set_country_flag = Heinrich_Himmler_unavailable
+			6 = { set_demilitarized_zone = no }
+			35 = { set_demilitarized_zone = no }
+			51 = { set_demilitarized_zone = no }
+			7 = { set_demilitarized_zone = no }
+			34 = { set_demilitarized_zone = no }
+			802 = { set_demilitarized_zone = no }
+			8 = { set_demilitarized_zone = no }
+			42 = { set_demilitarized_zone = no }
+			806 = { set_demilitarized_zone = no }
+			28 = { set_demilitarized_zone = no }
+			3 = { set_demilitarized_zone = no }
+			17 = { set_demilitarized_zone = no }
+			763 = { set_demilitarized_zone = no }
+			762 = { set_demilitarized_zone = no }
+			808 = { set_demilitarized_zone = no }
+			806 = { set_demilitarized_zone = no }
+			807 = { set_demilitarized_zone = no }
+			698 = { set_demilitarized_zone = no }
+			50 = { set_demilitarized_zone = no }
+			151 = { set_demilitarized_zone = no }
+			56 = { set_demilitarized_zone = no }
+			809 = { set_demilitarized_zone = no }
+			55 = { set_demilitarized_zone = no }
+			57 = { set_demilitarized_zone = no }
+			36 = { set_demilitarized_zone = no }
+			SSB = {
+			load_oob = "SSB_LOAD"
+			change_tag_from = ROOT
+			}
+
+		}
+	}
+}
+country_event = {
+	id = germanps.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.39"}
+	title = germanps.39.t
+	desc = germanps.39.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.39.a
+			country_event = {
+				id = germanps.500
+				days = 1
+		}
+	}
+}
+country_event = {
+	id = germanps.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.40"}
+	title = germanps.40.t
+	desc = germanps.40.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.40.a
+		random_list = {
+			15 = {
+				country_event = {
+					id = germanps.34
+					days = 0
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_GER_GCW_FORCE
+				}
+			}
+			85 = {
+				country_event = {
+					id = germanps.501
+					days = 0
+				}		
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.41 #SI HEER
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.41"}
+	title = germanps.41.t
+	desc = germanps.41.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.41.a
+		random_list = {
+			15 = {
+				country_event = {
+					id = germanps.42
+					days = 0
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_GER_GCW_FORCE
+				}
+			}
+			85 = {
+				country_event = {
+					id = germanps.501
+					days = 0
+				}		
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.42 #SI SUCCESSFUL
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.42"}
+	title = germanps.42.t
+	desc = germanps.42.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.42.a
+		add_stability = 0.05
+		custom_effect_tooltip = GCW_VOIDED
+		hidden_effect = { 
+			set_global_flag = heer_accepted_to_disarm
+		}
+		GER = {		
+			every_army_leader = {
+				limit = { has_trait = heer_staff }
+				retire = yes
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.43 #UNUSED
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.43"}
+	title = germanps.43.t
+	desc = germanps.43.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.43.a
+		hidden_effect = {
+			set_global_flag = heerrevolted
+			GER = {
+				every_state = {
+					limit = {
+						is_core_of = GER
+					}
+					add_core_of = HGR
+				}
+				start_civil_war = {
+					ideology = paternal_autocrat
+					size = 0.3
+					capital = 9
+					states = { 
+						9 75 74 69 4 72 67 766 55 65 102 774 152 153 52 53 54 60 55 65 102 774 152 153 52 53 54 60
+					}
+					#keep_unit_leaders = {
+					#	1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 #58 59
+					#}
+				}
+				declare_war_on = {
+					target = HGR
+					type = annex_everything
+				}
+			}
+			random_country = { 	
+				limit = {
+					original_tag = GER
+					NOT = { tag = GER }
+					has_government = paternal_autocrat
+				}
+				save_event_target_as = enemy_country_civil_war
+				delete_unit_template_and_units = {
+					division_template = "SS Panzer-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "SS-Infanterie-Division"
+				}		
+			}
+			HGR = { 
+				transfer_state = 4 
+				transfer_state = 54
+				transfer_state = 52
+			}
+			HGR = {
+				load_oob = "HGR_GCW"
+				annex_country = {
+					target = event_target:enemy_country_civil_war
+					transfer_troops = yes
+				}
+				set_country_flag = heer_side_civil_war
+
+				declare_war_on = {
+					target = GER
+					type = annex_everything
+				}
+				set_technology = {
+					waffen_ss = 0
+				}
+			}
+			GER = {		
+				every_army_leader = {
+					limit = { has_trait = heer_staff }
+					set_nationality = HGR
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.44 #SI
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.44"}
+	title = germanps.44.t
+	desc = germanps.44.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.44.a
+		random_list = {
+			15 = {
+				country_event = {
+					id = germanps.42
+					days = 1
+				}
+				modifier = {
+				add = 35
+				check_variable = { var = bormannpower value = 0.6 compare = greater_than_or_equals }
+				}
+			}
+			85 = {
+				country_event = {
+					id = germanps.500
+					days = 1
+				}		
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.45"}
+	title = germanps.45.t
+	desc = germanps.45.d
+	picture = GFX_report_event_nazi_grand_council
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.45.a
+		random_list = {
+			15 = {
+				country_event = {
+					id = germanps.34
+					days = 0
+				}
+				modifier = {
+					add = 35
+					check_variable = { var = bormannpower value = 0.6 compare = greater_than_or_equals }
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_GER_GCW_FORCE
+				}
+			}
+			85 = {
+				country_event = {
+					id = germanps.500
+					days = 0
+				}		
+			}
+		}
+	}
+}
+country_event = {
+	id = germanps.46 #goering divide and conquer
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.46"}
+	title = germanps.46.t
+	desc = germanps.46.d
+	picture = GFX_report_event_goering_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = { #work with goebbels
+		name = germanps.46.a
+		add_political_power = 150
+		add_stability = -0.05
+		hidden_effect = {
+			set_country_flag = GOERING_with_goebbels_bye_speer
+			set_country_flag = speer_sphere_purged
+		}
+	}
+	option = { #breakup the speer goebbels bloc
+		name = germanps.46.b
+		add_political_power = -250
+		add_stability = 0.1
+		hidden_effect = {
+			set_country_flag = GOERING_bye_speer_and_goebbels
+			set_country_flag = speer_sphere_purged
+		}
+	}
+}
+country_event = {
+	id = germanps.500
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.500"}
+	title = germanps.500.t #shootout
+	desc = germanps.500.d
+	picture = GFX_report_event_germania_confusion
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = {
+				id = gcw.1
+				days = 3
+			}	
+		}
+	}
+	option = {
+		name = germanps.500.a
+		custom_effect_tooltip = GCW_NOW_Inevitable
+	}
+}
+country_event = {
+	id = germanps.501
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.501"}
+	title = germanps.501.t #replacementleader
+	desc = germanps.501.d
+	picture = GFX_report_event_old_guard_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = {
+				id = gcw.1
+				days = 4
+			}	
+			clr_global_flag = bormann_declaration
+			clr_global_flag = security_ss_coup
+			clr_global_flag = emergency_coup
+		}
+	}
+	option = {
+		trigger = {			
+			NOT = {
+				has_country_flag = goebbels_is_gone
+			}
+		}
+		custom_effect_tooltip = GCW_NOW_Inevitable
+		name = germanps.501.a
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Joseph Goebbels"
+			desc = "GOEBBELS_DESC"
+			picture = "Joseph_Goebbels.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				minister_of_propaganda
+			}
+		}
+		hidden_effect = { 
+			set_country_flag = the_temporary_bloc
+		add_ideas = {
+			GER_HoG_Arthur_Axmann
+			GER_AM_Wilhelm_Decker
+			GER_MoS_Roland_Freisler
+			GER_FM_Heinrich_Georg_Stahmer
+			GER_CoS_Wilhelm_Keitel
+			GER_CoA_Ferdinand_Schorner
+		}
+		}
+	}
+	option = {
+		name = germanps.501.b
+		custom_effect_tooltip = GCW_NOW_Inevitable
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Albert Speer"
+			desc = "Albert_Speer_DESC"
+			picture = "Albert_Speer.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				dubious_figure
+			}
+		}
+		hidden_effect = {  
+			set_country_flag = the_temporary_bloc
+			add_ideas = {
+			GER_HoG_Robert_Ley
+			GER_AM_Alfried_Krupp_von_Bohlen_und_Halbach
+			GER_MoS_Karl_Hanke
+			GER_FM_Walther_Hewel
+			GER_CoS_Alfred_Jodl
+			GER_CoA_Erwin_Rommel
+		}
+		}
+	}
+	option = {
+		name = germanps.501.c
+		trigger = {
+			NOT = {
+				has_country_flag = goering_is_gone
+			}
+		}
+		custom_effect_tooltip = GCW_NOW_Inevitable
+		retire_country_leader = yes
+		clr_country_flag = deadlock_path
+		create_country_leader = {
+			name = "Hermann Göring"
+			desc = "Goering_DESC"
+			picture = "Hermann_Goering.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+				reichsmarschall substance_abuser
+			}
+		}
+		hidden_effect = { 
+		set_country_flag = the_temporary_bloc
+		add_ideas = {
+			GER_HoG_Hermann_Goering
+			GER_AM_Hermann_Goering
+			GER_MoS_Baldur_von_Schirach
+			GER_FM_Walther_Hewel
+			GER_CoS_Wilhelm_Keitel
+			GER_CoA_Erwin_Rommel
+		}	
+		}
+	}
+}
+news_event = {
+	id = twrgernews.1 #Speer Goebbels Bloc
+	title = twrgernews.1.t
+	desc = twrgernews.1.d
+	picture = GFX_news_event_speer_goebbels
+	
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgernews.1.a
+	}
+}
+news_event = {
+	id = twrgernews.2 #Himmler Coup
+	title = twrgernews.2.t
+	desc = twrgernews.2.d
+	picture = GFX_news_event_himmler_in
+	
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgernews.2.a
+	}
+}
+news_event = {
+	id = twrgernews.3 #Bormann Stays
+	title = twrgernews.3.t
+	desc = twrgernews.3.d
+	picture = GFX_news_event_bormann_in
+	
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgernews.3.a
+	}
+}
+news_event = {
+	id = twrgernews.4 #Goering in
+	title = twrgernews.4.t
+	desc = twrgernews.4.d
+	picture = GFX_news_event_goering_in
+	
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgernews.4.a
+	}
+}
+news_event = {
+	id = twrgernews.5 #Heer in
+	title = twrgernews.5.t
+	desc = twrgernews.5.d
+	picture = GFX_news_event_heer_coup
+	
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = twrgernews.5.a
+	}
+}
+country_event = {
+	id = germanps.503
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.503"}
+	title = germanps.503.t #speechfromspeer
+	desc = germanps.503.d
+	picture = GFX_report_event_speer_speech
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.503.a
+	}
+}
+country_event = {
+	id = germanps.504
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.504"}
+	title = germanps.504.t #goebbelsspeech
+	desc = germanps.504.d
+	picture = GFX_report_event_goebbels_speech
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.504.a
+	}
+}
+country_event = {
+	id = germanps.510
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.510"}
+	title = germanps.510.t #bormannaddress
+	desc = germanps.510.d
+	picture = GFX_report_event_bormann_speech
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.510.a
+	}
+}
+country_event = {
+	id = germanps.506
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.506"}
+	title = germanps.506.t #ribbonspeech
+	desc = germanps.506.d
+	picture = GFX_report_event_ribbentrop_speech
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.506.a
+	}
+}
+country_event = {
+	id = germanps.507
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.507"}
+	title = germanps.507.t #karl_speech
+	desc = germanps.507.d
+	picture = GFX_report_event_don_lad
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.507.a
+	}
+}
+country_event = {
+	id = germanps.508
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.508"}
+	title = germanps.508.t #arthur speech
+	desc = germanps.508.d
+	picture = GFX_report_event_seyss
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.508.a
+	}
+}
+country_event = {
+	id = germanps.509
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.509"}
+	title = germanps.509.t #erich speech
+	desc = germanps.509.d
+	picture = GFX_report_event_junta_speech
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.509.a
+	}
+}
+country_event = {
+	id = germanps.511
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.511"}
+	title = germanps.511.t #himmleraddress
+	desc = germanps.511.d
+	picture = GFX_report_event_himmler_speech
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.511.a
+	}
+}
+country_event = {
+	id = germanps.512
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.512"}
+	title = germanps.512.t #Kaltenbrunner speech
+	desc = germanps.512.d
+	picture = GFX_report_event_kaltenbrunner_speech
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.512.a
+	}
+}
+country_event = {
+	id = germanps.513
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.513"}
+	title = germanps.513.t #goeringspeech
+	desc = germanps.513.d
+	picture = GFX_report_event_goering_speech
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanps.513.a
+	}
+}
+country_event = {
+	id = germanps.9999
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.9999"}
+	title = germanps.9999.t #Swiss terror attacks
+	desc = germanps.9999.d
+	picture = GFX_report_event_ruined_german_factories
+	is_triggered_only = yes
+	trigger = {
+	NOT = { has_country_flag = terror_cell_crushed } 
+	}
+	immediate = { 
+		hidden_effect = {
+			random_list = {
+				50 = { 
+					country_event = {
+						id = germanps.99991
+						days = 30
+						random = 50
+					}
+				}
+				50 = {
+					country_event = {
+						id = germanps.9999
+						days = 30
+						random = 50
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = germanps.9999.a
+		random_owned_state = {
+			damage_building = {
+				type = arms_factory
+				damage = 1
+			}
+		}
+		if = {
+		limit = {
+		NOT = { has_country_flag = SWISS_TERRORIST_ATTACKS }
+		}
+		set_country_flag = SWISS_TERRORIST_ATTACKS
+		}
+	}
+}
+country_event = {
+	id = germanps.99991
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.99991"}
+	title = germanps.99991.t #Swiss terror attacks avoided
+	desc = germanps.99991.d
+	picture = GFX_report_event_ruined_german_factories
+	is_triggered_only = yes
+	trigger = {
+	NOT = {
+	has_country_flag = terror_cell_crushed
+		}
+	}
+	immediate = { 
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = {
+					id = germanps.99991
+					days = 30
+					random = 50
+				}
+			}
+			50 = {
+				country_event = {
+					id = germanps.9999
+					days = 30
+					random = 50
+				}
+			}
+		}
+	}
+}
+option = {
+	name = germanps.99991.a
+}
+}
+country_event = {
+	id = germanps.99992
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanps.99992"}
+	title = germanps.99992.t #Swiss terror attacks crushed
+	desc = germanps.99992.d
+	picture = GFX_report_event_gestapo
+	is_triggered_only = yes
+	option = {
+		name = germanps.99992.a
+		add_stability = 0.1
+		set_country_flag = terror_cell_crushed
+	}
+}
+################FLAVOURS######################
+country_event = {
+	id = germanflavours.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1"}
+	title = germanflavours.1.t
+	picture = GFX_report_event_german_mayday #mayday
+	desc = {
+		text = germanflavours.1.d_normal
+		trigger = {
+			NOT = { 			
+				OR = { AND = { has_country_leader = {
+					name = "Heinrich Himmler"
+					ruling_only = yes
+				} 
+				OR = { has_war = yes }
+			}
+		}
+	}
+}
+}
+desc = {
+	text = germanflavours.1.d_war_or_himmler
+	trigger = {
+		OR = { AND = { has_country_leader = {
+			name = "Heinrich Himmler"
+			ruling_only = yes
+		} 
+		OR = { has_war = yes }
+	}
+}
+}
+}
+is_triggered_only = yes
+fire_only_once = yes
+immediate = { hidden_effect = { country_event = { id = germanflavours.1000 days = 365 } } }
+
+option = {
+	name = germanflavours.1.a
+	trigger = { NOT = { 
+		OR = { AND = { has_country_leader = {
+			name = "Heinrich Himmler"
+			ruling_only = yes
+		} 
+		OR = { has_war = yes }
+	}
+}
+}
+}
+add_stability = 0.01
+}
+
+option = {
+	name = germanflavours.1.b
+	trigger = { 
+		OR = { AND = { has_country_leader = {
+			name = "Heinrich Himmler"
+			ruling_only = yes
+		} 
+		OR = { has_war = yes }
+	}
+} 
+}
+
+add_stability = 0.1
+}
+
+}
+country_event = {
+	id = germanflavours.1000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1000"}
+	title = germanflavours.1.t
+	picture = GFX_report_event_german_mayday
+	desc = {
+		text = germanflavours.1.d_normal
+		trigger = {
+			NOT = { 			
+				OR = { AND = { has_country_leader = {
+					name = "Heinrich Himmler"
+					ruling_only = yes
+				} 
+				OR = { has_war = yes }
+			}
+		}
+	}
+}
+}
+desc = {
+	text = germanflavours.1.d_war_or_himmler
+	trigger = {
+		OR = { AND = { has_country_leader = {
+			name = "Heinrich Himmler"
+			ruling_only = yes
+		} 
+		OR = { has_war = yes }
+	}
+}
+}
+}
+is_triggered_only = yes
+fire_only_once = no
+immediate = { hidden_effect = { country_event = { id = germanflavours.100011 days = 365 } } }
+
+option = {
+	name = germanflavours.1.a
+	trigger = { 
+		NOT = { 
+			OR = {
+				AND = { 
+					has_country_leader = {
+						name = "Heinrich Himmler"
+						ruling_only = yes
+					} 
+				}
+				has_war = yes
+			} 
+		}
+	}
+	add_political_power = 50
+}
+
+option = {
+	name = germanflavours.1.b
+	trigger = { 
+		OR = {
+			AND = { 
+				has_country_leader = {
+					name = "Heinrich Himmler"
+					ruling_only = yes
+				} 
+			}
+			has_war = yes
+		} 
+	}
+	add_political_power = 50
+}
+
+}
+country_event = {
+	id = germanflavours.100011
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1000"}
+	title = germanflavours.1.t
+	picture = GFX_report_event_german_mayday
+	desc = {
+		text = germanflavours.1.d_normal
+		trigger = {
+			NOT = { 			
+				OR = { AND = { has_country_leader = {
+					name = "Heinrich Himmler"
+					ruling_only = yes
+				} 
+				OR = { has_war = yes }
+			}
+		}
+	}
+}
+}
+desc = {
+	text = germanflavours.1.d_war_or_himmler
+	trigger = {
+		OR = { AND = { has_country_leader = {
+			name = "Heinrich Himmler"
+			ruling_only = yes
+		} 
+		OR = { has_war = yes }
+	}
+}
+}
+}
+is_triggered_only = yes
+fire_only_once = no
+immediate = { hidden_effect = { country_event = { id = germanflavours.100012 days = 365 } } }
+
+option = {
+	name = germanflavours.1.a
+	trigger = { 
+		NOT = { 
+			OR = {
+				AND = { 
+					has_country_leader = {
+						name = "Heinrich Himmler"
+						ruling_only = yes
+					} 
+				}
+				has_war = yes
+			} 
+		}
+	}
+	add_political_power = 50
+}
+
+option = {
+	name = germanflavours.1.b
+	trigger = { 
+		OR = {
+			AND = { 
+				has_country_leader = {
+					name = "Heinrich Himmler"
+					ruling_only = yes
+				} 
+			}
+			has_war = yes
+		} 
+	}
+	add_political_power = 50
+}
+
+}
+country_event = {
+	id = germanflavours.100012
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1000"}
+	title = germanflavours.1.t
+	picture = GFX_report_event_german_mayday
+	desc = {
+		text = germanflavours.1.d_normal
+		trigger = {
+			NOT = { 			
+				OR = { AND = { has_country_leader = {
+					name = "Heinrich Himmler"
+					ruling_only = yes
+				} 
+				OR = { has_war = yes }
+			}
+		}
+	}
+}
+}
+desc = {
+	text = germanflavours.1.d_war_or_himmler
+	trigger = {
+		OR = { AND = { has_country_leader = {
+			name = "Heinrich Himmler"
+			ruling_only = yes
+		} 
+		OR = { has_war = yes }
+	}
+}
+}
+}
+is_triggered_only = yes
+fire_only_once = no
+immediate = { hidden_effect = { country_event = { id = germanflavours.1000 days = 365 } } }
+
+option = {
+	name = germanflavours.1.a
+	trigger = { 
+		NOT = { 
+			OR = {
+				AND = { 
+					has_country_leader = {
+						name = "Heinrich Himmler"
+						ruling_only = yes
+					} 
+				}
+				has_war = yes
+			} 
+		}
+	}
+	add_political_power = 50
+}
+
+option = {
+	name = germanflavours.1.b
+	trigger = { 
+		OR = {
+			AND = { 
+				has_country_leader = {
+					name = "Heinrich Himmler"
+					ruling_only = yes
+				} 
+			}
+			has_war = yes
+		} 
+	}
+	add_political_power = 50
+}
+
+}
+#Heinrich von Vietinghoff dies
+country_event = {
+	id = germanflavours.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.2"}
+	title = germanflavours.2.t
+	picture = GFX_report_event_generic_nazi_death
+	desc = germanflavours.2.d
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = germanflavours.2.a
+		add_political_power = 10
+	}
+}
+#Heros Day
+country_event = {
+	id = germanflavours.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.3"}
+	title = germanflavours.3.t
+	picture = GFX_report_event_heros_day
+	desc = germanflavours.3.d
+	is_triggered_only = yes
+	fire_only_once = no
+	immediate = { hidden_effect = { country_event = { id = germanflavours.1001 days = 365 } } }
+	trigger = {
+	NOT = { has_country_flag = FIRED_BEFORE_GERMAN_TAG_YEARLY_2 }
+	}
+	option = {
+		name = germanflavours.3.a
+		add_political_power = 20
+		add_timed_idea = {
+			idea = GER_heros_day
+			days = 30
+		}
+		set_country_flag = FIRED_BEFORE_GERMAN_TAG_YEARLY_2
+	}
+}
+country_event = {
+	id = germanflavours.1001
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1001"}
+	title = germanflavours.3.t
+	desc = germanflavours.3.d
+	picture = GFX_report_event_heros_day
+	is_triggered_only = yes
+	fire_only_once = no
+	immediate = { hidden_effect = { country_event = { id = germanflavours.10011 days = 365 } } }
+	option = {
+		name = germanflavours.3.a
+		add_political_power = 20
+		add_timed_idea = {
+			idea = GER_heros_day
+			days = 30
+		}
+	}
+}
+country_event = {
+	id = germanflavours.10011
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1001"}
+	title = germanflavours.3.t
+	desc = germanflavours.3.d
+	picture = GFX_report_event_heros_day
+	is_triggered_only = yes
+	fire_only_once = no
+	immediate = { hidden_effect = { country_event = { id = germanflavours.10012 days = 365 } } }
+	option = {
+		name = germanflavours.3.a
+		add_political_power = 20
+		add_timed_idea = {
+			idea = GER_heros_day
+			days = 30
+		}
+	}
+}
+country_event = {
+	id = germanflavours.10012
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1001"}
+	title = germanflavours.3.t
+	desc = germanflavours.3.d
+	picture = GFX_report_event_heros_day
+	is_triggered_only = yes
+	fire_only_once = no
+	immediate = { hidden_effect = { country_event = { id = germanflavours.1001 days = 365 } } }
+	option = {
+		name = germanflavours.3.a
+		add_political_power = 20
+		add_timed_idea = {
+			idea = GER_heros_day
+			days = 30
+		}
+	}
+}
+#Hitler 63 Birthday
+country_event = {
+	id = germanflavours.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.4"}
+	title = germanflavours.4.t
+	desc = germanflavours.4.d
+	picture = GFX_report_event_hitler_birthday_parade
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.4.a
+		add_stability = 0.1
+	}
+}
+#FRAUENSCHICKSALE
+country_event = {
+	id = germanflavours.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.5"}
+	title = germanflavours.5.t
+	desc = germanflavours.5.d
+	picture = GFX_report_event_frauenschicksale
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.5.a
+		add_stability = 0.01
+	}
+}
+####FANTA########
+country_event = {
+	id = germanflavours.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.6"}
+	title = germanflavours.6.t
+	desc = germanflavours.6.d
+	picture = GFX_report_event_fanta
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.6.a
+		add_political_power = 10
+	}
+}
+####Memorial Day for the martyrs of the Movement########
+country_event = {
+	id = germanflavours.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.7"}
+	title = germanflavours.7.t
+	desc = germanflavours.7.d
+	picture = GFX_report_event_movement_day
+	immediate = { hidden_effect = { country_event = { id = germanflavours.1002 days = 365 } } }
+	is_triggered_only = yes
+	fire_only_once = no
+	trigger = { NOT = { has_country_flag = FIRED_BEFORE_GERMAN_TAG_YEARLY } }
+	option = {
+		name = germanflavours.7.a
+		add_political_power = 20
+		add_stability = 0.01
+		set_country_flag = FIRED_BEFORE_GERMAN_TAG_YEARLY
+	}
+}
+country_event = {
+	id = germanflavours.1002
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1002"}
+	title = germanflavours.7.t
+	desc = germanflavours.7.d
+	picture = GFX_report_event_movement_day
+	immediate = { hidden_effect = { country_event = { id = germanflavours.10021 days = 365 } } }
+	is_triggered_only = yes
+	fire_only_once = no
+	option = {
+		name = germanflavours.7.a
+		add_political_power = 20
+	}
+}
+country_event = {
+	id = germanflavours.10021
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1002"}
+	title = germanflavours.7.t
+	desc = germanflavours.7.d
+	picture = GFX_report_event_movement_day
+	immediate = { hidden_effect = { country_event = { id = germanflavours.10022 days = 365 } } }
+	is_triggered_only = yes
+	fire_only_once = no
+	option = {
+		name = germanflavours.7.a
+		add_political_power = 20
+	}
+}
+country_event = {
+	id = germanflavours.10022
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.1002"}
+	title = germanflavours.7.t
+	desc = germanflavours.7.d
+	picture = GFX_report_event_movement_day
+	immediate = { hidden_effect = { country_event = { id = germanflavours.1002 days = 365 } } }
+	is_triggered_only = yes
+	fire_only_once = no
+	option = {
+		name = germanflavours.7.a
+		add_political_power = 20
+	}
+}
+########Luft Hansa#####
+country_event = {
+	id = germanflavours.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.8"}
+	title = germanflavours.8.t
+	desc = germanflavours.8.d
+	picture = GFX_report_event_lufthansa
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.8.a
+		add_political_power = 10
+	}
+}
+######Alraune########
+country_event = {
+	id = germanflavours.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.9"}
+	title = germanflavours.9.t
+	desc = germanflavours.9.d
+	picture = GFX_report_event_alraune
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.9.a
+		add_political_power = 5
+	}
+}
+######Volkswagen########
+country_event = {
+	id = germanflavours.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.10"}
+	title = germanflavours.10.t
+	desc = germanflavours.10.d
+	picture = GFX_report_event_volkswagen
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.10.a
+		add_political_power = 10
+	}
+}
+######Bad Omen########
+country_event = {
+	id = germanflavours.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.11"}
+	title = germanflavours.11.t
+	desc = germanflavours.11.d
+	picture = GFX_report_event_bad_omen
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.11.a
+		add_political_power = -15
+	}
+} 
+######The U Bahn########
+country_event = {
+	id = germanflavours.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.12"}
+	title = germanflavours.12.t
+	desc = germanflavours.12.d
+	picture = GFX_report_event_german_ubahn
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.12.a
+		64 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		855 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+		every_country = {
+		limit = {
+		NOT = { tag = GER }
+		is_in_faction_with = GER
+		}
+			news_event = { id = twrnews.12 days = 0 } 
+			}
+		}
+	}
+} 
+######Minor Polish Unrest########
+country_event = {
+	id = germanflavours.777
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.777"}
+	title = germanflavours.777.t
+	desc = germanflavours.777.d
+	picture = GFX_report_event_ruined_german_factories
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = germanflavours.77771 days = 50 random = 250 } }
+				50 = { country_event = { id = germanflavours.7772 days = 50 random = 250 } }
+			}
+		}
+	}
+	option = {
+		name = germanflavours.777.a
+		hidden_effect = {
+			random_owned_state = {
+				limit = { is_core_of = POL }
+				damage_building = {
+					type = arms_factory
+					damage = 1
+				}
+			}
+		}
+	}
+} 
+country_event = {
+	id = germanflavours.77771
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.777"}
+	title = germanflavours.777.t
+	desc = germanflavours.777.d
+	picture = GFX_report_event_ruined_german_factories
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = germanflavours.77772 days = 50 random = 250 } }
+				50 = { country_event = { id = germanflavours.7772 days = 50 random = 250 } }
+			}
+		}
+	}
+	option = {
+		name = germanflavours.777.a
+		hidden_effect = {
+			random_owned_state = {
+				limit = { is_core_of = POL }
+				damage_building = {
+					type = arms_factory
+					damage = 1
+				}
+			}
+		}
+	}
+} 
+country_event = {
+	id = germanflavours.77772
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.777"}
+	title = germanflavours.777.t
+	desc = germanflavours.777.d
+	picture = GFX_report_event_ruined_german_factories
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = germanflavours.777 days = 50 random = 250 } }
+				50 = { country_event = { id = germanflavours.7772 days = 50 random = 250 } }
+			}
+		}
+	}
+	option = {
+		name = germanflavours.777.a
+		hidden_effect = {
+			random_owned_state = {
+				limit = { is_core_of = POL }
+				damage_building = {
+					type = arms_factory
+					damage = 1
+				}
+			}
+		}
+	}
+} 
+country_event = {
+	id = germanflavours.7772
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.7772"}
+	title = germanflavours.7772.t
+	desc = germanflavours.7772.d
+	picture = GFX_report_event_ruined_german_factories
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = polishterrorcrushed
+		}
+	}
+	immediate = {
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = germanflavours.777 days = 50 random = 250 } }
+				50 = { country_event = { id = germanflavours.7772 days = 50 random = 250 } }
+			}
+		}
+	}
+	option = {
+		name = germanflavours.7772.a
+	}
+} 
+country_event = {
+	id = germanflavours.7773
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.7773"}
+	title = germanflavours.7773.t
+	desc = germanflavours.7773.d
+	picture = GFX_report_event_ruined_german_factories
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.7773.a
+		add_stability = 0.03
+	}
+} 
+######French passive unrest########
+country_event = {
+	id = germanflavours.778
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.778"}
+	title = germanflavours.778.t
+	desc = germanflavours.778.d
+	picture = GFX_report_event_burgund_strikes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.778.a
+		add_stability = -0.01
+	}
+} 
+#########GERMAN ATOMIC BOMB##############
+country_event = {
+	id = germanflavours.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.13"}
+	title = germanflavours.13.t
+	desc = germanflavours.13.d
+	picture = GFX_report_event_uk_nuke
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.13.a
+		add_war_support = 0.1
+		hidden_effect = {
+			news_event = { id = twrnews.16 days = 1 } 
+			USA = { add_war_support = 0.05 }
+			ENG = { add_war_support = 0.05 }
+		}
+	}
+} 
+######Orpo Jew Hunt########
+country_event = {
+	id = germanflavours.14 #Reserve Police Battalion 101 jew hunt
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.14"}
+	title = germanflavours.14.t
+	desc = germanflavours.14.d
+	picture = GFX_report_event_orpo
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			random_list = {
+				80 = { country_event = { id = germanflavours.15 days = 5 random = 300 } }
+				20 = { country_event = { id = germanflavours.16 days = 5 random = 300 } }
+			}
+		}
+	}
+	option = {
+		name = germanflavours.14.a
+		add_political_power = 30
+	}
+}
+country_event = {
+	id = germanflavours.15 #Orpo successful hunt
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.15"}
+	title = germanflavours.15.t
+	desc = germanflavours.15.d
+	picture = GFX_report_event_orpo_jew_hunt
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = germanflavours.15.a
+		add_stability = 0.02
+		89 = {
+			add_manpower = -5200
+		}
+	}
+}
+country_event = {
+	id = germanflavours.16 #Polish counter attack
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.16"}
+	title = germanflavours.16.t
+	desc = germanflavours.16.d
+	picture = GFX_report_event_orpo_defeated
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.16.a
+		add_political_power = -70
+		add_stability = -0.03
+		add_manpower = -500
+	}
+}
+##########MORELL HOSPITAL################
+country_event = {
+	id = germanflavours.17 #Morell hospital
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.17"}
+	title = germanflavours.17.t
+	desc = germanflavours.17.d
+	picture = GFX_report_event_morell_hospital
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = germanflavours.17.a
+		add_political_power = 50
+	}
+}
+##########THE SPACE PROJECT EVENT CHAIN################
+country_event = {
+	id = germanflavours.18 #Greenlighting the test
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.18"}
+	title = germanflavours.18.t
+	desc = germanflavours.18.d
+	picture = GFX_report_event_rocket_project_ready
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = germanflavours.19 days = 3 random = 300 }
+		}
+	}
+	option = {
+		name = germanflavours.18.a
+		add_political_power = 50
+	}
+}
+
+country_event = {
+	id = germanflavours.19 #errors in the craft
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.19"}
+	title = germanflavours.19.t
+	desc = germanflavours.19.d
+	picture = GFX_report_event_a9_errors
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = germanflavours.20 days = 8 random = 300 }
+		}
+	}
+	option = {
+		name = germanflavours.19.a
+		add_political_power = -5
+	}
+}
+
+country_event = {
+	id = germanflavours.20 #rushed safetychecking
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.20"}
+	title = germanflavours.20.t
+	desc = germanflavours.20.d
+	picture = GFX_report_event_rushed_safety_check
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = germanflavours.21 days = 5 random = 300 }
+		}
+	}
+	option = {
+		name = germanflavours.20.a
+		add_political_power = -5
+	}
+}
+
+country_event = {
+	id = germanflavours.21 #the launch day
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.21"}
+	title = germanflavours.21.t
+	desc = germanflavours.21.d
+	picture = GFX_report_event_launch_site
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = germanflavours.21 days = 5 random = 300 }
+		}
+	}
+	option = {
+		name = germanflavours.21.a
+		hidden_effect = {
+			random_list = {
+				20 = { country_event = { id = germanflavours.22 days = 1 } }
+				80 = { country_event = { id = germanflavours.23 days = 1 } }
+			}
+		}
+	}
+	option = {
+		name = germanflavours.21.b
+		ai_chance = { 
+			factor = 0
+		}
+		add_political_power = -100
+	}
+}
+
+country_event = {
+	id = germanflavours.22 #rocket blows up
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.22"}
+	title = germanflavours.22.t
+	desc = germanflavours.22.d
+	picture = GFX_report_event_explosion
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		add_political_power = -200
+		name = germanflavours.22.a
+		hidden_effect = {
+			USA = { 
+				country_event = {
+					id = twrusa.136
+					days = 5
+				}
+			}		
+		}
+	}
+}
+
+country_event = {
+	id = germanflavours.23 #REACHED 132 KM BEFORE CRASHING
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.23"}
+	title = germanflavours.23.t
+	desc = germanflavours.23.d
+	picture = GFX_report_event_explosion
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		add_political_power = 90
+		add_war_support = 0.01
+		add_manpower = -1
+		name = germanflavours.23.a
+		hidden_effect = {
+		news_event = { id = germannews.4 days = 1 }
+			USA = { 
+				country_event = {
+					id = twrusa.136
+					days = 5
+				}
+			}
+		}
+	}
+}
+############MORELL ALL-GERMAN DRUGS COMPANY 3RD YEAR##########
+country_event = {
+	id = germanflavours.24 #Pervitin
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.24"}
+	title = germanflavours.24.t
+	desc = germanflavours.24.d
+	picture = GFX_report_event_nazi_drugs
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		add_political_power = 10
+		name = germanflavours.24.a
+	}
+}
+############BURGUNDY SHITS##########
+country_event = {
+	id = germanflavours.25 #Anonymous Claims of Anomalous Nature
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.25"}
+	title = germanflavours.25.t
+	desc = germanflavours.25.d
+	picture = GFX_report_event_nazi_drugs
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		add_political_power = -5
+		name = germanflavours.25.a
+	}
+}
+##########HITLER SICK SICK###############
+country_event = {
+	id = germanflavours.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.100"}
+	title = germanflavours.100.t
+	desc = germanflavours.100.d
+	picture = GFX_report_event_sickly_hitler
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = germanflavours.101 days = 100 random = 90 }
+		}
+	}
+	option = {
+		name = germanflavours.100.a
+		add_political_power = 70
+	}
+} 
+country_event = {
+	id = germanflavours.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.101"}
+	title = germanflavours.101.t
+	desc = germanflavours.101.d
+	picture = GFX_report_event_sickly_hitler
+	immediate = {
+		hidden_effect = {
+			country_event = { id = germanflavours.102 days = 93 random = 100 }
+		}
+	}
+	is_triggered_only = yes
+	option = {
+		name = germanflavours.101.a
+		add_political_power = -70
+	}
+} 
+country_event = {
+	id = germanflavours.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanflavours.102"}
+	title = germanflavours.102.t
+	desc = germanflavours.102.d
+	picture = GFX_report_event_sickly_hitler
+	is_triggered_only = yes
+	option = {
+		name = germanflavours.102.a
+		add_political_power = -150
+		hidden_effect = {
+		ROM = {
+		country_event = { id = twrromania_war.0 hours = 16 }
+			}
+		}
+	}
+} 
+##############BURRY HITLER#######################
+
+news_event = {
+	id = hitlerfuneral.1
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.1"
+	}
+	title = hitlerfuneral.1.t
+	desc = hitlerfuneral.1.d
+	picture = GFX_news_event_hitler_funeral
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	major = yes
+
+	option = {
+		name = hitlerfuneral.1.a
+		trigger = {
+			is_german = no
+		}
+	}
+	option = {
+		name = hitlerfuneral.1.b
+		trigger = { is_german = yes }
+	}
+} 
+country_event = {
+	id = hitlerfuneral.12 #prepare for funeral
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.12"
+	}
+	title = hitlerfuneral.12.t
+	desc = hitlerfuneral.12.d
+	picture = GFX_report_event_grand_nazi_funeral
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = hitlerfuneral.12.a
+		hidden_effect = {
+			SWE = { country_event = { id = hitlerfuneral.2 days = 2 } }
+			FIN = { country_event = { id = hitlerfuneral.2 days = 2 } }
+			CHI = { country_event = { id = hitlerfuneral.21 days = 4 } }
+			ITA = { country_event = { id = hitlerfuneral.22 days = 3 } }
+			SPA = { country_event = { id = hitlerfuneral.2 days = 3 } }
+			POR = { country_event = { id = hitlerfuneral.2 days = 3 } }
+			news_event = { id = hitlerfuneral.1 days = 9 random = 10 }
+		}
+	}
+} 
+country_event = {
+	id = hitlerfuneral.2 #funeral reaction
+	immediate = {log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.2"}
+	title = hitlerfuneral.2.t
+	desc = hitlerfuneral.2.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hitlerfuneral.2.a
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				tag = SWE
+			}
+		}
+		add_stability = -0.01
+		hidden_effect = {
+			GER = {
+				country_event = hitlerfuneral.3
+			}
+		}
+	}
+	option = {
+		name = hitlerfuneral.2.b #telegram
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = -50
+		hidden_effect = {
+			GER = {
+				country_event = hitlerfuneral.31
+			}
+		}
+	}
+} 
+country_event = {
+	id = hitlerfuneral.22 #funeral reaction - Italy
+	immediate = {log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.21"}
+	title = hitlerfuneral.22.t
+	desc = hitlerfuneral.22.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hitlerfuneral.22.a
+		ai_chance = {
+			factor = 30
+		}
+		hidden_effect = {
+			GER = {
+				country_event = hitlerfuneral.220
+			}
+		}
+	}
+	option = {
+		name = hitlerfuneral.22.b #telegram
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = 50
+		hidden_effect = {
+			GER = {
+				country_event = hitlerfuneral.221
+			}
+		}
+	}
+} 
+country_event = {
+	id = hitlerfuneral.220 #attend
+	immediate = {log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.3"}
+	title = hitlerfuneral.220.t
+	desc = hitlerfuneral.220.d
+	picture = GFX_report_event_nazi_flag_on_building
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hitlerfuneral.3.a
+		add_opinion_modifier = {
+			target = FROM
+			modifier = small_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = FROM
+			modifier = small_increase
+		}
+	}
+} 
+country_event = {
+	id = hitlerfuneral.221 #no
+	immediate = {log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.3"}
+	title = hitlerfuneral.221.t
+	desc = hitlerfuneral.221.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hitlerfuneral.31.a
+		add_political_power = -5
+		add_opinion_modifier = {
+			target = FROM
+			modifier = large_decrease
+		}
+		reverse_add_opinion_modifier = {
+			target = FROM
+			modifier = large_decrease
+		}
+	}
+} 
+country_event = {
+	id = hitlerfuneral.21 #funeral reaction - China
+	immediate = {log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.21"}
+	title = hitlerfuneral.21.t
+	desc = hitlerfuneral.21.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hitlerfuneral.21.a
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = 50
+		hidden_effect = {
+			GER = {
+				country_event = hitlerfuneral.210
+			}
+		}
+	}
+	option = {
+		name = hitlerfuneral.21.b #telegram
+		ai_chance = {
+			factor = 30
+		}
+		add_political_power = 50
+		hidden_effect = {
+			GER = {
+				country_event = hitlerfuneral.31
+			}
+		}
+	}
+} 
+country_event = {
+	id = hitlerfuneral.210 #attend
+	immediate = {log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.3"}
+	title = hitlerfuneral.210.t
+	desc = hitlerfuneral.210.d
+	picture = GFX_report_event_nazi_flag_on_building
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hitlerfuneral.3.a
+		add_opinion_modifier = {
+			target = FROM
+			modifier = small_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = FROM
+			modifier = small_increase
+		}
+	}
+} 
+country_event = {
+	id = hitlerfuneral.3 #attend
+	immediate = {log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.3"}
+	title = hitlerfuneral.3.t
+	desc = hitlerfuneral.3.d
+	picture = GFX_report_event_nazi_flag_on_building
+	is_triggered_only = yes
+	fire_only_once = yes
+	fire_only_once = yes
+	option = {
+		name = hitlerfuneral.3.a
+		add_opinion_modifier = {
+			target = FROM
+			modifier = small_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = FROM
+			modifier = small_increase
+		}
+	}
+} 
+country_event = {
+	id = hitlerfuneral.31 #no
+	immediate = {log = "[GetDateText]: [Root.GetName]: event hitlerfuneral.3"}
+	title = hitlerfuneral.31.t
+	desc = hitlerfuneral.31.d
+	picture = GFX_report_event_german_spying
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hitlerfuneral.31.a
+		add_political_power = -5
+		add_opinion_modifier = {
+			target = FROM
+			modifier = small_decrease
+		}
+		reverse_add_opinion_modifier = {
+			target = FROM
+			modifier = small_decrease
+		}
+	}
+} 
+##############OST RELATED SHITS##################
+
+country_event = {
+	id = germanostshits.1 #Fake News
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanostshits.1"}
+	title = germanostshits.1.t
+	desc = germanostshits.1.d
+	picture = GFX_report_event_das_reich
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanostshits.1.a
+	}
+} 
+
+country_event = {
+	id = germanostshits.2 #Fabricated evidence
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanostshits.2"}
+	title = germanostshits.2.t
+	desc = germanostshits.2.d
+	picture = GFX_report_event_camp
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanostshits.2.a
+	}
+} 
+
+country_event = {
+	id = germanostshits.3 #Oversea Agents
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanostshits.3"}
+	title = germanostshits.3.t
+	desc = germanostshits.3.d
+	picture = GFX_report_event_german_spying
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanostshits.3.a
+	}
+} 
+##############SPYING FOR HITLER BOI##################
+country_event = {
+	id = germanspying.1 #SS
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanspying.1"}
+	title = germanspying.1.t
+	desc = germanspying.1.d
+	picture = GFX_report_event_german_spying
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanspying.1.a
+	}
+} 
+country_event = {
+	id = germanspying.2 #Army
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanspying.2"}
+	title = germanspying.2.t
+	desc = germanspying.2.d
+	picture = GFX_report_event_german_spying
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanspying.2.a
+	}
+} 
+country_event = {
+	id = germanspying.3 #Party
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germanspying.3"}
+	title = germanspying.3.t
+	desc = germanspying.3.d
+	picture = GFX_report_event_german_spying
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = germanspying.3.a
+	}
+} 

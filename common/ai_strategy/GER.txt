@@ -1,0 +1,402 @@
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+# contain
+# area_priority
+
+
+GER_unit_production = {
+	enable = {
+	OR = {
+		original_tag = GER
+		tag = HSS
+		tag = HGR
+		}
+	}
+	abort = {
+		surrender_progress > 0.25
+	}
+	
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 8 #30 to 8
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = paratrooper
+		value = 0
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = 2
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = marines
+		value = 0
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cavalry
+		value = 0
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = mobile
+		value = 30
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 70 #88 to 70
+	}
+	
+	#Air unit factors
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 70
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 10 #because doctrine this = 15
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 5
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = strategic_bomber
+		value = 5
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = naval_bomber
+		value = 5
+	}
+	
+	
+	# Naval unit factors
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 35
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = submarine
+		value = -150 #because doctrine this = 50
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 20
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = carrier
+		value = -500
+	}	
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 20
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = fighter
+		value = 20
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 50 #30 to 50
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = artillery
+		value = 40 #20 to 40
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 20
+	}
+}	
+GER_emergency_unit_production = {
+	enable = {
+	OR = {
+		original_tag = GER
+		tag = HSS
+		tag = HGR
+		}
+		surrender_progress > 0.25
+	}
+	abort = {
+		has_war = no
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 100 #88 to 70
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 85 #30 to 50
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = artillery
+		value = 50 #20 to 40
+	}
+	
+}
+GER_armored_production = {
+	enable = {
+		date > 1939.1.1
+		OR = {
+			original_tag = GER
+			tag = HSS
+			tag = HGR
+			}
+		ai_wants_divisions > 24 #Decreasing the amount of tanks the AI wants
+	}
+	abort = {
+		ai_wants_divisions < 25 #Decreasing the amount of tanks the AI wants
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 5
+	}
+}
+
+GER_highered_armored_production = {
+	enable = {
+		original_tag = GER
+		num_of_military_factories > 109
+	}
+	abort = {
+		num_of_military_factories < 110
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 10
+	}
+}
+
+GER_template_design = {
+	enable = {
+		original_tag = GER
+		NOT = {
+		has_global_flag = german_civil_war_started
+		}			
+	}
+	abort = {
+		has_global_flag = german_civil_war_started
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = cavalry
+		value = 0
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = MBT
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = IFV
+		value = 125
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = APC
+		value = 125
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = infantry
+		value = 25
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = light_infantry
+		value = 0
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = marines
+		value = 15
+	}
+}
+
+GER_area_priority = {
+	enable = {
+		original_tag = GER
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = europe
+		value = 110 #more focus here
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = north_america
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = south_america
+		value = 75
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = 75
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 50
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = africa
+		value = -90
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = pacific
+		value = 120 #less focus here
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = oceania
+		value = 80
+	}
+}
+
+axis_stay_away_from_the_royal_navy = {
+	enable = {
+		has_war_with = ENG
+		date < 1942.1.1
+		
+		OR = {
+			GER = {
+				naval_strength_ratio = {
+					tag = ENG 
+  					ratio < 0.5
+  				}
+  			}
+
+			# if we manage to get a foothold in UK we must do what we can to exploit it! (checks coastal states)
+			divisions_in_state = { state = 127 size > 0 }
+			divisions_in_state = { state = 126 size > 0 }
+			divisions_in_state = { state = 125 size > 0 }
+			divisions_in_state = { state = 129 size > 0 }
+			divisions_in_state = { state = 130 size > 0 }
+			divisions_in_state = { state = 131 size > 0 }
+			divisions_in_state = { state = 123 size > 0 }
+			divisions_in_state = { state = 122 size > 0 }
+			divisions_in_state = { state = 132 size > 0 }
+			divisions_in_state = { state = 121 size > 0 }
+			divisions_in_state = { state = 136 size > 0 }
+			divisions_in_state = { state = 120 size > 0 }
+			divisions_in_state = { state = 133 size > 0 }
+		}		
+	}
+	abort = {
+		OR = {
+			date > 1942.1.1
+			NOT = { has_war_with = ENG }
+			AND = {
+				GER = {
+					naval_strength_ratio = {
+						tag = ENG 
+	  					ratio > 0.5
+	  				}
+	  			}
+
+				divisions_in_state = { state = 127 size < 1 }
+				divisions_in_state = { state = 126 size < 1 }
+				divisions_in_state = { state = 125 size < 1 }
+				divisions_in_state = { state = 129 size < 1 }
+				divisions_in_state = { state = 130 size < 1 }
+				divisions_in_state = { state = 131 size < 1 }
+				divisions_in_state = { state = 123 size < 1 }
+				divisions_in_state = { state = 122 size < 1 }
+				divisions_in_state = { state = 132 size < 1 }
+				divisions_in_state = { state = 121 size < 1 }
+				divisions_in_state = { state = 136 size < 1 }
+				divisions_in_state = { state = 120 size < 1 }
+				divisions_in_state = { state = 133 size < 1 }
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = naval_avoid_region
+		id = 18 #english channel
+		value = 100
+	}
+}

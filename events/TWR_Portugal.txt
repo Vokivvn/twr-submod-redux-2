@@ -1,0 +1,626 @@
+﻿#########################################################################
+# TWR Hour Events : PORTUGAL
+#########################################################################
+add_namespace = twrportugal
+
+country_event = {#Iberia Pact - nation in the pact attacked - seeks defense
+	id = twrportugal.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrportugal.1"}
+	title = twrportugal.1.t
+	desc = twrportugal.1.d
+	picture = GFX_report_event_soviet_army_greeted
+
+	fire_only_once = yes
+
+
+	trigger = { 
+		has_idea = Iberia_Pact
+		NOT = { has_country_flag = IB_already_called }
+		has_defensive_war = yes
+		NOT = {
+			is_in_faction_with = USA
+		}
+	}
+
+
+	option = {#Call the pact
+		name = twrportugal.1.a
+		every_other_country = {
+			limit = {
+				has_idea = Iberia_Pact
+				NOT = { has_war_with = ROOT }		#Just in case someone starts a war between NATO countries
+				is_subject = no
+			}
+			country_event = { id = twrportugal.2 days = 0 }
+		}
+		set_country_flag = IB_already_called
+		create_faction = "Iberian Pact"
+	}
+
+	option = {#Don't call the pact
+		name = twrportugal.1.b
+		add_war_support = 0.02
+		set_country_flag = IB_already_called
+	}
+	
+}
+
+#Iberia Pact Member response
+country_event = {
+	
+	id = twrportugal.2
+	title = twrportugal.2.t
+	desc = twrportugal.2.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = twrportugal.2.a
+                add_stability = 0.05
+                add_war_support = 0.05
+                add_political_power = 100
+		FROM = { add_to_faction = ROOT }
+	}
+
+}
+
+#Iberia Pact fucking breaks
+country_event = {
+	
+	id = twrportugal.3
+	title = twrportugal.3.t
+	desc = twrportugal.3.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	fire_only_once = yes
+
+trigger = { 
+has_country_flag = IB_already_called
+is_in_faction = yes
+NOT = { has_war = yes }
+}
+	
+	option = {
+		name = twrportugal.3.a
+dismantle_faction = yes
+	}
+
+}
+
+#War in Kongo - TEST
+country_event = {
+	
+	id = twrportugal.4
+	title = twrportugal.4.t
+	desc = twrportugal.4.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	fire_only_once = yes
+
+trigger = { 
+tag = POR
+date > 1954.5.5
+has_country_flag = POR_FOCUS_ON_ANGOLA
+POR = { controls_state = 540 }
+}
+	
+	option = {
+		name = twrportugal.4.a
+POR = { load_oob = "ANG_POR_NATIVES" }
+BAK = { set_state_controller = 540 }
+BAK = { set_state_owner = 540 }
+BAK = { add_offsite_building = { type = arms_factory level = 2 } }
+POR = { set_province_controller = 8248 }
+POR = { set_province_controller = 10966 }
+BAK = { load_oob = "BAK_REVOLT" }
+POR = { 
+declare_war_on = {
+    target = BAK
+    type = annex_everything
+}
+}
+add_timed_idea = { idea = POR_angola_war days = 200 }
+news_event = { id = twrpornews.3 days = 0 }
+	}
+
+}
+
+#War against Nationalist Partisans - TEST
+country_event = {
+	
+	id = twrportugal.5
+	title = twrportugal.5.t
+	desc = twrportugal.5.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	fire_only_once = yes
+
+trigger = { 
+tag = POR
+date > 1954.5.5
+OR = { 
+has_country_flag = POR_FOCUS_ON_KONGO
+AND = { 
+NOT = { has_country_flag = POR_FOCUS_ON_KONGO}
+NOT = { has_country_flag = POR_FOCUS_ON_ANGOLA}
+}
+}
+POR = { controls_state = 948 }
+}
+	
+	option = {
+		name = twrportugal.5.a
+POR = { load_oob = "ANG_POR_NATIVES" }
+ANG = { set_state_controller = 948 }
+ANG = { set_state_owner = 948 }
+ANG = { add_offsite_building = { type = arms_factory level = 2 } }
+ANG = { load_oob = "ANG_REVOLT" }
+POR = { set_province_controller = 13259 }
+POR = { 
+declare_war_on = {
+    target = ANG
+    type = annex_everything
+}
+}
+add_timed_idea = { idea = POR_angola_war days = 200 }
+news_event = { id = twrpornews.2 days = 0 }
+	}
+
+}
+
+#Salazar adresses his cabinet
+country_event = {
+	
+	id = twrportugal.6
+	title = twrportugal.6.t
+	desc = twrportugal.6.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+	
+	option = {#Continue liberalization reforms
+		name = twrportugal.6.a
+add_popularity = { ideology = liberal popularity = 0.05 }
+add_war_support = 0.05
+set_country_flag = POR_LIBERAL_REFORMS
+	}
+
+	option = {#End liberalization reforms
+		name = twrportugal.6.b
+add_popularity = { ideology = paternal_autocrat popularity = 0.05 }
+add_war_support = -0.05
+set_country_flag = POR_NO_LIBERAL_REFORMS
+	}
+}
+
+#Soften Colonial Relationships
+country_event = {
+	
+	id = twrportugal.7
+	title = twrportugal.7.t
+	desc = twrportugal.7.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+	
+immediate = {
+country_event = { id = twrportugal.8 days = 3 }
+}
+	option = {#Let's talk proposals
+		name = twrportugal.7.a
+add_political_power = -20
+	}
+
+
+}
+
+#Economic ruins in Timor
+country_event = {
+	
+	id = twrportugal.8
+	title = twrportugal.8.t
+	desc = twrportugal.8.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+	immediate = {
+country_event = { id = twrportugal.9 days = 3 }
+}
+	option = {#Timor doesn't need mainland support
+		name = twrportugal.8.a
+add_stability = -0.05
+	}
+
+	option = {#Timor will get considerable mainland support
+		name = twrportugal.8.b
+add_political_power = -50
+add_stability = 0.01
+add_offsite_building = { type = industrial_complex level = 1 }
+	}
+
+	option = {#Unite Timor as a full Portuguese State
+		name = twrportugal.8.c
+custom_effect_tooltip = POR_TIMOR_COMMONWEALTH
+hidden_effect = {
+add_timed_idea = { idea = POR_Timor_Prep days = 365 }
+set_country_flag = POR_TIMOR_COMMONWEALTH_PREP
+}
+	}
+}
+
+#Civil Unrest in the Angola and Mozambique
+country_event = {
+	
+	id = twrportugal.9
+	title = twrportugal.9.t
+	desc = twrportugal.9.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+immediate = {
+country_event = { id = twrportugal.10 days = 3 }
+}	
+	option = {#COME BACK LATER AFTER INTRODUCING THE COLONIAL UNREST MECHANIC
+		name = twrportugal.9.a
+add_stability = 0.05
+add_political_power = -150
+	}
+
+
+	
+}
+
+#Neglection in Guinea
+country_event = {
+	
+	id = twrportugal.10
+	title = twrportugal.10.t
+	desc = twrportugal.10.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+
+	option = {#Let's stop neglecting our peanut colony
+		name = twrportugal.10.a
+add_stability = 0.02
+add_political_power = -50
+add_offsite_building = { type = industrial_complex level = 1 }
+	}
+
+	option = {#What's a Guinea?
+		name = twrportugal.10.b
+add_stability = -0.02
+
+	}
+	
+}
+
+#Humberto Delgado coups Salazar's regime
+country_event = {
+	
+	id = twrportugal.11
+	title = twrportugal.11.t
+	desc = twrportugal.11.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+
+	option = {#Let's stop neglecting our peanut colony
+		name = twrportugal.11.a
+add_stability = -0.15
+add_popularity = { ideology = paternal_autocrat popularity = -0.2 }
+add_popularity = { ideology = liberal popularity = 0.1 }
+set_politics = { ruling_party = liberal }
+create_country_leader = {
+	name = "Humberto Delgado"
+	desc = ""
+	picture = "gfx/leaders/POR/POR_Humberto_Delgado.dds"
+	expire = "2000.1.1"
+	ideology =  conservative_liberalism 
+	traits = {}
+}
+hidden_effect = {
+complete_national_focus = POR_The_Liberal_President
+news_event = { id = twrpornews.1 days = 0 }
+	}
+	}
+
+
+	
+}
+
+#Anti-Terrorist campaign in Angola
+country_event = {
+	
+	id = twrportugal.12
+	title = twrportugal.12.t
+	desc = twrportugal.12.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+
+	option = {#Focus on the Communist Party
+		name = twrportugal.12.a
+add_popularity = { ideology = socialist popularity = -0.05 }
+add_popularity = { ideology = paternal_autocrat popularity = 0.05 }
+set_country_flag = POR_FOCUS_ON_ANGOLA
+	}
+
+	option = {#Focus on the Kongo
+		name = twrportugal.12.b
+add_popularity = { ideology = socialist popularity = 0.05 }
+add_popularity = { ideology = paternal_autocrat popularity = -0.05 }
+set_country_flag = POR_FOCUS_ON_KONGO
+	}
+	
+}
+
+#The Winds of Change blow across Portugal
+country_event = {
+	
+	id = twrportugal.13
+	title = twrportugal.13.t
+	desc = twrportugal.13.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+
+	option = {#What could go wrong?
+		name = twrportugal.13.a
+trigger = { 
+NOT = { 
+any_owned_state = { 
+is_core_of = ANG 
+}
+}
+}
+add_popularity = { ideology = liberal popularity = 0.2 }
+add_political_power = 200
+add_stability = 0.1
+release = MZB
+release = GNB
+
+hidden_effect = {
+MZB = { set_politics = { ruling_party = liberal } }
+MZB = { add_popularity = { ideology = liberal popularity = 0.1 } }
+GNB = { set_politics = { ruling_party = liberal } }
+GNB = { add_popularity = { ideology = liberal popularity = 0.1 } }
+}
+	}
+
+	option = {#What could go wrong?
+		name = twrportugal.13.a
+trigger = { 
+any_owned_state = { 
+is_core_of = ANG 
+}
+}
+add_popularity = { ideology = liberal popularity = 0.2 }
+add_political_power = 200
+add_stability = 0.1
+release = MZB
+release = GNB
+release = ANG
+hidden_effect = {
+MZB = { set_politics = { ruling_party = liberal } }
+MZB = { add_popularity = { ideology = liberal popularity = 0.15 } }
+MZB = { add_popularity = { ideology = conservative popularity = 0.15 } }
+GNB = { set_politics = { ruling_party = liberal } }
+GNB = { add_popularity = { ideology = liberal popularity = 0.1 } }
+GNB = { add_popularity = { ideology = conservative popularity = 0.15 } }
+ANG = { set_politics = { ruling_party = liberal } }
+ANG = { add_popularity = { ideology = liberal popularity = 0.1 } }
+ANG = { add_popularity = { ideology = conservative popularity = 0.15 } }
+}
+	}
+	
+}
+
+#Trial of Salazar
+country_event = {
+	
+	id = twrportugal.14
+	title = twrportugal.14.t
+	desc = twrportugal.14.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+	
+	is_triggered_only = yes
+
+	option = {#What could go wrong?
+		name = twrportugal.14.a
+add_popularity = { ideology = conservative popularity = 0.05 }
+add_popularity = { ideology = social_democrat popularity = 0.05 }
+add_popularity = { ideology = liberal popularity = 0.03 }
+
+	}
+	
+}
+
+#Return of the Opposition
+country_event = {
+	
+	id = twrportugal.15
+	title = twrportugal.15.t
+	desc = twrportugal.15.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+
+trigger = {
+tag = POR
+has_government = liberal
+}	
+	fire_only_once = yes
+
+	option = {#What could go wrong?
+		name = twrportugal.15.a
+add_popularity = { ideology = conservative popularity = 0.15 }
+add_popularity = { ideology = social_democrat popularity = 0.1 }
+add_popularity = { ideology = marxist_leninist popularity = 0.1 }
+add_popularity = { ideology = socialist popularity = 0.05 }
+add_popularity = { ideology = bolshevik_leninist popularity = 0.05 }
+remove_ideas = { POR_no_opposition }
+	}
+	
+}
+
+#First Election 
+country_event = {
+	
+	id = twrportugal.16
+	title = twrportugal.16.t
+	desc = twrportugal.16.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+
+	
+	is_triggered_only = yes
+
+	option = {#Delgado's Liberals
+		name = twrportugal.16.a
+add_popularity = { ideology = liberal popularity = 0.1 }
+add_political_power = 50
+	}
+
+	option = {#Delgado's Liberals
+		name = twrportugal.16.b
+add_popularity = { ideology = marxist_leninist popularity = 0.1 }
+set_politics = { ruling_party = marxist_leninist }
+add_political_power = 40
+	}	
+
+	option = {#Delgado's Liberals
+		name = twrportugal.16.c
+add_popularity = { ideology = conservative popularity = 0.1 }
+set_politics = { ruling_party = conservative }
+add_political_power = -10
+	}	
+}
+
+#Angolan Peace
+country_event = {
+	
+	id = twrportugal.17
+	title = twrportugal.17.t
+	desc = twrportugal.17.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+
+	fire_only_once = yes
+
+trigger = { 
+tag = POR
+has_war_with = ANG
+has_country_leader = {
+    name = "Humberto Delgado"
+    ruling_only = yes
+}
+}
+
+	option = {#Delgado's Liberals
+		name = twrportugal.17.a
+ANG = { transfer_state = 540 }
+ANG = { transfer_state = 947 }
+ANG = { 
+white_peace_with_ROOT = yes
+	}
+}
+
+	
+}
+
+#Kongo Peace
+country_event = {
+	
+	id = twrportugal.18
+	title = twrportugal.18.t
+	desc = twrportugal.18.d
+	
+	picture = GFX_report_event_soviet_army_greeted
+
+	fire_only_once = yes
+
+trigger = { 
+tag = POR
+has_war_with = BAK
+has_country_leader = {
+    name = "Humberto Delgado"
+    ruling_only = yes
+}
+}
+
+	option = {#Delgado's Liberals
+		name = twrportugal.18.a
+BAK = { transfer_state = 540 }
+BAK = { transfer_state = 947 }
+BAK = { 
+white_peace_with_ROOT = yes
+	}
+}
+
+	
+}
+
+#Introduction Event
+country_event = {
+	
+	id = twrportugal.100
+	title = twrportugal.100.t
+	desc = twrportugal.100.d
+	
+	picture = GFX_report_event_POR_salazar
+	
+	is_triggered_only = yes
+	
+	option = {#Timor doesn't need mainland support
+		name = twrportugal.100.a
+		
+	}
+
+
+	
+}
+
+country_event = {  #1952 Colonial Status
+	id = twrportugal.101
+	title = twrportugal.101.t
+	desc = twrportugal.101.d
+	
+	picture = GFX_report_event_POR_salazar
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = twrportugal.101.a
+		add_political_power = 25
+		country_event = { id = twrportugal.102 }
+	}
+}
+
+country_event = {  #1952 Colonial Status - East
+	id = twrportugal.102
+	title = twrportugal.102.t
+	desc = twrportugal.102.d
+	
+	picture = GFX_report_event_POR_salazar
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = twrportugal.102.a
+		add_political_power = 25
+	}
+}

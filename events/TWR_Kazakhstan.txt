@@ -1,0 +1,2509 @@
+add_namespace = KAZ
+country_event = { #Intervention
+	id = KAZ.1310
+	title = KAZ.1310.t
+	desc = KAZ.1310.d
+	picture = GFX_report_event_soviet_army_coup
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.1310.a
+		declare_war_on = {
+	    target = TRV
+	    type = annex_everything
+		}
+		declare_war_on = {
+	    target = SOV
+	    type = annex_everything
+		}
+		news_event = KAZ.13101
+	}
+}
+
+news_event = { #Vasily Rakov Takes Over
+	id = KAZ.13101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.13101"}
+	title = KAZ.13101.t
+	desc = KAZ.13101.d
+	picture = GFX_news_event_soviet_cw
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = KAZ.13101.a
+		trigger = {
+		OR = {
+		tag = KAZ
+		tag = TRV
+		tag = SOV
+			}
+		}
+		add_ideas = SOV_VERY_SOVIET_CIVIL_WAR
+	}
+	option = {
+		name = KAZ.13101.b
+		trigger = {
+		NOT = {
+		tag = KAZ
+		tag = TRV
+		tag = SOV
+		tag = KRA
+		tag = NOV
+			}
+		is_fascist = no
+		}
+	}
+	option = {
+		name = KAZ.13101.c
+		trigger = { is_fascist = yes }
+	}
+	option = {
+		name = KAZ.13101.e
+		trigger = {
+		OR = {
+		tag = KRA
+		tag = NOV
+			}
+		}
+		add_political_power = 50
+	}
+}
+country_event = { #intro
+	id = KAZ.1
+	title = KAZ.1.t
+	desc = KAZ.1.d
+	picture = GFX_report_event_vlasov
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.1.a
+	}
+}
+
+country_event = { #perm intro
+	id = KAZ.2
+	title = KAZ.2.t
+	desc = KAZ.2.d
+	picture = GFX_report_event_soviet_parade
+
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			add_popularity = {
+				ideology = conservative
+				popularity = -0.5
+			}
+			set_party_name = { 
+				ideology = paternal_autocrat 
+				long_name = KAZ_PERM_PATAUT_LONG 
+				name = KAZ_PERM_PATAUT 
+			}
+			set_party_name = { 
+				ideology = socialist 
+				long_name = KAZ_PERM_SOCIALIST_LONG 
+				name = KAZ_PERM_SOCIALIST 
+			}
+			set_party_name = { 
+				ideology = conservative 
+				long_name = KAZ_PERM_DEM_LONG 
+				name = KAZ_PERM_DEM 
+			}
+			set_party_name = { 
+				ideology = liberal 
+				long_name = KAZ_PERM_DEM_LONG 
+				name = KAZ_PERM_DEM 
+			}
+			set_party_name = { 
+				ideology = social_democrat 
+				long_name = KAZ_PERM_DEM_LONG 
+				name = KAZ_PERM_DEM 
+			}
+			set_party_name = { 
+				ideology = bolshevik_leninist 
+				long_name = KAZ_PERM_COMMUNIST_LONG 
+				name = KAZ_PERM_COMMUNIST 
+			}
+			set_party_name = { 
+				ideology = marxist_leninist 
+				long_name = KAZ_PERM_COMMUNIST_LONG 
+				name = KAZ_PERM_COMMUNIST 
+	    	}
+	    }
+	}
+
+	option = {
+		name = KAZ.2.a
+		unlock_decision_category_tooltip = KAZ_influence_mechanic
+		clr_country_flag = KAZ_influence_mechanic_disabled
+	}
+}
+
+country_event = { #you win! Vlasov
+	id = KAZ.3
+	title = KAZ.3.t
+	desc = KAZ.3.d
+	picture = GFX_report_event_generic_red_army_fight
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.3.a
+		KAZ = {	
+			transfer_state = 586
+			army_experience = 25
+		}	
+	}
+}
+
+country_event = { #you lose Vlasov
+	id = KAZ.4
+	title = KAZ.4.t
+	desc = KAZ.4.d
+	picture = GFX_report_event_generic_red_army_fight
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.4.a
+		add_stability = -0.15
+		add_war_support = -0.15
+	}
+}
+
+country_event = { #you beat vlasov
+	id = KAZ.5
+	title = KAZ.5.t
+	desc = KAZ.5.d
+	picture = GFX_report_event_generic_red_army_fight
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.5.a
+		add_stability = 0.20
+		add_war_support = 0.15
+		TAJ = { remove_ideas = TAJ_Red_and_Black_Phantoms }
+	}
+}
+
+country_event = { #you lost to vlasov
+	id = KAZ.6
+	title = KAZ.6.t
+	desc = KAZ.6.d
+	picture = GFX_report_event_generic_red_army_fight
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.6.a
+		add_stability = -0.15
+		add_war_support = -0.15
+		hidden_effect = {
+			country_event = {
+				id = twrtrk.8
+				days = 9
+			}
+			country_event = {
+				id = twrtrk.81
+				days = 14
+			}
+			TAJ = {
+				country_event = {
+					id = twrtrk.81
+					days = 14
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Support from Vlasov
+	id = KAZ.7
+	title = KAZ.7.t
+	desc = KAZ.7.d
+	picture = GFX_report_event_generic_red_army_fight
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.7.a
+		add_war_support = 0.20
+		add_manpower = 50000
+	}
+}
+
+country_event = { #Vlasovite military support
+	id = KAZ.8
+	title = KAZ.8.t
+	desc = KAZ.8.d
+	picture = GFX_report_event_generic_red_army_fight
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.8.a
+		custom_effect_tooltip = KAZ_intro_21_tt
+	}
+}
+
+country_event = { #perm tree debug
+	id = KAZ.2000
+	title = KAZ.2000.t
+	desc = KAZ.2000.d
+	picture = GFX_report_event_vlasov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.2000.a
+		load_focus_tree = KAZ_perm_tree
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+country_event = { #our fellow exiles
+	id = KAZ.9
+	title = KAZ.9.t
+	desc = KAZ.9.d
+	picture = GFX_report_event_konev
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.9.a #Use them both
+		add_stability = 0.05
+		add_political_power = -150
+		create_field_marshal = {
+			name = "Ivan Konev"
+			portrait_path = "gfx/leaders/TRV/Ivan_Konev.dds"
+			traits = { organisational_leader inflexible_strategist harsh_leader politically_connected }
+			skill = 5
+			attack_skill = 5
+			defense_skill = 5
+			planning_skill = 3
+			logistics_skill = 5
+		}
+		create_field_marshal = {
+			name = "Ivan Bagramyan"
+			portrait_path = "gfx/leaders/TRV/Ivan_Bagramyan.dds"
+			traits = { trait_cautious defensive_doctrine }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 4
+		}
+		create_corps_commander = {
+			name = "Vasily Arkhipov"
+			portrait_path = "gfx/leaders/TRV/Vasily_Sergeyevich_Arkhipov.dds"
+			traits = { armor_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Ivan Muzychenko"
+			portrait_path = "gfx/leaders/TRV/Ivan_Muzychenko.dds"
+			traits = { career_officer inflexible_strategist }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Vladimir Janjgava"
+			portrait_path = "gfx/leaders/TRV/Vladimir_Janjgava.dds"
+			traits = { infantry_officer }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Nikolai Olyshev"
+			portrait_path = "gfx/leaders/TRV/Nikolay_Oleshev.dds"
+			traits = { infantry_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Stepan Povetkin"
+			portrait_path = "gfx/leaders/TRV/Stepan_Povetkin.dds"
+			traits = { old_guard infantry_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Alexei Kirichenko"
+			portrait_path = "gfx/leaders/TRV/Alexei_Kirichenko.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 3
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Valentin Varennikov"
+			portrait_path = "gfx/leaders/TRV/Valentin_Varennikov.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Vasily Stalin"
+			portrait_path = "gfx/leaders/TRV/Vasily_Stalin.dds"
+			traits = { commando politically_connected }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		custom_effect_tooltip = RAKOV_INCREASE_3
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 3
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -3
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.9.b #Kill them both
+		create_field_marshal = {
+			name = "Ivan Bagramyan"
+			portrait_path = "gfx/leaders/TRV/Ivan_Bagramyan.dds"
+			traits = { trait_cautious defensive_doctrine }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 4
+		}
+		create_corps_commander = {
+			name = "Vasily Arkhipov"
+			portrait_path = "gfx/leaders/TRV/Vasily_Sergeyevich_Arkhipov.dds"
+			traits = { armor_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Ivan Muzychenko"
+			portrait_path = "gfx/leaders/TRV/Ivan_Muzychenko.dds"
+			traits = { career_officer inflexible_strategist }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Vladimir Janjgava"
+			portrait_path = "gfx/leaders/TRV/Vladimir_Janjgava.dds"
+			traits = { infantry_officer }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Nikolai Olyshev"
+			portrait_path = "gfx/leaders/TRV/Nikolay_Oleshev.dds"
+			traits = { infantry_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Stepan Povetkin"
+			portrait_path = "gfx/leaders/TRV/Stepan_Povetkin.dds"
+			traits = { old_guard infantry_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Alexei Kirichenko"
+			portrait_path = "gfx/leaders/TRV/Alexei_Kirichenko.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 3
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Valentin Varennikov"
+			portrait_path = "gfx/leaders/TRV/Valentin_Varennikov.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		custom_effect_tooltip = VLASOV_INCREASE_3
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -3
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 3
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.9.c
+		add_stability = 0.025
+		create_field_marshal = {
+			name = "Ivan Konev"
+			portrait_path = "gfx/leaders/TRV/Ivan_Konev.dds"
+			traits = { organisational_leader inflexible_strategist harsh_leader politically_connected }
+			skill = 5
+			attack_skill = 5
+			defense_skill = 5
+			planning_skill = 3
+			logistics_skill = 5
+		}
+		create_field_marshal = {
+			name = "Ivan Bagramyan"
+			portrait_path = "gfx/leaders/TRV/Ivan_Bagramyan.dds"
+			traits = { trait_cautious defensive_doctrine }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 4
+		}
+		create_corps_commander = {
+			name = "Vasily Arkhipov"
+			portrait_path = "gfx/leaders/TRV/Vasily_Sergeyevich_Arkhipov.dds"
+			traits = { armor_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Ivan Muzychenko"
+			portrait_path = "gfx/leaders/TRV/Ivan_Muzychenko.dds"
+			traits = { career_officer inflexible_strategist }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Vladimir Janjgava"
+			portrait_path = "gfx/leaders/TRV/Vladimir_Janjgava.dds"
+			traits = { infantry_officer }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Nikolai Olyshev"
+			portrait_path = "gfx/leaders/TRV/Nikolay_Oleshev.dds"
+			traits = { infantry_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Stepan Povetkin"
+			portrait_path = "gfx/leaders/TRV/Stepan_Povetkin.dds"
+			traits = { old_guard infantry_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Alexei Kirichenko"
+			portrait_path = "gfx/leaders/TRV/Alexei_Kirichenko.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 3
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Valentin Varennikov"
+			portrait_path = "gfx/leaders/TRV/Valentin_Varennikov.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		set_country_flag = KAZ_mixed_exiles_flag
+	}
+}
+
+country_event = { #dealing with internal dissidents
+	id = KAZ.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.10"}
+	title = KAZ.10.t
+	desc = KAZ.10.d
+	picture = GFX_report_event_SOV_new_revolution
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.10.a #Crush them
+		add_stability = 0.1
+		custom_effect_tooltip = RAKOV_INCREASE_3
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -3
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 3
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.10.b #Pardon them
+		add_war_support = 0.15
+		custom_effect_tooltip = VLASOV_INCREASE_3
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 3
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -3
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.10.c
+		add_political_power = -150
+		set_country_flag = KAZ_synthetic_rage_flag
+	}
+}
+
+country_event = { #dealing with beria's administration
+	id = KAZ.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.11"}
+	title = KAZ.11.t
+	desc = KAZ.11.d
+	picture = GFX_report_event_SOV_beria_victory
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.11.a #Bring them into government
+		add_stability = -0.05
+		add_political_power = 50
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.11.b #Do not let them in
+		add_stability = 0.05
+		add_political_power = -50
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.11.c
+		add_stability = 0.025
+		add_political_power = -100
+		set_country_flag = KAZ_moderatepurge_flag
+	}
+}
+
+country_event = { #dealing with the NKVD
+	id = KAZ.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.12"}
+	title = KAZ.12.t
+	desc = KAZ.12.d
+	picture = GFX_report_event_SOV_nkvd_2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.12.a #Crush the NKVD
+		add_stability = 0.05
+		add_political_power = -95
+		SOV_beria_thaw_effect = yes
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			KAZ_clamp_variables = yes
+		}		
+	}
+	option = {
+		name = KAZ.12.b
+		set_country_flag = KAZ_NKVD_flag
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+}
+
+country_event = { #tukhachevsky's legacy
+	id = KAZ.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.14"}
+	title = KAZ.14.t
+	desc = KAZ.14.d
+	picture = GFX_report_event_tukhachevsky
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.14.a
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		custom_effect_tooltip = IMPROVES_ARMOR_STATS
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_armorattack
+				value = 0.15
+			}
+			add_to_variable = {
+				var = KAZ_armordefence
+				value = 0.15
+			}
+			add_to_variable = {
+				var = KAZ_armorspeed
+				value = 0.05
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.14.b
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		custom_effect_tooltip = INFANTRY_STAT_IMPROVE
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_soldierdefence
+				value = 0.10
+			}
+			add_to_variable = {
+				var = KAZ_soldierattack
+				value = 0.10
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.14.c
+		add_stability = -0.1
+		add_political_power = -95
+		custom_effect_tooltip = COMPROMISE_STAT_1
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_armorattack
+				value = 0.025
+			}
+			add_to_variable = {
+				var = KAZ_armordefence
+				value = 0.025
+			}
+			add_to_variable = {
+				var = KAZ_armorspeed
+				value = 0.025
+			}
+			add_to_variable = {
+				var = KAZ_soldierattack
+				value = 0.025
+			}
+			add_to_variable = {
+				var = KAZ_soldierdefence
+				value = 0.025
+			}
+		}
+	}
+}
+
+country_event = { #nightmare of the night witches
+	id = KAZ.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.15"}
+	title = KAZ.15.t
+	desc = KAZ.15.d
+	picture = GFX_report_event_generic_plane
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.15.a
+		custom_effect_tooltip = VLASOV_INCREASE_3
+		custom_effect_tooltip = ATTACK_DEFENCE_BOOST
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_planeattack
+				value = 0.05
+			}
+			add_to_variable = {
+				var = KAZ_planedefence
+				value = 0.05
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 3
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -3
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.15.b
+		custom_effect_tooltip = RAKOV_INCREASE_3
+		custom_effect_tooltip = SUPERIORITY_AGILITY_BOOST
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_planesuperiority
+				value = 0.10
+			}
+			add_to_variable = {
+				var = KAZ_planeagility
+				value = 0.05
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 3
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -3
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.15.c
+		add_political_power = -90
+		air_experience = -50
+		custom_effect_tooltip = COMPROMISE_STATS_2
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_planeattack
+				value = 0.025
+			}
+			add_to_variable = {
+				var = KAZ_planedefence
+				value = 0.025
+			}
+			add_to_variable = {
+				var = KAZ_planesuperiority
+				value = 0.05
+			}
+			add_to_variable = {
+				var = KAZ_planeagility
+				value = 0.025
+			}
+		}
+	}
+}
+
+country_event = { #tales of the partisans
+	id = KAZ.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.16"}
+	title = KAZ.16.t
+	desc = KAZ.16.d
+	picture = GFX_report_event_partiasans_in_woods
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.16.a
+		add_stability = -0.05
+		add_offsite_building = { type = arms_factory level = 1 }
+		custom_effect_tooltip = VLASOV_INCREASE_3
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 3
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -3
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.16.b
+		add_stability = 0.1
+		create_corps_commander = {
+			name = "Ivan Turkenich"
+			picture = "Ivan_Turkenich_2.dds"
+			traits = { commando }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 4
+			logistics_skill = 4
+		}					
+		custom_effect_tooltip = RAKOV_INCREASE_3					
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_armymorale
+				value = 0.05
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 3
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -3
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+}
+
+country_event = { #vlasov's cunning
+	id = KAZ.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.17"}
+	title = KAZ.17.t
+	desc = KAZ.17.d
+	picture = GFX_report_event_vlasov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.17.a
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		custom_effect_tooltip = CUN_1_VLAS
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_recon
+				value = 0.15
+			}
+			add_to_variable = {
+				var = KAZ_planning
+				value = 0.15
+			}
+			add_to_variable = {
+				var = KAZ_consumption
+				value = 0.1
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.17.b
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		custom_effect_tooltip = CUN_RAKOV
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_consumption
+				value = -0.2
+			}
+			add_to_variable = {
+				var = KAZ_planning 
+				value = 0.15
+			}
+			add_to_variable = {
+				var = KAZ_recon
+				value = -0.1
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+}
+
+country_event = { #rakov's genius
+	id = KAZ.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.18"}
+	title = KAZ.18.t
+	desc = KAZ.18.d
+	picture = GFX_report_event_rakov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.18.a
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		custom_effect_tooltip = MILITARY_BUFFS
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_breakthrough
+				value = 0.10
+			}
+			add_to_variable = {
+				var = KAZ_consciption
+				value = 0.15
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.18.b
+		add_equipment_to_stockpile = {
+			type = strat_bomber_equipment
+			amount = 15
+			producer = SOV
+		}
+		add_equipment_to_stockpile = {
+			type = transport_plane_equipment
+			amount = 20
+			producer = SOV
+		}
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		custom_effect_tooltip = SOME_MILITARY_BUFFS
+		#SPEC
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_reinforce
+				value = 0.15
+			}
+			add_to_variable = {
+				var = KAZ_nosupply
+				value = -0.10
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+}
+
+country_event = { #BRead
+	id = KAZ.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.20"}
+	title = KAZ.20.t
+	desc = KAZ.20.d
+	picture = GFX_report_event_generic_conference
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.20.a
+		KAZ_bourgie_lean = yes
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.20.b
+		KAZ_socialist_lean = yes
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+}
+
+country_event = { #business with indirect collaborators
+	id = KAZ.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.22"}
+	title = KAZ.22.t
+	desc = KAZ.22.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.22.a
+		KAZ_bourgie_lean = yes
+		add_stability = 0.05
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.22.b
+		KAZ_socialist_lean = yes
+		add_stability = -0.05
+		add_war_support = 0.2
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+}
+
+country_event = { #bealing with Beria's REP
+	id = KAZ.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.23"}
+	title = KAZ.23.t
+	desc = KAZ.23.d
+	picture = GFX_report_event_SOV_beria_thaw
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.23.a
+		KAZ_bourgie_lean = yes
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.23.b
+		KAZ_socialist_lean = yes
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+}
+
+country_event = { #status of private enterprise
+	id = KAZ.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.24"}
+	title = KAZ.24.t
+	desc = KAZ.24.d
+	picture = GFX_report_event_1950s_america
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.24.a
+		KAZ_bourgie_lean = yes
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.24.b
+		KAZ_socialist_lean = yes
+		add_manpower = -5000
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+}
+
+country_event = { #our own socialism
+	id = KAZ.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.25"}
+	title = KAZ.25.t
+	desc = KAZ.25.d
+	picture = GFX_report_event_SOV_party_congress
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.25.a
+		KAZ_bourgie_lean = yes
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes
+		}
+	}
+	option = {
+		name = KAZ.25.b
+		KAZ_socialist_lean = yes
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			KAZ_clamp_variables = yes			
+		}
+	}
+}
+
+country_event = { #minorities in the new union
+	id = KAZ.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.26"}
+	title = KAZ.26.t
+	desc = KAZ.26.d
+	picture = GFX_report_event_yugoslav_people
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.26.a
+		unlock_decision_category_tooltip = SOV_ASSR_decisions
+		set_country_flag = ENABLE_ASSR_SETUP_SOV
+		add_war_support = -0.1
+		add_stability = 0.1
+		custom_effect_tooltip = VLASOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = -5
+			}
+			KAZ_clamp_variables = yes	
+		}
+	}
+	option = {
+		name = KAZ.26.b
+		add_war_support = 0.1
+		custom_effect_tooltip = RAKOV_INCREASE_5
+		hidden_effect = {
+			add_to_variable = {
+				var = KAZ_influence_rakov
+				value = 5
+			}
+			add_to_variable = {
+				var = KAZ_influence_vlasov
+				value = -5
+			}
+			KAZ_clamp_variables = yes	
+		}
+	}
+	option = {
+		name = KAZ.26.c
+		add_stability = 0.05
+		unlock_decision_category_tooltip = SOV_ASSR_decisions
+		set_country_flag = ENABLE_ASSR_SETUP_SOV
+	}
+}
+
+country_event = { #vlasov's old ally
+	id = KAZ.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.27"}
+	title = KAZ.27.t
+	desc = KAZ.27.d
+	picture = GFX_report_event_olimov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.27.a
+		KAZ = {
+			create_wargoal = {
+				type = annex_everything
+				target = UZB
+			}
+		}
+		hidden_effect = {
+			set_country_flag = KAZ_central_asian_domination
+		}
+	}
+	option = {
+		name = KAZ.27.b
+		UZB = {
+			country_event = KAZ.3601
+		}
+		hidden_effect = {
+			set_country_flag = KAZ_central_asian_compromise
+		}
+	}
+}
+country_event = { #Demands to the Red Emir
+	id = KAZ.3601
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.3601"}
+	title = KAZ.3601.t
+	desc = KAZ.3601.d
+	picture = GFX_report_event_olimov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.3601.a
+		KAZ = {
+			puppet = UZB
+			set_autonomy = {
+				target = UZB
+				autonomy_state = autonomy_puppet
+			}
+			country_event = KAZ.28
+		}
+	}
+	option = {
+		name = KAZ.3601.b
+		KAZ = {
+			create_wargoal = {
+				type = annex_everything
+				target = UZB
+			}
+		}
+		#funky, consider scripted war/peace thing
+	}
+}
+country_event = { #Red Emir accepted
+	id = KAZ.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.28"}
+	title = KAZ.28.t
+	desc = KAZ.28.d
+	picture = GFX_report_event_olimov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.28.a #Very epic
+		add_political_power = 150
+	}
+}
+
+country_event = { #Red Emir Ded
+	id = KAZ.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.36"}
+	title = KAZ.36.t
+	desc = KAZ.36.d
+	picture = GFX_report_event_generic_funeral
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.36.a
+		if = {
+			limit = { 
+				OR = {
+					TRA = {
+						owns_state = 995
+						owns_state = 585
+						owns_state = 998
+					}
+				}
+			}
+			KAZ = {
+				declare_war_on = {
+					target = TRA
+					type = annex_everything
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				OR = {
+					TRK = {
+						owns_state = 995
+						owns_state = 585
+						owns_state = 998
+					}
+					TAJ = {
+						owns_state = 995
+						owns_state = 585
+						owns_state = 998
+					}
+				}
+			}
+			KAZ = {
+				declare_war_on = {
+					target = TRK
+					type = annex_everything
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				OR = {
+					TAJ = {
+						owns_state = 995
+						owns_state = 585
+						owns_state = 998
+					}
+				}
+			}
+			KAZ = {
+				declare_war_on = {
+					target = TAJ
+					type = annex_everything
+				}
+			}
+		}
+	}
+}
+
+#SO WHICH ONE IS THE CORRECT FUCKING ONE!?
+country_event = { #Putting a Stamp on the Steppe Event
+	id = KAZ.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.29"}
+	title = KAZ.29.t
+	desc = KAZ.29.d
+	picture = GFX_report_event_olimov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.29.a
+		trigger = {
+			UZB = { is_subject_of = ROOT }
+		}
+		if = {
+			limit = { owns_state = 997 }
+			UZB = {
+				transfer_state = 997
+			}
+		}
+		if = {
+			limit = { owns_state = 584 }
+			UZB = {
+				transfer_state = 584
+			}
+		}
+		if = {
+			limit = { owns_state = 742 }
+			UZB = {
+				transfer_state = 742
+			}
+		}
+		if = {
+			limit = { owns_state = 996 }
+			UZB = {
+				transfer_state = 996
+			}
+		}
+		if = {
+			limit = { owns_state = 405 }
+			UZB = {
+				transfer_state = 996
+			}
+		}
+		if = {
+			limit = { owns_state = 994 }
+			UZB = {
+				transfer_state = 994
+			}
+		}
+		if = {
+			limit = { owns_state = 732 }
+			UZB = {
+				transfer_state = 732
+			}
+		}
+		if = {
+			limit = { owns_state = 586 }
+			UZB = {
+				transfer_state = 586
+			}
+		}
+		KAZ = {
+			puppet = UZB
+			set_autonomy = {
+				target = UZB
+				autonomy_state = autonomy_integrated_puppet
+			}
+		}
+		UZB = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = TRK_SSR
+		}
+	}
+	option = {
+		name = KAZ.29.b
+		trigger = {
+			NOT = { country_exists = UZB }
+		}
+		997 = {
+			add_core_of = KAZ
+		}
+		584 = {
+			add_core_of = KAZ
+		}
+		585 = {
+			add_core_of = KAZ
+		}
+		998 = {
+			add_core_of = KAZ
+		}
+		742 = {
+			add_core_of = KAZ
+		}
+		996 = {
+			add_core_of = KAZ
+		}
+		405 = {
+			add_core_of = KAZ
+		}
+		994 = {
+			add_core_of = KAZ
+		}
+		732 = {
+			add_core_of = KAZ
+		}
+		993 = {
+			add_core_of = KAZ
+		}
+	}
+}
+
+country_event = { #Extradition of East Turkic terrorists
+	id = KAZ.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.30"}
+	title = KAZ.30.t
+	desc = KAZ.30.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.30.a #Based
+		add_stability = 0.03
+	}
+}
+
+country_event = { #An offer you can't refuse
+	id = KAZ.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.37"}
+	title = KAZ.37.t
+	desc = KAZ.37.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.37.a
+		ai_chance = {
+			base = 100
+		}
+		AFG = {
+			add_ideas = KAZ_afghan_deal
+			add_political_power = -100
+		}
+		KAZ = {
+			add_ideas = KAZ_union_deal
+			add_political_power = 100
+		}
+	}
+	option = {
+		name = KAZ.37.b
+		ai_chance = {
+			base = 0
+		}
+		KAZ = {
+			declare_war_on = {
+				target = AFG
+				type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = { #Afghan Coup
+	id = KAZ.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.38"}
+	title = KAZ.38.t
+	desc = KAZ.38.d
+	picture = GFX_report_event_afghan_win
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.38.a
+		ai_chance = {
+			base = 100
+		}
+		AFG = {
+			kill_country_leader = yes
+			set_politics = {
+				ruling_party = paternal_autocrat
+				elections_allowed = no
+				last_election = "1935.12.17"
+				election_frequency = 48
+			}
+			create_country_leader = {
+				name = "Nur Muhammad Taraki"
+				desc = ""
+				picture = "Nur_Muhammad_Taraki.dds"
+				expire = "1965.1.11"
+				ideology = pragmatic_socialism
+				traits = {}
+			}
+		}
+	}
+	option = {
+		name = KAZ.38.b
+		ai_chance = {
+			base = 0
+		}
+		KAZ = {
+			declare_war_on = {
+				target = AFG
+				type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = { #Rakov kills vlasov
+	id = KAZ.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.31"}
+	title = KAZ.31.t
+	desc = KAZ.31.d
+	picture = GFX_report_event_vlasov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.31.a
+		news_event = KAZ.51
+		set_country_flag = KAZ_influence_mechanic_disabled
+		kill_country_leader = yes
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.35
+		}
+		add_ideas = {
+			KAZ_HoG_Mikhail_Kurochkin
+			KAZ_FM_Vasily_Valkov
+		}
+		random_unit_leader = {
+			limit = { 
+				has_id = 8901 
+			}
+			retire = yes
+		}
+		load_focus_tree = KAZ_rakov_tree
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+country_event = { #united once more
+	id = KAZ.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.32"}
+	title = KAZ.32.t
+	desc = KAZ.32.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.32.a
+		add_stability = 0.1
+		add_political_power = -150
+		set_country_flag = KAZ_influence_mechanic_disabled
+		create_country_leader = {
+			name = "Collective Leadership"
+			desc = "KAZ_Collective_Leadership_desc"
+			picture = "KAZ_Collective_Leadership.dds"
+			expire = "1973.3.1"
+			ideology = pragmatic_socialism
+			traits = {
+			}
+		}
+		SOV_beria_thaw_effect = yes
+		set_popularities = {
+			socialist = 50
+			paternal_autocrat = 50
+		}
+		hidden_effect = {
+		load_focus_tree = KAZ_united_tree
+		mark_focus_tree_layout_dirty = yes
+		}
+	}
+}
+
+country_event = { #vlasov sends rakov to the big house
+	id = KAZ.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.33"}
+	title = KAZ.33.t
+	desc = KAZ.33.d
+	picture = GFX_report_event_sov_show_trials
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = KAZ.33.a
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.5
+		}
+		set_country_flag = KAZ_influence_mechanic_disabled
+		set_country_flag = Vasily_Rakov_unavailable
+		random_unit_leader = {
+			limit = { 
+				has_id = 8902 
+			}
+			retire = yes
+		}
+		hidden_effect = {
+			kill_ideology_leader = socialist
+		}
+		load_focus_tree = KAZ_vlasov_tree
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+country_event = { #the trial of the splitters
+	id = KAZ.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.34"}
+	title = KAZ.34.t
+	desc = KAZ.34.d
+	picture = GFX_report_event_sov_show_trials
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.35.a #Recruit some officers
+		add_stability = -0.1
+		add_political_power = -150
+		create_corps_commander = {
+			name = "Leonid Brezhnev"
+			picture = "Leonid_Brezhnev_general.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 3
+		}
+	}
+	option = {
+		name = KAZ.35.b #Purge them all
+		add_stability = 0.1
+		add_political_power = 150
+	}
+}
+
+country_event = { #the vladivostok affair
+	id = KAZ.35
+	title = KAZ.35.t
+	desc = KAZ.35.d
+	picture = GFX_report_event_sov_show_trials
+
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.35.a #Recruit some officers
+		add_stability = -0.1
+		add_political_power = -150
+		create_navy_leader = {
+			name = "Ivan Yumashev"
+			picture = "Ivan_Yumashev.dds"
+			traits = { gunnery_expert }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			maneuvering_skill = 3
+			coordination_skill = 3
+		}
+		create_navy_leader = {
+			name = "Semyon Zakharov"
+			picture = "Semyon_Zakharov.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			maneuvering_skill = 2
+			coordination_skill = 2
+		}
+	}
+	option = {
+		name = KAZ.35.b #Purge them all
+		add_stability = 0.1
+		add_political_power = 150
+	}
+}
+
+news_event = { # Soviet Union Reunified - Vlasovite/Rakov
+	id = KAZ.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.50"}
+	title = KAZ.50.t
+	desc = KAZ.50.d
+	picture = GFX_news_event_SOV_shock_army_troops
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = KAZ.50.a
+		trigger = { tag = KAZ }
+	}
+	option = {
+		name = KAZ.50.b
+		trigger = { NOT = { tag = KAZ is_fascist = yes } }
+	}
+	option = {
+		name = KAZ.50.c
+		trigger = { is_fascist = yes }
+	}
+}
+
+news_event = { #Vasily Rakov Takes Over
+	id = KAZ.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.51"}
+	title = KAZ.51.t
+	desc = KAZ.51.d
+	picture = GFX_news_event_SOV_rakov_reunify
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = KAZ.51.a
+		trigger = { tag = KAZ }
+	}
+	option = {
+		name = KAZ.51.b
+		trigger = { NOT = { tag = KAZ is_fascist = yes } }
+	}
+	option = {
+		name = KAZ.51.c
+		trigger = { is_fascist = yes }
+	}
+}
+
+country_event = {
+	id = KAZ.52 #Coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.52"}
+ 	title = KAZ.52.t
+ 	desc = KAZ.52.d
+ 	picture = GFX_report_event_soviet_army_coup
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+ 	option = { 
+		name = KAZ.52.a #Government replaced
+		if = {
+			limit = { tag = BLG }
+			set_politics = {
+				ruling_party = paternal_autocrat
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.3
+			}
+			create_country_leader = {
+				name = "Sergey Grishin"
+				desc = "Sergey_Grishin_DESC"
+				picture = "Sergey_Grishin.dds"
+				expire = "1965.1.1"
+				ideology = pragmatic_socialism
+				traits = {
+				}
+			}
+			set_party_name = { 
+				ideology = paternal_autocrat
+				long_name = BULGANIN_PARTY_NAME_long
+				name = BULGANIN_PARTY_NAME
+			}
+ 		}
+		if = {
+			limit = { tag = SMO }
+			set_politics = {
+				ruling_party = paternal_autocrat
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.3
+			}
+			create_country_leader = {
+				name = "Dmitri Sukhorukov"
+				desc = "Dmitri_Sukhorukov_DESC"
+				picture = "Dmitri_Sukhorukov.dds"
+				expire = "1965.1.1"
+				ideology = pragmatic_socialism
+				traits = {
+				}
+			}
+			set_party_name = { 
+				ideology = paternal_autocrat
+				long_name = BULGANIN_PARTY_NAME_long
+				name = BULGANIN_PARTY_NAME
+			}
+ 		}
+		if = {
+			limit = { tag = BLR }
+			set_politics = {
+				ruling_party = paternal_autocrat
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.3
+			}
+			create_country_leader = {
+				name = "Vasily Kozlov"
+				desc = "Vasily_Kozlov_DESC"
+				picture = "Vasily_Kozlov.dds"
+				expire = "1965.1.1"
+				ideology = pragmatic_socialism
+				traits = {
+				}
+			}
+			set_party_name = { 
+				ideology = paternal_autocrat
+				long_name = BULGANIN_PARTY_NAME_long
+				name = BULGANIN_PARTY_NAME
+			}
+ 		}
+		if = {
+			limit = { tag = SUK }
+			set_politics = {
+				ruling_party = paternal_autocrat
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.3
+			}
+			create_country_leader = {
+				name = "Pyotr Vershigora"
+				desc = "Pyotr_Vershigora_DESC"
+				picture = "Pyotr_Vershigora.dds"
+				expire = "1965.1.1"
+				ideology = pragmatic_socialism
+				traits = {
+				}
+			}
+			set_party_name = { 
+				ideology = paternal_autocrat
+				long_name = BULGANIN_PARTY_NAME_long
+				name = BULGANIN_PARTY_NAME
+			}
+ 		}
+		if = {
+			limit = { tag = AZR }
+			set_politics = {
+				ruling_party = paternal_autocrat
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.3
+			}
+			create_country_leader = {
+				name = "Hazi Aslanov"
+				desc = "Hazi_Aslanov_DESC"
+				picture = "Hazi_Aslanov.dds"
+				expire = "1965.1.1"
+				ideology = pragmatic_socialism
+				traits = {
+				}
+			}
+			set_party_name = { 
+				ideology = paternal_autocrat
+				long_name = BULGANIN_PARTY_NAME_long
+				name = BULGANIN_PARTY_NAME
+			}
+ 		}
+		if = {
+			limit = {
+				OR = {
+					tag = CDA
+					tag = RAC
+				}
+			}
+			set_politics = {
+				ruling_party = paternal_autocrat
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.3
+			}
+			create_country_leader = {
+				name = "Alexei Yepishev"
+				desc = "Alexei_Yepishev_DESC"
+				picture = "Alexei_Yepishev.dds"
+				expire = "1965.1.1"
+				ideology = pragmatic_socialism
+				traits = {
+				}
+			}
+			set_party_name = { 
+				ideology = paternal_autocrat
+				long_name = BULGANIN_PARTY_NAME_long
+				name = BULGANIN_PARTY_NAME
+			}
+ 		}
+ 	}
+}
+
+country_event = { # Vlasov's New Path
+	id = KAZ.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.53"}
+	title = KAZ.53.t
+	desc = KAZ.53.d
+	picture = GFX_report_event_vlasov
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.53.a
+	}
+}
+
+country_event = { # Ensuring Socialist Equality
+	id = KAZ.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.54"}
+	title = KAZ.54.t
+	desc = KAZ.54.d
+	picture = GFX_report_event_novosibirsk
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.54.a
+	}
+}
+
+country_event = { # A New Order
+	id = KAZ.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.55"}
+	title = KAZ.55.t
+	desc = KAZ.55.d
+	picture = GFX_report_event_usa_china
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.55.a
+	}
+}
+
+country_event = { # Designated Minority Seats
+	id = KAZ.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.56"}
+	title = KAZ.56.t
+	desc = KAZ.56.d
+	picture = GFX_report_event_SOV_collective_leadership
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.56.a
+	}
+}
+
+country_event = { # African Colonialism Criticised
+	id = KAZ.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.57"}
+	title = KAZ.57.t
+	desc = KAZ.57.d
+	picture = GFX_report_event_soviet_anti_imperialism
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.57.a
+	}
+}
+
+country_event = { # Chinese Border Sorting
+	id = KAZ.58
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.58"}
+	title = KAZ.58.t
+	desc = KAZ.58.d
+	picture = GFX_report_event_generic_conference
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.58.a
+	}
+}
+
+country_event = { # take mongolia or give it to china
+	id = KAZ.59
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.59"}
+	title = KAZ.59.t
+	desc = KAZ.59.d
+	picture = GFX_report_event_mongolia_china
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # take it
+		name = KAZ.59.a
+		declare_war_on = {
+			target = MON
+			type = annex_everything
+		}
+	}
+	option = { # give to china
+		name = KAZ.59.b
+		CHI = {
+			country_event = {
+				id = KAZ.74
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { # The Revisionists Deposed
+	id = KAZ.60
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.60"}
+	title = KAZ.60.t
+	desc = KAZ.60.d
+	picture = GFX_report_event_soviet_army_coup
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.60.a
+	}
+}
+
+country_event = { # Anti-Corruption Campaign
+	id = KAZ.61
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.61"}
+	title = KAZ.61.t
+	desc = KAZ.61.d
+	picture = GFX_report_event_sov_show_trials
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.61.a
+	}
+}
+
+country_event = { # Return of the Minorities
+	id = KAZ.62
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.62"}
+	title = KAZ.62.t
+	desc = KAZ.62.d
+	picture = GFX_report_event_yugoslav_people
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.62.a
+	}
+}
+
+country_event = { # A Return to Latinisation
+	id = KAZ.63
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.63"}
+	title = KAZ.63.t
+	desc = KAZ.63.d
+	picture = GFX_report_event_classroom
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.63.a
+		add_stability = -0.05
+		add_political_power = 95
+	}
+}
+
+country_event = { # Friendship
+	id = KAZ.64
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.64"}
+	title = KAZ.64.t
+	desc = KAZ.64.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.64.a
+	}
+}
+
+country_event = { # Labour
+	id = KAZ.65
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.65"}
+	title = KAZ.65.t
+	desc = KAZ.65.d
+	picture = GFX_report_event_factory_workers
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.65.a
+	}
+}
+
+country_event = { # A Flexible Foreign Policy
+	id = KAZ.66
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.66"}
+	title = KAZ.66.t
+	desc = KAZ.66.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.66.a
+	}
+}
+
+country_event = { # event for germany for peace
+	id = KAZ.67
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.67"}
+	title = KAZ.67.t
+	desc = KAZ.67.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.67.a
+	}
+}
+
+country_event = { # A Divided Globe
+	id = KAZ.68
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.68"}
+	title = KAZ.68.t
+	desc = KAZ.68.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # china
+		name = KAZ.68.a
+		complete_national_focus = KAZ_nanjing_concensus
+	}
+	option = { # america
+		name = KAZ.68.b
+		complete_national_focus = KAZ_american_school
+	}
+}
+
+# yea this one is after anti corruption campaign but I fucked it up by forgetting it exists
+# also funny 69 number
+country_event = { # A New Red Army
+	id = KAZ.69
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.69"}
+	title = KAZ.69.t
+	desc = KAZ.69.d
+	picture = GFX_report_event_generic_red_army_fight
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.69.a
+		army_experience = 5
+	}
+}
+
+country_event = { # USA/China - An Eastern Approach
+	id = KAZ.70
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.70"}
+	title = KAZ.70.t
+	desc = KAZ.70.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # yes
+		name = KAZ.70.a
+	}
+	option = { # no
+		name = KAZ.70.b
+	}
+}
+
+country_event = { # The Struggles of Our People
+	id = KAZ.71
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.71"}
+	title = KAZ.71.t
+	desc = KAZ.71.d
+	picture = GFX_report_event_generic_handshake
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.71.a
+	}
+}
+
+country_event = { # Oil Found in Siberia
+	id = KAZ.72
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.72"}
+	title = KAZ.72.t
+	desc = KAZ.72.d
+	picture = GFX_report_event_oil_strike
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.72.a
+	}
+}
+
+country_event = { # No Oil Found
+	id = KAZ.73
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.73"}
+	title = KAZ.73.t
+	desc = KAZ.73.d
+	picture = GFX_report_event_oil_strike
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.73.a
+	}
+}
+
+country_event = { # China - Soviets Admit Our Sovereignty Over Mongolia
+	id = KAZ.74
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KAZ.74"}
+	title = KAZ.74.t
+	desc = KAZ.74.d
+	picture = GFX_report_event_mongolia_china
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KAZ.74.a
+		create_wargoal = {
+			type = annex_everything
+			target = MON
+		}
+	}
+}

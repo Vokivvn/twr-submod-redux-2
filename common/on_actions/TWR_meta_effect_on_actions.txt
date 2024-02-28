@@ -1,0 +1,25 @@
+on_actions = {
+    on_monthly_URG = {
+        effect = {
+            if = {
+                limit = {
+                    check_variable = { triggered_year = GLOBAL.year}
+                }
+                log = "Did not trigger event for [?GLOBAL.YEAR] as has already been triggered"
+            }
+            else = { 
+                meta_effect = {
+                    text = {
+                        news_event = {
+                            id = yearly_tick.[YEAR]
+                        }
+                    }
+                    YEAR = "[?GLOBAL.year]"
+                }
+                log = "Triggered yearly event for [?GLOBAL.YEAR] in [This.GETNAME] scope."
+                set_variable = { triggered_year = GLOBAL.year }
+            }
+        }
+            
+    }
+}

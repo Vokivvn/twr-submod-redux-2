@@ -1,0 +1,573 @@
+#4 different types of civil war:
+# MODERATES LARGEST/CONTROL BUCHAREST - Mihai dismisses Mihai, guard revolts against government, if the Moderates don't control Bucharest they all managed to flee
+# GUARD LARGEST/CONTROL BUCHAREST - Guard coups government, Moderates revolt
+# GUARD LARGEST/LACK BUCHAREST - Guard coups government but they fail to take Bucharest, however they succeed in killing Antonescu
+ROM_fire_civil_war = {
+	#first remove all government power in states
+	every_owned_state = {
+		limit = { has_state_flag = ROM_power_state }
+		set_temp_variable = { ROM_power_adjustment = ROM_power_govt }
+		multiply_temp_variable = { ROM_power_adjustment = -1 }
+		ROM_power_adjust_govt = yes
+	}
+	ROM_power_recalc = yes
+	
+	#Now give any 50/50 split states/non-power states to the non-revolter
+	every_owned_state = {
+		limit = {
+			OR = {
+				has_state_flag = ROM_control_govt
+				NOT = { has_state_flag = ROM_power_state }
+			}
+		}
+		clr_state_flag = ROM_control_govt
+		if = {
+			limit = { PREV = { has_country_flag = ROM_cw_is_legion_revolt } }
+			set_state_flag = ROM_control_mod
+			else = { set_state_flag = ROM_control_guard }
+		}
+	}
+	
+	#Now we create arrays out of the states
+	every_owned_state = {
+		limit = { has_state_flag = ROM_control_mod }
+		add_to_temp_array = { global.ROM_cw_mod_states = THIS }
+	}
+	every_owned_state = {
+		limit = { has_state_flag = ROM_control_guard }
+		add_to_temp_array = { global.ROM_cw_guard_states = THIS }
+	}
+	
+	#Disable the power interface
+	set_country_flag = ROM_power_disabled
+	clr_country_flag = ROM_show_politics
+	
+	#Calculate unit percentage
+	set_temp_variable = { ROM_cw_guard_units = ROM_power_guard }
+	divide_temp_variable = { ROM_cw_guard_units = 100 }
+	set_temp_variable = { ROM_cw_mod_units = ROM_power_mod }
+	divide_temp_variable = { ROM_cw_mod_units = 100 }
+	
+	#Set pataut party name
+	set_party_name = { 
+		ideology = paternal_autocrat
+		#name = "FRN"
+		#long_name = "Frontul Renașterii Naționale"
+		name = "GM"
+		long_name = "Guvernul Mihai (Mihai's Government)"
+	}
+	
+	#Start the war
+	save_global_event_target_as = ROM_old
+	if = {
+		limit = {
+			OR = { #Are we playing as the guard?
+				AND = {
+					has_country_flag = ROM_cw_is_legion_revolt
+					has_country_flag = ROM_cw_player_is_revolter
+				}
+				AND = {
+					has_country_flag = ROM_cw_is_moderate_revolt
+					has_Country_flag = ROM_cw_player_is_govt
+				}
+			}
+		}
+		set_country_flag = RMR_is_mod
+		start_civil_war = {
+			ruling_party = national_socialist
+			ideology = paternal_autocrat
+			keep_unit_leaders_trigger = { always = yes }
+			size = ROM_cw_mod_units
+			states = all
+			states_filter = { has_state_flag = ROM_control_mod }
+			
+			save_global_event_target_as = RMR_target
+		}
+		#SI
+		RMR = {
+		set_country_flag = KING_MICHAEL_COUP_HAPPENED
+		set_country_flag = POLITICAL_CRISIS_OVER_ROM
+		}
+		set_country_flag = KING_MICHAEL_COUP_HAPPENED
+		every_unit_leader = {
+		limit = {
+		NOT = { has_trait = iron_guard_general }
+		}
+		set_nationality = RMR
+		}
+		news_event = twrromania_cw.5
+	}
+	else = {
+		set_country_flag = RMR_is_guard
+		start_civil_war = {
+			ideology = national_socialist
+			keep_unit_leaders_trigger = { always = yes }
+			size = ROM_cw_guard_units
+			states = all
+			states_filter = { has_state_flag = ROM_control_guard }
+			
+			save_global_event_target_as = RMR_target
+		}
+		#SI
+		RMR = { set_country_flag = IRON_GUARD_COOPERATION }
+		every_unit_leader = {
+		limit = {
+		has_trait = iron_guard_general
+		}
+		set_nationality = RMR
+		}
+		news_event = twrromania_cw.5
+	}
+	
+	#Copy ideas
+	if = {
+		limit = {
+			has_idea = tot_economic_mobilisation
+		}
+		RMR = { add_ideas = tot_economic_mobilisation }
+	}
+	else = {
+		add_ideas = war_economy
+		RMR = { add_ideas = war_economy }
+	}
+	if = {
+		limit = {
+			has_idea = scraping_the_barrel
+		}
+		RMR = { add_ideas = scraping_the_barrel }
+	}
+	else_if = {
+		limit = {
+			has_idea = all_adults_serve
+		}
+		RMR = { add_ideas = all_adults_serve }
+	}
+	else_if = {
+		limit = {
+			has_idea = service_by_requirement
+		}
+		RMR = { add_ideas = service_by_requirement }
+	}
+	else = {
+		add_ideas = extensive_conscription
+		RMR = { add_ideas = extensive_conscription }
+	}
+	RMR = {
+		add_ideas = semi_industrialised_nation
+	}
+	
+	#Setup politics
+	clr_country_flag = has_symbolic_figurehead
+	clr_country_flag = mon_Michael_I
+	random_country = {
+		limit = {
+			original_tag = ROM
+			has_government = paternal_autocrat
+		}
+		set_cosmetic_tag = ROM_MODERATES
+		create_country_leader = {
+			name = "Mihai I"
+			desc = "King_Mihai_DESC"
+			picture = "gfx/leaders/ROM/Michael_I.dds"
+			expire = "1965.1.1"
+			ideology = monarchism
+			traits = {}
+		}
+		set_popularities = {
+			national_socialist = 0
+			fascist = 3
+			paternal_autocrat = 42
+			conservative = 8
+			liberal = 33
+			social_democrat = 11
+			socialist = 0
+			bolshevik_leninist = 3
+			marxist_leninist = 0
+		}
+		add_ideas = {
+			authoritarian_system
+			HoG_Gheorghe_Mihail
+			FM_Constantin_Visoianu
+			MoS_Dumitru_I_Popescu
+			AM_Anton_Crihan
+			CoStaff_Alexandru_Ioanitiu
+			CoArmy_Ioan_Dumitrache
+		}
+		if = {
+		limit = { has_global_flag = ROM_POLICE_LOYALTY }
+			division_template = {
+				name = "Politie"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+				}
+				is_locked = yes
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Divizia 1 Politie\" division_template = \"division_template\" start_experience_factor = 0.05 start_equipment_factor = 1.0"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Divizia 2 Politie\" division_template = \"division_template\" start_experience_factor = 0.05 start_equipment_factor = 1.0"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Divizia 3 Politie\" division_template = \"division_template\" start_experience_factor = 0.05 start_equipment_factor = 1.0"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Divizia 4 Politie\" division_template = \"division_template\" start_experience_factor = 0.05 start_equipment_factor = 1.0"
+					owner = ROOT
+				}
+			}
+		}
+	clr_country_flag = has_symbolic_figurehead
+	clr_country_flag = mon_Michael_I
+	}
+	
+	random_country = {
+		limit = {
+			original_tag = ROM
+			has_government = national_socialist
+		}
+		set_cosmetic_tag = ROM_GUARD_IG_CIVIL_WAR
+		set_country_flag = IRON_GUARD_COOPERATION
+		set_popularities = {
+			national_socialist = 85
+			fascist = 10
+			paternal_autocrat = 3
+			conservative = 2
+			liberal = 0
+			social_democrat = 0
+			socialist = 0
+			bolshevik_leninist = 0
+			marxist_leninist = 0
+		}
+		add_ideas = {
+			fanatical_dictatorship
+			CoStaff_Platon_Chirnoaga
+			CoArmy_Platon_Chirnoagas
+			AM_Horia_Sima
+			MoS_Ion_V_Gruia
+			FM_Michel_Sturdza
+			HoG_Horia_Sima
+		}
+		clr_country_flag = has_symbolic_figurehead
+		clr_country_flag = mon_Michael_I
+		if = {
+		limit = { has_global_flag = LESS_MANPOWER_IG }
+		add_manpower = -20000
+		}
+		if = {
+		limit = { has_global_flag = IG_MORE_EQUIPMENT }
+		add_equipment_to_stockpile = {
+    	type = infantry_equipment
+    	amount = 1000
+			}
+		}
+		if = {
+		limit = {
+		NOT = { has_global_flag = ROM_IRON_GUARD_FIELD_COMMANDERS }
+			}
+		create_field_marshal = {
+		name = "Platon Chirnoagă"
+		portrait_path = "gfx/leaders/ROM/Platon_Chirnoaga.dds"
+		traits = { iron_guard_general organisational_leader }
+		skill = 3
+		attack_skill = 3
+		defense_skill = 3
+		planning_skill = 3
+		logistics_skill = 3
+			}
+		create_corps_commander = {
+		name = "Virgil Popa"
+		portrait_path = "gfx/leaders/ROM/Virgil_Popa.dds"
+		traits = { iron_guard_general armor_officer }
+		skill = 3
+		attack_skill = 3
+		defense_skill = 1
+		planning_skill = 3
+		logistics_skill = 2
+			}
+		create_corps_commander = {
+		name = "Ion Gavrilă Ogoranu"
+		portrait_path = "gfx/leaders/ROM/Ion_Gavrila_Ogoranu.dds"
+		traits = { iron_guard_general trickster harsh_leader }
+		skill = 2
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 1
+		logistics_skill = 2
+			}
+		create_corps_commander = {
+		name = "Leon Susman"
+		portrait_path = "gfx/leaders/ROM/Leon_Susman.dds"
+		traits = { iron_guard_general trickster }
+		skill = 2
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 3
+			}
+		create_corps_commander = {
+		name = "Radu Gyr"
+		portrait_path = "gfx/leaders/ROM/Radu_Gyr.dds"
+		traits = { iron_guard_general }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+			}
+		create_corps_commander = {
+		name = "Dumitru Grozea"
+		portrait_path = "gfx/leaders/ROM/Dumitru_Grozea.dds"
+		traits = { iron_guard_general politically_connected }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+			}
+		create_corps_commander = {
+		name = "Demetrius Leonties"
+		portrait_path = "gfx/leaders/ROM/Demetrius_Leonties.dds"
+		traits = { iron_guard_general }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+			}
+		}
+	}
+}
+
+ROM_power_init = {
+	every_owned_state = {
+		set_state_flag = ROM_power_state
+		set_variable = { ROM_power_mod = 0 }
+		set_variable = { ROM_power_govt = 100 }
+		set_variable = { ROM_power_guard = 0 }
+		set_variable = { ROM_power_weight = 2 }
+	}
+	ROM_power_recalc = yes
+}
+
+ROM_power_recalc = {
+	set_variable = { ROM_power_total = 0 }
+	set_variable = { ROM_power_mod_total = 0 }
+	set_variable = { ROM_power_govt_total = 0 }
+	set_variable = { ROM_power_guard_total = 0 }
+	
+	every_owned_state = {
+		limit = { has_state_flag = ROM_power_state }
+		
+		clr_state_flag = ROM_control_mod
+		clr_state_flag = ROM_control_govt
+		clr_state_flag = ROM_control_guard
+		if = {
+			limit = {
+				check_variable = { ROM_power_mod > ROM_power_govt }
+				check_variable = { ROM_power_mod > ROM_power_guard }
+			}
+			set_state_flag = ROM_control_mod
+		}
+		else_if = {
+			limit = {
+				check_variable = { ROM_power_guard > ROM_power_mod }
+				check_variable = { ROM_power_guard > ROM_power_govt }
+			}
+			set_state_flag = ROM_control_guard
+		}
+		else = {
+			set_state_flag = ROM_control_govt
+		}
+		
+		set_temp_variable = { ROM_power_calc = ROM_power_mod }
+		multiply_temp_variable = { ROM_power_calc = ROM_power_weight }
+		add_to_variable = { PREV.ROM_power_mod_total = ROM_power_calc }
+		add_to_variable = { PREV.ROM_power_total = ROM_power_calc }
+		
+		set_temp_variable = { ROM_power_calc = ROM_power_govt }
+		multiply_temp_variable = { ROM_power_calc = ROM_power_weight }
+		add_to_variable = { PREV.ROM_power_govt_total = ROM_power_calc }
+		add_to_variable = { PREV.ROM_power_total = ROM_power_calc }
+		
+		set_temp_variable = { ROM_power_calc = ROM_power_guard }
+		multiply_temp_variable = { ROM_power_calc = ROM_power_weight }
+		add_to_variable = { PREV.ROM_power_guard_total = ROM_power_calc }
+		add_to_variable = { PREV.ROM_power_total = ROM_power_calc }
+	}
+	
+	set_variable = { ROM_power_mod = ROM_power_mod_total }
+	divide_variable = { ROM_power_mod = ROM_power_total }
+	multiply_variable = { ROM_power_mod = 100 }
+	round_variable = ROM_power_mod
+	
+	set_variable = { ROM_power_govt = ROM_power_govt_total }
+	divide_variable = { ROM_power_govt = ROM_power_total }
+	multiply_variable = { ROM_power_govt = 100 }
+	round_variable = ROM_power_govt
+	
+	set_variable = { ROM_power_guard = ROM_power_guard_total }
+	divide_variable = { ROM_power_guard = ROM_power_total }
+	multiply_variable = { ROM_power_guard = 100 }
+	round_variable = ROM_power_guard
+
+	ROM_update_gui = yes
+}
+
+ROM_power_adjust_mod = {
+	set_temp_variable = { ROM_power_max = 100 }
+	subtract_from_temp_variable = { ROM_power_max = ROM_power_mod }
+	set_temp_variable = { ROM_power_min = ROM_power_mod }
+	multiply_temp_variable = { ROM_power_min = -1 }
+	clamp_temp_variable = {
+		var = ROM_power_adjustment
+		min = ROM_power_min
+		max = ROM_power_max
+	}
+	
+	set_temp_variable = { ROM_other_power = ROM_power_govt }
+	add_to_temp_variable = { ROM_other_power = ROM_power_guard }
+	
+	set_temp_variable = { ROM_calc_power_govt = ROM_power_govt }
+	divide_temp_variable = { ROM_calc_power_govt = ROM_other_power }
+	multiply_temp_variable = { ROM_calc_power_govt = ROM_power_adjustment }
+	round_temp_variable = ROM_calc_power_govt
+	
+	set_temp_variable = { ROM_calc_power_guard = ROM_power_guard }
+	divide_temp_variable = { ROM_calc_power_guard = ROM_other_power }
+	multiply_temp_variable = { ROM_calc_power_guard = ROM_power_adjustment }
+	round_temp_variable = ROM_calc_power_guard
+	
+	add_to_variable = { ROM_power_mod = ROM_power_adjustment }
+	subtract_from_variable = { ROM_power_govt = ROM_calc_power_govt }
+	subtract_from_variable = { ROM_power_guard = ROM_calc_power_guard }
+
+	ROM_update_gui = yes
+}
+
+ROM_power_adjust_govt = {
+	set_temp_variable = { ROM_power_max = 100 }
+	subtract_from_temp_variable = { ROM_power_max = ROM_power_govt }
+	set_temp_variable = { ROM_power_min = ROM_power_govt }
+	multiply_temp_variable = { ROM_power_min = -1 }
+	clamp_temp_variable = {
+		var = ROM_power_adjustment
+		min = ROM_power_min
+		max = ROM_power_max
+	}
+
+	set_temp_variable = { ROM_other_power = ROM_power_mod }
+	add_to_temp_variable = { ROM_other_power = ROM_power_guard }
+	
+	set_temp_variable = { ROM_calc_power_mod = ROM_power_mod }
+	divide_temp_variable = { ROM_calc_power_mod = ROM_other_power }
+	multiply_temp_variable = { ROM_calc_power_mod = ROM_power_adjustment }
+	round_temp_variable = ROM_calc_power_mod
+	
+	set_temp_variable = { ROM_calc_power_guard = ROM_power_guard }
+	divide_temp_variable = { ROM_calc_power_guard = ROM_other_power }
+	multiply_temp_variable = { ROM_calc_power_guard = ROM_power_adjustment }
+	round_temp_variable = ROM_calc_power_guard
+	
+	add_to_variable = { ROM_power_govt = ROM_power_adjustment }
+	subtract_from_variable = { ROM_power_mod = ROM_calc_power_mod }
+	subtract_from_variable = { ROM_power_guard = ROM_calc_power_guard }
+
+	ROM_update_gui = yes
+}
+
+ROM_power_adjust_guard = {
+	set_temp_variable = { ROM_power_max = 100 }
+	subtract_from_temp_variable = { ROM_power_max = ROM_power_guard }
+	set_temp_variable = { ROM_power_min = ROM_power_guard }
+	multiply_temp_variable = { ROM_power_min = -1 }
+	clamp_temp_variable = {
+		var = ROM_power_adjustment
+		min = ROM_power_min
+		max = ROM_power_max
+	}
+	
+	set_temp_variable = { ROM_other_power = ROM_power_govt }
+	add_to_temp_variable = { ROM_other_power = ROM_power_mod }
+	
+	set_temp_variable = { ROM_calc_power_govt = ROM_power_govt }
+	divide_temp_variable = { ROM_calc_power_govt = ROM_other_power }
+	multiply_temp_variable = { ROM_calc_power_govt = ROM_power_adjustment }
+	round_temp_variable = ROM_calc_power_govt
+	
+	set_temp_variable = { ROM_calc_power_mod = ROM_power_mod }
+	divide_temp_variable = { ROM_calc_power_mod = ROM_other_power }
+	multiply_temp_variable = { ROM_calc_power_mod = ROM_power_adjustment }
+	round_temp_variable = ROM_calc_power_mod
+	
+	add_to_variable = { ROM_power_guard = ROM_power_adjustment }
+	subtract_from_variable = { ROM_power_govt = ROM_calc_power_govt }
+	subtract_from_variable = { ROM_power_mod = ROM_calc_power_mod }
+
+	ROM_update_gui = yes
+}
+
+ROM_increase_wolf = {
+	if = {
+		limit = { has_idea = ROM_wolf_of_balkans6 }
+		swap_ideas = { remove_idea = ROM_wolf_of_balkans6 add_idea = ROM_wolf_of_balkans7 }
+	}
+	if = {
+		limit = { has_idea = ROM_wolf_of_balkans5 }
+		swap_ideas = { remove_idea = ROM_wolf_of_balkans5 add_idea = ROM_wolf_of_balkans6 }
+	}
+	if = {
+		limit = { has_idea = ROM_wolf_of_balkans4 }
+		swap_ideas = { remove_idea = ROM_wolf_of_balkans4 add_idea = ROM_wolf_of_balkans5 }
+	}
+	if = {
+		limit = { has_idea = ROM_wolf_of_balkans3 }
+		swap_ideas = { remove_idea = ROM_wolf_of_balkans3 add_idea = ROM_wolf_of_balkans4 }
+	}
+	if = {
+		limit = { has_idea = ROM_wolf_of_balkans2 }
+		swap_ideas = { remove_idea = ROM_wolf_of_balkans2 add_idea = ROM_wolf_of_balkans3 }
+	}
+	if = {
+		limit = { has_idea = ROM_wolf_of_balkans }
+		swap_ideas = { remove_idea = ROM_wolf_of_balkans add_idea = ROM_wolf_of_balkans2 }
+	}
+}
+ROM_decrease_wolf = {
+
+}
+
+# gamer effect to clear info if you click on state twice, change info if you click another state
+ROM_politics_display = {
+	if = {
+		limit = {
+			check_variable = { temp = ROM_selected_state }
+		}
+		clear_variable = ROM_selected_state
+	}
+	else = {
+		set_variable = { ROM_selected_state = temp }
+	}
+
+	add_to_variable = { show_ROM_politics = 1 }
+}
+
+# update the gui display (dirty variable makes it so that gui doesnt update every tick, only when necessary, haha performance go zoom)
+ROM_update_gui = {
+	if = {
+		limit = {
+			check_variable = { ROM.show_ROM_politics > 0 }
+		}
+		add_to_variable = { ROM.show_ROM_politics = 1 }
+	}
+}

@@ -1,0 +1,558 @@
+political_actions = {
+        GRE_junta_coup = {
+        icon = GFX_decision_generic_army_support
+        visible = { tag = GRE }
+        available = { has_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK }
+        fire_only_once = yes
+        activation = {
+        has_country_flag = GRE_MILITARY_THREAT_TOOLTIP
+        }
+        cancel_trigger = {
+        has_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK
+        }
+        is_good = no
+
+        ai_will_do = {
+                factor = 10
+        }
+
+        days_mission_timeout = 100
+
+        days_re_enable = 1
+
+        timeout_effect = {
+        custom_effect_tooltip = GRE_JUNTA_TAKES_OVER_FAIL
+        hidden_effect = { country_event = twrGreekMilitarist.4 }
+        set_country_flag = COUP_FIRED_GRE
+        log = "[GetDateText]: [Root.GetName]: GRE_junta_coup" 
+                }
+        }        
+}
+
+GRE_Militarist_Mechanic = { 
+ 
+ 
+        GRE_Bourantas_Is_Making_Moves = {
+	icon = GFX_decision_generic_army_support
+        visible = { tag = GRE }
+        available = { has_country_flag = GRE_Politics_Resolved_Bou NOT = { check_variable = { GRE_MIL_BARB = 100 } } }
+	fire_only_once = no
+        activation = {
+        has_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK
+        has_country_flag = Bourantas_Alive
+        }
+        cancel_trigger = {
+        NOT = { has_country_flag = Bourantas_Alive }
+        }
+	is_good = no
+
+	ai_will_do = {
+		factor = 10
+	}
+
+	days_mission_timeout = 30
+
+        days_re_enable = 1
+
+	timeout_effect = {
+        log = "[GetDateText]: [Root.GetName]: GRE_Bourantas_Is_Making_Moves" 
+        random_list = {
+        60 = { 
+        custom_effect_tooltip = GRE_Power_Increase_Bou
+        add_to_variable = {
+	var = GRE_MIL_BARB
+	value = 5
+                }
+        }
+        10 = { 
+        custom_effect_tooltip = GRE_Power_Increase_Bou_10
+        add_to_variable = {
+        var = GRE_MIL_BARB
+        value = 10
+                }
+        }
+        20 = { country_event = twrGreekMilitarist.112 }
+        10 = { 
+
+                }
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_Gizikis_Is_Making_Moves = {
+	icon = GFX_decision_generic_army_support
+        visible = { tag = GRE }
+        available = { has_country_flag = GRE_Politics_Resolved_Giz NOT = { check_variable = { GRE_MIL_REP = 100 } } }
+        activation = {
+        has_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK
+        has_country_flag = Phaedon_Alive
+        }
+	fire_only_once = no
+        cancel_trigger = {
+        NOT = { has_country_flag = Phaedon_Alive }
+        }
+	is_good = no
+
+	ai_will_do = {
+		factor = 10
+	}
+
+	days_mission_timeout = 30
+
+        days_re_enable = 1
+
+	timeout_effect = {
+        log = "[GetDateText]: [Root.GetName]: GRE_Gizikis_Is_Making_Moves" 
+        random_list = {
+        60 = { 
+        custom_effect_tooltip = GRE_Power_Increase_Giz
+        add_to_variable = {
+        var = GRE_MIL_REP
+        value = 5
+                }
+        }
+        10 = { 
+        custom_effect_tooltip = GRE_Power_Increase_Giz_10
+        add_to_variable = {
+        var = GRE_MIL_REP
+        value = 10
+                }
+        }
+        20 = { country_event = twrGreekMilitarist.111 }
+        10 = { 
+
+                }
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_Papadopoulos_Is_Making_Moves = {
+	icon = GFX_decision_generic_army_support
+        visible = { tag = GRE }
+        available = { has_country_flag = GRE_Politics_Resolved_Pap NOT = { check_variable = { GRE_MIL_GAN = 100 } } }
+
+	fire_only_once = no
+
+	is_good = no
+
+	ai_will_do = {
+		factor = 10
+	}
+        activation = {
+        has_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK
+        has_country_flag = Papadopoulos_Alive
+        }
+        cancel_trigger = {
+        NOT = { has_country_flag = Papadopoulos_Alive }
+        }
+	days_mission_timeout = 30
+
+        days_re_enable = 1
+
+	timeout_effect = {
+        log = "[GetDateText]: [Root.GetName]: GRE_Papadopoulos_Is_Making_Moves" 
+        random_list = {
+        60 = { 
+        custom_effect_tooltip = GRE_Power_Increase_Pap
+        add_to_variable = {
+        var = GRE_MIL_GAN
+        value = 5
+                }
+        }
+        10 = { 
+        custom_effect_tooltip = GRE_Power_Increase_Pap_10
+        add_to_variable = {
+        var = GRE_MIL_GAN
+        value = 10
+                }
+        }
+        20 = { country_event = twrGreekMilitarist.110 }
+        10 = { 
+
+                }
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_Bourantas_Reduce_Power = {
+	icon = GFX_decision_generic_army_support
+        visible = { tag = GRE NOT = { has_country_flag = GRE_Party_Decrease has_country_flag = GRE_Politics_Resolved_Bou } }
+        available = {
+        custom_trigger_tooltip = {
+        tooltip = 5_OR_ABOVE               
+        check_variable = { GRE_MIL_BARB > 4 }
+                }
+        }
+
+	fire_only_once = no
+
+	is_good = no
+
+	ai_will_do = {
+		factor = 10
+	}
+
+        custom_cost_trigger = {
+	has_equipment = { infantry_equipment > 199 }
+	}
+	custom_cost_text = GRE_has_200_guns
+
+        days_re_enable = 30
+
+        days_remove = 15
+
+        complete_effect = {
+        set_country_flag = GRE_Party_Decrease
+        add_equipment_to_stockpile = {
+		type = infantry_equipment
+		amount = -200
+	} 
+        custom_effect_tooltip = GRE_No_Decrease
+        }
+
+	remove_effect = {
+        clr_country_flag = GRE_Party_Decrease
+        custom_effect_tooltip = GRE_Power_Decrease_Bou
+        log = "[GetDateText]: [Root.GetName]: GRE_Bourantas_Reduce_Power" 
+        add_to_variable = {
+	var = GRE_MIL_BARB
+	value = -5
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_Gizikis_Reduce_Power = {
+	icon = GFX_decision_generic_army_support
+        visible = { tag = GRE NOT = { has_country_flag = GRE_Party_Decrease has_country_flag = GRE_Politics_Resolved_Giz } }
+        available = {
+        custom_trigger_tooltip = {
+        tooltip = 5_OR_ABOVE               
+        check_variable = { GRE_MIL_REP > 4 }
+                }
+        }
+
+	fire_only_once = no
+        
+        cost = 50
+
+	is_good = no
+
+	ai_will_do = {
+		factor = 10
+	}
+
+        days_re_enable = 30
+
+        days_remove = 15
+
+        complete_effect = {
+        set_country_flag = GRE_Party_Decrease
+        custom_effect_tooltip = GRE_No_Decrease
+        }
+
+	remove_effect = {
+        clr_country_flag = GRE_Party_Decrease
+        custom_effect_tooltip = GRE_Power_Decrease_Giz
+        log = "[GetDateText]: [Root.GetName]: GRE_Gizikis_Reduce_Power" 
+        add_to_variable = {
+	var = GRE_MIL_REP
+	value = -5
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+
+        GRE_Gizikis_Reduce_Power_SPEC = {
+        icon = GFX_decision_generic_army_support
+        visible = { tag = GRE NOT = { has_country_flag = GRE_Party_Decrease has_country_flag = GRE_Politics_Resolved_Giz } has_completed_focus = GRE_Agents_Among_the_Ranks }
+        available = {
+        custom_trigger_tooltip = {
+        tooltip = 5_OR_ABOVE               
+        check_variable = { GRE_MIL_REP > 4 }
+                }
+        }
+
+        fire_only_once = no
+        
+        cost = 15
+
+        is_good = no
+
+        ai_will_do = {
+                factor = 10
+        }
+
+        days_re_enable = 45
+
+        days_remove = 15
+
+        remove_effect = {
+        clr_country_flag = GRE_Party_Decrease
+        custom_effect_tooltip = GRE_Power_Decrease_Giz
+        log = "[GetDateText]: [Root.GetName]: GRE_Gizikis_Reduce_Power" 
+        add_to_variable = {
+        var = GRE_MIL_REP
+        value = -5
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_Papadopoulos_Reduce_Power = {
+	icon = GFX_decision_generic_army_support
+        visible = { tag = GRE NOT = { has_country_flag = GRE_Party_Decrease has_country_flag = GRE_Politics_Resolved_Pap } }
+        available = {
+        custom_trigger_tooltip = {
+        tooltip = 5_OR_ABOVE               
+        check_variable = { GRE_MIL_GAN > 4 }
+                }
+        }
+
+	fire_only_once = no
+        
+        cost = 50
+
+	is_good = no
+
+	ai_will_do = {
+		factor = 10
+	}
+
+        days_re_enable = 30
+
+        days_remove = 15
+
+        complete_effect = {
+        set_country_flag = GRE_Party_Decrease
+        custom_effect_tooltip = GRE_No_Decrease
+        }
+
+	remove_effect = {
+        clr_country_flag = GRE_Party_Decrease
+        custom_effect_tooltip = GRE_Power_Decrease_Pap
+        log = "[GetDateText]: [Root.GetName]: GRE_Papadopoulos_Reduce_Power" 
+        add_to_variable = {
+	var = GRE_MIL_GAN
+	value = -5
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_Papadopoulos_Kidnappings = {
+        icon = GFX_decision_generic_army_support
+        visible = { 
+        tag = GRE 
+        NOT = { 
+        has_country_flag = GRE_Politics_Resolved_Pap 
+        } 
+        check_variable = { GRE_MIL_GAN > 4 } 
+        has_completed_focus = GRE_Blind_Eyes_for_Disappearances
+        }
+        available = { always = yes }
+
+        fire_only_once = no
+        
+        cost = 50
+
+        is_good = no
+
+        ai_will_do = {
+        factor = 20
+        }
+
+        days_re_enable = 50
+
+        days_remove = 15
+
+        complete_effect = {
+        add_stability = -0.01
+        }
+
+        remove_effect = {
+        custom_effect_tooltip = GRE_Power_Decrease_Pap_10
+        log = "[GetDateText]: [Root.GetName]: GRE_Papadopoulos_Reduce_Power" 
+        add_to_variable = {
+        var = GRE_MIL_GAN
+        value = -10
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_Gizikis_Kidnappings = {
+        icon = GFX_decision_generic_army_support
+        visible = { 
+        tag = GRE 
+        NOT = { 
+        has_country_flag = GRE_Politics_Resolved_Giz 
+        } 
+        check_variable = { GRE_MIL_GAN > 4 } 
+        has_completed_focus = GRE_Blind_Eyes_for_Disappearances
+        }
+        available = { always = yes }
+
+        fire_only_once = no
+        
+        cost = 50
+
+        is_good = no
+
+        ai_will_do = {
+        factor = 20
+        }
+
+        days_re_enable = 50
+
+        days_remove = 15
+
+        complete_effect = {
+        add_stability = -0.01
+        }
+
+        remove_effect = {
+        custom_effect_tooltip = GRE_Power_Decrease_Pap_10
+        log = "[GetDateText]: [Root.GetName]: GRE_Papadopoulos_Reduce_Power" 
+        add_to_variable = {
+        var = GRE_MIL_REP
+        value = -10
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+
+        GRE_Verband_March = {
+        icon = GFX_decision_generic_army_support
+        visible = { 
+        tag = GRE 
+        has_idea = GRE_incoporated_verband 
+        }
+        available = { always = yes }
+
+        fire_only_once = no
+        
+        cost = 30
+
+        is_good = no
+
+        ai_will_do = {
+        factor = 20
+        }
+
+        days_re_enable = 30
+
+        complete_effect = {
+        custom_effect_tooltip = GRE_Power_Increase_Bou
+        add_to_variable = {
+        var = GRE_MIL_BARB
+        value = 5
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_Verband_Storm_Papadopoulos = {
+        icon = GFX_decision_generic_army_support
+        visible = { 
+        tag = GRE 
+        has_idea = GRE_incoporated_verband 
+        has_country_flag = Papadopoulos_Alive
+        }
+        available = {
+        custom_trigger_tooltip = {
+        tooltip = LOWER_THAN_30_GAN               
+        check_variable = { GRE_MIL_GAN < 30 }
+                }
+        }
+
+        fire_only_once = no
+        
+        cost = 100
+
+        is_good = no
+
+        ai_will_do = {
+        factor = 20
+        }
+
+        days_re_enable = 30
+
+        complete_effect = {
+        custom_effect_tooltip = Papadopoulos_EXECUTED
+        clr_country_flag = Papadopoulos_Alive
+        set_country_flag = GRE_Politics_Resolved_Pap
+        set_variable = { GRE_MIL_GAN = 0 }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_military_favour = {
+        icon = GFX_decision_generic_army_support
+        visible = { 
+        tag = GRE 
+        OR = {
+        has_completed_focus = GRE_Politics_in_the_Hands_of_Soldiers
+        has_completed_focus = GRE_Politics_in_the_Hands_of_Soldiers_IF
+                }
+        }
+        available = { always = yes }
+
+        fire_only_once = no
+        
+        cost = 30
+
+        is_good = no
+
+        ai_will_do = {
+        factor = 20
+        }
+
+        days_re_enable = 30
+
+        complete_effect = {
+        custom_effect_tooltip = GRE_Power_Increase_Gan
+        add_to_variable = {
+        var = GRE_MIL_GAN
+        value = 5
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+
+        GRE_bribe_the_press = {
+        icon = GFX_decision_generic_army_support
+        visible = { 
+        tag = GRE 
+        has_completed_focus = GRE_The_Eleutheros_Stratiotis_Paper
+        }
+        available = { always = yes }
+
+        fire_only_once = no
+        
+        cost = 20
+
+        is_good = no
+
+        ai_will_do = {
+        factor = 20
+        }
+
+        days_re_enable = 30
+
+        complete_effect = {
+        add_stability = -0.01
+        custom_effect_tooltip = GRE_Power_Increase_Giz
+        add_to_variable = {
+        var = GRE_MIL_REP
+        value = 5
+        }
+        clamp_militarist_values_GRE = yes
+                }
+        }
+}

@@ -1,0 +1,1677 @@
+	
+shared_focus = {
+	cancelable = no
+	id = NOR_Question_of_the_Quisling_Regime
+	icon = GFX_NOR_Quisling_Question
+	cost = 7
+	x = 40
+	y = 0
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		custom_effect_tooltip = QUISLING_QUESTION
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Terboven_Recalled
+	icon = GFX_GER_Diplomacy_Suitcase
+	x = 0
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = NOR_Question_of_the_Quisling_Regime
+	}
+	relative_position_id = NOR_Question_of_the_Quisling_Regime
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Terboven_Recalled_custom
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_1952_Party_Crisis
+	icon = GFX_GENERIC_Burn_the_Parliament
+	x = 0
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = NOR_Terboven_Recalled
+	}
+	relative_position_id = NOR_Terboven_Recalled
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = NOR_PARTY_CRISIS
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Summon_the_Congress
+	icon = GFX_NOR_NS
+	x = 0
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = NOR_1952_Party_Crisis
+	}
+	relative_position_id = NOR_1952_Party_Crisis
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = NOR_CONGRESS_SUMMONED
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Quislings_Leadership
+	icon = GFX_NOR_Quisling_Leader
+	x = -5
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = NOR_Summon_the_Congress
+	}
+	mutually_exclusive = {
+		focus = NOR_Nasjonal_Samling_Crumbled
+	}
+	mutually_exclusive = {
+		focus = NOR_Lies_Coup
+	}
+	relative_position_id = NOR_Summon_the_Congress
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = NOR_QUISLING_SECURED
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Purge_of_Unloyal_Elements
+	icon = GFX_GENERIC_imprison_opposition1
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Quislings_Leadership
+	}
+	relative_position_id = NOR_Quislings_Leadership
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}
+	completion_reward = {
+		remove_ideas = NOR_party_crisis
+		add_manpower = -20000
+		add_timed_idea = {
+			idea = NOR_purge_of_oppositions
+			days = 100
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_A_Deal_with_Hitler
+	icon = GFX_GER_Volkshalle
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = NOR_Purge_of_Unloyal_Elements
+	}
+	mutually_exclusive = {
+		focus = NOR_Take_a_Hard_Stance
+	}
+	relative_position_id = NOR_Purge_of_Unloyal_Elements
+	available = {
+		NOT = {
+			has_global_flag = hitler_is_dead
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	completion_reward = { #event
+		country_event = {
+		id = twrnorway.17 days = 2
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Take_a_Hard_Stance
+	icon = GFX_GENERIC_Army_Cooperation
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Purge_of_Unloyal_Elements
+	}
+	mutually_exclusive = {
+		focus = NOR_A_Deal_with_Hitler
+	}
+	relative_position_id = NOR_Purge_of_Unloyal_Elements
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}
+	completion_reward = {
+		remove_ideas = NOR_quisling_nazi_puppet
+		GER = {
+			set_autonomy = {
+				target = NOR
+				autonomy_state = autonomy_free
+			}
+		}
+		leave_faction = yes
+		add_opinion_modifier = {
+			target = GER
+			modifier = faction_traitor
+		}
+		reverse_add_opinion_modifier = {
+			target = GER
+			modifier = faction_traitor
+		}
+		every_army_leader = {
+			limit = {
+				NOT = {
+					has_trait = norwegian_general
+				}
+			}
+			set_nationality = GER
+		}
+		every_navy_leader = {
+			limit = {
+				NOT = {
+					has_trait = norwegian_general
+				}
+			}
+			set_nationality = GER
+		}
+		custom_effect_tooltip = IF_GERMAN_ANGREY
+		hidden_effect = { #event
+
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_A_Norwegian_Government
+	icon = GFX_NOR_Norwegian_Government
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Take_a_Hard_Stance
+		focus = NOR_A_Deal_with_Hitler
+	}
+	relative_position_id = NOR_A_Deal_with_Hitler
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}
+	completion_reward = {
+		custom_effect_tooltip = GERMANS_GONE
+		hidden_effect = {
+			set_country_flag = RK_germans_gone
+			add_ideas = {
+				NOR_CoS_Orvar_Saether
+				NOR_CoA_Konrad_Sundlo
+				NOR_CoAi_Thorleif_Fjeldstad
+				NOR_CoN_Per_Carlson
+			}
+		}
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Assert_Norwegian_Independence
+	icon = GFX_goal_generic_alliance
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = NOR_A_Norwegian_Government
+	}
+	relative_position_id = NOR_A_Norwegian_Government
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = { #news event and idea
+		add_stability = 0.15
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Disband_the_GSSN
+	icon = GFX_Disarm_SS
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Assert_Norwegian_Independence
+	}
+	relative_position_id = NOR_Assert_Norwegian_Independence
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		remove_ideas = NOR_discontented_GSSN
+		add_manpower = -5000
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Expand_the_Statspolitiet
+	icon = GFX_NOR_Statspolitiet
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Disband_the_GSSN
+	}
+	relative_position_id = NOR_Disband_the_GSSN
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_ideas = NOR_The_Statspolitiet
+		#should enable decision to crack down on resistance
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_The_National_Constitution
+	icon = GFX_GER_Professional_Militia
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_A_Norwegian_Government
+	}
+	relative_position_id = NOR_A_Norwegian_Government
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = { #country event and a national idea
+	remove_ideas = NOR_the_london_exiles
+	add_political_power = 250
+	}
+	cost = 9
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Renew_Our_Territorial_Claims
+	icon = GFX_GENERIC_draw_borders
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_The_National_Constitution
+	}
+	relative_position_id = NOR_The_National_Constitution
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = { #country event
+		add_state_claim = 213
+		add_state_claim = 148
+		add_state_claim = 337
+		add_state_claim = 100
+		add_state_claim = 101
+		add_state_claim = 841
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Declare_Norwegian_First
+	icon = GFX_NOR_Norge_First
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Renew_Our_Territorial_Claims
+	}
+	relative_position_id = NOR_Renew_Our_Territorial_Claims
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		every_army_leader = {
+			limit = {
+				has_trait = norwegian_general
+			}			
+			add_skill_level = 1
+		}
+		add_ideas = NOR_alt_for_norge_idea
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_The_New_Norwegian_Nation
+	icon = GFX_NOR_New_Norway
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Expand_the_Statspolitiet
+	}
+	prerequisite = {
+		focus = NOR_Declare_Norwegian_First
+	}
+	relative_position_id = NOR_Expand_the_Statspolitiet
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		remove_ideas = NOR_illegitimate_government
+		add_political_power = 150
+		add_stability = 0.1
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_A_Norwegian_Army
+	icon = GFX_NOR_army
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = NOR_The_New_Norwegian_Nation
+	}
+	relative_position_id = NOR_The_New_Norwegian_Nation
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = { #loab an oob
+		army_experience = 50
+		capital_scope = {
+			create_unit = {
+				division = "name = \"1. Ny Divisjon\" division_template = \"Infanteriet Divisjon\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"2. Ny Divisjon\" division_template = \"Infanteriet Divisjon\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+				owner = ROOT
+			}
+		}
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Quisling_Neutrality
+	icon = GFX_GENERIC_Third_Force
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_The_New_Norwegian_Nation
+	}
+	relative_position_id = NOR_The_New_Norwegian_Nation
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_ideas = deterrence
+		add_stability = 0.1
+	}
+	cost = 7
+}
+
+#Yeet NS
+shared_focus = {
+	cancelable = no
+	id = NOR_Nasjonal_Samling_Crumbled
+	icon = GFX_NOR_NS_Crumbles
+	x = 0
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = NOR_Summon_the_Congress
+	}
+	mutually_exclusive = {
+		focus = NOR_Quislings_Leadership
+	}
+	mutually_exclusive = {
+		focus = NOR_Lies_Coup
+	}
+	relative_position_id = NOR_Summon_the_Congress
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = NSCRUMBLED_OOF
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Return_of_Terboven
+	icon = GFX_NOR_Return_Of_Terboven
+	x = -1
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = NOR_Nasjonal_Samling_Crumbled
+	}
+	mutually_exclusive = {
+		focus = NOR_Hirden_Coup
+	}
+	relative_position_id = NOR_Nasjonal_Samling_Crumbled
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Purge_the_Norwegian_Officials
+	icon = GFX_focus_CDA_purge_warlords
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Return_of_Terboven
+	}
+	relative_position_id = NOR_Return_of_Terboven
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_manpower = -5000
+		add_political_power = 75
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Reinforce_the_Reichskommissariat
+	icon = GFX_GENERIC_RK_Flag
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Purge_the_Norwegian_Officials
+	}
+	relative_position_id = NOR_Purge_the_Norwegian_Officials
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = NOR
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Project_Nordstern
+	icon = GFX_GENERIC_Factory_Planning
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Reinforce_the_Reichskommissariat
+	}
+	relative_position_id = NOR_Reinforce_the_Reichskommissariat
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		set_province_name = { id = 3022 name = "Nidaros"}
+		143 = {
+			add_building_construction = {
+				type = coastal_bunker
+				level = 2
+				province = 3022
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = naval_base
+				level = 3
+				province = 3022
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Focus_on_Fishing
+	icon = GFX_GENERIC_support_fishing
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Project_Nordstern
+	}
+	relative_position_id = NOR_Project_Nordstern
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_ideas = NOR_fishing_industries
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Declare_Our_Neutrality
+	icon = GFX_goal_generic_neutrality_focus
+	x = 0
+	y = 2
+	available = {
+		has_global_flag = german_civil_war_started
+	}
+	prerequisite = {
+		focus = NOR_Focus_on_Fishing
+	}
+	prerequisite = {
+		focus = NOR_Ending_the_Crisis
+	}
+	relative_position_id = NOR_Focus_on_Fishing
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_ideas = neutrality_idea
+		hidden_effect = {
+			set_country_flag = NEUTRAL_IN_THE_GCW
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Ending_the_Crisis
+	icon = GFX_GENERIC_government_power
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Focus_on_Fishing
+		focus = NOR_Indepedence_Through_Might
+	}
+	relative_position_id = NOR_Focus_on_Fishing
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		remove_ideas = NOR_party_crisis
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Hirden_Coup
+	icon = GFX_NOR_hirden
+	x = 1
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = NOR_Nasjonal_Samling_Crumbled
+	}
+	mutually_exclusive = {
+		focus = NOR_Return_of_Terboven
+	}
+	relative_position_id = NOR_Nasjonal_Samling_Crumbled
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Norwegian_Junta
+	icon = GFX_GENERIC_Military_Government
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Hirden_Coup
+	}
+	relative_position_id = NOR_Hirden_Coup
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_ideas = NOR_junta_rule
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Purge_the_Politicians
+	icon = GFX_GENERIC_weapons_cuffs
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Norwegian_Junta
+	}
+	relative_position_id = NOR_Norwegian_Junta
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_manpower = -5000
+		add_political_power = 75
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Militarize_the_Nation
+	icon = GFX_GENERIC_Rally_the_People
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Purge_the_Politicians
+	}
+	relative_position_id = NOR_Purge_the_Politicians
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		if = {
+			limit = {
+				OR = {
+					has_idea = service_by_requirement
+					has_idea = all_adults_serve
+					has_idea = scraping_the_barrel
+				}
+			}
+			add_manpower = 20000
+		}
+		else = {
+			add_ideas = service_by_requirement
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Indepedence_Through_Might
+	icon = GFX_NOR_Mighty
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Militarize_the_Nation
+	}
+	relative_position_id = NOR_Militarize_the_Nation
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		remove_ideas = NOR_illegitimate_government
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Lies_Coup
+	icon = GFX_NOR_Lie_Coup
+	x = 5
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = NOR_Summon_the_Congress
+	}
+	mutually_exclusive = {
+		focus = NOR_Quislings_Leadership
+	}
+	mutually_exclusive = {
+		focus = NOR_Nasjonal_Samling_Crumbled
+	}
+	relative_position_id = NOR_Summon_the_Congress
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Purge_the_Quisling_Faction
+	icon = GFX_GENERIC_Mass_Imprisonment
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Lies_Coup
+	}
+	relative_position_id = NOR_Lies_Coup
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		remove_ideas = NOR_party_crisis
+		add_manpower = -30000
+		add_stability = -0.05
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Pan_Germanic_Government
+	icon = GFX_GENERIC_RK_Flag
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Purge_the_Quisling_Faction
+	}
+	relative_position_id = NOR_Purge_the_Quisling_Faction
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}	
+	completion_reward = {
+		add_political_power = 100
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_The_Norwegian_Enlightenment
+	icon = GFX_GENERIC_Stamp_Christain
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Pan_Germanic_Government
+	}
+	relative_position_id = NOR_Pan_Germanic_Government
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}		
+	completion_reward = {
+		add_stability = -0.10
+		add_popularity = { ideology = national_socialist popularity = 0.15 }
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Expand_the_GSSN
+	icon = GFX_GER_himmler_vision
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = NOR_The_Norwegian_Enlightenment
+	}
+	relative_position_id = NOR_The_Norwegian_Enlightenment
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}		
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = NOR_The_GSSN
+			add_idea = NOR_powerful_GSSN
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Establish_New_Legions
+	icon = GFX_GER_ss_shield
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Expand_the_GSSN
+	}
+	relative_position_id = NOR_Expand_the_GSSN
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}		
+	completion_reward = {
+		custom_effect_tooltip = NOR_spawn_ss_units_tt
+		hidden_effect = {
+			division_template = {
+				name = "SS-Infanterie-Division"
+				priority = 2
+				division_names_group = NOR_INF_01
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1. SS-Infanterie-Norwegen\" division_template = \"SS-Infanterie-Division\" start_experience_factor = 1.0 start_equipment_factor = 1.0"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2. SS-Infanterie-Norwegen\" division_template = \"SS-Infanterie-Division\" start_experience_factor = 1.0 start_equipment_factor = 1.0"
+					owner = ROOT
+				}
+			}
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Norwegian_Volunteers
+	icon = GFX_GER_ss_volunteers
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = NOR_Establish_New_Legions
+	}
+	relative_position_id = NOR_Establish_New_Legions
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}		
+	completion_reward = {
+		add_manpower = 20000
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Embrace_Esotericism
+	icon = GFX_HSS_Valknut_Persia
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_The_Norwegian_Enlightenment
+	}
+	relative_position_id = NOR_The_Norwegian_Enlightenment
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}		
+	completion_reward = {
+		add_ideas = NOR_ss_esotericism_1
+	}
+	cost = 7
+}
+shared_focus = {
+	cancelable = no
+	id = NOR_The_Nordic_Master_Race
+	icon = GFX_GENERIC_ARYAN
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Embrace_Esotericism
+	}
+	relative_position_id = NOR_Embrace_Esotericism
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}		
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = NOR_ss_esotericism_1
+			add_idea = NOR_ss_esotericism_2
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Our_Norwegian_Himmler
+	icon = GFX_HSS_Himmler_Command
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Establish_New_Legions
+	}
+	prerequisite = {
+		focus = NOR_The_Nordic_Master_Race
+	}
+	relative_position_id = NOR_Establish_New_Legions
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}		
+	completion_reward = {
+		add_country_leader_trait = MoS_Prince_Of_Terror
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Ordensstat_Norwegen
+	icon = GFX_NOR_Ordenstaat
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Our_Norwegian_Himmler
+	}
+	relative_position_id = NOR_Our_Norwegian_Himmler
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OR = {
+			has_completed_focus = NOR_Under_Occupation
+			has_completed_focus = NOR_The_Oslo_Revolution
+			}
+		}
+	}		
+	completion_reward = {
+		remove_ideas = NOR_illegitimate_government
+		set_cosmetic_tag = NOR_SS
+		add_political_power = 150
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_The_Oslo_Revolution
+	icon = GFX_NOR_Oslo_Revolution
+	cost = 7
+	x = 49
+	y = 0
+	ai_will_do = {
+		factor = 10
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Station_Rights_to_the_Accord
+	icon = GFX_GENERIC_Coalition_Army
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = NOR_The_Oslo_Revolution
+	}
+	relative_position_id = NOR_The_Oslo_Revolution
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		diplomatic_relation = {
+			country = USA
+			relation = military_access
+			active = yes
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Reform_the_Revolutionary_Militia
+	icon = GFX_GENERIC_recruitment
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Station_Rights_to_the_Accord
+	}
+	relative_position_id = NOR_Station_Rights_to_the_Accord
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		add_manpower = 10000
+		army_experience = 10
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Under_Occupation
+	icon = GFX_TA_Big_Four
+	cost = 7
+	x = 51
+	y = 0
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Formal_Membership
+	icon = GFX_USA_expand_TA
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Under_Occupation
+	}
+	relative_position_id = NOR_Under_Occupation
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		is_in_faction_with = USA
+	}
+	completion_reward = {
+		USA = {
+			add_to_faction = ROOT
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_The_Emergency_Government
+	icon = GFX_GENERIC_Judicial
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Under_Occupation
+		focus = NOR_The_Oslo_Revolution
+	}
+	relative_position_id = NOR_The_Oslo_Revolution
+	ai_will_do = {
+		factor = 100
+	}
+	
+	completion_reward = {
+		remove_ideas = NOR_illegitimate_government
+		hidden_effect = {
+			set_popularities = {
+				national_socialist = 0
+				fascist = 0
+				paternal_autocrat = 15
+				conservative = 20
+				liberal = 17
+				social_democrat = 39
+				socialist = 0
+				bolshevik_leninist = 0
+				marxist_leninist = 09
+			}
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Purge_the_Quislingites
+	icon = GFX_NOR_Kill_Quislingites
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_The_Emergency_Government
+	}
+	relative_position_id = NOR_The_Emergency_Government
+	ai_will_do = {
+		factor = 100
+	}
+	
+	completion_reward = {
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.5
+		}
+		add_popularity = {
+			ideology = national_socialist
+			popularity = -0.5
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Return_of_the_Exiles
+	icon = GFX_NOR_Return_of_Exiles
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Purge_the_Quislingites
+	}
+	relative_position_id = NOR_Purge_the_Quislingites
+	ai_will_do = {
+		factor = 100
+	}
+	
+	completion_reward = {
+		country_event = twrnorway.101
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_The_Free_Norwegian_Army
+	icon = GFX_NOR_Free_Army
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = NOR_Return_of_the_Exiles
+	}
+	relative_position_id = NOR_Return_of_the_Exiles
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		create_field_marshal = {
+			name = "Martin Jensen Linge"
+			portrait_path = "gfx/leaders/NOR/Martin_Jensen_Linge.dds"
+			traits = { brilliant_strategist }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 4
+			planning_skill = 3
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Herluf Nygaard"
+			portrait_path = "gfx/leaders/NOR/Herluf_Nygaard.dds"
+			traits = { trait_cautious }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Torstein Dale"
+			portrait_path = "gfx/leaders/NOR/Torstein_Dale.dds"
+			traits = { }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Wilhelm von Tangen Hansteen"
+			portrait_path = "gfx/leaders/NOR/Wilhelm_von_Tangen_Hansteen.dds"
+			traits = { organizer }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 4
+		}
+		create_navy_leader = {
+			name = "Leif Larsen"
+			portrait_path = "gfx/leaders/NOR/Leif_Larsen.dds"
+			traits = { bold }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 4
+			maneuvering_skill = 2
+			coordination_skill = 4
+		}
+		create_navy_leader = {
+			name = "Ingvald Eidsheim"
+			portrait_path = "gfx/leaders/NOR/Ingvald_Eidsheim.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			maneuvering_skill = 2
+			coordination_skill = 3
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Stabilising_the_Nation
+	icon = GFX_GENERIC_compassionate_social_system
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Return_of_the_Exiles
+	}
+	relative_position_id = NOR_Return_of_the_Exiles
+	ai_will_do = {
+		factor = 100
+	}
+	
+	completion_reward = {
+		add_stability = 0.20
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Renewed_Diplomatic_Ties
+	icon = GFX_GENERIC_handshake
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = NOR_Stabilising_the_Nation
+	}
+	relative_position_id = NOR_Stabilising_the_Nation
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		add_timed_idea = {
+			idea = NOR_diplomatic_renewal
+			days = 150
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Reintroduce_Democracy
+	icon = GFX_ENG_vote_upper_assembly
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Stabilising_the_Nation
+	}
+	relative_position_id = NOR_Stabilising_the_Nation
+	ai_will_do = {
+		factor = 100
+	}
+	
+	completion_reward = {
+		country_event = twrnorway.102
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Alt_for_Norge
+	icon = GFX_NOR_democratic
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = NOR_Renewed_Diplomatic_Ties
+	}
+	prerequisite = {
+		focus = NOR_Reintroduce_Democracy
+	}
+	relative_position_id = NOR_Renewed_Diplomatic_Ties
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		add_ideas = NOR_alt_for_norge_idea
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = NOR_Join_Accord
+	icon = GFX_USA_expand_TA
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = NOR_Alt_for_Norge
+	}
+	relative_position_id = NOR_Alt_for_Norge
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		is_in_faction = no
+	}
+	bypass = {
+		is_in_faction_with = USA
+	}
+	completion_reward = {
+		USA = {
+			add_to_faction = NOR
+		}
+	}
+	cost = 7
+}

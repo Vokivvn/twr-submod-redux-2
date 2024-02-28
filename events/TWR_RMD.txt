@@ -1,0 +1,823 @@
+#############################
+## Russian Liberation Army ##
+#############################
+
+add_namespace = rmd
+add_namespace = rnna
+add_namespace = royaltour
+
+country_event = { # Where do we attack?
+	id = rmd.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.1"}
+	title = rmd.1.t
+	desc = rmd.1.d
+	picture = GFX_report_event_russian_soldier_generic  
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.1.a #commies
+		complete_national_focus = RMO_Crusade_Against_Bolshevism
+	}
+	option = {
+		name = rmd.1.b #krauts
+		complete_national_focus = RMO_Backstabbing_Our_Ex_Benefactors
+	}
+}
+
+country_event = { # Purging RONA sympathizers
+	id = rmd.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.2"}
+	title = rmd.2.t
+	desc = rmd.2.d
+	picture = GFX_report_event_execution
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.2.a #bye
+		add_manpower = -5000
+		add_stability = -0.05
+	}
+}
+
+country_event = { # Grand Duke Vladimir gets a message
+	id = rmd.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.3"}
+	title = rmd.3.t
+	desc = rmd.3.d
+	picture = GFX_report_vladimir_romanov
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.3.a #restoration poggers?
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.10
+		}
+	}
+}
+
+country_event = { # wars over
+	id = rmd.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.4"}
+	title = rmd.4.t
+	desc = rmd.4.d
+	picture = GFX_report_event_celebrating_russia
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.4.a #nice
+		hidden_effect = {
+			remove_ideas = { RK_eastern_spring }
+			remove_ideas = { RMD_Village_Conscript_Scheme_idea }
+			add_ideas = { RMD_Ruined_State_idea }
+		}
+		
+	}
+}
+
+country_event = { # Officers aren't showing up on time
+	id = rmd.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.5"}
+	title = rmd.5.t
+	desc = rmd.5.d
+	picture = GFX_report_event_cool_soldiers_snow
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.5.a #sussy...
+		country_event = { id = rmd.6 }
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.08
+		}
+	}
+}
+
+country_event = { # Mutiny could be imminent, what do we do
+	id = rmd.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.6"}
+	title = rmd.6.t
+	desc = rmd.6.d
+	picture = GFX_report_event_tanks_street
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.6.a #arrest them
+		hidden_effect = {
+			country_event = { id = rmd.7 }
+		}
+	}
+
+	option = {
+		name = rmd.6.b #stop being paranoid they wont
+		hidden_effect = {
+			country_event = { id = rmd.8 }
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.1
+		}
+	}
+}
+
+country_event = { # RNNA btfod
+	id = rmd.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.7"}
+	title = rmd.7.t
+	desc = rmd.7.d
+	picture = GFX_report_event_army_coup_generic 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.7.a #LOL
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.50
+		}
+		add_stability = -0.2
+		add_war_support = -0.25
+		load_focus_tree = RMD_KONR_tree
+		set_cosmetic_tag = RMD_REPUBLIC
+		complete_national_focus = RMD_The_Committee_Survives
+		hidden_effect = {
+			if = {
+				limit = {
+					has_idea = RMD_Wehrmacht_Training_RNNA_3_idea
+				}
+				swap_ideas = {
+					remove_idea = RMD_Wehrmacht_Training_RNNA_3_idea
+					add_idea = RMD_Wehrmacht_Training_ROA_3_idea
+				}
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_RNNA_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_RNNA_idea }
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_ROA_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_ROA_idea }
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_idea }
+			}
+			every_unit_leader = {
+				limit = { has_trait = royalist_general }
+				retire = yes
+			}
+		}
+	}
+}
+
+country_event = { # Mass RNNA Uprising
+	id = rmd.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.8"}
+	title = rmd.8.t
+	desc = rmd.8.d
+	picture = GFX_report_event_russian_tanks_protest
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.8.a #They lost
+		trigger = {
+			check_variable = { party_popularity@paternal_autocrat > party_popularity@fascist }
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.50
+		}
+		custom_effect_tooltip = RNNA_INFLUENCE_WEAK_COUP_FOILED
+		add_stability = -0.15
+		add_war_support = -0.15
+		load_focus_tree = RMD_KONR_tree
+		set_cosmetic_tag = RMD_REPUBLIC
+		complete_national_focus = RMD_The_Committee_Survives
+		hidden_effect = {
+			if = {
+				limit = {
+					has_idea = RMD_Wehrmacht_Training_RNNA_3_idea
+				}
+				swap_ideas = {
+					remove_idea = RMD_Wehrmacht_Training_RNNA_3_idea
+					add_idea = RMD_Wehrmacht_Training_ROA_3_idea
+				}
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_RNNA_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_RNNA_idea }
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_ROA_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_ROA_idea }
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_idea }
+			}
+			every_unit_leader = {
+				limit = { has_trait = royalist_general }
+				retire = yes
+			}
+		}
+	}
+
+	option = {
+		name = rmd.8.b #I LOVE THE TSAR
+		trigger = {
+			check_variable = { party_popularity@fascist > party_popularity@paternal_autocrat }
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = -0.25
+		}
+		add_stability = -0.15
+		add_war_support = -0.15
+		set_politics = {
+		ruling_party = fascist
+		}
+		load_focus_tree = RMD_RNNA_tree
+		add_ideas = { HoG_Sergey_Ivanov FM_Sergey_Leuchtenberg MoS_Igor_Sakharov AM_Constantine_Kromiadi }
+		complete_national_focus = RMD_An_Antirevolutionary_Revolution
+		hidden_effect = {
+			if = {
+				limit = {
+					has_idea = RMD_Wehrmacht_Training_ROA_3_idea
+				}
+				swap_ideas = {
+					remove_idea = RMD_Wehrmacht_Training_ROA_3_idea
+					add_idea = RMD_Wehrmacht_Training_RNNA_3_idea
+				}
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_RNNA_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_RNNA_idea }
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_ROA_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_ROA_idea }
+			}
+			if = {
+				limit = {
+					has_idea = RMD_KONR_Infighting_idea
+				}
+				remove_ideas = { RMD_KONR_Infighting_idea }
+			}
+			every_unit_leader = {
+				limit = { NOT = { has_trait = royalist_general } }
+				retire = yes
+			}
+			RUS = {
+				country_event = { id = twrrussia.229 }
+			}
+		}
+	}
+}
+
+country_event = { # KONR conference called
+	id = rmd.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.9"}
+	title = rmd.9.t
+	desc = rmd.9.d
+	picture = GFX_report_event_roa_meeting
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.9.a #fun
+		country_event = { id = rmd.10 days = 2 }
+	}
+}
+
+country_event = { # Bunyachenko speaks
+	id = rmd.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.10"}
+	title = rmd.10.t
+	desc = rmd.10.d
+	picture = GFX_report_event_roa_meeting
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.9.a #cool speech bro
+		country_event = { id = rmd.11 days = 2 }
+	}
+}
+
+country_event = { # Legacy of the whites
+	id = rmd.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.11"}
+	title = rmd.11.t
+	desc = rmd.11.d
+	picture = GFX_report_event_roa_meeting
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.11.a #they were based
+		add_to_variable = { RMD_Bun_var = 1 }
+		custom_effect_tooltip = BUNYA_INFLUENCE_tt
+		country_event = { id = rmd.12 days = 2 }
+	}
+
+	option = {
+		name = rmd.11.b #we should revise our ideas
+		add_to_variable = { RMD_Zykov_var = 1 }
+		custom_effect_tooltip = ZYKOV_INFLUENCE_tt
+		country_event = { id = rmd.12 days = 2 }
+	}
+}
+
+country_event = { # Unification of Russia
+	id = rmd.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.12"}
+	title = rmd.12.t
+	desc = rmd.12.d
+	picture = GFX_report_event_roa_meeting
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.12.a #we should prioritize Perm
+		add_to_variable = { RMD_Bun_var = 1 }
+		custom_effect_tooltip = BUNYA_INFLUENCE_tt
+		country_event = { id = rmd.13 days = 2 }
+	}
+
+	option = {
+		name = rmd.12.b #regional unification first
+		add_to_variable = { RMD_Zykov_var = 1 }
+		custom_effect_tooltip = ZYKOV_INFLUENCE_tt
+		country_event = { id = rmd.13 days = 2 }
+	}
+}
+
+country_event = { # Democratization?
+	id = rmd.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.13"}
+	title = rmd.13.t
+	desc = rmd.13.d
+	picture = GFX_report_event_roa_meeting
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.13.a #fuck that its cringe
+		add_to_variable = { RMD_Bun_var = 1 }
+		custom_effect_tooltip = BUNYA_INFLUENCE_tt
+		country_event = { id = rmd.14 days = 2 }
+	}
+
+	option = {
+		name = rmd.13.b #seems based
+		add_to_variable = { RMD_Zykov_var = 1 }
+		custom_effect_tooltip = ZYKOV_INFLUENCE_tt
+		country_event = { id = rmd.14 days = 2 }
+	}
+}
+
+country_event = { # the KONR results are
+	id = rmd.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.14"}
+	title = rmd.14.t
+	desc = rmd.14.d
+	picture = GFX_report_event_duma_voting
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.14.a #Bunyachenko
+		trigger = {
+			check_variable = { RMD_Bun_var > RMD_Zykov_var }
+		}
+		set_party_name = { 
+		    ideology = paternal_autocrat 
+		    long_name = RMD_KONR_LONG 
+		    name = RMD_KONR
+		}
+		complete_national_focus = RMD_First_KONR_Congress
+		set_country_flag = BUN_TIME
+	}
+
+	option = {
+		name = rmd.14.b #Zykov
+		trigger = {
+			check_variable = { RMD_Zykov_var > RMD_Bun_var }
+		}
+		set_party_name = { 
+		    ideology = paternal_autocrat 
+		    long_name = RMD_KONR_LONG 
+		    name = RMD_KONR 
+		}
+		complete_national_focus = RMD_First_KONR_Congress
+		set_country_flag = ZYKOV_TIME
+	}
+}
+
+country_event = { # new constitution
+	id = rmd.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.15"}
+	title = rmd.15.t
+	desc = rmd.15.d
+	picture = GFX_report_event_russians_signing_constitution
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.15.a #wowie
+		add_stability = 0.05
+		create_country_leader = {
+			name = "Boris Menshagin" 
+			desc = "BORIS_MENSHAGIN_DESC" 
+			picture = "Boris_Menshagin.dds" 
+			expire = "1973.5.3" 
+			ideology = national_conservatism
+			traits = { }
+		}
+		set_party_name = { 
+		    ideology = conservative 
+		    name = RMD_KONR_OPPOSITION_CON 
+		    long_name = RMD_KONR_OPPOSITION_CON_LONG
+		}
+		set_party_name = { 
+		    ideology = liberal 
+		    name = RMD_KONR_OPPOSITION_CON 
+		    long_name = RMD_KONR_OPPOSITION_CON_LONG
+		}
+		set_party_name = { 
+		    ideology = social_democrat 
+		    name = RMD_KONR_OPPOSITION_CON 
+		    long_name = RMD_KONR_OPPOSITION_CON_LONG 
+		}
+	}
+}
+
+country_event = { # first election
+	id = rmd.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.16"}
+	title = rmd.16.t
+	desc = rmd.16.d
+	picture = GFX_report_event_CAM_vote
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.16.a #stopthesteal
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.11
+		}
+	}
+}
+
+country_event = { # funny constitution
+	id = rmd.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.17"}
+	title = rmd.17.t
+	desc = rmd.17.d
+	picture = GFX_report_event_russians_signing_constitution 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rmd.17.a #its shit doe
+		add_stability = 0.01
+	}
+}
+
+country_event = { # Zemsky Sobor is back
+	id = rnna.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.1"}
+	title = rnna.1.t
+	desc = rnna.1.d
+	picture = GFX_report_event_monarchist_duma 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rnna.1.a #nicky would approve
+		add_stability = 0.03
+	}
+}
+
+country_event = { # its a shit constitution
+	id = rnna.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.2"}
+	title = rnna.2.t
+	desc = rnna.2.d
+	picture = GFX_report_event_russians_signing_constitution 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rnna.2.a #who cares
+		add_stability = 0.03
+	}
+}
+
+country_event = { # guess whos back back again
+	id = rnna.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.3"}
+	title = rnna.3.t
+	desc = rnna.3.d
+	picture = GFX_report_event_serbian_crown 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rnna.3.a #the tsar baby
+		set_cosmetic_tag = RMD_EMPIRE
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Vladimir I" 
+			desc = "TSAR_VLADIMIR_DESC" 
+			picture = "Grand_Duke_Vladimir.dds" 
+			expire = "1973.5.3" 
+			ideology = falangism
+			traits = { }
+		}
+		set_party_name = { 
+		    ideology = fascist 
+		    name = RMD_NEW_RNNA 
+		    long_name = RMD_NEW_RNNA_LONG 
+		}
+		set_party_name = { 
+		    ideology = paternal_autocrat 
+		    name = RMD_NEW_RNNA_PATAUT 
+		    long_name = RMD_NEW_RNNA_PATAUT_LONG 
+		}
+		set_party_name = { 
+		    ideology = national_socialist 
+		    name = RMD_RNNA_NATSOC 
+		    long_name = RMD_RNNA_NATSOC_LONG 
+		}
+		add_ideas = { HoG_Pavel_Bermondt_Avalov }
+		news_event = rnna.4
+	}
+}
+
+news_event = {
+	id = rnna.4 # TSAR RESTORED POGCHAMP
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.4"}
+	title = rnna.4.t
+	desc = rnna.4.d
+	
+	picture = GFX_report_news_vladimir
+	is_triggered_only = yes
+	major = yes
+	#immediate = {
+	#hidden_effect = {
+	#if = {
+        #limit = {
+            #RMD = {
+                #is_ai = no
+            #}
+        #}
+    #RMD = {
+        #sound_effect = 
+        #}
+        	#}
+        #}
+    #}
+	option = {
+		name = rnna.4.a
+	}
+}
+
+country_event = { # The tsar needs a cabinet
+	id = rnna.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.5"}
+	title = rnna.5.t
+	desc = rnna.5.d
+	picture = GFX_report_event_monarchist_duma 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rnna.5.a #and they need to kick ass
+		add_stability = 0.05
+		add_war_support = 0.05
+	}
+}
+
+country_event = { # Patriarch of Moscow restored
+	id = rnna.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.6"}
+	title = rnna.6.t
+	desc = rnna.6.d
+	picture = GFX_report_event_moscow_patriarch 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rnna.6.a #nice
+		add_stability = 0.05
+		add_ideas = { RMD_Trad_RNNA_idea }
+	}
+}
+
+country_event = { # church and state whats that
+	id = rnna.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.7"}
+	title = rnna.7.t
+	desc = rnna.7.d
+	picture = GFX_report_event_russian_church 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rnna.7.a #liberal jewish marxist plot idfk
+		add_stability = 0.02
+	}
+}
+
+country_event = { # damn we were that cringe back then
+	id = rnna.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.8"}
+	title = rnna.8.t
+	desc = rnna.8.d
+	picture = GFX_report_event_srco_politburo 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rnna.8.a #time to fix the tsars image
+	}
+}
+
+country_event = { # Ivanov falangism time
+	id = rnna.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.9"}
+	title = rnna.9.t
+	desc = rnna.9.d
+	picture = GFX_report_event_SPA_falange_2 
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = rnna.9.a #genius
+	}
+}
+
+country_event = { # Visiting Moscow
+	id = royaltour.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event royaltour.1"}
+	title = royaltour.1.t
+	desc = royaltour.1.d
+	picture = GFX_report_event_moscow
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = royaltour.1.a #
+	}
+}
+country_event = { # Visiting Petrograd
+	id = royaltour.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event royaltour.2"}
+	title = royaltour.2.t
+	desc = royaltour.2.d
+	picture = GFX_report_event_leningrad
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = royaltour.2.a #
+	}
+}
+country_event = { # Visiting Kiev
+	id = royaltour.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event royaltour.3"}
+	title = royaltour.3.t
+	desc = royaltour.3.d
+	picture = GFX_report_event_kiev  
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = royaltour.3.a #
+	}
+}
+country_event = { # Visiting Novosibirsk
+	id = royaltour.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event royaltour.4"}
+	title = royaltour.4.t
+	desc = royaltour.4.d
+	picture = GFX_report_event_novosibirsk
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = royaltour.4.a #
+	}
+}
+country_event = { # Visiting Vladivostok
+	id = royaltour.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event royaltour.5"}
+	title = royaltour.5.t
+	desc = royaltour.5.d
+	picture = GFX_news_event_vladivostok  
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = royaltour.5.a #
+	}
+}
+
+news_event = {
+	id = rmd.19 # ROA Reunification
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rmd.19"}
+	title = rmd.19.t
+	desc = rmd.19.d
+	
+	picture = GFX_news_event_roa_win
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            RMD = {
+                is_ai = no
+            }
+        }
+    RMD = {
+        sound_effect = RMD_ROA_reunification
+        }
+        	}
+        }
+    }
+	option = {
+		name = rmd.19.a
+	}
+	option = {
+		name = rmd.19.b
+		trigger = {
+			NOT = {
+				tag = RMD
+			}
+		}
+	}
+}
+
+news_event = {
+	id = rnna.11 # RNNA Reunification
+	immediate = {log = "[GetDateText]: [Root.GetName]: event rnna.11"}
+	title = rnna.11.t
+	desc = rnna.11.d
+	
+	picture = GFX_news_event_rnna_win
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+	hidden_effect = {
+	if = {
+        limit = {
+            RMD = {
+                is_ai = no
+            }
+        }
+    RMD = {
+        sound_effect = RMD_RNNA_reunification
+        }
+        	}
+        }
+    }
+	option = {
+		name = rnna.11.a
+	}
+	option = {
+		name = rnna.11.b
+		trigger = {
+			NOT = {
+				tag = RMD
+			}
+		}
+	}
+}
+
+

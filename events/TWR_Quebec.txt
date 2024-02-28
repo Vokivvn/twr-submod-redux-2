@@ -1,0 +1,1078 @@
+add_namespace = twrquebec
+add_namespace = twrquebecflavor
+
+#First elections
+country_event = {
+	id = twrquebec.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.1" }
+	is_triggered_only = yes
+	
+	title = twrquebec.1.t
+	desc = twrquebec.1.d
+	picture = GFX_report_event_election_vote
+	
+	option = {
+		name = twrquebec.1.a
+		set_country_flag = QUE_FIRST_ELECTIONS_HELD
+		set_politics = {
+			ruling_party = paternal_autocrat
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.10
+		}
+		add_ideas = {
+			QUE_Joseph_Alphonse_Pelletier
+			QUE_Alexandre_Tache
+			QUE_Jean_Noel_Tremblay
+			QUE_Antonio_Talbot
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrquebec.2 days = 42
+			}
+		}
+	}
+	
+	option = {
+		name = twrquebec.1.b
+		set_country_flag = QUE_FIRST_ELECTIONS_HELD
+		effect_tooltip = {
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = yes
+			}
+		}
+		meta_effect = {
+			text = {
+				set_politics = {
+					ruling_party = conservative
+					elections_allowed = yes
+					election_frequency = 48
+					last_election = "[EDATE]"
+				}
+			}
+			EDATE = "[GetYear].2.12"
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.05
+		}
+		add_ideas = {
+			QUE_Pierre_De_Bellefeuille
+			QUE_Maurice_Bellemare
+			QUE_Hubert_Desbiens
+			QUE_Joseph_Leon_Saint_Jacques
+		}
+	}
+	
+	option = {
+		name = twrquebec.1.c
+		set_country_flag = QUE_FIRST_ELECTIONS_HELD
+		effect_tooltip = {
+			set_politics = {
+				ruling_party = liberal
+				elections_allowed = yes
+			}
+		}
+		meta_effect = {
+			text = {
+				set_politics = {
+					ruling_party = liberal
+					elections_allowed = yes
+					election_frequency = 48
+					last_election = "[EDATE]"
+				}
+			}
+			EDATE = "[GetYear].2.12"
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.15
+		}
+		add_ideas = {
+			QUE_Felix_Allard
+			QUE_Courcy_Alcide
+			QUE_Lucien_Cliche
+			QUE_Denis_Lazure
+		}
+	}
+	
+	option = {
+		name = twrquebec.1.e
+		set_country_flag = QUE_FIRST_ELECTIONS_HELD
+		effect_tooltip = {
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = yes
+			}
+		}
+		meta_effect = {
+			text = {
+				set_politics = {
+					ruling_party = social_democrat
+					elections_allowed = yes
+					election_frequency = 48
+					last_election = "[EDATE]"
+				}
+			}
+			EDATE = "[GetYear].2.12"
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.20
+		}
+		add_ideas = {
+			QUE_Francois_Aquin
+			QUE_Camille_Laurin
+			QUE_Louis_Philippe_Lacroix
+			QUE_Bernard_Pinard
+		}
+	}
+}
+
+#Assassination of Caouette
+country_event = {
+	id = twrquebec.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.2" }
+	is_triggered_only = yes
+	
+	title = twrquebec.2.t
+	desc = twrquebec.2.d
+	
+	# Caouette lives
+	option = {
+		name = twrquebec.2.a
+		ai_chance = {
+			base = 75
+		}
+		add_stability = -0.05
+	}
+	
+	# Cauoette is fucking dead
+	option = {
+		name = twrquebec.2.b
+		ai_chance = {
+			base = 25
+		}
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Paul Sauve"
+			desc = "POLITICS_PAUL_SAUVE_DESC"
+			picture = "Paul_Sauve.dds"
+			expire = "1965.1.1"
+			ideology = national_corporatism
+			traits = {}
+		}
+		add_stability = -0.15
+		hidden_effect = {
+			set_country_flag = QUE_SOC
+			load_focus_tree = QUE_SOCIALIST
+			complete_national_focus = QUE_The_August_Revolution
+		}
+	}
+}
+
+#The Bilingualism Issue
+country_event = {
+	id = twrquebec.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.3" }
+	is_triggered_only = yes
+	
+	title = twrquebec.3.t
+	desc = twrquebec.3.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	# Quebec is bilingual
+	option = {
+		name = twrquebec.3.a
+		add_ideas = QUE_Bilingual
+	}
+	
+	# Quebec is french and only french
+	option = {
+		name = twrquebec.3.b
+		add_ideas = QUE_French
+	}
+}
+
+#Dealing with Extremists
+country_event = {
+	id = twrquebec.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.4" }
+	is_triggered_only = yes
+	
+	title = twrquebec.4.t
+	desc = twrquebec.4.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	# Tolerate Extremists
+	option = {
+		name = twrquebec.4.a
+		add_timed_idea = {
+		    idea = QUE_Tolerate_Extremists
+		    days = 200
+		}
+	}
+	
+	# Suppress Extremists
+	option = {
+		name = twrquebec.4.b
+		add_timed_idea = {
+		    idea = QUE_Suppress_Extremists
+		    days = 200
+		}
+	}
+}
+
+#Fred Rose Establishes the FSQ!
+country_event = {
+	id = twrquebec.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.5" }
+	is_triggered_only = yes
+	
+	title = twrquebec.5.t
+	desc = twrquebec.5.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	# Ew commies
+	option = {
+		name = twrquebec.5.a
+		set_politics = {
+			ruling_party = bolshevik_leninist
+		}
+		add_popularity = {
+		ideology = bolshevik_leninist
+		popularity = 0.40
+		}
+		add_popularity = {
+		ideology = marxist_leninist
+		popularity = 0.40
+		}
+		create_country_leader = {
+			name = "Provisional Trade Union Government"
+			desc = "POLITICS_Provisional_Trade_Union_Government_DESC"
+			picture = "Provisional_Trade_Union_Government.dds"
+			expire = "1965.1.1"
+			ideology = council_communism
+			traits = {}
+		}
+	}
+}
+
+#The FSQ Abandon The United Front!
+country_event = {
+	id = twrquebec.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.6" }
+	is_triggered_only = yes
+	
+	title = twrquebec.6.t
+	desc = twrquebec.6.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	# cringe
+	option = {
+		name = twrquebec.6.a
+		set_variable = {
+			var = QUE_Syndicalist_Influence
+			value = 1
+		}
+		set_variable = {
+			var = QUE_Leninist_Influence
+			value = 1
+		}
+		hidden_effect = {
+			country_event = { days = 5 id = twrquebec.7 }
+			country_event = { days = 10 id = twrquebec.8 }
+			country_event = { days = 15 id = twrquebec.9 }
+			country_event = { days = 18 id = twrquebec.999 }
+		}
+	}
+}
+
+#Commie Debate 1
+country_event = {
+	id = twrquebec.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.7" }
+	is_triggered_only = yes
+	
+	title = twrquebec.7.t
+	desc = twrquebec.7.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	# Syndicalist
+	option = {
+		name = twrquebec.7.a
+		add_to_variable = {
+			var = QUE_Syndicalist_Influence
+			value = 1
+		}
+	}
+	
+	# Leninist
+	option = {
+		name = twrquebec.7.b
+		add_to_variable = {
+			var = QUE_Leninist_Influence
+			value = 1
+		}
+	}
+}
+
+#Commie Debate 2
+country_event = {
+	id = twrquebec.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.8" }
+	is_triggered_only = yes
+	
+	title = twrquebec.8.t
+	desc = twrquebec.8.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	# Syndicalist
+	option = {
+		name = twrquebec.8.a
+		add_to_variable = {
+			var = QUE_Syndicalist_Influence
+			value = 1
+		}
+	}
+	
+	# Leninist
+	option = {
+		name = twrquebec.8.b
+		add_to_variable = {
+			var = QUE_Leninist_Influence
+			value = 1
+		}
+	}
+}
+
+#Commie Debate 3
+country_event = {
+	id = twrquebec.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.9" }
+	is_triggered_only = yes
+	
+	title = twrquebec.9.t
+	desc = twrquebec.9.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	# Syndicalist
+	option = {
+		name = twrquebec.9.a
+		add_to_variable = {
+			var = QUE_Syndicalist_Influence
+			value = 1
+		}
+	}
+	
+	# Leninist
+	option = {
+		name = twrquebec.9.b
+		add_to_variable = {
+			var = QUE_Leninist_Influence
+			value = 1
+		}
+	}
+}
+
+#Michel Chartand Killed!
+country_event = {
+	id = twrquebec.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.10" }
+	is_triggered_only = yes
+	
+	title = twrquebec.10.t
+	desc = twrquebec.10.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	option = {
+		name = twrquebec.10.a
+		clear_variable = QUE_Syndicalist_Influence
+		clear_variable = QUE_Leninist_Influence
+		hidden_effect = {
+			country_event = { days = 1 id = twrquebec.12 }
+		}
+	}
+}
+
+#Fred Rose Arrested!
+country_event = {
+	id = twrquebec.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.11" }
+	is_triggered_only = yes
+	
+	title = twrquebec.11.t
+	desc = twrquebec.11.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	option = {
+		name = twrquebec.11.a
+		clear_variable = QUE_Syndicalist_Influence
+		clear_variable = QUE_Leninist_Influence
+		hidden_effect = {
+			country_event = { days = 1 id = twrquebec.13 }
+		}
+	}
+}
+
+#The FSQ Takes Control!
+country_event = {
+	id = twrquebec.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.12" }
+	is_triggered_only = yes
+	
+	title = twrquebec.12.t
+	desc = twrquebec.12.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	option = {
+		name = twrquebec.12.a
+		set_politics = {
+			ruling_party = marxist_leninist
+		}
+
+		complete_national_focus = QUE_Quebecois_Leninism
+
+		add_ideas = {
+			QUE_Evariste_Dube
+			QUE_Stanley_Ryerson
+			QUE_Jean_Charles_Harvey
+			QUE_Henri_Gagnon
+		}
+	}
+}
+
+#Meeting Of The Unions
+country_event = {
+	id = twrquebec.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.13" }
+	is_triggered_only = yes
+	
+	title = twrquebec.13.t
+	desc = twrquebec.13.d
+	picture = GFX_report_event_french_fancy_meeting
+	
+	option = {
+		name = twrquebec.13.a
+		create_country_leader = {
+			name = "Michel Chartrand"
+			desc = "POLITICS_MICHEL_CHARTRAND_DESC"
+			picture = "Michel_Chartrand.dds"
+			expire = "1965.1.1"
+			ideology = platformism
+			traits = {}
+		}
+
+		complete_national_focus = QUE_Quebecois_Syndicalism
+
+		add_ideas = {
+			QUE_Jean_Marchand
+			QUE_Gerard_Picard
+			QUE_Alfred_Charpentier
+			QUE_Marcel_Pepin
+		}
+	}
+}
+
+#Hidden Commie event
+country_event = {
+	id = twrquebec.999
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebec.999" }
+	is_triggered_only = yes
+	hidden = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				check_variable = {
+					var = QUE_Syndicalist_Influence
+					value = QUE_Leninist_Influence
+					compare = less_than
+				}
+			}
+			country_event = {
+				days = 2 id = twrquebec.10
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						var = QUE_Syndicalist_Influence
+						value = QUE_Leninist_Influence
+						compare = greater_than
+					}
+				}
+				country_event = {
+					days = 2 id = twrquebec.11
+				}
+			}
+		}
+	}
+	
+	title = twrquebec.999.t
+	desc = twrquebec.999.d
+	picture = GFX_report_event_french_fancy_meeting
+}
+
+##Flavor Events##
+#Pogrom against the jews
+country_event = {
+	id = twrquebecflavor.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.1" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.1.t
+	desc = twrquebecflavor.1.d
+	#picture = 
+	
+	#Begin the purge
+	option = {
+		name = twrquebecflavor.1.a
+	}
+}
+
+#Reinforcing the padlock act
+country_event = {
+	id = twrquebecflavor.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.2" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.2.t
+	desc = twrquebecflavor.2.d
+	#picture = 
+	
+	#I approve
+	option = {
+		name = twrquebecflavor.2.a
+	}
+}
+
+#Putting down the riots
+country_event = {
+	id = twrquebecflavor.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.3" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.3.t
+	desc = twrquebecflavor.3.d
+	#picture = 
+	
+	#Democracies overrated
+	option = {
+		name = twrquebecflavor.3.a
+	}
+}
+
+#Prosperity certificate
+country_event = {
+	id = twrquebecflavor.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.4" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.4.t
+	desc = twrquebecflavor.4.d
+	#picture = 
+	
+	#Begin to push out our new currency
+	option = {
+		name = twrquebecflavor.4.a
+	}
+}
+
+#Pilgrims vs. TVs
+country_event = {
+	id = twrquebecflavor.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.5" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.5.t
+	desc = twrquebecflavor.5.d
+	#picture = 
+	
+	#Fuck televisions
+	option = {
+		name = twrquebecflavor.5.a
+	}
+}
+
+#Using TVs as target practice
+country_event = {
+	id = twrquebecflavor.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.6" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.6.t
+	desc = twrquebecflavor.6.d
+	#picture = 
+	
+	#You're television is ours to deal with now
+	option = {
+		name = twrquebecflavor.6.a
+	}
+}
+
+#Reinforcing the padlock law (conservative edition)
+country_event = {
+	id = twrquebecflavor.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.7" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.7.t
+	desc = twrquebecflavor.7.d
+	#picture = 
+	
+	#I approve
+	option = {
+		name = twrquebecflavor.7.a
+	}
+}
+
+#Bishop of montreal gives his blessings
+country_event = {
+	id = twrquebecflavor.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.8" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.8.t
+	desc = twrquebecflavor.8.d
+	#picture = 
+	
+	#Thank you paul emile leger
+	option = {
+		name = twrquebecflavor.8.a
+	}
+}
+
+#The leftists protest
+country_event = {
+	id = twrquebecflavor.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.9" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.9.t
+	desc = twrquebecflavor.9.d
+	#picture = 
+	
+	#Please do not resist
+	option = {
+		name = twrquebecflavor.9.a
+	}
+}
+
+#Christian summer camps
+country_event = {
+	id = twrquebecflavor.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.10" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.10.t
+	desc = twrquebecflavor.10.d
+	#picture = 
+	
+	#Priests and children together what could go wrong
+	option = {
+		name = twrquebecflavor.10.a
+	}
+}
+
+#Christian Charities
+country_event = {
+	id = twrquebecflavor.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.11" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.11.t
+	desc = twrquebecflavor.11.d
+	#picture = 
+	
+	#Now we don't have to worry about welfare I think
+	option = {
+		name = twrquebecflavor.11.a
+	}
+}
+
+#St michael pilgrims vs secularization
+country_event = {
+	id = twrquebecflavor.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.12" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.12.t
+	desc = twrquebecflavor.12.d
+	#picture = 
+	
+	#Freedom of religion for everyone
+	option = {
+		name = twrquebecflavor.12.a
+	}
+}
+
+#Nationalization of hydro quebec
+country_event = {
+	id = twrquebecflavor.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.13" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.13.t
+	desc = twrquebecflavor.13.d
+	#picture = 
+	
+	#Hydro quebec will be much more useful under our control
+	option = {
+		name = twrquebecflavor.13.a
+	}
+}
+
+#Reconciliation with the natives
+country_event = {
+	id = twrquebecflavor.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.14" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.14.t
+	desc = twrquebecflavor.14.d
+	#picture = 
+	
+	#Reconciliation with the natives
+	option = {
+		name = twrquebecflavor.14.a
+	}
+}
+
+#American products out competing quebecoise products
+country_event = {
+	id = twrquebecflavor.15
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.15" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.15.t
+	desc = twrquebecflavor.15.d
+	#picture = 
+	
+	#Maybe letting mega corporations into quebec wasn't such a good idea
+	option = {
+		name = twrquebecflavor.15.a
+	}
+}
+
+#Turning quebec federal
+country_event = {
+	id = twrquebecflavor.16
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.16" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.16.t
+	desc = twrquebecflavor.16.d
+	#picture = 
+	
+	#This will ensure more democracy
+	option = {
+		name = twrquebecflavor.16.a
+	}
+}
+
+#St michael pilgrims vs secularization (social democrat)
+country_event = {
+	id = twrquebecflavor.17
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.17" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.17.t
+	desc = twrquebecflavor.17.d
+	#picture = 
+	
+	#Disperse them
+	option = {
+		name = twrquebecflavor.17.a
+	}
+}
+
+#Nationalizations
+country_event = {
+	id = twrquebecflavor.18
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.18" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.18.t
+	desc = twrquebecflavor.18.d
+	#picture = 
+	
+	#Putting most corporations under our control will ensure worker rights
+	option = {
+		name = twrquebecflavor.18.a
+	}
+}
+
+#Public housing
+country_event = {
+	id = twrquebecflavor.19
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.19" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.19.t
+	desc = twrquebecflavor.19.d
+	#picture = 
+	
+	#Housing is a human right
+	option = {
+		name = twrquebecflavor.19.a
+	}
+}
+
+#Kicking hardline socialists out
+country_event = {
+	id = twrquebecflavor.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.20" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.20.t
+	desc = twrquebecflavor.20.d
+	#picture = 
+	
+	#Go somewhere else but not here
+	option = {
+		name = twrquebecflavor.20.a
+	}
+}
+
+#Reconciliation with the natives (social democrat)
+country_event = {
+	id = twrquebecflavor.21
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.21" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.21.t
+	desc = twrquebecflavor.21.d
+	#picture = 
+	
+	#Everyone will be free
+	option = {
+		name = twrquebecflavor.21.a
+	}
+}
+
+#Young politicians gaining power
+country_event = {
+	id = twrquebecflavor.22
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.22" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.22.t
+	desc = twrquebecflavor.22.d
+	#picture = 
+	
+	#Goodbye boomers
+	option = {
+		name = twrquebecflavor.22.a
+	}
+}
+
+#Acts of Prohibition of Bourgeois Activites & Class Struggle
+country_event = {
+	id = twrquebecflavor.23
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.23" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.23.t
+	desc = twrquebecflavor.23.d
+	#picture = 
+	
+	#Approved
+	option = {
+		name = twrquebecflavor.23.a
+	}
+}
+
+#Transcript from union meeting
+country_event = {
+	id = twrquebecflavor.24
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.24" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.24.t
+	desc = twrquebecflavor.24.d
+	#picture = 
+	
+	#Approved
+	option = {
+		name = twrquebecflavor.24.a
+	}
+}
+
+#Suppressing the clergy
+country_event = {
+	id = twrquebecflavor.25
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.25" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.25.t
+	desc = twrquebecflavor.25.d
+	#picture = 
+	
+	#The church has no right to influence the state
+	option = {
+		name = twrquebecflavor.25.a
+	}
+}
+
+#The bourgeoise flee
+country_event = {
+	id = twrquebecflavor.26
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.26" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.26.t
+	desc = twrquebecflavor.26.d
+	#picture = 
+	
+	#They can run but they cant hide
+	option = {
+		name = twrquebecflavor.26.a
+	}
+}
+
+#Legalization of homosexuality
+country_event = {
+	id = twrquebecflavor.27
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.27" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.27.t
+	desc = twrquebecflavor.27.d
+	#picture = 
+	
+	#I hope they are happy together
+	option = {
+		name = twrquebecflavor.27.a
+	}
+}
+
+#Legalization of abortion
+country_event = {
+	id = twrquebecflavor.28
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.28" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.28.t
+	desc = twrquebecflavor.28.d
+	#picture = 
+	
+	#Her body her choice
+	option = {
+		name = twrquebecflavor.28.a
+	}
+}
+
+#Normane berthune is a peoples hero
+country_event = {
+	id = twrquebecflavor.29
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.29" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.29.t
+	desc = twrquebecflavor.29.d
+	#picture = 
+	
+	#You live on in our hearts
+	option = {
+		name = twrquebecflavor.29.a
+	}
+}
+
+#Declaration of the Security of the State
+country_event = {
+	id = twrquebecflavor.30
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.30" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.30.t
+	desc = twrquebecflavor.30.d
+	#picture = 
+	
+	#Approved
+	option = {
+		name = twrquebecflavor.30.a
+	}
+}
+
+#Suppressing the clergy (marxist-leninist)
+country_event = {
+	id = twrquebecflavor.31
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.31" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.31.t
+	desc = twrquebecflavor.31.d
+	#picture = 
+	
+	#The church has no right to influence the state
+	option = {
+		name = twrquebecflavor.31.a
+	}
+}
+
+#Propping up our bishop
+country_event = {
+	id = twrquebecflavor.32
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.32" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.32.t
+	desc = twrquebecflavor.32.d
+	#picture = 
+	
+	#I wonder what happened to him
+	option = {
+		name = twrquebecflavor.32.a
+	}
+}
+
+#Execution of Paul Emile Leger
+country_event = {
+	id = twrquebecflavor.33
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.33" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.33.t
+	desc = twrquebecflavor.33.d
+	#picture = 
+	
+	#Im sorry
+	option = {
+		name = twrquebecflavor.33.a
+	}
+}
+
+#Troubles with collectivization
+country_event = {
+	id = twrquebecflavor.34
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.34" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.34.t
+	desc = twrquebecflavor.34.d
+	#picture = 
+	
+	#They will behave eventually
+	option = {
+		name = twrquebecflavor.34.a
+	}
+}
+
+#The bourgeoise flee (marxist-leninist)
+country_event = {
+	id = twrquebecflavor.35
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrquebecflavor.35" }
+	is_triggered_only = yes
+	
+	title = twrquebecflavor.35.t
+	desc = twrquebecflavor.35.d
+	#picture = 
+	
+	#They can run but they cant hide
+	option = {
+		name = twrquebecflavor.35.a
+	}
+}

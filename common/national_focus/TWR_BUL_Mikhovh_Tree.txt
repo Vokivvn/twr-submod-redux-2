@@ -1,0 +1,1444 @@
+focus_tree = {
+	id = TWR_BUL_Mikhovh_Tree
+	continuous_focus_position = { x = 50 y = -1000 }
+	default = no
+	country = {
+		factor = 0
+		
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_Monarchists_Prevail
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 6
+		x = 8
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_The_Monarchists_Prevail"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_State_of_Emergency
+		icon = GFX_BUL_state_of_emergency
+		cost = 8
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = BUL_The_Monarchists_Prevail
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Monarchists_Prevail
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_State_of_Emergency"
+			remove_ideas = BUL_Formalise_the_Greyshirts
+			remove_ideas = BUL_The_Crisis_of_52
+			swap_ideas = {
+				remove_idea = BUL_The_Chaos
+				add_idea = BUL_The_Chaos1
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Repeal_the_Kiril_Act
+		icon = GFX_focus_renounce_the_treaty_of_triannon
+		cost = 8
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = BUL_State_of_Emergency
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_State_of_Emergency
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Repeal_the_Kiril_Act"
+			add_stability = 0.05
+			add_war_support = 0.05
+			remove_ideas = BUL_hated_regent
+			remove_ideas = BUL_puppet_regent
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Pernik_Trials
+		icon = GFX_GEN_German_Lapdog
+		cost = 8
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_State_of_Emergency
+		}
+		select_effect = {
+            country_event = { id = bulgaria.16  }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_State_of_Emergency
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Pernik_Trials"
+			country_event = { id = bulgaria.17 }
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Stop_Media_Censorship
+		icon = GFX_GENERIC_Radio_Towers
+		cost = 8
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = BUL_Repeal_the_Kiril_Act
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Repeal_the_Kiril_Act
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Stop_Media_Censorship"
+			swap_ideas = {
+				remove_idea = BUL_The_Chaos1
+				add_idea = BUL_The_Chaos2
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Root_out_Fascist_Elements
+		icon = GFX_BUL_Root_out_Fascist_Elements
+		cost = 10
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_Repeal_the_Kiril_Act
+		}
+		prerequisite = {
+			focus = BUL_Pernik_Trials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Repeal_the_Kiril_Act
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Root_out_Fascist_Elements"
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = national_socialist
+				popularity = -0.1
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_A_New_Monarch
+		icon = GFX_BUL_A_New_Monarch
+		cost = 7
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_Pernik_Trials
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Pernik_Trials
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_A_New_Monarch"
+			country_event = { id = bulgaria.12 days = 2 }
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Prepare_the_Election
+		icon = GFX_GENERIC_Government
+		cost = 8
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = BUL_Stop_Media_Censorship
+		}
+		prerequisite = {
+			focus = BUL_Root_out_Fascist_Elements
+		}
+		prerequisite = {
+			focus = BUL_A_New_Monarch
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Root_out_Fascist_Elements
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Prepare_the_Election"
+			add_political_power = 20
+			add_ideas = facade_democracy
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_A_New_Constitution
+		icon = GFX_BUL_A_New_Constitution
+		cost = 8
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = BUL_Prepare_the_Election
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Prepare_the_Election
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_A_New_Constitution"
+			remove_ideas = BUL_The_Chaos2
+			add_political_power = 30
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Allow_Certain_Parties
+		icon = GFX_GENERIC_elite_party
+		cost = 6
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = BUL_A_New_Constitution
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_A_New_Constitution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Allow_Certain_Parties"
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.05
+				}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+				}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+				}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_New_and_Improved_Oblasts
+		icon = GFX_GENERIC_draw_borders
+		cost = 8
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_A_New_Constitution
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_A_New_Constitution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_New_and_Improved_Oblasts"
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Meet_with_Partisan_Groups
+		icon = GFX_GENERIC_Partisans
+		cost = 10
+		x = -1 
+		y = 1
+		prerequisite = {
+			focus = BUL_Allow_Certain_Parties
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Allow_Certain_Parties
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Meet_with_Partisan_Groups"
+			remove_ideas = MCD_native_unrest
+			add_political_power = 30
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_Socialist_Question
+		icon = GFX_GENERIC_Social_Democracy_Time
+		cost = 7
+		x = 1 
+		y = 1
+		prerequisite = {
+			focus = BUL_Allow_Certain_Parties
+		}
+		prerequisite = {
+			focus = BUL_New_and_Improved_Oblasts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Allow_Certain_Parties
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_The_Socialist_Question"
+			country_event = { id = bulgaria.13 }
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Grant_Autonomy_to_Macedonia
+		icon = GFX_BUL_Grant_Autonomy_to_Macedonia
+		cost = 8
+		x = 1 
+		y = 1
+		prerequisite = {
+			focus = BUL_New_and_Improved_Oblasts
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_New_and_Improved_Oblasts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Grant_Autonomy_to_Macedonia"
+			add_stability = 0.05
+			remove_ideas = BUL_greek_unrest_2
+			remove_ideas = BUL_greek_unrest
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_Election
+		icon = GFX_GENERIC_Democracy
+		cost = 10
+		x = 0 
+		y = 1
+		prerequisite = {
+			focus = BUL_Meet_with_Partisan_Groups
+		}
+		prerequisite = {
+			focus = BUL_The_Socialist_Question
+		}
+		prerequisite = {
+			focus = BUL_Grant_Autonomy_to_Macedonia
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Socialist_Question
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_The_Election"
+			country_event = { id = bulgaria.14 }
+			add_ideas = established_democracy
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = BUL_A_Reformed_Military
+		icon = GFX_BUL_guns
+		cost = 8
+		x = 16
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			has_completed_focus = BUL_The_Election
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_A_Reformed_Military"
+			army_experience = 35
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_Reward_Loyal_Officers
+		icon = GFX_BUL_two_officers
+		cost = 5
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = BUL_A_Reformed_Military
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_A_Reformed_Military
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Reward_Loyal_Officers"
+			add_political_power = 150
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_Retire_Disloyal_Officers
+		icon = GFX_GENERIC_Lone_Officer
+		cost = 5
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_A_Reformed_Military
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_A_Reformed_Military
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Retire_Disloyal_Officers"
+			add_stability = 0.05
+			army_experience = -15
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_Pledge_To_Constitution
+		icon = GFX_GENERIC_Adapt_Constitution
+		cost = 6
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = BUL_Reward_Loyal_Officers
+		}
+		prerequisite = {
+			focus = BUL_Retire_Disloyal_Officers
+		}
+		relative_position_id = BUL_A_Reformed_Military
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Pledge_To_Constitution"
+			add_war_support = 0.05
+			add_stability = 0.05
+			custom_effect_tooltip = BUL_OPEN_MILITARY_TREES
+			add_popularity = {
+			    ideology = socialist
+			    popularity = 0.03
+			}
+			add_popularity = {
+			    ideology = social_democrat
+			    popularity = 0.03
+			}
+			add_popularity = {
+			    ideology = liberal
+			    popularity = 0.03
+			}
+			add_popularity = {
+			    ideology = conservative
+			    popularity = 0.03
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_Improve_Training_Standards
+		icon = GFX_KOR_improve_training
+		cost = 10
+		x = 0
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			has_completed_focus = BUL_Pledge_To_Constitution
+		}
+		relative_position_id = BUL_A_Reformed_Military
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Improve_Training_Standards"
+			army_experience = 55
+			add_ideas = BUL_improved_basic_training
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_Defend_Our_Gains
+		icon = GFX_goal_generic_defence
+		cost = 6
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = BUL_Improve_Training_Standards
+		}
+		mutually_exclusive = {
+			focus = BUL_Attack_Our_Enemies
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BUL_Defend_Our_Gains"
+		add_manpower = 50000
+		add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = infantry_weapons
+			} 
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_static_defences
+		icon = GFX_focus_CDA_fortress_on_the_volga
+		cost = 7
+		x = -4
+		y = 2
+		prerequisite = {
+			focus = BUL_Defend_Our_Gains
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_static_defences"
+			add_equipment_to_stockpile = {
+			    type = artillery_equipment
+			    amount = 150
+			    producer = BUL
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_home_advantage
+		icon = GFX_GENERIC_deep_defense
+		cost = 7.5
+		x = -2
+		y = 2
+		prerequisite = {
+			focus = BUL_Defend_Our_Gains
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_home_advantage"
+			add_ideas = BUL_home_advantage_idea
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_institute_defensive_doctrine
+		icon = GFX_GENERIC_sniper_defense
+		cost = 8
+		x = -3
+		y = 3
+		prerequisite = {
+			focus = BUL_static_defences
+		}
+		prerequisite = {
+			focus = BUL_home_advantage
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_institute_defensive_doctrine"
+			swap_ideas = {
+		    remove_idea = BUL_home_advantage_idea
+		    add_idea = BUL_defensive_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_Attack_Our_Enemies
+		icon = GFX_focus_BUL_the_fate_of_the_balkans
+		cost = 6
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = BUL_Improve_Training_Standards
+		}
+		mutually_exclusive = {
+			focus = BUL_Defend_Our_Gains
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Attack_Our_Enemies"
+			army_experience = 25
+			custom_effect_tooltip = BUL_DOCTRINE_RESEARCH
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_Wars_of_Movement
+		icon = GFX_goal_generic_army_motorized
+		cost = 7
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = BUL_Attack_Our_Enemies
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Wars_of_Movement"
+			add_equipment_to_stockpile = {
+		    	type = motorized_equipment
+		    	amount = 300
+		    	producer = GER
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_Infantry_Attack
+		icon = GFX_GENERIC_German_Style_Soldiers
+		cost = 7.5
+		x = 4
+		y = 2
+		prerequisite = {
+			focus = BUL_Attack_Our_Enemies
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_Infantry_Attack"
+			custom_effect_tooltip = BULGARIAN_SHOCKTROOP_1_DIVISION
+			hidden_effect = {
+				division_template = {
+		    		name = "Eksperimentalni Shokovi Voiski"
+		    		is_locked = yes
+		   			division_names_group = BUL_INF_01
+		   			priority = 2
+		    		regiments = {
+				        light_infantry = { x = 0 y = 0 }
+				        light_infantry = { x = 0 y = 1 }
+				        light_infantry = { x = 0 y = 2 }
+				        light_infantry = { x = 0 y = 3 }
+				        light_infantry = { x = 1 y = 0 }
+				        light_infantry = { x = 1 y = 1 }
+				        light_infantry = { x = 1 y = 2 }
+				        artillery_brigade = { x = 1 y = 3 }
+				        cavalry = { x = 2 y = 0 }
+				        cavalry = { x = 2 y = 1 }		        
+		    		}
+		   			support = { 
+		        		recon = { x = 0 y = 0 }
+		        		artillery = { x = 0 y = 1}
+		    		} 
+				}
+				capital_scope = {
+					create_unit = {
+		    			division = "name = \"1. Eksperimentalna Pekhotna Diviziya\" division_template = \"Eksperimentalni Shokovi Voiski\" start_experience_factor = 1.0 start_equipment_factor = 0.5"
+		    			owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_institute_offensive_doctrine
+		icon = GFX_GENERIC_War_Hawk
+		cost = 8
+		x = 3
+		y = 3
+		prerequisite = {
+			focus = BUL_Wars_of_Movement
+		}
+		prerequisite = {
+			focus = BUL_Infantry_Attack
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_institute_offensive_doctrine"
+			add_ideas = BUL_offensive_doctrine
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = armor
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_truly_balkan_prussia
+		icon = GFX_focus_BUL_prussia_of_the_balkans
+		cost = 10
+		x = 0
+		y = 4
+		prerequisite = {
+			focus = BUL_institute_defensive_doctrine
+			focus = BUL_institute_offensive_doctrine
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Improve_Training_Standards
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_truly_balkan_prussia"
+			army_experience = 50
+			swap_ideas = {
+				remove_idea = BUL_balkan_prussia
+				add_idea = BUL_balkan_prussia_2
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_training_pilots
+		icon = GFX_GENERIC_skilled_fighters
+		cost = 8
+		x = 23
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			has_completed_focus = BUL_Pledge_To_Constitution
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_A_Reformed_Military"
+			army_experience = 60
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_into_the_jet_age
+		icon = GFX_GER_interceptor
+		cost = 10
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = BUL_training_pilots
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_training_pilots
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_into_the_jet_age"
+			add_tech_bonus = {
+				name = jet_bonus
+				bonus = 0.4
+				uses = 2
+				category = jet_fighter
+				category = jet_strat_bomber
+				category = jet_tac_bomber
+				category = jet_cas
+				category = jet_tac
+				category = jet_transport
+				category = jet_mca
+				category = jet_interceptor
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_experimental_helicopters
+		icon = GFX_GENERIC_helicopter
+		cost = 8
+		x = -1
+		y = 2
+		prerequisite = {
+			focus = BUL_into_the_jet_age
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_training_pilots
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_experimental_helicopterse"
+			add_tech_bonus = {
+				name = heli_bonus
+				bonus = 0.5
+				uses = 1
+				category = helicopter
+			}
+			add_ideas = BUL_experimental_helicopters
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_supporting_ground_forces
+		icon = GFX_GENERIC_airland_battle
+		cost = 8
+		x = -1
+		y = 3
+		prerequisite = {
+			focus = BUL_experimental_helicopters
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_training_pilots
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_supporting_ground_forces"
+			add_tech_bonus = {
+				name = jet_bonus
+				bonus = 0.5
+				uses = 1
+				category = jet_strat_bomber
+				category = jet_tac_bomber
+				category = jet_cas
+				category = jet_tac
+			}
+			add_ideas = BUL_air_support_focus
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_upgrade_air_bases
+		icon = GFX_GEN_good_airport
+		cost = 8
+		x = 1
+		y = 2
+		prerequisite = {
+			focus = BUL_into_the_jet_age
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_training_pilots
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_upgrade_air_bases"
+			48 = {
+				add_building_construction = {
+				    type = air_base
+				    level = 3
+				    instant_build = yes
+				}
+			}
+			212 = {
+				add_building_construction = {
+				    type = air_base
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_air_superiority
+		icon = GFX_GENERIC_Jet_Fighters
+		cost = 9
+		x = 1
+		y = 3
+		prerequisite = {
+			focus = BUL_upgrade_air_bases
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_training_pilots
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_air_superiority"
+			add_tech_bonus = {
+				name = jet_bonus
+				bonus = 0.5
+				uses = 1
+				category = jet_fighter
+				category = jet_interceptor
+			}
+			add_ideas = BUL_air_superiority_focus
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_beginnings_of_modern_airforce
+		icon = GFX_goal_generic_air_doctrine
+		cost = 8
+		x = 0
+		y = 4
+		prerequisite = {
+			focus = BUL_air_superiority
+		}
+		prerequisite = {
+			focus = BUL_supporting_ground_forces
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_training_pilots
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_beginnings_of_modern_airforce"
+			army_experience = 50
+			remove_ideas = {
+			    BUL_air_support_focus
+				BUL_air_superiority_focus
+			}
+			add_ideas = BUL_modern_air_doctrine
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_building_a_navy
+		icon = GFX_GENERIC_Naval_Industry
+		cost = 10
+		x = 27
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			has_completed_focus = BUL_Pledge_To_Constitution
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_building_a_navy"
+			navy_experience = 60
+			add_timed_idea = {
+			    idea = BUL_naval_expansion_focus
+			    days = 250
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_expanding_dockyards
+		icon = GFX_GENERIC_dockyards
+		cost = 8
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_building_a_navy
+		prerequisite = {
+			focus = BUL_building_a_navy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_expanding_dockyards"
+			184 = {
+				add_building_construction = {
+				    type = dockyard
+				    level = 2
+				    instant_build = yes
+				}
+				
+			}
+			211 = {
+				add_building_construction = {
+				    type = naval_base
+				    level = 2
+				    instant_build = yes
+				    province = 9783
+				}
+				add_building_construction = {
+				    type = naval_base
+				    level = 2
+				    instant_build = yes
+				    province = 9902
+				}
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_destroyers
+		icon = GFX_focus_generic_destroyer
+		cost = 5
+		x = -1
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_building_a_navy
+		prerequisite = {
+			focus = BUL_expanding_dockyards
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_destroyers"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = dd_tech
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_submarines
+		icon = GFX_goal_generic_navy_submarine
+		cost = 5
+		x = 1
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_building_a_navy
+		prerequisite = {
+			focus = BUL_expanding_dockyards
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_submarines"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_naval_aviation
+		icon = GFX_GENERIC_naval_aviation
+		cost = 6
+		x = 0
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_building_a_navy
+		prerequisite = {
+			focus = BUL_submarines
+		}
+		prerequisite = {
+			focus = BUL_destroyers
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_naval_aviation"
+			add_ideas = BUL_naval_aviation
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_controllers_of_bosporus
+		icon = GFX_focus_BUL_supremacy_on_the_bosporus
+		cost = 8
+		x = 0
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_building_a_navy
+		prerequisite = {
+			focus = BUL_naval_aviation
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_controllers_of_bosporus"
+			navy_experience = 50
+			swap_ideas = {
+				remove_idea = BUL_naval_aviation
+				add_idea = BUL_naval_doctrine
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_fulfilling_election_promises
+		icon = GFX_focus_generic_treaty
+		cost = 6
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			has_completed_focus = BUL_The_Election
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_fulfilling_election_promises"
+			add_political_power = 60
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_promote_industrialised_agriculture
+		icon = GFX_GENERIC_Strong_Farming
+		cost = 8
+		x = 0
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_fulfilling_election_promises
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_promote_industrialised_agriculture"
+			add_timed_idea = {
+			    idea = BUL_promote_industrialised_agriculture
+			    days = 500
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_continue_land_reforms
+		icon = GFX_GENERIC_farmers_rise
+		cost = 9
+		x = -1
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_promote_industrialised_agriculture
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_continue_land_reforms"
+			211 = {
+				add_building_construction = {
+				    type = infrastructure
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			212 = {
+				add_building_construction = {
+				    type = infrastructure
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_facilitating_urbanisation
+		icon = GFX_GENERIC_urban
+		cost = 8
+		x = 1
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_promote_industrialised_agriculture
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_facilitating_urbanisation"
+			add_timed_idea = {
+			    idea = BUL_urbanisation_boost
+			    days = 1000
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_educating_the_masses
+		icon = GFX_GENERIC_Education
+		cost = 10
+		x = 0
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_continue_land_reforms
+		}
+		prerequisite = {
+			focus = BUL_facilitating_urbanisation
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_educating_the_masses"
+			add_timed_idea = {
+			    idea = BUL_education_effort
+			    days = 600
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_road_to_industrialisation
+		icon = GFX_GENERIC_Steel_Industry
+		cost = 10
+		x = 0
+		y = 6
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_educating_the_masses
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_road_to_industrialisation"
+			add_timed_idea = {
+			    idea = BUL_industrialisation_effort
+			    days = 1000
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_peoples_government
+		icon = GFX_GENERIC_SocDem_Star
+		cost = 8
+		x = -5
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_fulfilling_election_promises
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_peoples_government"
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			add_political_power = 50
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_nationalise_key_industries
+		icon = GFX_GENERIC_Steel_Industry
+		cost = 8
+		x = -7
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_peoples_government
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_nationalise_key_industries"
+			add_ideas = BUL_nationalised_key_industries
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_build_welfare_system
+		icon = GFX_GENERIC_Food_Price
+		cost = 10
+		x = -5
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_peoples_government
+		}
+		available = {
+			has_idea = BUL_basic_welfare
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_build_welfare_system"
+			swap_ideas = {
+				remove_idea = BUL_basic_welfare
+				add_idea = BUL_basic_welfare_upgraded
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_abolish_union_restrictions
+		icon = GFX_GENERIC_Unionize
+		cost = 8
+		x = -3
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_peoples_government
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_abolish_union_restrictions"
+			add_ideas = BUL_unions_supported
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_peoples_tsardom
+		icon = GFX_focus_BUL_the_peoples_republic_of_bulgaria
+		cost = 12
+		x = -5
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_nationalise_key_industries
+		}
+		prerequisite = {
+			focus = BUL_build_welfare_system
+		}
+		prerequisite = {
+			focus = BUL_abolish_union_restrictions
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_peoples_tsardom"
+			add_political_power = 200
+			add_ideas = BUL_peoples_tsardom
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_a_reformist_government
+		icon = GFX_GENERIC_Social_Liberalism
+		cost = 8
+		x = 5
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_fulfilling_election_promises
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_a_reformist_government"
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+			}
+			add_political_power = 50
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_modern_political_culture
+		icon = GFX_GENERIC_Press_Liberalization
+		cost = 8
+		x = 3
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_a_reformist_government
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_modern_political_culture"
+			add_ideas = BUL_democratic_political_culture
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_attract_foreign_investment
+		icon = GFX_GENERIC_foreign_investment
+		cost = 8
+		x = 5
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_a_reformist_government
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_attract_foreign_investment"
+			add_ideas = BUL_encouraging_investment
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_root_out_corruption
+		icon = GFX_CHI_An_End_to_Corruption
+		cost = 10
+		x = 7
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_a_reformist_government
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_root_out_corruption"
+			add_political_power = -150
+			add_stability = 0.05
+			add_war_support = 0.04
+		}
+	}
+	focus = {
+		cancelable = no
+		id = BUL_reformed_tsardom
+		icon = GFX_focus_BUL_the_third_bulgarian_empire
+		cost = 12
+		x = 5
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = BUL_modern_political_culture
+		}
+		prerequisite = {
+			focus = BUL_attract_foreign_investment
+		}
+		prerequisite = {
+			focus = BUL_root_out_corruption
+		}
+		relative_position_id = BUL_truly_balkan_prussia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: BUL_reformed_tsardom"
+			add_ideas = BUL_reformed_tsardom
+			add_political_power = 50
+		}
+	}
+}

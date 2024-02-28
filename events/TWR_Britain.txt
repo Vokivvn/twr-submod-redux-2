@@ -1,0 +1,4276 @@
+﻿add_namespace = twrbritain
+add_namespace = twrbritainflavour
+add_namespace = twrbritainpolitics
+add_namespace = twrgermanengland
+add_namespace = twrbritainforeign
+add_namespace = twrbritaindecol
+add_namespace = twrbritaindebug
+
+	country_event = {
+	id = twrgermanengland.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermanengland.2"}
+		title = twrgermanengland.2.t
+		desc = twrgermanengland.2.d
+		picture = GFX_report_event_business_as_usual
+
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		option = {
+			name = twrgermanengland.2.a
+			ai_chance = { 
+				factor = 50
+			}
+			add_stability = 0.01
+			hidden_effect = { GER = { country_event = { days = 0 id = twrgermany.30 } } }
+		}
+
+		option = {
+			name = twrgermanengland.2.b
+			ai_chance = { 
+				factor = 0
+			}
+			add_political_power = -100
+			add_stability = -0.5
+			hidden_effect = {
+				hidden_effect = { GER = { country_event = { days = 0 id = twrgermany.31 } } }
+			}
+			add_named_threat = { 
+				threat = 10
+				name = ENG_shot_them_down
+			}
+		}
+	}
+
+	country_event = {
+	id = twrgermanengland.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermanengland.3"}
+		title = twrgermanengland.3.t
+		desc = twrgermanengland.3.d
+		picture = GFX_report_event_business_as_usual
+
+		is_triggered_only = yes
+
+		fire_only_once = yes
+
+		option = {
+			name = twrgermanengland.3.a
+			ai_chance = { 
+				factor = 50
+			}
+			add_stability = 0.01
+			hidden_effect = {
+				set_global_flag = brits_avoided_a_war
+			}
+		}
+
+		option = {
+			name = twrgermanengland.3.b
+			ai_chance = { 
+				factor = 0
+			}
+			add_political_power = -100
+			add_stability = -0.5
+			hidden_effect = {
+				set_global_flag = shoot_them_down
+			}
+			declare_war_on = {
+				target = GER
+				type = topple_government
+			}
+		}
+	}
+
+	country_event = {
+	id = twrgermanengland.1000 #germany backed down
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermanengland.1000"}
+		title = twrgermanengland.1000.t
+		desc = twrgermanengland.1000.d
+		picture = GFX_report_event_business_as_usual
+
+		is_triggered_only = yes
+
+		fire_only_once = yes
+
+		option = {
+			name = twrgermanengland.1000.a
+			add_stability = 0.01
+		}
+	}
+
+	country_event = {
+	id = twrgermanengland.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrgermanengland.1"}
+		title = twrgermanengland.1.t
+		desc = twrgermanengland.1.d
+		picture = GFX_report_event_business_as_usual
+
+		is_triggered_only = yes
+
+		fire_only_once = yes
+
+		option = {
+			name = twrgermanengland.1.a
+			ai_chance = { 
+				factor = 50
+			}
+			add_stability = -0.05
+			hidden_effect = {
+				set_country_flag = remain_calm
+				set_global_flag = ukremained_calm
+			}
+		}
+
+		option = {
+			name = twrgermanengland.1.b
+			ai_chance = { 
+				factor = 10
+			}
+			add_named_threat = { 
+				threat = 5
+				name = ENG_responded_to_navy
+			}
+			add_political_power = -100
+			hidden_effect = {
+				set_country_flag = responded_to_germans
+				set_global_flag = ukkrespond_to_germans
+			}
+		}
+	}
+
+	country_event = { #Election Results
+	id = twrbritainpolitics.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.0"}
+	title = twrbritainpolitics.0.t
+	desc = twrbritainpolitics.0.d
+	picture = GFX_report_event_uk_election
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	immediate = { hidden_effect = { set_country_flag = ENG_election_over } }
+	option = {
+		name = twrbritainpolitics.0.a
+		news_event = { days = 5 id = twrnews.18 }
+		ai_chance = { 
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_MORRISON
+					has_global_flag = COUNTRY_PATH_ENG_NATIONAL
+					has_global_flag = COUNTRY_PATH_ENG_NDP_GRIMOND
+					has_global_flag = COUNTRY_PATH_ENG_NDP_DAVIES
+					has_global_flag = COUNTRY_PATH_ENG_NDP_BUTLER
+					has_global_flag = COUNTRY_PATH_ENG_COALITION
+					has_global_flag = COUNTRY_PATH_ENG_BUTLER
+					has_global_flag = COUNTRY_PATH_ENG_THORNEY
+				}
+			}
+		}
+		complete_national_focus = ENG_attlee_labour
+	}
+	option = {
+		name = twrbritainpolitics.0.b
+		news_event = { days = 5 id = twrnews.19 }
+		country_event = { days = 10 id = twrbritainpolitics.54 }
+		ai_chance = { 
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_FREEMAN
+					has_global_flag = COUNTRY_PATH_ENG_GAITSKELL
+					has_global_flag = COUNTRY_PATH_ENG_MORRISON
+					has_global_flag = COUNTRY_PATH_ENG_NATIONAL
+					has_global_flag = COUNTRY_PATH_ENG_NDP_GRIMOND
+					has_global_flag = COUNTRY_PATH_ENG_NDP_DAVIES
+					has_global_flag = COUNTRY_PATH_ENG_NDP_BUTLER
+					has_global_flag = COUNTRY_PATH_ENG_COALITION
+				}
+			}
+		}
+		complete_national_focus = ENG_butler_conservative
+		hidden_effect = {
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+			}	
+		}
+	}
+	option = {
+		name = twrbritainpolitics.0.c
+		news_event = { days = 1 id = twrnews.20 }
+		country_event = { days = 10 id = twrbritainpolitics.55 }
+		ai_chance = { 
+			factor = 0
+		}
+		hidden_effect = {
+			country_event = { days = 15 id = twrbritainpolitics.7 }
+			country_event = { days = 25 id = twrbritainflavour.34 }
+			set_politics = {
+				ruling_party = fascist
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.2
+			}
+			set_variable = {
+				var = mosley_opposition
+				value = 0
+			}
+		}
+		complete_national_focus = ENG_mosley_union
+		add_ideas = ENG_unstable_government
+	}
+	option = {
+		name = twrbritainpolitics.0.e
+		news_event = { days = 1 id = twrnews.21 }
+		ai_chance = { 
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_FREEMAN
+					has_global_flag = COUNTRY_PATH_ENG_GAITSKELL
+					has_global_flag = COUNTRY_PATH_ENG_BUTLER
+					has_global_flag = COUNTRY_PATH_ENG_THORNEY
+				}
+			}
+		}
+		complete_national_focus = ENG_hung_parliament
+	}
+}
+
+country_event = { #Prime Minister Calls General Election
+	id = twrbritainpolitics.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.1"}
+	title = twrbritainpolitics.1.t
+	desc = twrbritainpolitics.1.d
+	picture = GFX_report_event_uk_attlee
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.1.a
+		country_event = { days = 67 id = twrbritainpolitics.0 }
+		complete_national_focus = ENG_general_election
+	}
+}
+
+country_event = { #Attlee Announces Retirement
+	id = twrbritainpolitics.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.2"}
+	title = twrbritainpolitics.2.t
+	desc = twrbritainpolitics.2.d
+	picture = GFX_report_event_uk_attlee_speech
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.2.a
+	}
+}
+
+country_event = { #The New Prime Minister - Gaitskell
+	id = twrbritainpolitics.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.3"}
+	title = twrbritainpolitics.3.t
+	desc = twrbritainpolitics.3.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.3.a
+		set_politics = {
+			ruling_party = social_democrat
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Hugh Gaitskell"
+			desc = ""
+			picture = "Britain_SD_Hugh_Gaitskell.dds"
+			expire = "1985.1.1"
+			ideology = social_democracy
+			traits = {}
+		}
+		news_event = { days = 3 id = twrnews.27 }
+	}
+}
+
+country_event = { #The New Prime Minister - Freeman
+	id = twrbritainpolitics.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.4"}
+	title = twrbritainpolitics.4.t
+	desc = twrbritainpolitics.4.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.4.a
+		create_country_leader = {
+			name = "John Freeman"
+			desc = ""
+			picture = "Britain_SD_John_Freeman.dds"
+			expire = "1985.1.1"
+			ideology = democratic_socialism
+			traits = {}
+		}
+	news_event = { days = 3 id = twrnews.28 }
+	}
+}
+
+#country_event = { #Attlee's Position Weakens
+#	id = twrbritainpolitics.5
+#	title = twrbritainpolitics.5.t
+#	desc = twrbritainpolitics.5.d
+#	
+#	is_triggered_only = yes
+#	
+#	fire_only_once = yes
+#
+#	option = {
+#		name = twrbritainpolitics.5.a
+#	}
+#}
+
+country_event = { #The Case of Derek Bentley
+	id = twrbritainpolitics.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.6"}
+	title = twrbritainpolitics.6.t
+	desc = twrbritainpolitics.6.d
+	picture = GFX_report_event_uk_derek
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.6.a
+	}
+	option = {
+		name = twrbritainpolitics.6.b
+	}
+}
+
+country_event = { #Protests Against Mosley!
+	id = twrbritainpolitics.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.7"}
+	title = twrbritainpolitics.7.t
+	desc = twrbritainpolitics.7.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.7.a
+		add_stability = -0.15
+	}
+}
+
+country_event = { #The Public Order Act
+	id = twrbritainpolitics.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.8"}
+	title = twrbritainpolitics.8.t
+	desc = twrbritainpolitics.8.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.8.a
+		add_to_variable = {
+			var = mosley_opposition
+			value = 20
+		}
+		custom_effect_tooltip = mosley_reforms
+	}
+	option = {
+		name = twrbritainpolitics.8.b
+		add_to_variable = {
+			var = mosley_opposition
+			value = -20
+		}
+		custom_effect_tooltip = mosley_reforms
+	}
+}
+
+country_event = { #The Bank of England
+	id = twrbritainpolitics.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.9"}
+	title = twrbritainpolitics.9.t
+	desc = twrbritainpolitics.9.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.9.a
+		add_to_variable = {
+			var = mosley_opposition
+			value = 10
+		}
+	}
+	option = {
+		name = twrbritainpolitics.9.b
+		add_to_variable = {
+			var = mosley_opposition
+			value = -10
+		}
+	}
+}
+
+country_event = { #The Future of Income Tax
+	id = twrbritainpolitics.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.10"}
+	title = twrbritainpolitics.10.t
+	desc = twrbritainpolitics.10.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.10.a
+		add_to_variable = {
+			var = mosley_opposition
+			value = 10
+		}
+		add_ideas = ENG_abolished_income_tax
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.05
+		}
+	}
+	option = {
+		name = twrbritainpolitics.10.b
+		add_to_variable = {
+			var = mosley_opposition
+			value = -10
+		}
+	}
+}
+
+country_event = { #The House of Lord's Fate
+	id = twrbritainpolitics.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.11"}
+	title = twrbritainpolitics.11.t
+	desc = twrbritainpolitics.11.d
+	picture = GFX_report_event_uk_parliament
+
+	is_triggered_only = yes
+
+	fire_only_once = yes	
+
+	option = {
+		name = twrbritainpolitics.11.a
+		add_to_variable = {
+			var = mosley_opposition
+			value = -20
+		}
+		complete_national_focus = ENG_keep_lords
+	}
+	option = {
+		name = twrbritainpolitics.11.b
+		add_to_variable = {
+			var = mosley_opposition
+			value = 10
+		}
+		complete_national_focus = ENG_upper_assembly
+	}
+	option = {
+		name = twrbritainpolitics.11.c
+		add_to_variable = {
+			var = mosley_opposition
+			value = 20
+		}
+		complete_national_focus = ENG_abolish_lords 
+	}
+}
+
+country_event = { #The Television Address
+	id = twrbritainpolitics.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.12"}
+	title = twrbritainpolitics.12.t
+	desc = twrbritainpolitics.12.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.12.a
+		set_country_flag = ENG_no_mosley_coup
+		hidden_effect = {
+			country_event = { days = 10 id = twrbritainpolitics.59 }
+		}
+	}
+}
+
+country_event = { #The Rally
+	id = twrbritainpolitics.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.13"}
+	title = twrbritainpolitics.13.t
+	desc = twrbritainpolitics.13.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.13.a
+		trigger = {
+			check_variable = { mosley_opposition > 0 }
+		}
+		country_event = { days = 0 id = twrbritainpolitics.57 }
+	}
+	option = {
+		name = twrbritainpolitics.13.b
+		trigger = {
+			check_variable = { mosley_opposition = 0 }
+		}
+		country_event = { days = 0 id = twrbritainpolitics.57 }
+	}
+	option = {
+		name = twrbritainpolitics.13.c
+		trigger = {
+			check_variable = { mosley_opposition < 0 }
+		}
+		set_country_flag = ENG_no_mosley_coup
+		hidden_effect = {
+			country_event = { days = 10 id = twrbritainpolitics.59 }
+		}
+	}
+}
+
+country_event = { #Mosley Addresses The People At No.10
+	id = twrbritainpolitics.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.14"}
+	title = twrbritainpolitics.14.t
+	desc = twrbritainpolitics.14.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.14.a
+	}
+}
+
+country_event = { #Labour's Manifesto
+	id = twrbritainpolitics.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.15"}
+	title = twrbritainpolitics.15.t
+	desc = twrbritainpolitics.15.d
+	picture = GFX_report_event_uk_labour_mandate
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbritainpolitics.15.a
+		add_political_power = 20
+	}
+}
+
+country_event = { #The Chancellor's Position
+	id = twrbritainpolitics.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.16"}
+	title = twrbritainpolitics.16.t
+	desc = twrbritainpolitics.16.d
+	picture = GFX_report_event_uk_parliament
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.16.a
+		set_country_flag = ENG_bevan_appointed
+		ai_chance = { 
+			factor = 10
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_ENG_GAITSKELL
+			}
+		}
+	}
+	option = {
+		name = twrbritainpolitics.16.b
+		set_country_flag = ENG_still_gaitskell
+		ai_chance = { 
+			factor = 20
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_ENG_FREEMAN
+			}
+		}
+	}
+}
+
+country_event = { #Chancellor Bevan
+	id = twrbritainpolitics.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.17"}
+	title = twrbritainpolitics.17.t
+	desc = twrbritainpolitics.17.d
+	picture = GFX_report_event_uk_bevan
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.17.a
+		create_country_leader = {
+			name = "Clement Attlee"
+			desc = "POLITICS_ATTLEE_DESC"
+			picture = "Britain_SD_Clement_Attlee.dds"
+			expire = "1985.1.1"
+			ideology = democratic_socialism
+			traits = {}
+		}
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.15
+		}
+		swap_ideas = {
+			remove_idea = ENG_AM_Hugh_Gaitskell
+			add_idea = ENG_AM_Aneurin_Bevan
+		}
+	}
+}
+
+country_event = { #Bevan Reasserts Employment Commitments
+	id = twrbritainpolitics.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.18"}
+	title = twrbritainpolitics.18.t
+	desc = twrbritainpolitics.18.d
+	picture = GFX_report_event_uk_bevan
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.18.a
+	}
+}
+
+country_event = { #The Nuclear Question
+	id = twrbritainpolitics.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.19"}
+	title = twrbritainpolitics.19.t
+	desc = twrbritainpolitics.19.d
+	picture = GFX_report_event_uk_nuke
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.19.a
+	}
+	option = {
+		name = twrbritainpolitics.19.b
+		add_ideas = ENG_limited_nuclear
+	}
+}
+
+country_event = { #Bevan's Nationalisation Pledge
+	id = twrbritainpolitics.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.20"}
+	title = twrbritainpolitics.20.t
+	desc = twrbritainpolitics.20.d
+	picture = GFX_report_event_uk_bevan
+
+	is_triggered_only = yes	
+
+	fire_only_once = yes	
+
+	option = {
+		name = twrbritainpolitics.20.a
+		add_ideas = ENG_nationalised_industry
+	}
+}
+
+country_event = { #Chancellor Gaitskell
+	id = twrbritainpolitics.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.21"}
+	title = twrbritainpolitics.21.t
+	desc = twrbritainpolitics.21.d
+	picture = GFX_report_event_uk_gaitskell
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.21.a
+	}
+}
+
+country_event = { #Gaitskell's Main Priority/Inflation
+	id = twrbritainpolitics.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.22"}
+	title = twrbritainpolitics.22.t
+	desc = twrbritainpolitics.22.d
+	picture = GFX_report_event_gaitskell_meeting
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.22.a
+		add_ideas = ENG_controlling_inflation
+	}
+	option = {
+		name = twrbritainpolitics.22.a
+	}
+}
+
+country_event = { #Question of Military Spending
+	id = twrbritainpolitics.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.23"}
+	title = twrbritainpolitics.23.t
+	desc = twrbritainpolitics.23.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.23.a
+	}
+	option = {
+		name = twrbritainpolitics.23.b
+		add_ideas = ENG_reduced_military_spending
+		add_political_power = 50
+		add_threat = -2
+	}
+}
+
+country_event = { #Chancellor Meets with Union Leaders
+	id = twrbritainpolitics.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.24"}
+	title = twrbritainpolitics.24.t
+	desc = twrbritainpolitics.24.d
+	picture = GFX_report_event_gaitskell_meeting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.24.a
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.03
+		}
+		add_political_power = 50
+	}
+}
+
+country_event = { #The Labour Party Conference
+	id = twrbritainpolitics.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.25"}
+	title = twrbritainpolitics.25.t
+	desc = twrbritainpolitics.25.d
+	picture = GFX_report_event_uk_lab_conference
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.25.a
+	}
+}
+
+country_event = { #British Living - building housing
+	id = twrbritainpolitics.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.26"}
+	title = twrbritainpolitics.26.t
+	desc = twrbritainpolitics.26.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.26.a
+		add_timed_idea = {
+			idea = ENG_building_houses
+			days = 1095
+		}
+	}
+}
+
+country_event = { #WE SHALL NEVER SURRENDER
+	id = twrbritainpolitics.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.27"}
+	title = twrbritainpolitics.27.t
+	desc = twrbritainpolitics.27.d
+	picture = GFX_report_event_uk_forts
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.27.a
+	}
+	option = {
+		name = twrbritainpolitics.27.b
+		add_timed_idea = { idea = ENG_fort_construction days = 180 }
+		country_event = { days = 180 id = twrbritainpolitics.56 }
+	}
+}
+
+country_event = { #Education Reform
+	id = twrbritainpolitics.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.28"}
+	title = twrbritainpolitics.28.t
+	desc = twrbritainpolitics.28.d
+	picture = GFX_report_event_uk_school
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.28.a
+	}
+}
+
+country_event = { # Keep Rationing or nah
+	id = twrbritainpolitics.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.29"}
+	title = twrbritainpolitics.29.t
+	desc = twrbritainpolitics.29.d
+	picture = GFX_report_event_uk_rationing
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.29.a
+		add_political_power = 50
+		add_timed_idea = { idea = ENG_rationing_over days = 730 }
+	}
+	option = {
+		name = twrbritainpolitics.29.b
+	}
+}
+
+country_event = { # THE GOVERNMENT NATIONALISING THE STEEL INDUSTRY IS STEELING or you can not
+	id = twrbritainpolitics.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.30"}
+	title = twrbritainpolitics.30.t
+	desc = twrbritainpolitics.30.d
+	picture = GFX_report_event_industry
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.30.a
+	}
+	option = {
+		name = twrbritainpolitics.30.b
+	}
+}
+
+country_event = { # social_reforms
+	id = twrbritainpolitics.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.31"}
+	title = twrbritainpolitics.31.t
+	desc = twrbritainpolitics.31.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.31.a
+		add_stability = 0.03
+	}
+}	
+
+country_event = { # penal system
+	id = twrbritainpolitics.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.32"}
+	title = twrbritainpolitics.32.t
+	desc = twrbritainpolitics.32.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.32.a
+		country_event = twrbritainpolitics.33
+	}
+
+	option = { 
+		name = twrbritainpolitics.32.b
+		country_event = twrbritainpolitics.33
+	}	
+}	
+
+country_event = { # idk what to put anymore
+	id = twrbritainpolitics.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.33"}
+	title = twrbritainpolitics.33.t
+	desc = twrbritainpolitics.33.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.33.a
+		country_event = twrbritainpolitics.34
+	}
+
+	option = { 
+		name = twrbritainpolitics.33.b
+		country_event = twrbritainpolitics.34
+	}	
+}	
+
+country_event = { # idk what to put anymore number 2 
+	id = twrbritainpolitics.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.34"}
+	title = twrbritainpolitics.34.t
+	desc = twrbritainpolitics.34.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.34.a
+		country_event = twrbritainpolitics.35
+	}
+
+	option = { 
+		name = twrbritainpolitics.34.b
+		country_event = twrbritainpolitics.35
+	}	
+}	
+
+country_event = { # reform conclusion
+	id = twrbritainpolitics.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.35"}
+	title = twrbritainpolitics.35.t
+	desc = twrbritainpolitics.35.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.35.a
+		
+	}
+
+	
+}	
+
+country_event = { # Hung Parliament
+	id = twrbritainpolitics.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.36"}
+	title = twrbritainpolitics.36.t
+	desc = twrbritainpolitics.36.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.36.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_NATIONAL
+					has_global_flag = COUNTRY_PATH_ENG_NDP_GRIMOND
+					has_global_flag = COUNTRY_PATH_ENG_NDP_DAVIES
+					has_global_flag = COUNTRY_PATH_ENG_NDP_BUTLER
+					has_global_flag = COUNTRY_PATH_ENG_COALITION
+				}
+			}
+		}
+		set_country_flag = ENG_labour_alone
+	}
+	option = {
+		name = twrbritainpolitics.36.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_MORRISON
+					has_global_flag = COUNTRY_PATH_ENG_NDP_GRIMOND
+					has_global_flag = COUNTRY_PATH_ENG_NDP_DAVIES
+					has_global_flag = COUNTRY_PATH_ENG_NDP_BUTLER
+					has_global_flag = COUNTRY_PATH_ENG_COALITION
+				}
+			}
+		}
+		set_country_flag = ENG_fifth_natgov
+	}
+	option = {
+		name = twrbritainpolitics.36.c
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_MORRISON
+					has_global_flag = COUNTRY_PATH_ENG_NATIONAL
+				}
+			}
+		}
+		set_country_flag = ENG_butler_recommended
+	}
+}
+
+country_event = { # goodbye Atlee
+	id = twrbritainpolitics.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.37"}
+	title = twrbritainpolitics.37.t
+	desc = twrbritainpolitics.37.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.37.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Herbert Morrison"
+			desc = "nothing"
+			picture = "Britain_SD_Herbert_Morrison.dds"
+			expire = "1985.1.1"
+			ideology = social_democracy
+			traits = {}
+		}
+	}	
+}	
+
+country_event = { # Morrison is here to save the day
+	id = twrbritainpolitics.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.38"}
+	title = twrbritainpolitics.38.t
+	desc = twrbritainpolitics.38.d
+	picture = GFX_report_event_uk_morrison
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.38.a
+		
+	}	
+}	
+
+country_event = { # Morrison left to meet the left
+	id = twrbritainpolitics.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.39"}
+	title = twrbritainpolitics.39.t
+	desc = twrbritainpolitics.39.d
+	picture = GFX_report_event_uk_morrison
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.39.a
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.04
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.04
+		}
+	}	
+}	
+
+country_event = { # Liberal leadership question
+	id = twrbritainpolitics.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.40"}
+	title = twrbritainpolitics.40.t
+	desc = twrbritainpolitics.40.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		add_stability = 0.02
+	}	
+}	
+
+country_event = { # Festival of Britian
+	id = twrbritainpolitics.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.41"}
+	title = twrbritainpolitics.41.t
+	desc = twrbritainpolitics.41.d
+	picture = GFX_report_event_uk_festival
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.41.a
+		add_stability = 0.02
+	}
+}
+
+
+country_event = { # NHS question
+	id = twrbritainpolitics.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.42"}
+	title = twrbritainpolitics.42.t
+	desc = twrbritainpolitics.42.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.42.a
+	}
+}
+
+
+country_event = { # National Government
+	id = twrbritainpolitics.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.44"}
+	title = twrbritainpolitics.44.t
+	desc = twrbritainpolitics.44.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.44.a
+		swap_ideas = {
+			remove_idea = ENG_HoG_Herbert_Morrison
+			add_idea = ENG_FM_Richard_A_Butler
+		}
+	}
+}
+
+country_event = { # SHUT THE FUCK UP MOSLEYIST - denounce mosleyism
+	id = twrbritainpolitics.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.45"}
+	title = twrbritainpolitics.45.t
+	desc = twrbritainpolitics.45.d
+	picture = GFX_report_anti_fascism
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.45.a
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.02
+		}
+	}
+	option = {
+		name = twrbritainpolitics.45.b
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.06
+			add_stability = -0.05
+		}
+	}
+}
+
+country_event = { # SHUT THE FUCK UP MOSLEYIST no 2
+	id = twrbritainpolitics.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.46"}
+	title = twrbritainpolitics.46.t
+	desc = twrbritainpolitics.46.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.46.a
+	}
+}
+
+country_event = { # SHUT THE FUCK UP MOSLEYIST no 3
+	id = twrbritainpolitics.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.47"}
+	title = twrbritainpolitics.47.t
+	desc = twrbritainpolitics.47.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.47.a
+	}
+}
+
+country_event = { # SHUT THE FUCK UP MOSLEYIST no 4
+	id = twrbritainpolitics.48
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.48"}
+	title = twrbritainpolitics.48.t
+	desc = twrbritainpolitics.48.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.48.a
+	}
+}
+
+
+country_event = { # SHUT THE FUCK UP MOSLEYIST no 5
+	id = twrbritainpolitics.49
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.49"}
+	title = twrbritainpolitics.49.t
+	desc = twrbritainpolitics.49.d
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.49.a
+	}
+}
+
+country_event = { # Ensure Public Confidence
+	id = twrbritainpolitics.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.50"}
+	title = twrbritainpolitics.50.t
+	desc = twrbritainpolitics.50.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.50.a
+	}
+}
+
+country_event = { # Restore Order
+	id = twrbritainpolitics.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.51"}
+	title = twrbritainpolitics.51.t
+	desc = twrbritainpolitics.51.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.51.a
+	}
+}
+
+
+country_event = { #Conservative-Liberal Merger
+	id = twrbritainpolitics.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.52"}
+	title = twrbritainpolitics.52.t
+	desc = twrbritainpolitics.52.d
+	picture = GFX_report_event_uk_new_democrats
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.52.a
+		country_event = { days = 30 id = twrbritainpolitics.53 }
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = no
+		}
+		set_party_name = { 
+			ideology = liberal
+			long_name = ENG_NDP_long
+			name = "New Democratic Party"
+		}
+		set_party_name = { 
+			ideology = conservative
+			long_name = "National Liberal Party"
+			name = "National Liberals"
+		}
+		create_country_leader = {
+			name = "Rab Butler"
+			desc = ""
+			picture = "Britain_SC_Rab_Butler.dds"
+			expire = "1985.1.1"
+			ideology = classical_Liberalism
+			traits = {}
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.2
+		}
+	}
+}
+
+country_event = { #con-lib leadership election
+	id = twrbritainpolitics.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.53"}
+	title = twrbritainpolitics.53.t
+	desc = twrbritainpolitics.53.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.53.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_NDP_DAVIES
+					has_global_flag = COUNTRY_PATH_ENG_NDP_GRIMOND
+				}
+			}
+		}
+	}
+	option = {
+		name = twrbritainpolitics.53.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_NDP_BUTLER
+					has_global_flag = COUNTRY_PATH_ENG_NDP_GRIMOND
+				}
+			}
+		}
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Clement Davies"
+			desc = "nothing"
+			picture = "Britain_SL_Clement_Davies.dds"
+			expire = "1985.1.1"
+			ideology = classical_Liberalism
+			traits = {}
+		}
+	}
+	option = {
+		name = twrbritainpolitics.53.c
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_ENG_NDP_DAVIES
+					has_global_flag = COUNTRY_PATH_ENG_NDP_BUTLER
+				}
+			}
+		}
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Jo Grimond"
+			desc = "nothing"
+			picture = "Britain_SL_Jo_Grimond.dds"
+			expire = "1985.1.1"
+			ideology = social_liberalism
+			traits = {}
+		}
+	}
+}
+
+country_event = { #Conservative Cabinet
+	id = twrbritainpolitics.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.54"}
+	title = twrbritainpolitics.54.t
+	desc = twrbritainpolitics.54.d
+	picture = GFX_report_event_uk_parliament
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.54.a
+		custom_effect_tooltip = replace_cabinet
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = ENG_HoG_Herbert_Morrison
+				add_idea = ENG_FM_Richard_A_Butler
+			}
+			swap_ideas = {
+				remove_idea = ENG_FM_Kenneth_Younger
+				add_idea = ENG_AM_Henry_Hopkinson
+			}
+			swap_ideas = {
+				remove_idea = ENG_MoS_George_Oliver
+				add_idea = ENG_MoS_David_Maxwell_Fyfe
+			}
+			swap_ideas = {
+				remove_idea = ENG_AM_Hugh_Gaitskell
+				add_idea = ENG_AM_Harold_MacMillan
+			}
+		}
+	}
+}
+
+country_event = { #Unionist Cabinet
+	id = twrbritainpolitics.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.55"}
+	title = twrbritainpolitics.55.t
+	desc = twrbritainpolitics.55.d
+	picture = GFX_report_event_uk_parliament
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.55.a
+		custom_effect_tooltip = replace_cabinet
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = ENG_HoG_Herbert_Morrison
+				add_idea = ENG_AM_Oswald_Mosley
+			}
+			swap_ideas = {
+				remove_idea = ENG_FM_Kenneth_Younger
+				add_idea = ENG_PA_Henry_Wellesley
+			}
+			swap_ideas = {
+				remove_idea = ENG_MoS_George_Oliver
+				add_idea = ENG_MoS_Robert_Row
+			}
+			swap_ideas = {
+				remove_idea = ENG_AM_Hugh_Gaitskell
+				add_idea = ENG_MoS_Jeffrey_Hamm
+			}
+		}
+	}
+}
+
+country_event = { # forts finished
+	id = twrbritainpolitics.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.56"}
+	title = twrbritainpolitics.56.t
+	desc = twrbritainpolitics.56.d
+	picture = GFX_report_event_uk_forts
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.56.a
+		remove_ideas = ENG_fort_construction
+		127 = {
+			add_building_construction = {
+				type = coastal_bunker
+				province = 3501
+				level = 3
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = coastal_bunker
+				province = 11984
+				level = 3
+				instant_build = yes
+			}
+		}
+		125 = {
+			add_building_construction = {
+				type = coastal_bunker
+				province = 271
+				level = 3
+				instant_build = yes
+			}
+		}
+		123 = {
+			add_building_construction = {
+				type = coastal_bunker
+				province = 540
+				level = 3
+				instant_build = yes
+			}
+		}
+	}
+}
+
+
+country_event = { #Knives are Out
+	id = twrbritainpolitics.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.100"}
+	title = twrbritainpolitics.100.t
+	desc = twrbritainpolitics.100.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.100.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_ENG_THORNEY
+			}
+		}
+		complete_national_focus = ENG_mr_butlers_mandate
+	}
+	option = {
+		name = twrbritainpolitics.100.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_ENG_BUTLER
+			}
+		}
+		create_country_leader = {
+			name = "Peter Thorneycroft"
+			desc = "nothing"
+			picture = "Britain_SC_Peter_Thorneycroft.dds"
+			expire = "1985.1.1"
+			ideology = fiscal_conservatism
+			traits = {}
+		}
+		complete_national_focus = ENG_magic_circles_grasp
+	}
+}
+
+country_event = { # Mosley Assassinated
+	id = twrbritainpolitics.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.57"}
+	title = twrbritainpolitics.57.t
+	desc = twrbritainpolitics.57.d
+	picture = GFX_report_event_uk_assassination
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.57.a
+		add_stability = -0.1
+		create_country_leader = {
+			name = "Jeffrey Hamm"
+			desc = "nothing"
+			picture = "Britain_FA_Jeffrey_Hamm.dds"
+			expire = "1985.1.1"
+			ideology = third_positionism
+			traits = {}
+		}
+		country_event = { id = twrbritainpolitics.58 days = 2 }
+		news_event = { days = 0 id = twrnews.55 }
+	}
+}
+
+country_event = { # Shockwaves
+	id = twrbritainpolitics.58
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.58"}
+	title = twrbritainpolitics.58.t
+	desc = twrbritainpolitics.58.d
+	picture = GFX_report_event_uk_riots
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.58.a
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = twrbritainpolitics.60 days = 5 }
+		}
+	}
+}
+
+country_event = { # Leave the Toronto Accord
+	id = twrbritainpolitics.59
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.59"}
+	title = twrbritainpolitics.59.t
+	desc = twrbritainpolitics.59.d
+	picture = GFX_report_event_TA
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.59.a
+		leave_faction = yes
+		news_event = { days = 1 id = twrnews.64 }
+		hidden_effect = {
+			CAN = {
+				country_event = { id = twrta.200 days = 30 }
+			}
+			AST = {
+				country_event = { id = twrta.201 days = 35 }
+			}
+			NZL = {
+				country_event = { id = twrta.202 days = 40 }
+			}
+		}
+	}
+}
+
+country_event = { # Coup against Union Movement
+	id = twrbritainpolitics.60
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.60"}
+	title = twrbritainpolitics.60.t
+	desc = twrbritainpolitics.60.d
+	picture = GFX_report_event_uk_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.60.a
+		add_ideas = ENG_state_of_emergency
+		set_politics = {
+			ruling_party = paternal_autocrat
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Elizabeth II"
+			desc = ""
+			picture = "Britain_PA_Elizabeth.dds"
+			expire = "1985.1.1"
+			ideology = authoritarian_democracy
+			traits = {}
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.1
+		}
+		country_event = { id = twrbritainpolitics.61 days = 2 }
+		hidden_effect = {
+			complete_national_focus = ENG_Queen_Commands
+			news_event = { days = 1 id = twrnews.62 } 
+		}
+	}
+}
+
+country_event = { # Mountbatten Appointed
+	id = twrbritainpolitics.61
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.61"}
+	title = twrbritainpolitics.61.t
+	desc = twrbritainpolitics.61.d
+	picture = GFX_report_event_uk_mountbatten
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.61.a
+		create_country_leader = {
+			name = "Louis Mountbatten"
+			desc = ""
+			picture = "Britain_PA_Mountbatten.dds"
+			expire = "1985.1.1"
+			ideology = authoritarian_democracy
+			traits = {}
+		}
+	}
+}
+
+country_event = { # Post Mosley Coup Elections
+	id = twrbritainpolitics.62
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.62"}
+	title = twrbritainpolitics.62.t
+	desc = twrbritainpolitics.62.d
+	picture = GFX_report_event_uk_election
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.62.a
+		set_politics = {
+			ruling_party = social_democrat
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.1
+		}
+		create_country_leader = {
+			name = "Hugh Gaitskell"
+			desc = ""
+			picture = "Britain_SD_Hugh_Gaitskell.dds"
+			expire = "1985.1.1"
+			ideology = social_democracy
+			traits = {}
+		}
+	}
+	option = {
+		name = twrbritainpolitics.62.b
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.1
+		}
+	}
+}
+
+country_event = { # Governors General Conference
+	id = twrbritainpolitics.63
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.63"}
+	title = twrbritainpolitics.63.t
+	desc = twrbritainpolitics.63.d
+	picture = GFX_report_event_uk_mountbatten
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.63.a
+	}
+}
+
+country_event = { # Recommend Butler
+	id = twrbritainpolitics.64
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.64"}
+	title = twrbritainpolitics.64.t
+	desc = twrbritainpolitics.64.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.64.a
+		add_political_power = -50
+	}
+}
+
+country_event = { # Sinclair Resigns
+	id = twrbritainpolitics.65
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.65"}
+	title = twrbritainpolitics.65.t
+	desc = twrbritainpolitics.65.d
+	picture = GFX_report_event_uk_parliament
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.65.a
+		add_political_power = 20
+	}
+}
+
+country_event = { # Amending Clause IV
+	id = twrbritainpolitics.66
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainpolitics.66"}
+	title = twrbritainpolitics.66.t
+	desc = twrbritainpolitics.66.d
+	picture = GFX_report_event_uk_clause_4
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainpolitics.66.a
+		add_political_power = 20
+	}
+}
+
+country_event = { #UK intro event
+	id = twrbritainflavour.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.0"}
+	title = twrbritainflavour.0.t
+	desc = twrbritainflavour.0.d
+	picture = GFX_report_event_uk_intro
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.0.a
+	}
+}
+
+country_event = { #London intro event
+	id = twrbritainflavour.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.1"}
+	title = twrbritainflavour.1.t
+	desc = twrbritainflavour.1.d
+	picture = GFX_report_event_london_colour
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.1.a
+	}
+}
+
+country_event = { #Smog of 1952
+	id = twrbritainflavour.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.2"}
+	title = twrbritainflavour.2.t
+	desc = twrbritainflavour.2.d
+	picture = GFX_report_event_uk_smog
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.2.a
+		add_manpower = -50
+	}
+}
+
+country_event = { #King is dead
+	id = twrbritainflavour.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.3"}
+	title = twrbritainflavour.3.t
+	desc = twrbritainflavour.3.d
+	picture = GFX_report_event_uk_king_dead
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.3.a
+		add_political_power = -50
+		add_stability = -0.05
+		hidden_effect = {
+			clr_country_flag = king_george
+			set_country_flag = queen_elizabeth
+			set_country_flag = ENG_king_has_passed
+			complete_national_focus = ENG_passing_king
+			news_event = twrbritainflavour.303030
+		}
+	}
+}
+
+news_event = {#King is Dead
+	id = twrbritainflavour.303030
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.303030"}
+	title = twrbritainflavour.303030.t
+	desc = twrbritainflavour.303030.d
+	picture = GFX_news_event_the_king_is_dead
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrbritainflavour.303030.a
+	}
+}
+
+country_event = { #Edward returns
+	id = twrbritainflavour.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.4"}
+	title = twrbritainflavour.4.t
+	desc = twrbritainflavour.4.d
+	picture = GFX_report_event_uk_edward
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.4.a
+	}
+}
+
+country_event = { #nuke
+	id = twrbritainflavour.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.5"}
+	title = twrbritainflavour.5.t
+	desc = twrbritainflavour.5.d
+	picture = GFX_report_event_uk_nuke
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.5.a
+		set_technology = {
+			nukes = 1
+		}
+		news_event = { days = 1 id = twrnews.14 }
+		add_threat = 5
+	}
+}
+
+country_event = { #Death of Cripps
+	id = twrbritainflavour.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.6"}
+	title = twrbritainflavour.6.t
+	desc = twrbritainflavour.6.d
+	picture = GFX_report_event_uk_cripps
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.6.a
+	}
+}
+
+country_event = { #Churchill
+	id = twrbritainflavour.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.7"}
+	title = twrbritainflavour.7.t
+	desc = twrbritainflavour.7.d
+	picture = GFX_report_event_uk_churchill
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.7.a
+	}
+}
+
+country_event = { #Christmas Speech
+	id = twrbritainflavour.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.8"}
+	title = twrbritainflavour.8.t
+	desc = twrbritainflavour.8.d
+	picture = GFX_report_event_uk_elizabeth
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.8.a
+	}
+}
+
+country_event = { #Queen Mary dead
+	id = twrbritainflavour.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.9"}
+	title = twrbritainflavour.9.t
+	desc = twrbritainflavour.9.d
+	picture = GFX_report_event_uk_mary
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.9.a
+	}
+}
+
+country_event = { #Laurel and Hardy
+	id = twrbritainflavour.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.10"}
+	title = twrbritainflavour.10.t
+	desc = twrbritainflavour.10.d
+	picture = GFX_report_event_uk_laurel
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.10.a
+	}
+}
+
+country_event = { #Casino Royale
+	id = twrbritainflavour.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.11"}
+	title = twrbritainflavour.11.t
+	desc = twrbritainflavour.11.d
+	picture = GFX_report_event_uk_casino
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.11.a
+	}
+}
+
+country_event = { #Remembrance Day
+	id = twrbritainflavour.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.12"}
+	title = twrbritainflavour.12.t
+	desc = twrbritainflavour.12.d
+	picture = GFX_report_event_remembrance_day
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			country_event = { id = twrbritainflavour.12 days = 365 }
+		}
+	}
+
+	option = {
+		name = twrbritainflavour.12.a
+	}
+}
+
+country_event = { # 40 years after WW1
+	id = twrbritainflavour.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.13"}
+	title = twrbritainflavour.13.t
+	desc = twrbritainflavour.13.d
+	picture = GFX_report_event_uk_ww1
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.13.a
+	}
+}
+
+country_event = { # Death of Churchill
+	id = twrbritainflavour.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.14"}
+	title = twrbritainflavour.14.t
+	desc = twrbritainflavour.14.d
+	picture = GFX_report_event_uk_churchill_dead
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.14.a
+	}
+}
+
+country_event = { # Death of Bevan - Normal
+	id = twrbritainflavour.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.15"}
+	title = twrbritainflavour.15.t
+	desc = twrbritainflavour.15.d
+	picture = GFX_report_event_uk_bevan_dead
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.15.a
+	}
+}
+
+country_event = { # Death of Bevan - Socialist
+	id = twrbritainflavour.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.16"}
+	title = twrbritainflavour.16.t
+	desc = twrbritainflavour.16.d
+	picture = GFX_report_event_uk_bevan_dead
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.16.a
+	}
+}
+
+country_event = { # 1953 North Sea Flood
+	id = twrbritainflavour.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.17"}
+	title = twrbritainflavour.17.t
+	desc = twrbritainflavour.17.d
+	picture = GFX_report_event_uk_flood
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.17.a
+		125 = {  damage_building = { type = infrastructure damage = 1 } }
+		129 = {  damage_building = { type = infrastructure damage = 1 } }
+	}
+}
+
+country_event = { # Panorama
+	id = twrbritainflavour.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.18"}
+	title = twrbritainflavour.18.t
+	desc = twrbritainflavour.18.d
+	picture = GFX_report_event_uk_panorama
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.18.a
+	}
+}
+
+country_event = { # Animal Farm
+	id = twrbritainflavour.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.19"}
+	title = twrbritainflavour.19.t
+	desc = twrbritainflavour.19.d
+	picture = GFX_report_event_uk_animal_farm
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.19.a
+	}
+	option = {
+		name = twrbritainflavour.19.b
+	}
+}
+
+country_event = { # Hong Kong Riot
+	id = twrbritainflavour.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.20"}
+	title = twrbritainflavour.20.t
+	desc = twrbritainflavour.20.d
+	picture = GFX_report_event_1955_riots
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.20.a
+		326 = {  damage_building = { type = infrastructure damage = 1 } }
+	}
+}
+
+country_event = { # National Works
+	id = twrbritainflavour.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.21"}
+	title = twrbritainflavour.21.t
+	desc = twrbritainflavour.21.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.21.a
+		add_political_power = 10
+	}
+}
+
+country_event = { # Nationalisation
+	id = twrbritainflavour.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.22"}
+	title = twrbritainflavour.22.t
+	desc = twrbritainflavour.22.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.22.a
+		add_political_power = 10
+	}
+}
+
+country_event = { # Privatisation
+	id = twrbritainflavour.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.23"}
+	title = twrbritainflavour.23.t
+	desc = twrbritainflavour.23.d
+	picture = GFX_report_event_industry
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.23.a
+		add_political_power = 10
+	}
+}
+
+country_event = { # de Havilland Comet
+	id = twrbritainflavour.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.24"}
+	title = twrbritainflavour.24.t
+	desc = twrbritainflavour.24.d
+	picture = GFX_report_event_comet_jet
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.24.a
+		news_event = { days = 0 id = twrnews.151 }
+		add_tech_bonus = {
+   			bonus = 0.25
+   			uses = 1
+   			category = jet_transport
+		}
+	}
+}
+
+country_event = { # Lessons from Dunkirk
+	id = twrbritainflavour.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.25"}
+	title = twrbritainflavour.25.t
+	desc = twrbritainflavour.25.d
+	picture = GFX_report_event_uk_dunkirk
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.25.a
+		army_experience = 20
+	}
+}
+
+country_event = { # Economic Prosperity
+	id = twrbritainflavour.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.26"}
+	title = twrbritainflavour.26.t
+	desc = twrbritainflavour.26.d
+	picture = GFX_report_event_uk_prosperity
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.26.a
+		add_ideas = ENG_economic_prosperity
+	}
+}
+
+country_event = { # army intro
+	id = twrbritainflavour.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.27"}
+	title = twrbritainflavour.27.t
+	desc = twrbritainflavour.27.d
+	picture = GFX_report_event_uk_army
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.27.a
+	}
+}
+
+country_event = { # navy intro
+	id = twrbritainflavour.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.28"}
+	title = twrbritainflavour.28.t
+	desc = twrbritainflavour.28.d
+	picture = GFX_report_event_uk_navy
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.28.a
+	}
+}
+
+country_event = { # air force intro
+	id = twrbritainflavour.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.29"}
+	title = twrbritainflavour.29.t
+	desc = twrbritainflavour.29.d
+	picture = GFX_report_event_uk_air_force
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.29.a
+	}
+}
+
+country_event = { # indian subcontinent
+	id = twrbritainflavour.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.30"}
+	title = twrbritainflavour.30.t
+	desc = twrbritainflavour.30.d
+	picture = GFX_report_event_india_map
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.30.a
+	}
+}
+
+country_event = { # control the oil
+	id = twrbritainflavour.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.31"}
+	title = twrbritainflavour.31.t
+	desc = twrbritainflavour.31.d
+	picture = GFX_report_event_oil_strike
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.31.a
+	}
+}
+
+country_event = { # containing Syria
+	id = twrbritainflavour.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.32"}
+	title = twrbritainflavour.32.t
+	desc = twrbritainflavour.32.d
+	picture = GFX_report_event_syria_war
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.32.a
+	}
+}
+
+country_event = { # the middle east
+	id = twrbritainflavour.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.33"}
+	title = twrbritainflavour.33.t
+	desc = twrbritainflavour.33.d
+	picture = GFX_report_event_syria_war
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.33.a
+	}
+}
+
+country_event = { # mosley riots 1
+	id = twrbritainflavour.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.34"}
+	title = twrbritainflavour.34.t
+	desc = twrbritainflavour.34.d
+	picture = GFX_report_event_uk_riots
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.34.a
+		add_stability = -0.1
+		add_manpower = -100
+		hidden_effect = {
+			country_event = { id = twrbritainflavour.35 days = 1 }
+		}
+	}
+}
+
+country_event = { # mosley responds to riots
+	id = twrbritainflavour.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainflavour.35"}
+	title = twrbritainflavour.35.t
+	desc = twrbritainflavour.35.d
+	picture = GFX_report_event_uk_parliament
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = twrbritainflavour.35.a
+		add_stability = 0.03
+	}
+}
+
+country_event = { #Decolonisation
+	id = twrbritain.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.1"}
+	title = twrbritain.1.t
+	desc = twrbritain.1.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = { complete_national_focus = ENG_our_destiny }
+	}
+	fire_only_once = yes
+
+	option = {
+		name = twrbritain.1.a
+		ai_chance = { 
+			factor = 30
+		}
+		custom_effect_tooltip = important_event
+		set_country_flag = wind_of_change
+		complete_national_focus = ENG_wind_of_change
+	}
+	option = {
+		name = twrbritain.1.b
+		ai_chance = { 
+			factor = 10
+		}
+		custom_effect_tooltip = important_event
+		set_country_flag = hold_the_empire
+		complete_national_focus = ENG_the_sun_never_sets
+		hidden_effect = {
+			country_event = { days = 20 id = twrbritaindecol.11 }
+		}
+	}
+}
+
+country_event = { #Ghana
+	id = twrbritain.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.2"}
+	title = twrbritain.2.t
+	desc = twrbritain.2.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritain.2.a
+		release = GHA
+	}
+}
+
+country_event = { #Ceylon Deal 1
+	id = twrbritain.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.3"}
+	title = twrbritain.3.t
+	desc = twrbritain.3.d
+	picture = GFX_report_event_ceylon_map
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrbritain.3.a
+		RAJ = { country_event = { days = 1 id = indiaceylon.1 } } 
+	}
+}
+
+country_event = { #India Accepts
+	id = twrbritain.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.4"}
+	title = twrbritain.4.t
+	desc = twrbritain.4.d
+	picture = GFX_report_event_ceylon_map
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrbritain.4.a
+		add_stability = 0.03
+	}
+}
+
+country_event = { #India Refuses
+	id = twrbritain.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.5"}
+	title = twrbritain.5.t
+	desc = twrbritain.5.d
+	picture = GFX_report_event_ceylon_map
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrbritain.5.a
+		country_event = { days = 10 id = twrbritain.6 }
+	}
+}
+
+country_event = { #Question of Ceylon - support princely states
+	id = twrbritain.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.6"}
+	title = twrbritain.6.t
+	desc = twrbritain.6.d
+	picture = GFX_report_event_ceylon_map
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twrbritain.6.b
+		SRL = {
+			transfer_state = 422
+		}
+	}
+}
+
+country_event = { #Arthur Harris Victory Day
+	id = twrbritain.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.7"}
+	title = twrbritain.7.t
+	desc = twrbritain.7.d
+	picture = GFX_report_event_governor_harris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritain.7.a
+		add_political_power = 50
+	}
+}
+
+country_event = { #Transfer Portuguese Congo
+	id = twrbritain.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.8"}
+	title = twrbritain.8.t
+	desc = twrbritain.8.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritain.8.a
+		POR = {
+			transfer_state = 540
+		}
+	}
+}
+
+### Foreign Policy Stuff ###
+
+country_event = { # Ties with Saudi Arabia 1
+	id = twrbritainforeign.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.1"}
+	title = twrbritainforeign.1.t
+	desc = twrbritainforeign.1.d
+	picture = GFX_report_event_arabia_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.1.a
+		add_opinion_modifier = {
+			target = SAU
+			modifier = large_increase
+		}
+	}
+	option = {
+		name = twrbritainforeign.1.b
+		SAU = { country_event = { id = twrbritainforeign.2 days = 1 } }
+	}
+}
+
+country_event = { # Saudi Arabia Responds
+	id = twrbritainforeign.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.2"}
+	title = twrbritainforeign.2.t
+	desc = twrbritainforeign.2.d
+	picture = GFX_report_event_uk_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = twrbritainforeign.2.a
+		ENG = { country_event = { id = twrbritainforeign.3 days = 0 } }
+		hidden_effect = {
+			USA = { country_event = { id = twrusaflavour.50 days = 2 } }
+		}
+		give_resource_rights = { 
+			receiver = ENG
+			state = 678 
+		}
+	}
+	option = { #no
+		name = twrbritainforeign.2.b
+		ENG = { country_event = { id = twrbritainforeign.4 days = 0 } }
+	}
+}
+
+country_event = { # Saudis accept
+	id = twrbritainforeign.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.3"}
+	title = twrbritainforeign.3.t
+	desc = twrbritainforeign.3.d
+	picture = GFX_report_event_arabia_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.3.a
+		give_guarantee = SAU
+	}
+}
+
+country_event = { # Saudis refuse
+	id = twrbritainforeign.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.4"}
+	title = twrbritainforeign.4.t
+	desc = twrbritainforeign.4.d
+	picture = GFX_report_event_arabia_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.4.a
+	}
+}
+
+country_event = { # UK talks to Iraq
+	id = twrbritainforeign.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.5"}
+	title = twrbritainforeign.5.t
+	desc = twrbritainforeign.5.d
+	picture = GFX_report_event_arabia_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.5.a
+		send_equipment = {
+    			equipment = infantry_equipment
+    			amount = 10000
+    			target = IRQ
+			}
+		IRQ = { country_event = { id = twrbritainforeign.6 days = 1 } }
+	}
+	option = {
+		name = twrbritainforeign.5.b
+		give_guarantee = IRQ
+		IRQ = { country_event = { id = twrbritainforeign.7 days = 1 } }
+	}
+	option = {
+		name = twrbritainforeign.5.c
+	}
+}
+
+country_event = { # Iraq reacts to equipment
+	id = twrbritainforeign.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.6"}
+	title = twrbritainforeign.6.t
+	desc = twrbritainforeign.6.d
+	picture = GFX_report_event_uk_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.6.a
+	}
+}
+
+country_event = { # Iraq reacts to guarantee
+	id = twrbritainforeign.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.7"}
+	title = twrbritainforeign.7.t
+	desc = twrbritainforeign.7.d
+	picture = GFX_report_event_uk_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.7.a
+	}
+}
+
+country_event = { # UK vs Iran
+	id = twrbritainforeign.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.8"}
+	title = twrbritainforeign.8.t
+	desc = twrbritainforeign.8.d
+	picture = GFX_report_event_iran_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.8.a
+		ai_chance = { 
+			factor = 50
+		}
+	}
+	option = {
+		name = twrbritainforeign.8.b
+		PER = { country_event = { id = twrbritainforeign.9 days = 1 } }
+		ai_chance = { 
+			factor = 30
+		}
+	}
+	option = {
+		name = twrbritainforeign.8.c
+		PER = { country_event = { id = twrbritainforeign.10 days = 1 } }
+		ai_chance = { 
+			factor = 20
+		}
+	}
+}
+
+country_event = { # Iran - accept cutting ties with Germany?
+	id = twrbritainforeign.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.9"}
+	title = twrbritainforeign.9.t
+	desc = twrbritainforeign.9.d
+	picture = GFX_report_event_uk_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = twrbritainforeign.9.a
+		ai_chance = { 
+			factor = 90
+		}
+		add_opinion_modifier = {
+			target = GER
+			modifier = large_decrease
+		}
+		ENG = { country_event = { id = twrbritainforeign.11 days = 1 } }
+	}
+	option = { #no
+		name = twrbritainforeign.9.b
+		ai_chance = { 
+			factor = 10
+		}
+		ENG = { country_event = { id = twrbritainforeign.12 days = 2 } }
+		USA = { add_ai_strategy = {
+                type = conquer
+                id = PER
+                value = 100
+            }
+        }
+        ENG = { add_ai_strategy = {
+                type = conquer
+                id = PER
+                value = 100
+            }
+        }
+	}
+}
+
+country_event = { # Iran - accept giving oil?
+	id = twrbritainforeign.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.10"}
+	title = twrbritainforeign.10.t
+	desc = twrbritainforeign.10.d
+	picture = GFX_report_event_uk_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = twrbritainforeign.10.a
+		ai_chance = { 
+			factor = 40
+		}
+		swap_ideas = {
+			remove_idea = PER_External_Influence
+			add_idea = PER_External_Influence_2
+		}
+		give_resource_rights = { 
+			receiver = ENG
+			state = 413
+		}
+		give_resource_rights = { 
+			receiver = USA
+			state = 412
+		}
+		ENG = { country_event = { id = twrbritainforeign.11 days = 1 } }
+		hidden_effect = {
+			USA = { country_event = { id = twrusaflavour.51 days = 2 } }
+			news_event = { days = 2 id = twrnews.145 }
+		}
+	}
+	option = { #no
+		name = twrbritainforeign.10.b
+		ai_chance = { 
+			factor = 60
+		}
+		ENG = { country_event = { id = twrbritainforeign.12 days = 2 } }
+		USA = { add_ai_strategy = {
+                type = conquer
+                id = PER
+                value = 100
+            }
+        }
+        ENG = { add_ai_strategy = {
+                type = conquer
+                id = PER
+                value = 500
+            }
+        }
+        ENG = { add_ai_strategy = {
+                type = invade
+                id = PER
+                value = 500
+            }
+        }
+	}
+}
+
+country_event = { # Iran caves
+	id = twrbritainforeign.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.11"}
+	title = twrbritainforeign.11.t
+	desc = twrbritainforeign.11.d
+	picture = GFX_report_event_iran_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.11.a
+	}
+}
+
+country_event = { # Iran refuses
+	id = twrbritainforeign.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.12"}
+	title = twrbritainforeign.12.t
+	desc = twrbritainforeign.12.d
+	picture = GFX_report_event_iran_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #drop the matter
+		name = twrbritainforeign.12.a
+		ai_chance = { 
+			factor = 60
+		}
+	}
+	option = { #go to war
+		name = twrbritainforeign.12.b
+		ai_chance = { 
+			factor = 40
+		}
+		declare_war_on = {
+    		target = PER
+    		type = annex_everything
+		}
+		set_global_flag = anglo_iran_war
+		news_event = { days = 0 id = twrnews.69 }
+		country_event = { id = twrbritainforeign.13 days = 2 }
+	}
+}
+
+country_event = { # Go through Iraq
+	id = twrbritainforeign.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.13"}
+	title = twrbritainforeign.13.t
+	desc = twrbritainforeign.13.d
+	picture = GFX_report_event_iran_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.13.a
+		IRQ = { give_military_access = ENG }
+	}
+}
+
+country_event = { # Iran victory
+	id = twrbritainforeign.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.14"}
+	title = twrbritainforeign.14.t
+	desc = twrbritainforeign.14.d
+	picture = GFX_report_event_iran_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			clr_global_flag = anglo_iran_war
+		}
+	}
+	option = {
+		name = twrbritainforeign.14.a
+		remove_ideas = PER_External_Influence
+		USA = { white_peace_with_ROOT = yes }
+		ENG = { white_peace_with_ROOT = yes }
+	}
+}
+
+country_event = { # Victory over Iran
+	id = twrbritainforeign.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.15"}
+	title = twrbritainforeign.15.t
+	desc = twrbritainforeign.15.d
+	picture = GFX_report_event_iran_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			clr_global_flag = anglo_iran_war
+			PER = { white_peace_with_ROOT = yes }
+		}
+	}
+	option = { #Puppet Iran
+		name = twrbritainforeign.15.a
+		puppet = PER
+		PER = {
+			transfer_state = 419
+			transfer_state = 420
+			transfer_state = 421
+			transfer_state = 417
+			transfer_state = 266
+			transfer_state = 411
+			transfer_state = 418
+			transfer_state = 416
+			transfer_state = 414
+			transfer_state = 412
+			transfer_state = 410
+			transfer_state = 413
+		}
+		PER = {
+			create_country_leader = {
+				name = "Fereydoun Mirza Qajar"
+				desc = ""
+				picture = "Persia_PA_Fereydoun_Mirza_Qajar.dds"
+				expire = "1985.1.1"
+				ideology = monarchism
+				traits = {}
+			}
+			set_politics = {
+				ruling_party = paternal_autocrat
+				elections_allowed = no
+			}
+			hidden_effect = {
+				set_popularities = {
+				    national_socialist = 0
+ 				    fascist = 1
+				    paternal_autocrat = 36
+				    conservative = 16
+				    liberal = 27
+				    social_democrat = 18
+				    socialist = 1
+				    bolshevik_leninist = 0
+				    marxist_leninist = 1
+				}
+			}
+		}
+		ai_chance = { 
+			factor = 50
+		}
+	}
+	option = { #Puppet Iran + occupy Khuzestan
+		name = twrbritainforeign.15.b
+		puppet = PER
+		PER = {
+			transfer_state = 419
+			transfer_state = 420
+			transfer_state = 421
+			transfer_state = 417
+			transfer_state = 266
+			transfer_state = 411
+			transfer_state = 418
+			transfer_state = 416
+			transfer_state = 414
+			transfer_state = 412
+			transfer_state = 410
+		}
+		ENG = {
+			transfer_state = 413
+		}
+		PER = {
+			create_country_leader = {
+				name = "Fereydoun Mirza Qajar"
+				desc = ""
+				picture = "Persia_PA_Fereydoun_Mirza_Qajar.dds"
+				expire = "1985.1.1"
+				ideology = monarchism
+				traits = {}
+			}
+			set_politics = {
+				ruling_party = paternal_autocrat
+				elections_allowed = no
+			}
+			hidden_effect = {
+				set_popularities = {
+				    national_socialist = 0
+ 				    fascist = 1
+				    paternal_autocrat = 36
+				    conservative = 16
+				    liberal = 27
+				    social_democrat = 18
+				    socialist = 1
+				    bolshevik_leninist = 0
+				    marxist_leninist = 1
+				}
+			}
+		}
+		ai_chance = { 
+			factor = 50
+		}
+	}
+	option = { #Occupy Iran
+		name = twrbritainforeign.15.c
+		add_stability = -0.05
+		ENG = {
+			transfer_state = 419
+			transfer_state = 420
+			transfer_state = 421
+			transfer_state = 417
+			transfer_state = 266
+			transfer_state = 411
+			transfer_state = 418
+			transfer_state = 416
+			transfer_state = 414
+			transfer_state = 412
+			transfer_state = 410
+			transfer_state = 413
+		}
+		ai_chance = { 
+			factor = 0
+		}
+	}
+}
+
+country_event = { # Britain lands in Iran (AI ONLY)
+	id = twrbritainforeign.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.16"}
+	title = twrbritainforeign.16.t
+	desc = twrbritainforeign.16.d
+	picture = GFX_report_event_iran_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.16.a
+		set_state_controller = 413
+		set_state_controller = 412
+	}
+}
+
+country_event = { # Britain responds to Italian Egypt
+	id = twrbritainforeign.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.17"}
+	title = twrbritainforeign.17.t
+	desc = twrbritainforeign.17.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrbritainforeign.17.a
+		news_event = { days = 1 id = twrnews.71 }
+		ai_chance = { 
+			factor = 30
+		}
+	}
+	option = {
+		name = twrbritainforeign.17.b
+		ITA = { set_country_flag = SUEZ_CANAL_BLOCKED_FOR_COUNTRY }
+		ITA = { country_event = { days = 3 id = twrbritainforeign.18 } }
+		news_event = { days = 1 id = twrnews.70 }
+		custom_effect_tooltip = italy_blocked_suez
+		ai_chance = { 
+			factor = 70
+		}
+	}
+}
+
+country_event = { # Italy's response to Suez Canal closing
+	id = twrbritainforeign.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.18"}
+	title = twrbritainforeign.18.t
+	desc = twrbritainforeign.18.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrbritainforeign.18.a
+		EGY = { drop_cosmetic_tag = yes }
+		news_event = { days = 1 id = twrnews.72 }
+		ITA = { clr_country_flag = SUEZ_CANAL_BLOCKED_FOR_COUNTRY }
+		ai_chance = { 
+			factor = 25
+		}
+	}
+	option = {
+		name = twrbritainforeign.18.b
+		ai_chance = { 
+			factor = 40
+		}
+		hidden_effect = {
+		ENG = { country_event = { id = twrbritainforeign.221 days = 5 } }
+		}
+	}
+	option = {
+		name = twrbritainforeign.18.c
+		ENG = { country_event = { days = 5 id = twrbritainforeign.19 } }
+		ai_chance = { 
+			factor = 25
+		}
+	}
+}
+
+country_event = { # Italy demands canal be reopened
+	id = twrbritainforeign.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.19"}
+	title = twrbritainforeign.19.t
+	desc = twrbritainforeign.19.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrbritainforeign.19.a
+        ai_chance = { 
+			factor = 30
+		}
+		add_political_power = -100
+		ITA = {
+		set_country_flag = EGY_ITA_SECURED
+		clr_country_flag = SUEZ_CANAL_BLOCKED_FOR_COUNTRY
+		}
+		#news_event
+	}
+	option = {
+		name = twrbritainforeign.19.b
+		ai_chance = {
+		factor = 50
+		}
+		ITA = { country_event = twrbritainforeign.20 }
+	}
+}
+
+### Anglo-Italian Diplomatic Talks ###
+
+country_event = { #Process Started
+	id = twrbritainforeign.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.20"}
+	title = twrbritainforeign.20.t
+	desc = twrbritainforeign.20.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrbritainforeign.20.a
+		ENG = { country_event = { days = 1 id = twrbritainforeign.21 } }
+		ai_chance = { 
+			factor = 1
+		}
+	}
+}
+
+country_event = { #Second Phase
+	id = twrbritainforeign.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.21"}
+	title = twrbritainforeign.21.t
+	desc = twrbritainforeign.21.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.21.a #Organize a revolution
+		ai_chance = {
+		factor = 50
+		}
+		ITA = { country_event = { id = twrbritainforeign.22 days = 7 } }
+		hidden_effect = {
+		set_country_flag = ORGANIZE_REVOLT_EGYPT
+		}
+	}
+	option = {
+		name = twrbritainforeign.21.b #We are genuine
+		ai_chance = {
+		factor = 30
+		}
+		ITA = { country_event = { id = twrbritainforeign.22 days = 7 } }
+	}
+}
+
+country_event = { #Second Phase 2
+	id = twrbritainforeign.221
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.221"}
+	title = twrbritainforeign.221.t
+	desc = twrbritainforeign.221.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.221.a #Organize a revolution
+		ai_chance = {
+		factor = 50
+		}
+		EGY = { country_event = { id = twrbritainforeign.23 days = 30 random = 300 } }
+		hidden_effect = {
+		set_country_flag = ORGANIZE_REVOLT_EGYPT
+		}
+	}
+	option = {
+		name = twrbritainforeign.221.b #Oh well
+		ai_chance = {
+		factor = 30
+		}
+		ITA = {
+		set_country_flag = EGY_ITA_SECURED
+		}
+	}
+}
+
+
+country_event = { #Second Phase Italy
+	id = twrbritainforeign.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.22"}
+	title = twrbritainforeign.22.t
+	desc = twrbritainforeign.22.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.22.a
+		hidden_effect = {
+		if = {
+		limit = {
+		ENG = { has_country_flag = ORGANIZE_REVOLT_EGYPT }
+		}
+		EGY = { country_event = { id = twrbritainforeign.23 days = 3 } }
+			}
+		if = {
+		limit = {
+		NOT = {
+		ENG = { has_country_flag = ORGANIZE_REVOLT_EGYPT }
+			}
+		}
+		ITA = { country_event = { id = twrbritainforeign.24 days = 3 } }
+			}
+		}
+	}
+}
+
+country_event = { #Revolution
+	id = twrbritainforeign.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.23"}
+	title = twrbritainforeign.23.t
+	desc = twrbritainforeign.23.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.23.a
+		news_event = twrnews.73
+		start_civil_war = {
+	    ideology = paternal_autocrat
+	    size = 0.4
+	    capital = 456
+	    states = { 
+	        456 457 453
+	    }
+	    keep_unit_leaders_trigger = { has_trait = old_guard }
+		}
+		hidden_effect = {
+		set_country_flag = EGY_REVOLT_HAPPENED
+		456 = {
+		owner = {
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = EGY_REP
+		create_country_leader = {
+			name = "Abdel Latif Boghdadi"
+			desc = "Abdel_Latif_Boghdadi_DESC"
+			picture = "gfx/leaders/EGY/Abdel_Latif_Boghdadi.dds"
+			expire = "1965.1.1"
+			ideology = despotism
+			traits = {
+
+			}
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = EGY_republican_government_long 
+			name = EGY_republican_government 
+		}
+		add_ideas = {
+			EGY_western_influence
+		}
+				}
+			}
+		}
+	}
+}
+
+country_event = { # British offer
+	id = twrbritainforeign.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.24"}
+	title = twrbritainforeign.24.t
+	desc = twrbritainforeign.24.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.24.a
+		#news_event
+	}
+	option = {
+		name = twrbritainforeign.24.b
+		453 = {
+		set_demilitarized_zone = yes
+		}
+		446 = {
+		set_demilitarized_zone = yes		
+		}
+		ITA = { clr_country_flag = SUEZ_CANAL_BLOCKED_FOR_COUNTRY }
+		set_country_flag = EGY_ITA_SECURED
+		#news_event
+	}
+}
+
+country_event = { # Accept Italian demands?
+	id = twrbritainforeign.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.25"}
+	title = twrbritainforeign.25.t
+	desc = twrbritainforeign.25.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.25.a
+		ITA = {
+		white_peace_with_ROOT = yes
+		country_event = { days = 0 id = twrbritainforeign.26 }
+		}
+		EGY = {
+			set_state_owner = 955
+			set_state_owner = 551
+			set_state_owner = 840
+			set_state_owner = 956
+			set_state_owner = 957
+			set_state_owner = 549
+			set_state_owner = 958
+			set_state_owner = 773
+		}
+		clr_global_flag = anglo_italian_war
+		ai_chance = { 
+			factor = 1
+		}
+	}
+}
+
+country_event = { # Britain Accepts
+	id = twrbritainforeign.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.26"}
+	title = twrbritainforeign.26.t
+	desc = twrbritainforeign.26.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.26.a
+	}
+}
+
+country_event = { # Britain Refuses
+	id = twrbritainforeign.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.27"}
+	title = twrbritainforeign.27.t
+	desc = twrbritainforeign.27.d
+	picture = GFX_report_event_egypt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.27.a
+	}
+}
+
+country_event = { # Canada leaves commonwealth (mosley)
+	id = twrbritainforeign.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.28"}
+	title = twrbritainforeign.28.t
+	desc = twrbritainforeign.28.d
+	picture = GFX_report_event_uk_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.28.a
+	}
+}
+
+country_event = { # Australia leaves commonwealth (mosley)
+	id = twrbritainforeign.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.29"}
+	title = twrbritainforeign.29.t
+	desc = twrbritainforeign.29.d
+	picture = GFX_report_event_uk_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.29.a
+	}
+}
+
+country_event = { # NZ leaves commonwealth (mosley)
+	id = twrbritainforeign.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritainforeign.30"}
+	title = twrbritainforeign.30.t
+	desc = twrbritainforeign.30.d
+	picture = GFX_report_event_uk_flag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrbritainforeign.30.a
+	}
+}
+
+### Decolonisation ###
+
+country_event = { #Sierra Leone
+	id = twrbritaindecol.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.1"}
+	title = twrbritaindecol.1.t
+	desc = twrbritaindecol.1.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.1.a
+		release = SIE
+	}
+}
+
+country_event = { #Nigeria
+	id = twrbritaindecol.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.2"}
+	title = twrbritaindecol.2.t
+	desc = twrbritaindecol.2.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.2.a
+		release = NGA
+	}
+}
+
+country_event = { #Southern Cameroons
+	id = twrbritaindecol.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.3"}
+	title = twrbritaindecol.3.t
+	desc = twrbritaindecol.3.d
+	picture = GFX_report_event_uk_map
+
+	trigger = {
+		tag = ENG
+		has_country_flag = wind_of_change
+		CMR = { exists = yes }
+	}
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.3.a
+		CMR = { set_state_owner = 797 }
+	}
+}
+
+country_event = { #Tanganyika
+	id = twrbritaindecol.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.4"}
+	title = twrbritaindecol.4.t
+	desc = twrbritaindecol.4.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.4.a
+		release = TZN
+	}
+}
+
+country_event = { #Uganda
+	id = twrbritaindecol.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.5"}
+	title = twrbritaindecol.5.t
+	desc = twrbritaindecol.5.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.5.a
+		release = UGA
+	}
+}
+
+country_event = { #Kenya
+	id = twrbritaindecol.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.6"}
+	title = twrbritaindecol.6.t
+	desc = twrbritaindecol.6.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.6.a
+		release = KEN
+	}
+}
+
+country_event = { #Zanzibar
+	id = twrbritaindecol.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.7"}
+	title = twrbritaindecol.7.t
+	desc = twrbritaindecol.7.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.7.a
+		release = ZAN
+	}
+}
+
+country_event = { #Malawi
+	id = twrbritaindecol.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.8"}
+	title = twrbritaindecol.8.t
+	desc = twrbritaindecol.8.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.8.a
+		release = MLW
+	}
+}
+
+country_event = { #Zambia
+	id = twrbritaindecol.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.9"}
+	title = twrbritaindecol.9.t
+	desc = twrbritaindecol.9.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Leave the Rhodesias split
+		name = twrbritaindecol.9.a
+		release = ZAM
+	}
+	
+	option = { #Force Rhodesia intact
+		name = twrbritaindecol.9.b
+		release = ZAM
+		ZAM = {
+			set_state_owner = 771
+			set_state_owner = 946
+		}
+	}
+}
+
+country_event = { #Botswana
+	id = twrbritaindecol.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.10"}
+	title = twrbritaindecol.10.t
+	desc = twrbritaindecol.10.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.10.a
+		release = BOT
+	}
+}
+
+country_event = { # Colonial Unrest
+	id = twrbritaindecol.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.11"}
+	title = twrbritaindecol.11.t
+	desc = twrbritaindecol.11.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.11.a
+		add_timed_idea = {
+			idea = ENG_colonial_unrest
+			days = 100
+		}
+		add_to_variable = {
+		    var = eng_unrest_nigeria
+		    value = 20
+		}
+		add_to_variable = {
+		    var = eng_unrest_east_africa
+		    value = 20
+		}
+		add_to_variable = {
+		    var = eng_unrest_west_africa
+		    value = 20
+		}
+		add_to_variable = {
+		    var = eng_unrest_rhodesia
+		    value = 20
+		}
+		custom_effect_tooltip = add_to_colonial_unrest
+	}
+}
+
+country_event = { # Nigerian Colonial Unrest Reduced
+	id = twrbritaindecol.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.12"}
+	title = twrbritaindecol.12.t
+	desc = twrbritaindecol.12.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.12.a
+		add_to_variable = {
+		    var = eng_unrest_nigeria
+		    value = -20
+		}
+		custom_effect_tooltip = nigerian_unrest_down_20
+	}
+}
+
+country_event = { # Nigerian Colonial Unrest Unchanged
+	id = twrbritaindecol.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.13"}
+	title = twrbritaindecol.13.t
+	desc = twrbritaindecol.13.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.13.a
+	}
+}
+
+country_event = { # Nigerian Colonial Unrest Unchanged
+	id = twrbritaindecol.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.14"}
+	title = twrbritaindecol.14.t
+	desc = twrbritaindecol.14.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.14.a
+		add_to_variable = {
+		    var = eng_unrest_nigeria
+		    value = 10
+		}
+		custom_effect_tooltip = nigerian_unrest_up_10
+	}
+}
+
+country_event = { # Major Rebellion in Nigeria
+	id = twrbritaindecol.15
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.15"
+		set_variable = { eng_unrest_nigeria = 50 }
+	}
+	title = twrbritaindecol.15.t
+	desc = twrbritaindecol.15.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrbritaindecol.15.a
+		add_manpower = -1000
+		set_country_flag = rebellion_nigeria
+		558 = {  damage_building = { type = infrastructure damage = 1 } }
+		911 = {  damage_building = { type = infrastructure damage = 1 } }
+		912 = {  damage_building = { type = infrastructure damage = 1 } }
+		960 = {  damage_building = { type = infrastructure damage = 1 } }
+		add_timed_idea = {
+			idea = ENG_major_colonial_rebellion
+			days = 50
+		}
+		hidden_effect = {
+			country_event = { days = 50 id = twrbritaindecol.16 }
+		}
+	}
+}
+
+country_event = { # Rebellion dies down
+	id = twrbritaindecol.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.16"}
+	title = twrbritaindecol.16.t
+	desc = twrbritaindecol.16.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.16.a
+		add_manpower = 900
+		clr_country_flag = rebellion_nigeria
+		set_variable = { eng_unrest_nigeria = 50 }
+	}
+}
+
+country_event = { # Nigerian Colonial Unrest reset to 0
+	id = twrbritaindecol.100
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.100"
+		set_variable = { eng_unrest_nigeria = 0 }
+	}
+	title = twrbritaindecol.100.t
+	desc = twrbritaindecol.100.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.100.a
+	}
+}
+
+country_event = { # East African Colonial Unrest Reduced
+	id = twrbritaindecol.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.17"}
+	title = twrbritaindecol.17.t
+	desc = twrbritaindecol.17.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.17.a
+		add_to_variable = {
+		    var = eng_unrest_east_africa
+		    value = -20
+		}
+		custom_effect_tooltip = east_african_unrest_down_20
+	}
+}
+
+country_event = { # East African Colonial Unrest Unchanged
+	id = twrbritaindecol.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.18"}
+	title = twrbritaindecol.18.t
+	desc = twrbritaindecol.18.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.18.a
+	}
+}
+
+country_event = { # East African Colonial Unrest Increased
+	id = twrbritaindecol.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.19"}
+	title = twrbritaindecol.19.t
+	desc = twrbritaindecol.19.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.19.a
+		add_to_variable = {
+		    var = eng_unrest_east_africa
+		    value = 10
+		}
+		custom_effect_tooltip = east_african_unrest_up_10
+	}
+}
+
+country_event = { # Major Rebellion in East Africa 
+	id = twrbritaindecol.20
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.20"
+		set_variable = { eng_unrest_east_africa = 50 }
+	}
+	title = twrbritaindecol.20.t
+	desc = twrbritaindecol.20.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrbritaindecol.20.a
+		add_manpower = -1000
+		set_country_flag = rebellion_east_africa
+		548 = {  damage_building = { type = infrastructure damage = 1 } }
+		954 = {  damage_building = { type = infrastructure damage = 1 } }
+		950 = {  damage_building = { type = infrastructure damage = 1 } }
+		949 = {  damage_building = { type = infrastructure damage = 1 } }
+		add_timed_idea = {
+			idea = ENG_major_colonial_rebellion
+			days = 50
+		}
+		hidden_effect = {
+			country_event = { days = 50 id = twrbritaindecol.21 }
+		}
+	}
+}
+
+country_event = { # East Africa Rebellion dies down
+	id = twrbritaindecol.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.21"}
+	title = twrbritaindecol.21.t
+	desc = twrbritaindecol.21.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.21.a
+		add_manpower = 900
+		clr_country_flag = rebellion_east_africa
+		set_variable = { eng_unrest_east_africa = 50 }
+	}
+}
+
+country_event = { # East African Colonial Unrest reset to 0
+	id = twrbritaindecol.101
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.101"
+		set_variable = { eng_unrest_east_africa = 0 }
+	}
+	title = twrbritaindecol.101.t
+	desc = twrbritaindecol.101.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.101.a
+	}
+}
+
+country_event = { # West African Colonial Unrest Reduced
+	id = twrbritaindecol.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.22"}
+	title = twrbritaindecol.22.t
+	desc = twrbritaindecol.22.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.22.a
+		add_to_variable = {
+		    var = eng_unrest_west_africa
+		    value = -20
+		}
+		custom_effect_tooltip = west_african_unrest_down_20
+	}
+}
+
+country_event = { # West African Colonial Unrest Unchanged
+	id = twrbritaindecol.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.23"}
+	title = twrbritaindecol.23.t
+	desc = twrbritaindecol.23.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.23.a
+	}
+}
+
+country_event = { # West African Colonial Unrest Increased
+	id = twrbritaindecol.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.24"}
+	title = twrbritaindecol.24.t
+	desc = twrbritaindecol.24.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.24.a
+		add_to_variable = {
+		    var = eng_unrest_west_africa
+		    value = 10
+		}
+		custom_effect_tooltip = west_african_unrest_up_10
+	}
+}
+
+country_event = { # Major Rebellion in West Africa 
+	id = twrbritaindecol.25
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.25"
+		set_variable = { eng_unrest_west_africa = 50 }
+	}
+	title = twrbritaindecol.25.t
+	desc = twrbritaindecol.25.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrbritaindecol.25.a
+		add_manpower = -1000
+		set_country_flag = rebellion_west_africa
+		700 = {  damage_building = { type = infrastructure damage = 1 } }
+		701 = {  damage_building = { type = infrastructure damage = 1 } }
+		274 = {  damage_building = { type = infrastructure damage = 1 } }
+		add_timed_idea = {
+			idea = ENG_major_colonial_rebellion
+			days = 50
+		}
+		hidden_effect = {
+			country_event = { days = 50 id = twrbritaindecol.26 }
+		}
+	}
+}
+
+country_event = { # West Africa Rebellion dies down
+	id = twrbritaindecol.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.26"}
+	title = twrbritaindecol.26.t
+	desc = twrbritaindecol.26.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.26.a
+		add_manpower = 900
+		clr_country_flag = rebellion_west_africa
+		set_variable = { eng_unrest_west_africa = 50 }
+	}
+}
+
+country_event = { # West African Colonial Unrest reset to 0
+	id = twrbritaindecol.102
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.102"
+		set_variable = { eng_unrest_west_africa = 0 }
+	}
+	title = twrbritaindecol.102.t
+	desc = twrbritaindecol.102.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.102.a
+	}
+}
+
+country_event = { # Southern African Colonial Unrest Reduced
+	id = twrbritaindecol.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.27"}
+	title = twrbritaindecol.27.t
+	desc = twrbritaindecol.27.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.27.a
+		add_to_variable = {
+		    var = eng_unrest_rhodesia
+		    value = -20
+		}
+		custom_effect_tooltip = rhodesian_unrest_down_20
+	}
+}
+
+country_event = { # Southern African Colonial Unrest Unchanged
+	id = twrbritaindecol.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.28"}
+	title = twrbritaindecol.28.t
+	desc = twrbritaindecol.28.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.28.a
+	}
+}
+
+country_event = { # Southern African Colonial Unrest Increased
+	id = twrbritaindecol.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.29"}
+	title = twrbritaindecol.29.t
+	desc = twrbritaindecol.29.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.29.a
+		add_to_variable = {
+		    var = eng_unrest_rhodesia
+		    value = 10
+		}
+		custom_effect_tooltip = rhodesian_unrest_up_10
+	}
+}
+
+country_event = { # Major Rebellion in Southern Africa
+	id = twrbritaindecol.30
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.30"
+		set_variable = { eng_unrest_west_africa = 50 }
+	}
+	title = twrbritaindecol.30.t
+	desc = twrbritaindecol.30.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = twrbritaindecol.30.a
+		add_manpower = -1000
+		set_country_flag = rebellion_rhodesia
+		542 = {  damage_building = { type = infrastructure damage = 1 } }
+		771 = {  damage_building = { type = infrastructure damage = 1 } }
+		930 = {  damage_building = { type = infrastructure damage = 1 } }
+		545 = {  damage_building = { type = infrastructure damage = 1 } }
+		946 = {  damage_building = { type = infrastructure damage = 1 } }
+		add_timed_idea = {
+			idea = ENG_major_colonial_rebellion
+			days = 50
+		}
+		hidden_effect = {
+			country_event = { days = 50 id = twrbritaindecol.31 }
+		}
+	}
+}
+
+country_event = { # Southern Africa Rebellion dies down
+	id = twrbritaindecol.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.31"}
+	title = twrbritaindecol.31.t
+	desc = twrbritaindecol.31.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.31.a
+		add_manpower = 900
+		clr_country_flag = rebellion_rhodesia
+		set_variable = { eng_unrest_rhodesia = 50 }
+	}
+}
+
+country_event = { # Southern African Colonial Unrest reset to 0
+	id = twrbritaindecol.103
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.103"
+		set_variable = { eng_unrest_rhodesia = 0 }
+	}
+	title = twrbritaindecol.103.t
+	desc = twrbritaindecol.103.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.103.a
+	}
+}
+
+country_event = { #Fate of Madagascar
+	id = twrbritaindecol.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritaindecol.32"}
+	title = twrbritaindecol.32.t
+	desc = twrbritaindecol.32.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritaindecol.32.a
+		ai_chance = { 
+			factor = 7
+		}
+		release = MAD
+	}
+	option = {
+		name = twrbritaindecol.32.b
+		ai_chance = { 
+			factor = 3
+		}
+		add_political_power = -100
+	}
+}
+
+
+#######
+
+# DEBUG
+
+#######
+
+country_event = { # Debug Nigerian Rebellion
+	id = twrbritain.1000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.1000"}
+	title = twrbritain.1000.t
+	desc = twrbritain.1000.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritain.1000.a
+		set_variable = { eng_unrest_nigeria = 200 }
+	}
+}
+
+country_event = { # Debug Nigerian Peace
+	id = twrbritain.1001
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbritain.1001"}
+	title = twrbritain.1001.t
+	desc = twrbritain.1001.d
+	picture = GFX_report_event_uk_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrbritain.1001.a
+		set_variable = { eng_unrest_nigeria = -200 }
+	}
+}

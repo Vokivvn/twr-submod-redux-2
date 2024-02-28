@@ -1,0 +1,19 @@
+CHI_famine_recovery_effects = {
+	if = {
+		limit = {
+			check_variable = { famine_recovery_progress > 99 }
+		}
+		set_variable = { famine_recovery_progress = 100 }
+		set_country_flag = CHI_recovered_from_famine
+	}
+	else = {
+		set_temp_variable = { temp_5 = -0.05 }
+		multiply_temp_variable = { temp_5 = temp_famine_calc }
+		set_temp_variable = { temp_2 = -0.02 }
+		multiply_temp_variable = { temp_2 = temp_famine_calc }
+		add_to_variable = { CHI_famine_monthly_population = temp_2 }
+		add_to_variable = { CHI_famine_stability_factor = temp_2 }
+		add_to_variable = { CHI_famine_war_support_factor = temp_5 }
+		add_to_variable = { CHI_famine_conscription_factor = temp_2 }
+	}
+}

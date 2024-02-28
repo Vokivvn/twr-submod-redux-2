@@ -1,0 +1,1206 @@
+operations = {
+	ta_invite_france_to_gcw = {
+		allowed = {
+			OR = {
+				tag = USA
+				tag = ENG
+				tag = CAN
+			}
+		}
+		visible = {
+			is_ai = no
+			FRA = {
+				OR = {
+					is_democratic = yes
+					is_communist = yes
+				}
+				is_in_faction = no
+			}
+			has_global_flag = german_civil_war_started
+		}
+		available = {
+			has_global_flag = german_civil_war_started
+			FRA = {
+				OR = {
+					is_democratic = yes
+					is_communist = yes
+				}
+			}
+			OR = {
+				has_war_with = GER
+				has_war_with = HSS
+				has_war_with = HGR
+			}
+		}
+		
+		fire_only_once = yes
+		cost = 20
+		ai_will_do = { factor = 0 }
+		
+		complete_effect = {
+			custom_effect_tooltip = twrta.300.a.tt
+			country_event = twrta.300
+		}
+	}
+	ta_invite_france_to_gcw_move_troops = {
+		activation = {
+			always = no
+		}
+		available = {
+			always = no
+		}
+		
+		selectable_mission = yes
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 30
+		
+		timeout_effect = {
+			country_event = twrta.304
+		}
+	}
+	benelux_ta_intervention = {
+		allowed = {
+			tag = LUX
+		}
+		activation = {
+			has_global_flag = german_civil_war_started
+			is_in_faction = no
+			USA = {
+				OR = {
+					has_war_with = GER
+					has_war_with = HSS
+					has_war_with = HGR
+					has_war_with = RKN
+				}
+			}
+			OR = {
+				has_war_with = GER
+				has_war_with = HSS
+				has_war_with = HGR
+				has_war_with = RKN
+			}
+			OR = {
+				controls_state = 762
+				controls_state = 6
+				controls_state = 7
+				controls_state = 36
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					controls_state = 762
+					controls_state = 6
+					controls_state = 7
+					controls_state = 36
+				}
+			}
+		}
+		
+		is_good = yes
+		fire_only_once = no
+		days_mission_timeout = 7
+		timeout_effect = {
+			USA = {
+				add_to_faction = LUX
+			}
+		}
+		complete_effect = {
+		
+		}
+	}
+	indonesian_wars = {
+		allowed = { tag = HOL }
+		available = {
+			OR = {
+				INS = {
+					has_capitulated = yes
+				}
+				NOT = {
+					country_exists = INS
+				}
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_war_with = INS                       # War with Germany
+			NOT = {
+				has_country_flag = IN_PEACE_PROCESS_HOL_INS
+			}
+		}
+		is_good = no                           # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 365             # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout indonesian_wars"
+			country_event = {
+				id = TWR_HOL.2000 days = 1
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision indonesian_wars"
+			country_event = {
+				id = TWR_HOL.1004 days = 1
+			}
+		}
+	}
+	congo_war_i = {
+		allowed = { tag = BEL }
+		available = {
+			COG = {
+				has_capitulated = yes
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_country_flag = BELCONGOWAR                       # War with Germany
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 150             # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout congo_war_i"
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision congo_war_i"
+			news_event = {
+				id = twrnews.2 days = 1
+			}
+			clr_country_flag = BELCONGOWAR
+		}
+	}
+	the_great_pat_war_1 = {
+		allowed = {
+			OR = {
+				tag = GER
+				tag = HSS
+				tag = HGR
+			}
+		}
+		available = {
+			NOT = {
+				country_exists = RUZ
+			}
+		}
+		visible = {
+			NOT = {
+				has_decision = the_great_pat_war_2
+				has_decision = the_great_pat_war_3
+				has_decision = the_great_pat_war_4
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_war_with = RUZ
+			NOT = {
+				has_idea = GER_SOV_supplies_1
+				has_idea = GER_SOV_supplies_2
+				has_idea = GER_SOV_supplies_3
+			}
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 200            # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout the_great_pat_war_1"
+			add_war_support = -0.1
+			activate_mission = the_great_pat_war_2
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision the_great_pat_war_1"
+			news_event = {
+				id = twrgeroccupation.38 hours = 8
+			}
+			hidden_effect = {
+				clr_global_flag = SOV_GER_WAR
+				GER = {
+					white_peace = RUZ
+				}
+				HGR = {
+					white_peace = RUZ
+				}
+				HSS = {
+					white_peace = RUZ
+				}
+			}
+		}
+	}
+	the_great_pat_war_2 = {
+		allowed = {
+			OR = {
+				tag = GER
+				tag = HSS
+				tag = HGR
+			}
+		}
+		available = {
+			NOT = {
+				country_exists = RUZ
+			}
+		}
+		visible = {
+			NOT = {
+				has_decision = the_great_pat_war_1
+				has_decision = the_great_pat_war_3
+				has_decision = the_great_pat_war_4
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			always = no
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 200            # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout the_great_pat_war_2"
+			add_war_support = -0.1
+			activate_mission = the_great_pat_war_3
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision the_great_pat_war_2"
+			news_event = {
+				id = twrgeroccupation.38 hours = 8
+			}
+			remove_ideas = GER_SOV_supplies_1
+			hidden_effect = {
+				clr_global_flag = SOV_GER_WAR
+				GER = {
+					white_peace = RUZ
+				}
+				HGR = {
+					white_peace = RUZ
+				}
+				HSS = {
+					white_peace = RUZ
+				}
+			}
+		}
+	}
+	the_great_pat_war_3 = {
+		allowed = {
+			OR = {
+				tag = GER
+				tag = HSS
+				tag = HGR
+			}
+		}
+		available = {
+			NOT = {
+				country_exists = RUZ
+			}
+		}
+		visible = {
+			NOT = {
+				has_decision = the_great_pat_war_2
+				has_decision = the_great_pat_war_1
+				has_decision = the_great_pat_war_4
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			always = no
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 200            # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout the_great_pat_war_3"
+			add_war_support = -0.1
+			activate_mission = the_great_pat_war_4
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision the_great_pat_war_3"
+			news_event = {
+				id = twrgeroccupation.38 hours = 8
+			}
+			hidden_effect = {
+				clr_global_flag = SOV_GER_WAR
+				GER = {
+					white_peace = RUZ
+				}
+				HGR = {
+					white_peace = RUZ
+				}
+				HSS = {
+					white_peace = RUZ
+				}
+			}
+		}
+	}
+	the_great_pat_war_4 = {
+		allowed = {
+			OR = {
+				tag = GER
+				tag = HSS
+				tag = HGR
+			}
+		}
+		available = {
+			NOT = {
+				country_exists = RUZ
+			}
+		}
+		visible = {
+			NOT = {
+				has_decision = the_great_pat_war_2
+				has_decision = the_great_pat_war_3
+				has_decision = the_great_pat_war_1
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			always = no
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 200            # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout the_great_pat_war_4"
+			add_war_support = -0.15
+			add_stability = -0.25
+			country_event = { id = twrgeroccupation.39 hours = 3 }
+			hidden_effect = {
+				set_country_flag = GER_SOV_WAR_FAILED
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision the_great_pat_war_4"
+			news_event = {
+				id = twrgeroccupation.38 hours = 8
+			}
+			hidden_effect = {
+				clr_global_flag = SOV_GER_WAR
+				GER = {
+					white_peace = RUZ
+				}
+				HGR = {
+					white_peace = RUZ
+				}
+				HSS = {
+					white_peace = RUZ
+				}
+			}
+		}
+	}
+	TA_invasion_of_germany_gcw = {
+		allowed = { 
+			OR = {
+				tag = USA
+				tag = ENG
+				tag = GER
+				tag = HGR
+				tag = HSS
+			}
+		}
+		available = {
+			GER = {
+			OR = {
+				has_capitulated = yes
+				exists = no
+				}
+			}
+			HGR = {
+			OR = {
+				has_capitulated = yes
+				exists = no
+				}
+			}
+			HSS = {
+			OR = {
+				has_capitulated = yes
+				exists = no
+				}
+			}
+		}
+		activation = {
+			has_global_flag = ta_intervention
+		}
+		is_good = no
+		days_mission_timeout = 365
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout TA_invasion_of_germany_gcw"
+			every_country = {
+			limit = {
+			is_in_faction_with = USA
+			OR = {
+			has_war_with = HGR
+			has_war_with = GER
+			has_war_with = HSS
+					}
+				}
+			add_war_support = -0.1
+			}
+			hidden_effect = {
+			set_global_flag = TA_FAILED_TO_INVADE
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TA_invasion_of_germany_gcw"
+		}
+	}
+	TA_GER_war_in_italy = {
+		allowed = { 
+			OR = {
+				tag = USA
+				tag = ENG
+				tag = GER
+				tag = HGR
+				tag = HSS
+			}
+		}
+		available = {
+			GER = {
+			OR = {
+				has_capitulated = yes
+				exists = no
+				}
+			}
+			HGR = {
+			OR = {
+				has_capitulated = yes
+				exists = no
+				}
+			}
+			HSS = {
+			OR = {
+				has_capitulated = yes
+				exists = no
+				}
+			}
+		}
+		activation = {
+			has_global_flag = war_over_italy
+		}
+		is_good = no
+		days_mission_timeout = 1000
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout TA_GER_war_in_italy"
+			every_country = {
+				limit = {
+					is_in_faction_with = USA
+					OR = {
+						has_war_with = HGR
+						has_war_with = GER
+						has_war_with = HSS
+					}
+				}
+			white_peace = GER
+			white_peace = HGR
+			white_peace = HSS
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TA_GER_war_in_italy"
+		}
+	}
+	ORA_Victory = {
+		allowed = { tag = FRA }
+		visible = {
+			tag = FRA
+			ORA = {
+				exists = yes
+				has_war = no
+				is_subject = no
+			}
+		}
+		selectable_mission = yes
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			ORA = {
+				exists = yes
+				has_war = no
+				is_subject = no
+			}
+			FRA = {
+				is_communist = no
+				}                             # War with Germany
+		}
+		cost = freedec?0
+		is_good = yes                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 50             # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout ORA_Victory"
+			country_event = algeria.5
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ORA_Victory"
+			country_event = algeria.5
+		}
+	}
+	southern_MTR_revolt = {
+		allowed = { tag = MTR }
+		available = {
+			has_war = no
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_global_flag = MTR_SOUTHERN_INDEPENDENCE_WAR                       # War with Germany
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 730            # How many days before the mission fails?
+		timeout_effect = { #slo win
+			log = "[GetDateText]: [Root.GetName]: Decision timeout southern_MTR_revolt"
+			clr_global_flag = MTR_SOUTHERN_INDEPENDENCE_WAR
+			KMY = {
+			white_peace_with_ROOT = yes
+			}
+			add_war_support = -0.2
+
+		}
+		complete_effect = { #MTR win
+			log = "[GetDateText]: [Root.GetName]: Decision southern_MTR_revolt"
+			add_war_support = 0.1
+			add_stability = 0.1
+		}
+	}
+	slovak_hungarian_war = {
+		allowed = { tag = HUN }
+		available = {
+			NOT = {
+				country_exists = SLO
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_global_flag = SLOHUNWAR                       # War with Germany
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 60            # How many days before the mission fails?
+		timeout_effect = { #slo win
+			log = "[GetDateText]: [Root.GetName]: Decision timeout slovak_hungarian_war"
+			clr_global_flag = SLOHUNWAR
+			SLO = {
+				country_event = slovakia.70123
+			}
+
+		}
+		complete_effect = { #hun win
+			log = "[GetDateText]: [Root.GetName]: Decision slovak_hungarian_war"
+			clr_global_flag = SLOHUNWAR
+			HUN = {
+				country_event = slovakia.70124
+			}
+		}
+	}
+	croat_hungarian_war = {
+		allowed = { tag = CRO }
+		available = {
+			OR = {
+				NOT = { country_exists = HUN }
+				CRO = {
+					AND = {
+						OR = {
+							controls_state = 45
+							any_allied_country = {
+								controls_state = 45
+							}
+						}
+						OR = {
+							controls_state = 155
+							any_allied_country = {
+								controls_state = 155
+							}
+						}
+						OR = {
+							controls_state = 770
+							any_allied_country = {
+								controls_state = 770
+							}
+						}
+					}
+				}
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_global_flag = CROATIAN_WAR_OVER_WHAT                       # War with Hungary
+			is_puppet = no
+		}
+
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 100            # How many days before the mission fails?
+
+		timeout_effect = { #hun win
+			log = "[GetDateText]: [Root.GetName]: Decision timeout croat_hungarian_war"
+			clr_global_flag = CROATIAN_WAR_OVER_WHAT
+			HUN = {
+				country_event = croathungary.5
+			}
+		}
+		complete_effect = { #cro win
+			log = "[GetDateText]: [Root.GetName]: Decision croat_hungarian_war"
+			clr_global_flag = CROATIAN_WAR_OVER_WHAT
+			CRO = {
+				country_event = twrcroatia.11
+			}
+		}
+	}
+
+	lazarie_war = {
+		allowed = { tag = FFR }
+		available = {
+			SEN = {
+				has_capitulated = yes
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_country_flag = LAZBUSH                       # War with Germany
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 365             # How many days before the mission fails?
+		timeout_effect = { #sen win
+			log = "[GetDateText]: [Root.GetName]: Decision timeout lazarie_war"
+		}
+		complete_effect = { #ffr win
+			log = "[GetDateText]: [Root.GetName]: Decision lazarie_war"
+			clr_country_flag = LAZBUSH
+		}
+	}
+	azawad_war = {
+		allowed = { tag = MLI }
+		available = {
+			AZA = {
+				has_capitulated = yes
+			}
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_country_flag = AZAWAR                       # War with Germany
+		}
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 300             # How many days before the mission fails?
+		timeout_effect = { #azawad win ceasefire
+			log = "[GetDateText]: [Root.GetName]: Decision timeout azawad_war"
+		}
+		complete_effect = { #mali win #hurray
+			log = "[GetDateText]: [Root.GetName]: Decision azawad_war"
+			clr_country_flag = AZAWAR
+		}
+	}
+	norge_occupation = {
+		allowed = {
+			NOT = { tag = NOR }
+		}
+		visible = {
+			owns_state = 110
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			owns_state = 110
+			has_war = no
+			OR = {
+			is_democratic = yes
+			tag = ENG
+			tag = USA
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		selectable_mission = yes
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 70             # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout norge_occupation"
+			if = {
+				limit = {
+					ROOT = {
+						is_in_faction_with = USA
+					}
+				}
+				ROOT = {
+					country_event = twrnorway.100
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						is_democratic = yes
+					}
+				}
+				ROOT = {
+					country_event = twrnorway.100
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision norge_occupation"
+			if = {
+				limit = {
+					ROOT = {
+						is_in_faction_with = USA
+					}
+				}
+				ROOT = {
+					country_event = twrnorway.100
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						is_democratic = yes
+					}
+				}
+				ROOT = {
+					country_event = twrnorway.100
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision norge_occupation"
+			if = {
+				limit = {
+					ROOT = {
+						is_in_faction_with = USA
+					}
+				}
+				ROOT = {
+					country_event = twrnorway.100
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						is_democratic = yes
+					}
+				}
+				ROOT = {
+					country_event = twrnorway.100
+				}
+			}
+		}
+	}
+	ostland_occupation = {
+		allowed = {
+		OR = {
+		tag = LAT
+		tag = LIT
+		tag = BLG
+		tag = BLR
+			}
+		}
+		visible = {
+			owns_state = 1017
+			has_global_flag = OST_CIVIL_WAR
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			owns_state = 1017
+			has_war = no
+			has_global_flag = OST_CIVIL_WAR
+		}
+		selectable_mission = yes
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 10             # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout ostland_occupation"
+			country_event = twrostlandcw.4
+			hidden_effect = {
+			clr_global_flag = OST_CIVIL_WAR
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ostland_occupation"
+			country_event = twrostlandcw.4
+			hidden_effect = {
+			clr_global_flag = OST_CIVIL_WAR
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ostland_occupation"
+			country_event = twrostlandcw.4
+			hidden_effect = {
+			clr_global_flag = OST_CIVIL_WAR
+			}
+		}
+	}
+	japanese_occupation = {
+		allowed = {
+			NOT = {
+				tag = JAP
+			}
+		}
+		visible = {
+			OR = {
+			is_in_faction_with = USA
+			tag = CHI
+			}		
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			owns_state = 881
+			has_war = no
+		}
+		selectable_mission = yes
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 10             # How many days before the mission fails?
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout japanese_occupation"
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							is_in_faction_with = USA
+							tag = CHI
+						}
+					}
+					has_global_flag = TA_CHI_coalition_war
+				}
+				ROOT = {
+					country_event = twrjapan.19
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision japanese_occupation"
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							is_in_faction_with = USA
+							tag = CHI
+						}
+					}
+					has_global_flag = TA_CHI_coalition_war
+				}
+				ROOT = {
+					country_event = twrjapan.19
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision japanese_occupation"
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							is_in_faction_with = USA
+							tag = CHI
+						}
+					}
+					has_global_flag = TA_CHI_coalition_war
+				}
+				ROOT = {
+					country_event = twrjapan.19
+				}
+			}
+		}
+	}
+	north_honshu = {      #north honshu
+		allowed = {
+			tag = USA
+		}
+		visible = {
+			has_global_flag = TA_OCCUPYING_JAPAN
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_global_flag = TA_OCCUPYING_JAPAN
+		}
+		selectable_mission = yes
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 100             # How many days before the mission fails?
+		fire_only_once = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout north_honshu"
+			NHF = {
+				transfer_state = 533
+				transfer_state = 534
+				transfer_state = 282
+				transfer_state = 882
+				transfer_state = 883
+				transfer_state = 532
+				transfer_state = 535
+				every_owned_state = {
+					add_core_of = NHF
+				}
+				give_military_access = USA
+				diplomatic_relation = {
+					country = USA
+					relation = docking_rights
+					active = no
+				}
+				add_ideas = {
+					JAP_total_military_restriction
+					JAP_industrial_limits
+					JAP_bitter_defeat
+					JAP_unfair_treaties
+					JAP_corruptions
+				}
+			}
+			add_political_power = 150
+			hidden_effect = {
+				news_event = {
+					id = twrjapan.21
+					days = 3
+					random = 50
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision north_honshu"
+			NHF = {
+				transfer_state = 533
+				transfer_state = 534
+				transfer_state = 282
+				transfer_state = 882
+				transfer_state = 883
+				transfer_state = 532
+				transfer_state = 535
+				every_owned_state = {
+					add_core_of = NHF
+				}
+				give_military_access = USA
+				diplomatic_relation = {
+					country = USA
+					relation = docking_rights
+					active = no
+				}
+				add_ideas = {
+					JAP_total_military_restriction
+					JAP_industrial_limits
+					JAP_bitter_defeat
+					JAP_unfair_treaties
+					JAP_corruptions
+				}
+			}
+			add_political_power = 150
+			hidden_effect = {
+				news_event = {
+					id = twrjapan.21
+					days = 3
+					random = 50
+				}
+			}
+		}
+	}
+	hokkaido = {      #hokkaido
+		allowed = {
+			tag = CAN
+		}
+		visible = {
+			has_global_flag = TA_OCCUPYING_JAPAN
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_global_flag = TA_OCCUPYING_JAPAN
+			country_exists = NHF
+		}
+		selectable_mission = yes
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 30            # How many days before the mission fails?
+		fire_only_once = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout hokkaido"
+			HOK = {
+				transfer_state = 536
+				every_owned_state = {
+					add_core_of = HOK
+				}
+				give_military_access = CAN
+				diplomatic_relation = {
+					country = CAN
+					relation = docking_rights
+					active = no
+				}
+				add_ideas = {
+					JAP_total_military_restriction
+					JAP_industrial_limits
+					JAP_bitter_defeat
+					JAP_unfair_treaties
+					JAP_corruptions
+				}
+			}
+			add_political_power = 150
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision hokkaido"
+			HOK = {
+				transfer_state = 536
+				every_owned_state = {
+					add_core_of = HOK
+				}
+				give_military_access = CAN
+				diplomatic_relation = {
+					country = CAN
+					relation = docking_rights
+					active = no
+				}
+				add_ideas = {
+					JAP_total_military_restriction
+					JAP_industrial_limits
+					JAP_bitter_defeat
+					JAP_unfair_treaties
+					JAP_corruptions
+				}
+			}
+			add_political_power = 150
+		}
+	}
+	south_japan = {      #south
+		allowed = {
+			tag = ENG
+		}
+		visible = {
+			has_global_flag = TA_OCCUPYING_JAPAN
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_global_flag = TA_OCCUPYING_JAPAN
+			country_exists = NHF
+		}
+		selectable_mission = yes
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 45            # How many days before the mission fails?
+		fire_only_once = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout south_japan"
+			JAP = {
+				transfer_state = 880
+				transfer_state = 531
+				transfer_state = 529
+				set_politics = {
+					ruling_party = conservative
+				}
+				add_popularity = {
+					ideology = conservative
+					popularity = 0.5
+				}
+				give_military_access = ENG
+				diplomatic_relation = {
+					country = ENG
+					relation = docking_rights
+					active = no
+				}
+				load_focus_tree = generic
+				set_cosmetic_tag = JAP_SHF
+			}
+			add_political_power = 150
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision south_japan"
+			JAP = {
+				transfer_state = 880
+				transfer_state = 531
+				transfer_state = 529
+				set_politics = {
+					ruling_party = conservative
+				}
+				add_popularity = {
+					ideology = conservative
+					popularity = 0.5
+				}
+				give_military_access = ENG
+				diplomatic_relation = {
+					country = ENG
+					relation = docking_rights
+					active = no
+				}
+				load_focus_tree = generic
+				set_cosmetic_tag = JAP_SHF
+			}
+			add_political_power = 150
+		}
+	}
+	shikoku = {      #shikoku
+		allowed = {
+			tag = AST
+		}
+		visible = {
+			has_global_flag = TA_OCCUPYING_JAPAN
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_global_flag = TA_OCCUPYING_JAPAN
+			country_exists = NHF
+		}
+		selectable_mission = yes
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 45            # How many days before the mission fails?
+		fire_only_once = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout shikoku"
+			SHK = {
+				transfer_state = 530
+				give_military_access = AST
+				diplomatic_relation = {
+					country = AST
+					relation = docking_rights
+					active = no
+				}
+				set_cosmetic_tag = JAP_SHF
+				add_ideas = {
+					JAP_total_military_restriction
+					JAP_industrial_limits
+					JAP_bitter_defeat
+					JAP_unfair_treaties
+					JAP_corruptions
+				}
+			}
+			add_political_power = 150
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision shikoku"
+			SHK = {
+				transfer_state = 530
+				give_military_access = AST
+				diplomatic_relation = {
+					country = AST
+					relation = docking_rights
+					active = no
+				}
+				set_cosmetic_tag = JAP_SHF
+				add_ideas = {
+					JAP_total_military_restriction
+					JAP_industrial_limits
+					JAP_bitter_defeat
+					JAP_unfair_treaties
+					JAP_corruptions
+				}
+			}
+			add_political_power = 150
+		}
+	}
+	kyushu = {      #kyushu
+		allowed = {
+			tag = CHI
+		}
+		visible = {
+			has_global_flag = TA_OCCUPYING_JAPAN
+		}
+		activation = {                          # The mission appears and starts counting down under these circumstances:
+			has_global_flag = TA_OCCUPYING_JAPAN
+			country_exists = NHF
+		}
+		selectable_mission = yes
+		is_good = no                          # This mission is color coded to be a positive thing (not a crisis)
+		days_mission_timeout = 70            # How many days before the mission fails?
+		fire_only_once = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout kyushu"
+			KYS = {
+				transfer_state = 528
+				transfer_state = 885
+				give_military_access = CHI
+				diplomatic_relation = {
+					country = CHI
+					relation = docking_rights
+					active = no
+				}
+				set_cosmetic_tag = JAP_SHF
+				add_ideas = {
+					JAP_total_military_restriction
+					JAP_industrial_limits
+					JAP_bitter_defeat
+					JAP_unfair_treaties
+					JAP_corruptions
+				}
+			}
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_political_power = 150
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision kyushu"
+			KYS = {
+				transfer_state = 528
+				transfer_state = 885
+				give_military_access = CHI
+				diplomatic_relation = {
+					country = CHI
+					relation = docking_rights
+					active = no
+				}
+				set_cosmetic_tag = JAP_SHF
+				add_ideas = {
+					JAP_total_military_restriction
+					JAP_industrial_limits
+					JAP_bitter_defeat
+					JAP_unfair_treaties
+					JAP_corruptions
+				}
+			}
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_political_power = 150
+		}
+	}
+}

@@ -1,0 +1,861 @@
+#########################################################################
+#  Yapan
+#########################################################################
+operations = {
+	invade_the_homeland = {                           
+	allowed = { NOT = { tag = JAP } }                
+	available = {                           
+	JAP = {
+	has_capitulated = yes
+		}
+	}
+	activation = {
+	is_faction_leader = yes
+	has_war_with = JAP
+	JAP = {
+	OR = {
+	is_communist = yes
+	is_fascist = yes
+	}
+	is_in_faction = no
+		}
+	}
+	is_good = no
+	days_mission_timeout = 500
+	timeout_effect = {
+	log = "[GetDateText]: [Root.GetName]: Decision timeout invade_the_homeland" #SI
+	add_war_support = -0.1
+	JAP = {
+	white_peace_with_ROOT = yes
+		}
+	if = {
+	limit = { JAP = { controls_state = 906 } }
+	JAP = {
+	transfer_state = 906
+			}
+		}
+	if = {
+	limit = { JAP = { controls_state = 905 } }
+	JAP = {
+	transfer_state = 905
+			}
+		}
+	if = {
+	limit = { JAP = { controls_state = 555 } }
+	JAP = {
+	transfer_state = 555
+			}
+		}
+	}
+	complete_effect = {
+	log = "[GetDateText]: [Root.GetName]: Decision invade_the_homeland"
+		}
+	}
+}
+japanese_economics = {
+	JAP_the_free_market = {
+		icon = generic_construction
+		fire_only_once = no
+		visible = {
+			has_completed_focus = JAP_The_Global_Contractor
+		}
+		cost = 60
+		days_re_enable = 100
+		ai_will_do = {
+			factor = 70
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			
+		}  
+		days_remove = 20
+		remove_effect = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+		}
+	}
+	JAP_develop_northern_state = {
+		icon = generic_construction
+
+		available = {
+			num_of_civilian_factories_available_for_projects > 0
+			owns_state = FROM
+			controls_state = FROM
+		}
+		visible = {
+			has_completed_focus = JAP_Northern_Economic_Development
+		}
+
+		modifier = {
+			civilian_factory_use = 1
+		}
+
+		highlight_states = {
+			state = FROM
+		}
+
+		state_target = yes
+		targets = { 282 532 533 534 535 880 881 882 883 }
+		target_root_trigger = {
+			NOT = {
+				count_triggers = {
+					amount = 6
+					282 = { has_state_flag = JAP_developed_north_state }
+					532 = { has_state_flag = JAP_developed_north_state }
+					533 = { has_state_flag = JAP_developed_north_state }
+					534 = { has_state_flag = JAP_developed_north_state }
+					535 = { has_state_flag = JAP_developed_north_state }
+					880 = { has_state_flag = JAP_developed_north_state }
+					881 = { has_state_flag = JAP_developed_north_state }
+					882 = { has_state_flag = JAP_developed_north_state }
+					883 = { has_state_flag = JAP_developed_north_state }
+				}
+			}
+		}
+
+		cost = 25
+		days_remove = 75
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_develop_northern_state"
+			FROM = {
+				set_state_flag = JAP_developed_north_state
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove JAP_develop_northern_state"
+			FROM = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	JAP_develop_southern_state = {
+		icon = generic_construction
+
+		available = {
+			num_of_civilian_factories_available_for_projects > 0
+			owns_state = FROM
+			controls_state = FROM
+		}
+		visible = {
+			has_completed_focus = JAP_Northern_Economic_Development
+		}
+
+		modifier = {
+			civilian_factory_use = 1
+		}
+
+		highlight_states = {
+			state = FROM
+		}
+
+		state_target = yes
+		targets = { 528 529 530 531 535 884 885 886 }
+		target_root_trigger = {
+			NOT = {
+				count_triggers = {
+					amount = 5
+					528 = { has_state_flag = JAP_developed_south_state }
+					529 = { has_state_flag = JAP_developed_south_state }
+					530 = { has_state_flag = JAP_developed_south_state }
+					531 = { has_state_flag = JAP_developed_south_state }
+					535 = { has_state_flag = JAP_developed_south_state }
+					884 = { has_state_flag = JAP_developed_south_state }
+					885 = { has_state_flag = JAP_developed_south_state }
+					886 = { has_state_flag = JAP_developed_south_state }
+				}
+			}
+		}
+
+		cost = 25
+		days_remove = 75
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_develop_southern_state"
+			FROM = {
+				set_state_flag = JAP_developed_south_state
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove JAP_develop_southern_state"
+			FROM = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+}	
+political_actions = {
+	JAP_revolution = {
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			always = no
+		}
+
+		cost = 0
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		visible = {
+			always = no
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_revolution"
+			load_focus_tree = Congress_Japan
+		}
+	}
+	JAP_tree_switch = {
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			always = no
+		}
+
+		cost = 0
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		visible = {
+			always = no
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_tree_switch"
+			load_focus_tree = Japan_Political
+		}
+	}
+}
+JAP_LDP_leadership_vote_decisions = {
+	JAP_LDP_leadership_vote_timer = {
+		icon = generic_decision
+
+		allowed = { always = no }
+		available = { always = no }
+
+		days_mission_timeout = 30
+		is_good = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_LDP_leadership_vote_timer"
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout JAP_LDP_leadership_vote_timer"
+			if = {
+				limit = {
+					check_variable = { LDP_support_array^0 > 49 }
+				}
+				create_country_leader = {
+					name = "Hayato Ikeda"
+					desc = ""
+					picture = "Hayato_Ikeda.dds"
+					expire = "1965.1.1"
+					ideology = national_conservatism
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Prime_Minister_Ikeda
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { LDP_support_array^1 > 49 }
+				}
+				create_country_leader = {
+					name = "Tanzan Ishibashi"
+					desc = ""
+					picture = "Tanzan_Ishibashi.dds"
+					expire = "1965.1.1"
+					ideology = national_conservatism
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Prime_Minister_Ishibashi
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { LDP_support_array^2 > 49 }
+				}
+				create_country_leader = {
+					name = "Ichiro Hatayama"
+					desc = ""
+					picture = "Ichiro_Hatayama.dds"
+					expire = "1965.1.1"
+					ideology = national_conservatism
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Prime_Minister_Hatoyama
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { LDP_support_array^3 > 49 }
+				}
+				create_country_leader = {
+					name = "Shigeru Yoshida"
+					desc = ""
+					picture = "Shigeru_Yoshida.dds"
+					expire = "1965.1.1"
+					ideology = national_conservatism
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Prime_Minister_Yoshida
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { LDP_support_array^4 > 49 }
+				}
+				create_country_leader = {
+					name = "Nobusuke Kishi"
+					desc = ""
+					picture = "Nobusuke_Kishi.dds"
+					expire = "1965.1.1"
+					ideology = national_conservatism
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Prime_Minister_Kishi
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { LDP_support_array^5 > 49 }
+				}
+				create_country_leader = {
+					name = "Hisato Ichimada"
+					desc = ""
+					picture = "Hisato_Ichimada.dds"
+					expire = "1965.1.1"
+					ideology = national_conservatism
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Prime_Minister_Ichimada
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = { has_completed_focus = JAP_Prime_Minister_Unknown }
+				}
+				random_list = {
+					25 = {
+						create_country_leader = {
+							name = "Mitsujiro Ishii"
+							desc = ""
+							picture = "Mitsujiro_Ishii.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Ichiro Kono"
+							desc = ""
+							picture = "Ichiro_Kono.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Kenzo Matsumura"
+							desc = ""
+							picture = "Kenzo_Matsumura.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Aiichiro Fujiyama"
+							desc = ""
+							picture = "Aiichiro_Fujiyama.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Prime_Minister_Unknown
+					complete_national_focus = JAP_First_LDP_Breakdown
+					activate_mission = JAP_LDP_leadership_vote_timer
+				}
+			}
+			else_if = {
+				limit = {
+					has_completed_focus = JAP_First_LDP_Breakdown
+					NOT = { has_completed_focus = JAP_Second_LDP_Breakdown }
+				}
+				random_list = {
+					25 = {
+						create_country_leader = {
+							name = "Mitsujiro Ishii"
+							desc = ""
+							picture = "Mitsujiro_Ishii.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Ichiro Kono"
+							desc = ""
+							picture = "Ichiro_Kono.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Kenzo Matsumura"
+							desc = ""
+							picture = "Kenzo_Matsumura.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Aiichiro Fujiyama"
+							desc = ""
+							picture = "Aiichiro_Fujiyama.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Second_LDP_Breakdown
+					activate_mission = JAP_LDP_leadership_vote_timer
+				}
+			}
+			else_if = {
+				limit = {
+					has_completed_focus = JAP_First_LDP_Breakdown
+					has_completed_focus = JAP_Second_LDP_Breakdown
+					NOT = { has_completed_focus = JAP_Third_LDP_Breakdown }
+				}
+				random_list = {
+					25 = {
+						create_country_leader = {
+							name = "Mitsujiro Ishii"
+							desc = ""
+							picture = "Mitsujiro_Ishii.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Ichiro Kono"
+							desc = ""
+							picture = "Ichiro_Kono.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Kenzo Matsumura"
+							desc = ""
+							picture = "Kenzo_Matsumura.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Aiichiro Fujiyama"
+							desc = ""
+							picture = "Aiichiro_Fujiyama.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_Third_LDP_Breakdown
+					activate_mission = JAP_LDP_leadership_vote_timer
+				}
+			}
+			else_if = {
+				limit = {
+					has_completed_focus = JAP_First_LDP_Breakdown
+					has_completed_focus = JAP_Second_LDP_Breakdown
+					has_completed_focus = JAP_Third_LDP_Breakdown
+				}
+				random_list = {
+					25 = {
+						create_country_leader = {
+							name = "Mitsujiro Ishii"
+							desc = ""
+							picture = "Mitsujiro_Ishii.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Ichiro Kono"
+							desc = ""
+							picture = "Ichiro_Kono.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Kenzo Matsumura"
+							desc = ""
+							picture = "Kenzo_Matsumura.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+					25 = {
+						create_country_leader = {
+							name = "Aiichiro Fujiyama"
+							desc = ""
+							picture = "Aiichiro_Fujiyama.dds"
+							expire = "1965.1.1"
+							ideology = national_conservatism
+						}
+					}
+				}
+				hidden_effect = {
+					complete_national_focus = JAP_The_Final_Breakdown
+				}
+			}
+		}
+	}
+	JAP_lobby_support_for_ikeda = {
+		icon = eng_propaganda_campaigns
+
+		available = {
+			has_political_power > 24
+			NOT = { has_country_flag = JAP_supporting_leader_flag }
+		}
+
+		cost = 25
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_lobby_support_for_ikeda"
+			set_country_flag = { 
+				flag = JAP_supporting_leader_flag 
+				value = 1 
+				days = 6
+			}
+			custom_effect_tooltip = GKM_add_to_ikeda_support_tt
+			hidden_effect = {
+				set_temp_variable = { temp_leader = 0 }
+				set_temp_variable = { temp_value_added = 5 }
+				JAP_add_support = yes
+			}
+		}
+	}
+	JAP_lobby_support_for_ishibashi = {
+		icon = eng_propaganda_campaigns
+
+		available = {
+			has_political_power > 24
+			NOT = { has_country_flag = JAP_supporting_leader_flag }
+		}
+
+		cost = 25
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_lobby_support_for_ishibashi"
+			set_country_flag = { 
+				flag = JAP_supporting_leader_flag 
+				value = 1 
+				days = 6
+			}
+			custom_effect_tooltip = GKM_add_to_ishibashi_support_tt
+			hidden_effect = {
+				set_temp_variable = { temp_leader = 1 }
+				set_temp_variable = { temp_value_added = 5 }
+				JAP_add_support = yes
+			}
+		}
+	}
+	JAP_lobby_support_for_hatoyama = {
+		icon = eng_propaganda_campaigns
+
+		available = {
+			has_political_power > 24
+			NOT = { has_country_flag = JAP_supporting_leader_flag }
+		}
+
+		cost = 25
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_lobby_support_for_hatoyama"
+			set_country_flag = { 
+				flag = JAP_supporting_leader_flag 
+				value = 1 
+				days = 6
+			}
+			custom_effect_tooltip = GKM_add_to_hatoyama_support_tt
+			hidden_effect = {
+				set_temp_variable = { temp_leader = 2 }
+				set_temp_variable = { temp_value_added = 5 }
+				JAP_add_support = yes
+			}
+		}
+	}
+	JAP_lobby_support_for_yoshida = {
+		icon = eng_propaganda_campaigns
+
+		available = {
+			has_political_power > 24
+			NOT = { has_country_flag = JAP_supporting_leader_flag }
+		}
+
+		cost = 25
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_lobby_support_for_yoshida"
+			set_country_flag = { 
+				flag = JAP_supporting_leader_flag 
+				value = 1 
+				days = 6
+			}
+			custom_effect_tooltip = GKM_add_to_yoshida_support_tt
+			hidden_effect = {
+				set_temp_variable = { temp_leader = 3 }
+				set_temp_variable = { temp_value_added = 5 }
+				JAP_add_support = yes
+			}
+		}
+	}
+	JAP_lobby_support_for_kishi = {
+		icon = eng_propaganda_campaigns
+
+		available = {
+			has_political_power > 24
+			NOT = { has_country_flag = JAP_supporting_leader_flag }
+		}
+
+		cost = 25
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_lobby_support_for_kishi"
+			set_country_flag = { 
+				flag = JAP_supporting_leader_flag 
+				value = 1 
+				days = 6 
+			}
+			custom_effect_tooltip = GKM_add_to_kishi_support_tt
+			hidden_effect = {
+				set_temp_variable = { temp_leader = 4 }
+				set_temp_variable = { temp_value_added = 5 }
+				JAP_add_support = yes
+			}
+		}
+	}
+	JAP_lobby_support_for_ichimada = {
+		icon = eng_propaganda_campaigns
+
+		available = {
+			has_political_power > 24
+			NOT = { has_country_flag = JAP_supporting_leader_flag }
+		}
+
+		cost = 25
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_lobby_support_for_ichimada"
+			set_country_flag = { 
+				flag = JAP_supporting_leader_flag 
+				value = 1 
+				days = 6 
+			}
+			custom_effect_tooltip = GKM_add_to_ichimada_support_tt
+			hidden_effect = {
+				set_temp_variable = { temp_leader = 5 }
+				set_temp_variable = { temp_value_added = 5 }
+				JAP_add_support = yes
+			}
+		}
+	}
+}
+JAP_hatoyama_doctrine_decisions = {
+	JAP_strengthen_the_LDP = {
+		icon = eng_propaganda_campaigns
+
+		available = {
+			has_political_power > 49
+		}
+		visible = {
+			check_variable = { party_popularity@ruling_party < 75 }
+		}
+
+		modifier = {
+			political_power_cost = 0.05
+		}
+
+		cost = 50
+		days_remove = 20
+		days_re_enable = 40
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_strengthen_the_LDP"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove JAP_strengthen_the_LDP"
+			add_popularity = { ideology = conservative popularity = 0.10 }
+		}
+	}
+	JAP_grant_parole_to_war_criminals = {
+		icon = hol_exchange_intelligence_data
+
+		available = {
+			has_political_power > 9
+		}
+		visible = {
+			check_variable = { party_popularity@ruling_party < 75 }
+		}
+
+		cost = 10
+		days_remove = 10
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_grant_parole_to_war_criminals"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove JAP_grant_parole_to_war_criminals"
+			add_popularity = { ideology = conservative popularity = 0.10 }
+			CHI = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = JAP_war_criminal
+				}
+			}
+			KOR = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = JAP_war_criminal
+				}
+			}
+		}
+	}
+	JAP_reaffirm_accord_ties = {
+		icon = jap_pacific_guardian
+
+		available = {
+			has_political_power > 74
+		}
+		visible = {
+			is_in_faction_with = USA
+		}
+
+		modifier = {
+			political_power_cost = 0.05
+		}
+
+		cost = 75
+		days_remove = 20
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_reaffirm_accord_ties"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove JAP_reaffirm_accord_ties"
+			every_country = {
+				limit = {
+					is_in_faction_with = USA
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = JAP_accord_ties
+				}
+			}
+		}
+	}
+}

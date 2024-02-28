@@ -1,0 +1,457 @@
+#########################################################################
+# Romania
+#########################################################################
+capital = 1015
+set_stability = 0.50
+set_war_support = 0.75
+oob = "ROM_1952"
+set_air_oob = "ROM_1952_AIR"
+set_research_slots = 3
+set_convoys = 120
+set_country_flag = is_normal_language
+#######################
+# Research
+#######################
+set_technology = {
+	infantry_weapons_1 = 1
+	tech_mountaineers = 1
+
+	basic_infantry_equipment = 1
+	support_weapons = 1
+	infantry_at = 1
+	electronic_mechanical_engineering = 1
+	basic_train = 1
+	radio = 1
+	motorised_infantry = 1
+
+	tech_support = 1
+	tech_engineers = 1
+	tech_recon = 1
+	tech_logistics_company = 1
+	tech_military_police = 1
+	tech_signal_company = 1
+	tech_maintenance_company = 1
+
+	artillery4 = 1
+
+	base_armor = 1
+
+	early_fighter = 1
+	tac_bomber1 = 1
+	transport_air1 = 1
+	strategic_bomber1 = 1
+
+	fighter_1945 = 1
+	tac_air_1945 = 1
+	transport_air_1945 = 1
+	heavy_air_1945 = 1
+
+
+	CAS_1945 = 1
+	interceptor_1945 = 1
+
+	gw_artillery = 1
+	antiair5 = 1
+
+	advanced_medium_tank = 1
+	mechanised_infantry3 = 1
+	advanced_light_tank = 1
+	APC_1950 = 1
+	IFV_1950 = 1
+}
+if = {
+	limit = {
+		not = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		naval_stipulations = 1
+		ww2_destroyer = 1
+		ww2_cruiser = 1
+		ww2_submarine = 1
+	}
+	set_naval_oob = "ROM_1952_naval_legacy"
+}
+if = {
+	limit = {
+		 has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		mtg_naval_stipulations = 1
+		early_ship_hull_very_light = 1
+		early_ship_hull_more_light = 1
+		early_ship_hull_light = 1
+		basic_depth_charges = 1
+		early_ship_hull_cruiser = 1
+		early_ship_hull_carrier = 1
+		early_ship_hull_submarine = 1
+		basic_battery = 1
+		basic_light_battery = 1
+	}
+	create_equipment_variant = {
+		name = "Vifor-class"			
+		type = ship_hull_light_1
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_1
+			fixed_ship_anti_air_slot = ship_anti_air_2
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_1
+			fixed_ship_radar_slot = ship_radar_1
+			fixed_ship_engine_slot = light_ship_engine_1
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = ship_torpedo_1
+			rear_1_custom_slot = ship_depth_charge_2
+		}
+	}
+	create_equipment_variant = {
+		name = "Vetehinen-class"			
+		type = ship_hull_submarine_1
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_1
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_torpedo_sub_1
+		}
+	}
+	set_naval_oob = "ROM_1952_naval_MTG"
+}
+set_country_flag = has_symbolic_figurehead
+set_country_flag = mon_Michael_I
+add_timed_idea = {
+    idea = ROM_memories_of_the_conduator
+    days = 90
+}
+add_ideas = {
+	ROM_wolf_of_balkans
+	ROM_oil_exports
+	ROM_political_uncertainties
+	ROM_iron_guard_light
+	dictatorship
+	hos_popular_figurehead
+	semi_industrialised_nation
+	low_economic_mobilisation
+	limited_conscription 
+
+	HoG_Gheorghe_Alexianu
+	FM_Constantin_Pantazi
+	MoS_Dumitru_I_Popescu
+	AM_Ion_C_Marinescu
+	CoStaff_Alexandru_Ioanitiu
+	CoArmy_Corneliu_Teodorini
+	CoN_Horia_Macellariu
+	CoAir_Emanoil_Ionescu
+}
+
+#######################
+####### Politics ######
+#######################
+
+
+set_politics = {	
+	ruling_party = paternal_autocrat
+	last_election = "1937.12.20"
+	election_frequency = 48
+	elections_allowed = no
+}
+
+set_popularities = {
+    national_socialist = 22
+    fascist = 7
+    paternal_autocrat = 34
+    conservative = 5
+    liberal = 25
+    social_democrat = 4
+    socialist = 0
+    bolshevik_leninist = 3
+    marxist_leninist = 0
+}
+
+#######################
+# Leaders
+#######################
+# National Socialism
+create_country_leader = {
+	name = "Horia Sima"
+	desc = "HORIA_SIMA_DESC"
+	picture = "Horia_Sima.dds"
+	expire = "1956.1.1"
+	ideology = new_legionarism
+	traits = {}
+}
+# Fascism
+create_country_leader = {
+	name = "Corneliu Georgescu"
+	desc = "Corneliu_Georgescu_DESC"
+	picture = "Corneliu_Georgescu.dds"
+	expire = "1965.1.1"
+	ideology = legionarism
+	traits = {}
+}
+# Paternal Autocracy
+create_country_leader = {
+	name = "Gheorghe Alexianu"
+	desc = "Gheorghe_Alexianu_DESC"
+	picture = "Gheorghe_Alexianu.dds"
+	expire = "1965.1.1"
+	ideology = reactionary_nationalism
+	traits = { unpopular_figurehead }
+}
+# Paternal Autocracy
+create_country_leader = {
+	name = "Mihai Antonescu"
+	desc = "Mihai_Antonescu_DESC"
+	picture = "Mihai_Antonescu.dds"
+	expire = "1965.1.1"
+	ideology = reactionary_nationalism
+	traits = { dubious_figure }
+}
+# Conservatism
+create_country_leader = {
+	name = "Ion Mihalache"
+	desc = "Ion_Mihalache_DESC"
+	picture = "Ion_Mihalache.dds"
+	expire = "1965.1.1"
+	ideology = traditionalist_conservatism
+	traits = {}
+}
+# Liberalism
+create_country_leader = {
+	name = "Gheorghe Tătărescu"
+	desc = "GHEORGHE_TATARESCU_DESC"
+	picture = "Gheorghe_Tatarescu.dds"
+	expire = "1965.1.1"
+	ideology = social_liberalism
+	traits = {}
+}
+# Social Democracy
+create_country_leader = {
+	name = "Constantin Titel Petrescu"
+	desc = "CONSTANTIN_PETRESCU_DESC"
+	picture = "Constantin_Titel_Petrescu.dds"
+	expire = "1965.1.1"
+	ideology = social_democracy
+	traits = {}
+}
+# Left-Wing Radicalism
+create_country_leader = {
+	name = "Teohari Georgescu"
+	desc = "TEOHARI_GEORGESCU_DESC"
+	picture = "Teohari_Georgescu.dds"
+	expire = "1965.1.1"
+	ideology = radical_socialism
+	traits = {}
+}
+# Bolshevik-Leninism
+create_country_leader = {
+	name = "Petru Groza"
+	desc = "Petru_Groza_DESC"
+	picture = "Petru_Groza.dds"
+	expire = "1965.1.1"
+	ideology = marxism_leninism_kalininism
+	traits = {}
+}
+# Marxism-Leninism
+create_country_leader = {
+	name = "Gheorghe Gheorghiu-Dej"
+	desc = "GHEORGHE_GHEORGHIU_DEJ_DESC"
+	picture = "Gheorghe_Gheorghiu_Dej.dds"
+	expire = "1965.1.1"
+	ideology = marxism_leninism
+	traits = {}
+}
+
+	#Field Marshals#
+
+create_field_marshal = {
+	name = "Gheorghe Avramescu"
+	portrait_path = "gfx/leaders/ROM/Gheorghe_Avramescu.dds"
+	traits = { war_hero trait_reckless offensive_doctrine thorough_planner }
+	skill = 3
+	attack_skill = 4
+	defense_skill = 2
+	planning_skill = 1
+	logistics_skill = 2
+}
+
+create_field_marshal = {
+	name = "Nicolae Dăscălescu"
+	portrait_path = "gfx/leaders/ROM/Nicolae_Dascalescu.dds"
+	traits = { career_officer inflexible_strategist }
+		skill = 2
+		attack_skill = 1
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 2
+}
+
+	#Commanders#
+
+create_corps_commander = {
+	name = "Ioan Racoviţă"
+	portrait_path = "gfx/leaders/ROM/Ioan_Mihail_Racovita.dds"
+	traits = { war_hero career_officer infantry_officer hill_fighter }
+		skill = 3
+		attack_skill = 2
+		defense_skill = 3
+		planning_skill = 3
+		logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Leonard Mociulschi"
+	portrait_path = "gfx/leaders/ROM/Leonard_Mociulschi.dds"
+	traits = { war_hero career_officer infantry_officer trickster trait_mountaineer }
+		skill = 3
+		attack_skill = 3
+		defense_skill = 3
+		planning_skill = 3
+		logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Constantin C. Claps"
+	portrait_path = "gfx/leaders/ROM/Constantin_Constantinescu_Claps.dds"
+	traits = { infantry_officer urban_assault_specialist winter_specialist }
+		skill = 3
+		attack_skill = 4
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 3
+}
+
+create_corps_commander = {
+	name = "Corneliu Teodorini"
+	portrait_path = "gfx/leaders/ROM/Corneliu_Teodorini.dds"
+	traits = { infantry_officer infantry_leader winter_specialist }
+		skill = 2
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 3
+		logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Emanoil Bârzotescu"
+	portrait_path = "gfx/leaders/ROM/Emanoil_Barzotescu.dds"
+	traits = { infantry_officer }
+		skill = 2
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 3
+		logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Ioan Dumitrache"
+	portrait_path = "gfx/leaders/ROM/Ioan_Dumitrache.dds"
+	traits = { armor_officer panzer_leader }
+		skill = 2
+		attack_skill = 2
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Grigore Balăn"
+	portrait_path = "gfx/leaders/ROM/Grigore_Balan.dds"
+	traits = { infantry_officer trait_mountaineer }
+		skill = 2
+		attack_skill = 4
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 3
+}
+
+
+create_corps_commander = {
+	name = "Dumitru Dămăceanu"
+	portrait_path = "gfx/leaders/ROM/Dumitru_Damaceanu.dds"
+	traits = { cavalry_officer }
+		skill = 2
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 1
+}
+
+create_corps_commander = {
+	name = "Emanoil Ionescu"
+	portrait_path = "gfx/leaders/ROM/Emanoil_Ionescu.dds"
+	traits = { harsh_leader }
+		skill = 1
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 1
+}
+
+create_corps_commander = {
+	name = "Gheorghe Manoliu"
+	portrait_path = "gfx/leaders/ROM/Gheorghe_Manoliu.dds"
+	traits = { war_hero trait_mountaineer }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 2
+		planning_skill = 1
+		logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Edgar Rădulescu"
+	portrait_path = "gfx/leaders/ROM/Edgar_Radulescu.dds"
+	traits = {  }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 2
+}
+
+create_corps_commander = {
+	name = "Nicolae Ciupercă"
+	portrait_path = "gfx/leaders/ROM/Nicolae_Ciuperca.dds"
+	traits = { cavalry_officer hill_fighter }
+		skill = 1
+		attack_skill = 2
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 2
+}
+
+#######################
+# Admirals
+#######################
+create_navy_leader = {
+	name = "Horia Macellariu"
+	portrait_path = "gfx/leaders/ROM/Horia_Macellariu.dds"
+	traits = { spotter }
+	skill = 3
+	attack_skill = 2
+	defense_skill = 2
+	maneuvering_skill = 3
+	coordination_skill = 3
+}
+create_navy_leader = {
+	name = "Emil Grecescu"
+	portrait_path = "gfx/leaders/ROM/Emil_Grecescu.dds"
+	traits = { }
+	skill = 1
+	attack_skill = 1
+	defense_skill = 1
+	maneuvering_skill = 1
+	coordination_skill = 2
+}
+create_navy_leader = {
+	name = "Ioan Georgescu"
+	portrait_path = "gfx/leaders/ROM/Ioan_Georgescu.dds"
+	traits = { bold }
+	skill = 2
+	attack_skill = 1
+	defense_skill = 2
+	maneuvering_skill = 2
+	coordination_skill = 2
+}
+
+
+
+

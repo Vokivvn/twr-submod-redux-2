@@ -1,0 +1,896 @@
+#########################################################################
+#  Finnish
+#########################################################################
+
+karelian_decisions = {
+
+    
+	FIN_sweep_karelia = {
+		icon = oppression
+		fire_only_once = yes
+		allowed = { tag = FIN }
+		available = {
+			has_idea = valpo_grants
+			divisions_in_state = {
+				state = 216
+				size > 3
+			}
+		}
+		highlight_states = {
+			state = 216
+		}
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+		visible = {
+			NOT = { has_country_flag = no_deportations }
+		}
+		is_good = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FIN_sweep_karelia"
+			if = {
+				limit = { is_ai = yes }
+				set_country_flag = muilutus_ready
+			}
+			else = {
+				activate_mission = maintain_troops_in_karelia
+			}
+		}
+	}
+	maintain_troops_in_karelia = {
+		icon = oppression
+		available = {
+			always = no
+		}
+		activation = {
+			always = no #Triggered from effect
+		}
+		highlight_states = {
+			state = 216
+		}
+		days_mission_timeout = 40
+		visible = {}
+		cancel_trigger = {
+			divisions_in_state = {
+				state = 216
+				size < 4
+			}
+		}
+		is_good = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout maintain_troops_in_karelia"
+			set_country_flag = muilutus_ready
+		}
+	}
+	final_deportation = {
+		fire_only_once = yes
+		cost = 15
+		days_remove = 35
+		allowed = { tag = FIN }
+		visible = { NOT = { has_country_flag = no_deportations } }
+		icon = infiltrate_state
+		available = {
+			has_country_flag = muilutus_ready
+		}
+		modifier = {
+			civilian_factory_use = 2
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove final_deportation"
+			set_country_flag = last_deportation_done
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	
+}
+finnish_politics = {
+	FIN_negotiate_end_to_strike_decision = {
+		fire_only_once = yes
+		cost = 10 
+		allowed = { tag = FIN }
+		visible = {
+			has_idea = FIN_svedu_strike
+		}
+		icon = generic_civil_support
+		available = {
+			has_idea = FIN_svedu_strike
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FIN_negotiate_end_to_strike_decision"
+            remove_ideas = scrapped_swedish
+			remove_ideas = FIN_svedu_strike
+			add_stability = -0.05
+        }
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				has_war = no
+			}
+		}
+	}
+}
+finnish_translation_decisions = {
+	translate_sweden = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		icon = generic_nationalism
+		visible = {
+			OR = {
+				666 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				38 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		available = {
+			OR = {
+				666 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				38 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_sweden"
+			if = {
+				limit = { 666 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				666 = {
+				set_state_name = "Länsipohja"
+				set_province_name = {
+					id = 9108
+					name = "Luulaja"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 38 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				38 = {
+				set_state_name = "Norlanti"
+				set_province_name = {
+					id = 156
+					name = "Vaaluna"
+				}
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_norway = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		icon = generic_nationalism
+		visible = {
+			144 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+		}
+		available = {
+			tag = FIN
+				144 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_norway"
+			if = {
+				limit = { 144 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				144 = {
+				set_state_name = "Ruija"
+				set_province_name = {
+					id = 192
+					name = "Ahkaanjarka"
+				}
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_ingria = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		icon = generic_nationalism
+		visible = {
+			OR = {
+				195 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				208 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				209 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		available = {
+			OR = {
+				195 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				208 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				209 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_ingria"
+			if = {
+				limit = { 195 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				195 = {
+				set_state_name = "Neva"
+				set_province_name = {
+					id = 3151
+					name = "Nevanlinna"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 208 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				208 = {
+				set_state_name = "Inkeri"
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 209 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				209 = {
+				set_state_name = "Pihkova"
+				set_province_name = {
+					id = 11202
+					name = "Pihkova"
+				}
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_chud = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		icon = generic_nationalism
+		visible = {
+			OR = {
+				263 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				210 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		available = {
+			OR = {
+				263 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				210 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_chud"
+			if = {
+				limit = { 263 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				263 = {
+				set_state_name = "Tsuudinmaa"
+				set_province_name = {
+					id = 117
+					name = "Rurikinlinna"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 210 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				210 = {
+				set_state_name = "Etelä-Tsuudi"
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_latvia = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		visible = {
+			OR = {
+				207 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				12 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				190 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		icon = generic_nationalism
+		available = {
+			OR = {
+				207 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				12 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				190 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_latvia"
+			if = {
+				limit = { 207 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				207 = {
+				set_state_name = "Väinälä"
+				set_province_name = {
+					id = 11241
+					name = "Joensatama"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 12 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				12 = {
+				set_state_name = "Liivinmaa"
+				set_province_name = {
+					id = 9340
+					name = "Riika"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 190 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				190 = {
+				set_state_name = "Liiviranta"
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_arkangelsk = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		icon = generic_nationalism
+		visible = {
+			OR = {
+				214 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				351 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		available = {
+			OR = {
+				214 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				351 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_arkangelsk"
+			if = {
+				limit = { 214 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				214 = {
+				set_state_name = "Vienansuu"
+				set_province_name = {
+					id = 3338
+					name = "Vienankaupunki"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 351 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				351 = {
+				set_state_name = "Völögda"
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_veps = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		icon = generic_nationalism
+		visible = {
+			OR = {
+				264 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				244 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		available = {
+			
+			OR = {
+				264 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				244 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_veps"
+			if = {
+				limit = { 264 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				264 = {
+				set_state_name = "Vepsä"
+				set_province_name = {
+					id = 3140
+					name = "Maarianrannat"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 244 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				244 = {
+				set_state_name = "Olhava"
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_valka = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		visible = {
+			OR = {
+				246 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				247 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		icon = generic_nationalism
+		available = {
+			OR = {
+				246 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				247 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_valka"
+			if = {
+				limit = { 246 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				246 = {
+				set_state_name = "Tsuudinkarjala"
+				set_province_name = {
+					id = 11349
+					name = "Tyväri"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 247 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				247 = {
+				set_state_name = "Valkamaa"
+				set_province_name = {
+					id = 6245
+					name = "Valkanlinna"
+				}
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_merya = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		icon = generic_nationalism
+		visible = {
+			OR = {
+				248 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				253 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				219 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		available = {
+			OR = {
+				248 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				253 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				219 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_merya"
+			if = {
+				limit = { 248 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				248 = {
+				set_state_name = "Valka-Merja"
+				set_province_name = {
+					id = 121
+					name = "Merjanlinna"
+				}
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 253 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				253 = {
+				set_state_name = "Merjanmaa"
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 219 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				219 = {
+				set_state_name = "Musta-Merja"
+				set_province_name = {
+					id = 6380
+					name = "Mustajoki"
+				}
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_meschchera = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		visible = {
+			OR = {
+				254 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				223 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		icon = generic_nationalism
+		available = {
+			OR = {
+				254 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				223 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_meschchera"
+			if = {
+				limit = { 254 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				254 = {
+				set_state_name = "Mestsora"
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 223 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				223 = {
+				set_state_name = "Länsi-Mestsora"
+				set_province_name = {
+					id = 6262
+					name = "Tuulos"
+				}
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	translate_smolensk = {
+		fire_only_once = yes
+		cost = 5
+		allowed = { 
+			tag = FIN
+		}
+		icon = generic_nationalism
+		visible = {
+			OR = {
+				205 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				243 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+				242 = {
+					is_owned_by = FIN
+					is_controlled_by = FIN
+				}
+			}
+		}
+		available = {
+			OR = {
+				205 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				243 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				242 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision translate_smolensk"
+			if = {
+				limit = { 205 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				205 = {
+				set_state_name = "Okalahti"
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 243 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				243 = {
+				set_state_name = "Roslaavi"
+				set_state_flag = finnished
+				}
+			}
+			if = {
+				limit = { 242 = {
+					is_owned_by = FIN
+					hidden_trigger = { NOT = { has_state_flag = finnished } }
+				}
+				}
+				242 = {
+				set_state_name = "Rajala"
+				set_province_name = {
+					id = 306
+					name = "Ammuslinnake"
+				}
+				set_state_flag = finnished
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}

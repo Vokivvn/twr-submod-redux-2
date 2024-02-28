@@ -1,0 +1,347 @@
+ideas = {
+
+	mobilization_laws = { 
+		law = yes
+		use_list_view = yes
+		CHI_NRA = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CHI_NRA"}
+						
+			cost = 150
+			
+			level = 7
+			
+			available = {
+				#has_manpower_for_recruit_change_to = { value = 0.005 group = mobilization_laws }
+			}
+			
+			visible = {
+				tag = CHI
+			}
+
+			modifier = {
+				army_attack_factor = -0.33
+				army_defence_factor = -0.33
+				attrition = 0.2 
+				mobilization_speed = -0.2
+				training_time_army_factor = 0.9
+				conscription = 0.01
+				experience_gain_army_factor = -1.0
+				military_leader_cost_factor = 1.0
+			}
+			
+			allowed_to_remove = {
+				NOT = {
+					tag = CHI			
+				}
+			}
+			
+			cancel_if_invalid = no
+		}
+
+		disarmed_nation = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea disarmed_nation"}
+						
+			cost = 150
+			
+			level = 7
+			
+			available = {
+				#has_manpower_for_recruit_change_to = { value = 0.005 group = mobilization_laws }
+			}
+
+			modifier = {
+				conscription = 0.01
+			}
+			
+			cancel_if_invalid = no
+		}
+		
+		volunteer_only = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea volunteer_only"}
+						
+			cost = 150
+			
+			level = 6
+			
+			available = {
+				#has_manpower_for_recruit_change_to =  { value = 0.015 group = mobilization_laws }
+				NOT = { has_idea = undisturbed_isolation }
+				NOT = { has_idea = isolation }
+			}
+
+			ai_will_do = {
+   				factor = 1
+
+   				modifier = {
+					factor = 60 # being disarmed is bad in a wargame yo
+					has_idea = disarmed_nation 
+				}
+			}
+
+			modifier = {
+				conscription = 0.015
+			}
+			
+			default = yes
+			
+			cancel_if_invalid = no
+			
+			allowed_to_remove = {
+				if = {
+					limit = {
+						tag = CAN
+					}
+					NOT = {
+						OR = {
+							has_idea = CAN_quebec_regionalism
+							has_idea = CAN_quebec_regionalism_worse
+						}
+					}
+					else = {
+						always = yes
+					}
+				}
+			}
+		}
+		
+		limited_conscription = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea limited_conscription"}
+					
+			cost = 150
+			
+			level = 5
+
+			available = {
+				#has_manpower_for_recruit_change_to =  { value = 0.025 group = mobilization_laws }
+				NOT = { has_idea = undisturbed_isolation }
+				NOT = { has_idea = isolation }
+			}
+
+			modifier = {
+				conscription = 0.025
+			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  1000
+				}
+			}
+			
+			cancel_if_invalid = no
+			
+			allowed_to_remove = {
+				if = {
+					limit = {
+						tag = RFP
+					}
+					NOT = {
+						has_idea = RFP_Divided_Party_idea
+					}
+					else = {
+						always = yes
+					}
+				}
+			}
+		}
+		
+		extensive_conscription = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea extensive_conscription"}
+			
+			available = {
+				#has_manpower_for_recruit_change_to = { value = 0.05 group = mobilization_laws }
+				OR = {
+					is_fascist = yes
+					is_communist = yes
+					AND = {
+						has_war = yes
+						enemies_strength_ratio > 0.5
+						#any_enemy_country = {
+						#	strength_ratio = {
+						#		tag = ROOT 
+						#		ratio > 0.5
+						#	}
+						#}
+					}					
+				}
+				NOT = { has_idea = BRY_Policy_of_Non_Intervention }
+			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  800
+				}
+			}
+			
+			cost = 150
+			
+			level = 4
+			
+			modifier = {
+				conscription = 0.05
+				#industrial_capacity_factory = -0.1
+				#production_speed_buildings_factor = -0.1
+				training_time_factor = 0.1
+			}
+			
+			cancel_if_invalid = no
+		}
+		
+		service_by_requirement = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea service_by_requirement"}
+			
+			
+			available = {
+				#has_manpower_for_recruit_change_to =  { value = 0.1 group = mobilization_laws }
+				OR = {
+					has_government = national_socialist
+					has_government = fascist
+					has_government = bolshevik_leninist
+					has_government = marxist_leninist
+					AND = {
+						has_war = yes
+						enemies_strength_ratio > 0.6
+						#any_enemy_country = {
+						#	strength_ratio = {
+						#		tag = ROOT 
+						#		ratio > 0.6
+						#	}
+						#}
+					}
+				}
+				NOT = { has_idea = BRY_Policy_of_Non_Intervention }
+			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  700
+				}
+				modifier = {
+					#Lower chance if has decent amount
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
+			}
+			
+			cost = 150
+			
+			level = 3
+
+			modifier = {
+				conscription = 0.1
+				industrial_capacity_factory = -0.1
+				industrial_capacity_dockyard = -0.1
+				production_speed_buildings_factor = -0.1
+				training_time_factor = 0.2
+			}
+			
+			cancel_if_invalid = no
+		}
+		
+		all_adults_serve = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea all_adults_serve"}
+			
+			available = {
+				#has_manpower_for_recruit_change_to =  { value = 0.2 group = mobilization_laws }
+				has_war = yes
+				enemies_strength_ratio > 0.75
+				#any_enemy_country = {
+				#	strength_ratio = {
+				#		tag = ROOT 
+				#		ratio > 0.75
+				#	}
+				#}
+				NOT = { has_idea = BRY_Policy_of_Non_Intervention }
+			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  600
+				}
+				modifier = {
+					#Lower chance if has decent amount
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
+			}
+		
+			cost = 150
+			
+			level = 2
+			
+			modifier = {
+				conscription = 0.2
+				industrial_capacity_factory = -0.3
+				industrial_capacity_dockyard = -0.3
+				production_speed_buildings_factor = -0.3
+				#XP from reinforcement penalty (small)
+				training_time_factor = 0.3
+			}
+			
+			cancel_if_invalid = no
+		}
+		
+		scraping_the_barrel = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea scraping_the_barrel"}
+			
+			
+			available = {
+				#has_manpower_for_recruit_change_to =  { value = 0.25 group = mobilization_laws }
+				has_war = yes
+				
+				enemies_strength_ratio > 1
+				#any_enemy_country = {
+				#	strength_ratio = {
+				#		tag = ROOT 
+				#		ratio > 1
+				#	}
+				#}
+				NOT = { has_idea = BRY_Policy_of_Non_Intervention }
+			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  500
+				}				
+				modifier = {
+					#Lower chance if has decent amount
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
+				modifier = {
+					#Block has plenty manpower
+					factor = 0
+					manpower_per_military_factory >  5000
+				}
+			}
+
+			cost = 150
+			
+			level = 1
+
+			modifier = {
+				conscription = 0.25
+				industrial_capacity_factory = -0.4
+				industrial_capacity_dockyard = -0.4
+				production_speed_buildings_factor = -0.4
+				training_time_factor = 0.5
+			}
+			
+			cancel_if_invalid = no
+		}
+	}
+}

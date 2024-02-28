@@ -1,0 +1,531 @@
+####################
+## ARTUKOVIC TREE ##
+####################
+shared_focus = {
+	id = CRO_Artukovic_The_Poglavniks_Legacy
+	icon = GFX_CRO_Pavelic_Dead
+	cost = 5
+	x = 14
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_The_Poglavniks_Legacy"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		add_ideas = CRO_Unstable_Government_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Purge_the_Home_Guard
+	icon = GFX_CRO_Disband_the_Ustashe
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Artukovic_The_Poglavniks_Legacy
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_The_Poglavniks_Legacy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Purge_the_Home_Guard"
+		country_event = { id = twrcroatia.130 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Purge_the_Government
+	icon = GFX_GENERIC_Political_Purge
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_The_Poglavniks_Legacy
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_The_Poglavniks_Legacy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Purge_the_Government"
+		IF = {
+			limit = {
+				has_idea = CRO_Defeat_at_Srem_idea
+			}
+		remove_ideas = CRO_Defeat_at_Srem_idea
+		}
+		add_ideas = CRO_Oruznistvo_idea 
+		add_timed_idea = {
+			idea = CRO_Purged_Government_idea
+			days = 150
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Order_or_Else
+	icon = GFX_focus_CRO_Artukovic_Order_or_Else
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Artukovic_The_Poglavniks_Legacy
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_The_Poglavniks_Legacy
+	}
+	bypass = {
+		NOT = {
+			has_idea = CRO_Divided_Home_Guard_idea
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Order_or_Else"
+		IF = {
+			limit = {
+				has_idea = CRO_Divided_Home_Guard_idea
+			}
+			remove_ideas = CRO_Divided_Home_Guard_idea
+			country_lock_all_division_template = no
+			else = {
+				effect_tooltip = {
+					remove_ideas = CRO_Divided_Home_Guard_idea
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Preserve_the_Christian_Family
+	icon = GFX_GENERIC_Family
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Purge_the_Home_Guard
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Purge_the_Home_Guard
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Purge_the_Government
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Order_or_Else
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Preserve_the_Christian_Family"
+		add_stability = 0.05
+		add_political_power = 30
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Everyone_Must_Do_Their_Part
+	icon = GFX_GENERIC_Child_Worker
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Preserve_the_Christian_Family
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Preserve_the_Christian_Family
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Everyone_Must_Do_Their_Part"
+		add_timed_idea = {
+			idea = CRO_Everyone_Must_Do_Their_Part_idea
+			days = 180
+		}
+      hidden_effect = {
+		country_event = {
+			id = twr_cro_flavour.9
+			hours = 7
+		}
+            }
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Secure_Stepinacs_Blessing
+	icon = GFX_GENERIC_Catholic_Government
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Everyone_Must_Do_Their_Part
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Everyone_Must_Do_Their_Part
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Secure_Stepinacs_Blessing"
+		country_event = {
+			id = twrcroatia.31
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Secure_the_Poglavniks_Position
+	icon = GFX_CRO_Artukovic
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Purge_the_Government
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Purge_the_Home_Guard
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Purge_the_Government
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Order_or_Else
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Secure_the_Poglavniks_Position"
+		unlock_decision_category_tooltip = the_artukovic_doctrine_category
+		set_country_flag = disable_ndh_gui_flag
+		custom_effect_tooltip = cro_disable_ndh_gui_tt 
+		swap_ideas = {
+			remove_idea = CRO_Unstable_Government_idea
+			add_idea = CRO_Unstable_Government_1_idea
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Trade_With_the_Reich
+	icon = GFX_GER_Diplomacy_Suitcase
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Secure_the_Poglavniks_Position
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+	}
+	available = {
+		NOT = {
+			OR = {
+				DDR = {
+					exists = yes
+					has_war = no
+				}
+				PGR = {
+					exists = yes
+					has_war = no
+				}
+			}
+		}
+	}
+	bypass = {
+		OR = {
+			DDR = {
+				exists = yes
+				has_war = no
+			}
+			PGR = {
+				exists = yes
+				has_war = no
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Trade_With_the_Reich"
+		add_ideas = CRO_German_Trade_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Return_of_the_Wehrmacht_Advisors
+	icon = GFX_GENERIC_German_Style_Soldiers
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Trade_With_the_Reich
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Trade_With_the_Reich
+	}
+	available = {
+		NOT = {
+			OR = {
+				DDR = {
+					exists = yes
+					has_war = no
+				}
+				PGR = {
+					exists = yes
+					has_war = no
+				}
+			}
+		}
+	}
+	bypass = {
+		OR = {
+			DDR = {
+				exists = yes
+				has_war = no
+			}
+			PGR = {
+				exists = yes
+				has_war = no
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Return_of_the_Wehrmacht_Advisors"
+		add_ideas = CRO_Wehrmacht_Advisors_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Found_the_UNS
+	icon = GFX_focus_CRO_Artukovic_Found_the_UNS
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Order_or_Else
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Purge_the_Home_Guard
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Purge_the_Government
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Order_or_Else
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Found_the_UNS"
+		IF = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+		cro_create_intelligence_agency = yes
+		create_operative_leader = {
+			name = "Eugen Kvaternik"
+			GFX = GFX_Portrait_Eugen_Kvaternik
+			traits = { operative_infiltrator operative_tough}
+			bypass_recruitment = no
+			available_to_spy_master = yes
+			nationalities = { CRO }
+			}
+		}
+		else = {
+			random_owned_state = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_The_Bosnian_Question
+	icon = GFX_CRO_The_Bosnian_Question
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Found_the_UNS
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Found_the_UNS
+	}
+        available = {
+        owns_state = 104
+        owns_state = 981
+        owns_state = 982
+        }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_The_Bosnian_Question"
+		country_event = {
+			id = twrcroatia.32
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Pacifying_the_Serbs
+	icon = GFX_CRO_Anti_Serbian_Propaganda
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_The_Bosnian_Question
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_The_Bosnian_Question
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Pacifying_the_Serbs"
+		add_stability = -0.10
+		add_manpower = -1000
+		SER = {
+					remove_state_core = 981
+					remove_state_core = 982
+	    }
+	hidden_effect = {
+		country_event = {
+			id = twr_cro_flavour.2
+			hours = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_The_Master_Race_Arrives
+	icon = GFX_CRO_The_Master_Race_Arrives
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Artukovic_Pacifying_the_Serbs
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Secure_Stepinacs_Blessing
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Return_of_the_Wehrmacht_Advisors
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Pacifying_the_Serbs
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_The_Master_Race_Arrives"
+		add_ideas = CRO_The_Master_Race_Arrives_idea
+                add_research_slot = 1
+                custom_effect_tooltip = CRO_join_germans_nazi_tt
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Claim_Greater_Croatia
+	icon = GFX_CRO_A_Dream_Come_True
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_The_Master_Race_Arrives
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_The_Master_Race_Arrives
+	}
+	available = {
+		has_completed_focus = CRO_The_Worst_is_Behind_Us
+		has_completed_focus = CRO_Mediterranean_Navy_Expansion
+		has_completed_focus = CRO_Modernise_Our_Land_Forces
+		has_completed_focus = CRO_Improving_The_Airforce
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Claim_Greater_Croatia"
+                custom_effect_tooltip = cro_unlock_expansion_branch
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Integrate_Greater_Croatia
+	icon = GFX_CRO_Italian_Supervision
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Artukovic_Claim_Greater_Croatia
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Claim_Greater_Croatia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Integrate_Greater_Croatia"
+		custom_effect_tooltip = CRO_Integrate_Greater_Croatia_decisions_tt
+		set_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Croatian_Corporatism
+	icon = GFX_CRO_Croatian_Socialism
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Artukovic_Claim_Greater_Croatia
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Claim_Greater_Croatia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Croatian_Corporatism"
+                add_ideas = CRO_corporatism_idea 
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_The_People_are_Fed
+	icon = GFX_SER_focus_farming_subsidies
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Artukovic_Claim_Greater_Croatia
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Claim_Greater_Croatia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_The_People_are_Fed"
+		add_timed_idea = {
+			idea = CRO_The_People_are_Fed_idea
+			days = 365
+		}
+		remove_ideas = CRO_Unstable_Government_1_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Artukovic_Za_Dom_Spremni
+	icon = GFX_CRO_Za_Dom_Spremni
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Artukovic_The_People_are_Fed
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Artukovic_Integrate_Greater_Croatia
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_Croatian_Corporatism
+	}
+	prerequisite = {
+		focus = CRO_Artukovic_The_People_are_Fed
+	}
+	available = { 
+		has_global_flag = form_greater_croatia_flag 
+		has_completed_focus = CRO_Nuclear_Energy
+		has_completed_focus = CRO_Domestic_Tourism
+		has_completed_focus = CRO_The_New_Military
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Artukovic_Za_Dom_Spremni" 
+		add_country_leader_trait = blessed_poglavnik 
+		country_event = { id = cro_endings.4 hours = 4 } 
+	}
+}

@@ -1,0 +1,362 @@
+italian_gui_set_up = {
+	set_variable = { italian_gui_ciano_x = 30 }
+	set_variable = { italian_gui_ciano_y = 130 }
+
+	set_variable = { italian_gui_ciano2_x = -23 }
+	set_variable = { italian_gui_ciano2_y = 92 }
+
+	set_variable = { italian_gui_ciano_text_x = 7 }
+	set_variable = { italian_gui_ciano_text_y = 344 }
+
+	set_variable = { italian_gui_balbo_best_choice_x = 540 }
+	set_variable = { italian_gui_balbo_best_choice_y = 130 }
+
+	set_variable = { italian_gui_balbo2_x = 487 }
+	set_variable = { italian_gui_balbo2_y = 92 }
+
+	set_variable = { italian_gui_balbo_text_x = 517 }
+	set_variable = { italian_gui_balbo_text_y = 344 }
+}
+
+ciano_victory_gui = {
+	set_country_flag = ITA_power_struggle_ciano_victory
+
+	set_variable = { italian_gui_ciano_x = 285 }
+	set_variable = { italian_gui_ciano_y = 70 }
+
+	set_variable = { italian_gui_ciano2_x = 232 }
+	set_variable = { italian_gui_ciano2_y = 32 }
+
+	set_variable = { italian_gui_ciano_text_x = 260 }
+	set_variable = { italian_gui_ciano_text_y = 284 }
+
+	set_variable = { italian_gui_balbo_best_choice_x = 999 }
+	set_variable = { italian_gui_balbo_best_choice_y = 999 }
+
+	set_variable = { italian_gui_balbo2_x = 999 }
+	set_variable = { italian_gui_balbo2_y = 999 }
+
+	set_variable = { italian_gui_balbo_text_x = 999 }
+	set_variable = { italian_gui_balbo_text_y = 999 }
+}
+
+balbo_victory_gui = {
+	set_country_flag = ITA_power_struggle_balbo_victory
+
+	set_variable = { italian_gui_ciano_x = 999 }
+	set_variable = { italian_gui_ciano_y = 999 }
+
+	set_variable = { italian_gui_ciano2_x = 999 }
+	set_variable = { italian_gui_ciano2_y = 999 }
+
+	set_variable = { italian_gui_ciano_text_x = 999 }
+	set_variable = { italian_gui_ciano_text_y = 999 }
+
+	set_variable = { italian_gui_balbo_best_choice_x = 285 }
+	set_variable = { italian_gui_balbo_best_choice_y = 70 }
+
+	set_variable = { italian_gui_balbo2_x = 232 }
+	set_variable = { italian_gui_balbo2_y = 32 }
+
+	set_variable = { italian_gui_balbo_text_x = 260 }
+	set_variable = { italian_gui_balbo_text_y = 284 }
+}
+
+clamp_italian_variables = {	
+
+	clamp_variable = {
+	    var = var_balbo_influence_gcf
+	    min = 0
+	    max = 600			
+	}
+	clamp_variable = {
+	    var = var_ciano_influence_gcf
+	    min = 0
+	    max = 600			
+	}
+	clamp_variable = {
+	    var = ita_var_coup_chance
+	    min = 0
+	    max = 1			
+	 }
+	clamp_variable = {
+	    var = ita_var_gcf_loyalty
+	    min = 0
+	    max = 1			
+	}
+	clamp_variable = {
+	    var = ita_var_mvsn_loyalty
+	    min = 0
+	    max = 1			
+	}	
+    clamp_variable = {
+	    var = ita_var_domestic_opposition
+	    min = 0
+	    max = 1			
+	}
+	clamp_variable = {
+	    var = ita_var_montenegrin_opposition
+	    min = 0
+	    max = 1			
+	}
+	clamp_variable = {
+	    var = ita_var_albania_opposition
+	    min = 0
+	    max = 1			
+	}
+	clamp_variable = {
+	    var = ita_var_dalmatia_opposition
+	    min = 0
+	    max = 1			
+	}
+	clamp_variable = {
+	    var = ita_var_slovenia_opposition
+	    min = 0
+	    max = 1			
+	}
+	clamp_variable = {
+	    var = ita_var_sicily_opposition
+	    min = 0
+	    max = 1			
+	}
+	clamp_variable = {
+	    var = ita_var_veneto_opposition
+	    min = 0
+	    max = 1			
+	}				
+	clamp_variable = {
+	    var = ita_var_south_italy_opposition
+	    min = 0
+	    max = 1			
+	}	
+	clamp_variable = {
+	    var = ita_var_sardinia_corsica_opposition
+	    min = 0
+	    max = 1			
+	}	
+	clamp_variable = {
+	    var = ita_var_north_african_opposition
+	    min = 0
+	    max = 1			
+	}	
+	clamp_variable = {
+	    var = ita_var_ethiopian_opposition
+	    min = 0
+	    max = 1			
+	}	
+}
+
+#SI
+collapse_the_italian_empire = {
+	dismantle_faction = yes
+	release = LBA
+	release = TUN
+	release = MNT
+	release = EGY
+	if = {
+		limit = { country_exists = SLV }
+		release = SLV
+		SLV = {
+			transfer_state = 814
+			transfer_state = 812
+			transfer_state = 813
+			add_state_core = 814
+			add_state_core = 812
+			add_state_core = 813
+		}
+	}
+	CRO = {
+		transfer_state = 815
+		add_state_core = 815
+	}
+	if = {
+		limit = {
+			country_exists = IEA
+		}
+		ETH = {
+			transfer_state = 271
+			annex_country = {
+				target = IEA
+				transfer_troops = no
+			}
+			release = SOM
+			release = DJI
+		}
+	}
+	if = {
+		limit = {
+			HUN = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = HUN
+	}
+	if = {
+		limit = {
+			LBA = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = LBA
+	}
+	if = {
+		limit = {
+			MNT = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = MNT
+	}
+	if = {
+		limit = {
+			SLV = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = SLV
+	}
+	if = {
+		limit = {
+			CRO = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = CRO
+	}
+	if = {
+		limit = {
+			TUR = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = TUR
+	}
+	if = {
+		limit = {
+			GRE = {
+				is_subject_of = PREV
+			}
+		}
+		end_puppet = GRE
+	}
+	if = {
+		limit = {
+			ALB = {
+				is_subject_of = PREV
+			}
+		}
+	drop_cosmetic_tag = yes
+	end_puppet = ALB
+	}
+	if = {
+		limit = {
+			EGY = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = EGY
+	}
+	if = {
+		limit = {
+			YEM = {
+				is_subject_of = PREV
+			}
+		}
+	drop_cosmetic_tag = yes
+	end_puppet = YEM
+	}
+}
+
+#SI
+collapse_the_remaining_puppets_ITA = {
+dismantle_faction = yes
+	if = {
+		limit = {
+			HUN = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = HUN
+	}
+	if = {
+		limit = {
+			LBA = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = LBA
+	}
+	if = {
+		limit = {
+			MNT = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = MNT
+	}
+	if = {
+		limit = {
+			SLV = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = SLV
+	}
+	if = {
+		limit = {
+			CRO = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = CRO
+	}
+	if = {
+		limit = {
+			TUR = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = TUR
+	}
+	if = {
+		limit = {
+			GRE = {
+				is_subject_of = PREV
+			}
+		}
+		every_owned_state = {
+			limit = {
+				is_core_of = GRE
+			}
+			GRE = { transfer_state = PREV }
+		}
+		end_puppet = GRE
+	}
+	if = {
+		limit = {
+			ALB = {
+				is_subject_of = PREV
+			}
+		}
+	drop_cosmetic_tag = yes
+	end_puppet = ALB
+	}
+	if = {
+		limit = {
+			EGY = {
+				is_subject_of = PREV
+			}
+		}
+	end_puppet = EGY
+	}
+	if = {
+		limit = {
+			YEM = {
+				is_subject_of = PREV
+			}
+		}
+	drop_cosmetic_tag = yes
+	end_puppet = YEM
+	}
+}
+	

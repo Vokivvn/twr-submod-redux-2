@@ -1,0 +1,202 @@
+on_actions = {
+	on_daily_HUN = {
+	effect = {
+		if = {
+			limit = {
+    		check_variable = {
+		    var = hungarian_establishment_influence
+		    value = 15
+		    compare = less_than
+    			}
+    		NOT = {
+    		has_country_flag = CATEGORY_HUN_DONE
+    		has_idea = HUN_no_dems_influence
+    		is_subject = yes
+    			}
+			}
+			HUN = {
+			set_country_flag = ZERO_HUNDEM_INFLUENCE
+			clr_country_flag = FIRST_HUNDEM_INFLUENCE
+			clr_country_flag = SECOOND_HUNDEM_INFLUENCE
+			clr_country_flag = THIRD_HUNDEM_INFLUENCE
+			clr_country_flag = FOURTH_HUNDEM_INFLUENCE
+			add_ideas = HUN_no_dems_influence
+			}
+		}
+		if = {
+			limit = {
+			check_variable = {
+		    var = hungarian_establishment_influence
+		    value = 15
+		    compare = greater_than_or_equals
+    			}
+    		check_variable = {
+		    var = hungarian_establishment_influence
+		    value = 25
+		    compare = less_than
+    			}
+    		NOT = {
+    		has_country_flag = CATEGORY_HUN_DONE
+    		has_idea = HUN_dems_minimum_influence
+    		is_subject = yes
+    			}
+			}
+			HUN = {
+			set_country_flag = FIRST_HUNDEM_INFLUENCE
+			clr_country_flag = SECOOND_HUNDEM_INFLUENCE
+			clr_country_flag = THIRD_HUNDEM_INFLUENCE
+			clr_country_flag = FOURTH_HUNDEM_INFLUENCE
+			clr_country_flag = ZERO_HUNDEM_INFLUENCE
+			add_ideas = HUN_dems_minimum_influence
+			}
+		}
+		if = {
+			limit = {
+			check_variable = {
+		    var = hungarian_establishment_influence
+		    value = 25
+		    compare = greater_than_or_equals
+    			}
+    		check_variable = {
+		    var = hungarian_establishment_influence
+		    value = 50
+		    compare = less_than
+    			}
+    		NOT = {
+    		has_country_flag = CATEGORY_HUN_DONE
+    		has_idea = HUN_dems_minimum_plus_influence
+    		is_subject = yes
+    			}
+			}
+			HUN = {
+			set_country_flag = SECOOND_HUNDEM_INFLUENCE
+			clr_country_flag = FIRST_HUNDEM_INFLUENCE
+			clr_country_flag = THIRD_HUNDEM_INFLUENCE
+			clr_country_flag = FOURTH_HUNDEM_INFLUENCE
+			clr_country_flag = ZERO_HUNDEM_INFLUENCE
+			add_ideas = HUN_dems_minimum_plus_influence
+			}
+		}
+		if = {
+			limit = {
+			check_variable = {
+		    var = hungarian_establishment_influence
+		    value = 50
+		    compare = greater_than_or_equals
+    			}
+    		check_variable = {
+		    var = hungarian_establishment_influence
+		    value = 60
+		    compare = less_than
+    			}
+    		NOT = {
+    		has_country_flag = CATEGORY_HUN_DONE
+    		has_idea = HUN_dems_medium_influence
+    		is_subject = yes
+    			}
+			}
+			HUN = {
+			set_country_flag = THIRD_HUNDEM_INFLUENCE
+			clr_country_flag = FIRST_HUNDEM_INFLUENCE
+			clr_country_flag = SECOOND_HUNDEM_INFLUENCE
+			clr_country_flag = FOURTH_HUNDEM_INFLUENCE
+			clr_country_flag = ZERO_HUNDEM_INFLUENCE
+			add_ideas = HUN_dems_medium_influence
+			}
+		}
+		if = {
+			limit = {
+			check_variable = {
+		    var = hungarian_establishment_influence
+		    value = 60
+		    compare = greater_than_or_equals
+    			}
+    		NOT = {
+    		has_country_flag = CATEGORY_HUN_DONE
+    		has_idea = HUN_dems_major_influence
+    		is_subject = yes
+    			}
+			}
+			HUN = {
+			set_country_flag = FOURTH_HUNDEM_INFLUENCE
+			clr_country_flag = FIRST_HUNDEM_INFLUENCE
+			clr_country_flag = THIRD_HUNDEM_INFLUENCE
+			clr_country_flag = SECOOND_HUNDEM_INFLUENCE
+			clr_country_flag = ZERO_HUNDEM_INFLUENCE
+			add_ideas = HUN_dems_major_influence
+			}
+		}
+
+		if = {
+			limit = {
+			check_variable = {
+		    var = german_bund_influence
+		    value = 100
+		    compare = greater_than_or_equals
+    			}
+    		is_fascist = no
+    		NOT = {
+    		has_country_flag = CATEGORY_HUN_DONE
+    		
+    		is_subject = yes
+    			}
+			}
+			    HUN = {
+			        country_event = { days = 3 id = twrnewpolitic.2 } # Radical coup
+			        set_country_flag = CATEGORY_HUN_DONE
+			        clear_hungarian_variables = yes
+			    }
+			}
+
+		if = {
+			limit = {
+			OR = {
+			AND = {
+			check_variable = {
+			var = hungarian_military_influence
+			value = 100
+			compare = greater_than_or_equals
+	    			}
+			check_variable = {
+			var = hungarian_military_loyalty
+			value = 3
+			compare = less_than
+			    }
+	    	NOT = {
+	    	has_country_flag = CATEGORY_HUN_DONE
+    		is_subject = yes
+			}
+	    }
+		AND = {
+			check_variable = {
+			var = german_bund_influence
+			value = 60
+			compare = greater_than_or_equals
+	    			}
+			check_variable = {
+			var = hungarian_military_influence
+			value = 50
+			compare = greater_than_or_equals
+	    			}
+			check_variable = {
+			var = hungarian_military_loyalty
+			value = 5
+			compare = less_than
+			    }
+	    	NOT = {
+			has_country_flag = CATEGORY_HUN_DONE
+    		is_subject = yes
+			}
+    	}
+    			}
+			}
+			HUN = {
+			    country_event = { days = 3 id = twrnewpolitic.1 } # Military coup
+			    set_country_flag = CATEGORY_HUN_DONE
+			    clear_hungarian_variables = yes
+			    }
+			}
+			
+		}
+	}
+}

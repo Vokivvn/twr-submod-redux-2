@@ -1,0 +1,4307 @@
+add_namespace = twrsovoccupation
+
+country_event = { # Soviet Occupation of Romania
+	id = twrsovoccupation.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.1"}
+	title = twrsovoccupation.1.t
+	desc = twrsovoccupation.1.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release romania
+		name = twrsovoccupation.1.a
+		ROM = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = ROM
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = ROM
+			}
+			ROM = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				clr_country_flag = mon_Michael_1
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					ROM_wolf_of_balkans
+					ROM_against_hungary #probably shouldn't have it in any case
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 9
+					conservative = 9
+					liberal = 7
+					social_democrat = 4
+					socialist = 12
+					bolshevik_leninist = 13
+					marxist_leninist = 46
+				}
+				set_cosmetic_tag = ROM_SOV
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 838
+						state = 839
+					}
+				}
+				ROM = {
+					transfer_state = PREV
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 78
+					state = 80
+					state = 835
+					state = 836
+				}
+				is_owned_by = ROM
+			}
+			ROOT = {
+				transfer_state = PREV
+			}
+			add_core_of = ROOT
+			remove_core_of = ROM
+		}
+		if = {
+			limit = {
+				ROM = {
+					owns_state = 77
+				}
+				NOT = {
+					has_country_flag = OCCUPATION_DOBRUDJA_IS_ROMANIAN
+				}
+			}
+			transfer_state = 77
+		}
+		if = {
+			limit = {
+				has_country_flag = OCCUPATION_DOBRUDJA_IS_ROMANIAN
+				owns_state = 77
+			}
+			ROM = {
+				transfer_state = 77
+			}
+		}
+		
+	}
+	option = {
+		name = twrsovoccupation.1.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_ROM
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Finland
+	id = twrsovoccupation.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.2"}
+	title = twrsovoccupation.2.t
+	desc = twrsovoccupation.2.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release finland
+		name = twrsovoccupation.2.a
+		FIN = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = FIN
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = FIN
+			}
+			FIN = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					finlandia_triumphant #not anymore
+					FIN_german_influence
+					karelian_money_drain
+					valpo_grants
+					finnicization_spirit
+					FIN_russian_labour
+					karelian_autonomy
+					FIN_k_infra_project
+					karelia_in_disrepair
+					FIN_karelianism
+					fin_bible_and_the_law_idea
+					scrapped_swedish
+					summer_camps_finland
+					lutheran_nation
+					fin_realpolitik
+					peace_vigilance_neutrality
+					unity_from_liberty
+					unity_from_liberty2
+					FIN_Corporatism
+					FIN_prepare_liberation
+					FIN_Fight_like_Athenians
+					FIN_Total_Defenses
+					FIN_Total_Defenses2
+					FIN_every_man_serves
+					FIN_rally
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 13
+					paternal_autocrat = 0
+					conservative = 14
+					liberal = 21
+					social_democrat = 10
+					socialist = 6
+					bolshevik_leninist = 0
+					marxist_leninist = 36
+				}
+				set_cosmetic_tag = FIN_SOV
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 213
+					state = 215
+					state = 722
+					state = 146
+					state = 216
+				}
+				is_owned_by = FIN
+			}
+			ROOT = {
+				transfer_state = PREV
+			}
+			add_core_of = ROOT
+		}
+	}
+	option = {
+		name = twrsovoccupation.2.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_FIN
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Turkey
+	id = twrsovoccupation.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.3"}
+	title = twrsovoccupation.3.t
+	desc = twrsovoccupation.3.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release turkey
+		name = twrsovoccupation.3.a
+		TUR = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = TUR
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = TUR
+			}
+			TUR = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					TUR_opposing_influences
+					TUR_heterogeneous_army
+					TUR_ASALA_presence
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 23
+					fascist = 0
+					paternal_autocrat = 6
+					conservative = 14
+					liberal = 4
+					social_democrat = 10
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 43
+				}
+				set_cosmetic_tag = TUR_SOV
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 213
+					state = 215
+					state = 722
+					state = 146
+					state = 216
+				}
+				is_owned_by = FIN
+			}
+			ROOT = {
+				transfer_state = PREV
+			}
+		}
+	}
+	option = { #release turkey, but occupy the straits
+		name = twrsovoccupation.3.b
+		TUR = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = TUR
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = TUR
+			}
+			TUR = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					TUR_opposing_influences
+					TUR_heterogeneous_army
+					TUR_ASALA_presence
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 23
+					fascist = 0
+					paternal_autocrat = 6
+					conservative = 14
+					liberal = 4
+					social_democrat = 10
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 43
+				}
+				set_cosmetic_tag = TUR_SOV
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 341
+					state = 340
+					state = 347
+				}
+				is_owned_by = TUR
+			}
+			ROOT = {
+				transfer_state = PREV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.3.c
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_TUR
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Bulgaria
+	id = twrsovoccupation.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.4"}
+	title = twrsovoccupation.4.t
+	desc = twrsovoccupation.4.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release bulgaria
+		name = twrsovoccupation.4.a
+		BUL = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = BUL
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 211
+						state = 212
+						state = 48
+					}
+				}
+				BUL = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 77
+					has_country_flag = OCCUPATION_DOBRUDJA_IS_BULGARIAN
+				}
+				BUL = {
+					transfer_state = 77
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 184
+					has_country_flag = OCCUPATION_THRACE_IS_BULGARIAN
+				}
+				BUL = {
+					transfer_state = 184
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 106
+					has_country_flag = OCCUPATION_MACEDONIA_IS_BULGARIAN
+				}
+				BUL = {
+					transfer_state = 106
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = BUL
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = BUL
+				}
+			}
+			BUL = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					BUL_balkan_prussia
+					BUL_ukraine_refugees
+					BUL_greek_unrest
+					BUL_hated_regent #should be gone anyways
+					BUL_puppet_regent
+					BUL_bulgarian_turmoil
+					BUL_Formalise_the_Greyshirts
+					BUL_Aftermath_of_Officer_Purge
+					BUL_The_Chaos
+					BUL_The_Chaos1
+					BUL_The_Chaos2
+					BUL_The_Chaos3
+					BUL_The_Chaos4
+					BUL_The_Chaos5
+					BUL_The_Crisis_of_52
+					BUL_Shrinked_Down_Greyshirts
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 5
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 5
+					socialist = 10
+					bolshevik_leninist = 20
+					marxist_leninist = 60
+				}
+				set_cosmetic_tag = BUL_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.4.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_BUL
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Sweden
+	id = twrsovoccupation.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.5"}
+	title = twrsovoccupation.5.t
+	desc = twrsovoccupation.5.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release sweden
+		name = twrsovoccupation.5.a
+		SWE = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = SWE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = SWE
+			}
+			SWE = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				clr_country_flag = mon_Gustav_VI
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					en_svensk_tiger
+					neutrality_idea
+					SWE_nazi_ties
+					SWE_realpolitik
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 10
+					liberal = 15
+					social_democrat = 30
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 45
+				}
+				set_cosmetic_tag = SWE_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.5.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_SWE
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Norway
+	id = twrsovoccupation.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.6"}
+	title = twrsovoccupation.6.t
+	desc = twrsovoccupation.6.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release norway
+		name = twrsovoccupation.6.a
+		NOR = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = NOR
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = NOR
+			}
+			NOR = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer #stop console annexing
+					NOR_quisling_nazi_puppet
+					NOR_party_crisis
+					NOR_discontented_GSSN
+					NOR_The_GSSN
+					NOR_The_Statspolitiet
+					NOR_purge_of_oppositions
+					NOR_payment
+					NOR_paid
+					NOR_crisis_independence
+					NOR_illegitimate_government
+					NOR_the_london_exiles
+					NOR_the_norwegian_resistance
+					NOR_fishing_industries
+					NOR_junta_rule
+					NOR_ss_esotericism_1
+					NOR_ss_esotericism_2
+					NOR_powerful_GSSN
+					NOR_diplomatic_renewal
+					NOR_alt_for_norge_idea
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 15
+					liberal = 10
+					social_democrat = 15
+					socialist = 5
+					bolshevik_leninist = 0
+					marxist_leninist = 55
+				}
+				set_cosmetic_tag = NOR_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.6.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_NOR
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Denmark
+	id = twrsovoccupation.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.7"}
+	title = twrsovoccupation.7.t
+	desc = twrsovoccupation.7.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release sweden
+		name = twrsovoccupation.7.a
+		DEN = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = DEN
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = DEN
+			}
+			#if = {
+			#	limit = {
+			#		owns_state = 58
+			#	}
+			#	DEN = {
+			#		transfer_state = 58
+			#	}
+			#	58 = {
+			#		add_core_of = DEN
+			#	}
+			#}
+			DEN = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					DEN_nazi_regime
+					DEN_Heer_Junta
+					DEN_Martial_Law
+					DEN_For_the_Heer
+					DEN_Denmark_for_itself
+					DEN_SS_Cooperation
+					DEN_For_the_SS
+					DEN_uncertainty
+					RMO_chaos_state_focus3 #ok console annexer
+					RMO_chaos_state_focus2
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 5
+					liberal = 10
+					social_democrat = 35
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 50
+				}
+				set_cosmetic_tag = DEN_SOV
+				create_country_leader = {
+					name = "Hans Kirk"
+					desc = ""
+					picture = "Hans_Kirk.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {}
+				}
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.7.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_DEN
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Greece
+	id = twrsovoccupation.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.8"}
+	title = twrsovoccupation.8.t
+	desc = twrsovoccupation.8.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release greece
+		name = twrsovoccupation.8.a
+		GRE = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = GRE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = GRE
+			}
+			GRE = {
+				load_focus_tree = generic
+				clr_country_flag = MILITRAIST_STRUGGLE_TICK_TOCK
+				clr_country_flag = GRE_MILITARY_THREAT_TOOLTIP
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					GRE_low_legitimacy
+					GRE_ruined_economy
+					GRE_ruined_economy1
+					GRE_ruined_economy2
+					GRE_national_crisis
+					GRE_idea_Popular_Uprising
+					GRE_Defenders_Aegean
+					GRE_Italian_Troops_in_Greek_Soil
+					GRE_Greco_Italian_Base_Against_Bulgaria
+					GRE_Death_to_Guerillas
+					GRE_Rearmament
+					GRE_Peoples_Army_of_Greece
+					GRE_National_Army_of_Greece
+					GRE_Corporatism
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 15
+					conservative = 5
+					liberal = 8
+					social_democrat = 0
+					socialist = 4
+					bolshevik_leninist = 6
+					marxist_leninist = 62
+				}
+				set_cosmetic_tag = GRE_SOV
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = OCCUPATION_THRACE_IS_GREEK
+					}
+					GRE = {
+						owns_state = 184
+					}
+				}
+				transfer_state = 184
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.8.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_GRE
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Albania
+	id = twrsovoccupation.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.9"}
+	title = twrsovoccupation.9.t
+	desc = twrsovoccupation.9.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release albania
+		name = twrsovoccupation.9.a
+		ALB = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = ALB
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = ALB
+			}
+			ALB = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					ALB_Italian_Officers_in_our_Army
+					ALB_Albanian_Officers_in_our_Army
+					ALB_Italian_Protectorate
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 5
+					bolshevik_leninist = 15
+					marxist_leninist = 80
+				}
+				set_cosmetic_tag = ALB
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = OCCUPATION_KOSOVO_IS_ALBANIAN
+					}
+					ALB = {
+						owns_state = 818
+					}
+				}
+				transfer_state = 818
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = OCCUPATION_WEST_MACEDONIA_IS_ALBANIAN
+					}
+					ALB = {
+						owns_state = 980
+					}
+				}
+				transfer_state = 980
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.9.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_ALB
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Hungary
+	id = twrsovoccupation.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.10"}
+	title = twrsovoccupation.10.t
+	desc = twrsovoccupation.10.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release hungary
+		name = twrsovoccupation.10.a
+		HUN = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = HUN
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 155
+						state = 154
+						state = 43
+					}
+				}
+				HUN = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					SLO = {
+						is_subject_of = ROOT
+					}
+					owns_state = 664
+				}
+				SLO = {
+					transfer_state = 664
+				}
+				else = {
+					if = {
+						limit = {
+							CZE = {
+								is_subject_of = ROOT
+								owns_state = 70
+							}
+							owns_state = 664
+						}
+						transfer_state = 664
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = HUN
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = HUN
+				}
+			}
+			HUN = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					HUN_the_prospect_times
+					HUN_against_romania #cheater
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 30
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 15
+					socialist = 10
+					bolshevik_leninist = 5
+					marxist_leninist = 40
+				}
+				create_country_leader = {
+					name = "Ernő Gerő"
+					desc = ""
+					picture = "Erno_Gero.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {}
+				}
+				set_cosmetic_tag = HUN_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.10.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_HUN
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Slovakia
+	id = twrsovoccupation.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.11"}
+	title = twrsovoccupation.11.t
+	desc = twrsovoccupation.11.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release slovakia
+		name = twrsovoccupation.11.a
+		SLO = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = SLO
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = SLO
+			}
+			SLO = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					SLO_Remnants_of_Czechoslovakia
+					SLO_Hlinka_Influence
+					SLO_German_Influence
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 10
+					liberal = 0
+					social_democrat = 30
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 60
+				}
+				create_country_leader = {
+					name = "Soviet Occupation"
+					desc = ""
+					picture = "gfx/leaders/SOV/National_Politburo.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {}
+				}
+				set_cosmetic_tag = CZE_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.11.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_SLO
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Czechia
+	id = twrsovoccupation.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.12"}
+	title = twrsovoccupation.12.t
+	desc = twrsovoccupation.12.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release slovakia
+		name = twrsovoccupation.12.a
+		CZE = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = CZE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = CZE
+			}
+			CZE = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 10
+					liberal = 0
+					social_democrat = 30
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 60
+				}
+				set_cosmetic_tag = CZE_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.12.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_CZE
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Macedonia
+	id = twrsovoccupation.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.13"}
+	title = twrsovoccupation.13.t
+	desc = twrsovoccupation.13.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release macedonia
+		name = twrsovoccupation.13.a
+		MCD = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = MCD
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+					NOT = {
+						tag = SER
+					}
+					OR = {
+						NOT = {
+							tag = ALB
+							tag = BUL
+						}
+						is_subject_of = SOV
+					}
+				}
+				release = MCD
+			}
+			MCD = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 10
+					conservative = 30
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 60
+				}
+				set_cosmetic_tag = YUG_SOV
+			}
+		}
+	}
+	option = { #transfer to YUG
+		name = twrsovoccupation.13.c
+		trigger = {
+			NOT = {
+				has_country_flag = OCCUPATION_YUGO_IS_SERBIA
+			}
+		}
+		set_country_flag = OCCUPIED_MCD
+		set_country_flag = OCCUPATION_MACEDONIA_IS_YUGOSLAVIAN
+		if = {
+			limit = {
+				country_exists = SER
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = MCD
+				}
+				SER = {
+					transfer_state = PREV
+				}
+			}
+		}
+		
+	}
+	option = { #Partition
+		name = twrsovoccupation.13.d
+		set_country_flag = OCCUPIED_MCD
+		set_country_flag = OCCUPATION_WEST_MACEDONIA_IS_ALBANIAN
+		set_country_flag = OCCUPATION_MACEDONIA_IS_BULGARIAN
+		if = {
+			limit = {
+				ALB = {
+					OR = {
+						is_in_faction_with = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				owns_state = 980
+			}
+			ALB = {
+				transfer_state = 980
+			}
+		}
+		if = {
+			limit = {
+				BUL = {
+					OR = {
+						is_in_faction_with = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				owns_state = 106
+			}
+			BUL = {
+				transfer_state = 106
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.13.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_MCD
+		add_political_power = -50
+	}
+}
+country_event = { # Soviet Occupation of Montenegro
+	id = twrsovoccupation.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.14"}
+	title = twrsovoccupation.14.t
+	desc = twrsovoccupation.14.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release macedonia
+		name = twrsovoccupation.14.a
+		MNT = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = MNT
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+					OR = {
+						NOT = {
+							tag = SER
+						}
+						is_subject_of = SOV
+					}
+				}
+				release = MNT
+			}
+			MNT = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 10
+					paternal_autocrat = 30
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 60
+				}
+				set_cosmetic_tag = YUG_SOV
+			}
+		}
+	}
+	option = { #transfer to YUG
+		name = twrsovoccupation.14.c
+		trigger = {
+			NOT = {
+				has_country_flag = OCCUPATION_YUGO_IS_SERBIA
+			}
+		}
+		set_country_flag = OCCUPIED_MNT
+		set_country_flag = OCCUPATION_MONTENEGRO_IS_YUGOSLAVIAN
+		if = {
+			limit = {
+				country_exists = SER
+			}
+			SER = {
+				transfer_state = 105
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.14.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_MNT
+		add_political_power = -50
+	}
+}
+
+country_event = { # Soviet Occupation of Slovenia
+	id = twrsovoccupation.140
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.140"}
+	title = twrsovoccupation.140.t
+	desc = twrsovoccupation.140.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release SLV
+		name = twrsovoccupation.140.a
+		SLV = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = SLV
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = SLV
+			}
+			SLV = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					neutrality_idea
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 20
+					liberal = 15
+					social_democrat = 0
+					socialist = 10
+					bolshevik_leninist = 0
+					marxist_leninist = 55
+				}
+				set_cosmetic_tag = YUG_SOV
+			}
+		}
+	}
+	option = { #transfer to SER
+		name = twrsovoccupation.140.b
+		trigger = {
+			NOT = {
+				has_country_flag = OCCUPATION_YUGO_IS_SERBIA
+			}
+		}
+		set_country_flag = OCCUPIED_SLV
+		set_country_flag = OCCUPATION_SLOVENIA_IS_YUGOSLAVIAN
+		if = {
+			limit = {
+				country_exists = SER
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = SLV
+				}
+				SER = {
+					transfer_state = PREV
+				}
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.140.c
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_SLV
+		add_political_power = -50
+	}
+}
+
+country_event = { # Soviet Occupation of Italy
+	id = twrsovoccupation.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.15"}
+	title = twrsovoccupation.15.t
+	desc = twrsovoccupation.15.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release slovakia
+		name = twrsovoccupation.15.a
+		effect_tooltip = {
+			ITA = {
+				set_politics = {
+					ruling_party = bolshevik_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = ITA
+		}
+		hidden_effect = {
+			release_puppet = ITA
+			ITA = {
+				every_owned_state = {
+					limit = {
+						OR = {
+							state = 1
+							state = 735
+							state = 764
+							state = 767
+							state = 39
+							state = 103
+							state = 163
+							state = 765
+							state = 814
+							state = 815
+							state = 813
+							state = 1016
+							AND = {
+								OR = {
+									state = 812
+									state = 811
+								}
+								NOT = {
+									ROOT = {
+										has_country_flag = OCCUPATION_TRIESTE_IS_ITALIAN
+									}
+								}
+							}
+						}
+					}
+					ROOT = {
+						transfer_state = PREV
+					}
+				}
+				every_owned_state = {
+					SRK = {
+						PREV = {
+							add_core_of = SRK
+						}
+						transfer_state = PREV
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SRK
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = SRK
+				}
+			}
+			SRK = {
+				load_focus_tree = generic
+				clr_country_flag = normal_italy
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					rk_german_advisers
+					GER_RK_repression
+					RK_Italian_Resistance
+				}
+				set_politics = { #Temp until we get a M-L portrait
+					ruling_party = bolshevik_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 25
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 5
+					socialist = 15
+					bolshevik_leninist = 45
+					marxist_leninist = 10
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = fascist
+					name = ITA_fascist_party
+					long_name = ITA_fascist_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = ITA_social_democrat_PSLI_party
+					long_name = ITA_social_democrat_PSLI_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = ITA_socialist_PSI_party
+					long_name = ITA_socialist_PSI_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = ITA_bolshevik_leninist_PCI_party
+					long_name = ITA_bolshevik_leninist_PCI_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = ITA_marxist_leninist_PCI_party
+					long_name = ITA_marxist_leninist_PCI_party_long
+				}
+				create_country_leader = {
+					name = "Luigi Longo"
+					desc = "Luigi_Longo_DESC"
+					picture = "gfx/leaders/ITA/Luigi_Longo.dds"
+					expire = "1965.1.1"
+					ideology = bordigism
+					traits = {
+
+					}
+				}
+				set_cosmetic_tag = ITA_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.15.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_ITA
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Yugoslavia
+	id = twrsovoccupation.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.16"}
+	title = twrsovoccupation.16.t
+	desc = twrsovoccupation.16.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	option = { #release yugoslavia, as serbia
+		name = twrsovoccupation.16.a
+		trigger = {
+			NOT = {
+				OR = {
+					has_country_flag = OCCUPATION_MONTENEGRO_IS_YUGOSLAVIAN
+					has_country_flag = OCCUPATION_MACEDONIA_IS_YUGOSLAVIAN
+				}
+			}
+		}
+		set_country_flag = OCCUPATION_YUGO_IS_SERBIA
+		SER = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = SER
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 107
+						state = 108
+						state = 772
+						state = 45
+						state = 819
+					}
+				}
+				SER = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SER
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = SER
+				}
+			}
+			SER = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					SER_in_ruins
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = { #normal SER pop
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 4
+					socialist = 6
+					bolshevik_leninist = 30
+					marxist_leninist = 60
+				}
+				set_cosmetic_tag = YUG_SER_SOV
+			}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_KOSOVO_IS_YUGO
+					owns_state = 818
+				}
+				SER = {
+					transfer_state = 818
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_PIROT_IS_YUGO
+					owns_state = 979
+				}
+				SER = {
+					transfer_state = 979
+				}
+			}
+		}
+	}
+	option = { #release yugoslavia, decide seperately
+		name = twrsovoccupation.16.b
+		SER = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = SER
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 107
+						state = 108
+						state = 772
+						state = 45
+						state = 819
+					}
+				}
+				SER = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SER
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = SER
+				}
+			}
+			SER = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					SER_in_ruins
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = { #normal SER pop
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 4
+					socialist = 6
+					bolshevik_leninist = 30
+					marxist_leninist = 60
+				}
+				set_cosmetic_tag = YUG_SOV
+			}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_KOSOVO_IS_YUGO
+					owns_state = 818
+				}
+				SER = {
+					transfer_state = 818
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_PIROT_IS_YUGO
+					owns_state = 979
+				}
+				SER = {
+					transfer_state = 979
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_MONTENEGRO_IS_YUGOSLAVIAN
+					owns_state = 105
+				}
+				SER = {
+					transfer_state = 105
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_MACEDONIA_IS_YUGOSLAVIAN
+				}
+				every_owned_state = {
+					limit = {
+						is_core_of = MCD
+					}
+					SER = {
+						transfer_state = PREV
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_SLOVENIA_IS_YUGOSLAVIAN
+				}
+				every_owned_state = {
+					limit = {
+						is_core_of = SLV
+					}
+					SLV = {
+						transfer_state = PREV
+					}
+				}
+			}
+		}
+	}
+	option = { #release yugoslavia, transfer all held territory
+		name = twrsovoccupation.16.c
+		SER = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = SER
+		hidden_effect = {
+			SER = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					SER_in_ruins
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = { #normal SER pop
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 4
+					socialist = 6
+					bolshevik_leninist = 30
+					marxist_leninist = 60
+				}
+				set_cosmetic_tag = YUG_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.16.e
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_YUG
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of France
+	id = twrsovoccupation.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.17"}
+	title = twrsovoccupation.17.t
+	desc = twrsovoccupation.17.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release slovakia
+		name = twrsovoccupation.17.a
+		effect_tooltip = {
+			FRA = {
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = FRA
+		}
+		hidden_effect = {
+			release_puppet = FRA
+			FRA = {
+				every_owned_state = {
+					VIC = {
+						PREV = {
+							add_core_of = VIC
+						}
+						transfer_state = PREV
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = VIC
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = VIC
+				}
+			}
+			VIC = {
+				load_focus_tree = generic
+				set_capital = { state = 16 }
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					GER_RK_repression
+					VIC_the_resistance
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 10
+					liberal = 20
+					social_democrat = 10
+					socialist = 0
+					bolshevik_leninist = 15
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = conservative
+					name = FRA_conservative_party
+					long_name = FRA_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = FRA_liberal_party
+					long_name = FRA_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = FRA_social_democrat_party
+					long_name = FRA_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = FRA_bolshevik_leninist_party
+					long_name = FRA_bolshevik_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = FRA_marxist_leninist_party
+					long_name = FRA_marxist_leninist_party_long
+				}
+				create_country_leader = {
+					name = "Jacques Duclos"
+					desc = "TWR_Jacques_Duclos"
+					picture = "gfx/leaders/FRA/Jacques_Duclos.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {
+
+					}
+				}
+				set_cosmetic_tag = FRA_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.17.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_FRA
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Alsace
+	id = twrsovoccupation.1700
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.1700"}
+	title = twrsovoccupation.1700.t
+	desc = twrsovoccupation.1700.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release slovakia
+		name = twrsovoccupation.1700.a
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					is_core_of = FRA
+				}
+				VIC = {
+					PREV = {
+						add_core_of = VIC
+					}
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = VIC
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = VIC
+				}
+			}
+			VIC = {
+				load_focus_tree = generic
+				set_capital = { state = 16 }
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					GER_RK_repression
+					VIC_the_resistance
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 10
+					liberal = 20
+					social_democrat = 10
+					socialist = 0
+					bolshevik_leninist = 15
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = conservative
+					name = FRA_conservative_party
+					long_name = FRA_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = FRA_liberal_party
+					long_name = FRA_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = FRA_social_democrat_party
+					long_name = FRA_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = FRA_bolshevik_leninist_party
+					long_name = FRA_bolshevik_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = FRA_marxist_leninist_party
+					long_name = FRA_marxist_leninist_party_long
+				}
+				create_country_leader = {
+					name = "Jacques Duclos"
+					desc = "TWR_Jacques_Duclos"
+					picture = "gfx/leaders/FRA/Jacques_Duclos.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {
+
+					}
+				}
+				set_cosmetic_tag = FRA_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.1700.b
+		trigger = {
+			FRA = {
+				exists = yes
+				is_communist = yes
+			}
+		}
+		every_owned_state = {
+			limit = {
+				is_core_of = FRA
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+	}
+}
+country_event = { # Soviet Occupation of Austria
+	id = twrsovoccupation.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.18"}
+	title = twrsovoccupation.18.t
+	desc = twrsovoccupation.18.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release slovakia
+		name = twrsovoccupation.18.a
+		AUS = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = AUS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = AUS
+			}
+			AUS = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					AUS_Remnants_of_the_Nazi_Regime
+					AUS_Leftovers_of_Jewish_Persecution
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 35
+					fascist = 10
+					paternal_autocrat = 0
+					conservative = 15
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 40
+				}
+				set_cosmetic_tag = AUS_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.18.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_AUS
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Switzerland
+	id = twrsovoccupation.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.19"}
+	title = twrsovoccupation.19.t
+	desc = twrsovoccupation.19.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release slovakia
+		name = twrsovoccupation.19.a
+		SWI = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = SWI
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = SWI
+			}
+			SWI = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				clr_country_flag = SWI_SUCCESSFUL_REBELLION_INSECURITY
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 17
+					conservative = 13
+					liberal = 15
+					social_democrat = 13
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 42
+				}
+				set_cosmetic_tag = SWI_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.19.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_SWI
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Portugal
+	id = twrsovoccupation.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.20"}
+	title = twrsovoccupation.20.t
+	desc = twrsovoccupation.20.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release slovakia
+		name = twrsovoccupation.20.a
+		POR = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = POR
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = POR
+			}
+			POR = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					POR_no_opposition
+					POR_hotbed_of_spies
+					POR_status_of_africa
+					Iberia_Pact
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 20
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 15
+					bolshevik_leninist = 10
+					marxist_leninist = 55
+				}
+				set_cosmetic_tag = POR_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.20.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_POR
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Spain
+	id = twrsovoccupation.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.21"}
+	title = twrsovoccupation.21.t
+	desc = twrsovoccupation.21.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release spain
+		name = twrsovoccupation.21.a
+		effect_tooltip = {
+			SPA = {
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = SPA
+		}
+		hidden_effect = {
+			release_puppet = SPA
+			SPA = {
+				every_owned_state = {
+					WGR = {
+						PREV = {
+							add_core_of = WGR
+						}
+						transfer_state = PREV
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = WGR
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = WGR
+				}
+			}
+			WGR = {
+				load_focus_tree = generic
+				set_capital = { state = 41 }
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 30
+					conservative = 10
+					liberal = 0
+					social_democrat = 15
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = SPA_paternal_autocrat_party
+					long_name = SPA_paternal_autocrat_party_long
+				}
+				set_party_name = {
+					ideology = conservative
+					name = SPA_conservative_party
+					long_name = SPA_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = SPA_liberal_party
+					long_name = SPA_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = SPA_social_democrat_party
+					long_name = SPA_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = SPA_socialist_party
+					long_name = SPA_socialist_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = SPA_bolshevik_leninist_party
+					long_name = SPA_bolshevik_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = SPA_marxist_leninist_party
+					long_name = SPA_marxist_leninist_party_long
+				}
+				create_country_leader = {
+					name = "Julio Álvarez del Vayo"
+					desc = ""
+					picture = "gfx/leaders/SPA/Julio_Alvarez.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {}
+				}
+				set_cosmetic_tag = SPA_SOV
+			}
+		}
+	}
+	option = { #release spain
+		name = twrsovoccupation.21.c
+		effect_tooltip = {
+			SPA = {
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = SPA
+			release_puppet = SPR
+			release_puppet = BQC
+		}
+		hidden_effect = {
+			release_puppet = BQC
+			BQC = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 20
+					liberal = 0
+					social_democrat = 15
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 65
+				}
+				set_cosmetic_tag = BQC_SOV
+			}
+			release_puppet = SPR
+			SPR = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 20
+					liberal = 0
+					social_democrat = 15
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 65
+				}
+				set_cosmetic_tag = SPR_SOV
+			}
+			release_puppet = SPA
+			SPA = {
+				every_owned_state = {
+					WGR = {
+						PREV = {
+							add_core_of = WGR
+						}
+						transfer_state = PREV
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = WGR
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = WGR
+				}
+			}
+			WGR = {
+				load_focus_tree = generic
+				set_capital = { state = 41 }
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 30
+					conservative = 10
+					liberal = 0
+					social_democrat = 15
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = SPA_paternal_autocrat_party
+					long_name = SPA_paternal_autocrat_party_long
+				}
+				set_party_name = {
+					ideology = conservative
+					name = SPA_conservative_party
+					long_name = SPA_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = SPA_liberal_party
+					long_name = SPA_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = SPA_social_democrat_party
+					long_name = SPA_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = SPA_socialist_party
+					long_name = SPA_socialist_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = SPA_bolshevik_leninist_party
+					long_name = SPA_bolshevik_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = SPA_marxist_leninist_party
+					long_name = SPA_marxist_leninist_party_long
+				}
+				create_country_leader = {
+					name = "Julio Álvarez del Vayo"
+					desc = ""
+					picture = "gfx/leaders/SPA/Julio_Alvarez.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {}
+				}
+				set_cosmetic_tag = SPA_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.21.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_SPA
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of HOL
+	id = twrsovoccupation.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.22"}
+	title = twrsovoccupation.22.t
+	desc = twrsovoccupation.22.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = { #release netherlands
+		name = twrsovoccupation.22.a
+		effect_tooltip = {
+			HOL = {
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = HOL
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 36
+						state = 7
+						state = 35
+					}
+				}
+				add_core_of = RKN
+				RKN = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = RKN
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = RKN
+				}
+			}
+			RKN = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					GER_RK_repression
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 10
+					liberal = 15
+					social_democrat = 15
+					socialist = 5
+					bolshevik_leninist = 10
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = HOL_paternal_autocrat_party
+					long_name = HOL_paternal_autocrat_party_long
+				}
+				set_party_name = {
+					ideology = conservative
+					name = HOL_conservative_party
+					long_name = HOL_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = HOL_liberal_party
+					long_name = HOL_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = HOL_social_democrat_party
+					long_name = HOL_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = HOL_SOV_party
+					long_name = HOL_SOV_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = HOL_SOV_party
+					long_name = HOL_SOV_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = HOL_SOV_party
+					long_name = HOL_SOV_party_long
+				}
+				create_country_leader = {
+					name = "Paul de Groot"
+					desc = ""
+					picture = "Paul_de_Groot.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {}
+				}
+				set_cosmetic_tag = HOL_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.22.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_SPA
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of LUX
+	id = twrsovoccupation.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.23"}
+	title = twrsovoccupation.23.t
+	desc = twrsovoccupation.23.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release LUX
+		name = twrsovoccupation.23.a
+		LUX = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = LUX
+		}
+		hidden_effect = {
+			LUX = {
+				transfer_state = 8
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = LUX
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = LUX
+				}
+			}
+			LUX = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					POR_no_opposition
+					POR_hotbed_of_spies
+					POR_status_of_africa
+					Iberia_Pact
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 100
+				}
+				set_cosmetic_tag = LUX_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.23.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_LUX
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of BEL
+	id = twrsovoccupation.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.24"}
+	title = twrsovoccupation.24.t
+	desc = twrsovoccupation.24.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = { #release netherlands
+		name = twrsovoccupation.24.a
+		effect_tooltip = {
+			BEL = {
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = BEL
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 6
+						state = 34
+						state = 802
+					}
+				}
+				add_core_of = RKB
+				RKB = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = RKB
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = RKB
+				}
+			}
+			RKB = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					GER_RK_repression
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 15
+					liberal = 5
+					social_democrat = 10
+					socialist = 0
+					bolshevik_leninist = 13
+					marxist_leninist = 57
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = BEL_paternal_autocrat_party
+					long_name = BEL_paternal_autocrat_party_long
+				}
+				set_party_name = {
+					ideology = conservative
+					name = BEL_conservative_party
+					long_name = BEL_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = BEL_liberal_party
+					long_name = BEL_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = BEL_social_democrat_party
+					long_name = BEL_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = BEL_socialist_party
+					long_name = BEL_socialist_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = BEL_bolshevik_leninist_party
+					long_name = BEL_bolshevik_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = BEL_marxist_leninist_party
+					long_name = BEL_marxist_leninist_party_long
+				}
+				create_country_leader = {
+					name = "Edgar Lalmand"
+					desc = ""
+					picture = "Edgar_Lalmand.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {}
+				}
+				set_cosmetic_tag = BEL_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.24.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_BEL
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Poland
+	id = twrsovoccupation.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.25"}
+	title = twrsovoccupation.25.t
+	desc = twrsovoccupation.25.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release poland
+		name = twrsovoccupation.25.a
+		POL = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		effect_tooltip = {
+			release_puppet = POL
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					is_core_of = POL
+					NOT = {
+						is_core_of = LIT
+						is_core_of = UKR
+						is_core_of = BLR
+					}
+				}
+				POL = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = POL
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = POL
+				}
+			}
+			POL = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					POL_Home_Army
+					POL_UPR_conflict #Shouldn't have this, but ok console annexers
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 45
+					conservative = 10
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 45
+				}
+				create_country_leader = {
+					name = "Bolesław Bierut"
+					desc = ""
+					picture = "Bolesław_Bierut.dds"
+					expire = "1975.1.1"
+					ideology = stalinism
+					traits = { }
+				}
+				set_cosmetic_tag = POL_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.25.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_POL
+		add_political_power = -150
+	}
+}
+country_event = { # Soviet Occupation of Britain (good job konev)
+	id = twrsovoccupation.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.26"}
+	title = twrsovoccupation.26.t
+	desc = twrsovoccupation.26.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			ENG = {
+				country_event = {
+					id = twrgeroccupation.18
+					hours = 6
+				}
+			}
+		}
+	}
+	
+	option = { #release britain
+		name = twrsovoccupation.26.a
+		effect_tooltip = {
+			ENG = {
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = ENG
+		}
+		hidden_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						region = 1
+						region = 2
+						region = 3
+						state = 801
+					}
+				}
+				add_core_of = EGL
+				EGL = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = EGL
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = EGL
+				}
+			}
+			EGL = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					rk_british_resistance_brits
+					rk_german_advisers
+					GER_RK_repression
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 25
+					liberal = 5
+					social_democrat = 25
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = ENG_paternal_autocrat_party
+					long_name = ENG_paternal_autocrat_party_long
+				}
+				set_party_name = {
+					ideology = conservative
+					name = ENG_conservative_party
+					long_name = ENG_conservative_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = ENG_liberal_party
+					long_name = ENG_liberal_party_long
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = ENG_social_democrat_party
+					long_name = ENG_social_democrat_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = ENG_socialist_party
+					long_name = ENG_socialist_party_long
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = ENG_bolshevik_leninist_party
+					long_name = ENG_bolshevik_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = ENG_marxist_leninist_party
+					long_name = ENG_marxist_leninist_party_long
+				}
+				create_country_leader = {
+					name = "Harry Pollitt"
+					desc = ""
+					picture = "gfx/leaders/ENG/Britain_ML_Harry_Pollitt.dds"
+					expire = "1965.1.1"
+					ideology = stalinism
+					traits = {}
+				}
+				set_cosmetic_tag = ENG_SOV
+			}
+		}
+	}
+}
+country_event = { # Soviet Occupation of Ireland
+	id = twrsovoccupation.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.27"}
+	title = twrsovoccupation.27.t
+	desc = twrsovoccupation.27.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #release LUX
+		name = twrsovoccupation.27.a
+		IRE = {
+			set_politics = {
+				ruling_party = marxist_leninist
+				elections_allowed = no
+			}
+		}
+		release_puppet = IRE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USR
+				}
+				release = IRE
+			}
+			IRE = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					IRE_dream_of_ireland
+					neutrality_idea
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 15
+					liberal = 10
+					social_democrat = 0
+					socialist = 10
+					bolshevik_leninist = 0
+					marxist_leninist = 65
+				}
+				set_cosmetic_tag = IRE_SOV
+			}
+		}
+	}
+	option = {
+		name = twrsovoccupation.27.b
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = OCCUPIED_IRE
+		add_political_power = -150
+	}
+}
+
+country_event = { # Soviet Occupation of Germany (fascists: destroyed)
+	id = twrsovoccupation.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.28"}
+	title = twrsovoccupation.28.t
+	desc = twrsovoccupation.28.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = { #release germany under blohkin, jesus christ this is a nightmare
+		name = twrsovoccupation.28.a
+		trigger = {
+			tag = TRV
+		}
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_core_of = SMO
+				}
+				remove_core_of = SMO
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						region = 6
+						region = 7
+						region = 8
+					}
+					NOT = {
+						state = 67
+						state = 66
+						state = 68
+						state = 62
+						state = 63
+						is_core_of = DEN
+						#state = 58
+					}
+				}
+				add_core_of = SMO
+				SMO = {
+					transfer_state = PREV
+					set_country_flag = SOV_OCCUP
+					set_country_flag = occupied_germany
+				}
+				set_building_level = {
+					type = arms_factory
+					level = 0
+					instant_build = yes
+				}
+				set_building_level = {
+					type = industrial_complex
+					level = 0
+					instant_build = yes
+				}
+				set_building_level = {
+					type = dockyard
+					level = 0
+					instant_build = yes
+				}
+			}
+			#if = {
+			#	limit = {
+			#		DEN = {
+			#			is_subject_of = ROOT
+			#		}
+			#		owns_state = 58
+			#	}
+			#	DEN = {
+			#		transfer_state = 58
+			#	}
+			#	58 = {
+			#		add_core_of = DEN
+			#	}
+			#}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SMO
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = SMO
+				}
+			}
+			SMO = {
+				load_focus_tree = generic_empty
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = undisturbed_isolation
+				add_ideas = closed_economy
+				add_ideas = disarmed_nation
+				add_ideas = agrarian_nation
+				add_ideas = fanatical_dictatorship
+				remove_ideas = {
+					RK_eastern_spring
+					RK_red_army_revolt
+					GEN_economic_reform
+					GEN_protectionism
+					GEN_harsh_tax
+					GEN_inner_market
+					GEN_trading_market
+					GEN_global_trading
+					GEN_european_armour
+					GEN_heavy_plated
+					GEN_greater_power_equipment
+					GEN_reformed_military_system
+					GEN_lighting_warfare
+					GEN_union_agreement
+					GEN_welfare_reforms
+					GEN_small_country_nuke_development1
+					GEN_small_country_nuke_development2
+					GEN_small_country_nuke_development3
+					GEN_small_country_nuke_development_final
+					GEN_Extensive_Draft
+					GEN_Isolation
+					GEN_Cooperation
+					GEN_Diplomatic_Relations
+					GEN_Structured_Bureaucracy
+					GEN_Entrenched_Politics
+					GEN_Effective_Bureaucracy
+					GEN_Openness
+				}
+				add_ideas = {
+					GEN_nuclear_devestation
+					SOV_german_occupation_aaaaaaaa
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 45
+					fascist = 10
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = national_socialist
+					name = PGR_national_socialist_party
+					long_name = PGR_national_socialist_party
+				}
+				set_party_name = {
+					ideology = fascist
+					name = PGR_national_socialist_party
+					long_name = PGR_national_socialist_party
+				}
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = conservative
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = liberal
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = socialist
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = SMO_occupation_military_party
+					long_name = SMO_occupation_military_party
+				}
+				create_country_leader = {
+					name = "Ivan Bagramyan"
+					desc = ""
+					picture = "gfx/leaders/TRV/Ivan_Bagramyan.dds"
+					expire = "1965.1.1"
+					ideology = ultravisionary_marxism
+					traits = {}
+				}
+				set_country_flag = IS_SOVIET_OCCUPATION
+				#set_cosmetic_tag = SOVIET_GERMAN_OCCUPATION_INSANE
+				855 = {
+					set_state_name = "Marxstadt"
+				}
+				set_province_name = {
+					id = 6521
+					name = "Marxstadt"
+				}
+				set_province_name = {
+					id = 11544
+					name = "Engelsstadt"
+				}
+				set_province_name = {
+					id = 9347
+					name = "Thalmannstadt"
+				}
+				set_province_name = {
+					id = 3535
+					name = "Liebknechtstadt"
+				}
+			}
+		}
+	}
+	option = { #release germany under batov
+		name = twrsovoccupation.28.b
+		trigger = {
+			NOT = {
+				tag = TRV
+			}
+			NOT = {
+				has_government = paternal_autocrat
+			}
+		}
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_core_of = SMO
+				}
+				remove_core_of = SMO
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						region = 6
+						region = 7
+						region = 8
+					}
+					NOT = {
+						state = 67
+						state = 66
+						state = 68
+						state = 62
+						state = 63
+						is_core_of = DEN
+						#state = 58
+					}
+				}
+				add_core_of = SMO
+				SMO = {
+					transfer_state = PREV
+					set_country_flag = SOV_OCCUP
+					set_country_flag = occupied_germany
+				}
+			}
+			#if = {
+			#	limit = {
+			#		DEN = {
+			#			is_subject_of = ROOT
+			#		}
+			#		owns_state = 58
+			#	}
+			#	DEN = {
+			#		transfer_state = 58
+			#	}
+			#	58 = {
+			#		add_core_of = DEN
+			#		set_province_name = { id = 9347 name = "Hamborg" }
+			#	}
+			#}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_HOLSTEIN_AWARD_REFUSED
+					owns_state = 58
+				}
+				SMO = {
+					transfer_state = 58
+				}
+				58 = {
+					add_core_of = SMO
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SMO
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = SMO
+				}
+			}
+			SMO = {
+				load_focus_tree = generic
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = isolation
+				add_ideas = free_trade
+				add_ideas = disarmed_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					RK_eastern_spring
+					RK_red_army_revolt
+					GEN_economic_reform
+					GEN_protectionism
+					GEN_harsh_tax
+					GEN_inner_market
+					GEN_trading_market
+					GEN_global_trading
+					GEN_european_armour
+					GEN_heavy_plated
+					GEN_greater_power_equipment
+					GEN_reformed_military_system
+					GEN_lighting_warfare
+					GEN_union_agreement
+					GEN_welfare_reforms
+					GEN_small_country_nuke_development1
+					GEN_small_country_nuke_development2
+					GEN_small_country_nuke_development3
+					GEN_small_country_nuke_development_final
+					GEN_Extensive_Draft
+					GEN_Isolation
+					GEN_Cooperation
+					GEN_Diplomatic_Relations
+					GEN_Structured_Bureaucracy
+					GEN_Entrenched_Politics
+					GEN_Effective_Bureaucracy
+					GEN_Openness
+				}
+				set_politics = {
+					ruling_party = socialist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 45
+					fascist = 10
+					paternal_autocrat = 0
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 45
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = national_socialist
+					name = PGR_national_socialist_party
+					long_name = PGR_national_socialist_party
+				}
+				set_party_name = {
+					ideology = fascist
+					name = PGR_national_socialist_party
+					long_name = PGR_national_socialist_party
+				}
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				set_party_name = {
+					ideology = conservative
+					name = SMO_occupation_con_party
+					long_name = SMO_occupation_con_party
+				}
+				set_party_name = {
+					ideology = liberal
+					name = SMO_occupation_lib_party
+					long_name = SMO_occupation_lib_party
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = SMO_occupation_ivanov_party
+					long_name = SMO_occupation_ivanov_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = SMO_occupation_military_party
+					long_name = SMO_occupation_military_party
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = GER_marxist_leninist_party
+					long_name = GER_marxist_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				create_country_leader = {
+					name = "Vincenz Müller"
+					desc = ""
+					picture = "gfx/leaders/SOV/Vincenz_Muller.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism_kalininism
+				}
+				create_country_leader = {
+					name = "Pavel Batov"
+					desc = ""
+					picture = "Pavel_Batov.dds"
+					expire = "1965.1.1"
+					ideology = zhukovism
+					traits = {}
+				}
+				create_country_leader = {
+					name = "Fyodor Ivanov"
+					desc = ""
+					picture = "gfx/leaders/SOV/Fyodor_Ivanov.dds"
+					expire = "1965.1.1"
+					ideology = zhukovist_democracy
+				}
+				set_country_flag = IS_SOVIET_OCCUPATION
+				set_cosmetic_tag = SOVIET_GERMAN_OCCUPATION_NORMAL
+			}
+			country_event = {
+				id = twrsovoccupation.29
+				days = 365
+			}
+		}
+	}
+	option = { #release germany under altunin
+		name = twrsovoccupation.28.c
+		trigger = {
+			has_government = paternal_autocrat
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						region = 6
+						region = 7
+						region = 8
+					}
+					NOT = {
+						state = 67
+						state = 66
+						state = 68
+						state = 62
+						state = 63
+						is_core_of = DEN
+						#state = 58
+					}
+				}
+				add_core_of = SMO
+				SMO = {
+					transfer_state = PREV
+					set_country_flag = SOV_OCCUP
+					set_country_flag = occupied_germany
+				}
+			}
+			#if = {
+			#	limit = {
+			#		DEN = {
+			#			is_subject_of = ROOT
+			#		}
+			#		owns_state = 58
+			#	}
+			#	DEN = {
+			#		transfer_state = 58
+			#	}
+			#	58 = {
+			#		add_core_of = DEN
+			#	}
+			#}
+			if = {
+				limit = {
+					has_country_flag = OCCUPATION_HOLSTEIN_AWARD_REFUSED
+					owns_state = 58
+				}
+				SMO = {
+					transfer_state = 58
+				}
+				58 = {
+					add_core_of = SMO
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SMO
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = SMO
+				}
+			}
+			SMO = {
+				load_focus_tree = generic
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = isolation
+				add_ideas = free_trade
+				add_ideas = disarmed_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					RK_eastern_spring
+					RK_red_army_revolt
+					GEN_economic_reform
+					GEN_protectionism
+					GEN_harsh_tax
+					GEN_inner_market
+					GEN_trading_market
+					GEN_global_trading
+					GEN_european_armour
+					GEN_heavy_plated
+					GEN_greater_power_equipment
+					GEN_reformed_military_system
+					GEN_lighting_warfare
+					GEN_union_agreement
+					GEN_welfare_reforms
+					GEN_small_country_nuke_development1
+					GEN_small_country_nuke_development2
+					GEN_small_country_nuke_development3
+					GEN_small_country_nuke_development_final
+					GEN_Extensive_Draft
+					GEN_Isolation
+					GEN_Cooperation
+					GEN_Diplomatic_Relations
+					GEN_Structured_Bureaucracy
+					GEN_Entrenched_Politics
+					GEN_Effective_Bureaucracy
+					GEN_Openness
+				}
+				set_politics = {
+					ruling_party = paternal_autocrat
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 45
+					fascist = 10
+					paternal_autocrat = 45
+					conservative = 0
+					liberal = 0
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 0
+				}
+				kill_ideology_leader = national_socialist
+				set_party_name = {
+					ideology = national_socialist
+					name = PGR_national_socialist_party
+					long_name = PGR_national_socialist_party
+				}
+				set_party_name = {
+					ideology = fascist
+					name = PGR_national_socialist_party
+					long_name = PGR_national_socialist_party
+				}
+				set_party_name = {
+					ideology = paternal_autocrat
+					name = SMO_occupation_bulganin_party
+					long_name = SMO_occupation_bulganin_party
+				}
+				set_party_name = {
+					ideology = conservative
+					name = SMO_occupation_con_party
+					long_name = SMO_occupation_con_party
+				}
+				set_party_name = {
+					ideology = liberal
+					name = SMO_occupation_lib_party
+					long_name = SMO_occupation_lib_party
+				}
+				set_party_name = {
+					ideology = social_democrat
+					name = SMO_occupation_ivanov_party
+					long_name = SMO_occupation_ivanov_party_long
+				}
+				set_party_name = {
+					ideology = socialist
+					name = SMO_occupation_military_party
+					long_name = SMO_occupation_military_party
+				}
+				set_party_name = {
+					ideology = bolshevik_leninist
+					name = GER_marxist_leninist_party
+					long_name = GER_marxist_leninist_party_long
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = empty_party_slot
+					long_name = empty_party_slot
+				}
+				create_country_leader = {
+					name = "Vasily Margelov"
+					desc = ""
+					picture = "gfx/leaders/SOV/Vasily_Margelov.dds"
+					expire = "1965.1.1"
+					ideology = military_dictatorshipz
+				}
+				set_country_flag = IS_SOVIET_OCCUPATION
+				set_cosmetic_tag = SOVIET_GERMAN_OCCUPATION_BULGANIN
+			}
+		}
+	}
+}
+
+country_event = { #Batov ends the military government
+	id = twrsovoccupation.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.29"}
+	title = twrsovoccupation.29.t
+	desc = twrsovoccupation.29.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = { #Ivanov
+		name = twrsovoccupation.29.a
+		SMO = {
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = no
+			}
+			set_popularities = {
+				national_socialist = 30
+				fascist = 0
+				paternal_autocrat = 0
+				conservative = 17
+				liberal = 13
+				social_democrat = 35
+				socialist = 5
+				bolshevik_leninist = 0
+				marxist_leninist = 0
+			}
+			set_cosmetic_tag = SOVIET_GERMAN_OCCUPATION_IVANOV
+		}
+	}
+	
+	option = { #Muller
+		name = twrsovoccupation.29.b
+		SMO = {
+			set_politics = {
+				ruling_party = bolshevik_leninist
+				elections_allowed = no
+			}
+			set_popularities = {
+				national_socialist = 30
+				fascist = 0
+				paternal_autocrat = 0
+				conservative = 17
+				liberal = 15
+				social_democrat = 0
+				socialist = 0
+				bolshevik_leninist = 38
+				marxist_leninist = 0
+			}
+			set_cosmetic_tag = SOVIET_GERMAN_OCCUPATION_MULLER
+		}
+	}
+}
+
+country_event = { # Soviet Occupation of American (this madman actually did it)
+	id = twrsovoccupation.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.30"}
+	title = twrsovoccupation.30.t
+	desc = twrsovoccupation.30.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = { #release britain
+		name = twrsovoccupation.30.a
+		effect_tooltip = {
+			USA = {
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = USA
+		}
+		hidden_effect = {
+			USA = {
+				country_event = {
+					id = twrgeroccupation.19
+					hours = 1
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						region = 118 #West Coast
+						region = 199 #Rocky Mountains
+						region = 120 #Central USA
+						region = 119 #South West
+						region = 198 #Midwest
+						region = 117 #East Coast
+						region = 197
+					}
+					is_core_of = USA
+				}
+				add_core_of = CSA
+				CSA = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = CSA
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = CSA
+				}
+			}
+			CSA = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					rk_german_advisers
+					rk_facade_freedom
+					rk_american_rightist_groups_supported
+					USA_segregation #lol nope not anymore
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 30
+					liberal = 25
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = conservative
+				set_party_name = {
+					ideology = conservative
+					name = "American Resistance"
+					long_name = "American Resistance"
+				}
+				set_party_name = {
+					ideology = liberal
+					name = "American Resistance"
+					long_name = "American Resistance"
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = "CPUSSA"
+					long_name = "Communist Party of the United Socialist States of America"
+				}
+				create_country_leader = {
+					name = "Bayard Rustin"
+					desc = ""
+					picture = "Bayard_Rustin.dds"
+					expire = "1965.1.1"
+					ideology = ultravisionary_marxism
+					traits = {}
+				}
+				set_cosmetic_tag = USA_SOV
+			}
+		}
+	}
+}
+country_event = { # The Holstein Award
+	id = twrsovoccupation.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.31"}
+	title = twrsovoccupation.31.t
+	desc = twrsovoccupation.31.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #Gib Holstein
+		name = twrsovoccupation.31.a
+		ai_chance = {
+			factor = 10
+		}
+		transfer_state = 58
+		58 = {
+			add_core_of = DEN #HMMMMMMMMMMMMMMMMMMMMMMMMMM
+		}
+		add_political_power = -200
+	}
+	option = {
+		name = twrsovoccupation.31.b
+		ai_chance = {
+			factor = 90
+		}
+		FROM = {
+			set_country_flag = OCCUPATION_HOLSTEIN_AWARD_REFUSED
+		}
+		if = {
+			limit = {
+				SMO = {
+					has_country_flag = IS_SOVIET_OCCUPATION
+				}
+			}
+			SMO = {
+				transfer_state = 58
+			}
+			58 = {
+				add_core_of = SMO
+			}
+		}
+	}
+}
+country_event = { # The Treaty of Danzig
+	id = twrsovoccupation.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.32"}
+	title = twrsovoccupation.32.t
+	desc = twrsovoccupation.32.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+
+	option = { #Gib Holstein
+		name = twrsovoccupation.32.a
+		FROM = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 768
+						state = 85
+						state = 798
+						state = 63
+						state = 62
+						state = 68
+						state = 66
+						state = 67
+						state = 86
+						state = 810
+						state = 766
+						state = 87
+						state = 98
+						state = 97
+					}
+				}
+				ROOT = {
+					transfer_state = PREV
+				}
+				add_core_of = ROOT 
+			}
+		}
+		give_military_access = FROM
+		FROM = {
+			give_guarantee = ROOT
+		}
+		diplomatic_relation = {
+			country = FROM
+			relation = non_aggression_pact
+			active = yes
+		}
+	}
+}
+country_event = { # Soviet Occupation of Canada
+	id = twrsovoccupation.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.33"}
+	title = twrsovoccupation.33.t
+	desc = twrsovoccupation.33.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	
+	option = { #release britain
+		name = twrsovoccupation.33.a
+		effect_tooltip = {
+			CAN = {
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+			}
+			release_puppet = CAN
+		}
+		hidden_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						region = 121
+						region = 122
+						region = 197
+						state = 740
+					}
+					is_core_of = CAN
+				}
+				add_core_of = OCN
+				OCN = {
+					transfer_state = PREV
+				}
+			}
+			OCN = {
+				set_state_controller = 463
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = OCN
+					autonomous_state = autonomy_Soviet_Rep
+				}
+				else = {
+					puppet = OCN
+				}
+			}
+			OCN = {
+				load_focus_tree = generic
+				clr_country_flag = has_symbolic_figurehead
+				remove_ideas_with_trait = government_type
+				remove_ideas = semi_industrialised_nation
+				add_ideas = industrialised_nation
+				add_ideas = authoritarian_system
+				remove_ideas = {
+					hos_popular_figurehead
+					hos_mediocre
+					hos_unpopular_figurehead
+					hos_tyranical_overseer
+					OCN_canadian_proudness
+					rk_canadian_resistance
+				}
+				set_politics = {
+					ruling_party = marxist_leninist
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 0
+					paternal_autocrat = 0
+					conservative = 20
+					liberal = 35
+					social_democrat = 0
+					socialist = 0
+					bolshevik_leninist = 0
+					marxist_leninist = 45
+				}
+				kill_ideology_leader = fascist
+				set_party_name = {
+					ideology = conservative
+					name = "Canadian Resistance"
+					long_name = "Canadian Resistance"
+				}
+				set_party_name = {
+					ideology = liberal
+					name = "Canadian Resistance"
+					long_name = "Canadian Resistance"
+				}
+				set_party_name = {
+					ideology = marxist_leninist
+					name = "CPC"
+					long_name = "Communist Party of Canada"
+				}
+				create_country_leader = {
+					name = "Tim Buck"
+					desc = ""
+					picture = "gfx/leaders/CAN/Tim_Buck.dds"
+					expire = "1965.1.1"
+					ideology = marxism_leninism
+					traits = {}
+				}
+				set_cosmetic_tag = CAN_SOV
+			}
+		}
+	}
+}
+
+country_event = { # Peace with the Accord?
+	id = twrsovoccupation.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsovoccupation.34"}
+	title = twrsovoccupation.34.t
+	desc = twrsovoccupation.34.d
+	picture = GFX_report_event_axis_europe_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #We are victorious
+		name = twrsovoccupation.34.a
+		AST = {
+			set_faction_leader = yes
+			set_country_flag = ASSUMED_TA_LEADERSHIP
+		}
+		save_event_target_as = ta_defeated_by
+		TA_collapse = yes
+		AST = {
+			white_peace_with_ROOT = yes
+		}
+	}
+	
+	option = { #ALL THE WAY TO AUSTRALIA!!!!!!!
+		name = twrsovoccupation.34.b
+		add_political_power = -200
+		add_stability = -0.20
+		add_war_support = -0.35
+		every_country = {
+			limit = {
+				is_in_faction_with = USA
+				OR = {
+					tag = AST
+					tag = NZL
+					tag = SAR
+					tag = MAL
+					tag = HOL
+					tag = JAP
+					tag = KOR
+				}
+			}
+			set_major = yes
+		}
+	}
+}

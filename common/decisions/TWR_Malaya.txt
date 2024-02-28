@@ -1,0 +1,504 @@
+MAL_malayan_emergency_decision_category = {
+	MAL_planned_offensive = {
+		icon = hol_draw_up_staff_plans
+		
+		custom_cost_trigger = { command_power > 25 }
+		custom_cost_text = MAL_planned_offensive_decision_cost
+
+		days_re_enable = 25
+		days_remove = 25
+		cancel_if_not_visible = yes
+
+		visible = {
+			has_completed_focus = MAL_Planned_Offensives
+			has_global_flag = TWR_malayan_emergency
+		}
+
+		highlight_states = {
+			state = FROM
+		}
+
+		state_target = yes
+		targets = { 336 857 858 937 }
+		target_root_trigger = {
+			has_completed_focus = MAL_Planned_Offensives
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAL_planned_offensive"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			FROM = {
+				remove_province_modifier = {
+					static_modifiers = { unplanned_offensive }
+					province = { all_provinces = yes }
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove MAL_planned_offensive"
+			FROM = {
+				add_province_modifier = {
+					static_modifiers = { unplanned_offensive }
+					province = { all_provinces = yes }
+				}
+			}
+		}
+	}
+	MAL_suppress_communists_in_kedah = {
+		icon = generic_ignite_civil_war
+		
+		visible = {
+			has_active_mission = MAL_communist_movement_in_kedah
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 25
+			has_manpower > 500
+		}
+		custom_cost_text = MAL_communist_movement_decision_cost
+
+		days_remove = 5
+
+		remove_effect = {
+			add_political_power = -25
+			add_manpower = -500
+			add_days_mission_timeout = {
+				mission = MAL_communist_movement_in_kedah
+				days = 20
+			}
+		}
+	}
+	MAL_suppress_communists_in_johor = {
+		icon = generic_ignite_civil_war
+		
+		visible = {
+			has_active_mission = MAL_communist_movement_in_johor
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 25
+			has_manpower > 500
+		}
+		custom_cost_text = MAL_communist_movement_decision_cost
+
+		days_remove = 5
+
+		remove_effect = {
+			add_political_power = -25
+			add_manpower = -500
+			add_days_mission_timeout = {
+				mission = MAL_communist_movement_in_johor
+				days = 20
+			}
+		}
+	}
+	MAL_suppress_communists_in_fms = {
+		icon = generic_ignite_civil_war
+		
+		visible = {
+			has_active_mission = MAL_communist_movement_in_fms
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 25
+			has_manpower > 500
+		}
+		custom_cost_text = MAL_communist_movement_decision_cost
+
+		days_remove = 5
+
+		remove_effect = {
+			add_political_power = -25
+			add_manpower = -500
+			add_days_mission_timeout = {
+				mission = MAL_communist_movement_in_fms
+				days = 20
+			}
+		}
+	}
+	MAL_communist_movement_in_kedah = {
+		icon = generic_ignite_civil_war
+
+		allowed = { always = no }
+
+		selectable_mission = no
+		days_mission_timeout = 30
+		is_good = yes
+
+		cancel_trigger = {
+			NOT = { has_global_flag = TWR_malayan_emergency }
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAL_communist_movement_in_kedah"
+			custom_effect_tooltip = MAL_communist_movement_in_kedah_tt
+			937 = {
+				add_to_variable = { MAL_communist_state_support = 1 }
+				if = {
+					limit = {
+						check_variable = { MAL_communist_state_support < 2 }
+					}
+					set_variable = { MAL_communist_support_array^3 =  3 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support < 4 }
+					}
+					set_variable = { MAL_communist_support_array^3 =  2 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support = 4 }
+					}
+					set_variable = { MAL_communist_support_array^3 =  1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support = 5 }
+					}
+					set_variable = { MAL_communist_support_array^3 =  1 }
+					CMA = { set_state_controller = PREV }
+				}
+			}
+			add_to_variable = { MAL_malayan_emergency_support_var = 1 }
+			hidden_effect = {
+				add_political_power = -25
+				add_manpower = -500
+				random_list = {
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = { controls_state = 937 }
+						}
+						activate_mission = MAL_communist_movement_in_kedah
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = { controls_state = 857 }
+						}
+						activate_mission = MAL_communist_movement_in_johor
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = {
+								OR = {
+									AND = {
+										NOT = { controls_state = 857 }
+										NOT = { controls_state = 937 }
+									}
+									controls_state = 336
+								}
+							}
+						}
+						activate_mission = MAL_communist_movement_in_fms
+					}
+				}
+			}
+		}
+	}
+	MAL_communist_movement_in_johor = {
+		icon = generic_ignite_civil_war
+
+		allowed = { always = no }
+
+		custom_cost_trigger = {
+			has_political_power > 25
+			has_manpower > 500
+		}
+		custom_cost_text = MAL_communist_movement_decision_cost
+
+		selectable_mission = yes
+		days_mission_timeout = 30
+		is_good = yes
+
+		cancel_trigger = {
+			NOT = { has_global_flag = TWR_malayan_emergency }
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAL_communist_movement_in_johor"
+			custom_effect_tooltip = MAL_communist_movement_in_johor_tt
+			857 = {
+				add_to_variable = { MAL_communist_state_support = 1 }
+				if = {
+					limit = {
+						check_variable = { MAL_communist_state_support < 2 }
+					}
+					set_variable = { MAL_communist_support_array^1 =  3 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support < 4 }
+					}
+					set_variable = { MAL_communist_support_array^1 =  2 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support = 4 }
+					}
+					set_variable = { MAL_communist_support_array^1 =  1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support = 5 }
+					}
+					set_variable = { MAL_communist_support_array^1 =  1 }
+					CMA = { set_state_controller = PREV }
+				}
+			}
+			add_to_variable = { MAL_malayan_emergency_support_var = 1 }
+			hidden_effect = {
+				add_political_power = -25
+				add_manpower = -500
+				random_list = {
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = { controls_state = 937 }
+						}
+						activate_mission = MAL_communist_movement_in_kedah
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = { controls_state = 857 }
+						}
+						activate_mission = MAL_communist_movement_in_johor
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = {
+								OR = {
+									AND = {
+										NOT = { controls_state = 857 }
+										NOT = { controls_state = 937 }
+									}
+									controls_state = 336
+								}
+							}
+						}
+						activate_mission = MAL_communist_movement_in_fms
+					}
+				}
+			}
+		}
+	}
+	MAL_communist_movement_in_fms = {
+		icon = generic_ignite_civil_war
+
+		allowed = { always = no }
+
+		custom_cost_trigger = {
+			has_political_power > 25
+			has_manpower > 500
+		}
+		custom_cost_text = MAL_communist_movement_decision_cost
+
+		selectable_mission = yes
+		days_mission_timeout = 30
+		is_good = yes
+
+		cancel_trigger = {
+			NOT = { has_global_flag = TWR_malayan_emergency }
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAL_communist_movement_in_fms"
+			custom_effect_tooltip = MAL_communist_movement_in_fms_tt
+			336 = {
+				add_to_variable = { MAL_communist_state_support = 1 }
+				if = {
+					limit = {
+						check_variable = { MAL_communist_state_support < 2 }
+					}
+					set_variable = { MAL_communist_support_array^1 =  3 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support < 4 }
+					}
+					set_variable = { MAL_communist_support_array^1 =  2 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support = 4 }
+					}
+					set_variable = { MAL_communist_support_array^1 =  1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { MAL_communist_state_support = 5 }
+					}
+					set_variable = { MAL_communist_support_array^1 =  1 }
+					CMA = { set_state_controller = PREV }
+				}
+			}
+			add_to_variable = { MAL_malayan_emergency_support_var = 1 }
+			hidden_effect = {
+				add_political_power = -25
+				add_manpower = -500
+				random_list = {
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = { controls_state = 937 }
+						}
+						activate_mission = MAL_communist_movement_in_kedah
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = { controls_state = 857 }
+						}
+						activate_mission = MAL_communist_movement_in_johor
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							CMA = {
+								OR = {
+									AND = {
+										NOT = { controls_state = 857 }
+										NOT = { controls_state = 937 }
+									}
+									controls_state = 336
+								}
+							}
+						}
+						activate_mission = MAL_communist_movement_in_fms
+					}
+				}
+			}
+		}
+	}
+}
+
+MAL_racial_tensions_decision_category = {
+	MAL_introduce_pro_malay_policies = {
+		icon = eng_trade_unions_support
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 120
+
+		modifier = {
+			political_power_gain = -0.10
+		}
+		
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				has_completed_focus = MAL_Jaafars_Dream
+			}
+			modifier = {
+				factor = 0
+				check_variable = { malay_influence > 75 }
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove MAL_introduce_pro_malay_policies"
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_malay_influence = yes
+		}
+	}
+	MAL_introduce_pro_chinese_policies = {
+		icon = eng_trade_unions_support
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 120
+
+		modifier = {
+			political_power_gain = -0.10
+		}
+		
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				has_completed_focus = MAL_Rahmans_Status_Quo
+			}
+			modifier = {
+				factor = 0
+				check_variable = { chinese_influence > 75 }
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove MAL_introduce_pro_chinese_policies"
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_chinese_influence = yes
+		}
+	}
+	MAL_grant_concessions_to_the_malays = {
+		icon = eng_trade_unions_support
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 120
+
+		modifier = {
+			production_speed_buildings_factor = -0.05
+			consumer_goods_factor = 0.02
+		}
+		
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				has_completed_focus = MAL_Jaafars_Dream
+			}
+			modifier = {
+				factor = 0
+				check_variable = { malay_influence > 75 }
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove MAL_grant_concessions_to_the_malays"
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_malay_influence = yes
+		}
+	}
+	MAL_grant_concessions_to_the_chinese = {
+		icon = eng_trade_unions_support
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 120
+
+		modifier = {
+			production_speed_buildings_factor = -0.05
+			consumer_goods_factor = 0.02
+		}
+		
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				has_completed_focus = MAL_Rahmans_Status_Quo
+			}
+			modifier = {
+				factor = 0
+				check_variable = { chinese_influence > 75 }
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove MAL_grant_concessions_to_the_chinese"
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_chinese_influence = yes
+		}
+	}
+}

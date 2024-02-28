@@ -1,0 +1,2288 @@
+
+	shared_focus = {
+	cancelable = no
+		id = FIN_karelian_question
+		icon = GFX_FIN_karelia
+		x = 21
+		y = 0
+		cost = 5
+		available = {
+			controls_state = 215
+		}
+		ai_will_do = {
+		    factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_karelian_question"
+			add_political_power = 70
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_stop_deportations
+		icon = GFX_GENERIC_death_tracks_no
+		prerequisite = { focus = FIN_karelian_question }
+		mutually_exclusive = { focus = FIN_grants_to_valpo }
+		relative_position_id = FIN_karelian_question
+		x = -2
+		y = 1
+		cost = 8
+		available = {
+			OR = {
+				has_completed_focus = FIN_elections_karvikko_victory
+				has_completed_focus = FIN_elections_susitaival_victory
+				has_completed_focus = FIN_elections_paasikivi_victory
+			}
+			controls_state = 215
+		}
+		ai_will_do = {
+		    factor = 2
+			modifier = {
+				factor = 2
+				has_completed_focus = FIN_elections_susitaival_victory
+			}
+			modifier = {
+				factor = 2
+				has_completed_focus = FIN_elections_paasikivi_victory
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_stop_deportations"
+			set_country_flag = no_deportations
+			custom_effect_tooltip = deportations_end
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_grants_to_valpo
+		icon = GFX_GENERIC_spy_meeting
+		prerequisite = { focus = FIN_karelian_question }
+		mutually_exclusive = { focus = FIN_stop_deportations }
+		relative_position_id = FIN_karelian_question
+		x = 2
+		y = 1
+		cost = 8
+		available = {
+			OR = {
+				has_completed_focus = FIN_elections_karvikko_victory
+				has_completed_focus = FIN_elections_susitaival_victory
+				has_completed_focus = FIN_elections_kekkonen_victory
+			}
+			controls_state = 215
+		}
+		ai_will_do = {
+		    factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_grants_to_valpo"
+			add_political_power = 100
+			add_ideas = valpo_grants
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_finnicization
+		icon = GFX_FIN_teach_finnish
+		prerequisite = { focus = FIN_stop_deportations }
+		mutually_exclusive = { focus = FIN_ryssat_toihin }
+		relative_position_id = FIN_karelian_question
+		x = -2
+		y = 2
+		cost = 8
+		available = {
+			controls_state = 215
+			OR = {
+				has_completed_focus = FIN_elections_karvikko_victory
+				has_completed_focus = FIN_elections_paasikivi_victory
+			}
+		}
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_finnicization"
+			add_ideas = finnicization_spirit
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_ryssat_toihin
+		icon = GFX_GENERIC_ball_and_chain_on_green_background
+		prerequisite = { focus = FIN_stop_deportations }
+		mutually_exclusive = { focus = FIN_finnicization }
+		relative_position_id = FIN_karelian_question
+		x = 0
+		y = 2
+		cost = 8
+		available = {
+			controls_state = 215
+			has_completed_focus = FIN_elections_susitaival_victory
+		}
+		ai_will_do = {
+		    factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_ryssat_toihin"
+			add_ideas = FIN_russian_labour
+			#a muista vastarinta eventit
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_deport_the_rest
+		icon = GFX_GENERIC_death_tracks
+		prerequisite = { focus =  FIN_grants_to_valpo }
+		relative_position_id = FIN_karelian_question
+		x = 2
+		y = 2
+		cost = 8
+		available = {
+			controls_state = 215
+			has_country_flag = last_deportation_done
+		}
+		ai_will_do = {
+		    factor = 4
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_deport_the_rest"
+			clr_country_flag = last_deportation_done
+			custom_effect_tooltip = remove_all_tt
+			set_country_flag = all_deportations_done
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_karelian_lords
+		icon = GFX_FIN_karelia_crown
+		prerequisite = { focus = FIN_ryssat_toihin }
+		relative_position_id = FIN_karelian_question
+		x = 0
+		y = 3
+		cost = 8
+		available = {
+			controls_state = 215
+			has_war = no
+		}
+		ai_will_do = {
+		    factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_karelian_lords"
+			213 = { add_core_of = FIN }
+			215 = { add_core_of = FIN }
+			216 = { add_core_of = FIN }
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_finnish_settlement
+		icon = GFX_FIN_flag
+		prerequisite = { focus = FIN_deport_the_rest }
+		relative_position_id = FIN_karelian_question
+		x = 2
+		y = 3
+		cost = 8
+		available = {
+			controls_state = 215
+		}
+		ai_will_do = {
+		    factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_finnish_settlement"
+			213 = { add_core_of = FIN }
+			215 = { add_core_of = FIN }
+			216 = { add_core_of = FIN }
+			add_political_power = -100
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_karelian_autonomy
+		icon = GFX_FIN_karelia_flag
+		prerequisite = { focus = FIN_finnicization }
+		relative_position_id = FIN_karelian_question
+		x = -2
+		y = 3
+		cost = 8
+		available = {
+			controls_state = 215
+		}
+		ai_will_do = {
+		    factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_karelian_autonomy"
+			213 = { add_core_of = FIN }
+			215 = { add_core_of = FIN }
+			216 = { add_core_of = FIN }
+			add_political_power = -25
+			remove_ideas = finnicization_spirit
+			add_ideas = karelian_autonomy
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 213
+						state = 215
+						state = 216
+					}
+				}
+				add_dynamic_modifier = { modifier = autonomous_state }
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_infra_project_karelia
+		icon = GFX_FIN_railway_through_karelia
+		prerequisite = { focus = FIN_finnish_settlement focus = FIN_karelian_lords focus = FIN_karelian_autonomy }
+		mutually_exclusive = { focus = FIN_clog_the_drain }
+		relative_position_id = FIN_karelian_question
+		x = 1
+		y = 4
+		cost = 8
+		available = {
+			controls_state = 215
+		}
+		ai_will_do = {
+		    factor = 2
+			modifier = {
+				factor = 0.5
+				has_war = yes
+			}
+			modifier = {
+				factor = 1.5
+				has_completed_focus = FIN_karelian_lords
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_infra_project_karelia"
+			remove_ideas = karelian_money_drain
+			add_timed_idea = {
+				idea = FIN_k_infra_project
+				days = 98
+			}
+			if = {
+				limit = {
+					213 = { infrastructure < 5 }
+				}
+				213 = {
+					set_building_level = {
+						type = infrastructure
+						level = 5
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					215 = { infrastructure < 5 }
+				}
+				215 = {
+					set_building_level = {
+						type = infrastructure
+						level = 5
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					216 = { infrastructure < 6 }
+				}
+				216 = {
+					set_building_level = {
+						type = infrastructure
+						level = 6
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_clog_the_drain
+		icon = GFX_GENERIC_shitty_house
+		prerequisite = { focus = FIN_finnish_settlement focus = FIN_karelian_lords focus = FIN_karelian_autonomy }
+		mutually_exclusive = { focus = FIN_infra_project_karelia }
+		relative_position_id = FIN_karelian_question
+		x = -1
+		y = 4
+		cost = 8
+		ai_will_do = {
+		    factor = 1
+			modifier = {
+				factor = 2
+				has_war = yes
+			}
+			modifier = {
+				factor = 1.5
+				has_completed_focus = FIN_karelian_autonomy
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_clog_the_drain"
+			remove_ideas = karelian_money_drain
+			add_ideas = karelia_in_disrepair
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_new_age_of_national_romanticism
+		icon = GFX_FIN_karelia_crown_trumpet
+		prerequisite = { focus = FIN_infra_project_karelia }
+		relative_position_id = FIN_karelian_question
+		x = 0
+		y = 5
+		cost = 5
+		available = {
+			controls_state = 215
+			NOT = { has_idea = FIN_k_infra_project }
+		}
+		ai_will_do = {
+		    factor = 3
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_new_age_of_national_romanticism"
+			add_ideas = FIN_karelianism
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_fdf
+		icon = GFX_FIN_defense_forces
+		x = 50
+		y = 0
+		cost = 5
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 3
+				date > 1953.1.1
+			}
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_fdf"
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_promote_fresh_generals
+		icon = GFX_focus_generic_military_mission
+		prerequisite = { focus = FIN_fdf }
+		x = 0
+		y = 2
+		cost = 5
+		relative_position_id = FIN_fdf
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				date > 1953.1.1
+			}
+			modifier = {
+				factor = 2
+				date > 1954.1.1
+			}
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_promote_fresh_generals"
+			create_corps_commander = {
+				name = "Arvo Saloranta"
+				portrait_path = "gfx/leaders/FIN/Arvo_Saloranta.dds"
+				traits = { infantry_officer }
+				skill = 2
+				attack_skill = 1
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 3
+				id = 2711
+			}
+			create_corps_commander = {
+				name = "Albert Puroma"
+				portrait_path = "gfx/leaders/FIN/Albert_Puroma.dds"
+				traits = { jaeger_training winter_specialist }
+				skill = 2
+				attack_skill = 4
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+				id = 2712
+			}
+			create_corps_commander = {
+				name = "Jorma Järventaus"
+				portrait_path = "gfx/leaders/FIN/Jorma_Jarventaus.dds"
+				traits = { career_officer }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 1
+				id = 2713
+			}
+			create_field_marshal = {
+				name = "Kustaa Tapola"
+				portrait_path = "gfx/leaders/FIN/Kustaa_Tapola.dds"
+				traits = { politically_connected }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 3
+				id = 2713
+			}
+			#remember death events
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_winter_war_lessons
+		icon = GFX_GENERIC_sniper_defense
+		prerequisite = { focus = FIN_fdf }
+		mutually_exclusive = { focus = FIN_continuation_war_lessons }
+		x = -4
+		y = 1
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2.5
+				has_completed_focus = FIN_elections_kekkonen_victory
+			}
+			modifier = {
+				factor = 0.5
+				has_completed_focus = FIN_elections_karvikko_victory
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					is_researching_technology = asymmetric_warfare
+					has_tech = asymmetric_warfare
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = cat_combined_operations
+				category = cat_asymmetric_warfare
+				category = cat_strategic_theorem
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_continuation_war_lessons
+		icon = GFX_FIN_greater_finland_map
+		prerequisite = { focus = FIN_fdf }
+		mutually_exclusive = { focus = FIN_winter_war_lessons }
+		x = 4
+		y = 1
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2.5
+				has_completed_focus = FIN_elections_susitaival_victory
+			}
+			modifier = {
+				factor = 0.5
+				has_completed_focus = FIN_elections_paasikivi_victory
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					is_researching_technology = combined_operations
+					has_tech = combined_operations
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = cat_combined_operations
+				category = cat_asymmetric_warfare
+				category = cat_strategic_theorem
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_artillery_warfare
+		icon = GFX_goal_generic_army_artillery2
+		prerequisite = { focus = FIN_winter_war_lessons }
+		x = -5
+		y = 2
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_artillery_warfare"
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 1
+				category = artillery
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_a_new_service_rifle
+		icon = GFX_FIN_stg_45
+		prerequisite = { focus = FIN_winter_war_lessons }
+		x = -3
+		y = 2
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		bypass = {
+			has_tech = infantry_weapons_3
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_a_new_service_rifle"
+			add_tech_bonus = {
+				name = rifle_bonus
+				bonus = 0.8
+				uses = 1
+				technology = infantry_weapons_3
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_arm_our_reserves
+		icon = GFX_GENERIC_Rally_the_People
+		prerequisite = { focus = FIN_continuation_war_lessons }
+		x = 3
+		y = 2
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_arm_our_reserves"
+			add_timed_idea = {
+			    days = 90
+				idea = FIN_arming_reserves
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_create_national_armour_company
+		icon = GFX_focus_generic_tank_production
+		prerequisite = { focus = FIN_continuation_war_lessons }
+		x = 5
+		y = 2
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_create_national_armour_company"
+            set_technology = {
+				MBT_1950 = 1
+				APC_1950_basic_armor = 1
+				APC_1950_basic_engine = 1
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_the_panzer_division
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = FIN_artillery_warfare }
+		x = -5
+		y = 3
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_the_panzer_division"
+			add_tech_bonus = {
+				name = armor_bonus
+				bonus = 0.75
+				uses = 1
+				category = armor
+			}
+			create_corps_commander = {
+			    name = "Pekka Karhu"
+				traits = { panzer_leader organizer }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_mobile_marksmen
+		icon = GFX_focus_secret_rearmament
+		prerequisite = { focus = FIN_a_new_service_rifle }
+		x = -3
+		y = 3
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_mobile_marksmen"
+			add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_tech
+				category = infantry_weapons
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_fund_lotta_svard
+		icon = GFX_FIN_lotta_svard
+		prerequisite = { focus = FIN_promote_fresh_generals }
+		x = 0
+		y = 3
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				date > 1955.1.1
+			}
+		}
+		available = {
+		}
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_fund_lotta_svard"
+			add_ideas = FIN_lotta_svard
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_service_for_women
+		icon = GFX_GENERIC_women_army
+		prerequisite = { focus = FIN_arm_our_reserves }
+		x = 3
+		y = 3
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_service_for_women"
+			set_rule = {
+				can_generate_female_aces = yes
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_frontline_warfare
+		icon = GFX_GENERIC_frontlines
+		prerequisite = { focus = FIN_create_national_armour_company }
+		x = 5
+		y = 3
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_frontline_warfare"
+			if = {
+				limit = { has_tech = asymmetric_warfare }
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.5
+					uses = 2
+					category = cat_asymmetric_warfare
+				}
+			}
+			else = {
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.5
+					uses = 1
+					category = land_doctrine
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_anti_tank_research
+		icon = GFX_GENERIC_tank_destruction
+		prerequisite = { focus = FIN_the_panzer_division }
+		x = -5
+		y = 4
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_anti_tank_research"
+			if = {
+				limit = { has_tech = infantry_at2 }
+				add_tech_bonus = {
+					name = infantry_tech_bonus
+					bonus = 0.5
+					uses = 1
+					technology = infantry_at3
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = infantry_tech_bonus
+					bonus = 0.5
+					uses = 1
+					technology = infantry_at4
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_regional_fighting
+		icon = GFX_goal_generic_position_armies
+		prerequisite = { focus = FIN_mobile_marksmen }
+		x = -3
+		y = 4
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_regional_fighting"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_auxilliary_lotta
+		icon = GFX_FIN_aux_lotta
+		prerequisite = { focus = FIN_fund_lotta_svard }
+		mutually_exclusive = { focus = FIN_combat_role_lotta }
+		x = -1
+		y = 4
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				date > 1956.1.1
+			}
+			modifier = {
+				factor = 0.1
+				NOT = {
+					has_completed_focus = FIN_mobile_marksmen
+				}
+			}
+		}
+		available = {
+		}
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_auxilliary_lotta"
+			swap_ideas = {
+				remove_idea = FIN_lotta_svard
+				add_idea = FIN_lotta_svard2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_combat_role_lotta
+		icon = GFX_FIN_battlefield_lotta
+		mutually_exclusive = { focus = FIN_auxilliary_lotta }
+		prerequisite = { focus = FIN_fund_lotta_svard }
+		prerequisite = { focus = FIN_service_for_women }
+		x = 1
+		y = 4
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				date > 1956.1.1
+			}
+		}
+		available = {
+		}
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_combat_role_lotta"
+			swap_ideas = {
+				remove_idea = FIN_lotta_svard
+				add_idea = FIN_lotta_svard3
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_expand_sako
+		icon = GFX_FIN_sako
+		prerequisite = { focus = FIN_service_for_women }
+		x = 3
+		y = 4
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_expand_sako"
+			show_ideas_tooltip = SAKO
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_our_crushing_treads
+		icon = GFX_focus_generic_army_tanks2
+		prerequisite = { focus = FIN_frontline_warfare }
+		x = 5
+		y = 4
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_our_crushing_treads"
+			add_tech_bonus = {
+				name = armor_bonus
+				bonus = 0.5
+				uses = 2
+				category = armor
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_helicopter_focus
+		icon = GFX_GENERIC_helicopter
+		prerequisite = { focus = FIN_anti_tank_research }
+		x = -5
+		y = 5
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_helicopter_focus"
+			add_tech_bonus = {
+				name = helicopter_bonus
+				bonus = 0.75
+				uses = 1
+				category = helicopter
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_modern_jager_corp
+		icon = GFX_FIN_manpower
+		prerequisite = { focus = FIN_regional_fighting }
+		x = -3
+		y = 5
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_modern_jager_corp"
+			add_tech_bonus = {
+				name = motorized_bonus
+				bonus = 0.75
+				uses = 1
+				category = motorized_equipment
+			}
+			army_experience = 25
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_unify_officer_academies
+		icon = GFX_focus_research
+		prerequisite = { focus = FIN_auxilliary_lotta focus = FIN_combat_role_lotta }
+		prerequisite = { focus = FIN_missile_vessels focus = FIN_national_readiness }
+		prerequisite = { focus = FIN_helicopter_focus focus = FIN_modern_jager_corp focus = FIN_equipment_development focus = FIN_duties_of_the_civil_guard }
+		x = 0
+		y = 6
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 5
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_unify_officer_academies"
+			add_research_slot = 1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_duties_of_the_civil_guard
+		icon = GFX_FIN_suojeluskunta
+		prerequisite = { focus = FIN_our_crushing_treads }
+		x = 5
+		y = 5
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_duties_of_the_civil_guard"
+			add_ideas = FIN_suojeluskunta
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_equipment_development
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = FIN_expand_sako }
+		x = 3
+		y = 5
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_equipment_development"
+			add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 0.5
+				uses = 2
+				category = infantry_tech
+				category = infantry_weapons
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_faf
+		icon = GFX_FIN_air_force
+		prerequisite = { focus = FIN_fdf }
+		x = 8
+		y = 1
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+			}
+		}
+		available = {
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_faf"
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = air_doctrine
+			}	
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_valtion_lt
+		icon = GFX_GENERIC_air_production
+		prerequisite = { focus = FIN_faf }
+		x = 0
+		y = 1
+		relative_position_id = FIN_faf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+			}
+		}
+		available = {
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_valtion_lt"
+			show_ideas_tooltip = Valtion_Lentokonetehdas
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_into_the_jet_era
+		icon = GFX_GENERIC_Jet_Fighters
+		prerequisite = { focus = FIN_valtion_lt }
+		x = 0
+		y = 2
+		relative_position_id = FIN_faf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_into_the_jet_era"
+			add_tech_bonus = {
+				name = air_bonus
+				bonus = 0.75
+				uses = 1
+				category = air_equipment
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_adopt_fighter_model
+		icon = GFX_GER_interceptor
+		prerequisite = { focus = FIN_into_the_jet_era }
+		x = 0
+		y = 3
+		relative_position_id = FIN_faf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		bypass = {
+			has_tech = CAS_1950
+			has_tech = interceptor_1950
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_adopt_fighter_model"
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 0.5
+				uses = 1
+				technology = CAS_1950
+				technology = interceptor_1950
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_local_assembly_and_development
+		icon = GFX_goal_generic_air_production
+		prerequisite = { focus = FIN_adopt_fighter_model }
+		x = -1
+		y = 4
+		relative_position_id = FIN_faf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_local_assembly_and_development"
+			111 = {
+				if = {
+				    limit = { is_controlled_by = ROOT }
+				    add_extra_state_shared_building_slots = 1
+				    add_building_construction = {
+					    type = arms_factory
+					    level = 1
+					    instant_build = yes
+				    }
+				}
+			}
+			air_experience = 5
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_national_readiness
+		icon = GFX_focus_generic_air_defense
+		prerequisite = { focus = FIN_adopt_fighter_model }
+		x = 1
+		y = 4
+		relative_position_id = FIN_faf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		available = {
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_national_readiness"
+			111 = {
+				if = {
+				    limit = { is_controlled_by = ROOT }
+				    add_building_construction = {
+					    type = anti_air_building
+					    level = 3
+					    instant_build = yes
+				    }
+				}
+			}
+			146 = {
+				if = {
+				    limit = { is_controlled_by = ROOT }
+				    add_building_construction = {
+					    type = air_base
+					    level = 2
+					    instant_build = yes
+				    }
+				}
+			}
+			146 = {
+				if = {
+				    limit = { is_controlled_by = ROOT }
+				    add_building_construction = {
+					    type = anti_air_building
+					    level = 3
+					    instant_build = yes
+				    }
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_navy
+		icon = GFX_FIN_sea_force
+		prerequisite = { focus = FIN_fdf }
+		x = -8
+		y = 1
+		relative_position_id = FIN_fdf
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		available = {
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_navy"	
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_heavy_southwest_shipyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = FIN_navy }
+		x = 0
+		y = 1
+		relative_position_id = FIN_navy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_heavy_southwest_shipyards"
+			147 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_minelayers
+		icon = GFX_GENERIC_navy_mine
+		prerequisite = { focus = FIN_heavy_southwest_shipyards }
+		x = -1
+		y = 2
+		relative_position_id = FIN_navy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_minelayers"
+			add_tech_bonus = {
+				name = naval_minelaying_bonus
+				bonus = 0.75
+				uses = 1
+				category = naval_minelaying
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_submarine_warfare
+		icon = GFX_goal_generic_navy_submarine
+		prerequisite = { focus = FIN_heavy_southwest_shipyards }
+		x = 1
+		y = 2
+		relative_position_id = FIN_navy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_submarine_warfare"
+			add_tech_bonus = {
+				name = submarine_bonus
+				bonus = 0.45
+				uses = 2
+				category = ss_tech
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_coastal_defense
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = FIN_submarine_warfare focus = FIN_minelayers }
+		x = 0
+		y = 3
+		relative_position_id = FIN_navy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_coastal_defense"	
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+			custom_effect_tooltip = FIN_coastal_bunkers_tooltip
+			149 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					hidden_effect = {
+						add_building_construction = {
+							type = coastal_bunker
+							level = 3
+							province = 158
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = coastal_bunker
+							level = 3
+							province = 3122
+							instant_build = yes
+						}
+					}
+				}
+			}
+			147 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					hidden_effect = {
+						add_building_construction = {
+							type = coastal_bunker
+							level = 3
+							province = 3083
+							instant_build = yes
+						}
+					}
+				}
+			}
+			111 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					hidden_effect = {
+						add_building_construction = {
+							type = coastal_bunker
+							level = 3
+							province = 11105
+							instant_build = yes
+						}
+					}
+				}
+			}
+			146 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					hidden_effect = {
+						add_building_construction = {
+							type = coastal_bunker
+							level = 3
+							province = 9206
+							instant_build = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_missile_vessels
+		icon = GFX_GENERIC_Rocket_Subs
+		prerequisite = { focus = FIN_coastal_defense }
+		x = 0
+		y = 4
+		relative_position_id = FIN_navy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25
+			}
+		}
+		available = {
+
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_missile_vessels"
+			add_ideas = FIN_naval_missiles
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_our_economic_policy
+		icon = GFX_focus_generic_industry_2
+		x = 32
+		y = 0
+		cost = 5
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_our_economic_policy"
+			add_political_power = 70
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_embrace_agrarianism
+		icon = GFX_FIN_agriculture
+		prerequisite = { focus = FIN_our_economic_policy }
+		mutually_exclusive = { focus = FIN_begin_industrialisation }
+		x = -2
+		y = 1
+		cost = 8
+		relative_position_id = FIN_our_economic_policy
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 2
+				has_completed_focus = FIN_elections_kekkonen_victory
+			}
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+			NOT = { has_completed_focus = FIN_elections_susitaival_victory }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_embrace_agrarianism"
+			swap_ideas = {
+			    remove_idea = FIN_relatively_agrarian_society
+				add_idea = FIN_relatively_agrarian_society2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_begin_industrialisation
+		icon = GFX_FIN_industry
+		prerequisite = { focus = FIN_our_economic_policy }
+		mutually_exclusive = { focus = FIN_embrace_agrarianism }
+		x = 2
+		y = 1
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 2
+				OR = { has_completed_focus = FIN_elections_karvikko_victory
+				has_completed_focus = FIN_elections_susitaival_victory }
+			}
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+			NOT = { has_completed_focus = FIN_elections_kekkonen_victory }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_begin_industrialisation"
+			add_ideas = FIN_begin_industrialisation_ns
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_invest_in_outokumpu_plc
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = FIN_begin_industrialisation focus = FIN_embrace_agrarianism }
+		x = 0
+		y = 2
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				has_war = yes
+			}
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_invest_in_outokumpu_plc"
+			add_resource = {
+				type = steel
+				amount = 10
+				state = 150
+			}
+			add_resource = {
+				type = chromium
+				amount = 18
+				state = 148
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_question_of_kola_chromium
+		icon = GFX_FIN_mine_kola_peninsula
+		prerequisite = { focus = FIN_invest_in_outokumpu_plc }
+		x = 0
+		y = 3
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_question_of_kola_chromium"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_resource = {
+				type = chromium
+				amount = 8
+				state = 213
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_connect_the_countryside
+		icon = GFX_GENERIC_fix_crap_rails
+		prerequisite = { focus = FIN_embrace_agrarianism }
+		x = -4
+		y = 2
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_connect_the_countryside"
+			random_owned_controlled_state = {
+                prioritize = { 149 }
+				if = {
+					limit = {
+						infrastructure < 6
+					}
+					set_building_level = {
+						type = infrastructure
+						level = 6
+						instant_build = yes
+					}
+				}
+			}
+			150 = {
+				if = {
+					limit = {
+						infrastructure < 6
+					}
+					set_building_level = {
+						type = infrastructure
+						level = 6
+						instant_build = yes
+					}
+				}
+			}
+			148 = {
+				if = {
+					limit = {
+						infrastructure < 4
+					}
+					set_building_level = {
+						type = infrastructure
+						level = 4
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_improve_urban_infrastructure
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = FIN_begin_industrialisation }
+		x = 2
+		y = 2
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_improve_urban_infrastructure"
+			111 = {
+				if = {
+					limit = { infrastructure < 10 }
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			147 = {
+				if = {
+					limit = { infrastructure < 10 }
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_university_of_oulu
+		icon = GFX_focus_research
+		prerequisite = { focus = FIN_connect_the_countryside }
+		x = -2
+		y = 3
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_university_of_oulu"
+			add_research_slot = 1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_renovation_of_the_helsinki_university_technology
+		icon = GFX_GENERIC_brain
+		prerequisite = { focus = FIN_improve_urban_infrastructure }
+		x = 2
+		y = 3
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_renovation_of_the_helsinki_university_technology"
+			add_research_slot = 1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_equal_and_free_education
+		icon = GFX_focus_research2
+		prerequisite = { focus = FIN_renovation_of_the_helsinki_university_technology focus = FIN_university_of_oulu }
+		x = 0
+		y = 4
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_equal_and_free_education"
+			add_ideas = FIN_free_education
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_modernizing_labour_equipment
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = FIN_university_of_oulu }
+		x = -2
+		y = 4
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_modernizing_labour_equipment"
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_electronics_development
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = FIN_renovation_of_the_helsinki_university_technology }
+		x = 2
+		y = 4
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_electronics_development"
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_factory_construction_projects
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = FIN_begin_industrialisation }
+		x = 5
+		y = 2
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_factory_construction_projects"
+			swap_ideas = {
+				remove_idea = FIN_begin_industrialisation_ns
+				add_idea = FIN_begin_industrialisation_ns2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_subsidise_farmers
+		icon = GFX_GENERIC_agricultural_subsidies
+		prerequisite = { focus = FIN_connect_the_countryside }
+		x = -4
+		y = 3
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_subsidise_farmers"
+			add_ideas = FIN_subsidise_farmers
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_export_produce
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = FIN_subsidise_farmers }
+		x = -4
+		y = 4
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_export_produce"
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_pass_the_work_safety_bill
+		icon = GFX_GENERIC_industry_agreement
+		prerequisite = { focus = FIN_connect_the_countryside }
+		x = -6
+		y = 3
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_pass_the_work_safety_bill"
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_quality_healthcare
+		icon = GFX_GENERIC_Family
+		prerequisite = { focus = FIN_pass_the_work_safety_bill }
+		x = -6
+		y = 4
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_quality_healthcare"
+			add_ideas = FIN_quality_healthcare_ns
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_agrarian_reforms_complete
+		icon = GFX_FIN_agriculture_alt
+		prerequisite = { focus = FIN_quality_healthcare }
+		prerequisite = { focus = FIN_export_produce }
+		prerequisite = { focus = FIN_modernizing_labour_equipment }
+		x = -4
+		y = 5
+		relative_position_id = FIN_our_economic_policy
+		cost = 5
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_agrarian_reforms_complete"
+			if = {
+			    limit = {
+				    has_idea = FIN_relatively_agrarian_society
+				}
+				remove_ideas = FIN_relatively_agrarian_society
+			}
+			if = {
+			    limit = {
+				    has_idea = FIN_relatively_agrarian_society2
+				}
+				remove_ideas = FIN_relatively_agrarian_society2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_valtion_kt
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = FIN_factory_construction_projects }
+		x = 6
+		y = 3
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_valtion_kt"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+                prioritize = { 149 }
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_karelian_industry
+		icon = GFX_FIN_industrialize_karelia
+		prerequisite = { focus = FIN_valtion_kt }
+		x = 6
+		y = 4
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0
+				NOT = { has_completed_focus = FIN_infra_project_karelia }
+			}
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_karelian_industry"
+			146 = {
+				if = { limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			if = {
+				limit = {
+					has_completed_focus = FIN_infra_project_karelia
+				}
+				215 = {
+					if = { limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_extra_state_shared_building_slots = 1
+					}
+				}
+			}
+			else = {
+				custom_effect_tooltip = complete_infra_karelia_tt
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_tikkakoski
+		icon = GFX_GENERIC_arms_industry
+		prerequisite = { focus = FIN_factory_construction_projects }
+		x = 4
+		y = 3
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_tikkakoski"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+                prioritize = { 149 }
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_heavy_metal_works
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = FIN_tikkakoski }
+		prerequisite = { focus = FIN_valtion_kt }
+		x = 4
+		y = 4
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_heavy_metal_works"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+                prioritize = { 111 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+                prioritize = { 147 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_industrial_reforms_complete
+		icon = GFX_FIN_industry_alt
+		prerequisite = { focus = FIN_karelian_industry }
+		prerequisite = { focus = FIN_electronics_development }
+		prerequisite = { focus = FIN_heavy_metal_works }
+		x = 4
+		y = 5
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_industrial_reforms_complete"
+			if = {
+			    limit = {
+				    has_idea = FIN_relatively_agrarian_society
+				}
+				remove_ideas = FIN_relatively_agrarian_society
+			}
+			if = {
+			    limit = {
+				    has_idea = FIN_relatively_agrarian_society2
+				}
+				remove_ideas = FIN_relatively_agrarian_society2
+			}
+			if = {
+			    limit = {
+				    has_idea = FIN_begin_industrialisation_ns
+				}
+				remove_ideas = FIN_begin_industrialisation_ns
+			}
+			if = {
+			    limit = {
+				    has_idea = FIN_begin_industrialisation_ns2
+				}
+				remove_ideas = FIN_begin_industrialisation_ns2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = FIN_strong_economy
+		text = FIN_strong_economy_focus
+		icon = GFX_GENERIC_economic_prosperity
+		prerequisite = { focus = FIN_industrial_reforms_complete focus = FIN_agrarian_reforms_complete }
+		prerequisite = { focus = FIN_equal_and_free_education }
+		x = 0
+		y = 6
+		relative_position_id = FIN_our_economic_policy
+		cost = 8
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			NOT = { has_country_flag = locked_out_of_economy }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIN_strong_economy"
+			add_ideas = FIN_Strong_economy
+		}
+	}
+	

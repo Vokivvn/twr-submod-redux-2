@@ -1,0 +1,314 @@
+# This can be used normally: TAG = { white_peace_with_ROOT = yes }
+# Remember: ROOT is the country running the current event
+# TAG is the country you want ROOT to completely be at peace with
+# meaning it will ensure peace with all faction members and puppets on either side
+#credit to KR bois
+
+white_peace_with_ROOT = {
+	hidden_effect = {
+		save_event_target_as = peace_country
+
+		# first check for a faction leader to white peace with
+		if = {
+			limit = {
+				is_in_faction = yes
+				is_faction_leader = no
+			}
+			set_country_flag = TWR_war_skip
+			random_country = {
+				limit = {
+					is_in_faction_with = event_target:peace_country
+					is_faction_leader = yes
+					has_war_with = ROOT
+				}
+				white_peace = ROOT
+			}
+		}
+		if = {
+			limit = {
+				ROOT = {
+					is_in_faction = yes
+					is_faction_leader = no
+				}
+			}
+			set_country_flag = TWR_war_skip
+			random_country = {
+				limit = {
+					is_in_faction_with = ROOT
+					is_faction_leader = yes
+					has_war_with = event_target:peace_country
+				}
+				white_peace = event_target:peace_country
+			}
+		}
+
+		# then check for an overlord to white peace with
+		if = {
+			limit = {
+				is_subject = yes
+				overlord = { has_war_with = ROOT }
+			}
+			set_country_flag = TWR_war_skip
+			overlord = { white_peace = ROOT }
+		}
+		if = {
+			limit = {
+				ROOT = { is_subject = yes }
+			}
+			set_country_flag = TWR_war_skip
+			random_country = {
+				limit = {
+					ROOT = { is_subject_of = PREV }
+					has_war_with = event_target:peace_country
+				}
+				white_peace = event_target:peace_country
+			}
+		}
+	}
+
+	if = {
+		limit = { has_country_flag = TWR_war_skip }
+		clr_country_flag = TWR_war_skip
+		country_event = { id = hiddentwrwar.205 hours = 2 }
+		else = {
+			white_peace = ROOT
+		}
+	}
+
+	hidden_effect = {
+		# now double-check to ensure all faction members are peaced out
+		every_country = {
+			limit = {
+				is_in_faction_with = event_target:peace_country
+				has_war_with = ROOT
+			}
+			country_event = { id = hiddentwrwar.205 hours = 2 }
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = ROOT
+				has_war_with = event_target:peace_country
+			}
+			country_event = { id = hiddentwrwar.206 hours = 2 }
+		}
+
+		# and double-check to ensure all puppets are peaced out
+		every_country = {
+			limit = {
+				is_subject_of = ROOT
+				has_war_with = event_target:peace_country
+			}
+			country_event = { id = hiddentwrwar.206 hours = 2 }
+		}
+		every_country = {
+			limit = {
+				is_subject_of = event_target:peace_country
+				has_war_with = ROOT
+			}
+			country_event = { id = hiddentwrwar.205 hours = 2 }
+		}
+	}
+}
+
+# NOTE: "save_event_target_as = white_peace_receiver" needs to be performed first
+# Then you use "TAG = { white_peace_with_TARGET = yes }"
+# TAG is the country you want the event target to completely be at peace with
+# meaning it will ensure peace with all faction members and puppets on either side
+# remember: if you don't use TAG and just use "white_peace_with_TARGET = yes" then the event target is making peace with ROOT
+
+white_peace_with_TARGET = {
+	hidden_effect = {
+		save_event_target_as = peace_country
+
+		# first check for a faction leader to white peace with
+		if = {
+			limit = {
+				is_in_faction = yes
+				is_faction_leader = no
+			}
+			set_country_flag = TWR_war_skip
+			random_country = {
+				limit = {
+					is_in_faction_with = event_target:peace_country
+					is_faction_leader = yes
+					has_war_with = event_target:white_peace_receiver
+				}
+				white_peace = event_target:white_peace_receiver
+			}
+		}
+		if = {
+			limit = {
+				event_target:white_peace_receiver = {
+					is_in_faction = yes
+					is_faction_leader = no
+				}
+			}
+			set_country_flag = TWR_war_skip
+			random_country = {
+				limit = {
+					is_in_faction_with = event_target:white_peace_receiver
+					is_faction_leader = yes
+					has_war_with = event_target:peace_country
+				}
+				white_peace = event_target:peace_country
+			}
+		}
+
+		# then check for an overlord to white peace with
+		if = {
+			limit = {
+				is_subject = yes
+				overlord = { has_war_with = event_target:white_peace_receiver }
+			}
+			set_country_flag = TWR_war_skip
+			overlord = { white_peace = event_target:white_peace_receiver }
+		}
+		if = {
+			limit = {
+				event_target:white_peace_receiver = { is_subject = yes }
+			}
+			set_country_flag = TWR_war_skip
+			random_country = {
+				limit = {
+					event_target:white_peace_receiver = { is_subject_of = PREV }
+					has_war_with = event_target:peace_country
+				}
+				white_peace = event_target:peace_country
+			}
+		}
+	}
+
+	if = {
+		limit = { has_country_flag = TWR_war_skip }
+		clr_country_flag = TWR_war_skip
+		country_event = { id = hiddentwrwar.207 hours = 2 }
+		else = {
+			white_peace = event_target:white_peace_receiver
+		}
+	}
+
+	hidden_effect = {
+		# now double-check to ensure all faction members are peaced out
+		every_country = {
+			limit = {
+				is_in_faction_with = event_target:peace_country
+				has_war_with = event_target:white_peace_receiver
+			}
+			country_event = { id = hiddentwrwar.207 hours = 2 }
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = event_target:white_peace_receiver
+				has_war_with = event_target:peace_country
+			}
+			country_event = { id = hiddentwrwar.206 hours = 2 }
+		}
+
+		# and double-check to ensure all puppets are peaced out
+		every_country = {
+			limit = {
+				is_subject_of = event_target:white_peace_receiver
+				has_war_with = event_target:peace_country
+			}
+			country_event = { id = hiddentwrwar.206 hours = 2 }
+		}
+		every_country = {
+			limit = {
+				is_subject_of = event_target:peace_country
+				has_war_with = event_target:white_peace_receiver
+			}
+			country_event = { id = hiddentwrwar.207 hours = 2 }
+		}
+	}
+}
+
+white_peace_with_all = {
+	every_enemy_country = {
+		limit = {
+			is_faction_leader = yes
+		}
+		PREV = { white_peace = PREV }
+	}
+	every_enemy_country = {
+		limit = {
+			is_in_faction = no
+			is_subject = no
+		}
+		PREV = { white_peace = PREV }
+	}
+}
+
+become_free = {
+	if = {
+		limit = {
+			is_subject = yes
+		}
+		overlord = {
+			end_puppet = PREV
+		}
+	}
+}
+
+TWR_nojoinwar_on = {
+	custom_effect_tooltip = TWR_nojoinwar_on
+	hidden_effect = {
+		set_global_flag = TWR_NO_JOIN_WAR_@THIS
+		add_ideas = TWR_nojoinwars
+	}
+}
+
+TWR_nojoinwar_off = {
+	custom_effect_tooltip = TWR_nojoinwar_off
+	hidden_effect = {
+		clr_global_flag = TWR_NO_JOIN_WAR_@THIS
+		remove_ideas = TWR_nojoinwars
+	}
+}
+
+TWR_default_party_names = {
+	set_party_name = {
+		ideology = national_socialist
+		name = national_socialist
+		long_name = national_socialist
+	}
+	set_party_name = {
+		ideology = fascist
+		name = fascist
+		long_name = fascist
+	}
+	set_party_name = {
+		ideology = paternal_autocrat
+		name = paternal_autocrat
+		long_name = paternal_autocrat
+	}
+	set_party_name = {
+		ideology = conservative
+		name = conservative
+		long_name = conservative
+	}
+	set_party_name = {
+		ideology = liberal
+		name = liberal
+		long_name = liberal
+	}
+	set_party_name = {
+		ideology = social_democrat
+		name = social_democrat
+		long_name = social_democrat
+	}
+	set_party_name = {
+		ideology = socialist
+		name = socialist
+		long_name = socialist
+	}
+	set_party_name = {
+		ideology = bolshevik_leninist
+		name = bolshevik_leninist
+		long_name = bolshevik_leninist
+	}
+	set_party_name = {
+		ideology = marxist_leninist
+		name = marxist_leninist
+		long_name = marxist_leninist
+	}
+}

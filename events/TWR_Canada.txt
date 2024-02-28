@@ -1,0 +1,1907 @@
+add_namespace = twrcanada
+add_namespace = twrcanada_quebec
+add_namespace = twrcanada_elect
+add_namespace = twrcanada_ccf
+add_namespace = twrcanada_auth
+add_namespace = twrcanada_news
+add_namespace = twrpanamericanunion
+
+news_event = { # coup fails
+	id = twrcanada_news.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_news.1" }
+	
+	is_triggered_only = yes
+	major = yes
+	
+	title = twrcanada_news.1.t
+	desc = twrcanada_news.1.d
+	picture = GFX_news_event_canada_coup_fails
+	
+	option = {
+		name = twrcanada_news.1.a
+	}
+}
+
+news_event = { # coup succeeds
+	id = twrcanada_news.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_news.2" }
+	
+	is_triggered_only = yes
+	major = yes
+	
+	title = twrcanada_news.2.t
+	desc = twrcanada_news.2.d
+	picture = GFX_news_event_canada_coup_fails
+	
+	option = {
+		name = twrcanada_news.2.a
+	}
+}
+
+news_event = { # quebec declares independence
+	id = twrcanada_news.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_news.3" }
+	
+	is_triggered_only = yes
+	major = yes
+	
+	title = twrcanada_news.3.t
+	desc = twrcanada_news.3.d
+	picture = GFX_news_event_quebec_independence
+	
+	option = {
+		name = twrcanada_news.3.a
+	}
+}
+
+news_event = { # montreal massacre
+	id = twrcanada_news.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_news.4" }
+	
+	is_triggered_only = yes
+	major = yes
+	
+	title = twrcanada_news.4.t
+	desc = twrcanada_news.4.d
+	picture = GFX_news_event_canada_montreal_massacre
+	
+	option = {
+		name = twrcanada_news.4.a
+	}
+}
+
+news_event = { # liberals win
+	id = twrcanada_news.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_news.5" }
+	
+	is_triggered_only = yes
+	major = yes
+	
+	title = twrcanada_news.5.t
+	desc = twrcanada_news.5.d
+	picture = GFX_news_event_canada_liberals_win
+	
+	option = {
+		name = twrcanada_news.5.a
+	}
+}
+
+news_event = { # conservatives win
+	id = twrcanada_news.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_news.6" }
+	
+	is_triggered_only = yes
+	major = yes
+	
+	title = twrcanada_news.6.t
+	desc = twrcanada_news.6.d
+	picture = GFX_news_event_canada_conservatives_win
+	
+	option = {
+		name = twrcanada_news.6.a
+	}
+}
+
+news_event = { # CCF wins
+	id = twrcanada_news.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_news.7" }
+	
+	is_triggered_only = yes
+	major = yes
+	
+	title = twrcanada_news.7.t
+	desc = twrcanada_news.7.d
+	picture = GFX_news_event_canada_ccf_win
+	
+	option = {
+		name = twrcanada_news.7.a
+	}
+}
+
+#####
+
+#Flag Debate
+country_event = {
+	id = twrcanada.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.20" }
+	
+	is_triggered_only = yes
+	
+	title = twrcanada.20.t
+	desc = twrcanada.20.d
+	picture = GFX_report_event_canadian_flag
+	
+	option = {
+		name = twrcanada.20.a
+		ai_chance = {
+			factor = 0
+		}
+		trigger = {
+			NOT = {
+				OR = {
+					has_government = social_democrat
+					has_government = socialist
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = twrcanada.20.b
+		ai_chance = {
+			factor = 50
+		}
+		if = {
+			limit = {
+				OR = {
+					has_cosmetic_tag = CAN_CCF_0
+				}
+			}
+			set_cosmetic_tag = CAN_CCF_3
+			else = {
+				set_cosmetic_tag = CAN_PEARSON
+			}
+		}
+	}
+	
+	option = {
+		name = twrcanada.20.c
+		ai_chance = {
+			factor = 50
+		}
+		if = {
+			limit = {
+				OR = {
+					has_cosmetic_tag = CAN_CCF_0
+				}
+			}
+			set_cosmetic_tag = CAN_CCF_1
+			else = {
+				drop_cosmetic_tag = yes #CAN_ALY becomes CAN
+			}
+		}
+	}
+}
+
+#1952 Quebec Elections
+country_event = {
+	id = twrcanada_quebec.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.1" }
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	#trigger = {
+	#	tag = CAN
+	#	date > 1952.07.16
+	#}
+	
+	title = twrcanada_quebec.1.t
+	desc = twrcanada_quebec.1.d
+	picture = GFX_report_event_quebec_map
+	
+	immediate = {
+		set_country_flag = CAN_QUE_1952
+	}
+	
+	option = { #Duplessis
+		name = twrcanada_quebec.1.a
+		ai_chance = {
+			factor = 60
+		}
+		set_country_flag = CAN_QUE_Duplessis
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.2
+				days = 21
+			}
+		}
+	}
+	
+	option = { #Godbout
+		name = twrcanada_quebec.1.b
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAN_CCF_SOC
+					has_global_flag = COUNTRY_PATH_CAN_CCF_SDM
+					has_global_flag = COUNTRY_PATH_CAN_COUP
+				}
+			}
+		}
+		set_country_flag = CAN_QUE_Godbout
+	}
+}
+
+#Duplessis bans unions
+country_event = {
+	id = twrcanada_quebec.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.2" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.2.t
+	desc = twrcanada_quebec.2.d
+	picture = GFX_report_event_canada_strike
+	
+	option = { #I see no possible way this could go wrong
+		name = twrcanada_quebec.2.a
+		set_country_flag = CAN_QUE_Union_Crackdown
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.3
+				days = 2
+			}
+		}
+	}
+}
+
+#General Strike
+country_event = {
+	id = twrcanada_quebec.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.3" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.3.t
+	desc = twrcanada_quebec.3.d
+	picture = GFX_report_event_canada_strike
+	
+	option = { #Oops
+		name = twrcanada_quebec.3.a
+		set_country_flag = CAN_QUE_General_Strike
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.5
+				days = 7
+			}
+		}
+	}
+}
+
+#Duplessis requests deployments of the Army
+country_event = {
+	id = twrcanada_quebec.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.5" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.5.t
+	desc = twrcanada_quebec.5.d
+	picture = GFX_report_event_CAN_police
+	
+	option = { #Crush the commies
+		name = twrcanada_quebec.5.a
+		ai_chance = {
+			factor = 35
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAN_LIBERAL
+					has_global_flag = COUNTRY_PATH_CAN_TORY
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.9
+				days = 2
+			}
+		}
+	}
+	
+	option = { #This is a bad idea
+		name = twrcanada_quebec.5.b
+		ai_chance = {
+			factor = 65
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAN_CCF_SOC
+					has_global_flag = COUNTRY_PATH_CAN_CCF_SDM
+					has_global_flag = COUNTRY_PATH_CAN_COUP
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.6
+				days = 7
+			}
+		}
+	}
+}
+
+#General Strike Continues
+country_event = {
+	id = twrcanada_quebec.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.6" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.6.t
+	desc = twrcanada_quebec.6.d
+	picture = GFX_report_event_canada_strike
+	
+	option = { #Please stop
+		name = twrcanada_quebec.6.a
+		set_country_flag = CAN_QUE_Peace
+	}
+}
+
+#The army arrives in Montreal
+country_event = {
+	id = twrcanada_quebec.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.9" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.9.t
+	desc = twrcanada_quebec.9.d
+	picture = GFX_report_event_CAN_police
+	
+	option = { #Time to restore order
+		name = twrcanada_quebec.9.a
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.10
+				days = 1
+			}
+		}
+	}
+}
+
+#Oh fuck they just shot people
+country_event = {
+	id = twrcanada_quebec.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.10" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.10.t
+	desc = twrcanada_quebec.10.d
+	picture = GFX_report_event_canada_strike
+	
+	option = { #Oh god no
+		name = twrcanada_quebec.10.a
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.11
+				days = 1
+			}
+		}
+	}
+}
+
+#The Montreal Massacre
+country_event = {
+	id = twrcanada_quebec.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.11" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.11.t
+	desc = twrcanada_quebec.11.d
+	picture = GFX_report_event_canada_strike
+	
+	option = { #What have we done!
+		name = twrcanada_quebec.11.a
+		news_event = {
+			id = twrcanada_news.4
+			days = 1
+		}
+		set_country_flag = CAN_QUE_Massacre
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.25
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.12
+				days = 1
+			}
+		}
+	}
+}
+
+#Nationwide protests
+country_event = {
+	id = twrcanada_quebec.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.12" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.12.t
+	desc = twrcanada_quebec.12.d
+	picture = GFX_report_event_canada_crowd
+	
+	option = { #Let us hope they calm down
+		name = twrcanada_quebec.12.a
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.13
+				days = 3
+			}
+		}
+	}
+}
+
+#Conservatives criticize Liberals
+country_event = {
+	id = twrcanada_quebec.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.13" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.13.t
+	desc = twrcanada_quebec.13.d
+	picture = GFX_report_event_canada_crowd
+	
+	option = { #This was Duplessis, not us
+		name = twrcanada_quebec.13.a
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.03
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.14
+				days = 3
+			}
+		}
+	}
+}
+
+#Massive CCF rallies
+country_event = {
+	id = twrcanada_quebec.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.14" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.14.t
+	desc = twrcanada_quebec.14.d
+	picture = GFX_report_event_canada_crowd
+	
+	option = { #What do they think they are, relevant?
+		name = twrcanada_quebec.14.a
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.15
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.15
+				days = 14
+			}
+		}
+	}
+}
+
+#The PM's decision
+country_event = {
+	id = twrcanada_quebec.15
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.15" }
+	is_triggered_only = yes
+	
+	title = twrcanada_quebec.15.t
+	desc = twrcanada_quebec.15.d
+	picture = GFX_report_event_canada_crowd
+	
+	option = { #Call elections
+		name = twrcanada_quebec.15.a
+		ai_chance = {
+			factor = 80
+		}
+		set_country_flag = CAN_QUE_Elections
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_elect.2
+				days = 21
+			}
+		}
+	}
+	option = { #They'll die down in time
+		name = twrcanada_quebec.15.b
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAN_CCF_SOC
+					has_global_flag = COUNTRY_PATH_CAN_CCF_SDM
+					has_global_flag = COUNTRY_PATH_CAN_COUP
+				}
+			}
+		}
+		set_country_flag = CAN_QUE_Ignore_Protests
+	}
+}
+
+#Quebec Speech
+country_event = {
+	id = twrcanada_quebec.16
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.16" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = {
+		has_idea = CAN_quebec_regionalism
+	}
+	
+	title = twrcanada_quebec.16.t
+	desc = twrcanada_quebec.16.d
+	picture = GFX_report_event_canada_crowd
+	
+	option = { #Uhhh
+		name = twrcanada_quebec.16.a
+		#set_country_flag = CAN_QUEC_Timer
+		activate_mission = CAN_referendum_timer
+	}
+}
+
+#Quebec Calms Down
+country_event = {
+	id = twrcanada_quebec.17
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.17" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	title = twrcanada_quebec.17.t
+	desc = twrcanada_quebec.17.d
+	picture = GFX_report_event_canada_crowd
+	
+	option = { #Good
+		name = twrcanada_quebec.17.a
+	}
+}
+
+
+#Referendum Announced
+country_event = {
+	id = twrcanada_quebec.18
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.18" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	title = twrcanada_quebec.18.t
+	desc = twrcanada_quebec.18.d
+	picture = GFX_report_event_canada_crowd
+	
+	immediate = {
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = CAN_quebec_regionalism
+				add_idea = CAN_quebec_regionalism_worse
+			}
+		}
+	}
+	
+	option = {
+		name = twrcanada_quebec.18.a
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				has_government = socialist
+			}
+			modifier = {
+				factor = 0.5
+				has_government = conservative
+			}
+		}
+		country_event = {
+			id = twrcanada_quebec.19
+			days = 7
+		}
+		set_country_flag = CAN_QUEC_Unionist
+	}
+	
+	option = {
+		name = twrcanada_quebec.18.b
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				has_government = conservative
+			}
+			modifier = {
+				factor = 0.5
+				has_government = liberal
+			}
+		}
+		country_event = {
+			id = twrcanada_quebec.19
+			days = 7
+		}
+		set_country_flag = CAN_QUEC_Neutral
+	}
+	
+	option = {
+		name = twrcanada_quebec.18.c
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				has_government = socialist
+			}
+			modifier = {
+				factor = 0.5
+				has_government = liberal
+			}
+		}
+		country_event = {
+			id = twrcanada_quebec.19
+			days = 7
+		}
+		set_country_flag = CAN_QUEC_Police
+	}
+}
+
+#Referendum is here
+country_event = {
+	id = twrcanada_quebec.19
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.19" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	title = twrcanada_quebec.19.t
+	desc = twrcanada_quebec.19.d
+	picture = GFX_report_event_canada_crowd
+	
+	option = { #Leave
+		name = twrcanada_quebec.19.a
+		ai_chance = {
+			factor = 75
+		}
+		if = {
+			limit = {
+				has_country_flag = CAN_QUEC_Police
+			}
+			country_event = {
+				id = twrcanada_quebec.23
+				days = 7
+			}
+			else = {
+				country_event = {
+					id = twrcanada_quebec.20
+					days = 7
+				}
+			}
+		}
+	}
+	
+	option = { #Stay
+		name = twrcanada_quebec.19.b
+		ai_chance = {
+			factor = 25
+		}
+		country_event = {
+			id = twrcanada_quebec.22
+			days = 3
+		}
+	}
+}
+
+#Quebec Declares Independence
+country_event = {
+	id = twrcanada_quebec.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.20" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	title = twrcanada_quebec.20.t
+	desc = twrcanada_quebec.20.d
+	picture = GFX_report_event_quebec_map
+	
+	option = { #Good
+		name = twrcanada_quebec.20.a
+		trigger = {
+			has_country_flag = CAN_QUEC_Neutral
+		}
+		remove_ideas = CAN_quebec_regionalism_worse
+		QUE = {
+			add_state_core = 466
+			add_state_core = 468
+			transfer_state = 466
+			transfer_state = 468
+		}
+		USA = {
+			add_to_faction = QUE
+		}
+		QUE = {
+			inherit_technology = CAN
+		}
+		ruling_party_minus_3 = yes
+		hidden_effect = {
+			news_event = {
+				id = twrcanada_news.3
+				days = 1
+			}
+		}
+	}
+	
+	option = { #Damn it
+		name = twrcanada_quebec.20.b
+		trigger = {
+			has_country_flag = CAN_QUEC_Unionist
+		}
+		remove_ideas = CAN_quebec_regionalism_worse
+		QUE = {
+			add_state_core = 466
+			add_state_core = 468
+			transfer_state = 466
+			transfer_state = 468
+		}
+		USA = {
+			add_to_faction = QUE
+		}
+		QUE = {
+			inherit_technology = CAN
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_quebec.21
+				days = 2
+			}
+			news_event = {
+				id = twrcanada_news.3
+				days = 1
+			}
+		}
+	}
+	
+	option = {
+		name = twrcanada_quebec.20.c
+		remove_ideas = CAN_quebec_regionalism_worse
+		QUE = {
+			add_state_core = 466
+			add_state_core = 468
+			transfer_state = 466
+			transfer_state = 468
+		}
+		USA = {
+			add_to_faction = QUE
+		}
+		if = {
+			limit = {
+				has_country_flag = CAN_QUEC_Unionist
+			}
+			hidden_effect = {
+				country_event = {
+					id = twrcanada_quebec.21
+					days = 2
+				}
+			}
+			else = {
+				ruling_party_minus_3 = yes
+			}
+		}
+		hidden_effect = {
+			news_event = {
+				id = twrcanada_news.3
+				days = 1
+			}
+		}
+		QUE = {
+			inherit_technology = CAN
+		}
+		QUE = {
+			change_tag_from = CAN
+		}
+	}
+}
+
+#Government is humiliated
+country_event = {
+	id = twrcanada_quebec.21
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.21" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	title = twrcanada_quebec.21.t
+	desc = twrcanada_quebec.21.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #Fuck
+		name = twrcanada_quebec.21.a
+		set_country_flag = CAN_Government_Will_Lose
+		ruling_party_minus_15 = yes
+	}
+}
+
+#Quebec accepts results
+country_event = {
+	id = twrcanada_quebec.22
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.22" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	title = twrcanada_quebec.22.t
+	desc = twrcanada_quebec.22.d
+	picture = GFX_report_event_quebec_map
+	
+	option = { #Good
+		name = twrcanada_quebec.22.a
+		ruling_party_plus_3 = yes
+		remove_ideas = CAN_quebec_regionalism_worse
+	}
+}
+
+#Police arrest nationalists
+country_event = {
+	id = twrcanada_quebec.23
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_quebec.23" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	title = twrcanada_quebec.23.t
+	desc = twrcanada_quebec.23.d
+	picture = GFX_report_event_CAN_police
+	
+	option = {
+		name = twrcanada_quebec.23.a
+		ruling_party_minus_3 = yes
+		#custom_effect_tooltip = twrcanada_quebec.23.tt
+		remove_ideas = CAN_quebec_regionalism_worse
+		466 = {
+			remove_core_of = CAN
+			add_core_of = QUE
+		}
+		468 = {
+			remove_core_of = CAN
+			add_core_of = QUE
+		}
+	}
+}
+
+#1953 Canadian Federal Elections (Normal)
+country_event = {
+	id = twrcanada_elect.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_elect.1" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = {
+			has_country_flag = CAN_QUE_Elections
+		}
+	}
+	
+	title = twrcanada_elect.1.t
+	picture = GFX_report_event_canada_parliament
+	desc = {
+		text = twrcanada_elect.1.d_normal
+		trigger = {
+			NOT = {
+				has_country_flag = CAN_QUE_Ignore_Protests
+			}
+		}
+	}
+	desc = {
+		text = twrcanada_elect.1.d_libsdead
+		trigger = {
+			has_country_flag = CAN_QUE_Ignore_Protests
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_country_flag = CAN_1953_Elections
+		}
+	}
+	
+	option = { #Liberal
+		name = twrcanada_elect.1.a
+		trigger = {
+			NOT = {
+				has_country_flag = CAN_QUE_Ignore_Protests
+			}
+		}
+		ai_chance = {
+			factor = 65
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_CAN_TORY
+			}
+		}
+		set_country_flag = CAN_1953_Liberal
+		load_focus_tree = CAN_LibCon_1953
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = yes
+		}
+		news_event = {
+			id = twrcanada_news.5
+			days = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada.8
+				days = 1
+			}
+			country_event = {
+				id = twrcanada.12 #Tory Party Change
+				days = 90 random = 30
+			}
+		}
+	}
+	
+	option = { #Conservative
+		name = twrcanada_elect.1.b
+		ai_chance = {
+			factor = 35
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_CAN_LIBERAL
+			}
+		}
+		set_country_flag = CAN_1953_Tories
+		load_focus_tree = CAN_LibCon_1953
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = CAN_QUE_Ignore_Protests
+				}
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.20
+			}
+			else = {
+				add_popularity = {
+					ideology = social_democrat
+					popularity = -0.30
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+		}
+		news_event = {
+			id = twrcanada_news.6
+			days = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada.10
+				days = 1
+			}
+			country_event = {
+				id = twrcanada.13 #Liberal Party Change
+				days = 90 random = 30
+			}
+		}
+	}
+}
+
+#Canadian Snap Elections
+country_event = {
+	id = twrcanada_elect.2
+	immediate = { 
+		log = "[GetDateText]: [Root.GetName]: event twrcanada_elect.2"
+		hidden_effect = {
+			set_country_flag = CANADA_SNAP_ELECTION
+		}
+	}
+	is_triggered_only = yes
+	
+	title = twrcanada_elect.2.t
+	desc = twrcanada_elect.2.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #CCF Wins
+		name = twrcanada_elect.2.a
+		ai_chance = {
+			factor = 85
+		}
+		set_country_flag = CAN_QUE_CCF
+		load_focus_tree = CAN_CCF_1953
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.05
+		}
+		set_politics = {
+			ruling_party = social_democrat
+			elections_allowed = yes
+		}
+		news_event = {
+			id = twrcanada_news.7
+			days = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada.9
+				days = 1
+			}
+		}
+	}
+	
+	option = { #Conservatives manage to win
+		name = twrcanada_elect.2.b
+		ai_chance = {
+			factor = 15
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAN_CCF_SOC
+					has_global_flag = COUNTRY_PATH_CAN_CCF_SDM
+					has_global_flag = COUNTRY_PATH_CAN_COUP
+				}
+			}
+		}
+		set_country_flag = CAN_QUE_Tories
+		load_focus_tree = CAN_LibCon_1953
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.30
+		}
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+		}
+		news_event = {
+			id = twrcanada_news.6
+			days = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada.10
+				days = 1
+			}
+		}
+	}
+}
+
+#1953 Canadian Federal Elections (After snap-elections)
+country_event = {
+	id = twrcanada_elect.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_elect.3" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = CAN_QUE_Elections
+		NOT = {
+			has_government = paternal_autocrat
+		}
+	}
+	
+	title = twrcanada_elect.3.t
+	picture = GFX_report_event_canada_parliament
+	desc = {
+		text = twrcanada_elect.3.d_ccf
+		trigger = {
+			has_country_flag = CAN_QUE_CCF
+		}	
+	}
+	desc = {
+		text = twrcanada_elect.3.d_tories
+		trigger = {
+			has_country_flag = CAN_QUE_Tories
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_country_flag = CAN_1953_Elections
+		}
+	}
+	
+	option = { #CCF Wins
+		name = twrcanada_elect.3.a
+		ai_chance = {
+			factor = 85
+		}
+		trigger = {
+			has_country_flag = CAN_QUE_CCF
+		}
+		set_country_flag = CAN_1953_CCF
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.05
+		}
+		news_event = {
+			id = twrcanada_news.7
+			days = 1
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_government = socialist
+				}
+			}
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = yes
+			}
+			else = {
+				set_politics = {
+					ruling_party = socialist
+					elections_allowed = yes
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada.9
+				days = 1
+			}
+		}
+	}
+	
+	option = { #Cconservatives Win
+		name = twrcanada_elect.3.b
+		ai_chance = {
+			factor = 85
+		}
+		trigger = {
+			has_country_flag = CAN_QUE_Tories
+		}
+		set_country_flag = CAN_1953_Tories
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+		}
+		news_event = {
+			id = twrcanada_news.6
+			days = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada.10
+				days = 1
+			}
+		}
+	}
+}
+
+#Monarchy Referendum Announced
+country_event = {
+	id = twrcanada_ccf.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_ccf.1" }
+	is_triggered_only = yes
+	
+	title = twrcanada_ccf.1.t
+	desc = twrcanada_ccf.1.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #
+		name = twrcanada_ccf.1.a
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_ccf.2
+				days = 14
+			}
+		}
+	}
+}
+
+#Results arrive
+country_event = {
+	id = twrcanada_ccf.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_ccf.2" }
+	is_triggered_only = yes
+	
+	title = twrcanada_ccf.2.t
+	desc = twrcanada_ccf.2.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #Republic
+		name = twrcanada_ccf.2.a
+		ai_chance = {
+			factor = 65
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_CAN_CCF_SDM
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_ccf.3
+				days = 3
+			}
+		}
+	}
+	
+	option = { #Monarchy
+		name = twrcanada_ccf.2.b
+		ai_chance = {
+			factor = 35
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_CAN_CCF_SOC
+			}
+		}
+		complete_national_focus = CAN_CCF_Initial_Monarchy
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_ccf.4
+				days = 2
+			}
+		}
+	}
+}
+
+#Republic of Canada Act
+country_event = {
+	id = twrcanada_ccf.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_ccf.3" }
+	is_triggered_only = yes
+	
+	title = twrcanada_ccf.3.t
+	desc = twrcanada_ccf.3.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #
+		name = twrcanada_ccf.3.a
+		set_country_flag = CAN_CCF_Monarchy_Abolished
+		complete_national_focus = CAN_CCF_Initial_Republic 
+		set_cosmetic_tag = CAN_CCF_0
+		clr_country_flag = gg_Harold_Alexander
+		clr_country_flag = gg_Vincent_Massey
+		clr_country_flag = has_symbolic_figurehead
+		remove_ideas = hos_mediocre
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_ccf.5
+				days = 5
+			}
+		}
+	}
+}
+
+#Coldwell Resigns
+country_event = {
+	id = twrcanada_ccf.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_ccf.4" }
+	is_triggered_only = yes
+	
+	title = twrcanada_ccf.4.t
+	desc = twrcanada_ccf.4.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #
+		name = twrcanada_ccf.4.a
+		set_country_flag = CAN_CCF_Monarchy_Remains
+		set_country_flag = CAN_CCF_Coldwell_Ousted
+		complete_national_focus = CAN_CCF_Initial_Ousted
+		create_country_leader = {
+			name = "Tommy Douglas"
+			desc = "CAN_LDR_DOUGLAS_DESC"
+			picture = "Tommy_Douglas_V2.dds"
+			expire = "1965.1.1"
+			ideology = left-wing_populism
+			traits = {}
+		}
+		create_country_leader = {
+			name = "Tommy Douglas"
+			desc = "CAN_LDR_DOUGLAS_DESC"
+			picture = "Tommy_Douglas_V2.dds"
+			expire = "1965.1.1"
+			ideology = democratic_socialism
+			traits = {}
+		}
+	}
+}
+
+#Attempted Military Coup
+country_event = {
+	id = twrcanada_ccf.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_ccf.5" }
+	is_triggered_only = yes
+	
+	title = twrcanada_ccf.5.t
+	desc = twrcanada_ccf.5.d
+	picture = GFX_report_event_canada_army
+	
+	option = { #
+		name = twrcanada_ccf.5.a
+		set_country_flag = CAN_CCF_Radical_Coup_Failed
+		set_country_flag = CAN_CCF_Radical_Coup_Attempted
+		set_country_flag = CAN_CCF_Coldwell_Remains
+		complete_national_focus = CAN_CCF_Initial_Coldwell
+		add_ideas = CAN_CCF_Military_Opposition
+		custom_effect_tooltip = CAN_CCF_Radical_Become_Socialist
+		hidden_effect = {
+			set_temp_variable = {
+				socdem = party_popularity@social_democrat
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = socdem
+			}
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = yes
+			}
+			news_event = {
+				id = twrcanada_news.1
+				hours = 12
+			}
+		}
+	}
+}
+
+#Plot uncovered, multiple officers arrested
+country_event = {
+	id = twrcanada_ccf.9999
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_ccf.2" }
+	is_triggered_only = yes
+	
+	title = twrcanada_ccf.2.t
+	desc = twrcanada_ccf.2.d
+	picture = GFX_report_event_CAN_police
+	
+	option = { #That could have been much worse
+		name = twrcanada_ccf.2.a
+		ai_chance = {
+			factor = 50
+		}
+		set_country_flag = CAN_CCF_Radical_Coup_Attempted
+		set_country_flag = CAN_CCF_Radical_Coup_Failed
+		custom_effect_tooltip = CAN_CCF_Radical_Become_Socialist
+		hidden_effect = {
+			set_temp_variable = {
+				socdem = party_popularity@social_democrat
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = socdem
+			}
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = yes
+			}
+			country_event = {
+				id = twrcanada_ccf.4
+				days = 2
+			}
+			news_event = {
+				id = twrcanada_news.1
+				hours = 12
+			}
+		}
+	}
+}
+
+#Abolition of the Monarchy
+country_event = {
+	id = twrcanada_auth.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_auth.1" }
+	is_triggered_only = yes
+	
+	title = twrcanada_auth.1.t
+	desc = twrcanada_auth.1.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #Long Live the Republic!
+		name = twrcanada_auth.1.a
+		set_cosmetic_tag = CAN_CCF_0
+		if = {
+			limit = {
+				OR = {
+					has_completed_focus = CAN_CCF_Initial_1
+					has_completed_focus = CAN_CCF_Initial_2
+				}
+			}
+			complete_national_focus = CAN_CCF_Initial_Republic
+		}
+		hidden_effect = {
+			clr_country_flag = has_symbolic_figurehead
+			remove_ideas = hos_mediocre
+			country_event = {
+				id = twrcanada_auth.2
+				days = 7
+			}
+		}
+	}
+}
+
+#REEEEEEEEE
+country_event = {
+	id = twrcanada_auth.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_auth.2" }
+	is_triggered_only = yes
+	
+	title = twrcanada_auth.2.t
+	desc = twrcanada_auth.2.d
+	
+	option = { #Tories Angry
+		name = twrcanada_auth.2.a
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_focus = CAN_CCF_Initial_3
+					NOT = {
+						has_completed_focus = CAN_CCF_Initial_1
+						has_completed_focus = CAN_CCF_Initial_2
+					}
+				}
+				country_event = {
+					id = twrcanada_auth.4
+					days = 7
+				}
+			}
+			else = {
+				clr_country_flag = gg_Harold_Alexander
+				clr_country_flag = gg_Vincent_Massey
+				country_event = {
+					id = twrcanada_ccf.5
+					days = 4
+				}
+			}
+		}
+	}
+}
+
+#The Army Makes Their Move
+country_event = {
+	id = twrcanada_auth.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_auth.4" }
+	is_triggered_only = yes
+	
+	title = twrcanada_auth.4.t
+	desc = twrcanada_auth.4.d
+	picture = GFX_report_event_canada_army
+	
+	option = { #Uhhhhh
+		name = twrcanada_auth.4.a
+		hidden_effect = {
+			country_event = {
+				id = twrcanada_auth.5
+				days = 1
+			}
+		}
+	}
+}
+
+#The New Government
+country_event = {
+	id = twrcanada_auth.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_auth.5" }
+	is_triggered_only = yes
+	
+	title = twrcanada_auth.5.t
+	desc = twrcanada_auth.5.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #HEIL
+		name = twrcanada_auth.5.a
+		add_stability = -0.30
+		add_war_support = -0.30
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = -1
+		}
+		set_country_flag = CAN_COUP
+		set_country_flag = CAN_CCF_Radical_Coup_Attempted
+		load_focus_tree = CAN_AuthDem
+		set_politics = {
+			ruling_party = paternal_autocrat
+			elections_allowed = no
+		}
+		swap_ideas = {
+			remove_idea = established_democracy
+			add_idea = facade_democracy
+		}
+		hidden_effect = {
+			news_event = {
+				id = twrcanada_news.2
+				hours = 12
+			}
+			country_event = {
+				id = twrcanada.11
+				days = 1
+			}
+		}
+	}
+}
+
+#Restoration of the Monarchy
+country_event = {
+	id = twrcanada_auth.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada_auth.6" }
+	is_triggered_only = yes
+	
+	title = twrcanada_auth.6.t
+	desc = twrcanada_auth.6.d
+	picture = GFX_report_event_canada_parliament
+	
+	option = { #What Republic?
+		name = twrcanada_auth.6.a
+		set_cosmetic_tag = CAN_ALY
+		set_country_flag = has_symbolic_figurehead
+	}
+}
+
+## TA Air training thing
+country_event = {
+	id = twrcanada.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.1" }
+	is_triggered_only = yes
+	picture = GFX_report_event_airbase
+	
+	title = twrcanada.1.t
+	desc = twrcanada.1.d
+	
+	option = {
+		name = twrcanada.1.a
+		add_ideas = CAN_TA_air_training_program 
+	}
+}
+
+country_event = { #canada wants to buy a carrier
+	id = twrcanada.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcanada.2"}
+	title = twrcanada.2.t
+	desc = twrcanada.2.d
+	picture = GFX_report_event_carrier
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrcanada.2.a
+		transfer_ship = {
+			prefer_name = "HMS Hercules"
+			type = carrier
+			target = CAN
+		}
+		CAN = { 
+			add_timed_idea = {
+			    idea = CAN_Payment_for_Carrier
+			    days = 365
+			}
+			country_event = { days = 1 id = twrcanada.3 }
+		}
+	}
+	option = {
+		name = twrcanada.2.b
+		ai_chance = {
+			factor = 0
+		}
+		CAN = { country_event = { days = 1 id = twrcanada.4 } }
+	}
+}
+
+country_event = {
+	id = twrcanada.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.3" }
+	is_triggered_only = yes
+	picture = GFX_report_event_carrier
+	
+	title = twrcanada.3.t
+	desc = twrcanada.3.d
+	
+	option = {
+		name = twrcanada.3.a
+		hidden_effect = {
+			remove_ideas = CAN_Payment_for_Carrier
+		}
+		add_timed_idea = {
+		    idea = CAN_Payment_for_Carrier
+		    days = 365
+		}
+	}
+}
+
+country_event = {
+	id = twrcanada.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.4" }
+	is_triggered_only = yes
+	picture = GFX_report_event_carrier
+	
+	title = twrcanada.4.t
+	desc = twrcanada.4.d
+	
+	option = {
+		name = twrcanada.4.a
+	}
+}
+
+country_event = {
+	id = twrcanada.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.5" }
+	is_triggered_only = yes
+	picture = GFX_report_event_canada_tv
+	
+	title = twrcanada.5.t
+	desc = twrcanada.5.d
+	
+	option = {
+		name = twrcanada.5.a
+	}
+}
+
+country_event = {
+	id = twrcanada.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.6" }
+	is_triggered_only = yes
+	picture = GFX_report_event_canada_hurricane
+	
+	title = twrcanada.6.t
+	desc = twrcanada.6.d
+	
+	option = {
+		name = twrcanada.6.a
+		add_stability = -0.05
+		276 = { damage_building = { type = infrastructure damage = 1 } }
+	}
+}
+
+country_event = {
+	id = twrcanada.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.7" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = GFX_report_event_canada_hockey_riot
+	
+	title = twrcanada.7.t
+	desc = twrcanada.7.d
+	
+	option = {
+		name = twrcanada.7.a
+	}
+}
+
+## Cabinet Events
+
+country_event = { #Liberal Cabinet
+	id = twrcanada.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.8" }
+	is_triggered_only = yes
+	picture = GFX_report_event_canada_parliament
+	
+	title = twrcanada.8.t
+	desc = twrcanada.8.d
+	
+	option = {
+		name = twrcanada.8.a
+		custom_effect_tooltip = replace_cabinet
+		hidden_effect = {
+			remove_ideas = CAN_HoG_Tommy_Douglas
+			remove_ideas = CAN_HoG_William_Rowe
+			remove_ideas = CAN_HoG_Harry_Crerar
+		}
+		add_ideas = CAN_HoG_Paul_Martin
+		#
+		hidden_effect = {
+			remove_ideas = CAN_FM_George_Castleden
+			remove_ideas = CAN_FM_Sydney_Smith
+			remove_ideas = CAN_FM_John_Blackmore
+		}
+		add_ideas = CAN_FM_Lester_Pearson
+		#
+		hidden_effect = {
+			remove_ideas = CAN_MoS_Clarence_Gillis
+			remove_ideas = CAN_MoS_George_Pearkes
+			remove_ideas = CAN_MoS_Howard_Green
+		}
+		add_ideas = CAN_MoS_Brooke_Claxton
+		#
+		hidden_effect = {
+			remove_ideas = CAN_AM_Angus_MacInnis
+			remove_ideas = CAN_AM_Donald_Fleming
+			remove_ideas = CAN_AM_Arthur_Meighen
+		}
+		add_ideas = CAN_AM_Douglas_Abbott
+	}
+}
+
+country_event = { #Socdem Cabinet
+	id = twrcanada.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.9" }
+	is_triggered_only = yes
+	picture = GFX_report_event_canada_parliament
+	
+	title = twrcanada.9.t
+	desc = twrcanada.9.d
+	
+	option = {
+		name = twrcanada.9.a
+		custom_effect_tooltip = replace_cabinet
+		hidden_effect = {
+			remove_ideas = CAN_HoG_Paul_Martin
+			remove_ideas = CAN_HoG_William_Rowe
+			remove_ideas = CAN_HoG_Harry_Crerar
+		}
+		add_ideas = CAN_HoG_Tommy_Douglas
+		#
+		hidden_effect = {
+			remove_ideas = CAN_FM_Lester_Pearson
+			remove_ideas = CAN_FM_Sydney_Smith
+			remove_ideas = CAN_FM_John_Blackmore
+		}
+		add_ideas = CAN_FM_George_Castleden
+		#
+		hidden_effect = {
+			remove_ideas = CAN_MoS_Brooke_Claxton
+			remove_ideas = CAN_MoS_George_Pearkes
+			remove_ideas = CAN_MoS_Howard_Green
+		}
+		add_ideas = CAN_MoS_Clarence_Gillis
+		#
+		hidden_effect = {
+			remove_ideas = CAN_AM_Douglas_Abbott
+			remove_ideas = CAN_AM_Donald_Fleming
+			remove_ideas = CAN_AM_Arthur_Meighen
+		}
+		add_ideas = CAN_AM_Angus_MacInnis
+	}
+}
+
+country_event = { #Conservative Cabinet
+	id = twrcanada.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.10" }
+	is_triggered_only = yes
+	picture = GFX_report_event_canada_parliament
+	
+	title = twrcanada.10.t
+	desc = twrcanada.10.d
+	
+	option = {
+		name = twrcanada.10.a
+		custom_effect_tooltip = replace_cabinet
+		hidden_effect = {
+			remove_ideas = CAN_HoG_Tommy_Douglas
+			remove_ideas = CAN_HoG_Paul_Martin
+			remove_ideas = CAN_HoG_Harry_Crerar
+		}
+		add_ideas = CAN_HoG_William_Rowe
+		#
+		hidden_effect = {
+			remove_ideas = CAN_FM_George_Castleden
+			remove_ideas = CAN_FM_Lester_Pearson
+			remove_ideas = CAN_FM_John_Blackmore
+		}
+		add_ideas = CAN_FM_Sydney_Smith
+		#
+		hidden_effect = {
+			remove_ideas = CAN_MoS_Clarence_Gillis
+			remove_ideas = CAN_MoS_Brooke_Claxton
+			remove_ideas = CAN_MoS_Howard_Green
+		}
+		add_ideas = CAN_MoS_George_Pearkes
+		#
+		hidden_effect = {
+			remove_ideas = CAN_AM_Angus_MacInnis
+			remove_ideas = CAN_AM_Douglas_Abbott
+			remove_ideas = CAN_AM_Arthur_Meighen
+		}
+		add_ideas = CAN_AM_Donald_Fleming
+	}
+}
+
+country_event = { #Pat Aut Cabinet
+	id = twrcanada.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.11" }
+	is_triggered_only = yes
+	picture = GFX_report_event_canada_parliament
+	
+	title = twrcanada.11.t
+	desc = twrcanada.11.d
+	
+	option = {
+		name = twrcanada.11.a
+		custom_effect_tooltip = replace_cabinet
+		hidden_effect = {
+			remove_ideas = CAN_HoG_Tommy_Douglas
+			remove_ideas = CAN_HoG_William_Rowe
+			remove_ideas = CAN_HoG_Paul_Martin
+		}
+		add_ideas = CAN_HoG_Harry_Crerar
+		#
+		hidden_effect = {
+			remove_ideas = CAN_FM_George_Castleden
+			remove_ideas = CAN_FM_Sydney_Smith
+			remove_ideas = CAN_FM_Lester_Pearson
+		}
+		add_ideas = CAN_FM_John_Blackmore
+		#
+		hidden_effect = {
+			remove_ideas = CAN_MoS_Clarence_Gillis
+			remove_ideas = CAN_MoS_George_Pearkes
+			remove_ideas = CAN_MoS_Brooke_Claxton
+		}
+		add_ideas = CAN_MoS_Howard_Green
+		#
+		hidden_effect = {
+			remove_ideas = CAN_AM_Angus_MacInnis
+			remove_ideas = CAN_AM_Donald_Fleming
+			remove_ideas = CAN_AM_Douglas_Abbott
+		}
+		add_ideas = CAN_AM_Arthur_Meighen
+	}
+}
+
+#TORY PARTY BOSS CHANGE
+country_event = {
+	id = twrcanada.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.12" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = GFX_report_event_can_drew
+	
+	title = twrcanada.12.t
+	desc = twrcanada.12.d
+	
+	option = {
+		name = twrcanada.12.a
+		retire_ideology_leader = conservative
+		create_country_leader = {
+			name = "John Diefenbaker"
+			desc = "CAN_LDR_DIEF_DESC"
+			picture = "John_Diefenbaker.dds"
+			expire = "1965.1.1"
+			ideology = traditionalist_conservatism
+			traits = {
+			}
+		}
+	}
+}
+
+#LIBERAL PARTY BOSS CHANGE
+country_event = {
+	id = twrcanada.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcanada.13" }
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = GFX_report_event_can_pearson
+	
+	title = twrcanada.13.t
+	desc = twrcanada.13.d
+	
+	option = {
+		name = twrcanada.13.a
+		retire_ideology_leader = liberal
+		create_country_leader = {
+			name = "Lester B. Pearson"
+			desc = "CAN_LDR_PEARSON_DESC"
+			picture = "Lester_Pearson.dds"
+			expire = "1965.1.1"
+			ideology = social_liberalism
+			traits = {
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrpanamericanunion.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrpanamericanunion.1" }
+	is_triggered_only = yes
+	
+	title = twrpanamericanunion.1.t
+	desc = twrpanamericanunion.1.d
+	picture = GFX_report_event_federal_reserve
+	
+	#Join
+	option = {
+		name = twrpanamericanunion.1.a
+	}
+}

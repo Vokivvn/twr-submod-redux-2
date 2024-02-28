@@ -1,0 +1,354 @@
+##############
+## HSS TREE ##
+##############
+shared_focus = {
+	id = CRO_HSS_The_Peasants_Plot
+	icon = GFX_SER_focus_agagrariaism
+	cost = 5
+	x = 14
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_The_Peasants_Plot"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		clr_country_flag = CRO_resistance_mechanic_enabled
+		hidden_effect = {             
+				109 = { #zagreb
+                remove_province_modifier = {
+                    static_modifiers = { terrain_zagreb }
+                    province = { id = 11581 }
+                }
+                add_province_modifier = {
+                    static_modifiers = { terrain_zagreb_free }
+                    province = { id = 11581 }
+                }
+            }
+        }
+		hidden_effect = {
+			create_country_leader = {
+				name = "Transitional Comittee"
+				desc = "CRO_Transitional_Committee_DESC"
+				picture = "Transitional_Committee.dds"
+				expire = "1965.1.1"
+				ideology = transitional_regime
+				traits = {cro_transitional_comittee}
+			}
+			news_event = { id = twrnews.173 }
+add_ideas = CRO_Ustashe_Resistance_idea
+add_ideas = CRO_End_of_Monstrosity_idea
+add_ideas = CRO_Unstable_Government_idea
+remove_ideas = CRO_italian_influence
+remove_ideas = CRO_german_funding_for_supression
+add_ideas = authoritarian_system
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_An_Uneasy_Alliance
+	icon = GFX_CRO_An_Uneasy_Alliance
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_HSS_The_Peasants_Plot
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_The_Peasants_Plot
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_An_Uneasy_Alliance"
+		country_event = {
+			id = twrcroatia.33
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_Rests_on_a_Knifes_Edge
+	icon = GFX_CRO_Rests_on_a_Knifes_Edge
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_HSS_An_Uneasy_Alliance
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_An_Uneasy_Alliance
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Rests_on_a_Knifes_Edge"
+		country_event = {
+			id = twrcroatia.34
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_Rebuild_the_Home_Guard
+	icon = GFX_CRO_Unify_the_Home_Guard
+	cost = 5
+	x = -3
+	y = 1
+	relative_position_id = CRO_HSS_Rests_on_a_Knifes_Edge
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Rests_on_a_Knifes_Edge
+	}
+        bypass = { NOT = { has_idea = CRO_Divided_Home_Guard_idea } }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Rebuild_the_Home_Guard"
+		remove_ideas = CRO_Divided_Home_Guard_idea
+		country_lock_all_division_template = no
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_Italian_Military_Advisors
+	icon = GFX_GENERIC_Alliance_with_Italy
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_HSS_Rebuild_the_Home_Guard
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Rebuild_the_Home_Guard
+	}
+	mutually_exclusive = {
+		focus = CRO_HSS_Toronto_Accord_Military_Advisors
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_CRO_CONS
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Italian_Military_Advisors"
+		add_to_variable = { CRO_fash_support = 1 }
+		add_ideas = CRO_Italian_Military_Advisors_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_Toronto_Accord_Military_Advisors
+	icon = GFX_GENERIC_TA_Advisor_2
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_HSS_Rebuild_the_Home_Guard
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Rebuild_the_Home_Guard
+	}
+	mutually_exclusive = {
+		focus = CRO_HSS_Italian_Military_Advisors
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			OR = {
+				has_global_flag = COUNTRY_PATH_CRO_PATAUT
+				has_global_flag = COUNTRY_PATH_CRO_FASCIST
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Toronto_Accord_Military_Advisors"
+		add_to_variable = { CRO_hss_support = 1 }
+		add_ideas = CRO_TA_Military_Advisors_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_Address_the_Economy
+	icon = GFX_GENERIC_economic_prosperity
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_HSS_Rests_on_a_Knifes_Edge
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Rests_on_a_Knifes_Edge
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Address_the_Economy"
+		country_event = {
+			id = twrcroatia.35
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_The_Bosnian_Question
+	icon = GFX_CRO_The_Bosnian_Question
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_HSS_Address_the_Economy
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Address_the_Economy
+	}
+        available = {
+        owns_state = 104
+        owns_state = 981
+        owns_state = 982
+        }
+	bypass = {
+		has_country_flag = lost_in_bosnia  
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_The_Bosnian_Question"
+		country_event = {
+			id = twrcroatia.36
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_The_Race_Laws
+	icon = GFX_CRO_To_the_Cross
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_HSS_Rests_on_a_Knifes_Edge
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Rests_on_a_Knifes_Edge
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_The_Race_Laws"
+		country_event = {
+			id = twrcroatia.37
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_The_Camps
+	icon = GFX_focus_cze_german_puppet
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_HSS_The_Race_Laws
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_The_Race_Laws
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_The_Camps"
+		country_event = {
+			id = twrcroatia.38
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_Zagreb_Nights
+	icon = GFX_CRO_Zagreb_Nights
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_HSS_The_Bosnian_Question
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Italian_Military_Advisors
+		focus = CRO_HSS_Toronto_Accord_Military_Advisors
+	}
+	prerequisite = {
+		focus = CRO_HSS_The_Bosnian_Question
+	}
+	prerequisite = {
+		focus = CRO_HSS_The_Race_Laws
+	}
+	prerequisite = {
+		focus = CRO_HSS_The_Camps
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Zagreb_Nights"
+		country_event = {
+			id = twrcroatia.39
+			hours = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_HSS_Formalise_the_Duumvirate
+	icon = GFX_CRO_Formalise_the_Duumvirate
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_HSS_Zagreb_Nights
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Zagreb_Nights
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Formalise_the_Duumvirate"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		retire_country_leader = yes 
+			create_country_leader = {
+				name = "Mladen Lorković"
+				desc = "MLADEN_LORKOVIC_DESC"
+				picture = "Mladen_Lorkovic.dds"
+				expire = "1965.1.1"
+				ideology = transitional_regime
+				traits = {fascist_pragmatic}
+			}
+                hidden_effect = {
+                load_focus_tree = CRO_Duumvirate_Tree
+                complete_national_focus = CRO_Formalise_the_Duumvirate
+                }
+		set_country_flag = pres_Ante_Vokic
+                set_country_flag = has_symbolic_figurehead
+                set_country_leader_ideology = reactionary_nationalism
+                add_country_leader_trait = dictator
+	}
+}
+
+
+shared_focus = {
+	id = CRO_HSS_Dalmatian_Democracy
+	icon = GFX_CRO_Dalmatian_Democracy
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_HSS_Zagreb_Nights
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Zagreb_Nights
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Dalmatian_Democracy"
+                hidden_effect = {
+                load_focus_tree = CRO_Democratic_Tree
+                complete_national_focus = CRO_Dalmatian_Democracy
+                }
+                add_ideas = facade_democracy
+                add_ideas = CRO_End_of_Monstrosity_idea
+		set_politics = {
+			ruling_party = conservative
+			last_election = "1952.1.1"
+			election_frequency = 5
+			elections_allowed = yes
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.6
+		}
+	}
+}

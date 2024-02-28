@@ -1,0 +1,417 @@
+speer_building = {
+	SPEER_expand_germania = {
+		icon = generic_construction
+		visible = {
+			has_completed_focus = GER_Project_Wirklichkeit
+		}
+		cost = 60
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 70
+		}
+		available = {
+			has_manpower > 150000
+		}
+		complete_effect = {
+			add_manpower = -150000
+			news_event = twrspeercities.1
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 70
+		remove_effect = {
+			news_event = twrspeercities.101
+			855 = {
+				add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+				add_extra_state_shared_building_slots = 6
+				set_building_level = {
+					type = bunker
+					level = 10
+					province = {
+						all_provinces = yes
+						limit_to_border = no
+						level < 10
+					}
+				}
+				set_building_level = {
+					type = anti_air_building
+					level = 10
+					instant_build = yes
+				}
+			}
+		}
+	}	
+	SPEER_Deutsches_Stadion = {
+
+		icon = generic_construction
+
+		visible = {
+			has_completed_focus = GER_Project_Wirklichkeit
+		}
+		available = {
+			has_manpower > 7000
+		}
+
+		cost = 30
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SPEER_Deutsches_Stadion"
+			add_manpower = -7000
+			news_event = twrspeercities.6
+		}
+	}
+	SPEER_Fuhrermuseum = {
+
+		icon = generic_construction
+
+		visible = {
+			has_completed_focus = GER_Project_Wirklichkeit
+		}
+		available = {
+			has_manpower > 500
+		}
+
+		cost = 30
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SPEER_Fuhrermuseum"
+			add_manpower = -500
+			country_event = twrspeercities.3
+		}
+	}
+	SPEER_project_nordstern = {
+		visible = {
+			has_completed_focus = GER_The_Grand_Plans
+		}
+		icon = generic_construction
+		cost = 50
+		available = {
+			has_manpower > 20000
+			has_completed_focus = GER_The_Grand_Plans
+			NOR = {
+				is_in_faction_with = ROOT
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+		complete_effect = {
+			add_manpower = -20000
+		}  
+		days_remove = 70
+		fire_only_once = yes
+		remove_effect = {
+			country_event = twrspeercities.7
+			hidden_effect = {
+				set_global_flag = nordstern_established
+			}
+		}
+	}	
+	SPEER_project_hamburg = {
+		visible = {
+			has_completed_focus = GER_The_Grand_Plans
+		}
+		icon = generic_construction
+		cost = 50
+		available = {
+			has_manpower > 9000
+			has_completed_focus = GER_The_Grand_Plans
+			NOR = {
+				is_in_faction_with = ROOT
+			}
+		}
+		complete_effect = {
+			add_manpower = -9000
+			news_event = twrspeercities.2
+		}  
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 90
+		fire_only_once = yes
+		remove_effect = {
+			news_event = twrspeercities.202
+			set_province_name = {
+				id = 9347
+				name = "Versandstadt"
+			}
+			58 = {
+				add_building_construction = { type = dockyard level = 4 instant_build = yes }
+				add_extra_state_shared_building_slots = 6
+				set_building_level = {
+					type = naval_base
+					level = 10
+					province = 9347
+				}
+			}
+		}
+	}	
+	SPEER_project_munich = {
+		visible = {
+			has_completed_focus = GER_The_Grand_Plans
+		}
+		icon = generic_construction
+		cost = 150
+		available = {
+			has_completed_focus = GER_The_Grand_Plans
+		}
+		fire_only_once = yes
+		complete_effect = {
+			news_event = twrspeercities.4
+			add_stability = 0.05
+		}  
+	}
+}
+
+speer_project = {
+	SPEER_forming_the_speer_clique = {
+		visible = {
+			has_completed_focus = GER_Cooperation_Of_Leaders
+		}
+		icon = ger_reichskommissariats
+		cost = 50
+		available = {
+			has_completed_focus = GER_Cooperation_Of_Leaders
+		}
+		complete_effect = {
+
+		}  
+		modifier = {
+			consumer_goods_factor = 0.1
+			political_power_gain = -0.2
+		}
+
+		days_remove = 30
+		fire_only_once = yes
+		remove_effect = {
+		country_event = { id = twrspeerpolitics.6 hours = 4 }
+		}
+	}
+	SPEER_establish_the_all_german_construction_company = {
+		visible = {
+			has_completed_focus = GER_Cooperation_Of_Leaders
+		}
+		icon = generic_construction
+		cost = 50
+		available = {
+			has_completed_focus = GER_Resume_The_Reforms
+		}
+		complete_effect = {
+
+		}  
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+
+		days_remove = 60
+		fire_only_once = yes
+		remove_effect = {
+		country_event = { id = twrspeerpolitics.7 hours = 4 }
+		}
+	}
+	SPEER_buying_political_favours = {
+		visible = {
+			has_completed_focus = GER_Cooperation_Of_Leaders
+		}
+		icon = ger_reichskommissariats
+		cost = 35
+		available = {
+			has_completed_focus = GER_Mutual_Assistance
+		}
+		complete_effect = {
+
+		}  
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		days_re_enable = 35
+		days_remove = 30
+		fire_only_once = no
+		remove_effect = {
+		custom_effect_tooltip = speer_support_increases
+			hidden_effect = {
+				add_to_variable = {
+					var = speerssupport
+					value = 2
+				} 
+			}
+		}
+	}
+	SPEER_using_political_favours = {
+		visible = {
+			has_completed_focus = GER_Cooperation_Of_Leaders
+		}
+		icon = ger_reichskommissariats
+		cost = 35
+		available = {
+		has_completed_focus = GER_Mutual_Assistance
+		custom_trigger_tooltip = {
+    	tooltip = SPEER_enough_support		
+			check_variable = {
+    		var = speerssupport
+    		value = 1
+    		compare = greater_than
+    			}
+			}
+		}
+		complete_effect = {
+		custom_effect_tooltip = speer_support_lowered
+			hidden_effect = {
+			subtract_from_variable = {
+    		var = speerssupport
+    		value = 1
+				}
+			}
+		}  
+		modifier = {
+			consumer_goods_factor = -0.05
+			political_power_gain = 0.1
+		}
+		days_re_enable = 50
+		days_remove = 30
+		fire_only_once = no
+		remove_effect = {
+		}
+	}
+	GOEBBELS_SPEER_Hitler_Godhood = {
+		icon = ger_reichskommissariats
+		visible = {
+			has_completed_focus = GER_As_Hitler_Intended
+		}
+		available = {
+		has_completed_focus = GER_As_Hitler_Intended
+		has_idea = GER_HoG_Joseph_Goebbels
+		}
+
+		cost = 30
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GOEBBELS_SPEER_Hitler_Godhood"
+			country_event = twrgoebbels.10
+		}
+	}
+	SPEER_form_the_nsak = {
+		icon = ger_reichskommissariats
+		visible = {
+			has_completed_focus = GER_Reshape_The_NSDAP
+		}
+		available = {
+		has_completed_focus = GER_Reshape_The_NSDAP
+		has_country_flag = ESTABLISH_NEW_GROUPS
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SPEER_form_the_nsak"
+			country_event = twrgoebbels.10
+		}
+	}
+	SPEER_chinese_market = {
+		icon = generic_operation
+		visible = {
+			has_completed_focus = GER_Full_Liberalisation
+		}
+		available = {
+		CHI = {
+		has_war = no
+			}
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SPEER_chinese_market"
+		}
+		days_remove = 30
+		fire_only_once = yes
+		remove_effect = {
+		CHI = {
+		country_event = { id = twrspeerdiplo.1 hours = 5 }
+		}
+		}
+	}
+	SPEER_No_More_OST = {
+
+		icon = ger_reichskommissariats
+
+		visible = {
+			has_completed_focus = GER_RK_Ost
+		}
+		available = {
+			ROS = {
+			has_war = no
+			has_stability < 0.1
+			}
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SPEER_No_More_OST"
+			country_event = twrspeerpolitics.16
+		}
+	}
+	SPEER_national_socialist_codex_generic = {
+		visible = {
+			has_completed_focus = GER_Cooperation_Of_Leaders
+		}
+		icon = generic_construction
+		cost = 35
+		available = {
+			has_completed_focus = GER_Resume_The_Reforms
+		}
+		complete_effect = {
+
+		}  
+		modifier = {
+			consumer_goods_factor = 0.01
+		}
+		days_remove = 65
+		fire_only_once = yes
+		remove_effect = {
+		country_event = { id = twrspeerpolitics.9 hours = 5 }
+		custom_effect_tooltip = speer_support_increases
+			hidden_effect = {
+				add_to_variable = {
+					var = speerssupport
+					value = 1
+				} 
+			}
+		}
+	}
+}

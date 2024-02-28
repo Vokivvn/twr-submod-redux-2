@@ -1,0 +1,934 @@
+﻿#################################################
+###============| CYPRUS EVENTS |==============###
+####=========|  Coded by GreyShadow and Trible frik u lol|========####
+#################################################
+
+add_namespace = twrcyprus
+
+country_event = { #Mass Arrests of AKEL Members in Cyprus
+	id = twrcyprus.1 
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.1"}
+	title = twrcyprus.1.t
+	desc = twrcyprus.1.d
+	picture = GFX_report_event_cyprus_unrest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Darned communists...
+		name = twrcyprus.1.a
+		add_political_power = -20
+		custom_effect_tooltip = CYP_unrest_grows
+		hidden_effect = {
+			country_event = { days = 20 id = twrcyprus.2 }
+		}
+	}
+}
+
+country_event = { #Anti-Colonial Protests in Cyprus
+	id = twrcyprus.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.2"}
+	title = twrcyprus.2.t
+	desc = twrcyprus.2.d
+	picture = GFX_report_event_cyprus_unrest2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Call the Cypriots to Discuss.
+		name = twrcyprus.2.a
+		country_event = { days = 7 id = twrcyprus.3 }
+	}
+	
+	option = { #Put down the Protests.
+		name = twrcyprus.2.b
+		custom_effect_tooltip = CYP_unrest_grows
+		hidden_effect = {
+			country_event = { days = 7 id = twrcyprus.4 }
+		}
+	}
+}
+
+country_event = { #The Meeting of Leukosia
+	id = twrcyprus.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.3"}
+	title = twrcyprus.3.t
+	desc = twrcyprus.3.d
+	picture = GFX_report_event_eleftheria_square
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Give the Cypriots their Independence.(UK path)
+		name = twrcyprus.3.a
+		ai_chance = {
+			base = 30
+		}
+		
+		release = CYP
+		diplomatic_relation = {
+			country = CYP
+			relation = military_access
+			active = yes
+		}
+		diplomatic_relation = {
+			country = CYP
+			relation = docking_rights
+			active = yes
+		}
+		hidden_effect = {
+			CYP = {
+				add_ideas = CYP_One_Nation_Two_People
+				load_oob = "CYP_REVOLT"
+				load_focus_tree = cyprus_tree
+				complete_national_focus = CYP_Liberty_for_Cyprus
+			}
+		}
+	}
+	
+	option = { #Cyprus for the Cypriots.(Cyprus Path)
+		name = twrcyprus.3.b
+		ai_chance = {
+			base = 0
+		}
+		
+		release = CYP
+		diplomatic_relation = {
+			country = CYP
+			relation = military_access
+			active = yes
+		}
+		diplomatic_relation = {
+			country = CYP
+			relation = docking_rights
+			active = yes
+		}
+		hidden_effect = {
+			CYP = {
+				add_ideas = CYP_One_Nation_Two_People
+				load_oob = "CYP_REVOLT"
+				load_focus_tree = cyprus_tree
+				complete_national_focus = CYP_Liberty_for_Cyprus
+			}
+		}
+		CYP = { change_tag_from = ROOT }
+	}
+	
+	option = { #Form the Cypriot Autonomous Republic. (UK Puppet Path)
+		name = twrcyprus.3.c
+		ai_chance = {
+			base = 70
+		}
+		
+		release = CYP
+		puppet = CYP
+		hidden_effect = {
+			CYP = {
+				retire_ideology_leader = conservative
+			}
+			set_popularities = {
+				national_socialist = 1
+				fascist = 5
+				paternal_autocrat = 16
+				conservative = 32
+				liberal = 5
+				social_democrat = 5
+				socialist = 5
+				bolshevik_leninist = 3
+				marxist_leninist = 28
+			}
+		}
+		CYP = {
+			set_politics = {	
+				ruling_party = conservative
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Makarios III"
+				picture = "Portrait_CYP_Makarios_III.dds"
+				expire = "1965.1.1"
+				ideology = national_conservatism
+				traits = {
+				}
+			}
+			set_country_flag = has_symbolic_figurehead
+			set_country_flag = gov_John_Alan_Francis_Harding
+		}
+	}
+}
+
+country_event = { #Armed Riots Break Out in Leukosia
+	id = twrcyprus.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.4"}
+	title = twrcyprus.4.t
+	desc = twrcyprus.4.d
+	picture = GFX_report_event_cyprus_unrest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #It seems the line has been crossed.
+		name = twrcyprus.4.a
+		add_political_power = -50
+		custom_effect_tooltip = CYP_unrest_grows
+		hidden_effect = {
+			country_event = { days = 1 id = twrcyprus.5 }
+		}
+	}
+}
+
+country_event = { #To the Brink of War
+	id = twrcyprus.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.5"}
+	title = twrcyprus.5.t
+	desc = twrcyprus.5.d
+	picture = GFX_report_event_cyprus_revolt
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Let the Cypriots go...(UK Peace Path)
+		name = twrcyprus.5.a
+		release = CYP
+		hidden_effect = {
+			CYP = {
+				add_ideas = CYP_One_Nation_Two_People
+				load_oob = "CYP_REVOLT"
+				load_focus_tree = cyprus_tree
+				complete_national_focus = CYP_Liberty_for_Cyprus
+			}
+		}
+	}
+	
+	option = { #The Sun will not set over Cyprus!(UK War Path)
+		name = twrcyprus.5.b
+		release = CYP
+		ENG = {
+			declare_war_on = {
+				target = CYP
+				type = annex_everything
+			}
+			TWR_nojoinwar_on = yes
+		}
+		custom_effect_tooltip = CYP_war_warning_tt
+		hidden_effect = {
+			CYP = {
+				load_oob = "CYP_REVOLT"
+				add_ideas = CYP_The_Battle_for_Independence
+			}
+			set_global_flag = CYP_REVOLUTION
+		}
+	}
+	
+	option = { #Down with the British Chains!(Cyprus War Path)
+		name = twrcyprus.5.c
+		release = CYP
+		ENG = {
+			declare_war_on = {
+				target = CYP
+				type = annex_everything
+			}
+			TWR_nojoinwar_on = yes
+		}
+		hidden_effect = {
+			CYP = {
+				load_oob = "CYP_REVOLT"
+				add_ideas = CYP_The_Battle_for_Independence
+			}
+			set_global_flag = CYP_REVOLUTION
+		}
+		CYP = { change_tag_from = ROOT }
+	}
+}
+
+country_event = { #Order in Cyprus Once More
+	id = twrcyprus.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.6"}
+	title = twrcyprus.6.t
+	desc = twrcyprus.6.d
+	picture = GFX_report_event_cyprus_soldiers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #We will never surrender!
+		name = twrcyprus.6.a
+		if = {
+			limit = {
+				ENG = {
+					NOT = {
+						OR = {
+							owns_state = 183
+							CYP = {
+								is_subject_of = ENG
+							}
+						}
+					}
+				}
+			}
+			ENG = {
+				transfer_state = 183
+			}
+		}
+		add_stability = 0.05
+		add_war_support = 0.1
+		add_political_power = 25
+		clr_global_flag = CYP_REVOLUTION
+		TWR_nojoinwar_off = yes
+	}
+}
+
+country_event = { #The Loss of the Island
+	id = twrcyprus.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.7"}
+	title = twrcyprus.7.t
+	desc = twrcyprus.7.d
+	picture = GFX_report_event_cyprus_soldiers2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Keep calm and carry on...
+		name = twrcyprus.7.a
+		add_political_power = -50
+		clr_global_flag = CYP_REVOLUTION
+		TWR_nojoinwar_off = yes
+	}
+}
+
+country_event = { #Cyprus Sees the Light of Day.
+	id = twrcyprus.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.8"}
+	title = twrcyprus.8.t
+	desc = twrcyprus.8.d
+	picture = GFX_report_event_cyprus_soldiers2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Liberty or Death!
+		name = twrcyprus.8.a
+		add_stability = 0.2
+		add_political_power = 100
+		remove_ideas = CYP_The_Battle_for_Independence
+		add_ideas = CYP_One_Nation_Two_People
+		hidden_effect = {
+			load_focus_tree = cyprus_tree
+			complete_national_focus = CYP_Liberty_for_Cyprus
+		}
+	}
+}
+
+country_event = { #Elections
+	id = twrcyprus.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.9"}
+	title = twrcyprus.9.t
+	desc = twrcyprus.9.d
+	picture = GFX_report_event_cyprus_unrest2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #AKEL Wins
+		name = twrcyprus.9.a
+		set_politics = {	
+			ruling_party = marxist_leninist
+			elections_allowed = no
+		}
+		unlock_national_focus = CYP_AKEL_Wins_the_Vote
+		hidden_effect = {
+			remove_unit_leader = 57492
+			create_corps_commander = {
+				name = "Kentriko Laiko Epimeleio"
+				picture = "Portrait_CYP_Kentriko_Laiko_Epimeleio.dds"
+				traits = { trait_commune }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			set_party_name = { 
+				ideology = paternal_autocrat 
+				long_name = CYP_paternal_autocrat_party_pe_long 
+				name = CYP_paternal_autocrat_party_pe 
+			}
+		}
+	}
+	
+	option = { #EOKA Wins
+		name = twrcyprus.9.b
+		set_politics = {	
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		unlock_national_focus = CYP_EOKA_Wins_the_Vote
+		hidden_effect = {
+			set_party_name = { 
+				ideology = paternal_autocrat 
+				long_name = CYP_paternal_autocrat_party_pe_long 
+				name = CYP_paternal_autocrat_party_pe 
+			}
+		}
+	}
+}
+
+country_event = { #The Masked Massacre
+	id = twrcyprus.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.10"}
+	title = twrcyprus.10.t
+	desc = twrcyprus.10.d
+	#picture = GFX_report_event_cyprus_unrest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #bruh.
+		name = twrcyprus.10.a
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.15
+		}
+		add_stability = -0.05
+	}
+}
+
+country_event = { #The Eastern Mediterranean People's Federation 
+	id = twrcyprus.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.11"}
+	title = twrcyprus.11.t
+	desc = twrcyprus.11.d
+	picture = GFX_report_event_cyprus_unrest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Brothers shouldn't be separated.
+		name = twrcyprus.11.a
+		GRE = { 
+			country_event = { days = 1 id = twrcyprus.12 } 
+		}
+	}
+}
+
+country_event = { #Greece: A Proposal from Cyprus
+	id = twrcyprus.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.12"}
+	title = twrcyprus.12.t
+	desc = twrcyprus.12.d
+	picture = GFX_report_event_eleftheria_square
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Enosis under the Workers Revolution!
+		name = twrcyprus.12.a
+		ai_chance = {
+			base = 94
+		}
+		
+		annex_country = {
+			target = CYP
+			transfer_troops = yes
+		}
+		set_cosmetic_tag = GRE_CYP
+		hidden_effect = {
+		set_cosmetic_tag = EASTMEDFED
+		}
+		create_country_leader = {
+			name = "Enomeni Geniki Grammateia"
+			picture = "Portrait_GRE_Enomeni_Geniki_Grammateia.dds"
+			expire = "1965.1.1"
+			ideology = marxism_leninism
+			traits = {
+			}
+		}
+		set_party_name = { 
+			ideology = marxist_leninist 
+			long_name = GRE_CYP_marxist_leninist_long
+			name = GRE_CYP_marxist_leninist
+		}
+		hidden_effect = {
+		news_event = { days = 1 id = twrcyprus.24 }
+		}
+	}
+	
+	option = { #Apart but united in protecting the revolution.
+		name = twrcyprus.12.b
+		ai_chance = {
+			base = 6
+		}
+		
+		CYP = { 
+			country_event = { days = 1 id = twrcyprus.13 } 
+		}
+	}
+}
+
+country_event = { #The Eastern Mediterranean People's Federation 
+	id = twrcyprus.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.13"}
+	title = twrcyprus.13.t
+	desc = twrcyprus.13.d
+	picture = GFX_report_event_cyprus_unrest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Not what we wanted but close.
+		name = twrcyprus.13.a
+		GRE = {
+			diplomatic_relation = {
+				country = CYP
+				relation = military_access
+				active = yes
+			}
+			diplomatic_relation = {
+				country = CYP
+				relation = docking_rights
+				active = yes
+			}
+			give_guarantee = CYP
+			add_ideas = CYP_Eastern_Mediterranean_Defence_Pact
+		}
+		diplomatic_relation = {
+			country = GRE
+			relation = military_access
+			active = yes
+		}
+		diplomatic_relation = {
+			country = GRE
+			relation = docking_rights
+			active = yes
+		}
+		give_guarantee = GRE
+		add_ideas = CYP_Eastern_Mediterranean_Defence_Pact
+		
+	}
+}
+
+country_event = { #Turkey: A Plea for Aid
+	id = twrcyprus.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.14"}
+	title = twrcyprus.14.t
+	desc = twrcyprus.14.d
+	picture = GFX_report_event_turkish_cypriot
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #We must intervene!
+		name = twrcyprus.14.a
+		ai_chance = {
+			base = 65
+		}		
+		CYP = { 
+			country_event = { days = 1 id = twrcyprus.15 } 
+		}
+	}
+	
+	option = { #We cannot afford tensions...
+		name = twrcyprus.14.b
+		ai_chance = {
+			base = 35
+		}
+	}
+}
+
+country_event = { #Turkey Issues Warning
+	id = twrcyprus.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.15"}
+	title = twrcyprus.15.t
+	desc = twrcyprus.15.d
+	picture = GFX_report_event_un_meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Back down, we can't afford another war.
+		name = twrcyprus.15.a
+		ai_chance = {
+			base = 50
+		}
+		
+		swap_ideas = {
+			remove_idea = CYP_One_People_One_Nation
+			add_idea = CYP_Bare_Minimum_Autonomy
+		}
+		add_political_power = -100
+	}
+	
+	option = { #No one will again tell us how to rule our nation!
+		name = twrcyprus.15.b
+		ai_chance = {
+			base = 50
+		}
+		TUR = { 
+			country_event = { days = 2 id = twrcyprus.16 }
+		}
+	}
+}
+
+country_event = { #Cyprus' Insolence
+	id = twrcyprus.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.16"}
+	title = twrcyprus.16.t
+	desc = twrcyprus.16.d
+	picture = GFX_report_event_turkish_cypriot
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Diplomacy has failed us, lets move on.
+		name = twrcyprus.16.a
+		ai_chance = {
+			base = 20
+		}
+	}
+	
+	option = { #Diplomacy has failed us, prepare the troops!
+		name = twrcyprus.16.b
+		ai_chance = {
+			base = 80
+		}
+		
+		set_global_flag = CYP_TUR_WAR
+		TUR = {
+			declare_war_on = {
+				target = CYP
+				type = annex_everything
+			}
+		}
+		CYP = { 
+			country_event = { id = twrcyprus.18 }
+		}
+		news_event = { days = 1 id = twrcyprus.21 }
+		hidden_effect = {
+			if = {
+				limit = {
+					GRE = {
+						OR = {
+							has_government = paternal_autocrat
+							has_government = conservative
+							has_government = liberal
+						}
+					}
+				}
+				GRE = {
+					country_event = { days = 10 id = twrcyprus.17 }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Cyprus Calls for Help
+	id = twrcyprus.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.17"}
+	title = twrcyprus.17.t
+	desc = twrcyprus.17.d
+	picture = GFX_report_event_cyprus_revolt
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Provide Material and Staff support.
+		name = twrcyprus.17.a
+		ai_chance = {
+			base = 80
+		}
+		
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 2000
+			target = CYP
+		}
+		CYP = {
+			add_manpower = 10000
+		}
+	}
+	
+	option = { #They brought this on themselves!
+		name = twrcyprus.17.b
+		ai_chance = {
+			base = 20
+		}
+	}
+}
+
+country_event = { #Turkey Declares War
+	id = twrcyprus.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.18"}
+	title = twrcyprus.18.t
+	desc = twrcyprus.18.d
+	picture = GFX_report_event_cyprus_revolt
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Cypriots, your country calls you again!
+		name = twrcyprus.18.a
+	}
+}
+
+country_event = { #The End of a Futile Invasion
+	id = twrcyprus.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.19"}
+	title = twrcyprus.19.t
+	desc = twrcyprus.19.d
+	picture = GFX_report_event_destroyed_cypriot_tank
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Victory but at what cost...
+		name = twrcyprus.19.a
+		trigger = {
+			tag = CYP
+		}
+		clr_global_flag = CYP_TUR_WAR
+		news_event = { days = 1 id = twrcyprus.22 }
+	}
+	
+	option = { #May Allah protect our people...
+		name = twrcyprus.19.b
+		trigger = {
+			tag = TUR
+		}
+	}
+}
+
+country_event = { #Liberation of Cyprus
+	id = twrcyprus.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.20"}
+	title = twrcyprus.20.t
+	desc = twrcyprus.20.d
+	picture = GFX_report_event_invasion_of_cyprus
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Continue Occupation Procedures.
+		name = twrcyprus.20.a
+		news_event = { days = 1 id = twrcyprus.23 }
+	}
+	
+	option = { #Establish the Cypriot Military Administration.
+		name = twrcyprus.20.b
+		
+		release = CYP
+		puppet = CYP
+		CYP = {
+			set_cosmetic_tag = MILCYP
+			set_party_name = { 
+				ideology = paternal_autocrat
+				name = TUR_CYP_paternal_autocrat_long
+			}
+			set_politics = {	
+				ruling_party = paternal_autocrat
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Necdet Üruğ"
+				picture = "Portrait_CYP_Necdet_Urug.dds"
+				expire = "1965.1.1"
+				ideology = military_dictatorshipz
+				traits = {
+				}
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.5
+				}
+			add_ideas = authoritarian_system
+			add_ideas = CYP_Turkish_Military_Occupation
+			add_ideas = CYP_Mass_Persecution_of_Greeks
+		}
+		news_event = { days = 1 id = twrcyprus.23 }
+	}
+	
+	option = { #Establish the Turkish Republic of Cyprus.
+		name = twrcyprus.20.c
+		
+		release = CYP
+		puppet = CYP
+		CYP = {
+			set_cosmetic_tag = TURCYP
+			set_party_name = { 
+				ideology = conservative
+				name = TUR_CYP_conservative_long
+			}
+			set_politics = {	
+				ruling_party = conservative
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Rauf Denktaş"
+				picture = "Portrait_CYP_Rauf_Denktas.dds"
+				expire = "1965.1.1"
+				ideology = right-wing_populism
+				traits = {
+				}
+			}
+			add_ideas = CYP_Mass_Persecution_of_Greeks
+		}
+		news_event = { days = 1 id = twrcyprus.23 }
+	}
+}
+
+news_event = { #The Turko-Cypriot War
+	id = twrcyprus.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.21"}
+	title = twrcyprus.21.t
+	desc = twrcyprus.21.d
+	picture = GFX_news_event_turko_cypriot_war
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = { #Such barbarity...
+		name = twrcyprus.21.a
+		trigger = {
+			NOT = {
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+			}
+		}
+	}
+	
+	option = { #East and West will always collide.
+		name = twrcyprus.21.b
+		trigger = {
+			OR = {
+				has_government = fascist
+				has_government = national_socialist
+			}
+		}
+	}
+}
+
+news_event = { #Cyprus Repels Turkish Invasion
+	id = twrcyprus.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.22"}
+	title = twrcyprus.22.t
+	desc = twrcyprus.22.d
+	picture = GFX_news_event_invasion_of_cyprus
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = { #A nation united but deeply divided.
+		name = twrcyprus.22.a
+	}
+}
+
+news_event = { #Turkey Occupies Cyprus
+	id = twrcyprus.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.23"}
+	title = twrcyprus.23.t
+	desc = twrcyprus.23.d
+	picture = GFX_news_event_occupation_of_cyprus
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = { #A nation united but deeply divided.
+		name = twrcyprus.23.a
+	}
+}
+
+news_event = { #The Creation of the EMPF
+	id = twrcyprus.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.24"}
+	title = twrcyprus.24.t
+	desc = twrcyprus.24.d
+	picture = GFX_news_event_german_peoples_congress
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = { #Another Union, Another Soviet.
+		name = twrcyprus.24.a
+		trigger = {
+			NOT = {
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+			}
+		}
+	}
+	
+	option = { #The communist plague is spreading...
+		name = twrcyprus.24.b
+		trigger = {
+			OR = {
+				has_government = fascist
+				has_government = national_socialist
+			}
+		}
+	}
+}
+
+country_event = { #The Cypriot People Request Enosis
+	id = twrcyprus.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.25"}
+	title = twrcyprus.25.t
+	desc = twrcyprus.25.d
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Enosis will be accomplished!
+		name = twrcyprus.25.a
+		annex_country = {
+			target = CYP
+			transfer_troops = yes
+		}
+		hidden_effect = { news_event = { id = twrcyprus.26 hours = 6 } }
+	}
+	option = { #Defense is more of an issue right now.
+		name = twrcyprus.25.b
+		CYP = { country_event = { id = twrcyprus.27 } }
+	}
+}
+
+news_event = { # Greco-Cypriot Enosis
+	id = twrcyprus.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcyprus.26"}
+	title = twrcyprus.26.t
+	desc = twrcyprus.26.d
+	picture = GFX_news_event_nanjing_pact
+	is_triggered_only = yes
+	major = yes
+	option = { #Two Brothers United.
+		name = twrcyprus.26.a
+	}
+}
+
+country_event = { #The Greco-Cypriot Defense Pact
+	id = twrcyprus.27
+	title = twrcyprus.27.t
+	desc = twrcyprus.27.d
+	picture = GFX_report_event_chinese_army_defect
+	immediate = {log = "[GetDatetText]: [Root.GetName]: event twrcyprus.27"}
+	is_triggered_only = yes 
+	option = { #Protection will do.
+		name = twrcyprus.27.a
+		GRE = {
+			give_guarantee = CYP
+		}
+		give_guarantee = GRE
+		diplomatic_relation = {
+			country = GRE
+			relation = military_access
+			active = yes
+		}
+		diplomatic_relation = {
+			country = CYP
+			relation = military_access
+			active = yes
+		}
+	}
+}

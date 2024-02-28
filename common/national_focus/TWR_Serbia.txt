@@ -1,0 +1,646 @@
+focus_tree = {
+    id = serbian_tree
+	
+	########################################################
+	###===========| SERBIA STARTING TREE |===============###
+	###=======|    Made by Canadian Lizard    |==========###
+	####=========|   Coded by GreyShadow    |===========####
+	########################################################
+    
+    country = {
+        factor = 0
+        modifier = {
+            add = 10
+            tag = SER
+        }
+    }
+    continuous_focus_position = { x = 50 y = -1000 }      
+    default = no
+    reset_on_civilwar = no
+
+    focus = {
+		cancelable = no
+		id = SER_Matters_of_the_State
+		icon = GFX_SER_focus_matters_of_the_state
+		x = 4
+		y = 0
+		cost = 1
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Matters_of_the_State"
+			country_event = { id = twrserbia.1 }
+			hidden_effect = {
+				if = {
+					limit = {
+						is_ai = yes
+					}
+					random_list = {
+						65 = {
+							#nothing
+						}
+						35 = {
+							set_country_flag = AI_SER_Partisan
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	##########
+	#Industry#
+	##########
+	
+	focus = {
+		cancelable = no
+		id = SER_Matters_of_the_Economy
+		icon = GFX_SER_focus_matters_of_economy
+		prerequisite = { focus = SER_Matters_of_the_State }
+		x = -5
+		y = 1
+		relative_position_id = SER_Matters_of_the_State
+		cost = 1
+		ai_will_do = {
+		    factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Matters_of_the_Economy"
+			country_event = { id = twrserbia.2 }
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Industrialize_the_Cities
+		icon = GFX_SER_focus_industralize_the_cities
+		prerequisite = { focus = SER_Matters_of_the_Economy }
+		mutually_exclusive = { focus = SER_Focus_on_Agrarianism }
+		x = -2
+		y = 1
+		relative_position_id = SER_Matters_of_the_Economy
+		available = {
+			always = no
+		}
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Industrialize_the_Cities"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Introducing_National_Syndicates
+		icon = GFX_goal_generic_soviet_construction
+		prerequisite = { focus = SER_Industrialize_the_Cities }
+		x = -1
+		y = 1
+		relative_position_id = SER_Industrialize_the_Cities
+		cost = 6.5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Introducing_National_Syndicates"
+			SER_increase_government_support_low = yes
+			swap_ideas = {
+				remove_idea = SER_in_ruins
+				add_idea = SER_in_ruins_2
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_One_year_plan
+		icon = GFX_focus_generic_industry_2
+		prerequisite = { focus = SER_Introducing_National_Syndicates }
+		x = 0
+		y = 1
+		relative_position_id = SER_Introducing_National_Syndicates
+		cost = 6.5
+		ai_will_do = {
+		    factor = 14
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_One_year_plan"
+			add_timed_idea = {
+				idea = SER_One_Year_Plan
+				days = 365
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Rebuilding_the_Cities
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = SER_Industrialize_the_Cities }
+		x = 1
+		y = 1
+		relative_position_id = SER_Industrialize_the_Cities
+		cost = 6.5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Rebuilding_the_Cities"
+			107 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			108 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Reopening_the_Factories
+		icon = GFX_focus_generic_tank_production
+		prerequisite = { focus = SER_Rebuilding_the_Cities }
+		x = 0
+		y = 1
+		relative_position_id = SER_Rebuilding_the_Cities
+		cost = 6.5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reopening_the_Factories"
+			SER_increase_partisan_support_low = yes
+			107 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_A_step_in_the_right_direction
+		icon = GFX_focus_generic_industry_3
+		prerequisite = { focus = SER_Reopening_the_Factories }
+		prerequisite = { focus = SER_One_year_plan }
+		x = -1
+		y = 1
+		relative_position_id = SER_Reopening_the_Factories
+		cost = 7.2
+		ai_will_do = {
+		    factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_step_in_the_right_direction"
+			swap_ideas = {
+				remove_idea = SER_in_ruins_2
+				add_idea = SER_in_ruins_3
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Focus_on_Agrarianism
+		icon = GFX_SER_focus_agagrariaism
+		prerequisite = { focus = SER_Matters_of_the_Economy }
+		mutually_exclusive = { focus = SER_Industrialize_the_Cities }
+		x = 2
+		y = 1
+		relative_position_id = SER_Matters_of_the_Economy
+		available = {
+			always = no
+		}
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Focus_on_Agrarianism"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Establish_Farmer_battalions
+		icon = GFX_SER_focus_farmer_battalions
+		prerequisite = { focus = SER_Focus_on_Agrarianism }
+		x = -1
+		y = 1
+		relative_position_id = SER_Focus_on_Agrarianism
+		cost = 6.5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Establish_Farmer_battalions"
+			SER_increase_chetnik_support_low = yes
+			if = {
+				limit = { has_idea = SER_in_ruins }
+				swap_ideas = {
+					remove_idea = SER_in_ruins
+					add_idea = SER_in_ruins_2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = SER_in_ruins_2
+					add_idea = SER_in_ruins_3_p
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Reopen_the_fruit_market
+		icon = GFX_SER_focus_reopen_the_fruit_market
+		prerequisite = { focus = SER_Establish_Farmer_battalions }
+		x = 0
+		y = 1
+		relative_position_id = SER_Establish_Farmer_battalions
+		cost = 6.5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reopen_the_fruit_market"
+			107 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Farming_subsidies
+		icon = GFX_SER_focus_farming_subsidies
+		prerequisite = { focus = SER_Focus_on_Agrarianism }
+		x = 1
+		y = 1
+		relative_position_id = SER_Focus_on_Agrarianism
+		cost = 6.5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Farming_subsidies"
+			add_timed_idea = {
+				idea = SER_Farming_subsidies
+				days = 220
+			}
+			108 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Modernized_farming_methods
+		icon = GFX_SER_focus_modern_farming
+		prerequisite = { focus = SER_Farming_subsidies }
+		x = 0
+		y = 1
+		relative_position_id = SER_Farming_subsidies
+		cost = 6.5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Modernized_farming_methods"
+			if = {
+				limit = { has_idea = SER_in_ruins }
+				swap_ideas = {
+					remove_idea = SER_in_ruins
+					add_idea = SER_in_ruins_2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = SER_in_ruins_2
+					add_idea = SER_in_ruins_3_p
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_The_new_Balkan_breadbasket
+		icon = GFX_SER_focus_new_balkan_breadbasket
+		prerequisite = { focus = SER_Reopen_the_fruit_market }
+		prerequisite = { focus = SER_Modernized_farming_methods }
+		x = -1
+		y = 1
+		relative_position_id = SER_Modernized_farming_methods
+		cost = 7.2
+		ai_will_do = {
+		    factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_new_Balkan_breadbasket"
+			if = {
+				limit = { has_idea = SER_in_ruins_2 }
+				swap_ideas = {
+					remove_idea = SER_in_ruins_2
+					add_idea = SER_in_ruins_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = SER_in_ruins_3_p
+					add_idea = SER_in_ruins_3
+				}
+			}
+		}
+	}
+	
+	###########
+	#Terrorism#
+	###########
+	
+	focus = {
+		cancelable = no
+		id = SER_Matters_of_Terrorism
+		icon = GFX_SER_focus_matters_of_terrorism
+		prerequisite = { focus = SER_Matters_of_the_State }
+		x = 5
+		y = 1
+		relative_position_id = SER_Matters_of_the_State
+		cost = 2
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Matters_of_Terrorism"
+			country_event = { id = twrserbia.3 }
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Call_upon_the_Ljoticevci
+		icon = GFX_SER_focus_call_upon_ljoticevci
+		prerequisite = { focus = SER_Matters_of_Terrorism }
+		mutually_exclusive = { focus = SER_Call_upon_the_Mihailovic }
+		x = -2
+		y = 1
+		relative_position_id = SER_Matters_of_Terrorism
+		available = {
+			always = no
+		}
+		cost = 3
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Call_upon_the_Ljoticevci"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Cleansing_Kraljevo
+		icon = GFX_SER_focus_cleanse_kraljevo
+		prerequisite = { focus = SER_Call_upon_the_Ljoticevci }
+		x = -1
+		y = 1
+		relative_position_id = SER_Call_upon_the_Ljoticevci
+		cost = 4
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Cleansing_Kraljevo"
+			custom_effect_tooltip = SER_Cleansing_Kraljevo_tt
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_The_Hearts_and_Minds_of_Nis
+		icon = GFX_SER_focus_hearts_of_nis
+		prerequisite = { focus = SER_Cleansing_Kraljevo }
+		x = 0
+		y = 1
+		relative_position_id = SER_Cleansing_Kraljevo
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Hearts_and_Minds_of_Nis"
+			custom_effect_tooltip = SER_Hearts_and_Minds_of_Nis_tt
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Pacifying_Uzice
+		icon = GFX_SER_focus_pacifying_uzice
+		prerequisite = { focus = SER_Call_upon_the_Ljoticevci focus = SER_Call_upon_the_Mihailovic }
+		x = 2
+		y = 1
+		relative_position_id = SER_Call_upon_the_Ljoticevci
+		cost = 4
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Pacifying_Uzice"
+			custom_effect_tooltip = SER_Pacify_Uzice_tt
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Protection_from_Banat_raiders
+		icon = GFX_SER_focus_protection_from_banat_raiders
+		prerequisite = { focus = SER_Pacifying_Uzice }
+		x = 0
+		y = 1
+		relative_position_id = SER_Pacifying_Uzice
+		cost = 5
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Protection_from_Banat_raiders"
+			custom_effect_tooltip = SER_Protection_from_Banat_tt
+			hidden_effect = {
+				country_event = { days = 30 id = twrserbiaflavour.107 }
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Call_upon_the_Mihailovic
+		icon = GFX_SER_focus_call_upon_Mihailovic
+		prerequisite = { focus = SER_Matters_of_Terrorism }
+		mutually_exclusive = { focus = SER_Call_upon_the_Ljoticevci }
+		x = 2
+		y = 1
+		relative_position_id = SER_Matters_of_Terrorism
+		available = {
+			always = no
+		}
+		cost = 3
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Call_upon_the_Mihailovic"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Reinforce_the_Countryside
+		icon = GFX_SER_focus_reinforce_the_countryside
+		prerequisite = { focus = SER_Call_upon_the_Mihailovic }
+		x = 1
+		y = 1
+		relative_position_id = SER_Call_upon_the_Mihailovic
+		cost = 4
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reinforce_the_Countryside"
+			custom_effect_tooltip = SER_Reinforce_the_Countryside_tt
+			hidden_effect = {
+				activate_mission = serbia_reinforce_the_countryside_mission
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Marching_through_Obrenovac
+		icon = GFX_SER_focus_march_through_obrenovac
+		prerequisite = { focus = SER_Reinforce_the_Countryside }
+		x = 0
+		y = 1
+		relative_position_id = SER_Reinforce_the_Countryside
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Marching_through_Obrenovac"
+			custom_effect_tooltip = SER_Marching_through_Obrenovac_tt
+			
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Our_military_status
+		icon = GFX_SER_focus_military_situation
+		prerequisite = { focus = SER_Marching_through_Obrenovac focus = SER_The_Hearts_and_Minds_of_Nis }
+		prerequisite = { focus = SER_Protection_from_Banat_raiders }
+		x = 0
+		y = 1
+		relative_position_id = SER_Protection_from_Banat_raiders
+		cost = 7.2
+		ai_will_do = {
+		    factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_military_status"
+			if = {
+				limit = {
+					AND = {
+						check_variable = { SER_government_support > 29 }
+						check_variable = { SER_chetnik_support > 29 }
+					}
+					NOT = {
+						check_variable = { SER_government_support > 39 }
+						check_variable = { SER_chetnik_support > 39 }
+					}
+				}
+				add_ideas = SER_chetnik_zbor_army
+				else_if = {
+					limit = { 
+						check_variable = { SER_government_support > SER_chetnik_support }
+					}
+					add_ideas = SER_zbor_army
+				}
+				else_if = {
+					limit = { 
+						check_variable = { SER_government_support < SER_chetnik_support }
+					}
+					add_ideas = SER_chetnik_army
+				}
+			}
+			hidden_effect = {
+				country_event = { days = 1 id = twrserbiaflavour.108 }
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_The_Pancevo_Incident
+		icon = GFX_SER_focus_pancevo_inncident
+		prerequisite = { focus = SER_The_new_Balkan_breadbasket focus = SER_A_step_in_the_right_direction }
+		prerequisite = { focus = SER_Our_military_status }
+		x = -5
+		y = 1
+		relative_position_id = SER_Our_military_status
+		cost = 4
+		ai_will_do = {
+		    factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Pancevo_Incident"
+			custom_effect_tooltip = Visit_to_Pancevo_tt
+			hidden_effect = {
+				country_event = { days = 1 id = twrserbia.4 }
+				if = {
+					limit = {
+						has_border_war = yes
+					}
+					cancel_border_war = {
+						dont_fire_events = yes
+						defender = 107
+						attacker = 772
+					}
+				}
+			}
+		}
+	}
+}

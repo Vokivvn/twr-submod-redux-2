@@ -1,0 +1,645 @@
+form_ukraine_category = {
+	
+	form_ukraine = {
+
+		icon = generic_form_nation
+
+		allowed = {
+		OR = {
+			TAG = UKR
+			TAG = SUK
+			TAG = UKW
+			TAG = UIA
+			TAG = CKR
+		}
+		}
+		available = {
+			is_subject = no
+			has_war = no
+		custom_trigger_tooltip = {
+			tooltip = UKRAINE_STATES
+			owns_state = 193
+			owns_state = 194
+			owns_state = 197
+			owns_state = 199
+			owns_state = 201
+			owns_state = 202
+			owns_state = 203
+			owns_state = 220
+			owns_state = 225
+			owns_state = 224
+			owns_state = 222
+			owns_state = 221
+			owns_state = 228
+			owns_state = 227
+			owns_state = 226
+			owns_state = 240
+			owns_state = 241
+			owns_state = 257
+			owns_state = 258
+			owns_state = 259
+			owns_state = 260
+			owns_state = 93
+			owns_state = 94
+			owns_state = 986
+			owns_state = 987
+			owns_state = 988
+			owns_state = 989
+			owns_state = 990
+			owns_state = 991
+			owns_state = 992
+			}
+		}
+
+		visible = {
+			OR = {
+			TAG = UKR
+			TAG = SUK
+			TAG = UKW
+			TAG = UIA
+			}
+			NOT = { has_global_flag = form_ukraine_thing }
+		}
+		cost = freedec?0
+		fire_only_once = yes
+		complete_effect = {
+			set_cosmetic_tag = UKR_FORMED
+
+			hidden_effect = {
+				#news_event = { id = wtt_news.53 hours = 6 }
+				set_global_flag = form_ukraine_thing
+				every_state = {
+					remove_core_of = RUK
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+	}
+}
+diplomatic_decisions  = {
+	SOV_return_capital_to_moscow = {
+		icon = generic_nationalism
+		available = {
+			owns_state = 219
+		}
+		highlight_states = {
+			state = 219
+		}
+		allowed = {
+		OR = {
+		tag = SOV
+		tag = TRV
+		tag = KRA
+		tag = NOV
+		tag = IRK
+		tag = KAZ
+		tag = NRI
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_return_capital_to_moscow"
+			set_capital = { state = 219 }
+			add_stability = 0.1
+			#set_country_flag = RUSSIA_UNIFIER
+		}
+	}
+	return_of_czech_exile_government = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			TAG = CZE
+		}
+
+		available = {
+			is_subject = no
+			has_war = no
+			NOT = {
+			has_country_flag = CZE_SUCCESSFUL_REBELLION_INSECURITY
+			}
+		}
+
+		visible = {
+			TAG = CZE
+		}
+
+		complete_effect = {
+			set_country_flag = EXILES_RETURNED
+			drop_cosmetic_tag = yes
+			set_politics = {
+				ruling_party = liberal
+			}
+			add_popularity = {
+    			ideology = liberal
+    			popularity = 0.3
+			}
+			news_event = zapadoslavia.10	
+			hidden_effect = {	
+			load_oob = "CZE_EXILES"
+			}
+		}
+		cost = 10
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	return_of_swiss_exile_government = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			TAG = SWI
+		}
+
+		available = {
+			has_war = no
+			NOT = {
+			has_country_flag = SWI_SUCCESSFUL_REBELLION_INSECURITY
+			}
+		}
+
+		visible = {
+			TAG = SWI
+			is_subject = no
+		}
+
+		complete_effect = {
+			news_event = twr_switzerland.1
+			drop_cosmetic_tag = yes
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = yes
+			}
+			add_popularity = {
+				ideology = paternal_autocrat 
+				popularity = -0.80
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.20
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.30
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.20
+			}
+			set_country_flag = SWISS_GOVERNMENT_RESTORED
+			add_ideas = established_democracy
+			if = {
+			limit = {
+			NOT = {
+			has_idea = SWI_swiss_neutrality
+					}
+				}
+			add_ideas = SWI_swiss_neutrality
+			}
+		}
+		cost = 10
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	liechtenstein_question = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			TAG = SWI
+		}
+
+		available = {
+			has_war = no
+			has_country_flag = SWISS_GOVERNMENT_RESTORED
+		}
+
+		visible = {
+			TAG = SWI
+			is_subject = no
+		}
+
+		complete_effect = {
+		country_event = twr_switzerland.2
+		}
+		cost = freedec?0
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	form_Czechoslovakia_diplo = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			TAG = CZE
+		}
+
+		available = {
+			is_subject = no
+			has_war = no
+			SLO = {
+				is_subject = no
+				exists = yes
+			}
+			has_country_flag = EXILES_RETURNED
+			owns_state = 75
+			owns_state = 69
+			owns_state = 9
+			owns_state = 74
+		}
+
+		visible = {
+			TAG = CZE
+		}
+
+		complete_effect = {
+			if = {
+			limit = {
+				SLO = {
+					is_fascist = no
+					is_subject = no
+				}
+			}
+			SLO = {
+				country_event = zapadoslavia.5
+			}
+		}
+		if = {
+		limit = {
+		SLO = {
+		is_fascist = yes
+		is_subject = no
+				}
+			}
+		declare_war_on = {
+    	target = SLO
+    	type = annex_everything
+				}
+		set_country_flag = HAD_WAR_WITH_SLOVAKIA
+		news_event = zapadoslavia.9
+			}
+		}
+		cost = 50
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	form_czechoslovakia_by_force = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			TAG = CZE
+		}
+
+		available = {
+			is_subject = no
+			has_war = no
+			SLO = {
+				exists = no
+			}
+			has_country_flag = HAD_WAR_WITH_SLOVAKIA
+			owns_state = 70
+			owns_state = 71
+			owns_state = 75
+			owns_state = 69
+			owns_state = 9
+			owns_state = 74
+		}
+
+		visible = {
+			TAG = CZE
+			has_country_flag = HAD_WAR_WITH_SLOVAKIA
+		}
+
+		complete_effect = {
+			clr_country_flag = HAD_WAR_WITH_SLOVAKIA
+			set_cosmetic_tag = CZE_SLO
+			news_event = zapadoslavia.8
+		}
+		cost = 50
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	czechoslovakia_CRK = {
+		icon = generic_form_nation
+		
+		allowed = {
+			tag = CZE
+		}
+		
+		visible = {
+			country_exists = CKR
+			CKR = {
+				is_subject = no
+			}
+		}
+		
+		available = {
+			is_subject = no
+			has_war = no
+			has_cosmetic_tag = CZE_SLO
+		}
+		
+		cost = 50
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+		
+		complete_effect = {
+			CKR = {
+				country_event = {
+					id = zapadoslavia.11
+					days = 3
+				}
+			}
+		}
+	}
+	slovakia_won_against_czechia = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			TAG = SLO
+		}
+
+		available = {
+			is_subject = no
+			has_war = no
+			CZE = {
+				exists = no
+			}
+			owns_state = 9
+		}
+
+		visible = {
+			TAG = SLO
+			owns_state = 9
+		}
+
+		complete_effect = {
+		every_owned_state = {
+		limit = { is_core_of = SLO }
+		remove_core_of = CZE
+		}
+		release = CZE
+		transfer_state = 72 #Moravia
+		transfer_state = 75 #Moravia Main
+		#need funny news event
+		if = {
+		limit = { owns_state = 66 }
+		CZE = {
+		transfer_state = 66
+				}
+			}
+		}
+		cost = freedec?0
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	swiss_resistance = {
+
+		icon = generic_artillery
+
+		allowed = {
+			TAG = SWI
+		}
+
+		available = {
+			has_war = yes
+			NOT = {
+			has_idea = SWI_national_resistance
+			}
+		}
+
+		visible = {
+			TAG = SWI
+		}
+
+		complete_effect = {
+		add_ideas = SWI_national_resistance
+		}
+		cost = 10
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+	}
+}
+weapon_sales = {
+	buy_convoys = {
+
+		icon = generic_prepare_civil_war
+		allowed = {
+			always = no
+		}
+		available = {
+			AND = {
+				has_war = yes
+				is_fascist = no
+			}
+			FROM = {
+				NOT = {
+					has_idea = arms_cash_in
+				}
+				AND = {
+					has_war = no
+					is_fascist = no
+					is_communist = no
+					has_equipment = {
+						convoy_1  > 50
+					}
+				}
+			}
+		}
+
+		visible = {
+			AND = {
+				has_war = yes
+				is_fascist = no
+			}
+			FROM = {
+				AND = {
+					has_war = no
+					is_fascist = no
+					is_communist = no
+					has_equipment = {
+						convoy_1  > 50
+					}
+				}
+			}
+		}
+
+		fire_only_once = no
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision war_propaganda_against_warmonger target: [From.GetName]"
+			FROM = {
+				country_event = twrdecevents.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 1
+				has_equipment = {
+					convoy_1 < 300
+				}
+			}
+		}
+	}
+	buy_old_tanks_d = {
+		allowed = {
+			always = no
+		}
+		available = {
+			always = yes
+		}
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision buy_old_tanks_d"
+			FROM = {
+				country_event = twrdecevents.1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 1
+				has_army_size = {
+					size > 0
+					type = armor
+				}
+			}
+			modifier = {
+				add = 1
+				has_army_size = {
+					size > 2
+					type = armor
+				}
+			}
+		}
+		icon = generic_tank
+	}
+	buy_motorized_equipment = {
+		allowed = {
+			always = no
+		}
+		available = {
+			always = yes
+		}
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision buy_motorized_equipment"
+			FROM = {
+				country_event = twrdecevents.5
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 1
+				has_army_size = {
+					size > 0
+					type = motorized
+				}
+			}
+			modifier = {
+				add = 1
+				has_army_size = {
+					size > 4
+					type = motorized
+				}
+			}
+		}
+		icon = generic_wheel
+	}
+	buy_artillery = {
+		allowed = {
+			always = no
+		}
+		available = {
+			always = yes
+		}
+		cost = 25
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision buy_artillery"
+			FROM = {
+				country_event = twrdecevents.8
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 1
+				has_army_manpower = {
+					size > 50000
+				}
+				num_of_military_factories < 10
+			}
+			modifier = {
+				add = 1
+				has_army_manpower = {
+					size > 100000
+				}
+				num_of_military_factories < 5
+			}
+		}
+		icon = generic_artillery
+	}
+	buy_fighers = {
+		allowed = {
+			always = no
+		}
+		available = {
+			always = yes
+		}
+		cost = 25
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision buy_fighers"
+			FROM = {
+				country_event = twrdecevents.11
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 2
+				threat > 70
+				num_of_military_factories < 8
+			}
+		}
+		icon = generic_air
+	}
+	
+}

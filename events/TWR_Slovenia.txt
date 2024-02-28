@@ -1,0 +1,204 @@
+﻿###################################################
+###============| SLOVENIA EVENTS |==============###
+####=========|  Coded by GreyShadow |==========####
+###################################################
+
+add_namespace = twrslovenia
+
+country_event = { #The Battle of Ljubljana
+	id = twrslovenia.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrslovenia.1"}
+	title = twrslovenia.1.t
+	desc = twrslovenia.1.d
+	picture = GFX_report_event_slovenian_guards
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Partisans Win!
+		name = twrslovenia.1.a
+		ai_chance = {
+			base = 67
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_SLV_HOMEGUARD
+			}
+		}
+		
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+		remove_unit_leader = 57391
+		create_field_marshal = {
+			name = "Boris Kidric"
+			picture = "Portrait_SLV_Boris_Kidric.dds"
+			traits = { }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 3
+		}
+		create_corps_commander = {
+			name = "Janko Premrl"
+			picture = "Portrait_SLV_Janko_Premrl.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Karel Destovnik"
+			picture = "Portrait_SLV_Karel_Destovnik.dds"
+			traits = { }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		remove_ideas = SLV_Vanished_German_Rule
+		complete_national_focus = SLV_The_NLA_PDS_Ascendent
+	}
+	
+	option = { #Home Guard Wins!
+		name = twrslovenia.1.b
+		ai_chance = {
+			base = 33
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_SLV_PARTISAN
+			}
+		}
+		
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.1
+		}
+		remove_unit_leader = 57391
+		create_field_marshal = {
+			name = "Ernest Peterlin"
+			picture = "Portrait_SLV_Ernest_Peterlin.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Vuk Rupnik"
+			picture = "Portrait_SLV_Vuk_Rupnik.dds"
+			traits = { }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Karl Novak"
+			picture = "Portrait_SLV_Karl_Novak.dds"
+			traits = { }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		remove_ideas = SLV_Vanished_German_Rule
+		complete_national_focus = SLV_The_Home_Guard_Assumese_Control
+	}
+}
+
+country_event = { #Finding Needed Allies
+	id = twrslovenia.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrslovenia.2"}
+	title = twrslovenia.2.t
+	desc = twrslovenia.2.d
+	picture = GFX_report_event_slovenian_guards
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #yems
+		name = twrslovenia.2.a
+		
+	}
+}
+
+country_event = { #UK: Slovenia asks for recognition
+	id = twrslovenia.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrslovenia.3"}
+	title = twrslovenia.3.t
+	desc = twrslovenia.3.d
+	picture = GFX_report_event_slovenian_guards
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { # Sure
+		name = twrslovenia.3.a
+		ai_chance = {
+			base = 40
+		}
+		
+		SLV = {
+			country_event = { days = 1 id = twrslovenia.4 }
+		}
+	}
+	
+	option = { # Nah, cringe bruh
+		name = twrslovenia.3.b
+		ai_chance = {
+			base = 60
+		}
+		
+		SLV = {
+			country_event = { days = 1 id = twrslovenia.5 }
+		}
+	}
+}
+
+country_event = { #UK recognizes us!
+	id = twrslovenia.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrslovenia.4"}
+	title = twrslovenia.4.t
+	desc = twrslovenia.4.d
+	picture = GFX_report_event_slovenian_guards
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { # Poggers
+		name = twrslovenia.4.a
+		add_stability = 0.05
+	}
+}
+
+country_event = { #UK doesn't recognize us...
+	id = twrslovenia.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrslovenia.5"}
+	title = twrslovenia.5.t
+	desc = twrslovenia.5.d
+	picture = GFX_report_event_slovenian_guards
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { # Damn :c
+		name = twrslovenia.5.a
+		add_stability = -0.05
+	}
+}

@@ -1,0 +1,768 @@
+focus_tree = {
+	id = ITA_Coup
+	country = {
+		factor = 0
+	}
+ 	continuous_focus_position = { x = 50 y = -1000 }  
+	default = no
+	focus = {
+	cancelable = no
+		id = ITA_Coup_The_Black_Prince_step_in
+		icon = GFX_goal_unknown
+		cost = 10.00
+		x = 14
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_The_Black_Prince_step_in"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Trials
+		icon = GFX_goal_unknown
+		cost = 10.00
+		x = 8
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Trials"
+			country_event = ita_coup.1
+			add_political_power = 100
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Partigiani?!
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Trials
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Partigiani?!"
+			add_ideas = Extreme_Partisans_problem
+			add_stability = -0.05
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Martial_Law
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Partigiani?!
+		}
+		available = {
+			OR = {
+				has_completed_focus = ITA_Coup_Regularize_Black_Market
+				has_completed_focus = ITA_Coup_Deal_with_the_Mafia
+			}
+		}
+		x = 3
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Martial_Law"
+			swap_ideas = {
+				remove_idea = Extreme_Partisans_problem
+				add_idea = Partisans_problem
+			}
+			add_stability = -0.05
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Peacekeeping_corps_in_Greece
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Martial_Law
+		}
+		x = 5
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Peacekeeping_corps_in_Greece"
+			load_oob = "GRE_ITA_Peacekeeping"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_The_Duke_of_Addis_Addeba
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Trials
+		}
+		x = 14
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_The_Duke_of_Addis_Addeba"
+			add_country_leader_trait = dictator
+			add_political_power = 100
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_keep_it_isolated
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_The_Duke_of_Addis_Addeba
+		}
+		mutually_exclusive = {
+			focus = ITA_Coup_approach_britain
+		}
+		x = 11
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_keep_it_isolated"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Road_to_Autarky
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_keep_it_isolated
+		}
+		x = 11
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Road_to_Autarky"
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Albanian_Hydroelectricity
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Road_to_Autarky
+		}
+		x = 10
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Albanian_Hydroelectricity"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Deal_with_the_Mafia
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Road_to_Autarky
+		}
+		x = 12
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Deal_with_the_Mafia"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Coal_shortage
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Deal_with_the_Mafia
+		}
+		prerequisite = {
+			focus = ITA_Coup_Albanian_Hydroelectricity
+		}
+		x = 11
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Coal_shortage"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Seven_Years_Plan
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_The_Black_Prince_step_in
+		}
+		mutually_exclusive = {
+			focus = ITA_Coup_Send_a_letter_to_Washington
+		}
+		x = 11
+		y = 9
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Seven_Years_Plan"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Reviltalize_the_South
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Seven_Years_Plan
+		}
+		x = 12
+		y = 10
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Reviltalize_the_South"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Mafia_in_the_Government
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Reviltalize_the_South
+		}
+		x = 12
+		y = 11
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Mafia_in_the_Government"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_approach_britain
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_The_Duke_of_Addis_Addeba
+		}
+		mutually_exclusive = {
+			focus = ITA_Coup_keep_it_isolated
+		}
+		x = 17
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_approach_britain"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Spy_for_coal
+		icon = GFX_ITA_COUP_Trade
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_approach_britain
+		}
+		x = 17
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Spy_for_coal"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Madrid_visit
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Spy_for_coal
+		}
+		x = 16
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Madrid_visit"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Aouzou_strip_Uranium
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Madrid_visit
+			focus = ITA_Coup_Deal_with_the_Mafia
+		}
+		x = 14
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Aouzou_strip_Uranium"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Build_Heavy_Water_Plant
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Coal_shortage
+		}
+		prerequisite = {
+			focus = ITA_Aouzou_strip_Uranium
+		}
+		x = 13
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Build_Heavy_Water_Plant"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Regularize_Black_Market
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Spy_for_coal
+		}
+		x = 18
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Regularize_Black_Market"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Reach_out_Extreme_Orient
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Regularize_Black_Market
+		}
+		prerequisite = {
+			focus = ITA_Coup_Madrid_visit
+		}
+		x = 17
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Reach_out_Extreme_Orient"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Uranium_for_Claims
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Reach_out_Extreme_Orient
+		}
+		prerequisite = {
+			focus = ITA_Aouzou_strip_Uranium
+		}
+		x = 15
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Uranium_for_Claims"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Send_a_letter_to_Washington
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_The_Black_Prince_step_in
+		}
+		mutually_exclusive = {
+			focus = ITA_Coup_Seven_Years_Plan
+		}
+		x = 17
+		y = 9
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Send_a_letter_to_Washington"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Colonial_Legion_Cyreanica
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Colonial_Legion_Tripolitania
+		}
+		x = 1
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Colonial_Legion_Cyreanica"
+			load_oob = "LBA_ITA_Colonial2"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Peacekeeping_corps_in_Albania
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Peacekeeping_corps_in_Greece
+		}
+		x = 5
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Peacekeeping_corps_in_Albania"
+			load_oob = "ALB_ITA_Peacekeeping"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Renovate_Rome
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Peacekeeping_corps_in_Albania
+		}
+		prerequisite = {
+			focus = ITA_Coup_Imperial_Marriage
+		}
+		x = 4
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Renovate_Rome"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Send_Coscritto_in_Lybia_War
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Colonial_Legion_Cyreanica
+		}
+		prerequisite = {
+			focus = ITA_Coup_Imperial_Marriage
+		}
+		x = 2
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Send_Coscritto_in_Lybia_War"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_We_dont_negotiate_with_Terrorists
+		icon = GFX_goal_unknown
+		cost = 10.00
+		mutually_exclusive = {
+			focus = ITA_Coup_Find_a_Compromise
+		}
+		prerequisite = {
+			focus = ITA_Coup_Umberto_Tour_Italy
+		}
+		x = 4
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_We_dont_negotiate_with_Terrorists"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Find_a_Compromise
+		icon = GFX_goal_unknown
+		cost = 10.00
+		mutually_exclusive = {
+			focus = ITA_Coup_We_dont_negotiate_with_Terrorists
+		}
+		prerequisite = {
+			focus = ITA_Coup_Umberto_Tour_Italy
+		}
+		x = 2
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Find_a_Compromise"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Support_Free_French_covert_operations
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Send_a_letter_to_Washington
+		}
+		x = 18
+		y = 10
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Support_Free_French_covert_operations"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Imperial_Grace_on_the_Partigiani
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Find_a_Compromise
+		}
+		x = 2
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Imperial_Grace_on_the_Partigiani"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Umberto_Tour_Italy
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Send_Coscritto_in_Lybia_War
+		}
+		prerequisite = {
+			focus = ITA_Coup_Renovate_Rome
+		}
+		x = 3
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Umberto_Tour_Italy"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Emperor_Recovery
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_We_dont_negotiate_with_Terrorists
+		}
+		x = 4
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Emperor_Recovery"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Colonial_Legion_Tripolitania
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Martial_Law
+		}
+		x = 1
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Colonial_Legion_Tripolitania"
+			load_oob = "LBA_ITA_Colonial"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Titles_Redistribution
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Martial_Law
+		}
+		x = 3
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Titles_Redistribution"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Imperial_Marriage
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Titles_Redistribution
+		}
+		x = 3
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Imperial_Marriage"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Badoglio_death
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Uranium_for_Claims
+			focus = ITA_Coup_Build_Heavy_Water_Plant
+		}
+		x = 14
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Badoglio_death"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Failure_of_the_Nuclear_Program
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Mafia_in_the_Government
+		}
+		prerequisite = {
+			focus = ITA_Coup_Fund_the_New_Party_Building
+		}
+		x = 11
+		y = 12
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Failure_of_the_Nuclear_Program"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Cultural_City_Venezia
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Peacekeeping_corps_in_North_Italy
+		}
+		x = 2
+		y = 10
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Cultural_City_Venezia"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Cultural_City_Genoa
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Peacekeeping_corps_in_North_Italy
+		}
+		x = 4
+		y = 10
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Cultural_City_Genoa"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Send_equipments_to_caucasian
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Support_Free_French_covert_operations
+		}
+		x = 18
+		y = 11
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Send_equipments_to_caucasian"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_French_State_Italy_Agreement
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Diplomatic_corps_to_Romania
+		}
+		x = 16
+		y = 11
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_French_State_Italy_Agreement"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Fund_the_New_Party_Building
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Bankroute_of_North_Factories
+		}
+		x = 10
+		y = 11
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Fund_the_New_Party_Building"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Third_Positionism
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Send_equipments_to_caucasian
+		}
+		prerequisite = {
+			focus = ITA_Coup_French_State_Italy_Agreement
+		}
+		x = 17
+		y = 12
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Third_Positionism"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Peacekeeping_corps_in_North_Italy
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Imperial_Grace_on_the_Partigiani
+			focus = ITA_Coup_Emperor_Recovery
+		}
+		x = 3
+		y = 9
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Peacekeeping_corps_in_North_Italy"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Bankroute_of_North_Factories
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Seven_Years_Plan
+		}
+		x = 10
+		y = 10
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Bankroute_of_North_Factories"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = ITA_Coup_Diplomatic_corps_to_Romania
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = ITA_Coup_Send_a_letter_to_Washington
+		}
+		x = 16
+		y = 10
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ITA_Coup_Diplomatic_corps_to_Romania"
+		}
+	}
+}

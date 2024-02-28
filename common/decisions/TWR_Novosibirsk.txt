@@ -1,0 +1,970 @@
+#########################################################################
+#  Diplomatic Actions
+#########################################################################
+NOV_russian_reconquest = {
+	NOV_restore_order = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+			OR = {
+			tag = DON
+			tag = MTR
+			tag = ZHU
+			tag = UKR
+			tag = KAM
+			tag = NOG
+			tag = LZG
+			tag = KMY
+			tag = UIA
+			tag = UKW
+			tag = WRM
+			tag = RMD 
+			tag = LAT 
+			tag = EST 
+			tag = LIT 
+			tag = RGO 
+			tag = RUK 
+			tag = ROS 
+			tag = RMO 
+			tag = RKA
+			tag = BKU 
+			tag = PET 
+			tag = STR 
+			tag = WSP 
+			tag = BGS
+			tag = GEO
+			tag = ARM
+			tag = AZR
+			tag = RAC
+			tag = SUK 
+			tag = SMO
+			tag = CDA
+			tag = BLR
+			tag = RSB
+			tag = RMD
+			tag = ARM
+			tag = GEO
+			tag = BLG
+			}
+			NOT = { is_subject_of = ROOT }
+			NOT = { is_in_faction_with = NOV }
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = ROOT
+			}
+		}
+		available = {
+			has_war = no
+			OR = {
+				has_country_flag = NOV_RUSSIA
+				has_country_flag = RUS_REUNIFIED
+			}
+		}
+		visible = {
+			OR = {
+				has_country_flag = NOV_WESTERN_RUSSIA_UNIFICATION
+				has_country_flag = RUS_REUNIFIED
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision NOV_restore_order"
+		}
+		remove_effect = {
+			create_wargoal = {
+    			type = annex_everything
+    			target = FROM
+			}
+		}
+	}
+	NOV_restore_order_extra = {
+		icon = generic_nationalism
+
+		target_trigger = {
+			FROM = {
+			OR = {
+			tag = RMO
+			}
+			NOT = { is_subject_of = ROOT }
+			NOT = { is_in_faction_with = NOV }
+				exists = yes
+				has_war = no
+				is_subject = yes
+				is_neighbor_of = ROOT
+			}
+		}
+		available = {
+			has_war = no
+			OR = {
+				has_country_flag = NOV_RUSSIA
+				has_country_flag = RUS_REUNIFIED
+			}
+		}
+		visible = {
+			OR = {
+				has_country_flag = NOV_WESTERN_RUSSIA_UNIFICATION
+				has_country_flag = RUS_REUNIFIED
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		cost = 50
+		days_remove = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision NOV_restore_order"
+		}
+		remove_effect = {
+			create_wargoal = {
+    			type = annex_everything
+    			target = FROM
+			}
+		}
+	}
+	NOV_request_integration_transvolga = {
+		icon = generic_nationalism
+
+		available = {
+			has_war = no
+			has_country_flag = NOV_RUSSIA
+		}
+		visible = {
+			has_war = no
+			has_country_flag = NOV_WESTERN_RUSSIA_UNIFICATION
+			TRV = {
+				NOT = { is_subject_of = ROOT }
+				is_in_faction_with = NOV
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = NOV
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = freedec?0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision NOV_request_integration_transvolga"
+			TRV = {
+				country_event = { id = twrNovosibirsk.32 days = 0 }
+			}
+		}
+	}
+	NOV_request_integration_idel_ural = {
+		icon = generic_nationalism
+
+		available = {
+			has_war = no
+			has_country_flag = NOV_RUSSIA
+		}
+		visible = {
+			has_war = no
+			has_country_flag = NOV_WESTERN_RUSSIA_UNIFICATION
+			IDE = {
+				NOT = { is_subject_of = ROOT }
+				is_in_faction_with = NOV
+				exists = yes
+				has_war = no
+				is_subject = no
+				is_neighbor_of = NOV
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = freedec?0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision NOV_request_integration_idel_ural"
+			IDE = {
+				country_event = { id = twrNovosibirsk.34 days = 0 }
+			}
+		}
+	}
+	NOV_return_capital_to_moscow = {
+		icon = generic_nationalism
+		available = {
+			owns_state = 219
+		}
+		visible = {
+			always = no
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision NOV_return_capital_to_moscow"
+			set_capital = { state = 219 }
+			add_stability = 0.05
+		}
+	}
+#	SOV_restore_central_russian_order = {
+#		icon = generic_nationalism#
+
+#		target_trigger = {
+#			FROM = {
+#			OR = {
+#			tag = NRI 
+#			tag = BRY 
+#			tag = NOV 
+#			tag = TAN 
+#			tag = FAR 
+#			tag = KRA
+#			}
+#				NOT = {
+#				is_subject_of = ROOT
+#				TAG = ROOT
+#				}
+#				exists = yes
+#				has_war = no
+#				is_subject = no
+#				is_neighbor_of = ROOT
+#			}
+#		}
+#		available = {
+#		has_war = no
+#		}
+#		visible = {
+#		has_country_flag = CENTRAL_RUSSIA_REUNIFICATION
+#		}#
+
+#		fire_only_once = yes#
+
+#		ai_will_do = {
+#			factor = 50
+#		}#
+
+#		cost = 50
+#		days_remove = 15#
+
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision SOV_restore_central_russian_order"
+#		}
+#		remove_effect = {
+#		create_wargoal = {
+#    	type = annex_everything
+#    	target = FROM
+#			}
+#		}
+#	}
+#	SOV_restore_order_com = {
+#		icon = generic_nationalism#
+
+#		target_trigger = {
+#			FROM = {
+#			OR = {
+#			tag = AZR 
+#			tag = RAC 
+#			tag = SUK 
+#			tag = SMO 
+#			tag = CDA 
+#			tag = BLR
+#			}
+#				NOT = { is_subject_of = ROOT }
+#				exists = yes
+#				has_war = no
+#				is_subject = no
+#				is_neighbor_of = ROOT
+#			}
+#		}
+#		available = {
+#		has_war = no
+#		}
+#		visible = {
+#		is_communist = no
+#		has_country_flag = WESTERN_RUSSIA_UNIFICATION
+#		}#
+
+#		fire_only_once = yes#
+
+#		ai_will_do = {
+#			factor = 50
+#		}#
+
+#		cost = 50
+#		days_remove = 15#
+
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision SOV_restore_order"
+#		}
+#		remove_effect = {
+#		create_wargoal = {
+#    	type = annex_everything
+#    	target = FROM
+#			}
+#		}
+#	}
+#	SOV_com_to_com_demands = {
+#		icon = generic_nationalism#
+
+#		target_trigger = {
+#			FROM = {
+#			OR = {
+#			tag = AZR
+#			tag = RAC
+#			tag = SUK 
+#			tag = SMO
+#			tag = CDA
+#			tag = BLR
+#			}
+#				NOT = { is_subject_of = ROOT }
+#				exists = yes
+#				has_war = no
+#				is_subject = no
+#				is_neighbor_of = ROOT
+#			}
+#		}
+#		available = {
+#		has_war = no
+#		}
+#		visible = {
+#		is_communist = yes
+#		has_country_flag = WESTERN_RUSSIA_UNIFICATION
+#		}#
+
+#		fire_only_once = yes#
+
+#		ai_will_do = {
+#			factor = 50
+#		}#
+
+#		cost = 50
+#		days_remove = 15#
+
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision SOV_restore_order"
+#		}
+#		remove_effect = {
+#		FROM = {
+#		country_event = { id = twrrusreconquest.1 days = 3 }
+#			}
+#		}
+#	}
+}
+
+novosibisrk_road_to_communism_category = {
+
+	NOV_structural_reform = {
+		icon = generic_prepare_civil_war
+		fire_only_once = yes
+		cost = 50
+		visible = {
+		has_completed_focus = NOV_Extending_Training_Periods
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		complete_effect = {
+			add_manpower = -1500
+			if = {
+				limit = { has_idea = NOV_A_Divided_Red_Army }
+				swap_ideas = { 
+					remove_idea = NOV_A_Divided_Red_Army
+					add_idea = NOV_A_Divided_Red_Army_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = NOV_A_Divided_Red_Army_1 }
+				swap_ideas = { 
+					remove_idea = NOV_A_Divided_Red_Army_1
+					add_idea = NOV_A_Divided_Red_Army_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = NOV_A_Divided_Red_Army_2 }
+				swap_ideas = { 
+					remove_idea = NOV_A_Divided_Red_Army_2
+					add_idea = NOV_A_Divided_Red_Army_3
+				}
+			}
+		}
+	}
+	
+	
+
+	NOV_doctrine_reform = {
+		icon = generic_prepare_civil_war
+		fire_only_once = yes
+		custom_cost_trigger = { command_power > 15 }
+		custom_cost_text = decision_cost_25_cp
+		visible = {
+			has_completed_focus = NOV_Extending_Training_Periods
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		complete_effect = {
+			add_command_power = -15
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.4
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = { has_idea = NOV_A_Divided_Red_Army }
+				swap_ideas = { 
+					remove_idea = NOV_A_Divided_Red_Army
+					add_idea = NOV_A_Divided_Red_Army_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = NOV_A_Divided_Red_Army_1 }
+				swap_ideas = { 
+					remove_idea = NOV_A_Divided_Red_Army_1
+					add_idea = NOV_A_Divided_Red_Army_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = NOV_A_Divided_Red_Army_2 }
+				swap_ideas = { 
+					remove_idea = NOV_A_Divided_Red_Army_2
+					add_idea = NOV_A_Divided_Red_Army_3
+				}
+			}
+			
+		}
+	}
+
+	NOV_activate_the_honour_guards = {
+	icon = generic_prepare_civil_war
+	fire_only_once = yes
+	cost = 50
+	visible = {
+	has_completed_focus = NOV_Extending_Training_Periods
+	}
+	ai_will_do = {
+		factor = 500
+	}
+	days_remove = 5
+	remove_effect = {
+	custom_effect_tooltip = NOVOSIBIRSK_ELITE_UNIT
+	hidden_effect = {
+	capital_scope = {
+	create_unit = {
+    division = "name = \"1-ya Gvardeyskaya Strelkovaya Diviziya\" division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 2.0 start_equipment_factor = 1"
+    owner = NOV
+    	}
+	}
+			}
+		}
+	}	
+}
+
+all_soviet_housing_program_category = {
+
+	NOV_increase_construction = {
+	icon = decision_category_generic_communism
+	cost = 50
+	visible = {
+		has_country_flag = NOV_HOUSING_MECHANIC_ENABLE
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	days_re_enable = 180
+	days_remove = 90
+	remove_effect = {
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		custom_effect_tooltip = COMMUNISM_PROGRESS_INCREASE_BY_1
+		add_to_variable = {
+            var = NOV_RTC_Progress
+            value = 1
+        }
+        NOV_Road_To_Gommunism_mechanic = yes
+	}
+	}
+
+	NOV_testing_new_concrete_techniques = {
+	icon = decision_category_generic_communism
+	cost = 50
+	visible = {
+		has_country_flag = NOV_HOUSING_MECHANIC_ENABLE
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	days_re_enable = 180
+	days_remove = 90
+	remove_effect = {
+		random_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+        custom_effect_tooltip = COMMUNISM_PROGRESS_INCREASE_BY_1
+		add_to_variable = {
+            var = NOV_RTC_Progress
+            value = 1
+        }
+        NOV_Road_To_Gommunism_mechanic = yes
+	}
+	}
+
+	NOV_move_in_families = {
+	icon = decision_category_generic_communism
+	cost = 50
+	visible = {
+		has_country_flag = NOV_HOUSING_MECHANIC_ENABLE
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	days_re_enable = 180
+	days_remove = 90
+	remove_effect = {
+		add_manpower = -500
+		custom_effect_tooltip = STABILITY_OF_SYSTEM_PLUS_1
+		add_to_variable = {
+            var = NOV_RTC_STABILITY
+            value = 1
+        }
+        NOV_Stability_mechanic = yes
+	}
+	}
+
+	NOV_researching_sustainable_housing_types = {
+	icon = decision_category_generic_communism
+	fire_only_once = yes
+	cost = 50
+	visible = {
+		has_country_flag = NOV_HOUSING_MECHANIC_ENABLE
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	days_re_enable = 180
+	days_remove = 90
+	remove_effect = {
+		custom_effect_tooltip = COMMUNISM_PROGRESS_INCREASE_BY_3
+		add_to_variable = {
+            var = NOV_RTC_Progress
+            value = 3
+        }
+        add_political_power = -30
+        NOV_Road_To_Gommunism_mechanic = yes
+	}
+	}
+	NOV_infra_in_Moscow = {
+	icon = decision_category_generic_communism
+	fire_only_once = yes
+	cost = 50
+	visible = {
+		has_country_flag = NOV_connecting_rails
+	}
+	available = {
+		owns_state = 219
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	days_remove = 30
+	remove_effect = {
+		build_railway = {
+			level = 1
+			path = { 6380 6414 6348 3263 11300 11235 11284 6252 3335 }
+		}
+        build_railway = {
+        	level = 1
+        	path = { 6380 9378 9278 6356 252 121 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 6380 11282 3358 366 11326 11349 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 6380 3391 3327 401 335 11254 9272 6387 3362 306 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 11349 6264 3235 9287 11234 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 6380 6414 9348 9282 11268 9330 3356 }
+        }
+	}
+	}
+
+	NOV_infra_in_Belarus_and_Baltics = {
+	icon = decision_category_generic_communism
+	fire_only_once = yes
+	cost = 50
+	visible = {
+		has_country_flag = NOV_connecting_rails
+	}
+	available = {
+		owns_state = 206
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	days_remove = 30
+	remove_effect = {
+		build_railway = {
+        	level = 1
+        	path = { 11370 216 386 3350 6373 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 11370 11216 9236 9304 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 11370 294 11322 3331 9241 11241 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 11370 277 6340 3320 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 3320 327 6296 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 6296 6360 6229 6376 9483 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 3320 9295 11342 11358 310 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 310 7482 10323 9340 }
+        }
+        build_railway = {
+        	level = 1
+        	path = { 9483 3354 9262 }
+        }
+	}
+	}
+
+	NOV_infra_in_Ukraina = {
+	icon = decision_category_generic_communism
+	fire_only_once = yes
+	cost = 50
+	visible = {
+		has_country_flag = NOV_connecting_rails
+	}
+	available = {
+		owns_state = 202
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	days_remove = 30
+	remove_effect = {
+		build_railway = {
+			level = 1
+			path = { 525 504 9465 203 458 3452 }
+		}
+        build_railway = {
+			level = 1
+			path = { 3452 6451 6423 11437 }
+		}
+        build_railway = {
+			level = 1
+			path = { 11437 453 472 3449 3466 6474 }
+		}
+        build_railway = {
+			level = 1
+			path = { 418 11397 3557 11504 }
+		}
+	}
+	}
+
+	NOV_infra_in_Caucasus = {
+	icon = decision_category_generic_communism
+	fire_only_once = yes
+	cost = 50
+	visible = {
+		has_country_flag = NOV_connecting_rails
+	}
+	available = {
+		owns_state = 217
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	days_remove = 30
+	remove_effect = {
+		build_railway = {
+			level = 1
+			path = { 3529 11474 520 6516 6486 9455 11429 6620 9753 }
+		}
+        build_railway = {
+			level = 1
+			path = { 9417 11434 11450 11459 500 509 9516 533 9504 3529 }
+		}
+        build_railway = {
+			level = 1
+			path = { 9417 11559 585 3587 3765 3752 3734 }
+		}
+        build_railway = {
+			level = 1
+			path = { 3734 9696 3760 719 }
+		}
+	}
+	}
+
+	NOV_new_planned_village = {
+		icon = decision_category_generic_communism
+		fire_only_once = no
+		cost = 100
+		visible = {
+			AND = {
+			has_country_flag = NEW_PLANNED_CITIES_ENABLE
+			has_country_flag = NOV_HOUSING_MECHANIC_ENABLE
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 90
+		days_re_enable = 95
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		remove_effect = {
+			random_list = {
+				25 = {
+					249 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					402 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					404 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					404 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					406 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					407 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					583 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					586 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					587 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					588 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					589 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					590 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					993 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					995 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					1018 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					1019 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+				25 = {
+					1020 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_manpower = 10000
+					}
+				}
+			}
+		}
+	}
+}

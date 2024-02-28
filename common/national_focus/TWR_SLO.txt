@@ -1,0 +1,3359 @@
+focus_tree = {
+	id = SLO
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			OR = {
+				tag = SLO
+			}
+		}
+	}
+	default = no
+	reset_on_civilwar = no
+
+	continuous_focus_position = { x = 50 y = -1000 }
+
+	focus = {
+		cancelable = no
+		id = SLO_The_Second_Election
+		icon = GFX_SLO_Election
+		cost = 5
+		x = 10
+		y = 0
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			country_event = { days = 1 id = slovakia.9 }
+			add_stability = 0.05
+			custom_effect_tooltip = Slovakia1tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Chairman_Of_Government_Tuka
+		icon = GFX_SLO_Tuka_Government
+		cost = 7.2
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SLO_The_Second_Election
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			country_event = { days = 1 id = slovakia.10 }
+			hidden_effect = {
+				remove_ideas = {
+					SLO_HoG_Jozef_Tiso
+				}
+				remove_ideas = {
+					SLO_FM_Jozef_Tiso
+				}
+			}
+			add_ideas = {
+				SLO_HoG_Vojtech_Tuka
+			}
+			add_ideas = {
+				SLO_FM_Stefan_Tiso
+			}
+			set_country_flag = Jozef_Tiso_unavailable
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Focus_On_The_Economy
+		icon = GFX_GENERIC_military_industry_produce
+		cost = 5
+		x = -2
+		y = 2
+		prerequisite = {
+			focus = SLO_Chairman_Of_Government_Tuka
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = {
+				SLO_Focus_On_The_Economy
+			}
+			country_event = { days = 1 id = slovakia.11 }
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Go_With_The_Governor
+		icon = GFX_SLO_The_Governor
+		cost = 1.00
+		x = -1
+		y = 3
+		prerequisite = {
+			focus = SLO_Focus_On_The_Economy
+		}
+		relative_position_id = SLO_The_Second_Election
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = SLO_Go_With_The_Secretary
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia2tooltip
+			add_ideas = {
+			SLO_AM_Imrich_Karvas
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_The_Slovak_Industrial_Revolution
+		icon = GFX_GENERIC_economic_prosperity
+		cost = 7.2
+		x = -2
+		y = 4
+		prerequisite = {
+			focus = SLO_Go_With_The_Governor focus = SLO_Go_With_The_Secretary
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SLO_Focus_On_The_Economy
+				add_idea = SLO_Focus_On_The_Economy_2
+			}
+			70 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						SLO_Koruna < 39
+					}
+				}
+				70 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			custom_effect_tooltip = Slovakia8tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Industrialize_Eastern_Slovakia
+		icon = GFX_GENERIC_Loans
+		cost = 5
+		x = -1
+		y = 5
+		prerequisite = {
+			focus = SLO_The_Slovak_Industrial_Revolution
+		}
+		prerequisite = {
+			focus = SLO_Go_With_The_Governor
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			71 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						SLO_Koruna < 34
+					}
+				}
+				71 = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			custom_effect_tooltip = Slovakia9tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_An_Independent_Advisor
+		icon = GFX_GENERIC_Shady_Deal
+		cost = 5
+		x = -1
+		y = 7
+		prerequisite = {
+			focus = SLO_First_Wave_Of_New_Jobs
+		}
+		prerequisite = {
+			focus = SLO_Industrialize_Eastern_Slovakia
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia11tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_First_Wave_Of_New_Jobs
+		icon = GFX_focus_CDA_fix_rails
+		cost = 7.2
+		x = -2
+		y = 6
+		prerequisite = {
+			focus = SLO_Industrialize_Eastern_Slovakia focus = SLO_Keep_Eastern_Slovakia_Rural
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			country_event = { days = 1 id = slovakia.12 }
+			add_stability = 0.05
+			70 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			71 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						SLO_Koruna < 29
+					}
+				}
+				70 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			custom_effect_tooltip = Slovakia10tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Go_With_The_Secretary
+		icon = GFX_SLO_Go_With_Secretary
+		cost = 1.00
+		x = -3
+		y = 3
+		prerequisite = {
+			focus = SLO_Focus_On_The_Economy
+		}
+		relative_position_id = SLO_The_Second_Election
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = SLO_Go_With_The_Governor
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia7tooltip
+			add_ideas = SLO_AM_Julius_Stano
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Keep_Eastern_Slovakia_Rural
+		icon = GFX_GENERIC_agricultural_subsidies
+		cost = 5
+		x = -3
+		y = 5
+		prerequisite = {
+			focus = SLO_Go_With_The_Secretary
+		}
+		prerequisite = {
+			focus = SLO_The_Slovak_Industrial_Revolution
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			71 = {
+				add_extra_state_shared_building_slots = 2
+				add_manpower = 35000
+			}
+			if = {
+				limit = {
+					check_variable = {
+						SLO_Koruna < 34
+					}
+				}
+				71 = {
+					add_extra_state_shared_building_slots = 2
+					add_manpower = 40000
+				}
+			}
+			custom_effect_tooltip = Slovakia14tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Puppet_To_The_Chairman
+		icon = GFX_GENERIC_Espionage
+		cost = 5
+		x = -3
+		y = 7
+		prerequisite = {
+			focus = SLO_Keep_Eastern_Slovakia_Rural
+		}
+		prerequisite = {
+			focus = SLO_First_Wave_Of_New_Jobs
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia15tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_The_Military_And_Hlinka_Sector
+		icon = GFX_GENERIC_Grim_Industry
+		cost = 7.2
+		x = -3
+		y = 8
+		prerequisite = {
+			focus = SLO_Puppet_To_The_Chairman
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SLO_Focus_On_The_Economy_2
+				add_idea = SLO_Focus_On_The_Economy_4
+			}
+			70 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			71 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						SLO_Koruna < 21
+					}
+				}
+				70 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				71 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			custom_effect_tooltip = Slovakia16tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_The_Civilian_And_Private_Sector
+		icon = GFX_GENERIC_Factory_Planning
+		cost = 7.2
+		x = -1
+		y = 8
+		prerequisite = {
+			focus = SLO_An_Independent_Advisor
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SLO_Focus_On_The_Economy_2
+				add_idea = SLO_Focus_On_The_Economy_3
+			}
+			70 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			71 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						SLO_Koruna < 21
+					}
+				}
+				70 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				71 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			custom_effect_tooltip = Slovakia12tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_End_Of_Economic_Reforms
+		icon = GFX_GENERIC_Wine_1
+		cost = 10
+		x = -2
+		y = 9
+		prerequisite = {
+			focus = SLO_The_Civilian_And_Private_Sector focus = SLO_The_Military_And_Hlinka_Sector
+		}
+		available = {
+			NOT = {
+				has_idea = SLO_Debt_To_The_Germans
+			}
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia18tooltip
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = SLO_Go_With_The_Governor
+					}
+					country_event = {
+						days = 1 id = slovakia.13
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = SLO_Go_With_The_Secretary
+					}
+					country_event = {
+						days = 1 id = slovakia.30
+					}
+				}
+			}
+			add_stability = 0.05
+			add_political_power = 100
+			custom_effect_tooltip = Slovakia17tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Market_Expansions
+		icon = GFX_GENERIC_gold_trade
+		cost = 5
+		x = -2
+		y = 10
+		prerequisite = {
+			focus = SLO_End_Of_Economic_Reforms
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia13tooltip
+			hidden_effect = {
+				if = {
+					limit = {
+						country_exists = ROM
+						ROM = {
+							has_opinion = {
+								target = SLO value > 70
+							}
+						}
+						ROM = {
+							has_government = SLO
+						}
+					}
+					ROM = {
+						country_event = {
+							days = 3 id = slovakia.18
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = BUL
+						BUL = {
+							has_opinion = {
+								target = SLO value > 70
+							}
+						}
+						BUL = {
+							has_government = SLO
+						}
+					}
+					BUL = {
+						country_event = {
+							days = 3 id = slovakia.26
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = SER
+						SER = {
+							has_opinion = {
+								target = SLO value > 70
+							}
+						}
+						SER = {
+							has_government = SLO
+						}
+					}
+					SER = {
+						country_event = {
+							days = 3 id = slovakia.22
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = HUN
+						HUN = {
+							has_opinion = {
+								target = SLO value > 70
+							}
+						}
+						HUN = {
+							has_government = SLO
+						}
+					}
+					HUN = {
+						country_event = {
+							days = 3 id = slovakia.16
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = SBA
+						SBA = {
+							has_opinion = {
+								target = SLO value > 70
+							}
+						}
+						SBA = {
+							has_government = SLO
+						}
+					}
+					SBA = {
+						country_event = {
+							days = 3 id = slovakia.20
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = BNT
+						BNT = {
+							has_opinion = {
+								target = SLO value > 70
+							}
+						}
+						BNT = {
+							has_government = SLO
+						}
+					}
+					BNT = {
+						country_event = {
+							days = 3 id = slovakia.20
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = CRO
+						CRO = {
+							has_opinion = {
+								target = CRO value > 70
+							}
+						}
+						CRO = {
+							has_government = SLO
+						}
+					}
+					CRO = {
+						country_event = {
+							days = 3 id = slovakia.28
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = GRE
+						GRE = {
+							has_opinion = {
+								target = SLO value > 70
+							}
+						}
+						GRE = {
+							has_government = SLO
+						}
+					}
+					GRE = {
+						country_event = {
+							days = 3 id = slovakia.14
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = ALB
+						ALB = {
+							has_opinion = {
+								target = SLO value > 70
+							}
+						}
+						ALB = {
+							has_government = SLO
+						}
+					}
+					ALB = {
+						country_event = {
+							days = 3 id = slovakia.24
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Focus_On_Culture
+		icon = GFX_GENERIC_Family
+		cost = 5
+		x = 3
+		y = 2
+		prerequisite = {
+			focus = SLO_Chairman_Of_Government_Tuka
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = {
+				SLO_Focus_On_Culture
+			}
+			country_event = {
+				days = 1 id = slovakia.33
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Appease_The_Other_Party
+		icon = GFX_GENERIC_clean_hands
+		cost = 1.00
+		x = 2
+		y = 3
+		prerequisite = {
+			focus = SLO_Focus_On_Culture
+		}
+		relative_position_id = SLO_The_Second_Election
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = SLO_End_To_The_Cultural_Status_Quo
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Increase_The_Influence_Of_The_Church
+		icon = GFX_SLO_Church_Influence
+		cost = 5
+		x = 2
+		y = 4
+		prerequisite = {
+			focus = SLO_Appease_The_Other_Party
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Fight_Against_Germanization
+		icon = GFX_POL_State_of_the_german_Settlers
+		cost = 5
+		x = 2
+		y = 5
+		prerequisite = {
+			focus = SLO_Increase_The_Influence_Of_The_Church
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			country_event = {
+				days = 1 id = slovakia.34
+			}
+			swap_ideas = {
+				remove_idea = SLO_Focus_On_Culture
+				add_idea = SLO_Focus_On_Culture_2
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_End_To_The_Cultural_Status_Quo
+		icon = GFX_GER_Germany_Once_More
+		cost = 1.00
+		x = 4
+		y = 3
+		prerequisite = {
+			focus = SLO_Focus_On_Culture
+		}
+		relative_position_id = SLO_The_Second_Election
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = SLO_Appease_The_Other_Party
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Promote_National_Socialism
+		icon = GFX_GENERIC_ARYAN
+		cost = 5
+		x = 4
+		y = 4
+		prerequisite = {
+			focus = SLO_End_To_The_Cultural_Status_Quo
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = national_socialist
+				popularity = 0.1
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Excuses_For_The_Germanization
+		icon = GFX_SOV_ivanov_protecting_germans
+		cost = 5
+		x = 4
+		y = 5
+		prerequisite = {
+			focus = SLO_Promote_National_Socialism
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			country_event = {
+				days = 1 id = slovakia.35
+			}
+			swap_ideas = {
+				remove_idea = SLO_Focus_On_Culture
+				add_idea = SLO_Focus_On_Culture_3
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Ministry_For_Education_And_National_Enlightment
+		icon = GFX_GENERIC_brain
+		cost = 10
+		x = 3
+		y = 6
+		prerequisite = {
+			focus = SLO_Excuses_For_The_Germanization focus = SLO_Fight_Against_Germanization
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia19tooltip
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = SLO_Appease_The_Other_Party
+					}
+					country_event = {
+						days = 1 id = slovakia.31
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = SLO_End_To_The_Cultural_Status_Quo
+					}
+					country_event = {
+						days = 1 id = slovakia.32
+					}
+				}
+			}
+			add_research_slot = 1
+			add_stability = 0.05
+			custom_effect_tooltip = Slovakia17tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Focus_On_The_Military
+		icon = GFX_SLO_military_march
+		cost = 5
+		x = -8
+		y = 2
+		prerequisite = {
+			focus = SLO_Chairman_Of_Government_Tuka
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = {
+				SLO_Focus_On_The_Military
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Push_For_Hlinka_Funding
+		icon = GFX_SLO_Hlinka_Funding
+		cost = 5
+		x = -8
+		y = 3
+		prerequisite = {
+			focus = SLO_Focus_On_The_Military
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SLO_Hlinka_Influence add_idea = SLO_Hlinka_Influence_2
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Promote_Radical_Generals
+		icon = GFX_focus_generic_military_mission
+		cost = 7.2
+		x = -8
+		y = 4
+		prerequisite = {
+			focus = SLO_Push_For_Hlinka_Funding
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			create_corps_commander = {
+				name = "Frantisek Adam"
+				portrait_path = "gfx/leaders/SLO/Frantisek_Adam.dds"
+				traits = {
+					politically_connected brilliant_strategist
+				}
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Vojtech Abel"
+				portrait_path = "gfx/leaders/SLO/Vojtech_Abel.dds"
+				traits = {
+					infantry_officer
+				}
+				skill = 2
+				attack_skill = 1
+				defense_skill = 4
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Stefan Jurech"
+				portrait_path = "gfx/leaders/SLO/Stefan_Jurech.dds"
+				traits = {
+					infantry_officer inflexible_strategist
+				}
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 5
+				logistics_skill = 3
+			}
+			add_stability = -0.15
+			add_political_power = -95
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Minister_For_National_Defense_Catlos
+		icon = GFX_SLO_Defense_Minister_Catlos
+		cost = 5
+		x = -8
+		y = 5
+		prerequisite = {
+			focus = SLO_Promote_Radical_Generals
+		}
+		relative_position_id = SLO_The_Second_Election
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SLO_ARMY_EXP_POOR
+				check_variable = {
+					SLO_ARMY_EXP > 15
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			country_event = {
+				days = 1 id = slovakia.36
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Great_Power_Designs
+		icon = GFX_GENERIC_Power_Plant
+		cost = 5
+		x = -9
+		y = 6
+		prerequisite = {
+			focus = SLO_Minister_For_National_Defense_Catlos
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			70 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Lessons_From_The_World_Wars
+		icon = GFX_GENERIC_Europe
+		cost = 5
+		x = -9
+		y = 7
+		prerequisite = {
+			focus = SLO_Great_Power_Designs
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.8
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Military_Academies
+		icon = GFX_GENERIC_Paternal_Autocrat
+		cost = 5
+		x = -9
+		y = 8
+		prerequisite = {
+			focus = SLO_Lessons_From_The_World_Wars
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			SLO = {
+				every_unit_leader = {
+					add_attack = 1 add_defense = 1 add_skill_level = 1
+				}
+			}
+		}
+	}
+
+
+	focus = {
+		cancelable = no
+		id = SLO_Develop_Equipment
+		icon = GFX_GENERIC_Military_Equipment
+		cost = 5
+		x = -7
+		y = 6
+		prerequisite = {
+			focus = SLO_Minister_For_National_Defense_Catlos
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = SLO_Develop_Equipment
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 750
+				producer = SLO
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 100
+				producer = SLO
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Standard_Formations
+		icon = GFX_GENERIC_German_Style_Soldiers
+		cost = 5
+		x = -7
+		y = 7
+		prerequisite = {
+			focus = SLO_Develop_Equipment
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			army_experience = 35
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Reform_Military_Structure
+		icon = GFX_GENERIC_Military_Government
+		cost = 5
+		x = -7
+		y = 8
+		prerequisite = {
+			focus = SLO_Standard_Formations
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_command_power = 25
+			swap_ideas = {
+				remove_idea = SLO_Focus_On_The_Military
+				add_idea = SLO_Focus_On_The_Military_2
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Special_Forces
+		icon = GFX_goal_generic_special_forces
+		cost = 7.2
+		x = -8
+		y = 9
+		prerequisite = {
+			focus = SLO_Reform_Military_Structure
+		}
+		prerequisite = {
+			focus = SLO_Military_Academies
+		}
+		relative_position_id = SLO_The_Second_Election
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SLO_ARMY_EXP_AVERAGE
+				check_variable = {
+					SLO_ARMY_EXP > 30
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia20tooltip
+			hidden_effect = {
+				division_template = {
+					name = "Špeciálne Jednotky"
+					division_names_group = SLO_MTN_01
+					regiments = {
+						mountaineers = {
+							x = 0 y = 0
+						}
+						mountaineers = {
+							x = 0 y = 1
+						}
+						mountaineers = {
+							x = 0 y = 2
+						}
+						mountaineers = {
+							x = 1 y = 0
+						}
+						mountaineers = {
+							x = 1 y = 1
+						}
+						mountaineers = {
+							x = 1 y = 2
+						}
+						mountaineers = {
+							x = 2 y = 0
+						}
+						mountaineers = {
+							x = 2 y = 1
+						}
+					}
+					support = {
+						engineer = {
+							x = 0 y = 0
+						}
+						recon = {
+							x = 0 y = 1
+						}
+						artillery = {
+							x = 0 y = 2
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "name = \"1. Špeciálne Jednotky\" division_template = \"Špeciálne Jednotky\" start_experience_factor = 1.0"
+						owner = SLO
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Reform_The_SVZ
+		icon = GFX_SLO_Reform_the_SVZ
+		cost = 5
+		x = -5
+		y = 10
+		prerequisite = {
+			focus = SLO_Special_Forces
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = {
+				SLO_The_SVZ
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Legacy_Of_Jan_Bahyl
+		icon = GFX_GENERIC_air_construction
+		cost = 5
+		x = -5
+		y = 11
+		prerequisite = {
+			focus = SLO_Reform_The_SVZ
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SLO_The_SVZ add_idea = SLO_The_SVZ_2
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Jet_Age
+		icon = GFX_USA_air_spying
+		cost = 5
+		x = -5
+		y = 13
+		prerequisite = {
+			focus = SLO_Air_School
+		}
+		prerequisite = {
+			focus = SLO_Air_To_Ground
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				name = SLO_Jet_Age
+				technology = fighter_1960
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Air_School
+		icon = GFX_GER_reform_officers
+		cost = 5
+		x = -4
+		y = 12
+		prerequisite = {
+			focus = SLO_Legacy_Of_Jan_Bahyl
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			air_experience = 35
+			add_doctrine_cost_reduction = {
+				name = SLO_Air_School
+				cost_reduction = 0.8
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Air_To_Ground
+		icon = GFX_GEN_good_airport
+		cost = 5
+		x = -6
+		y = 12
+		prerequisite = {
+			focus = SLO_Legacy_Of_Jan_Bahyl
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			71 = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+			}
+			70 = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Armour_Advancments
+		icon = GFX_GENERIC_yankee_tank
+		cost = 5
+		x = -10
+		y = 10
+		prerequisite = {
+			focus = SLO_Special_Forces
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				name = SLO_Armour_Advancments
+				technology = MBT_1950
+				technology = MBT_1960
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Combined_Arms
+		icon = GFX_GENERIC_tank_and_gun
+		cost = 5
+		x = -10
+		y = 12
+		prerequisite = {
+			focus = SLO_Heavy_Steel
+		}
+		relative_position_id = SLO_The_Second_Election
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SLO_ARMY_EXP_GOOD
+				check_variable = {
+					SLO_ARMY_EXP > 60
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SLO_Focus_On_The_Military_2
+				add_idea = SLO_Focus_On_The_Military_3
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Lighting_War
+		icon = GFX_goal_generic_army_motorized
+		cost = 5
+		x = -11
+		y = 13
+		prerequisite = {
+			focus = SLO_Combined_Arms
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.8
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Heavy_Steel
+		icon = GFX_goal_generic_build_tank
+		cost = 10
+		x = -10
+		y = 11
+		prerequisite = {
+			focus = SLO_Armour_Advancments
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			71 = {
+				add_resource = {
+					type = steel
+					amount = 15
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_The_Slovak_Tiger
+		icon = GFX_focus_generic_tank_production
+		cost = 5
+		x = -9
+		y = 13
+		prerequisite = {
+			focus = SLO_Combined_Arms
+		}
+		relative_position_id = SLO_The_Second_Election
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				name = SLO_Armour_Advancments
+				technology = MBT_1970
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Small_But_Mighty
+		icon = GFX_SLO_Slovakian_Spring
+		cost = 10
+		x = -10
+		y = 14
+		prerequisite = {
+			focus = SLO_The_Slovak_Tiger focus = SLO_Lighting_War
+		}
+		relative_position_id = SLO_The_Second_Election
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SLO_ARMY_EXP_EXCELLENT
+				OR = {
+					check_variable = {
+						SLO_ARMY_EXP = 100
+					}
+					check_variable = {
+						SLO_ARMY_EXP > 100
+					}
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			country_event = {
+				days = 1 id = slovakia.37
+			}
+			swap_ideas = {
+				remove_idea = SLO_Focus_On_The_Military_3
+				add_idea = SLO_Focus_On_The_Military_4
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_A_Crisis_Averted
+		icon = GFX_GER_council_coalition
+		cost = 1.00
+		x = 31
+		y = 0
+		mutually_exclusive = {
+			focus = SLO_Germany_In_Chaos
+		}
+		bypass = {
+			has_global_flag = gcw_avoided
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		available = {
+			has_global_flag = gcw_avoided
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Reaffirm_The_Nationalist_Leadership
+		icon = GFX_GER_gray_swastika_government
+		cost = 5
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SLO_A_Crisis_Averted
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            add_political_power = 50
+            add_popularity = {
+				ideology = fascist
+				popularity = 0.1
+			}
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Increase_German_Investments
+		icon = GFX_GER_Nazi_Diplomacy
+		cost = 5
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = SLO_Reaffirm_The_Nationalist_Leadership
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            add_offsite_building = { type = industrial_complex level = 2 }
+            add_offsite_building = { type = arms_factory level = 1 }
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Tiso_Sidelined
+		icon = GFX_SLO_Tiso_Sidelined
+		cost = 5
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = SLO_Increase_German_Investments
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            country_event = {
+				days = 1 id = slovakia.59
+			}
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Crush_Czechoslovak_Ambitions
+		icon = GFX_SLO_Crush_Czechoslovakia
+		cost = 10
+		x = 0
+		y = 6
+		prerequisite = {
+			focus = SLO_Tiso_Sidelined
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+            remove_ideas = { SLO_Remnants_of_Czechoslovakia }
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_We_Are_Here_To_Stay
+		icon = GFX_DDR_werwolf_plot
+		cost = 7.2
+		x = 0
+		y = 7
+		prerequisite = {
+			focus = SLO_Crush_Czechoslovak_Ambitions
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            country_event = {
+				days = 1 id = slovakia.60
+			}
+            add_stability = 0.1
+            add_autonomy_ratio = {
+	            value = -0.125
+            }
+        }
+	}
+
+
+	focus = {
+		cancelable = no
+		id = SLO_A_Conservative_President
+		icon = GFX_SLO_Conservative_President
+		cost = 5
+		x = 2
+		y = 4
+		prerequisite = {
+			focus = SLO_Tiso_Sidelined
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		mutually_exclusive = {
+			focus = SLO_A_Radical_President
+		}
+        available = { has_completed_focus = SLO_Appease_The_Other_Party }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            country_event = {
+				days = 1 id = slovakia.62
+			}
+			hidden_effect = {
+            retire_country_leader = yes
+            }
+            create_country_leader = {
+				name = "Štefan Tiso"
+				desc = "Stefan_Tiso_DESC"
+				picture = "gfx/leaders/SLO/Stefan_Tiso.dds"
+				expire = "1965.1.1"
+				ideology = fascism
+				traits = {}
+            }
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_More_Funding_For_The_Army
+		icon = GFX_GENERIC_money
+		cost = 7.2
+		x = 2
+		y = 5
+		prerequisite = {
+			focus = SLO_A_Conservative_President
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            70 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+            71 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Upholding_The_Status_Quo
+		icon = GFX_GER_status_quo
+		cost = 5
+		x = 2
+		y = 6
+		prerequisite = {
+			focus = SLO_More_Funding_For_The_Army
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            add_stability = 0.05
+            add_autonomy_ratio = {
+	            value = -0.125
+            }
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Increase_The_Churches_Influence
+		icon = GFX_KRA_shield_of_christ
+		cost = 5
+		x = 2
+		y = 7
+		prerequisite = {
+			focus = SLO_Upholding_The_Status_Quo
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            add_political_power = 100
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_A_Radical_President
+		icon = GFX_SLO_Radical_President
+		cost = 5
+		x = -2
+		y = 4
+		prerequisite = {
+			focus = SLO_Tiso_Sidelined
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		mutually_exclusive = {
+			focus = SLO_A_Conservative_President
+		}
+                available = { has_completed_focus = SLO_End_To_The_Cultural_Status_Quo }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            country_event = slovakia.61
+            set_country_flag = Stefan_Tiso_unavailable
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_More_Funding_For_The_Hlinka
+		icon = GFX_GENERIC_Pile_of_Money
+		cost = 7.2
+		x = -2
+		y = 5
+		prerequisite = {
+			focus = SLO_A_Radical_President
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+                70 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+                71 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+                }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Radicals_In_Government
+		icon = GFX_GENERIC_government_supression
+		cost = 5
+		x = -2
+		y = 6
+		prerequisite = {
+			focus = SLO_More_Funding_For_The_Hlinka
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = {
+			SLO_Hlinka_in_the_Government
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Reduce_The_Churches_Influence
+		icon = GFX_GENERIC_Stamp_Christain
+		cost = 5
+		x = -2
+		y = 7
+		prerequisite = {
+			focus = SLO_Radicals_In_Government
+		}
+		relative_position_id = SLO_A_Crisis_Averted
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+            add_political_power = 100
+            add_stability = -0.1
+            }
+	}
+
+	focus = {
+		id = SLO_Germany_In_Chaos
+		icon = GFX_GER_two_rifles
+		cost = 1.00
+		x = 21
+		y = 0
+		mutually_exclusive = {
+			focus = SLO_A_Crisis_Averted
+		}
+		bypass = {
+			has_global_flag = german_civil_war_started
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		available = {
+			has_global_flag = german_civil_war_started
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_The_Slovak_Spring
+		icon = GFX_GENERIC_socialist_uprising
+		cost = 1
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = SLO_Germany_In_Chaos
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 100
+		}
+		completion_reward = {
+			country_event = {
+				days = 1 id = slovakia.44
+			}
+            add_timed_idea = { idea = SLO_Slovak_Spring  days = 90 }
+            add_ideas = {
+            SLO_HoG_Karol_Sidor
+            }
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Return_To_German_Rule
+		icon = GFX_GER_rk_eagle
+		cost = 5
+		x = 4
+		y = 2
+		prerequisite = {
+			focus = SLO_The_Slovak_Spring
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		mutually_exclusive = {
+			focus = SLO_Hungarian_Sponsered_Government
+		}
+		mutually_exclusive = {
+			focus = SLO_The_National_Liberation_Coalition
+		}
+		available = {
+			AND = {
+			OR = {
+			has_completed_focus = SLO_Go_With_The_Secretary has_completed_focus = SLO_Go_With_The_Governor
+			}
+			has_completed_focus = SLO_End_To_The_Cultural_Status_Quo
+			GER = { NOT = { has_war_with = HGR has_war_with = HSS } }
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 100
+		}
+		completion_reward = {
+			country_event = slovakia.47
+            GER = {
+			puppet = SLO
+			country_event = {
+			hours = 8 id = slovakia.57
+				}
+			}
+			set_politics = {
+			ruling_party = national_socialist
+			}
+			create_country_leader = {
+				name = "Jozef Tiso"
+				desc = "Jozef_Tiso_DESC"
+				picture = "Slovakia_F_Jozef_Tiso.dds"
+				expire = "1965.1.1"
+				ideology = national_socialism
+				traits = {}
+			}
+			set_popularities = {
+				fascist = 40
+				national_socialist = 60
+			}
+			hidden_effect = {
+			add_ideas = SLO_HoG_Alexander_Mach
+			clr_country_flag = Jozef_Tiso_unavailable
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_The_Third_Election
+		icon = GFX_GENERIC_Democracy
+		cost = 5
+		x = 4
+		y = 3
+		prerequisite = {
+			focus = SLO_Return_To_German_Rule
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		country_event = {
+		days = 1 id = slovakia.56
+		}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Mach_And_His_Government
+		icon = GFX_SLO_Chairman_Mach
+		cost = 5
+		x = 4
+		y = 4
+		prerequisite = {
+			focus = SLO_The_Third_Election
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+                add_country_leader_trait = marshal
+                }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Purge_The_Disloyals
+		icon = GFX_SLO_Executions
+		cost = 5
+		x = 4
+		y = 5
+		prerequisite = {
+			focus = SLO_Mach_And_His_Government
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+                add_manpower = -25000
+                add_popularity = {
+                ideology = fascist
+                popularity = 0.15
+                }
+                add_stability = -0.05
+                }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_A_Good_Puppet
+		icon = GFX_focus_cze_german_puppet
+		cost = 5
+		x = 4
+		y = 6
+		prerequisite = {
+			focus = SLO_Purge_The_Disloyals
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+                70 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+                custom_effect_tooltip = Slovakia26tooltip
+                }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Hungarian_Sponsered_Government
+		icon = GFX_HUN_Flag_From_Wall
+		cost = 5
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = SLO_The_Slovak_Spring
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		mutually_exclusive = {
+			focus = SLO_The_National_Liberation_Coalition
+		}
+		mutually_exclusive = {
+			focus = SLO_Return_To_German_Rule
+		}
+		available = {
+			AND = {
+				has_completed_focus = SLO_Go_With_The_Secretary has_completed_focus = SLO_Appease_The_Other_Party
+			}
+			HUN = {
+			is_democratic = no
+			is_communist = no
+			is_puppet = no
+			has_war = no
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 100
+		}
+		completion_reward = {
+			country_event = slovakia.46
+			news_event = { id = slovakia.67 hours = 8 }
+			HUN = {
+			puppet = SLO
+			country_event = {
+			hours = 3 id = slovakia.58
+				}
+			}
+			add_ideas = {
+			SLO_HoG_Janos_Esterhazy
+			SLO_MoS_Otomar_Kubala
+			}
+			hidden_effect = {
+			kill_ideology_leader = national_socialist
+			set_country_flag = Alexander_Mach_unavailable
+			set_country_flag = Jozef_Tiso_unavailable
+			set_country_flag = Stefan_Tiso_unavailable
+			}
+			create_country_leader = {
+				name = "Vojtech Tuka"
+				desc = "Vojtech_Tuka_DESC"
+				picture = "gfx/leaders/SLO/Vojtech_Tuka.dds"
+				expire = "1965.1.1"
+				ideology = ultranationalism
+				traits = {}
+			}
+			add_popularity = {
+		    ideology = national_socialist
+		    popularity = 0.1
+			}
+			set_politics = {
+			ruling_party = national_socialist
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Introduce_Advisors
+		icon = GFX_SLO_Hungarian_Advisor
+		cost = 5 
+		x = 2
+		y = 3
+		prerequisite = {
+			focus = SLO_Hungarian_Sponsered_Government
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+        add_ideas = { SLO_Hungarian_Advisors }
+        }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Suppress_Nationalism
+		icon = GFX_GENERIC_a_boot
+		cost = 5
+		x = 2
+		y = 4
+		prerequisite = {
+			focus = SLO_Introduce_Advisors
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+                add_stability = 0.1
+                add_political_power = -150
+                }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Hungarian_Slovak_Partnership
+		icon = GFX_HUN_recovery
+		cost = 5
+		x = 2
+		y = 5
+		prerequisite = {
+			focus = SLO_Suppress_Nationalism
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+                swap_ideas = {
+                remove_idea = SLO_Hungarian_Advisors
+                add_idea = SLO_Hungarian_Advisors_2
+                }
+                add_offsite_building = { type = industrial_complex level = 2 }
+                HUN = { add_offsite_building = { type = industrial_complex level = 2 } }
+                }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Destroying_The_Resistance
+		icon = GFX_GENERIC_Execution
+		cost = 5
+		x = 2
+		y = 6
+		prerequisite = {
+			focus = SLO_Hungarian_Slovak_Partnership
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+                add_country_leader_trait = insane
+                add_manpower = -30000
+                }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Czechoslovak_Ideals
+		icon = GFX_SLO_Czechoslovak_Ideals
+		cost = 5
+		x = -4
+		y = 3
+		prerequisite = {
+			focus = SLO_The_National_Liberation_Coalition
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		available = {
+		has_country_flag = SLO_CZECHOSLOVAK
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SLO_Remnants_of_Czechoslovakia
+				add_idea = SLO_Revival_of_Czechoslovakian_Ideas
+			}
+			custom_effect_tooltip = Slovakia22tooltip
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Contact_The_Exiles
+		icon = GFX_GENERIC_deport_people
+		cost = 5
+		x = -4
+		y = 4
+		prerequisite = {
+			focus = SLO_Czechoslovak_Ideals
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		has_country_flag = SLO_CZECHOSLOVAK
+		}
+		completion_reward = {
+			country_event = {
+				days = 1 id = slovakia.48
+			}
+			add_manpower = 25000
+			create_corps_commander = {
+				name = "Ludvik Krejci"
+				portrait_path = "gfx/leaders/SLO/Ludvik_Krejci.dds"
+				traits = { old_guard infantry_officer }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Jozef Martin Kristin"
+				portrait_path = "gfx/leaders/SLO/Jozef_Martin_Kristin.dds"
+				traits = { organizer }
+				skill = 4
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 3
+				logistics_skill = 4
+			}
+			create_corps_commander = {
+				name = "Jan Syrovy"
+				portrait_path = "gfx/leaders/SLO/Jan_Syrovy.dds"
+				traits = {}
+				skill = 2
+				attack_skill = 1
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 1
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Raise_The_Czechoslovak_Army
+		icon = GFX_GENERIC_Rally_the_People
+		cost = 5
+		x = -4
+		y = 5
+		prerequisite = {
+			focus = SLO_Contact_The_Exiles
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		has_country_flag = SLO_CZECHOSLOVAK
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia23tooltip
+			hidden_effect = {
+				division_template = {
+					name = "Czechoslovak Legion"
+					regiments = {
+						infantry = {
+							x = 0 y = 0
+						}
+						infantry = {
+							x = 0 y = 1
+						}
+						infantry = {
+							x = 0 y = 2
+						}
+						infantry = {
+							x = 1 y = 0
+						}
+						infantry = {
+							x = 1 y = 1
+						}
+						infantry = {
+							x = 1 y = 2
+						}
+						infantry = {
+							x = 2 y = 0
+						}
+						infantry = {
+							x = 2 y = 1
+						}
+						infantry = {
+							x = 2 y = 2
+						}
+					}
+					support = {
+						engineer = {
+							x = 0 y = 0
+						}
+						recon = {
+							x = 0 y = 1
+						}
+						artillery = {
+							x = 0 y = 2
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "name = \"1. Ceskoslovenské Légie\" division_template = \"Czechoslovak Legion\" start_experience_factor = 1.0"
+						owner = SLO
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "name = \"2. Ceskoslovenské Légie\" division_template = \"Czechoslovak Legion\" start_experience_factor = 1.0"
+						owner = SLO
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_The_National_Liberation_Coalition
+		icon = GFX_GENERIC_government_power
+		cost = 7.2
+		x = -3
+		y = 2
+		prerequisite = {
+			focus = SLO_The_Slovak_Spring
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		mutually_exclusive = {
+			focus = SLO_Hungarian_Sponsered_Government
+		}
+		mutually_exclusive = {
+			focus = SLO_Return_To_German_Rule
+		}
+		available = {
+			AND = {
+				has_completed_focus = SLO_Go_With_The_Governor has_completed_focus = SLO_Appease_The_Other_Party
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 100
+		}
+		completion_reward = {
+		add_ideas = established_democracy
+		news_event = { id = slovakia.66 hours = 7 }
+		country_event = slovakia.45
+			remove_ideas = {
+				SLO_German_Influence
+				SLO_Hlinka_Influence
+			}
+			set_politics = {
+				ruling_party = liberal
+				last_election = "1936.1.1"
+				election_frequency = 48
+				elections_allowed = yes
+			}
+			set_popularities = {
+				national_socialist = 0
+				fascist = 5
+				paternal_autocrat = 10
+				conservative = 20
+				liberal = 27
+				social_democrat = 20
+				socialist = 10
+				bolshevik_leninist = 5
+				marxist_leninist = 3
+			}
+			add_ideas = {
+			SLO_HoG_Jan_Golian
+			SLO_MoS_Augustin_Malar
+			SLO_FM_Jan_Golian
+			SLO_CoArmy_Rudolf_Viest
+			SLO_CoArmy_Jan_Golian
+			SLO_CoAir_Rudolf_Bozik
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_War_Of_Liberation
+		icon = GFX_GER_Theatre_of_Death
+		cost = 2
+		x = 0
+		y = 3
+		available = {
+			SLO = {
+				has_war = yes
+			}
+		}
+		prerequisite = {
+			focus = SLO_The_National_Liberation_Coalition focus = SLO_Hungarian_Sponsered_Government
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = SLO_Defense_of_Bratislava days = 90
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Slovak_Statehood
+		icon = GFX_focus_hol_the_foundations_of_defense
+		cost = 5
+		x = -2
+		y = 3
+		prerequisite = {
+			focus = SLO_The_National_Liberation_Coalition
+		}
+		available = {
+		has_country_flag = SLO_REPUBLIC_ALONE
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = SLO_Slovakia_Alone
+			country_event = {
+				days = 1 id = slovakia.55
+			}
+			add_ideas = {
+			SLO_HoG_Ivan_Derer
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Rid_External_Influences
+		icon = GFX_GER_house_arrests
+		cost = 5
+		x = -2
+		y = 4
+		prerequisite = {
+			focus = SLO_Slovak_Statehood
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = SLO_Isolated_from_Outsiders
+			if = {
+			limit = { has_idea = SLO_Revival_of_Czechoslovakian_Ideas }
+			remove_ideas = SLO_Revival_of_Czechoslovakian_Ideas
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Slovak_Nationalism
+		icon = GFX_GENERIC_Fist_People
+		cost = 5
+		x = -2
+		y = 5
+		prerequisite = {
+			focus = SLO_Rid_External_Influences
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			if = {
+			limit = {
+			NOT = {
+			has_completed_focus = SLO_Raise_The_Czechoslovak_Army
+				}
+			}
+			add_war_support = 0.1 
+			add_manpower = 25000
+			custom_effect_tooltip = Slovakia25tooltip
+			hidden_effect = {
+				division_template = {
+					name = "Slovak Guard"
+					regiments = {
+						infantry = {
+							x = 0 y = 0
+						}
+						infantry = {
+							x = 0 y = 1
+						}
+						infantry = {
+							x = 0 y = 2
+						}
+						infantry = {
+							x = 1 y = 0
+						}
+						infantry = {
+							x = 1 y = 1
+						}
+						infantry = {
+							x = 1 y = 2
+						}
+						infantry = {
+							x = 2 y = 0
+						}
+						infantry = {
+							x = 2 y = 1
+						}
+						infantry = {
+							x = 2 y = 2
+						}
+					}
+					support = {
+						engineer = {
+							x = 0 y = 0
+						}
+						recon = {
+							x = 0 y = 1
+						}
+						artillery = {
+							x = 0 y = 2
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "name = \"1. Divizia Slovenskej Gardy\" division_template = \"Slovak Guard\" start_experience_factor = 1.0"
+						owner = SLO
+						}
+					}
+				}
+			}
+			else = {
+			add_war_support = 0.05
+			add_manpower = 10000
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_A_Shining_Example_Of_European_Democracy
+		icon = GFX_USA_bastion_of_democracy
+		cost = 10
+		x = -3
+		y = 6
+		prerequisite = {
+			focus = SLO_Slovak_Nationalism focus = SLO_Raise_The_Czechoslovak_Army
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			country_event = {
+				days = 1 id = slovakia.49
+			}
+			add_political_power = 100
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Bratislava_Line
+		icon = GFX_GENERIC_Soldiers_Defense
+		cost = 2
+		x = 0
+		y = 4
+		available = {
+			SLO = {
+				has_war = yes
+			}
+		}
+		prerequisite = {
+			focus = SLO_War_Of_Liberation
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			70 = {
+				add_building_construction = {
+					type = bunker
+					level = 4
+					province = 9692
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9539
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 541
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Total_War
+		icon = GFX_GENERIC_Holding_Gun
+		cost = 2
+		x = 0
+		y = 5
+		available = {
+			SLO = {
+				has_war = yes
+			}
+		}
+		prerequisite = {
+			focus = SLO_Bratislava_Line
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = {
+				war_economy
+			}
+			add_manpower = 25000
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Deport_Hungarians
+		icon = GFX_GENERIC_Village_Raid_and_Arrests
+		cost = 5
+		x = -3
+		y = 7
+		prerequisite = {
+			focus = SLO_A_Shining_Example_Of_European_Democracy
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		available = {
+			SLO = {
+				owns_state = 664
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			664 = {
+				add_manpower = -200000
+			}
+			add_stability = 0.1
+			country_event = {
+				days = 1 id = slovakia.54
+			}
+			HUN = {
+				country_event = {
+					days = 2 id = slovakia.53
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_A_Government_Of_Knives
+		icon = GFX_GENERIC_Authoritarian_Democracy
+		cost = 10
+		x = 3
+		y = 7
+		prerequisite = {
+			focus = SLO_Destroying_The_Resistance focus = SLO_A_Good_Puppet
+		}
+		relative_position_id = SLO_Germany_In_Chaos
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+                add_ideas = { SLO_A_Government_Of_Knives }
+                }
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Leadership_Changes_Are_Settled
+		icon = GFX_ENG_A_New_Direction
+		cost = 2
+		x = 14
+		y = 8
+		available = {
+			HUN = {
+				exists = yes NOT = {
+					is_puppet_of = SLO
+				}
+				SLO = {
+					has_completed_focus = SLO_The_National_Liberation_Coalition
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = Slovakia21tooltip
+			hidden_effect = {
+				news_event = {
+					days = 2 id = twrnews.168
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_A_Proposal_To_Hungary
+		icon = GFX_HUN_Emergency_Law
+		cost = 5
+		x = -2
+		y = 1
+		available = {
+			HUN = {
+				exists = yes
+				owns_state = 73
+				is_fascist = no
+				is_communist = no
+			}
+			NOT = {
+				SLO = {
+					owns_state = 73
+				}
+			}
+		}
+		prerequisite = {
+			focus = SLO_Leadership_Changes_Are_Settled
+		}
+		relative_position_id = SLO_Leadership_Changes_Are_Settled
+		mutually_exclusive = {
+			focus = SLO_Ultimatum_To_Hungary
+		}
+		mutually_exclusive = {
+			focus = SLO_Our_Brothers_In_Ruthenia
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			HUN = {
+				country_event = {
+					days = 3 id = slovakia.38
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Ultimatum_To_Hungary
+		icon = GFX_CRO_Down_with_the_Hungarian_Border
+		cost = 5
+		x = 2
+		y = 1
+		available = {
+			HUN = {
+				exists = yes
+				owns_state = 664
+			}
+			NOT = {
+				SLO = {
+					owns_state = 73 
+					owns_state = 664
+				}
+			}
+		}
+		prerequisite = {
+			focus = SLO_Leadership_Changes_Are_Settled
+		}
+		relative_position_id = SLO_Leadership_Changes_Are_Settled
+		mutually_exclusive = {
+			focus = SLO_A_Proposal_To_Hungary
+		}
+		mutually_exclusive = {
+			focus = SLO_Our_Brothers_In_Ruthenia
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			HUN = {
+				country_event = {
+					days = 3 id = slovakia.41
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Our_Brothers_In_Ruthenia
+		icon = GFX_GENERIC_handshake
+		cost = 2
+		x = 4
+		y = 1
+		available = {
+			CKR = {
+				exists = yes
+				is_subject = no
+			}
+			NOT = {
+				SLO = {
+					owns_state = 73
+				}
+			}
+		}
+		bypass = {
+		owns_state = 73
+		}
+		prerequisite = {
+			focus = SLO_Leadership_Changes_Are_Settled
+		}
+		relative_position_id = SLO_Leadership_Changes_Are_Settled
+		mutually_exclusive = {
+			focus = SLO_Ultimatum_To_Hungary
+		}
+		mutually_exclusive = {
+			focus = SLO_A_Proposal_To_Hungary
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			CKR = {
+				country_event = {
+					days = 2 id = slovakia.50
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_Gain_Support_Of_The_Rusyns
+		icon = GFX_ENG_ensure_public_support
+		cost = 5
+		x = 0
+		y = 2
+		available = {
+			SLO = {
+				owns_state = 73
+			}
+		}
+		prerequisite = {
+			focus = SLO_A_Proposal_To_Hungary focus = SLO_Ultimatum_To_Hungary focus = SLO_Our_Brothers_In_Ruthenia
+		}
+		relative_position_id = SLO_Leadership_Changes_Are_Settled
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			73 = {
+				add_compliance = 20
+				add_core_of = SLO
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_The_End_Of_Tyranny
+		icon = GFX_GENERIC_Peace_Agreement
+		cost = 2
+		x = -2
+		y = 2
+		available = {
+			HUN = {
+				exists = yes
+			}
+			has_global_flag = HUN_AGREE 
+			HUN = {
+				has_opinion = {
+					target = SLO value > 69
+				}
+			}
+			NOT = {
+				HUN = {
+					has_war_with = SLO
+				}
+			}
+		}
+		prerequisite = {
+			focus = SLO_A_Proposal_To_Hungary
+		}
+		relative_position_id = SLO_Leadership_Changes_Are_Settled
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			SLO = {
+				diplomatic_relation = {
+					country = HUN
+					relation = non_aggression_pact
+					active = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_A_Common_Foe
+		icon = GFX_HUN_soldier
+		cost = 2
+		x = 2
+		y = 2
+		available = {
+			HUN = {
+				exists = yes
+			}
+			ROM = {
+				has_opinion = {
+					target = SLO value > 69
+				}
+			}
+			NOT = {
+				ROM = {
+					has_war_with = SLO
+				}
+			}
+		}
+		prerequisite = {
+			focus = SLO_Ultimatum_To_Hungary
+		}
+		relative_position_id = SLO_Leadership_Changes_Are_Settled
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			SLO = {
+				diplomatic_relation = {
+					country = ROM
+					relation = non_aggression_pact
+					active = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		cancelable = no
+		id = SLO_United_At_Last
+		icon = GFX_ENG_gov_gen_conference
+		cost = 10
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = SLO_Gain_Support_Of_The_Rusyns
+		}
+		relative_position_id = SLO_Leadership_Changes_Are_Settled
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+}

@@ -1,0 +1,156 @@
+calculate_GDP = {
+	set_temp_variable = { actual_core_manpower_k = 0 }
+
+	every_owned_state = {
+		limit = { is_core_of = PREV }
+		add_to_temp_variable = { PREV.actual_core_manpower_k = state_population_k }
+	}
+
+	set_temp_variable = { temp_civ = num_of_civilian_factories }
+	set_temp_variable = { temp_mil = num_of_military_factories }
+
+	set_temp_variable = { temp_adjust = temp_civ }
+	multiply_temp_variable = { temp_adjust = 1000 }
+	subtract_from_temp_variable = { temp_adjust = actual_core_manpower_k }
+
+	if = {
+		limit = {
+			check_variable = { temp_adjust > 0 }
+		}
+		if = {
+			limit = { has_idea = agrarian_nation }
+			multiply_temp_variable = { temp_mil = 0.25 }
+		}
+		else_if = {
+			limit = { has_idea = semi_industrialised_nation }
+			multiply_temp_variable = { temp_adjust = 0.5 }
+			multiply_temp_variable = { temp_mil = 0.5 }
+		}
+		else_if = {
+			limit = { has_idea = industrialised_nation }
+			multiply_temp_variable = { temp_adjust = 0.25 }
+			multiply_temp_variable = { temp_mil = 0.75 }
+		}
+		else_if = {
+			limit = { has_idea = consumerist_nation }
+			multiply_temp_variable = { temp_adjust = 0 }
+		}
+		divide_temp_variable = { temp_adjust = 1000 }
+		subtract_from_temp_variable = { temp_civ = temp_adjust }
+		clamp_temp_variable = { var = temp_civ min = 0 }
+	}
+
+	if = {
+		limit = {
+			check_variable = { actual_core_manpower_k < 2000 }
+		}
+		if = {
+			limit = { has_idea = agrarian_nation }
+			multiply_temp_variable = { temp_civ = 0.2 }
+			multiply_temp_variable = { temp_mil = 0.2 }
+		}
+		else_if = {
+			limit = { has_idea = semi_industrialised_nation }
+			multiply_temp_variable = { temp_civ = 0.4 }
+			multiply_temp_variable = { temp_mil = 0.4 }
+		}
+	}
+
+	set_variable = { temp_adjust_check = temp_civ }
+
+	set_variable = { country_GDP = temp_civ }
+
+	clamp_temp_variable = { var = temp_civ min = 1 max = 100 }
+
+	set_temp_variable = { temp = temp_mil }
+	divide_temp_variable = { temp = 2 }
+	add_to_variable = { country_GDP = temp }
+
+	set_temp_variable = { math_sqrt_number = resource_produced@oil }
+	divide_temp_variable = { math_sqrt_number = 2500 }
+	math_square_root = yes
+	multiply_temp_variable = { math_sqrt_output = temp_civ }
+	add_to_variable = { country_GDP = math_sqrt_output }
+
+	set_temp_variable = { math_sqrt_number = resource_produced@aluminium }
+	divide_temp_variable = { math_sqrt_number = 2500 }
+	math_square_root = yes
+	multiply_temp_variable = { math_sqrt_output = temp_civ }
+	add_to_variable = { country_GDP = math_sqrt_output }
+
+	set_temp_variable = { math_sqrt_number = resource_produced@rubber }
+	divide_temp_variable = { math_sqrt_number = 2500 }
+	math_square_root = yes
+	multiply_temp_variable = { math_sqrt_output = temp_civ }
+	add_to_variable = { country_GDP = math_sqrt_output }
+
+	set_temp_variable = { math_sqrt_number = resource_produced@tungsten }
+	divide_temp_variable = { math_sqrt_number = 2500 }
+	math_square_root = yes
+	multiply_temp_variable = { math_sqrt_output = temp_civ }
+	add_to_variable = { country_GDP = math_sqrt_output }
+
+	set_temp_variable = { math_sqrt_number = resource_produced@steel }
+	divide_temp_variable = { math_sqrt_number = 2500 }
+	math_square_root = yes
+	multiply_temp_variable = { math_sqrt_output = temp_civ }
+	add_to_variable = { country_GDP = math_sqrt_output }
+
+	set_temp_variable = { math_sqrt_number = resource_produced@chromium }
+	divide_temp_variable = { math_sqrt_number = 2500 }
+	math_square_root = yes
+	multiply_temp_variable = { math_sqrt_output = temp_civ }
+	add_to_variable = { country_GDP = math_sqrt_output }
+
+	set_variable = { country_GDP_per_capita = country_GDP }
+	multiply_variable = { country_GDP_per_capita = 1000 }
+	divide_variable = { country_GDP_per_capita = actual_core_manpower_k }
+	multiply_variable = { country_GDP_per_capita = 1000 }
+	clamp_variable = { var = country_GDP_per_capita min = 0 }
+
+	set_variable = { tstvar = actual_core_manpower_k }
+
+	if = {
+		limit = {
+			all_country = {
+				is_in_array = { global.GDP_list_array = THIS }
+			}
+		}
+		update_position = yes
+	}
+}
+
+update_position = {
+	clear_array = global.top_ten_GDP_array
+	clear_variable = global.GDP_total
+	clear_variable = global.GDP_per_capita_total
+
+	set_temp_variable = { position = 0 }
+	set_variable = { sort_var = 1 }
+	set_variable = { last_sort_var = 0 }
+	create_GDP_sorted_array = yes
+
+	for_each_scope_loop = {
+		array = global.GDP_list_array
+
+		add_to_temp_variable = { position = 1 }
+		set_variable = { THIS.GDP_position = position }
+
+		if = {
+			limit = {
+				check_variable = { THIS.GDP_position < 11 }
+			}
+			add_to_array = { global.top_ten_GDP_array = THIS }
+		}
+		add_to_variable = { global.GDP_total = country_GDP }
+		add_to_variable = { global.GDP_per_capita_total = country_GDP_per_capita }
+	}
+
+	set_variable = { global.average_GDP = global.GDP_total }
+	divide_variable = { global.average_GDP = global.GDP_list_array^num }
+	set_variable = { global.average_GDP_per_capita = global.GDP_per_capita_total }
+	divide_variable = { global.average_GDP_per_capita = global.GDP_list_array^num }
+
+	force_update_map_mode = { mapmode = TWR_GDP_map_mode }
+	force_update_map_mode = { mapmode = TWR_GDP_per_capita_map_mode }
+}

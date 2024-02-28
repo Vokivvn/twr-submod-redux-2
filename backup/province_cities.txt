@@ -1,0 +1,106 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			881 = { #Tokyo
+				add_province_modifier = {
+					static_modifiers = { terrain_tokyo }
+					province = { id = 1182 }
+				}
+			}
+			880 = { #Yokohama
+				add_province_modifier = { 
+					static_modifiers = { terrain_yokohama }
+					province = { id = 9998 }
+				}
+			}
+		}
+	}
+
+	on_nuke_drop = {
+		effect = {
+			if = {
+				limit = {
+					FROM = { state = 881 }
+				}
+				881 = {
+					set_state_flag = state_nuked
+					remove_province_modifier = {
+						static_modifiers = { terrain_tokyo }
+						province = 1182
+					}
+					randomize_temp_variable = {
+						var = nuke_seed
+						distribution = uniform
+						min = 0
+						max = 100
+					}
+					round_temp_variable = nuke_seed
+					random_list = {
+						seed = nuke_seed
+						1 = {
+							add_province_modifier = {
+								static_modifiers = { terrain_nuked1 }
+								province = 1182
+							}
+						}
+						1 = {
+							add_province_modifier = {
+								static_modifiers = { terrain_nuked2 }
+								province = 1182
+							}
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					FROM = { state = 880 }
+				}
+				880 = {
+					set_state_flag = state_nuked
+					remove_province_modifier = {
+						static_modifiers = { terrain_yokohama }
+						province = 9998
+					}
+					randomize_temp_variable = { var = nuke_seed distribution = uniform }
+					random_list = {
+						seed = nuke_seed
+						1 = {
+							add_province_modifier = {
+								static_modifiers = { terrain_nuked1 }
+								province = 9998
+							}
+						}
+						1 = {
+							add_province_modifier = {
+								static_modifiers = { terrain_nuked2 }
+								province = 9998
+							}
+						}
+					}
+				}
+			}
+			else = {
+				FROM = {
+					set_state_flag = state_nuked
+					randomize_temp_variable = { var = nuke_seed distribution = uniform }
+					random_list = {
+						seed = nuke_seed
+						1 = {
+							add_province_modifier = {
+								static_modifiers = { terrain_nuked1 }
+								province = { all_provinces = yes limit_to_victory_point = yes }
+							}
+						}
+						1 = {
+							add_province_modifier = {
+								static_modifiers = { terrain_nuked2 }
+								province = { all_provinces = yes limit_to_victory_point = yes }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,248 @@
+democratic_government = {
+	meet_with_union_leaders = {
+
+		icon = generic_industry
+
+		available = {
+			OR = {
+			has_government = social_democrat
+			has_government = socialist
+			}
+		}
+
+		visible = {
+		OR = {
+			is_democratic = yes
+			has_government = socialist
+			}
+		}
+
+		remove_trigger = {
+			NOT = {
+				has_government = social_democrat
+				has_government = socialist
+			}
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			stability_weekly = 0.005
+			political_power_gain = 0.2
+			consumer_goods_factor = 0.05
+		}
+
+		days_remove = 28
+		days_re_enable = 180
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision meet_with_union_leaders"
+				if = {
+					limit = {
+						has_war = no
+					}
+				random_list = {
+				60 = { country_event = { id = twrdemocratic.1 days = 3 random = 300 } }
+				40 = { country_event = { id = twrdemocratic.2 days = 3 random = 300 } }
+				}
+				else_if = {
+				if = {
+					limit = {
+						has_war = yes
+					}
+				random_list = {
+				80 = { country_event = { id = twrdemocratic.1 days = 3 random = 300 } }
+				20 = { country_event = { id = twrdemocratic.2 days = 3 random = 300 } }
+					}
+				}
+			}
+		}
+	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+			OR = {
+				has_stability < 0.4
+				has_war = yes
+				num_of_civilian_factories > 10
+				}
+			}
+		}
+	}
+	welfare_reforms = {
+
+		icon = generic_decision
+
+		available = {
+			OR = {
+			has_government = social_democrat
+			has_government = liberal
+			has_government = socialist
+			}
+		}
+
+		visible = {
+		OR = {
+			is_democratic = yes
+			has_government = socialist
+			}
+		}
+
+		remove_trigger = {
+		OR = {
+			conservative > 0.4
+			paternal_autocrat > 0.4
+			fascist > 0.4
+			national_socialist > 0.4
+			}
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.5
+		}
+
+		days_remove = 100
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision welfare_reforms"
+
+		}
+		remove_effect = {
+			random_list = {
+			50 = { country_event = twrdemocratic.3 }
+			50 = { country_event = twrdemocratic.4 }
+			}
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_war = no
+			}
+		}
+	}
+	leave_the_accord = {
+
+		icon = generic_decision
+
+		available = {
+			is_communist = yes
+		}
+
+		visible = {
+			tag = ICE
+		}
+
+		fire_only_once = yes
+
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision welfare_reforms"
+			country_event = twriceland.4
+
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 50
+				OR = {
+					has_global_flag = COUNTRY_PATH_ICE_NEUTRALITY
+					has_global_flag = COUNTRY_PATH_ICE_OCCUPATION
+				}
+			}
+		}
+	}
+	agreement_with_oppositions = {
+
+		icon = generic_industry
+
+		available = {
+			OR = {
+				AND = {
+				has_government = liberal
+				liberal < 0.4
+				}
+				AND = {
+				has_government = social_democrat
+				social_democrat < 0.4
+				}
+				AND = {
+				has_government = conservative
+				conservative < 0.4
+				}
+			}
+		}
+
+		visible = {
+			is_democratic = yes
+		}
+
+		remove_trigger = {
+			OR = {
+				AND = {
+				has_government = liberal
+				liberal > 0.4
+				}
+				AND = {
+				has_government = social_democrat
+				social_democrat > 0.4
+				}
+				AND = {
+				has_government = conservative
+				conservative > 0.4
+				}
+			}
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.5
+		}
+
+		days_remove = 100
+		days_re_enable = 360
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision agreement_with_oppositions"
+
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+			OR = {
+				AND = {
+				has_government = liberal
+				liberal < 0.4
+				}
+				AND = {
+				has_government = social_democrat
+				social_democrat < 0.4
+				}
+				AND = {
+				has_government = conservative
+				conservative < 0.4
+				}
+				has_war = yes
+			}
+			}
+		}
+	}	
+}

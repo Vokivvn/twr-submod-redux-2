@@ -1,0 +1,268 @@
+rebuilding_russia = {
+	RUS_rebuild_kaliningrad = {
+		cost = 60
+		icon = GFX_decision_generic_construction
+		available = {
+		always = yes
+		}
+		visible = {
+         has_war = no
+		 has_global_flag = kaliningrad_rebuilt 
+		 has_country_flag = russian_language
+		 controls_state = 5
+
+		}
+		fire_only_once = yes
+		days_remove = 100
+		selectable_mission = yes   
+		remove_effect = {
+		   clr_global_flag = kaliningrad_rebuilt
+		   		GER = { 
+				remove_state_core = 5
+				}
+		   
+			5 = { #Koenigsberg, rest in peace sweet prince
+			hidden_effect = {
+				remove_province_modifier = {
+					static_modifiers = { terrain_koenigsberg }
+					province = { id = 6332 }
+				}
+			}
+				add_manpower = -1300000 
+				remove_claim_by = GER
+				remove_claim_by = HGR
+				remove_claim_by = HSS				
+				add_province_modifier = {
+					static_modifiers = { terrain_kaliningrad }
+					province = { id = 6332 }	 
+				}
+		    }	
+        }
+        ai_will_do = {
+			factor = 112
+		
+		}
+	}
+	RUS_rebuild_moscow = {
+		cost = 60
+		icon = GFX_decision_generic_construction
+		available = {
+		always = yes
+		}
+		visible = {
+         has_war = no
+		 has_global_flag = moscow_rebuilt
+		 has_country_flag = russian_language
+		 owns_state = 219
+		 date > 1958.1.1
+		 
+		}
+		fire_only_once = yes
+		days_remove = 200
+		selectable_mission = yes   
+		remove_effect = {
+		clr_global_flag = moscow_rebuilt
+		add_stability = 0.15
+		
+
+			219 = { #moskau > moscow
+			hidden_effect = {
+				remove_province_modifier = {
+					static_modifiers = { terrain_moscow }
+					province = { id = 6380 }
+				}
+			}	
+				add_province_modifier = {
+					static_modifiers = { terrain_moscow_healed }
+					province = { id = 6380 }	 
+				}
+		    }
+			219 = { add_manpower = -100000 } 
+
+			 
+			
+        }
+        ai_will_do = {
+			factor = 119
+		
+		}
+	}
+	RUS_rebuild_sevastapol = {
+		cost = 60
+		icon = GFX_decision_generic_construction
+		available = {
+		always = yes
+		}
+		visible = {
+         has_war = no
+		 has_global_flag = sevastapol_rebuilt
+		 has_country_flag = russian_language
+		 owns_state = 137
+		}
+		fire_only_once = yes
+		days_remove = 70
+		selectable_mission = yes   
+		remove_effect = {
+            add_stability = 0.1
+			clr_global_flag = sevastapol_rebuilt
+			137 = { #sevastapol
+			hidden_effect = {
+				remove_province_modifier = {
+					static_modifiers = { terrain_sevastapol }
+					province = { id = 3686 }
+				}
+			}	
+				add_province_modifier = {
+					static_modifiers = { terrain_sevastapol_healed }
+					province = { id = 3686 }	 
+				}
+		    }
+						137 = { 
+						add_manpower = -400000 
+						remove_claim_by = RGO
+						}
+
+
+			
+			
+        }
+        ai_will_do = {
+			factor = 113
+		
+		}
+	}
+	RUS_rebuild_petrograd = {
+		cost = 60
+		icon = GFX_decision_generic_construction
+		available = {
+		always = yes
+		}
+		visible = {
+         has_war = no
+		 has_global_flag = petrograd_rebuilt
+		 has_country_flag = russian_language
+		 owns_state = 195
+		 date > 1958.1.1
+		}
+		fire_only_once = yes
+		days_remove = 90
+		selectable_mission = yes   
+		remove_effect = {
+		add_stability = 0.1
+		clr_global_flag = petrograd_rebuilt
+			195 = { #st petersburg
+			hidden_effect = {
+				remove_province_modifier = {
+					static_modifiers = { terrain_st_petersburg }
+					province = { id = 3151 }
+				}
+			}	
+				add_province_modifier = {
+					static_modifiers = { terrain_st_petersburg_healed }
+					province = { id = 3151 }	 
+				}
+		    }
+			195 = { add_manpower = -1100000 }
+        }
+        ai_will_do = {
+			factor = 113
+		
+		}
+	}
+	
+	
+	RUS_demolish_volkshalle = {
+		cost = 60
+		icon = GFX_decision_generic_construction
+		available = {
+		always = yes
+		}
+		visible = {
+         has_war = no
+		 has_country_flag = russian_language
+		 SMO = { owns_state = 855 }
+		 NOT = {
+		 tag = SMO 
+		 tag = RUS
+		 }
+		# date > 1958.1.1
+		}
+		fire_only_once = yes
+		days_remove = 9
+		selectable_mission = yes   
+		remove_effect = {
+		set_country_flag = VOLKSHALLE_REKED
+		destroy_entity = 100
+		add_stability = 0.1
+			855 = { #Berlin
+			hidden_effect = {
+				remove_province_modifier = {
+					static_modifiers = { terrain_germania }
+					province = { id = 6521 }
+				}
+			}	
+				add_province_modifier = {
+					static_modifiers = { terrain_berlin_healed }
+					province = { id = 6521 }	 
+				}
+		    }
+        }
+        ai_will_do = {
+			factor = 113
+		
+		}
+	}
+	RUS_transform_berlin = {
+		cost = 60
+		icon = GFX_decision_generic_construction
+		available = {
+		always = yes
+		}
+		ai_will_do = {
+		factor = 113
+		}
+		visible = {
+        has_war = no
+		OR = {
+		has_government = marxist_leninist
+		has_government = bolshevik_leninist
+		has_government = socialist
+		}
+		has_country_flag = palace_of_sovs_built 
+		has_country_flag = VOLKSHALLE_REKED
+		has_country_flag = russian_language
+		NOT = { 
+		#has_country_flag = MOSCOW_RENOVATED_FLAG
+		}
+		SMO = {
+		owns_state = 855
+			}	 
+		}
+		fire_only_once = yes
+		days_remove = 200
+		selectable_mission = yes   
+		remove_effect = {
+		set_country_flag = sov_building_in_berlin
+		country_event = twrmakebuilding.4
+		news_event = twrnews.181
+            add_stability = 0.1
+			destroy_entity = 100
+			hidden_effect = {
+			855 = { #Soviet Berlin
+				remove_province_modifier = {
+				static_modifiers = { terrain_germania }
+				province = { id = 6521 }
+				}
+				remove_province_modifier = {
+				static_modifiers = { terrain_berlin_healed }
+				province = { id = 6521 }
+				}
+				add_province_modifier = {
+				static_modifiers = { terrain_berlin_soviet }
+				province = { id = 6521 }	 
+					}
+		    	}	
+        	}
+		}
+	}		
+}

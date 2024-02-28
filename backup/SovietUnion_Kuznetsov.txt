@@ -1,0 +1,868 @@
+focus_tree = { 
+id = sov_kuznetsov_union
+country = {
+		factor = 0
+	}
+	default = no 
+	
+	
+	focus = {
+	cancelable = no 
+		id = SOV_kuznetsovs_vision
+		icon = GFX_SOV_kuznetsov
+		x = 20
+		y = 0
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			country_event = twrkuznetsov.1
+		}
+
+		}
+		
+	focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_nkvd_purge
+		icon = GFX_SOV_NKVD_remain
+		prerequisite = { focus = SOV_kuznetsovs_vision }
+		relative_position_id = SOV_kuznetsovs_vision
+		x = -6
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_nkvd_purge
+		}
+
+		}
+
+	focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_ships
+		icon = GFX_SOV_gulag_ship
+		prerequisite = { focus = SOV_kuznetsov_nkvd_purge }
+		relative_position_id = SOV_kuznetsov_nkvd_purge
+		x = -4
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_navy1_tt
+			custom_effect_tooltip = Kuznetsov_tt_ship_retreat_-15
+			custom_effect_tooltip = Kuznetsov_tt_spot_chance_-10
+			custom_effect_tooltip = Kuznetsov_tt_ship_coordination_-20
+			custom_effect_tooltip = Kuznetsov_tt_ship_speed_-10
+			custom_effect_tooltip = Kuznetsov_tt_ship_xp_-15
+			custom_effect_tooltip = Kuznetsov_tt_amphibious_-10
+			custom_effect_tooltip = Kuznetsov_tt_convoy_raiding_-10
+			add_dynamic_modifier = { 
+				modifier = SOV_gulag_navy
+			}
+			add_to_variable = {
+				var = SOV_shipretreat 
+				value = -0.15
+			}
+			add_to_variable = {
+				var = SOV_spotchance 
+				value = -0.10
+			}
+			add_to_variable = {
+				var = SOV_shipcoor 
+				value = -0.20
+			}
+			add_to_variable = {
+				var = SOV_shipspeed 
+				value = -0.10
+			}
+			add_to_variable = {
+				var = SOV_shipxp 
+				value = -0.15
+			}
+			add_to_variable = {
+				var = SOV_marines 
+				value = -0.10
+			}
+			add_to_variable = {
+				var = SOV_submarine 
+				value = -0.10
+			}
+		}
+
+		}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_ships_officers
+		icon = GFX_GENERIC_naval_academy
+		prerequisite = { focus = SOV_kuznetsov_gulag_ships }
+		relative_position_id = SOV_kuznetsov_gulag_ships
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_navy2_tt
+			custom_effect_tooltip = Kuznetsov_tt_ship_coordination_30
+			custom_effect_tooltip = Kuznetsov_tt_ship_speed_20
+			custom_effect_tooltip = Kuznetsov_tt_ship_xp_30
+			add_to_variable = {
+				var = SOV_shipcoor 
+				value = 0.30
+			}
+			add_to_variable = {
+				var = SOV_shipspeed 
+				value = 0.20
+			}
+			add_to_variable = {
+				var = SOV_shipxp 
+				value = 0.30
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_ships_rehabilitation
+		icon = GFX_GER_trip_to_argentina
+		prerequisite = { focus = SOV_kuznetsov_gulag_ships_officers }
+		relative_position_id = SOV_kuznetsov_gulag_ships_officers
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_navy2_tt
+			custom_effect_tooltip = Kuznetsov_tt_ship_retreat_30
+			custom_effect_tooltip = Kuznetsov_tt_spot_chance_20
+			add_to_variable = {
+				var = SOV_shipretreat 
+				value = 0.30
+			}
+			add_to_variable = {
+				var = SOV_spotchance 
+				value = 0.20
+			}
+		}
+
+		}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_ships_nic
+		icon = GFX_GENERIC_socialist_navy
+		prerequisite = { focus = SOV_kuznetsov_gulag_ships }
+		relative_position_id = SOV_kuznetsov_gulag_ships
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_navy2_tt
+			custom_effect_tooltip = Kuznetsov_tt_ship_coordination_10
+			custom_effect_tooltip = Kuznetsov_tt_ship_speed_10
+			add_to_variable = {
+				var = SOV_shipcoor 
+				value = 0.10
+			}
+			add_to_variable = {
+				var = SOV_shipspeed 
+				value = 0.10
+			}
+		}
+	}	
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_ships_penal_submarines
+		icon = GFX_GENERIC_dockyards
+		prerequisite = { focus = SOV_kuznetsov_gulag_ships_nic }
+		relative_position_id = SOV_kuznetsov_gulag_ships_nic
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_navy2_tt
+			custom_effect_tooltip = Kuznetsov_tt_convoy_raiding_30
+			add_to_variable = {
+				var = SOV_submarine 
+				value = 0.30
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_ships_penal_marines
+		icon = GFX_KOR_marines
+		prerequisite = { focus = SOV_kuznetsov_gulag_ships_penal_submarines }
+		prerequisite = { focus = SOV_kuznetsov_gulag_ships_rehabilitation }
+		relative_position_id = SOV_kuznetsov_gulag_ships_rehabilitation
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_navy2_tt
+			custom_effect_tooltip = Kuznetsov_tt_amphibious_30
+			add_to_variable = {
+				var = SOV_marines 
+				value = 0.30
+			}
+		}	
+	}
+
+	focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_divisions
+		icon = GFX_SOV_gulag_division
+		prerequisite = { focus = SOV_kuznetsov_nkvd_purge }
+		relative_position_id = SOV_kuznetsov_nkvd_purge
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_army1_tt
+			custom_effect_tooltip = Kuznetsov_tt_recon_-10
+			custom_effect_tooltip = Kuznetsov_tt_army_org_-15
+			custom_effect_tooltip = Kuznetsov_tt_no_supply_-20
+			custom_effect_tooltip = Kuznetsov_tt_mintrain_-15
+			custom_effect_tooltip = Kuznetsov_tt_conscription_-10
+			custom_effect_tooltip = Kuznetsov_tt_infantry_attack_-15
+			custom_effect_tooltip = Kuznetsov_tt_infantry_defence_-5
+			custom_effect_tooltip = Kuznetsov_tt_army_morale_-10
+			add_to_variable = {
+				var = SOV_recon 
+				value = -0.10
+			}
+			add_to_variable = {
+				var = SOV_org 
+				value = -0.15
+			}	
+			add_to_variable = {
+				var = SOV_nosupply 
+				value = 0.20
+			}	
+			add_to_variable = {
+				var = SOV_mintrain 
+				value = 0.15
+			}
+			add_to_variable = {
+				var = SOV_conscript 
+				value = -0.10
+			}
+			add_to_variable = {
+				var = SOV_infatt 
+				value = -0.15
+			}
+			add_to_variable = {
+				var = SOV_infdef 
+				value = -0.05
+			}	
+			add_to_variable = {
+				var = SOV_morale 
+				value = -0.10
+			}
+			add_dynamic_modifier = { modifier = SOV_gulag_army }
+		}
+		
+		}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_divisions_insurgency_doctrine
+		icon = GFX_GER_revolution
+		prerequisite = { focus = SOV_kuznetsov_gulag_divisions }
+		relative_position_id = SOV_kuznetsov_gulag_divisions
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_army2_tt
+			custom_effect_tooltip = Kuznetsov_tt_recon_20
+			custom_effect_tooltip = Kuznetsov_tt_army_morale_20
+			add_to_variable = {
+				var = SOV_recon 
+				value = 0.20
+			}
+			add_to_variable = {
+				var = SOV_morale 
+				value = 0.20
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_divisions_two_years
+		icon = GFX_SOV_attack_moskowien
+		prerequisite = { focus = SOV_kuznetsov_gulag_divisions_insurgency_doctrine }
+		relative_position_id = SOV_kuznetsov_gulag_divisions_insurgency_doctrine
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_army2_tt
+			custom_effect_tooltip = Kuznetsov_tt_conscription_20
+			add_to_variable = {
+				var = SOV_conscript 
+				value = 0.20
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_divisions_sew_chaos
+		icon = GFX_SOV_expel_zhukovists
+		prerequisite = { focus = SOV_kuznetsov_gulag_divisions }
+		relative_position_id = SOV_kuznetsov_gulag_divisions
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_army2_tt
+			custom_effect_tooltip = Kuznetsov_tt_infantry_attack_20
+			custom_effect_tooltip = Kuznetsov_tt_infantry_defence_-5
+			add_to_variable = {
+				var = SOV_infatt 
+				value = 0.20
+			}
+			add_to_variable = {
+				var = SOV_infdef 
+				value = -0.05
+			}
+		}	
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_divisions_continuous_distraction
+		icon = GFX_GENERIC_socialist_uprising
+		prerequisite = { focus = SOV_kuznetsov_gulag_divisions_sew_chaos }
+		relative_position_id = SOV_kuznetsov_gulag_divisions_sew_chaos
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_army2_tt
+			custom_effect_tooltip = Kuznetsov_tt_no_supply_25
+			custom_effect_tooltip = Kuznetsov_tt_mintrain_25
+			add_to_variable = {
+				var = SOV_nosupply 
+				value = -0.25
+			}
+			subtract_from_variable = {
+				var = SOV_mintrain 
+				value = 0.25
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_divisions_shock_companies
+		icon = GFX_GENERIC_kill_with_fire
+		prerequisite = { focus = SOV_kuznetsov_gulag_divisions_continuous_distraction }
+		prerequisite = { focus = SOV_kuznetsov_gulag_divisions_two_years }
+		relative_position_id = SOV_kuznetsov_gulag_divisions_continuous_distraction
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_army2_tt
+			custom_effect_tooltip = Kuznetsov_tt_army_org_20
+			custom_effect_tooltip = Kuznetsov_tt_infantry_attack_10
+			add_to_variable = {
+				var = SOV_org 
+				value = 0.20
+			}
+			add_to_variable = {
+				var = SOV_infatt 
+				value = 0.10
+			}
+		}
+		
+		}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_labor
+		icon = GFX_SOV_gulag_labour
+		prerequisite = { focus = SOV_kuznetsov_nkvd_purge }
+		relative_position_id = SOV_kuznetsov_nkvd_purge
+		x = 4
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_labour1_tt
+			custom_effect_tooltip = Kuznetsov_tt_max_efficiency_-15
+			custom_effect_tooltip = Kuznetsov_tt_gain_efficiency_-20
+			custom_effect_tooltip = Kuznetsov_tt_start_efficiency_-10
+			custom_effect_tooltip = Kuznetsov_tt_consumer_goods_-10
+			custom_effect_tooltip = Kuznetsov_tt_build_-15
+			add_to_variable = {
+				var = SOV_effmax
+				value = -0.15
+			}
+			add_to_variable = {
+				var = SOV_effgain
+				value = -0.20
+			}
+			add_to_variable = {
+				var = SOV_effstart
+				value = -0.10
+			}
+			add_to_variable = {
+				var = SOV_cg
+				value = 0.10
+			}
+			add_to_variable = {
+				var = SOV_build
+				value = -0.15
+			}
+			add_dynamic_modifier = { modifier = SOV_gulag_labor }
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_labor_industrial_complexes
+		icon = GFX_GENERIC_industrial_quota
+		prerequisite = { focus = SOV_kuznetsov_gulag_labor }
+		relative_position_id = SOV_kuznetsov_gulag_labor
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_labour2_tt
+			custom_effect_tooltip = Kuznetsov_tt_max_efficiency_25
+			custom_effect_tooltip = Kuznetsov_tt_efficiency_retention_30
+			add_to_variable = {
+				var = SOV_effmax 
+				value = 0.25
+			}
+			add_to_variable = {
+				var = SOV_retention 
+				value = 0.30
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_labor_minimialist_residence_complexes
+		icon = GFX_GENERIC_urbanization2
+		prerequisite = { focus = SOV_kuznetsov_gulag_labor_industrial_complexes }
+		relative_position_id = SOV_kuznetsov_gulag_labor_industrial_complexes
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_labour2_tt
+			custom_effect_tooltip = Kuznetsov_tt_gain_efficiency_40
+			add_to_variable = {
+				var = SOV_effgain 
+				value = 0.40
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_labor_permanent_residence
+		icon = GFX_GENERIC_government_supression
+		prerequisite = { focus = SOV_kuznetsov_gulag_labor }
+		relative_position_id = SOV_kuznetsov_gulag_labor
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_labour2_tt
+			custom_effect_tooltip = Kuznetsov_tt_start_efficiency_20
+			add_to_variable = {
+				var = SOV_effstart 
+				value = 0.20
+			}
+		}	
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_labor_quotas
+		icon = GFX_GENERIC_socialist_production
+		prerequisite = { focus = SOV_kuznetsov_gulag_labor_permanent_residence }
+		relative_position_id = SOV_kuznetsov_gulag_labor_permanent_residence
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_labour2_tt
+			custom_effect_tooltip = Kuznetsov_tt_consumer_goods_20
+			subtract_from_variable = {
+				var = SOV_cg 
+				value = 0.20
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_labor_all_criminals
+		icon = GFX_GENERIC_starve_communists
+		prerequisite = { focus = SOV_kuznetsov_gulag_labor_quotas }
+		prerequisite = { focus = SOV_kuznetsov_gulag_labor_minimialist_residence_complexes }
+		relative_position_id = SOV_kuznetsov_gulag_labor_quotas
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			custom_effect_tooltip = SOV_gulag_labour2_tt
+			custom_effect_tooltip = Kuznetsov_tt_build_30
+			add_to_variable = {
+				var = SOV_build 
+				value = 0.30
+			}
+		}
+	}
+	
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_the_days_grow_dark
+		icon = GFX_KRA_death
+		prerequisite = { focus = SOV_kuznetsov_gulag_labor_all_criminals }
+		prerequisite = { focus = SOV_kuznetsov_gulag_divisions_shock_companies }
+		prerequisite = { focus = SOV_kuznetsov_gulag_ships_penal_marines }
+		relative_position_id = SOV_kuznetsov_gulag_divisions_shock_companies
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			#country_event = { id = twrkuznetsov.2 }
+			remove_ideas = SOV_nkvd_purge
+			hidden_effect = {
+				add_ideas = SOV_the_days_grow_dark
+			}
+		}	
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_economy
+		icon = GFX_SOV_gulag_economy
+		prerequisite = { focus = SOV_kuznetsovs_vision }
+		relative_position_id = SOV_kuznetsovs_vision
+		x = 6
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_gulag_economics
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_naval_central_committee
+		icon = GFX_SOV_Kuz_Nav_Board
+		prerequisite = { focus = SOV_kuznetsov_gulag_economy }
+		relative_position_id = SOV_kuznetsov_gulag_economy
+		x = -3
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_naval_security_branch
+		icon = GFX_SOV_kuznetsov_naval_service
+		prerequisite = { focus = SOV_kuznetsov_naval_central_committee }
+		relative_position_id = SOV_kuznetsov_naval_central_committee
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			navy_experience = 50
+			add_war_support = 0.05
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_the_lord_admiral
+		icon = GFX_SOV_Stars_Thing
+		prerequisite = { focus = SOV_kuznetsov_naval_central_committee }
+		relative_position_id = SOV_kuznetsov_naval_central_committee
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			navy_experience = 50
+			add_war_support = 0.05
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_naval_draft
+		icon = GFX_SOV_Naval_Draft
+		prerequisite = { focus = SOV_kuznetsov_naval_security_branch }
+		prerequisite = { focus = SOV_kuznetsov_the_lord_admiral }
+		relative_position_id = SOV_kuznetsov_the_lord_admiral
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_extra_naval_draft
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_vampire_in_the_night
+		icon = GFX_SOV_Vampire_Night
+		prerequisite = { focus = SOV_kuznetsov_gulag_economy }
+		relative_position_id = SOV_kuznetsov_gulag_economy
+		x = 0
+		y = 2
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_manpower = -10000
+			add_stability = -0.10
+			add_war_support = -0.10
+		}
+	}
+		
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_naval_budget_committee
+		icon = GFX_SOV_Throw_Budget_Together
+		prerequisite = { focus = SOV_kuznetsov_gulag_economy }
+		relative_position_id = SOV_kuznetsov_gulag_economy
+		x = 3
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_naval_budget_committee
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_gulag_subs
+		icon = GFX_SOV_kuznetsov_GULAG_Submarine_Tours
+		prerequisite = { focus = SOV_kuznetsov_naval_budget_committee }
+		relative_position_id = SOV_kuznetsov_naval_budget_committee
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			add_ideas = SOV_gulag_subs
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_token_investments
+		icon = GFX_GENERIC_Grim_Industry
+		prerequisite = { focus = SOV_kuznetsov_naval_budget_committee }
+		relative_position_id = SOV_kuznetsov_naval_budget_committee
+		x = 1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			262 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_coastal_relocation
+		icon = GFX_SOV_Coastal_Relocation
+		prerequisite = { focus = SOV_kuznetsov_token_investments }
+		prerequisite = { focus = SOV_kuznetsov_gulag_subs }
+		relative_position_id = SOV_kuznetsov_token_investments
+		x = -1
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+			262 = {
+				add_manpower = 100000
+			}
+			397 = {
+				add_manpower = -50000
+			}
+			400 = {
+				add_manpower = -50000
+			}
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_vorkuta_incident
+		icon = GFX_SOV_kuznetsov_The_Vorkuta_Incident
+		prerequisite = { focus = SOV_kuznetsov_naval_draft }
+		prerequisite = { focus = SOV_kuznetsov_vampire_in_the_night }
+		prerequisite = { focus = SOV_kuznetsov_coastal_relocation }
+		relative_position_id = SOV_kuznetsov_vampire_in_the_night
+		x = 0
+		y = 2
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+		}
+	}
+		
+		focus = {
+	cancelable = no 
+		id = SOV_kuznetsov_uprising
+		icon = GFX_SOV_kuznetsov_uprising
+		prerequisite = { focus = SOV_kuznetsov_vorkuta_incident }
+		relative_position_id = SOV_kuznetsov_vorkuta_incident
+		x = 0
+		y = 1
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+		factor = 1
+		} 
+		completion_reward = {
+		}
+	}
+	
+	
+	}

@@ -1,0 +1,445 @@
+end_resolution = {
+	set_temp_variable = { vote_total = global.un_resolution_vote_yes }
+	add_to_temp_variable = { vote_total = global.un_resolution_vote_no }
+	add_to_temp_variable = { vote_total = global.un_resolution_vote_abstain }
+
+	if = {
+		limit = { 
+			check_variable = { vote_total = global.TWR_UNSC_array^num }
+		}
+		if = {
+			limit = {
+				set_temp_variable = { half = global.TWR_UNSC_array^num }
+				divide_temp_variable = { half = 2 }
+				check_variable = { global.un_resolution_vote_yes > half }
+				check_variable = { global.un_resolution_vote_no < 1 }
+			}
+			# effects if passed
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 1 }
+				}
+				HOL = { country_event = TWR_HOL.2002 }
+				INS = { country_event = TWR_HOL.2003 }
+			}
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 3 }
+				}
+				USA = { country_event = twrusa.51 }
+			}
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 4 }
+				}
+				set_global_flag = un_authorised_war
+				every_country = {
+					limit = {
+						is_in_faction_with = USA
+					}
+					country_event = { id = twrusa.52 days = 1 }
+				}
+				news_event = { days = 1 id = twrnews.133 }
+			}
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 5 }
+				}
+				CHI = { country_event = { id = twrchina.1701 days = 1 } }
+			}
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 6 }
+				}
+				CHI = { 
+				declare_war_on = {
+				    target = JAP
+				    type = annex_everything
+					} 
+				}
+				USA = { 
+				declare_war_on = {
+				    target = JAP
+				    type = annex_everything
+					} 
+					add_named_threat = { 
+					    threat = 10 
+					    name = JAP_INVASION_UN
+					}
+				}
+				ENG = { 
+				declare_war_on = {
+				    target = JAP
+				    type = annex_everything
+					} 
+				}
+				AST = { 
+				declare_war_on = {
+				    target = JAP
+				    type = annex_everything
+					} 
+				}
+				CAN = { 
+				declare_war_on = {
+				    target = JAP
+				    type = annex_everything
+					} 
+				}
+				NZL = { 
+				declare_war_on = {
+				    target = JAP
+				    type = annex_everything
+					} 
+				}
+				set_global_flag = TA_CHI_coalition_war
+				news_event = twrjapan.83
+			}
+		}
+		else = {
+			# effects if failed
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 1 }
+				}
+				news_event = twrta.8888
+			}
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 3 }
+				}
+				news_event = twrta.8888
+			}
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 5 }
+				}
+				news_event = { days = 1 id = twrnews.136 }
+				VIN = { country_event = { id = twrvietnam.7 days = 2 } }
+			}
+			if = {
+				limit = {
+					check_variable = { global.un_resolution = 6 }
+				}
+				#news_event = twrjapan.83
+			}
+		}
+
+		clear_variable = global.un_resolution_vote_yes
+		clear_variable = global.un_resolution_vote_no
+		clear_variable = global.un_resolution_vote_abstain
+		clear_variable = global.un_resolution
+
+		for_each_scope_loop = {
+			array = global.TWR_UNSC_array
+
+			clear_variable = un_resolution_vote
+			clear_variable = voted_for_resolution
+			clear_variable = ai_vote_choice_resolution
+		}
+		start_un_resolution = yes
+	}
+}
+
+#########################
+### UN resos go below ###
+#########################
+
+TWR_indonesian_revolt_resolution_effect = {
+	add_to_array = { global.TWR_resolution_array = 1 }
+	set_temp_variable = { temp_index = global.TWR_resolution_array^num }
+	subtract_from_temp_variable = { temp_index = 1 }
+	for_each_scope_loop = {
+		array = global.TWR_UNSC_array
+
+		resize_array = { ai_vote_choice_resolution_array = global.TWR_resolution_array^num }
+		set_variable = { ai_vote_choice_resolution_array^temp_index = 1 }
+	}
+	start_un_resolution = yes
+}
+
+# an example of how to make a reso just copy and paste the code below
+# things that you need to change are marked with comments apart from the effect name of course
+# place the completed effect wherever you want to trigger the reso like so <TWR_maho_waifu_resolution_effect = yes> for example
+TWR_maho_waifu_resolution_effect = {
+	add_to_array = { global.TWR_resolution_array = 2 } # follow the current order 1, 2, 3 etc.
+	set_temp_variable = { temp_index = global.TWR_resolution_array^num }
+	subtract_from_temp_variable = { temp_index = 1 }
+	for_each_scope_loop = {
+		array = global.TWR_UNSC_array
+
+		resize_array = { ai_vote_choice_resolution_array = global.TWR_resolution_array^num }
+		set_variable = { ai_vote_choice_resolution_array^temp_index = 2 } # the default voting choice, 1 is yes, 2 is no, 3 is abstain
+		# set voting choices for each UNSC nation, optional of course
+		if = {
+			limit = { tag = USA }
+			set_variable = { ai_vote_choice_resolution_array^temp_index = 1 } # USA set to vote yes
+		}
+		else_if = {
+			limit = { tag = CHI }
+			set_variable = { ai_vote_choice_resolution_array^temp_index = 3 } # CHI set to vote abstain
+		}
+	}
+	start_un_resolution = yes
+}
+
+TWR_un_germany_resolution_effect = {
+	add_to_array = { global.TWR_resolution_array = 3 }
+	set_temp_variable = { temp_index = global.TWR_resolution_array^num }
+	subtract_from_temp_variable = { temp_index = 1 }
+	for_each_scope_loop = {
+		array = global.TWR_UNSC_array
+
+		resize_array = { ai_vote_choice_resolution_array = global.TWR_resolution_array^num }
+		set_variable = { ai_vote_choice_resolution_array^temp_index = 1 }
+	}
+	start_un_resolution = yes
+}
+
+TWR_ta_germany_war_resolution_effect = {
+	add_to_array = { global.TWR_resolution_array = 4 }
+	set_temp_variable = { temp_index = global.TWR_resolution_array^num }
+	subtract_from_temp_variable = { temp_index = 1 }
+	for_each_scope_loop = {
+		array = global.TWR_UNSC_array
+
+		resize_array = { ai_vote_choice_resolution_array = global.TWR_resolution_array^num }
+		set_variable = { ai_vote_choice_resolution_array^temp_index = 1 }
+	}
+	start_un_resolution = yes
+}
+
+TWR_vietnam_resolution_effect = {
+	add_to_array = { global.TWR_resolution_array = 5 }
+	set_temp_variable = { temp_index = global.TWR_resolution_array^num }
+	subtract_from_temp_variable = { temp_index = 1 }
+	for_each_scope_loop = {
+		array = global.TWR_UNSC_array
+
+		resize_array = { ai_vote_choice_resolution_array = global.TWR_resolution_array^num }
+		set_variable = { ai_vote_choice_resolution_array^temp_index = 1 }
+		if = {
+			limit = { 
+				tag = CHI
+				NOT = {
+					has_global_flag = COUNTRY_PATH_CHI_UN_NO_VETO_VIETNAM_RESOLUTION
+				}
+			}
+			set_variable = { ai_vote_choice_resolution_array^temp_index = 2 } # CHI votes no
+		}
+		if = {
+			limit = {
+				tag = CHI
+				has_global_flag = COUNTRY_PATH_CHI_UN_NO_VETO_VIETNAM_RESOLUTION
+			}
+			set_variable = { ai_vote_choice_resolution_array^temp_index = 3 } # CHI abstains
+		}
+	}
+	start_un_resolution = yes
+}
+
+TWR_restore_japan_resolution_effect = {
+	add_to_array = { global.TWR_resolution_array = 6 }
+	set_temp_variable = { temp_index = global.TWR_resolution_array^num }
+	subtract_from_temp_variable = { temp_index = 1 }
+	for_each_scope_loop = {
+		array = global.TWR_UNSC_array
+
+		resize_array = { ai_vote_choice_resolution_array = global.TWR_resolution_array^num }
+		set_variable = { ai_vote_choice_resolution_array^temp_index = 1 }
+		if = {
+			limit = { tag = USA }
+			set_variable = { ai_vote_choice_resolution_array^temp_index = 1 } # USA set to vote yes
+		}
+		if = {
+			limit = { has_war = yes }
+			set_variable = { ai_vote_choice_resolution_array^temp_index = 2 } # IF WAR votes no
+		}
+		if = {
+			limit = { tag = CHI }
+			random_list = { 
+				70 = {
+					modifier = {
+						factor = 0
+						has_completed_focus = CHI_Strong_Green_Water_Navy
+					}
+					set_variable = { ai_vote_choice_resolution_array^temp_index = 2 }
+				}
+				30 = {
+					modifier = {
+						factor = 0
+						has_global_flag = CHINESE_AMERICAN_COLD_WAR
+					}
+					set_variable = { ai_vote_choice_resolution_array^temp_index = 1 }
+				}
+			}
+		}
+	}
+	start_un_resolution = yes
+}
+
+start_un_resolution = {
+	if = {
+		limit = {
+			check_variable = { global.TWR_resolution_array^num > 0 }
+		}
+		for_each_scope_loop = {
+			array = global.TWR_UNSC_array
+
+			set_variable = { ai_vote_choice_resolution = ai_vote_choice_resolution_array^0 }
+			remove_from_array = {
+				array = ai_vote_choice_resolution_array
+				index = 0
+			}
+		}
+		set_variable = { global.un_resolution = global.TWR_resolution_array^0 }
+		remove_from_array = {
+			array = global.TWR_resolution_array
+			index = 0
+		}
+	}
+	every_country = {
+		limit = { is_ai = no }
+		if = {
+			limit = { has_variable = show_UN_main }
+			add_to_variable = { show_UN_main = 1 }
+		}
+		else_if = {
+			limit = {
+				is_in_array = { global.TWR_UNSC_array = THIS }
+			}
+			set_variable = { show_UN_main = 1 }
+		}
+		if = {
+			limit = {
+				is_in_array = { global.TWR_UNSC_array = THIS }
+			}
+			set_variable = { voting_button_x = 0 }
+		}
+		else = {
+			set_variable = { voting_button_x = -1000 }
+		}
+		if = {
+			limit = { has_variable = show_UN_resolution }
+			add_to_variable = { show_UN_resolution = 1 }
+		}
+	}
+}
+
+# misc un effects below
+four_unsc_members = {
+	set_variable = { global.unsc_position_flag = -260 }
+	set_variable = { global.unsc_position_text = -395 }
+	every_country = {
+		limit = { is_ai = no }
+		if = {
+			limit = { has_variable = show_UN_main }
+			add_to_variable = { show_UN_main = 1 }
+		}
+	}
+}
+
+five_unsc_members = {
+	set_variable = { global.unsc_position_flag = -335 }
+	set_variable = { global.unsc_position_text = -470 }
+	every_country = {
+		limit = { is_ai = no }
+		if = {
+			limit = { has_variable = show_UN_main }
+			add_to_variable = { show_UN_main = 1 }
+		}
+	}
+}
+
+six_unsc_members = {
+	set_variable = { global.unsc_position_flag = -420 }
+	set_variable = { global.unsc_position_text = -555 }
+	every_country = {
+		limit = { is_ai = no }
+		if = {
+			limit = { has_variable = show_UN_main }
+			add_to_variable = { show_UN_main = 1 }
+		}
+	}
+}
+
+TWR_add_to_un = {
+	add_to_array = { global.TWR_UN_array = THIS }
+}
+
+TWR_remove_from_un = {
+	remove_from_array = { global.TWR_UN_array = THIS }
+}
+
+TWR_add_to_unsc = {
+	add_to_array = { global.TWR_UNSC_array = THIS }
+	for_loop_effect = {
+		start = 0
+		end = global.TWR_resolution_array^num
+
+		add_to_array = { ai_vote_choice_resolution_array = 3 }
+	}
+	if = {
+		limit = {
+			check_variable = { global.TWR_UNSC_array^num = 4 }
+		}
+		five_unsc_members = yes
+	}
+	else_if = {
+		limit = {
+			check_variable = { global.TWR_UNSC_array^num = 5 }
+		}
+		six_unsc_members = yes
+	}
+}
+
+TWR_remove_from_unsc = {
+	clear_array = ai_vote_choice_resolution_array
+	clear_variable = un_resolution_vote
+	clear_variable = voted_for_resolution
+	clear_variable = ai_vote_choice_resolution
+	remove_from_array = { global.TWR_UNSC_array = THIS }
+	if = {
+		limit = {
+			check_variable = { global.TWR_UNSC_array^num = 5 }
+		}
+		four_unsc_members = yes
+	}
+	else_if = {
+		limit = {
+			check_variable = { global.TWR_UNSC_array^num = 6 }
+		}
+		five_unsc_members = yes
+	}
+}
+
+# ignore this
+TWR_un_test_1 = {
+	clear_array = global.TWR_UNSC_array
+	add_to_array = { global.TWR_UNSC_array = CAN }
+	add_to_array = { global.TWR_UNSC_array = CHI }
+	add_to_array = { global.TWR_UNSC_array = ENG }
+	add_to_array = { global.TWR_UNSC_array = USA }
+	add_to_array = { global.TWR_UNSC_array = GER }
+	five_unsc_members = yes
+}
+
+TWR_un_test_2 = {
+	clear_array = global.TWR_UNSC_array
+	add_to_array = { global.TWR_UNSC_array = CAN }
+	add_to_array = { global.TWR_UNSC_array = CHI }
+	add_to_array = { global.TWR_UNSC_array = ENG }
+	add_to_array = { global.TWR_UNSC_array = USA }
+	four_unsc_members = yes
+}
+
+TWR_un_test_3 = {
+	clear_array = global.TWR_UNSC_array
+	add_to_array = { global.TWR_UNSC_array = CAN }
+	add_to_array = { global.TWR_UNSC_array = CHI }
+	add_to_array = { global.TWR_UNSC_array = ENG }
+	add_to_array = { global.TWR_UNSC_array = USA }
+	add_to_array = { global.TWR_UNSC_array = GER }
+	add_to_array = { global.TWR_UNSC_array = SOV }
+	six_unsc_members = yes
+}
+

@@ -1,0 +1,494 @@
+﻿add_namespace = twrMexico
+
+country_event = {#Elections
+	id = twrMexico.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.1.t
+	desc = twrMexico.1.d
+	picture = GFX_report_event_election_results
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = twrMexico.1.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_MEX_CONSERVATIVE
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_MEX_MARXIST
+			}
+		}
+		set_politics = {
+			ruling_party = liberal
+		}
+		hidden_effect = {
+			complete_national_focus = MEX_The_1952_Elections
+			complete_national_focus = MEX_The_Status_Quo_Revolutionaries
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.1
+			}
+			news_event = { id = twrMexico.101 }
+		}
+	}
+	
+	option = {
+		name = twrMexico.1.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_MEX_LIBERAL
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_MEX_MARXIST
+			}
+		}
+		set_politics = {
+			ruling_party = conservative
+		}
+		hidden_effect = {
+			complete_national_focus = MEX_The_1952_Elections
+			complete_national_focus = MEX_The_Conservative_Centrists
+				add_popularity = {
+					ideology = conservative
+					popularity = 0.2
+				}
+			add_ideas = MEX_HoG_Adolfo_Christlieb_Ibarrola
+			add_ideas = MEX_FM_Efrain_Gonzalez_Luna
+			add_ideas = MEX_MoS_Jose_Gonzalez_Torres
+			add_ideas = MEX_AM_Manuel_Gomez_Morin
+			news_event = { id = twrMexico.102 }
+		}
+	}
+	
+	option = {
+		name = twrMexico.1.c
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_MEX_LIBERAL
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_MEX_CONSERVATIVE
+			}
+		}
+		set_politics = {
+			ruling_party = marxist_leninist
+		}
+		hidden_effect = {
+			complete_national_focus = MEX_The_1952_Elections
+			complete_national_focus = MEX_The_Unlikely_Marxists
+				add_popularity = {
+					ideology = marxist_leninist
+					popularity = 0.2
+				}
+			add_ideas = MEX_HoG_Vicente_Lombardo_Toledano
+			add_ideas = MEX_FM_Jorge_Cruickshank_Garcia
+			add_ideas = MEX_MoS_Luis_Echeverria
+			add_ideas = MEX_AM_Vicente_Lombardo_Toledano
+			news_event = { id = twrMexico.103 }
+		}
+	}
+}
+
+news_event = {#Liberal Victory
+	id = twrMexico.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.502"}
+	title = twrMexico.101.t
+	desc = twrMexico.101.d
+	picture = GFX_news_event_mexico_liberal_victory
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrMexico.101.a
+	}
+}
+
+news_event = {#Conservative Victory
+	id = twrMexico.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.502"}
+	title = twrMexico.102.t
+	desc = twrMexico.102.d
+	picture = GFX_news_event_mexico_conservative_victory
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrMexico.102.a
+	}
+}
+
+news_event = {#Communist Victory
+	id = twrMexico.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.502"}
+	title = twrMexico.103.t
+	desc = twrMexico.103.d
+	picture = GFX_news_event_mexico_communist_victory
+
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrMexico.103.a
+	}
+}
+
+country_event = {# TA Membership
+	id = twrMexico.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.2.t
+	desc = twrMexico.2.d
+	picture = GFX_report_event_TA
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.2.a
+		ai_chance = {
+			factor = 0.85
+		}
+		USA = { add_to_faction = MEX }
+		hidden_effect = {
+		MEX = {
+			country_event = { id = twrMexico.3 }
+			}
+		}
+	}
+	
+	option = {
+		ai_chance = {
+			factor = 0.15
+		}
+		name = twrMexico.2.b
+		hidden_effect = {
+			MEX = {
+			country_event = { id = twrMexico.4 }
+			}
+		}
+	}
+	
+}
+
+country_event = {# Mexico Accepted
+	id = twrMexico.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.3.t
+	desc = twrMexico.3.d
+	picture = GFX_report_event_TA
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.3.a
+		add_stability = 0.05
+		swap_ideas = {
+		remove_idea = MEX_partner_of_the_accord
+		add_idea = MEX_Member_of_the_accord
+		}
+	}
+	
+}
+
+country_event = {# Mexico Denied
+	id = twrMexico.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.4.t
+	desc = twrMexico.4.d
+	picture = GFX_report_event_TA
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.4.a
+		add_stability = -0.05
+	}
+	
+}
+
+country_event = {#Rise of the ELI
+	id = twrMexico.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.5.t
+	desc = twrMexico.5.d
+	picture = GFX_report_event_ELI
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.5.a
+		hidden_effect = {
+		MEX = {
+		add_state_claim = 476
+		add_state_claim = 475
+		add_state_claim = 474
+		add_state_core = 476
+		add_state_core = 475
+		add_state_core = 474
+		}
+		release = AIR
+		declare_war_on = {
+		target = AIR
+		type = annex_everything
+			}
+		AIR = {
+		load_oob = AIR_1952
+		}
+		}
+	}
+	
+}
+
+country_event = {#Fall of the ELI
+	id = twrMexico.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.6.t
+	desc = twrMexico.6.d
+	picture = GFX_report_event_ELI
+	fire_only_once = yes
+	
+	trigger = {
+		has_war_with = AIR
+		has_full_control_of_state = 476
+		has_full_control_of_state = 475
+	}
+	
+	option = {
+		name = twrMexico.6.a
+		AIR = { white_peace_with_ROOT = yes}
+		annex_country = {
+		target = AIR
+		transfer_troops = no
+		}
+	}
+	
+}
+
+country_event = {#Victory for the ELI
+	id = twrMexico.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.7.t
+	desc = twrMexico.7.d
+	picture = GFX_report_event_ELI
+	fire_only_once = yes
+	
+	trigger = {
+		has_war_with = AIR
+		AIR = {
+		has_full_control_of_state = 477
+		has_full_control_of_state = 485
+		has_full_control_of_state = 277
+		}
+	}
+	
+	option = {
+		name = twrMexico.7.a
+		AIR = { white_peace_with_ROOT = yes}
+	}
+	
+}
+
+country_event = {#The Authoritarian Americas Issue
+	id = twrMexico.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.8.t
+	desc = twrMexico.8.d
+	#picture = 
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.8.a
+		complete_national_focus = MEX_Safeguard_Current_Democracies
+	}
+	
+	option = {
+		name = twrMexico.8.b
+		complete_national_focus = MEX_Take_Down_the_Harshest_Dictators
+	}
+	
+}
+
+country_event = {#Attempt at Dominica Coup
+	id = twrMexico.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.9.t
+	desc = twrMexico.9.d
+	#picture = 
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.9.a
+		ai_chance = {
+			factor = 70
+		}
+		hidden_effect = {
+		kill_country_leader = yes
+		set_politics = {
+		ruling_party = social_democrat
+		}
+		add_popularity = {
+		ideology = social_democrat
+		popularity = 0.1
+		}
+			MEX = {
+			country_event = { id = twrMexico.10 }
+			}
+		}
+	}
+	
+	option = {
+		name = twrMexico.9.b
+		ai_chance = {
+			factor = 30
+		}
+		hidden_effect = {
+			MEX = {
+			country_event = { id = twrMexico.11 }
+			}
+		}
+	}
+	
+}
+
+country_event = {#Coup Succeeds
+	id = twrMexico.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.10.t
+	desc = twrMexico.10.d
+	#picture = 
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.10.a
+		}
+}
+	
+
+country_event = {#Coup Fails
+	id = twrMexico.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.11.t
+	desc = twrMexico.11.d
+	#picture = 
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.11.a
+		}
+}
+
+country_event = {#Attempt at Nicaragua Coup
+	id = twrMexico.12
+	title = twrMexico.12.t
+	desc = twrMexico.12.d
+	#picture = 
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.12.a
+		ai_chance = {
+			factor = 40
+		}
+		hidden_effect = {
+		kill_country_leader = yes
+		set_politics = {
+		ruling_party = liberal
+		}
+		add_popularity = {
+		ideology = liberal
+		popularity = 0.3
+		}
+		MEX = {
+			country_event = { id = twrMexico.13 }
+			}
+		}
+	}
+	
+	option = {
+		name = twrMexico.12.b
+		ai_chance = {
+			factor = 60
+		}
+		hidden_effect = {
+			MEX = {
+			country_event = { id = twrMexico.14 }
+			}
+		}
+	}
+	
+}
+
+country_event = {#Coup Succeeds
+	id = twrMexico.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.13.t
+	desc = twrMexico.13.d
+	#picture = 
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.13.a
+		}
+}
+	
+
+country_event = {#Coup Fails
+	id = twrMexico.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event korea.1"}
+	title = twrMexico.14.t
+	desc = twrMexico.14.d
+	#picture = 
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = twrMexico.14.a
+		}
+}
+
+country_event = {#Frida Dies
+	id = twrMexico.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrMexico.15"}
+	title = twrMexico.15.t
+	desc = twrMexico.15.d
+	picture = GFX_report_event_Frida_Kahlo
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = twrMexico.15.a
+		add_stability = -0.02
+		}
+	
+	option = {
+		name = twrMexico.15.b
+		add_stability = -0.02
+		}
+}
+
+country_event = {#Frida Dies COmmunist
+	id = twrMexico.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrMexico.16"}
+	title = twrMexico.16.t
+	desc = twrMexico.16.d
+	picture = GFX_report_event_Frida_Kahlo
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+	has_government = marxist_leninist
+	}
+	
+	option = {
+		name = twrMexico.16.a
+		}
+}

@@ -1,0 +1,598 @@
+#####################
+##Coded by Spyeter###
+#####################
+
+
+shared_focus = {
+	id = CRO_Luburic
+	icon = GFX_GENERIC_kill_with_fire
+	cost = 5
+	x = 9
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = CRO_Luburic_Purge
+	icon = GFX_SER_focus_national_pacification_campaign
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Luburic
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Purge"
+                add_ideas = SER_national_pacification_campaign 
+                add_stability = -0.5
+                add_war_support = -0.40
+	        
+	}
+ }
+
+shared_focus = {
+	id = CRO_Luburic_Camps
+	icon = GFX_GENERIC_gun_skulls
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Luburic
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Camps"
+                add_ideas = GER_labor_death_camps 
+                add_stability = -0.5
+                add_war_support = -0.40
+	        
+	}
+ }
+
+shared_focus = {
+	id = CRO_Luburic_End
+	icon = GFX_GENERIC_two_skulls_puppet_show
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Luburic
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Purge
+	}
+	prerequisite = {
+		focus = CRO_Luburic_Camps
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_End"
+                add_stability = -0.5
+                add_war_support = -0.40
+	        
+	}
+ }
+
+ shared_focus = {
+	id = CRO_Luburic_Give_In
+	icon = GFX_HUN_fascist_defeated
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Luburic_End
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_End
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Give_In"
+		kill_country_leader = yes
+		random_unit_leader = {
+			limit = { 
+				has_id = 806 
+			}
+			retire = yes
+		}
+        set_country_flag = Vjekoslav_Luburic_unavailable 
+		create_country_leader = {
+			name = "Miroslav Filipović"
+			desc = "MIROSLAV_FILIPOVIC_DESC"
+			picture = "Miroslav_Filipovic.dds"
+			expire = "1965.1.1"
+			ideology = esoteric_national_socialism  
+			traits = {brother_satan}
+		} 
+		mark_focus_tree_layout_dirty = yes    
+		custom_effect_tooltip = cro_expand_focus_tree_tt
+	}
+ }
+
+  shared_focus = {
+	id = CRO_Luburic_Enough_Of_This_Bosnian_Nonsense
+	icon = GFX_CRO_enough_of_this_bosnian_nonsense
+	cost = 5
+	x = -3
+	y = 1
+	relative_position_id = CRO_Luburic_Give_In
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Give_In
+	}
+	allow_branch = {
+			has_completed_focus = CRO_Luburic_Give_In
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Enough_Of_This_Bosnian_Nonsense"
+		add_manpower = -10000
+		hidden_effect = { cro_remove_bosnia_modifiers = yes }
+	}
+ }
+
+
+   shared_focus = {
+	id = CRO_Luburic_The_Serb_Problem
+	icon = GFX_SER_focus_matters_of_the_state
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Luburic_Give_In
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Give_In
+	}
+	allow_branch = {
+			has_completed_focus = CRO_Luburic_Give_In
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Enough_Of_This_Bosnian_Nonsense"
+		add_stability = -0.10
+		add_manpower = -1000
+		SER = {
+					remove_state_core = 981
+					remove_state_core = 982
+	    }
+	hidden_effect = {
+		country_event = {
+			id = twr_cro_flavour.2
+			hours = 7
+			}
+		}
+	}
+ }
+
+   shared_focus = {
+	id = CRO_Luburic_Silence_The_Democrats
+	icon = GFX_Fuck_Social_Democrats
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Luburic_Give_In
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Give_In
+	}
+	allow_branch = {
+			has_completed_focus = CRO_Luburic_Give_In
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Enough_Of_This_Bosnian_Nonsense"
+			add_timed_idea = {
+				idea = SER_end_of_degeneracy
+				days = 360
+			}
+		add_manpower = -15000
+		add_popularity = {
+			ideology = conservative
+			popularity = -0.30
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.30
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.30
+		}
+	}
+ }
+
+shared_focus = {
+	id = CRO_Luburic_The_Judeo_Bolshevik_Partisans
+	icon = GFX_RFP_Unleash_the_Partisans
+	cost = 5
+	x = 3
+	y = 1
+	relative_position_id = CRO_Luburic_Give_In
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Give_In
+	}
+	allow_branch = {
+			has_completed_focus = CRO_Luburic_Give_In
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_The_Judeo_Bolshevik_Partisans"
+			add_timed_idea = {
+				idea = SER_cleansing_of_judeo_masonry
+				days = 240
+			}
+		add_manpower = -15000
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.30
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.30
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.30
+		}
+	}
+ }
+
+ shared_focus = {
+	id = CRO_Luburic_Cleanse_The_Homeguard
+	icon = GFX_CRO_Disband_the_Ustashe
+	cost = 5
+	x = -2
+	y = 2
+	relative_position_id = CRO_Luburic_Give_In
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Enough_Of_This_Bosnian_Nonsense
+	}
+	prerequisite = {
+		focus = CRO_Luburic_The_Serb_Problem
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Cleanse_The_Homeguard"
+		remove_ideas = CRO_Divided_Home_Guard_idea
+		add_manpower = -15000
+		every_unit_leader = {
+			limit = { 
+				has_trait = homeguard_general 
+			}
+			retire = yes
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = -0.30
+		}
+		set_country_flag = Ante_Vokic_unavailable 
+		set_country_flag = Ivan_Babic_unavailable 
+		set_country_flag = Slavko_Kvaternik_unavailable 
+		set_country_flag = Georg_Dragicevic_unavailable 
+		set_country_flag = CRO_military_influence_disabled 
+		custom_effect_tooltip = CRO_disable_military_mechanic_tt
+ 	}
+ }
+
+  shared_focus = {
+	id = CRO_Luburic_Fund_The_Legion
+	icon = GFX_CRO_A_Terrible_Swarm_of_Avengers
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Luburic_Give_In
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Silence_The_Democrats
+	}
+	prerequisite = {
+		focus = CRO_Luburic_The_Serb_Problem
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Fund_The_Legion"
+		add_political_power = -150
+		add_manpower = 2000
+		random_owned_controlled_state = {
+			prioritize = { 109 }
+			create_unit = { 
+				division = "name = \"1. streljačka satnija'\" division_template = \"Crna Legija\" start_experience_factor = 0.3" owner = CRO
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 104 }
+			create_unit = { 
+				division = "name = \"2. streljačka satnija'\" division_template = \"Crna Legija\" start_experience_factor = 0.3" owner = CRO
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 983 }
+			create_unit = { 
+				division = "name = \"3. streljačka satnija'\" division_template = \"Crna Legija\" start_experience_factor = 0.3" owner = CRO
+			}
+		}
+ 	}
+ }
+
+
+   shared_focus = {
+	id = CRO_Luburic_Croatian_Socialism
+	icon = GFX_CRO_Croatian_Socialism
+	cost = 5
+	x = 2
+	y = 2
+	relative_position_id = CRO_Luburic_Give_In
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Silence_The_Democrats
+	}
+	prerequisite = {
+		focus = CRO_Luburic_The_Judeo_Bolshevik_Partisans
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Croatian_Socialism"
+                add_ideas = CRO_corporatism_idea 
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+ 	}
+ }
+
+
+    shared_focus = {
+	id = CRO_Luburic_Destroy_The_Slavic_Theory
+	icon = GFX_SER_focus_cast_off_slavic_shackles
+	cost = 5
+	x = 0
+	y = 3
+	relative_position_id = CRO_Luburic_Give_In
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Cleanse_The_Homeguard
+	}
+	prerequisite = {
+		focus = CRO_Luburic_Fund_The_Legion
+	}
+	prerequisite = {
+		focus = CRO_Luburic_Croatian_Socialism
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Destroy_The_Slavic_Theory"
+		set_cosmetic_tag = CRO_Gothic_Larp
+			SOV = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_decrease
+				}
+			}
+			RUS = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_decrease
+				}
+			}
+			NRI = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_decrease
+				}
+			}
+			NOV = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_decrease
+				}
+			}
+			IDE = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_decrease
+				}
+			}
+			TRV = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_decrease
+				}
+			}
+			KRA = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_decrease
+				}
+			}
+		mark_focus_tree_layout_dirty = yes    
+		custom_effect_tooltip = cro_expand_focus_tree_tt
+ 	}
+ }
+
+shared_focus = {
+	id = CRO_Luburic_Reconquest
+	icon = GFX_CRO_Cast_Them_Away
+	cost = 5
+	x = 7
+	y = 1
+	relative_position_id = CRO_Luburic_Give_In
+	allow_branch = {
+			has_completed_focus = CRO_Luburic_Destroy_The_Slavic_Theory
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic"
+		add_war_support = 0.10
+
+	}
+}
+
+  shared_focus = {
+	id = CRO_Luburic_Orthodox_Croats
+	icon = GFX_CRO_Anti_Serbian_Propaganda
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Luburic_Reconquest
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Reconquest
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Orthodox_Croats"
+  			create_wargoal = {
+				type = annex_everything
+				target = SER
+			}  
+ 			create_wargoal = {
+				type = annex_everything
+				target = SBA
+			}  
+	}
+ }
+  shared_focus = {
+	id = CRO_Pacify_Them
+	icon = GFX_GRE_Feed_off_the_Weak_Fire
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Luburic_Orthodox_Croats
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Orthodox_Croats
+	}
+	available = { owns_state = 107 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Prepare_For_Ultimate_Struggle"
+		107 = { add_manpower = -10000 }
+		108 = { add_manpower = -10000 }
+		add_stability = -0.20
+		add_war_support = -0.20
+	}
+ } 
+
+  shared_focus = {
+	id = CRO_Luburic_Prepare_For_Ultimate_Struggle
+	icon = GFX_GENERIC_worker
+	cost = 5
+	x = -1
+	y = 2
+	relative_position_id = CRO_Luburic_Orthodox_Croats
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Pacify_Them
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Prepare_For_Ultimate_Struggle"
+        add_equipment_to_stockpile = {
+        	type = infantry_equipment
+       		amount = 1000
+        }
+	}
+ } 
+  shared_focus = {
+	id = CRO_Luburic_Ready_The_Men
+	icon = GFX_GENERIC_German_Soldiers2
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Pacify_Them
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Pacify_Them
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Ready_The_Men"
+		add_war_support = 0.10
+	}
+ }
+
+   shared_focus = {
+	id = CRO_Retake_Rome
+	icon = GFX_ITA_stab_italy
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Pacify_Them
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Prepare_For_Ultimate_Struggle
+	}
+	prerequisite = {
+		focus = CRO_Luburic_Ready_The_Men
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Retake_Rome"
+		declare_war_on = {
+			target = ITA
+			type = annex_everything
+		}
+	}
+ }
+
+   shared_focus = {
+	id = CRO_Luburic_Contact_The_Vatican
+	icon = GFX_ITA_Concordat_Vatican
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Luburic_Reconquest
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Reconquest
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_Contact_The_Vatican"
+		country_event = { id = twrcroatia.140 hours = 2 }
+	}
+ }
+
+shared_focus = {
+	id = CRO_Luburic_A_Holy_Letter
+	icon = GFX_GER_old_guard
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Luburic_Contact_The_Vatican
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_Contact_The_Vatican
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_A_Holy_Letter"
+		country_event = { id = twrcroatia.141 hours = 2 }
+	}
+ }
+
+ shared_focus = {
+	id = CRO_Luburic_A_Trip_On_The_Adriatic
+	icon = GFX_BRY_Lake_Baikal
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Luburic_A_Holy_Letter
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Luburic_A_Holy_Letter
+	}
+	prerequisite = {
+		focus = CRO_Retake_Rome
+	}
+	available = { has_war_with = ITA }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Luburic_A_Trip_On_The_Adriatic"
+		country_event = { id = twrcroatia.142 hours = 2 }
+	}
+ }
+ 
+
+
+
+

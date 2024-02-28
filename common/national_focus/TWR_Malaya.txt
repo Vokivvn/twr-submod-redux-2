@@ -1,0 +1,2892 @@
+focus_tree = {
+	id = TWR_MAL
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = MAL
+		}
+	}
+	shared_focus = MAL_The_Road_to_Independence
+	shared_focus = MAL_The_Hunt_for_Chin_Peng
+	shared_focus = MAL_Handle_the_Emergency
+	shared_focus = MAL_Victory_for_Jaafar
+	shared_focus = MAL_Victory_for_Rahman
+	shared_focus = MAL_A_Democracy_Only_in_Name
+	shared_focus = MAL_Looking_Outwards
+    default = no
+}
+
+shared_focus = {
+	id = MAL_The_Hunt_for_Chin_Peng
+	icon = GFX_goal_generic_war_with_comintern
+	allow_branch = {
+		has_country_flag = TWR_malaya_communist_cleanup_tree
+	}
+
+	x = 5
+	y = 0
+
+	cost = 10
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	bypass = {
+		hidden_trigger = {
+			has_country_flag = MAL_emergency_end
+		}
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_Hunt_for_Chin_Peng"
+		country_event = { id = malayachinpeng.1 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = MAL_A_Great_Success
+	icon = GFX_GENERIC_rally_men
+	prerequisite = { focus = MAL_The_Hunt_for_Chin_Peng }
+	mutually_exclusive = { focus = MAL_A_Disappointing_Failure }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_The_Hunt_for_Chin_Peng
+
+	cost = 1
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	bypass = {
+		hidden_trigger = {
+			has_country_flag = MAL_emergency_end
+		}
+	}
+	available = {
+		custom_trigger_tooltip =  {
+			tooltip = MAL_A_Great_Success_tt
+			always = no
+		}
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_A_Great_Success"
+		custom_effect_tooltip = MAL_A_Great_Success_tt
+	}
+}
+
+shared_focus = {
+	id = MAL_A_Disappointing_Failure
+	icon = GFX_GENERIC_resistance
+	prerequisite = { focus = MAL_The_Hunt_for_Chin_Peng }
+	mutually_exclusive = { focus = MAL_A_Great_Success }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_The_Hunt_for_Chin_Peng
+
+	cost = 1
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	bypass = {
+		hidden_trigger = {
+			has_country_flag = MAL_emergency_end
+		}
+	}
+	available = {
+		custom_trigger_tooltip =  {
+			tooltip = MAL_A_Disappointing_Failure_tt
+			always = no
+		}
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_A_Disappointing_Failure"
+		custom_effect_tooltip = MAL_A_Disappointing_Failure_tt
+	}
+}
+
+shared_focus = {
+	id = MAL_Program_KESBAN
+	icon = GFX_GENERIC_wrench_industry
+	prerequisite = { focus = MAL_A_Great_Success focus = MAL_A_Disappointing_Failure }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_The_Hunt_for_Chin_Peng
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 8
+	}
+
+	available = {
+		if = {
+			limit = {
+				has_completed_focus = MAL_A_Great_Success
+			}
+			NOT = { has_idea = MAL_Communist_Threat_2 }
+		}
+		else = {
+			NOT = { has_idea = MAL_Communist_Threat_1 }
+		}
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Program_KESBAN"
+		add_tech_bonus = {
+			name = MAL_Program_KESBAN
+			bonus = 1.0
+			uses = 1
+			category = industry
+		}
+		set_country_flag = MAL_Phase_I_Available
+	}
+}
+
+shared_focus = {
+	id = MAL_Phase_I_The_Federated_Malay_States
+	icon = GFX_SOV_orlov_phase_one
+	prerequisite = { focus = MAL_Program_KESBAN }
+
+	x = -2
+	y = 1
+	relative_position_id = MAL_Program_KESBAN
+
+	cost = 10
+
+	ai_will_do = {
+		factor = 8
+	}
+
+	available = {
+		has_country_flag = MAL_Phase_I_Available
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Phase_I_The_Federated_Malay_States"
+		swap_ideas = {
+			remove_idea = MAL_Recovering_from_the_Emergency_1
+			add_idea = MAL_Recovering_from_the_Emergency_2
+		}
+		CMA = { remove_state_core = 336 }
+		336 = {
+			add_extra_state_shared_building_slots = 2
+		}
+		set_country_flag = MAL_Phase_II_Available
+		hidden_effect = {
+			country_event = { id = malayaindependence.9 days = 5 }
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Phase_II_The_Unfederated_Malay_States
+	icon = GFX_SOV_orlov_phase_two
+	prerequisite = { focus = MAL_Program_KESBAN }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_Program_KESBAN
+
+	cost = 10
+
+	ai_will_do = {
+		factor = 8
+	}
+
+	available = {
+		has_country_flag = MAL_Phase_II_Available
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Phase_II_The_Unfederated_Malay_States"
+		swap_ideas = {
+			remove_idea = MAL_Recovering_from_the_Emergency_2
+			add_idea = MAL_Recovering_from_the_Emergency_3
+		}
+		CMA = {
+			remove_state_core = 857
+			remove_state_core = 858
+			remove_state_core = 937
+		}
+		857 = {
+			add_extra_state_shared_building_slots = 1
+		}
+		858 = {
+			add_extra_state_shared_building_slots = 1
+		}
+		937 = {
+			add_extra_state_shared_building_slots = 1
+		}
+		set_country_flag = MAL_Phase_III_Available
+		hidden_effect = {
+			country_event = { id = malayaindependence.10 days = 5 }
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Phase_III_The_Strait_Settlements
+	icon = GFX_SOV_orlov_phase_three
+	prerequisite = { focus = MAL_Program_KESBAN }
+
+	x = 2
+	y = 1
+	relative_position_id = MAL_Program_KESBAN
+
+	cost = 10
+
+	ai_will_do = {
+		factor = 8
+	}
+
+	available = {
+		has_country_flag = MAL_Phase_III_Available
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Phase_III_The_Strait_Settlements"
+		remove_ideas = MAL_Recovering_from_the_Emergency_3
+		country_event = { id = malayasingapore.2 days = 3 }
+	}
+}
+
+shared_focus = {
+	id = MAL_The_Road_to_Independence
+	icon = GFX_GENERIC_Liberal_Conservatism
+	allow_branch = {
+		has_country_flag = TWR_malaya_independence_tree
+	}
+
+	x = 14
+	y = 0
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_Road_to_Independence"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = MAL_Begin_Independence_Talks
+	icon = GFX_GENERIC_Room_Meeting
+	prerequisite = { focus = MAL_The_Road_to_Independence }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_The_Road_to_Independence
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_Road_to_Independence"
+		country_event = { id = malayaindependence.1 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = MAL_The_Singapore_Question
+	icon = GFX_focus_generic_treaty
+	prerequisite = { focus = MAL_Begin_Independence_Talks }
+
+	x = -3
+	y = 1
+	relative_position_id = MAL_Begin_Independence_Talks
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available = {
+		owns_state = 856
+		OR = {
+			has_completed_focus = MAL_A_Malaysian_Malaysia
+			has_completed_focus = MAL_Exclusive_Malay_Rights
+			has_completed_focus = MAL_Total_Malay_Dominance
+		}
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_Singapore_Question"
+		custom_effect_tooltip = MAL_The_Singapore_Question_tt
+		hidden_effect = {
+			country_event = { id = malayasingapore.3 days = 300 }
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Ties_with_the_PAP
+	icon = GFX_GENERIC_elite_party
+	prerequisite = { focus = MAL_The_Singapore_Question }
+	mutually_exclusive = { focus = MAL_Silence_the_PAP }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_The_Singapore_Question
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available = {
+		owns_state = 856
+		NOT = { has_completed_focus = MAL_Total_Malay_Dominance }
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Ties_with_the_PAP"
+		add_stability = 0.05
+		hidden_effect = {
+			if = {
+				limit = { has_completed_focus = MAL_Jaafars_Dream }
+				country_event = { id = malayaindependence.6 days = 1 }
+			}
+			else_if = {
+				limit = { has_completed_focus = MAL_Rahmans_Status_Quo }
+				country_event = { id = malayaindependence.7 days = 1 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_One_Common_Market
+	icon = GFX_GENERIC_Market_Liberal
+	prerequisite = { focus = MAL_Ties_with_the_PAP }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_Ties_with_the_PAP
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available = {
+		owns_state = 856
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_One_Common_Market"
+		add_ideas = MAL_Singapore_Market
+	}
+}
+
+shared_focus = {
+	id = MAL_Silence_the_PAP
+	icon = GFX_GENERIC_Press_Censorship
+	prerequisite = { focus = MAL_The_Singapore_Question }
+	mutually_exclusive = { focus = MAL_Ties_with_the_PAP }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_The_Singapore_Question
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available = {
+		owns_state = 856
+		NOT = { has_completed_focus = MAL_A_Malaysian_Malaysia }
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Silence_the_PAP"
+		add_political_power = 50
+		hidden_effect = {
+			country_event = { id = malayaindependence.8 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Exploit_Singapores_Wealth
+	icon = GFX_KOR_seize_the_wealth
+	prerequisite = { focus = MAL_Silence_the_PAP }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_Silence_the_PAP
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available = {
+		owns_state = 856
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Exploit_Singapores_Wealth"
+		add_ideas = MAL_Exploit_Singapores_Wealth
+	}
+}
+
+shared_focus = {
+	id = MAL_Expand_the_Port_of_Singapore
+	icon = GFX_goal_generic_construct_naval_dockyard
+	prerequisite = { focus = MAL_One_Common_Market focus = MAL_Exploit_Singapores_Wealth }
+
+	x = 0
+	y = 3
+	relative_position_id = MAL_The_Singapore_Question
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	bypass = {
+		856 = {
+			free_building_slots = {
+				building = dockyard
+				size < 1
+				include_locked = yes
+			}
+		}
+	}
+	available = {
+		owns_state = 856
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Expand_the_Port_of_Singapore"
+		856 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			country_event = { id = malayaindependence.5 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_The_Multiracial_Dilemna
+	icon = GFX_MAL_Malayan_Emergency
+	prerequisite = { focus = MAL_Begin_Independence_Talks }
+
+	x = 3
+	y = 1
+	relative_position_id = MAL_Begin_Independence_Talks
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available = {
+		if = {
+			limit = {
+				has_completed_focus = MAL_A_Great_Success
+			}
+			NOT = { has_idea = MAL_Communist_Threat_2 }
+		}
+		else = {
+			NOT = { has_idea = MAL_Communist_Threat_1 }
+		}
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_Multiracial_Dilemna"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = MAL_Jaafars_Dream
+	icon = GFX_GENERIC_Social_Liberalism
+	prerequisite = { focus = MAL_The_Multiracial_Dilemna }
+	mutually_exclusive = { focus = MAL_Rahmans_Status_Quo }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_The_Multiracial_Dilemna
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+		modifier = {
+			factor = 0
+			OR = {
+				has_global_flag = COUNTRY_PATH_MAL_UMNO
+				has_global_flag = COUNTRY_PATH_MAL_UMNO_PA
+			}
+		}
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Jaafars_Dream"
+		add_popularity = { ideology = liberal popularity = 0.15 }
+		set_country_flag = MAL_Jaafar_Supported
+		add_ideas = MAL_hog_sl_onn_jaafar
+	}
+}
+
+shared_focus = {
+	id = MAL_Rahmans_Status_Quo
+	icon = GFX_GENERIC_Conservative
+	prerequisite = { focus = MAL_The_Multiracial_Dilemna }
+	mutually_exclusive = { focus = MAL_Jaafars_Dream }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_The_Multiracial_Dilemna
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 8
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_MAL_JAAFAR
+		}
+	}
+
+	available = {
+		NOT = { has_country_flag = MAL_Promised_Reforms }
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Rahmans_Status_Quo"
+		add_popularity = { ideology = conservative popularity = 0.15 }
+		set_country_flag = MAL_Rahman_Supported
+		add_ideas = MAL_hog_sc_tunku_abdul_rahman
+	}
+}
+
+shared_focus = {
+	id = MAL_Support_from_the_MCA
+	icon = GFX_goal_generic_major_alliance
+	prerequisite = { focus = MAL_Jaafars_Dream focus = MAL_Rahmans_Status_Quo }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_The_Multiracial_Dilemna
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_MAL_UMNO_PA
+		}
+	}
+
+	available = {
+		NOT = { has_completed_focus = MAL_Total_Malay_Dominance }
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Support_from_the_MCA"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = MAL_A_Malaysian_Malaysia
+	icon = GFX_goal_generic_national_unity
+	prerequisite = { focus = MAL_Jaafars_Dream }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Jaafars_Dream
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_A_Malaysian_Malaysia"
+		add_political_power = 25
+		custom_effect_tooltip = MAL_balance_influence_tt
+		if = {
+			limit = {
+				check_variable = { malay_influence > chinese_influence }
+			}
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_chinese_influence = yes
+		}
+		else_if = {
+			limit = {
+				check_variable = { chinese_influence > malay_influence }
+			}
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_malay_influence = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Right_of_Citizenship
+	icon = GFX_focus_generic_treaty
+	prerequisite = { focus = MAL_A_Malaysian_Malaysia }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_A_Malaysian_Malaysia
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Right_of_Citizenship"
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_chinese_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_Ease_Racial_Tensions
+	icon = GFX_GENERIC_Dove_of_Peace
+	prerequisite = { focus = MAL_A_Malaysian_Malaysia }
+	prerequisite = { focus = MAL_Support_from_the_MCA }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_A_Malaysian_Malaysia
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Ease_Racial_Tensions"
+		add_stability = 0.05
+		custom_effect_tooltip = MAL_balance_influence_tt
+		if = {
+			limit = {
+				check_variable = { malay_influence > chinese_influence }
+			}
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_chinese_influence = yes
+		}
+		else_if = {
+			limit = {
+				check_variable = { chinese_influence > malay_influence }
+			}
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_malay_influence = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Exclusive_Malay_Rights
+	icon = GFX_goal_generic_forceful_treaty
+	prerequisite = { focus = MAL_Rahmans_Status_Quo }
+	mutually_exclusive = { focus = MAL_Total_Malay_Dominance }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Rahmans_Status_Quo
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 16
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_MAL_UMNO_PA
+		}
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Exclusive_Malay_Rights"
+		add_political_power = 50
+		set_temp_variable = { temp_influence = 10 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_Joint_Campaigning
+	icon = GFX_goal_generic_propaganda
+	prerequisite = { focus = MAL_Support_from_the_MCA }
+	prerequisite = { focus = MAL_Exclusive_Malay_Rights }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Exclusive_Malay_Rights
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Joint_Campaigning"
+		add_popularity = { ideology = conservative popularity = 0.05 }
+	}
+}
+
+shared_focus = {
+	id = MAL_Support_from_the_Sultans
+	icon = GFX_MAL_Johor_Force
+	prerequisite = { focus = MAL_Exclusive_Malay_Rights focus = MAL_Total_Malay_Dominance }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Exclusive_Malay_Rights
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Support_from_the_Sultans"
+		swap_ideas = {
+			remove_idea = MAL_Sultanates
+			add_idea = MAL_Sultans_Support_1
+		}
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_The_First_Elections
+	icon = GFX_ENG_vote_upper_assembly
+	prerequisite = { focus = MAL_Ease_Racial_Tensions focus = MAL_Joint_Campaigning }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_Support_from_the_MCA
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available = {
+		has_completed_focus = MAL_Expand_the_Port_of_Singapore
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_First_Elections"
+		ENG = { end_puppet = MAL }
+		add_ideas = established_democracy
+		MAL_gerald_templer = { set_nationality = ENG }
+		MAL_hugh_stockwell = { set_nationality = ENG }
+		country_event = { id = malayaindependence.13 days = 5 }
+	}
+}
+
+shared_focus = {
+	id = MAL_Total_Malay_Dominance
+	icon = GFX_GENERIC_authoritarian_fist
+	prerequisite = { focus = MAL_Rahmans_Status_Quo }
+	mutually_exclusive = { focus = MAL_Exclusive_Malay_Rights }
+
+	x = 3
+	y = 1
+	relative_position_id = MAL_Rahmans_Status_Quo
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+		modifier = {
+			factor = 0
+			has_global_flag = COUNTRY_PATH_MAL_UMNO
+		}
+	}
+
+	available = {
+		NOT = { has_completed_focus = MAL_Support_from_the_MCA }
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Total_Malay_Dominance"
+		add_stability = -0.25
+		set_temp_variable = { temp_influence = 20 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_Unleash_the_Lion_of_UMNO
+	icon = GFX_GENERIC_Lionheart
+	prerequisite = { focus = MAL_Total_Malay_Dominance }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Total_Malay_Dominance
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Unleash_the_Lion_of_UMNO"
+		add_popularity = { ideology = paternal_autocrat popularity = 0.05 }
+		add_political_power = 25
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_Empower_the_Sultans
+	icon = GFX_MAL_Strongest_Sultan
+	prerequisite = { focus = MAL_Support_from_the_Sultans }
+	prerequisite = { focus = MAL_Unleash_the_Lion_of_UMNO }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Unleash_the_Lion_of_UMNO
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Empower_the_Sultans"
+		add_popularity = { ideology = paternal_autocrat popularity = 0.05 }
+		swap_ideas = {
+			remove_idea = MAL_Sultans_Support_1
+			add_idea = MAL_Sultans_Support_2
+		}
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_Arrest_Chinese_Leaders
+	icon = GFX_GENERIC_imprison_opposition1
+	prerequisite = { focus = MAL_Unleash_the_Lion_of_UMNO }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Unleash_the_Lion_of_UMNO
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Arrest_Chinese_Leaders"
+		add_stability = -0.05
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_Cement_UMNO_Dominance
+	icon = GFX_GENERIC_government_power
+	prerequisite = { focus = MAL_Empower_the_Sultans }
+	prerequisite = { focus = MAL_Arrest_Chinese_Leaders }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_Unleash_the_Lion_of_UMNO
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available = {
+		has_completed_focus = MAL_Expand_the_Port_of_Singapore
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Cement_UMNO_Dominance"
+		custom_effect_tooltip = MAL_Cement_UMNO_Dominance_tt
+		ENG = { end_puppet = MAL }
+		MAL_gerald_templer = { set_nationality = ENG }
+		MAL_hugh_stockwell = { set_nationality = ENG }
+		set_party_name = { ideology = paternal_autocrat name = CMA_conservative_party long_name = CMA_conservative_party_long }
+		add_popularity = { ideology = paternal_autocrat popularity = 0.25 }
+		add_country_leader_role = {
+			character = MAL_tunku_abdul_rahman
+			promote_leader = yes
+			country_leader = {
+				expire = "1965.1.1"
+				ideology = authoritarian_democracy
+			}
+		}
+		country_event = { id = malayaindependence.16 days = 5 }
+	}
+}
+
+shared_focus = {
+	id = MAL_Handle_the_Emergency
+	icon = GFX_MAL_Malayan_Emergency
+	allow_branch = {
+		has_country_flag = TWR_malaya_emergency_tree
+	}
+
+	x = 8
+	y = 0
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Handle_the_Emergency"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = MAL_Execute_Briggs_Plan
+	icon = GFX_GENERIC_Anti_Com
+	prerequisite = { focus = MAL_Handle_the_Emergency }
+	mutually_exclusive = { focus = MAL_Hearts_and_Mind_Strategy }
+
+	x = -3
+	y = 1
+	relative_position_id = MAL_Handle_the_Emergency
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 8
+	}
+
+	available = {
+		NOT = { has_country_flag = MAL_Jaafar_Supported }
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Execute_Briggs_Plan"
+		add_ideas = MAL_Briggs_Plan
+	}
+}
+
+shared_focus = {
+	id = MAL_Prepare_Village_Infrastructure
+	icon = GFX_goal_generic_construct_infrastructure
+	prerequisite = { focus = MAL_Execute_Briggs_Plan }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Execute_Briggs_Plan
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Prepare_Village_Infrastructure_flag }
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Prepare_Village_Infrastructure"
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+				}
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = MAL_Prepare_Village_Infrastructure_flag
+		}
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+				}
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = MAL_Prepare_Village_Infrastructure_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Compensate_the_Villagers
+	icon = GFX_GENERIC_Slush_Cash
+	prerequisite = { focus = MAL_Prepare_Village_Infrastructure }
+	mutually_exclusive = { focus = MAL_Forcefully_Relocate_the_Villagers }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Prepare_Village_Infrastructure
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Compensate_the_Villagers"
+		add_timed_idea = {
+			idea = MAL_Briggs_Plan_Compensation
+			days = 150
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Forcefully_Relocate_the_Villagers
+	icon = GFX_GENERIC_Skull_Construct_Rail
+	prerequisite = { focus = MAL_Prepare_Village_Infrastructure }
+	mutually_exclusive = { focus = MAL_Compensate_the_Villagers }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Prepare_Village_Infrastructure
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 8
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Forcefully_Relocate_the_Villagers"
+		add_stability = -0.15
+	}
+}
+
+shared_focus = {
+	id = MAL_Support_Agricultural_Development
+	icon = GFX_GENERIC_agricultural_subsidies
+	prerequisite = { focus = MAL_Compensate_the_Villagers }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Compensate_the_Villagers
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Prepare_Village_Infrastructure_flag }
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Support_Agricultural_Development"
+		every_state = {
+			limit = { has_state_flag = MAL_Prepare_Village_Infrastructure_flag }
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Develop_the_New_Villages
+	icon = GFX_GENERIC_economy_control
+	prerequisite = { focus = MAL_Compensate_the_Villagers focus = MAL_Forcefully_Relocate_the_Villagers }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_Prepare_Village_Infrastructure
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 8
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Prepare_Village_Infrastructure_flag }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Develop_the_New_Villages"
+		every_state = {
+			limit = { has_state_flag = MAL_Prepare_Village_Infrastructure_flag }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Deploy_Police_Guards
+	icon = GFX_GENERIC_Police_Equipment
+	prerequisite = { focus = MAL_Forcefully_Relocate_the_Villagers }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Forcefully_Relocate_the_Villagers
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Deploy_Police_Guards"
+		every_state = {
+			limit = { has_state_flag = MAL_Prepare_Village_Infrastructure_flag }
+			create_unit = {
+				division = "division_template = \"Divisyen Infantri\" start_experience_factor = 0.5 start_equipment_factor = 0.75"
+				owner = MAL
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Form_the_Ferret_Force
+	icon = GFX_GENERIC_scout
+	prerequisite = { focus = MAL_Execute_Briggs_Plan focus = MAL_Hearts_and_Mind_Strategy }
+
+	x = -2
+	y = 2
+	relative_position_id = MAL_Handle_the_Emergency
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Form_the_Ferret_Force"
+		add_ideas = MAL_Ferret_Force
+	}
+}
+
+shared_focus = {
+	id = MAL_Hearts_and_Mind_Strategy
+	icon = GFX_goal_generic_national_unity
+	prerequisite = { focus = MAL_Handle_the_Emergency }
+	mutually_exclusive = { focus = MAL_Execute_Briggs_Plan }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Handle_the_Emergency
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Hearts_and_Mind_Strategy"
+		add_ideas = MAL_Hearts_and_Mind_1
+		set_country_flag = MAL_Promised_Reforms
+	}
+}
+
+shared_focus = {
+	id = MAL_Appease_the_Chinese_Population
+	icon = GFX_GENERIC_Appease_People
+	prerequisite = { focus = MAL_Hearts_and_Mind_Strategy }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Hearts_and_Mind_Strategy
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Appease_the_Chinese_Population"
+		add_political_power = -50
+		swap_ideas = {
+			remove_idea = MAL_Hearts_and_Mind_1
+			add_idea = MAL_Hearts_and_Mind_2
+		}
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_chinese_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_Land_Title_Grants
+	icon = GFX_GENERIC_Land_Reform
+	prerequisite = { focus = MAL_Appease_the_Chinese_Population }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Appease_the_Chinese_Population
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Land_Title_Grants_flag }
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Land_Title_Grants"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			set_state_flag = MAL_Land_Title_Grants_flag
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			set_state_flag = MAL_Land_Title_Grants_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Promise_Political_Representation
+	icon = GFX_GENERIC_Adapt_Constitution
+	prerequisite = { focus = MAL_Appease_the_Chinese_Population }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Appease_the_Chinese_Population
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Promise_Political_Representation"
+		swap_ideas = {
+			remove_idea = MAL_Hearts_and_Mind_2
+			add_idea = MAL_Hearts_and_Mind_3
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Support_Rural_Areas
+	icon = GFX_GENERIC_rural_housing
+	prerequisite = { focus = MAL_Land_Title_Grants }
+	prerequisite = { focus = MAL_Promise_Political_Representation }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_Appease_the_Chinese_Population
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Support_Rural_Areas_flag }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Support_Rural_Areas"
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = MAL_Support_Rural_Areas_flag
+		}
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = MAL_Support_Rural_Areas_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Planned_Offensives
+	icon = GFX_focus_generic_military_mission
+	prerequisite = { focus = MAL_Handle_the_Emergency }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Handle_the_Emergency
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 16
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Planned_Offensives"
+		unlock_decision_tooltip = MAL_planned_offensive
+	}
+}
+
+shared_focus = {
+	id = MAL_Support_from_the_Commonwealth
+	icon = GFX_goal_tfv_strengthen_commonwealth_ties
+	prerequisite = { focus = MAL_Handle_the_Emergency }
+
+	x = 3
+	y = 1
+	relative_position_id = MAL_Handle_the_Emergency
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Support_from_the_Commonwealth"
+		AST = {
+			country_event = { id = malayaemergency.5 days = 2 }
+		}
+		CAN = {
+			country_event = { id = malayaemergency.5 days = 2 }
+		}
+		ENG = {
+			country_event = { id = malayaemergency.5 days = 2 }
+		}
+		NZL = {
+			country_event = { id = malayaemergency.5 days = 2 }
+		}
+		SAF = {
+			country_event = { id = malayaemergency.5 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Commonwealth_Battalions
+	icon = GFX_GENERIC_Scouts
+	prerequisite = { focus = MAL_Support_from_the_Commonwealth }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Support_from_the_Commonwealth
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 4
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Commonwealth_Battalions"
+		add_war_support = 0.10
+		add_to_variable = { MAL_commonwealth_support_count = 1 }
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"Divisyen Infantri\" start_experience_factor = 0.1 start_equipment_factor = 0.1"
+				owner = MAL
+				count = MAL_commonwealth_support_count
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Kuala_Lumpur_Air_Base
+	icon = GFX_GENERIC_air_construction
+	prerequisite = { focus = MAL_Support_from_the_Commonwealth }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Support_from_the_Commonwealth
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	bypass = {
+		336 = {
+			air_base > 8
+		}
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Kuala_Lumpur_Air_Base"
+		if = {
+			limit = {
+				336 = {
+					is_fully_controlled_by = MAL
+				}
+			}
+			336 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		else = {
+			air_experience = 10
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Call_in_the_RAF
+	icon = GFX_ENG_royal_airforce
+	prerequisite = { focus = MAL_Kuala_Lumpur_Air_Base }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_Kuala_Lumpur_Air_Base
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Call_in_the_RAF"
+		add_equipment_to_stockpile = { type = fighter_equipment amount = 50 }
+	}
+}
+
+shared_focus = {
+	id = MAL_Aerial_Bombardments
+	icon = GFX_goal_generic_air_bomber
+	prerequisite = { focus = MAL_Call_in_the_RAF }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Call_in_the_RAF
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Aerial_Bombardments"
+		add_ideas = MAL_Bombarding_the_Communists
+	}
+}
+
+shared_focus = {
+	id = MAL_The_SAS_in_Malaya
+	icon = GFX_focus_eng_special_air_service
+	prerequisite = { focus = MAL_Call_in_the_RAF }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Call_in_the_RAF
+
+	cost = 2
+
+	ai_will_do = {
+		factor = 2
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_SAS_in_Malaya"
+		add_ideas = MAL_SAS_in_Malaya
+	}
+}
+
+shared_focus = {
+	id = MAL_Victory_for_Jaafar
+	icon = GFX_GENERIC_Social_Liberalism
+	allow_branch = {
+		has_country_flag = TWR_malaya_jaafar_tree
+	}
+
+	x = 8
+	y = 0
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Victory_for_Jaafar"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = MAL_Mend_the_Divide
+	icon = GFX_goal_generic_national_unity
+	prerequisite = { focus = MAL_Victory_for_Jaafar }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_Victory_for_Jaafar
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Mend_the_Divide"
+		add_stability = 0.05
+		custom_effect_tooltip = MAL_balance_influence_tt
+		if = {
+			limit = {
+				check_variable = { malay_influence > chinese_influence }
+			}
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_chinese_influence = yes
+		}
+		else_if = {
+			limit = {
+				check_variable = { chinese_influence > malay_influence }
+			}
+			set_temp_variable = { temp_influence = 5 }
+			MAL_add_malay_influence = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_The_New_Economy
+	icon = GFX_GER_Economic_Reform
+	prerequisite = { focus = MAL_Mend_the_Divide }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Mend_the_Divide
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_New_Economy"
+		add_tech_bonus = {
+			name = MAL_The_New_Economy
+			bonus = 1.0
+			uses = 1
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Agricultural_Subsidies
+	icon = GFX_GENERIC_agricultural_subsidies
+	prerequisite = { focus = MAL_The_New_Economy }
+
+	x = -2
+	y = 1
+	relative_position_id = MAL_The_New_Economy
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Agricultural_Subsidies_flag }
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Agricultural_Subsidies"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			set_state_flag = MAL_Agricultural_Subsidies_flag
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			set_state_flag = MAL_Agricultural_Subsidies_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Expand_Rubber_Plantations
+	icon = GFX_focus_generic_rubber
+	prerequisite = { focus = MAL_The_New_Economy }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_The_New_Economy
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Expand_Rubber_Plantations"
+		add_resource = {
+			type = rubber
+			amount = 25
+			state = 336
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Rural_Industrial_Development
+	icon = GFX_goal_generic_construct_civilian
+	prerequisite = { focus = MAL_The_New_Economy }
+	prerequisite = { focus = MAL_An_Equal_Opportunity }
+
+	x = 2
+	y = 1
+	relative_position_id = MAL_The_New_Economy
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Rural_Industrial_Development_flag }
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Rural_Industrial_Development"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			set_state_flag = MAL_Rural_Industrial_Development_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Interstate_Highways
+	icon = GFX_goal_generic_construct_infrastructure
+	prerequisite = { focus = MAL_Agricultural_Subsidies }
+	prerequisite = { focus = MAL_Expand_Rubber_Plantations }
+	prerequisite = { focus = MAL_Rural_Industrial_Development }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_The_New_Economy
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Interstate_Highways_flag }
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Interstate_Highways"
+		every_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = MAL_Interstate_Highways_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_An_Equal_Opportunity
+	icon = GFX_goal_generic_neutrality_focus
+	prerequisite = { focus = MAL_Mend_the_Divide }
+
+	x = 2
+	y = 1
+	relative_position_id = MAL_Mend_the_Divide
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_An_Equal_Opportunity"
+		add_ideas = MAL_Welfare_Programs_1
+	}
+}
+
+shared_focus = {
+	id = MAL_Rural_Schooling
+	icon = GFX_GENERIC_Education
+	prerequisite = { focus = MAL_An_Equal_Opportunity }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_An_Equal_Opportunity
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Rural_Schooling"
+		swap_ideas = {
+			remove_idea = MAL_Welfare_Programs_1
+			add_idea = MAL_Welfare_Programs_2
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Welfare_for_the_People
+	icon = GFX_USA_expand_welfare
+	prerequisite = { focus = MAL_Rural_Schooling }
+	prerequisite = { focus = MAL_Rural_Industrial_Development }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Rural_Schooling
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Welfare_for_the_People"
+		swap_ideas = {
+			remove_idea = MAL_Welfare_Programs_2
+			add_idea = MAL_Welfare_Programs_3
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_United_as_One
+	icon = GFX_goal_support_democracy
+	prerequisite = { focus = MAL_Interstate_Highways }
+	prerequisite = { focus = MAL_Welfare_for_the_People }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Interstate_Highways
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_United_as_One"
+		custom_effect_tooltip = MAL_end_content_tt
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = MAL_Victory_for_Rahman
+	icon = GFX_GENERIC_Conservative
+	allow_branch = {
+		has_country_flag = TWR_malaya_rahman_tree
+	}
+
+	x = 8
+	y = 0
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Victory_for_Rahman"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = MAL_Developing_the_Nation
+	icon = GFX_GER_Economic_Reform
+	prerequisite = { focus = MAL_Victory_for_Rahman }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Victory_for_Rahman
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Developing_the_Nation"
+		add_tech_bonus = {
+			name = MAL_Developing_the_Nation
+			bonus = 1.0
+			uses = 1
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Improved_Farmlands
+	icon = GFX_GENERIC_agricultural_subsidies
+	prerequisite = { focus = MAL_Developing_the_Nation }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Developing_the_Nation
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Improved_Farmlands_flag }
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Improved_Farmlands"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			set_state_flag = MAL_Improved_Farmlands_flag
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			set_state_flag = MAL_Improved_Farmlands_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Urban_Development
+	icon = GFX_goal_generic_construct_civilian
+	prerequisite = { focus = MAL_Developing_the_Nation }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Developing_the_Nation
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Urban_Development_flag }
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Urban_Development"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			set_state_flag = MAL_Urban_Development_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Connect_Rural_Areas
+	icon = GFX_goal_generic_construct_infrastructure
+	prerequisite = { focus = MAL_Improved_Farmlands }
+	prerequisite = { focus = MAL_Urban_Development }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_Developing_the_Nation
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	complete_tooltip = {
+		every_state = {
+			limit = { has_state_flag = MAL_Connect_Rural_Areas_flag }
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Connect_Rural_Areas"
+		every_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = MAL_Connect_Rural_Areas_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Radio_for_the_People
+	icon = GFX_GENERIC_Radio_Towers
+	prerequisite = { focus = MAL_Connect_Rural_Areas }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Connect_Rural_Areas
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Radio_for_the_People"
+		336 = {
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_A_Shift_in_Economic_Power
+	icon = GFX_GENERIC_economic_prosperity
+	prerequisite = { focus = MAL_Connect_Rural_Areas focus = MAL_The_Bumiputra_Group }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Connect_Rural_Areas
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_A_Shift_in_Economic_Power"
+		add_ideas = MAL_Malay_Economic_Dominance
+	}
+}
+
+shared_focus = {
+	id = MAL_Malaya_for_the_Malays
+	icon = GFX_goal_generic_propaganda
+	prerequisite = { focus = MAL_Victory_for_Rahman }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Victory_for_Rahman
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Malaya_for_the_Malays"
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_The_Bumiputra_Group
+	icon = GFX_GENERIC_Appease_People
+	prerequisite = { focus = MAL_Malaya_for_the_Malays }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_Malaya_for_the_Malays
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_Bumiputra_Group"
+		add_ideas = MAL_Bumiputras
+	}
+}
+
+shared_focus = {
+	id = MAL_Teach_the_Malay_Language
+	icon = GFX_POR_Education_Reform
+	prerequisite = { focus = MAL_The_Bumiputra_Group }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_The_Bumiputra_Group
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Teach_the_Malay_Language"
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_The_Father_of_Malaya
+	icon = GFX_USA_bastion_of_democracy
+	prerequisite = { focus = MAL_Radio_for_the_People }
+	prerequisite = { focus = MAL_A_Shift_in_Economic_Power }
+	prerequisite = { focus = MAL_Teach_the_Malay_Language }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_A_Shift_in_Economic_Power
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_Father_of_Malaya"
+		custom_effect_tooltip = MAL_end_content_tt
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = MAL_A_Democracy_Only_in_Name
+	icon = GFX_GENERIC_authoritarian_fist
+	allow_branch = {
+		has_country_flag = TWR_malaya_umno_tree
+	}
+
+	x = 8
+	y = 0
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_A_Democracy_Only_in_Name"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = MAL_The_New_Economic_Policy
+	icon = GFX_GER_Economic_Reform
+	prerequisite = { focus = MAL_A_Democracy_Only_in_Name }
+
+	x = -2
+	y = 1
+	relative_position_id = MAL_A_Democracy_Only_in_Name
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_New_Economic_Policy"
+		add_tech_bonus = {
+			name = MAL_The_New_Economic_Policy
+			bonus = 1.0
+			uses = 1
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Nationalize_Key_Industries
+	icon = GFX_GENERIC_economy_control
+	prerequisite = { focus = MAL_The_New_Economic_Policy }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_The_New_Economic_Policy
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Nationalize_Key_Industries"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = MAL_Urban_Development_flag
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			set_state_flag = MAL_Urban_Development_flag
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Governmental_Subsidies
+	icon = GFX_GENERIC_bag_of_money
+	prerequisite = { focus = MAL_The_New_Economic_Policy }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_The_New_Economic_Policy
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Governmental_Subsidies"
+		add_ideas = MAL_Support_for_the_Economy_1
+	}
+}
+
+shared_focus = {
+	id = MAL_Jobs_for_the_Malays
+	icon = GFX_GENERIC_Appease_People
+	prerequisite = { focus = MAL_Nationalize_Key_Industries }
+	prerequisite = { focus = MAL_Governmental_Subsidies }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_The_New_Economic_Policy
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Governmental_Subsidies"
+		swap_ideas = {
+			remove_idea = MAL_Support_for_the_Economy_1
+			add_idea = MAL_Support_for_the_Economy_2
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Enforce_the_Malay_Language
+	icon = GFX_USA_segregation
+	prerequisite = { focus = MAL_A_Democracy_Only_in_Name }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_A_Democracy_Only_in_Name
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Enforce_the_Malay_Language"
+		set_temp_variable = { temp_influence = 5 }
+		MAL_add_malay_influence = yes
+	}
+}
+
+shared_focus = {
+	id = MAL_Ties_with_Islamic_Parties
+	icon = GFX_GENERIC_Islamic_Government
+	prerequisite = { focus = MAL_Enforce_the_Malay_Language }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_Enforce_the_Malay_Language
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Ties_with_Islamic_Parties"
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = MAL_Silence_Dissenters
+	icon = GFX_GENERIC_Gun_Purge
+	prerequisite = { focus = MAL_A_Democracy_Only_in_Name }
+
+	x = 3
+	y = 1
+	relative_position_id = MAL_A_Democracy_Only_in_Name
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Silence_Dissenters"
+		add_stability = -0.10
+		add_manpower = -2500
+	}
+}
+
+shared_focus = {
+	id = MAL_Control_the_Newspapers
+	icon = GFX_GENERIC_Press_Censorship
+	prerequisite = { focus = MAL_Silence_Dissenters }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_Silence_Dissenters
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Control_the_Newspapers"
+		add_ideas = MAL_Media_Restrictions
+	}
+}
+
+shared_focus = {
+	id = MAL_The_Internal_Security_Act
+	icon = GFX_goal_generic_forceful_treaty
+	prerequisite = { focus = MAL_Ties_with_Islamic_Parties }
+	prerequisite = { focus = MAL_Control_the_Newspapers }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Ties_with_Islamic_Parties
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_Internal_Security_Act"
+		add_ideas = authoritarian_system
+	}
+}
+
+shared_focus = {
+	id = MAL_Negaraku
+	icon = GFX_GENERIC_Authoritarian_Democracy
+	prerequisite = { focus = MAL_Jobs_for_the_Malays }
+	prerequisite = { focus = MAL_The_Internal_Security_Act }
+
+	x = 2
+	y = 1
+	relative_position_id = MAL_Jobs_for_the_Malays
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Negaraku"
+		custom_effect_tooltip = MAL_end_content_tt
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = MAL_Looking_Outwards
+	icon = GFX_GENERIC_Diplomacy
+	allow_branch = {
+		has_country_flag = TWR_malaya_diplomacy_tree
+	}
+
+	x = 16
+	y = 0
+	offset = {
+        x = -1
+        y = 0
+        trigger = {
+            has_country_flag = TWR_malaya_rahman_tree
+        }
+    }
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Looking_Outwards"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = MAL_Expanding_the_Federation
+	icon = GFX_CHI_Competent_Local_Officials
+	prerequisite = { focus = MAL_Looking_Outwards }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Looking_Outwards
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_The_New_Economic_Policy"
+		if = {
+			limit = {
+				ENG = { owns_state = 860 }
+			}
+			ENG = {
+				country_event = { id = malayadiplomacy.1 days = 5 }
+			}
+		}
+		hidden_effect = {
+			set_cosmetic_tag = MAL_MALAYSIA
+			set_party_name = { ideology = liberal name = MAL_liberal_party_malaysia long_name = MAL_liberal_party_malaysia_long }
+			set_party_name = { ideology = social_democrat name = MAL_social_democrat_malaysia_party long_name = MAL_social_democrat_malaysia_party_long }
+			set_party_name = { ideology = socialist name = MAL_socialist_party_malaysia long_name = MAL_socialist_party_malaysia_long }
+			set_party_name = { ideology = bolshevik_leninist name = MAL_bolshevik_leninist_malaysia_party long_name = MAL_bolshevik_leninist_malaysia_party_long }
+			set_party_name = { ideology = marxist_leninist name = MAL_marxist_leninist_malaysia_party long_name = MAL_marxist_leninist_malaysia_party_long }
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Integrate_Sabah
+	icon = GFX_focus_generic_self_management
+	prerequisite = { focus = MAL_Expanding_the_Federation }
+
+	x = -1
+	y = 1
+	relative_position_id = MAL_Expanding_the_Federation
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	bypass = {
+		860 = {
+			owner = {
+				NOT = {
+					OR = {
+						tag = ENG
+						tag = MAL
+					}
+				}
+			}
+		}
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Integrate_Sabah"
+		add_state_core = 860
+	}
+}
+
+shared_focus = {
+	id = MAL_Invite_Sarawak
+	icon = GFX_SAR_Sarawak_Way_of_Life
+	prerequisite = { focus = MAL_Expanding_the_Federation }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Expanding_the_Federation
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	bypass = {
+		SAR = { exists = no }
+	}
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Invite_Sarawak"
+		SAR = {
+			country_event = { id = malayadiplomacy.3 days = 5 }
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Develop_the_East
+	icon = GFX_GENERIC_Cogs_For_Factory
+	prerequisite = { focus = MAL_Integrate_Sabah }
+	prerequisite = { focus = MAL_Invite_Sarawak }
+
+	x = 0
+	y = 2
+	relative_position_id = MAL_Expanding_the_Federation
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Develop_the_East"
+		if = {
+			limit = { owns_state = 333 }
+			333 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		if = {
+			limit = { owns_state = 860 }
+			860 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_Ties_with_the_Accord
+	icon = GFX_USA_expand_TA
+	prerequisite = { focus = MAL_Looking_Outwards }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Looking_Outwards
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_Ties_with_the_Accord"
+		reverse_add_opinion_modifier = {
+			target = USA
+			modifier = MAL_accord_ties
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_New_Trading_Ports
+	icon = GFX_goal_generic_construct_naval_dockyard
+	prerequisite = { focus = MAL_Ties_with_the_Accord }
+
+	x = 1
+	y = 1
+	relative_position_id = MAL_Ties_with_the_Accord
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_New_Trading_Ports"
+		336 = {
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MAL_American_Factories
+	icon = GFX_USA_capitalism
+	prerequisite = { focus = MAL_New_Trading_Ports }
+
+	x = 0
+	y = 1
+	relative_position_id = MAL_New_Trading_Ports
+
+	cost = 5
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	available_if_capitulated = no
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAL_American_Factories"
+		add_offsite_building = { type = industrial_complex level = 2 }
+	}
+}

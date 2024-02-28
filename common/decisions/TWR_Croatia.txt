@@ -1,0 +1,7318 @@
+#########################################################################
+#  Croatian Decisions
+#########################################################################
+CRO_Croatian_Expansionism_cat = {
+	CRO_HUN_PeaceTimer = {
+		allowed = {
+			original_tag = CRO
+		}
+		available = {
+			has_war_with = HUN
+			HUN = { 
+				OR = {
+					has_capitulated = yes
+					OR = {
+						AND = {
+								CRO = {
+									controls_province = 9660 
+								}
+								surrender_progress > 0.5
+							}
+						AND = {
+							CRO = {
+								controls_province = 11580 
+								controls_province = 3617 
+								controls_province = 11610 
+							}
+							surrender_progress > 0.5
+						}
+					}	
+				}
+			}
+		}
+		activation = {
+			NOT = {
+				has_global_flag = CROAT_HUNGARIAN_WAR_ENDED
+			}
+			has_war_with = HUN
+			is_in_faction = no
+			is_subject = no
+			HUN = {
+				is_in_faction = no
+				is_subject = no
+			}
+		}
+		cancel_trigger = {
+			HUN = {
+				exists = no
+			}
+		}
+		fire_only_once = yes
+		is_good = no
+		days_mission_timeout = 50
+		timeout_effect = {
+			if = {
+				limit = {
+					controls_state = 45
+				}
+				country_event = {
+					id = twrcroatia_borderwar.9
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						controls_state = 819
+					}
+				}
+				country_event = {
+					id = twrcroatia_borderwar.10
+				}
+			}
+			else = {
+				country_event = {
+					id = twrcroatia_borderwar.11
+				}
+			}
+		}
+		complete_effect = {
+			country_event = {
+				id = twrcroatia_borderwar.9
+			}
+		}
+	}
+	CRO_Sue_for_Peace_HUN = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_war_with = HUN			
+			original_tag = CRO
+			has_global_flag = CROAT_HUNGARIAN_WAR_ENDED
+		}
+		available = {
+			hidden_trigger = { has_global_flag = CROAT_HUNGARIAN_WAR_ENDED }
+			has_war_with = HUN
+        }
+		days_re_enable = 60
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+			HUN = {
+				country_event = {
+					id = cro_diplomacy.13
+				}
+			}
+		}
+	}
+	HUN_CRO_PeaceTimer = {
+		allowed = {
+			tag = HUN
+		}
+		available = {
+		always = no
+		}
+		cancel_trigger = {
+			CRO = {
+				exists = no
+			}
+		}
+		activation = {
+			NOT = {
+				has_global_flag = CROAT_HUNGARIAN_WAR_ENDED
+			}
+			has_war_with = CRO
+			is_in_faction = no
+			is_subject = no
+			CRO = {
+				is_in_faction = no
+				is_subject = no
+			}
+		}
+        fire_only_once = yes
+		is_good = no
+		days_mission_timeout = 50
+		timeout_effect = {
+			if = {
+				limit = {
+					CRO = { controls_state = 45 }
+				}
+				country_event = {
+					id = twrcroatia_borderwar.12
+				}
+			}
+			else_if = {
+				limit = {
+					controls_state = 819
+				}
+				country_event = {
+					id = twrcroatia_borderwar.13
+				}
+			}
+			else = {
+				country_event = {
+					id = twrcroatia_borderwar.14
+				}
+			}
+		}
+	}
+	CRO_Sue_for_Peace_GER = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			original_tag = CRO
+			OR = {
+			has_war_with = GER			
+			has_war_with = HSS
+			has_war_with = HGR
+			}
+		}
+		available = {
+			has_full_control_of_state = 102
+        }
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+		102 = {
+			owner = {
+					country_event = {
+					id = twrcroatia.249
+					}
+				}				
+			}
+		}
+	}
+	CRO_ITA_PeaceTimer = {
+		allowed = {
+			 original_tag = CRO
+		}
+		available = {
+			ITA = { has_capitulated = yes }
+			has_war_with = ITA
+		}
+		activation = {
+			has_offensive_war_with = ITA
+			NOT = { has_country_leader = { name = "Miroslav Filipović" ruling_only = yes } }
+		}
+		is_good = no
+		days_mission_timeout = 50
+		timeout_effect = {
+			custom_effect_tooltip = cro_sue_for_peace_tt
+			set_country_flag = CRO_ITA_can_sue_for_peace_flag
+		}
+		complete_effect = {
+		add_war_support = 0.10
+		add_stability = 0.10
+		hidden_effect = {
+				736 = {
+					remove_core_of = ITA
+				}
+				813 = {
+					remove_core_of = ITA
+				}
+                             }
+		}
+	}
+	CRO_Sue_for_Peace_ITA = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_ITA_can_sue_for_peace_flag
+			original_tag = CRO
+			has_war_with = ITA
+		}
+		available = {
+			has_country_flag = CRO_ITA_can_sue_for_peace_flag
+			has_war_with = ITA
+			has_full_control_of_state = 103
+			has_full_control_of_state = 104
+			has_full_control_of_state = 109
+			has_full_control_of_state = 981
+			has_full_control_of_state = 982
+			has_full_control_of_state = 983
+			has_full_control_of_state = 1016
+        }
+		days_re_enable = 80
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+			ITA = {
+				country_event = {
+					id = twrcroatia.57
+				}
+			}
+		}
+	}
+}
+
+##################
+## Coring stuff ##
+##################
+CRO_Integrate_Greater_Croatia_cat = {
+    CRO_Declare_Greater_decision = {
+		icon = eng_trade_unions_support
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			 original_tag = CRO
+			NOT = { has_global_flag = form_greater_croatia_flag	}
+		}
+		available = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			has_completed_focus = CRO_Our_Sacred_Homeland
+		custom_trigger_tooltip = {
+			tooltip = CRO_has_integrated_and_owns_greater_croatia_tt
+				819 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				772 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				163 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				815 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				813 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				105 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				765 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				814 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				811 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				812 = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+				770  = {
+					is_core_of = CRO
+                                        is_owned_by = CRO
+				}
+			}
+        }
+		
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+                set_cosmetic_tag = Greater_Croatia
+			swap_ideas = {
+				remove_idea = CRO_dream_of_a_greater_croatia 
+				add_idea = CRO_Greater_Croatia_Achieved 
+			}
+                news_event = { id = croatianews.10 }
+                set_global_flag = form_greater_croatia_flag			
+		}
+	}
+	CRO_Slovenian_Integration_Timer = {
+		icon = infiltrate_state
+		allowed = {
+			original_tag = CRO
+		}
+		activation = {
+		always = no
+		}
+		available = {
+		always = no
+		}
+		fire_only_once = yes
+		is_good = no
+		days_mission_timeout = 365
+		timeout_effect = {
+		custom_effect_tooltip = CRO_Slovenian_Integration_Timer_tt
+                hidden_effect = {
+765  = {
+                remove_dynamic_modifier = { modifier = croat_slovenia_i }
+				add_core_of = CRO
+                        }
+814  = {
+                remove_dynamic_modifier = { modifier = croat_slovenia_i }
+				add_core_of = CRO
+                        }
+811  = {
+                remove_dynamic_modifier = { modifier = croat_slovenia_i }
+				add_core_of = CRO
+                        }
+812  = {
+                remove_dynamic_modifier = { modifier = croat_slovenia_i }
+				add_core_of = CRO
+                        }
+770 = {
+                remove_dynamic_modifier = { modifier = croat_slovenia_i }
+				add_core_of = CRO
+                        }
+IF = {
+	limit = {
+		owns_state = 102
+		}
+102  = {
+                remove_dynamic_modifier = { modifier = croat_slovenia_i }
+				add_core_of = CRO
+					}
+				}    
+			}
+		}
+	}
+	CRO_Demand_Prekmurje_Decision = {
+		icon = generic_prepare_civil_war
+		cost = 150
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			 original_tag = CRO
+			NOT = { has_country_flag = CRO_Demanded_Prekmurje_Flag	}
+			NOT = {
+				770 = {
+					is_owned_by = CRO
+				}
+			}
+		}
+		available = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			NOT = {
+				770 = {
+					is_owned_by = CRO
+				}
+			}
+
+        }
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+                 HUN = { country_event = { id = twrcroatia_integration.10 } }
+                set_country_flag = CRO_Demanded_Prekmurje_Flag			
+		}
+	}
+	CRO_Establish_The_Slovenia_Zone_Decision = {
+		icon = infiltrate_state
+		cost = 150
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			 original_tag = CRO
+		}
+		available = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			SLV = { exists = no }
+				765 = {
+					is_owned_by = CRO
+				}
+				814  = {
+					is_owned_by = CRO
+				}
+				812  = {
+					is_owned_by = CRO
+				}
+				811  = {
+					is_owned_by = CRO
+				}
+				770 = {
+					is_owned_by = CRO
+				}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+         country_event = { id = twrcroatia.255 hours = 2 }		
+		}
+	}
+	CRO_Declare_War_On_Slovenia_Decision = {
+		icon = generic_prepare_civil_war
+		cost = 150
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			 original_tag = CRO
+			 SLV = { exists = yes }
+			 has_war = no
+		}
+		available = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+			declare_war_on = {
+				target = SLV
+				type = annex_everything
+			}       	
+		}
+	}
+	CRO_Declare_War_On_Italy_For_Slovenia_Decision = {
+		icon = generic_prepare_civil_war
+		cost = 150
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			 original_tag = CRO
+			 has_war = no
+				ITA = {
+					owns_state = 811
+					owns_state = 812
+					owns_state = 814
+					owns_state = 765
+				}
+			owns_state = 163
+			owns_state = 815
+			owns_state = 813
+		}
+		available = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+			set_country_flag = attacked_for_slovenia
+			declare_war_on = {
+				target = ITA
+				type = take_state
+			}       	
+		}
+	}
+	CRO_Declare_War_On_Serbia_For_Montenegro_Decision = {
+		icon = generic_prepare_civil_war
+		cost = 150
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			 original_tag = CRO
+			 has_war = no
+				SER = {
+					owns_state = 105
+				}
+		}
+		available = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+				SER = {
+					owns_state = 105
+				}
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+			declare_war_on = {
+				target = SER
+				type = take_state
+			}       	
+		}
+	}
+	CRO_Integrate_Srem_decision = {
+		icon = infiltrate_state
+		cost = 150
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			NOT = {
+				819 = {
+					is_core_of = CRO
+				}
+			}
+		}
+		available = {
+			819 = { 
+				is_owned_by = CRO
+			}
+			NOT = {
+				819 = {
+					is_core_of = CRO
+				}
+		has_country_flag = cro_ongoing_coring
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			weekly_manpower = -200
+		}
+		days_remove = 100
+		complete_effect = {
+		set_country_flag = cro_ongoing_coring
+		}
+		remove_effect = {
+		clr_country_flag = cro_ongoing_coring
+			add_manpower = -1000
+			819 = {
+				add_core_of = CRO
+			}
+			hidden_effect = {
+				country_event = {
+					id = twrcroatia_integration.1
+					hours = 7
+				}
+			}
+		}
+	}
+	CRO_Integrate_Vojvodina_decision = {
+		icon = infiltrate_state
+		cost = 150
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			NOT = {
+				45 = {
+					is_core_of = CRO
+				}
+			}
+		}
+		available = {
+			45 = { 
+				is_owned_by = CRO
+			}
+			NOT = {
+				45 = {
+					is_core_of = CRO
+				}
+		has_country_flag = cro_ongoing_coring
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			weekly_manpower = -200
+		}
+		days_remove = 100
+		complete_effect = {
+		set_country_flag = cro_ongoing_coring
+		}
+		remove_effect = {
+		clr_country_flag = cro_ongoing_coring
+			add_manpower = -1000
+			45 = {
+				add_core_of = CRO
+			}
+			hidden_effect = {
+				country_event = {
+					id = twrcroatia_integration.2
+					hours = 7
+				}
+			}
+		}
+	}
+	CRO_Integrate_Banat_decision = {
+		icon = infiltrate_state
+		cost = 150
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			NOT = {
+				772 = {
+					is_core_of = CRO
+				}
+			}
+		}
+		available = {
+			772 = { 
+				is_owned_by = CRO
+			}
+			NOT = {
+				772 = {
+					is_core_of = CRO
+				}
+		has_country_flag = cro_ongoing_coring
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			weekly_manpower = -200
+		}
+		days_remove = 100
+		complete_effect = {
+		set_country_flag = cro_ongoing_coring
+		}
+		remove_effect = {
+		clr_country_flag = cro_ongoing_coring
+			add_manpower = -1000
+			772 = {
+				add_core_of = CRO
+			}
+			hidden_effect = {
+				country_event = {
+					id = twrcroatia_integration.3
+					hours = 7
+				}
+			}
+		}
+	}
+	CRO_Integrate_Zara_decision = {
+		icon = infiltrate_state
+		cost = 150
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			NOT = {
+				163 = {
+					is_core_of = CRO
+				}
+			}
+		}
+		available = {
+			163 = { 
+				is_owned_by = CRO
+			}
+			NOT = {
+				163 = {
+					is_core_of = CRO
+				}
+				has_country_flag = cro_ongoing_coring
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			weekly_manpower = -200
+		}
+		days_remove = 100
+		complete_effect = {
+		set_country_flag = cro_ongoing_coring
+		}
+		remove_effect = {
+		clr_country_flag = cro_ongoing_coring
+			add_manpower = -1000
+			163 = {
+				add_core_of = CRO
+			}
+			hidden_effect = {
+				country_event = {
+					id = twrcroatia_integration.6
+					hours = 7
+				}
+			}
+		}
+	}
+	CRO_Integrate_Rijeka_decision = {
+		icon = infiltrate_state
+		cost = 150
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			NOT = {
+				815 = {
+					is_core_of = CRO
+				}
+			}
+		}
+		available = {
+			815 = { 
+				is_owned_by = CRO
+			}
+			NOT = {
+				815 = {
+					is_core_of = CRO
+				}
+			has_country_flag = cro_ongoing_coring
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			weekly_manpower = -200
+		}
+		days_remove = 100
+		complete_effect = {
+		set_country_flag = cro_ongoing_coring
+		}
+		remove_effect = {
+		clr_country_flag = cro_ongoing_coring
+			add_manpower = -1000
+			815 = {
+				add_core_of = CRO
+			}
+			hidden_effect = {
+				country_event = {
+					id = twrcroatia_integration.7
+					hours = 7
+				}
+			}
+		}
+	}
+	CRO_Integrate_South_Istria_decision = {
+		icon = infiltrate_state
+		cost = 150
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			NOT = {
+				813 = {
+					is_core_of = CRO
+				}
+			}
+		}
+		available = {
+			813 = { 
+				is_owned_by = CRO
+			}
+			NOT = {
+				813 = {
+					is_core_of = CRO
+				}
+			has_country_flag = cro_ongoing_coring
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			weekly_manpower = -200
+		}
+		days_remove = 100
+		complete_effect = {
+		set_country_flag = cro_ongoing_coring
+		}
+		remove_effect = {
+		clr_country_flag = cro_ongoing_coring
+			add_manpower = -1000
+			813 = {
+				add_core_of = CRO
+			}
+			hidden_effect = {
+				country_event = {
+					id = twrcroatia_integration.8
+					hours = 7
+				}
+			}
+		}
+	}
+		CRO_Integrate_Montenegro_decision = {
+		icon = infiltrate_state
+		cost = 150
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Integrate_Greater_Croatia_decisions_flag
+			NOT = {
+				105 = {
+					is_core_of = CRO
+				}
+			}
+		}
+		available = {
+			105 = { 
+				is_owned_by = CRO
+			}
+			NOT = {
+				105 = {
+					is_core_of = CRO
+				}
+				has_country_flag = cro_ongoing_coring
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			weekly_manpower = -200
+		}
+		days_remove = 100
+		complete_effect = {
+		set_country_flag = cro_ongoing_coring
+		}
+		remove_effect = {
+		clr_country_flag = cro_ongoing_coring
+			add_manpower = -1000
+			105 = {
+				add_core_of = CRO
+			}
+			hidden_effect = {
+				country_event = {
+					id = twrcroatia_integration.9
+					hours = 7
+				}
+			}
+		}
+	}
+}
+
+####################
+## Partisan stuff ##
+####################
+CRO_bosnian_partisans_category = {
+	cro_track_the_bosnian_resistance_network = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Ustase
+					has_completed_focus = SER_End_the_Croatian_Experiment
+				}
+				NOT = {
+					has_country_flag = SER_bosnian_partisans_over
+				}
+			}
+		}
+		
+		available = {
+            has_manpower > 999
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -500
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+            custom_effect_tooltip = CRO_decrease_partisan_bosnian_strength_low_tt
+			SER = {
+				subtract_from_variable = { SER_partisan_bosnia_strength = 5 }
+			}
+        }
+	}
+	
+	cro_send_addition_men_to_bosnia = {
+		cost = 40
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Ustase
+					has_completed_focus = SER_End_the_Croatian_Experiment
+				}
+				NOT = {
+					has_country_flag = SER_bosnian_partisans_over
+				}
+			}
+		}
+		
+		available = {
+            has_manpower > 1499
+			command_power > 50
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 40
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -100
+			add_command_power = -40
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = CRO_decrease_partisan_bosnian_strength_med_tt
+			SER = {
+				subtract_from_variable = { SER_partisan_bosnia_strength = 10 }
+			}
+        }
+	}
+	
+	cro_equip_the_bosnian_garrison = {
+		cost = 20
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Ustase
+					has_completed_focus = SER_End_the_Croatian_Experiment
+				}
+				NOT = {
+					has_country_flag = SER_bosnian_partisans_over
+				}
+			}
+		}
+		
+		available = {
+            has_equipment = {
+				infantry_equipment > 1999
+			}
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 60
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -2000
+				producer = CRO
+			}
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = CRO_decrease_partisan_bosnian_strength_high_tt
+			SER = {
+				subtract_from_variable = { SER_partisan_bosnia_strength = 15 }
+			}
+        }
+	}
+}
+
+CRO_croatian_partisans_category = {
+	cro_issue_a_warning = {
+		cost = 0
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Ustase
+					AND = {
+						has_completed_focus = SER_End_the_Croatian_Experiment
+						has_completed_focus = SER_The_South_Slavic_Salvation_Front
+					}
+				}
+				NOT = {
+					has_country_flag = SER_croatian_partisans_over
+				}
+			}
+			NOT = {
+				has_country_flag = issued_a_warning
+			}
+		}
+		
+		available = {
+            has_war_support > 0.45
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		complete_effect = {
+			set_country_flag = issued_a_warning
+			SER = {
+				country_event = { days = 1 id = twrserbia.112 }
+			}
+		}
+	}
+	
+	cro_track_the_croatian_resistance_network = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Ustase
+					AND = {
+						has_completed_focus = SER_End_the_Croatian_Experiment
+						has_completed_focus = SER_The_South_Slavic_Salvation_Front
+					}
+				}
+				NOT = {
+					has_country_flag = SER_croatian_partisans_over
+				}
+			}
+		}
+		
+		available = {
+            has_manpower > 999
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -500
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+            custom_effect_tooltip = CRO_decrease_partisan_croatian_strength_low_tt
+			SER = {
+				subtract_from_variable = { SER_partisan_croatia_strength = 5 }
+			}
+        }
+	}
+	
+	cro_send_addition_men_to_croatia = {
+		cost = 40
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Ustase
+					AND = {
+						has_completed_focus = SER_End_the_Croatian_Experiment
+						has_completed_focus = SER_The_South_Slavic_Salvation_Front
+					}
+				}
+				NOT = {
+					has_country_flag = SER_croatian_partisans_over
+				}
+			}
+		}
+		
+		available = {
+            has_manpower > 1499
+			command_power > 50
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 40
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -100
+			add_command_power = -40
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = CRO_decrease_partisan_croatian_strength_med_tt
+			SER = {
+				subtract_from_variable = { SER_partisan_croatia_strength = 10 }
+			}
+        }
+	}
+	
+	cro_equip_the_croatian_garrison = {
+		cost = 20
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Ustase
+					AND = {
+						has_completed_focus = SER_End_the_Croatian_Experiment
+						has_completed_focus = SER_The_South_Slavic_Salvation_Front
+					}
+				}
+				NOT = {
+					has_country_flag = SER_croatian_partisans_over
+				}
+			}
+		}
+		
+		available = {
+            has_equipment = {
+				infantry_equipment > 1999
+			}
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 60
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -2000
+				producer = CRO
+			}
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = CRO_decrease_partisan_croatian_strength_high_tt
+			SER = {
+				subtract_from_variable = { SER_partisan_croatia_strength = 15 }
+			}
+        }
+	}
+}
+
+CRO_socialist_puppets_cat = {
+	CRO_socialist_Balkan_Faction_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+		}
+		available = {
+                has_country_flag = CRO_socialist_puppets_decisions_flag
+		has_completed_focus = CRO_Democratic_Socialism
+                 HUN = { is_communist = yes }
+                 ROM = { is_communist = yes }
+                 GRE = { is_communist = yes }
+                 BUL = { is_communist = yes }
+                 ALB = { is_communist = yes }
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+                set_country_flag = CRO_Balkan_United_Front_Faction_Flag
+                create_faction = "United Balkan Front"
+                hidden_effect = { 
+                   news_event = { id = croatianews.12 } 
+                    }
+		IF = {
+			limit = {
+			HUN = { is_communist = yes }
+			NOT = { is_in_faction_with = CRO }
+				}
+			HUN = { country_event = { id = twr_croatia_communist.18 } }
+			}
+		IF = {
+			limit = {
+			ROM = { is_communist = yes }
+			NOT = { is_in_faction_with = CRO }
+				}
+			ROM = { country_event = { id = twr_croatia_communist.18 } }
+			}
+		IF = {
+			limit = {
+			GRE = { is_communist = yes }
+			NOT = { is_in_faction_with = CRO }
+				}
+			GRE = { country_event = { id = twr_croatia_communist.18 } }
+			}
+		IF = {
+			limit = {
+			BUL = { is_communist = yes }
+			NOT = { is_in_faction_with = CRO }
+				}
+			BUL = { country_event = { id = twr_croatia_communist.18 } }
+			}
+		IF = {
+			limit = {
+			ALB = { is_communist = yes }
+			NOT = { is_in_faction_with = CRO }
+				}
+			ALB = { country_event = { id = twr_croatia_communist.18 } }
+			}
+		}
+	}
+
+	CRO_socialist_serbia_puppet_integrate_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+                        has_completed_focus = CRO_Proclaim_the_Federation
+                        SER = { is_subject_of = CRO } 
+						NOT = { has_country_flag = serbia_integrated }
+		}
+		available = {
+                has_government = socialist
+                }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+                    CRO = { country_event = { id = twrcroatia.86 } }
+					set_country_flag = serbia_integrated
+	      }
+	}
+	CRO_socialist_integrate_macedonia_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+			106 = { 
+				NOT = { 
+						is_core_of = CRO 
+					} 
+				OR = {
+					is_owned_by = CRO
+					owner = { is_subject_of = CRO }
+					}
+			}
+			979 = { 
+				NOT = { 
+						is_core_of = CRO 
+					} 
+				OR = {
+					is_owned_by = CRO
+					owner = { is_subject_of = CRO }
+					}
+			}
+			980 = { 
+				NOT = { 
+						is_core_of = CRO 
+					} 
+				OR = {
+					is_owned_by = CRO
+					owner = { is_subject_of = CRO }
+					}
+			}
+		}
+		available = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+			106 = { 
+				NOT = { 
+						is_core_of = CRO 
+					} 
+				OR = {
+					is_owned_by = CRO
+					owner = { is_subject_of = CRO }
+					}
+			}
+			979 = { 
+				NOT = { 
+						is_core_of = CRO 
+					} 
+				OR = {
+					is_owned_by = CRO
+					owner = { is_subject_of = CRO }
+					}
+			}
+			980 = { 
+				NOT = { 
+						is_core_of = CRO 
+					} 
+				OR = {
+					is_owned_by = CRO
+					owner = { is_subject_of = CRO }
+					}
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+				transfer_state = 106
+				transfer_state = 979
+				transfer_state = 980
+ 				106 = { add_core_of = CRO }
+				979 = { add_core_of = CRO }
+				980 = { add_core_of = CRO }              
+	    	}
+	}
+	CRO_ask_germany_to_give_slovenia = {
+		icon = GFX_decision_infiltrate_state
+		cost = 0
+		allowed = {
+			 original_tag = CRO
+		}
+		
+		visible = {
+			has_completed_focus = CRO_Proclaim_the_Federation
+			OR = {
+				GER = {
+					owns_state = 102
+				}
+				HSS = {
+					owns_state = 102
+				}
+				HGR = {
+					owns_state = 102
+				}
+				DDR = {
+					owns_state = 102
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 102
+		}
+		
+		fire_only_once = yes
+		
+		ai_will_do = {
+			factor = 5
+		}
+	
+		complete_effect = {
+			102 = {
+				owner = {
+					country_event = { days = 1 id = twrcroatia.246}
+				}
+			}
+		}
+	}
+	CRO_socialist_ask_serbia_if_socialist_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+                       SER = { OR = { has_government = socialist has_government = bolshevik_leninist } }
+		       NOT = {
+                        SER = { is_subject_of = CRO }
+                        }
+                       SER = {
+			exists = yes
+			}
+		}
+		available = {
+                has_country_flag = CRO_socialist_puppets_decisions_flag
+                SER = { is_communist = yes }
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+                SER = { country_event = { id = twrcroatia.94 } }
+	}
+	}
+	CRO_socialist_hungary_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+                        NOT = {
+                             owns_state = 43
+                        }
+		       HUN = { is_communist = no }
+		}
+		available = {
+           
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = HUN
+				}
+                
+                    }
+	      }
+	CRO_socialist_serbia_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+                        NOT = {
+                             owns_state = 107
+                        }
+		       SER = { is_communist = no }
+		}
+		available = {
+           
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = SER
+				}
+                
+                    }
+	      }
+	CRO_socialist_romania_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+                        NOT = {
+                             owns_state = 1015
+                        }
+		       ROM = { is_communist = no }
+
+		}
+		available = {
+           
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = ROM
+				}
+                
+                    }
+	      }
+		  
+	CRO_socialist_bulgaria_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+                        NOT = {
+                             owns_state = 48
+                        }
+		       BUL = { is_communist = no }
+		}
+		available = {
+           
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = BUL
+				}
+                
+                    }
+	      }
+		  
+	CRO_socialist_greece_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+                        NOT = {
+                             owns_state = 877
+                        }
+		       GRE = { is_communist = no }
+		}
+		available = {
+           
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = GRE
+				}
+                
+                    }
+	      }
+		  
+	CRO_socialist_albania_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_socialist_puppets_decisions_flag
+                        NOT = {
+                             owns_state = 44
+                        }
+		       ALB = { is_communist = no }
+		}
+		available = {
+           
+        }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = ALB
+				}
+                
+                    }
+	      }
+	}
+
+CRO_francetic_luburic_timer_cat = {
+	CRO_francetic_luburic_timer = {
+                icon = GFX_decision_eng_support_imperialist_coup
+                allowed = {
+                     original_tag = CRO 
+                         }
+                fire_only_once = yes                
+		activation = {
+		has_completed_focus = CRO_Francetic
+		}
+		cancel_trigger = {
+	        has_country_flag = CRO_consolidated_power_flag
+		}
+                available = {
+                OR = {
+                has_completed_focus = CRO_Francetic_Execute_Luburic
+                has_completed_focus = CRO_Francetic_Appease_Luburic
+                has_country_flag = Jure_Francetic_unavailable 
+				is_ai = yes
+                     }
+		}
+		is_good = no
+		days_mission_timeout = 150
+                fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.05
+                        set_country_flag = CRO_consolidated_power_flag
+		}
+		timeout_effect = {
+			country_event = { days = 1 id = twrcroatia.211 }
+                        set_country_flag = CRO_consolidated_power_flag
+             
+         }
+	}
+      }
+
+CRO_partisan_marches_cat = {
+           	CRO_partisan_coup_timer = {
+                icon = GFX_decision_revolt
+                allowed = {
+                     original_tag = CRO 
+                         }
+                fire_only_once = yes                
+		activation = {
+		has_country_flag = CRO_Partisan_Marches_Decisions_Flag
+		}
+		cancel_trigger = {
+	        has_country_flag = CRO_Partisans_Supressed_Flag
+		}
+                available = {
+                 has_country_flag = CRO_Partisans_Supressed_Flag
+                 }
+		is_good = no
+		days_mission_timeout = 100
+                fire_only_once = no
+		complete_effect = {
+			add_stability = 0.05
+                        set_country_flag = CRO_Partisans_Supressed_Flag
+		}
+		timeout_effect = {
+						add_stability = -0.05
+						add_political_power = -10
+						add_war_support = -0.05
+         }
+	}
+	     CRO_hunt_partisans_decision = {
+                icon = GFX_decision_generic_tank
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Partisan_Marches_Decisions_Flag
+                        NOT = { has_country_flag = CRO_Partisan_Coup_flag }
+		}
+		available = {
+		CRO = {
+		has_country_flag = CRO_Partisan_Marches_Decisions_Flag
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		days_remove = 15
+		remove_effect = {
+		   set_country_flag = CRO_Partisans_Hunted_flag
+	      }
+	}
+		CRO_arrest_partisans_decision = {
+                icon = GFX_decision_prison
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Partisan_Marches_Decisions_Flag
+                        NOT = { has_country_flag = CRO_Partisan_Coup_flag }
+		}
+		available = {
+		CRO = {
+		has_country_flag = CRO_Partisan_Marches_Decisions_Flag
+		has_country_flag = CRO_Partisans_Hunted_flag
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		days_remove = 15
+		remove_effect = {
+		   set_country_flag = CRO_Partisans_Arrested_Flag
+	      }
+	}
+		CRO_end_partisans_decision = {
+		icon = GFX_decision_generic_operation
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Partisan_Marches_Decisions_Flag
+                        NOT = { has_country_flag = CRO_Partisan_Coup_flag }
+		}
+		available = {
+		CRO = {
+		has_country_flag = CRO_Partisan_Marches_Decisions_Flag
+		has_country_flag = CRO_Partisans_Hunted_flag
+		has_country_flag = CRO_Partisans_Arrested_Flag
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		days_remove = 15
+		remove_effect = {
+		   set_country_flag = CRO_Partisans_Supressed_Flag
+	      }
+	}
+	}
+
+CRO_Bosnian_Independence_war_cat = {
+	CRO_Bosnian_Chetnik_Ceasefire = {
+		allowed = {
+			original_tag = CRO
+		}
+		available = {
+			BOS = {
+				OR = {
+					exists = no
+					has_capitulated = yes
+				}
+			}
+		}
+		fire_only_once = no
+		cancel_trigger = {
+            BOS = { 
+				exists = yes
+				has_war = no
+				owns_state = 103
+			}
+		}
+		activation = {
+			always = no
+		}
+		is_good = no
+		days_mission_timeout = 60
+		timeout_effect = {
+			custom_effect_tooltip = BOS_Chetnik_Victory_tt
+			effect_tooltip = {
+				country_event = croatiauprising.21
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_global_flag = BOSNIAN_CHETNIK_VICTORY
+						}
+					}
+					set_global_flag = BOSNIAN_CHETNIK_VICTORY
+					BOS = {
+						white_peace = CRO
+						transfer_state = 104
+						transfer_state = 982
+						transfer_state = 983
+						transfer_state = 103
+						transfer_state = 1030
+					}
+					BOS = {
+						country_event = twr_bosnia_chetnik.7
+					}
+				}
+				if = {
+					limit = {
+						CRP = {
+							exists = yes
+						}
+					}
+					BOS = {
+						white_peace = CRP
+					}
+					CRP = {
+						country_event = croatiauprising.21
+					}	
+				}
+				CRO = {
+					country_event = croatiauprising.21
+				}
+				if = {
+					limit = {
+						OR = {
+							CRO = {
+								owns_state = 819
+							}
+							CRP = {
+								owns_state = 819
+							}
+						}
+					}
+					BOS = {
+						transfer_state = 819
+					}
+				}
+			}
+		}
+		complete_effect = {
+			set_global_flag = BOSNIAN_CHETNIK_DEFEAT
+		    add_political_power = 100
+			add_stability = 0.1
+		}
+	}
+
+	CRO_Second_Bosnian_Chetnik_Ceasefire = {
+		allowed = {
+			original_tag = CRO
+		}
+		available = {
+			BOS = {
+				OR = {
+					exists = no
+					has_capitulated = yes
+				}
+			}
+		}
+		fire_only_once = no
+		cancel_trigger = {
+            BOS = { 
+				exists = yes
+				has_war = no
+			}
+		}
+		activation = {
+			always = no
+		}
+		is_good = no
+		days_mission_timeout = 60
+		timeout_effect = {
+		white_peace = BOS
+		}
+		complete_effect = {
+			set_global_flag = BOSNIAN_CHETNIK_DEFEAT
+			clr_global_flag = BOSNIAN_CHETNIK_VICTORY
+		    add_political_power = 100
+			add_stability = 0.1
+		}
+	}
+
+	BOS_Bosnian_Chetnik_Ceasefire = {
+		allowed = {
+			tag = BOS
+		}
+		visible = {
+			NOT = {
+				has_global_flag = BOSNIAN_CHETNIK_VICTORY
+			}
+			BOS = {
+				has_cosmetic_tag = BOS_CHE
+				OR = {
+					has_war_with = CRO
+					has_war_with = CRP
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = BOSNIAN_CHETNIK_VICTORY
+			}
+			OR = {
+				AND = {
+					controls_state = 981
+					controls_state = 104
+					controls_state = 982
+					controls_state = 983
+					controls_state = 103
+					controls_state = 1030
+				}
+				num_occupied_states > 5
+				AND = {
+					CRO = {
+						OR = {
+							OR = {
+								exists = no
+								has_capitulated = yes
+							}
+							surrender_progress > 0.7
+						}
+					}
+					CRP = {
+						OR = {
+							OR = {
+								exists = no
+								has_capitulated = yes
+							}
+							surrender_progress > 0.7
+						}
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			effect_tooltip = {
+				BOS = {
+					white_peace = CRO
+				}
+			}
+			custom_effect_tooltip = BOS_Chetnik_Victory_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_global_flag = BOSNIAN_CHETNIK_VICTORY
+						}
+					}
+					set_global_flag = BOSNIAN_CHETNIK_VICTORY
+					BOS = {
+						white_peace = CRO
+						transfer_state = 104
+						transfer_state = 982
+						transfer_state = 983
+						transfer_state = 103
+						transfer_state = 1030
+					}
+					BOS = {
+						country_event = twr_bosnia_chetnik.7
+					}
+				}
+				if = {
+					limit = {
+						CRP = {
+							exists = yes
+						}
+					}
+					BOS = {
+						white_peace = CRP
+					}
+					CRP = {
+						country_event = croatiauprising.21
+					}	
+				}
+				CRO = {
+					country_event = croatiauprising.21
+				}
+				if = {
+					limit = {
+						OR = {
+							CRO = {
+								owns_state = 819
+							}
+							CRP = {
+								owns_state = 819
+							}
+						}
+					}
+					BOS = {
+						transfer_state = 819
+					}
+				}
+			}
+		}
+	}
+
+	BOS_Second_Bosnian_Chetnik_Ceasefire = {
+		allowed = {
+			tag = BOS
+		}
+		visible = {
+			has_global_flag = BOSNIAN_CHETNIK_VICTORY
+			BOS = {
+				has_cosmetic_tag = BOS_CHE
+				OR = {
+					has_war_with = CRO
+					has_war_with = CRP
+				}
+			}
+		}
+		available = {
+			has_global_flag = BOSNIAN_CHETNIK_VICTORY
+			OR = {
+				num_occupied_states > 1
+				AND = {
+					CRO = {
+						OR = {
+							OR = {
+								exists = no
+								has_capitulated = yes
+							}
+							surrender_progress > 0.7
+						}
+					}
+					CRP = {
+						OR = {
+							OR = {
+								exists = no
+								has_capitulated = yes
+							}
+							surrender_progress > 0.7
+						}
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+		white_peace = CRO
+		}
+	}
+
+	CRO_Bosnian_Ceasefire = {
+		allowed = {
+			original_tag = CRO
+		}
+		available = {
+			BOS = {
+				OR = {
+					exists = no
+					has_capitulated = yes
+				}
+			}
+		}
+		fire_only_once = yes
+		cancel_trigger = {
+            BOS = { 
+				exists = yes
+				has_war = no
+			}
+		}
+		activation = {
+			always = no
+		}
+		is_good = no
+		days_mission_timeout = 60
+		timeout_effect = {
+			CRO = {
+				country_event = croatiauprising.21
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_global_flag = BOSNIAN_VICTORY
+						}
+					}
+					set_global_flag = BOSNIAN_VICTORY
+					BOS = {
+						white_peace = CRO
+						transfer_state = 983
+					}
+				}
+			}
+		}
+		complete_effect = {
+			add_stability = 0.1
+			add_war_support = 0.1
+			set_global_flag = BOSNIAN_DEFEAT
+		}
+	}
+
+	BOS_Bosnian_Ceasefire = {
+		allowed = {
+			tag = BOS
+		}
+		visible = {
+			NOT = {
+				has_global_flag = BOSNIAN_VICTORY
+			}
+			BOS = {
+				OR = {
+					has_war_with = CRO
+					has_war_with = CRP
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = BOSNIAN_VICTORY
+			}
+			OR = {
+				AND = {
+					controls_state = 109
+				}
+				num_occupied_states > 3
+				AND = {
+					CRO = {
+						OR = {
+							OR = {
+								exists = no
+								has_capitulated = yes
+							}
+							surrender_progress > 0.7
+						}
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			effect_tooltip = {
+				BOS = {
+					white_peace = CRO
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_global_flag = BOSNIAN_VICTORY
+						}
+					}
+					set_global_flag = BOSNIAN_VICTORY
+					BOS = {
+						white_peace = CRO
+						transfer_state = 983
+					}
+				}
+				CRO = {
+					country_event = croatiauprising.21
+				}
+			}
+		}
+	}
+}
+
+occupation_decisions = {
+	# Croatian OCCUPATION DECISIONS - moved from occupation decisions file
+	
+	# CRO - occupy SER
+	CRO_occupation_SER = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            107 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+			OR = {
+                country_exists = SER
+				107 = { is_core_of = CRO }
+				has_country_leader = { name = "Miroslav Filipović" ruling_only = yes }
+				}
+			}
+			CRO = {
+				OR = {
+				is_fascist = yes
+				has_government = socialist
+				has_government = paternal_autocrat
+				}
+				is_subject = no
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                107 = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_SER"
+			country_event = { id = croatia_balkan_occupation.1 }
+			}
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_SER"
+			country_event = { id = croatia_balkan_occupation.1 }
+		}
+        ai_will_do = {
+            factor = 1000
+        }
+		}
+	# CRO - occupy SLV
+	CRO_occupation_SLV = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+			OR = {
+           		765 = {
+               		is_owned_and_controlled_by = ROOT
+            	}
+            	102 = {
+               		is_owned_and_controlled_by = ROOT
+            	}
+			}
+            NOT = {
+				OR = {
+                	country_exists = SLV
+					is_communist = yes
+					has_country_leader = { name = "Miroslav Filipović" ruling_only = yes }
+					has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+				}
+			}
+			CRO = {
+				OR = {
+					is_democratic = yes
+					has_government = national_socialist
+					has_government = paternal_autocrat
+				}
+				is_subject = no
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+           		765 = {
+               		is_owned_and_controlled_by = ROOT
+            	}
+            	102 = {
+               		is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_SLV"
+			country_event = { id = croatia_balkan_occupation.9 }
+			}
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_SLV"
+			country_event = { id = croatia_balkan_occupation.9 }
+		}
+        ai_will_do = {
+            factor = 1000
+        }
+	}
+	# CRO - occupy ROM
+    CRO_occupation_ROM = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            1015 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = ROM
+			}
+			CRO = {
+				OR = {
+				is_fascist = yes
+				is_communist = yes
+				has_government = paternal_autocrat
+				}
+				is_subject = no
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                1015 = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_ROM"
+           country_event = { id = croatia_balkan_occupation.2 }
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_ROM"
+           country_event = { id = croatia_balkan_occupation.2 }
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+    }
+	
+	# CRO - occupy ALB
+    CRO_occupation_ALB = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            44 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = ALB
+			}
+			CRO = {
+				OR = {
+				is_fascist = yes
+				is_communist = yes
+				has_government = paternal_autocrat
+				}
+				is_subject = no
+				is_puppet = no
+			}
+		NOT = { 
+			OR = {
+			has_cosmetic_tag = CRO_Yugoslavia
+			has_cosmetic_tag = CRO_Yug_Fed
+				}
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                44 = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_ALB"
+           country_event = { id = croatia_balkan_occupation.3 }
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_ALB"
+           country_event = { id = croatia_balkan_occupation.3 }
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+	}
+	# CRO - occupy HUN
+    CRO_occupation_HUN = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            43 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = HUN
+			}
+			CRO = {
+				OR = {
+				is_fascist = yes
+				is_communist = yes
+				has_government = paternal_autocrat
+				}
+				is_subject = no
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                43 = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_HUN"
+          country_event = { id = croatia_balkan_occupation.4 }			
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_HUN"
+           country_event = { id = croatia_balkan_occupation.4 }
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+	}
+	# CRO - occupy GRE
+    CRO_occupation_GRE = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            877 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = GRE
+			}
+			CRO = {
+				OR = {
+				is_fascist = yes
+				is_communist = yes
+				has_government = paternal_autocrat
+				}
+				is_subject = no
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                877 = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_GRE"
+         country_event = { id = croatia_balkan_occupation.5 }
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_GRE"
+         country_event = { id = croatia_balkan_occupation.5 }
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+	}
+    # CRO - occupy BUL
+    CRO_occupation_BUL = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            48 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = BUL
+			}
+			CRO = {
+				OR = {
+				is_fascist = yes
+				is_communist = yes
+				has_government = paternal_autocrat
+				}
+				is_subject = no
+				is_puppet = no
+			}
+		NOT = { 
+			OR = {
+			has_cosmetic_tag = CRO_Yugoslavia
+			has_cosmetic_tag = CRO_Yug_Fed
+				}
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                48  = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_BUL"
+			country_event = { id = croatia_balkan_occupation.6 }
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_BUL"
+			country_event = { id = croatia_balkan_occupation.6 }
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+	}
+    # CRO - occupy TUR
+    CRO_occupation_TUR = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            49 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = BUL
+			}
+			CRO = {
+				OR = {
+				is_fascist = yes
+				is_communist = yes
+				has_government = paternal_autocrat
+				}
+				is_subject = no
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                49  = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_TUR"
+			country_event = { id = croatia_balkan_occupation.8 }
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_TUR"
+			country_event = { id = croatia_balkan_occupation.8 }
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+	}
+	CRO_occupation_ITA = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            2 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = ITA
+			}
+			CRO = {
+				is_fascist = yes
+				is_subject = no
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                2 = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_ITA"
+            country_event = twrcroatiaoccupation.1
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_ITA"
+            country_event = twrcroatiaoccupation.1
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+    }
+
+	CRO_communist_occupation_ITA = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            2 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = ITA
+			}
+			CRO = {
+				is_communist = yes
+				is_subject = no
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                2 = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_ITA"
+            country_event = twrcroatiaoccupation.2
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_ITA"
+            country_event = twrcroatiaoccupation.2
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+    }
+
+		CRO_occupation_ITA_PA = {
+        icon = generic_flags
+        allowed = {
+             original_tag = CRO
+        }
+        activation = {
+            2 = {
+                is_owned_and_controlled_by = ROOT
+            }
+            NOT = {
+                country_exists = ITA
+			}
+			CRO = {
+                                has_government = paternal_autocrat
+				is_puppet = no
+			}
+        }
+        selectable_mission = yes
+        days_mission_timeout = 10
+        is_good = no
+        cost = freedec?0
+        fire_only_once = no
+        cancel_trigger = {
+            NOT = {
+                2 = {
+                	is_owned_and_controlled_by = ROOT
+            	}
+            }
+        }
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision CRO_occupation_ITA_PA"
+            country_event = twrcroatiaoccupation.4
+        }
+        timeout_effect = {
+            log = "[GetDateText]: [Root.GetName]: Decision timeout CRO_occupation_ITA_PA"
+            country_event = twrcroatiaoccupation.4
+        }
+        ai_will_do = {
+            factor = 1000
+        }
+    }
+	
+	CRO_AFRI_FORM = {
+		icon = generic_flags
+		allowed = {
+                  original_tag = CRO 
+		}
+		activation = {
+			CRO = {
+				is_fascist = yes
+				is_subject = no
+				is_puppet = no
+			}
+			any_state = {
+				is_owned_and_controlled_by = ROOT
+				is_on_continent = africa
+			}
+			is_subject = no
+			NOT = {
+				country_exists = CRA
+			}
+		}
+		selectable_mission = yes
+		days_mission_timeout = 70
+		is_good = no
+		cost = freedec?0
+		fire_only_once = yes
+		cancel_trigger = {
+			country_exists = CRA
+		}
+		complete_effect = {
+			country_event = twrcroatiaoccupation.3 
+		}
+		timeout_effect = {
+			country_event = twrcroatiaoccupation.3 
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+	# Afrika
+	CRO_AFRI_transfer = {
+
+		icon = generic_flags
+		allowed = {
+                  original_tag = CRO 
+		}
+		available = {
+			country_exists = CRA
+		}
+
+		cost = freedec?0
+		fire_only_once = no
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			country_exists = CRA
+             original_tag = CRO 
+			CRO = {
+				is_fascist = yes
+				is_subject = no
+				is_puppet = no
+			}
+			any_state = {
+				is_owned_and_controlled_by = ROOT
+				is_on_continent = africa
+			}
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			every_state = {
+				limit = {
+					is_owned_and_controlled_by = ROOT
+					is_on_continent = africa
+				}
+				CRA = {
+					transfer_state = PREV
+				}
+			}
+		}
+	}
+	# chetnik/fascist serbia - occupy Croatia
+	CHE_occupation_CRO = {
+		icon = generic_flags
+		allowed = {
+		original_tag = SER
+		}
+		visible = {
+			109 = {
+				is_owned_and_controlled_by = ROOT
+			}
+			NOT = {
+				country_exists = CRO
+			}
+			OR = {
+			has_government = paternal_autocrat
+			has_government = fascist
+			}
+		}
+		activation = {
+			109 = {
+				is_owned_and_controlled_by = ROOT
+			}
+			NOT = {
+				country_exists = CRO
+			}
+			OR = {
+			has_government = paternal_autocrat
+			has_government = fascist
+			}
+		}
+		selectable_mission = yes
+		days_mission_timeout = 10
+		is_good = no
+		cost = freedec?0
+		fire_only_once = no
+		cancel_trigger = {
+			NOT = {
+				109 = {
+					is_owned_and_controlled_by = ROOT
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHE_occupation_CRO"
+			country_event = { id = croatia_balkan_occupation.7 }
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout CHE_occupation_CRO"
+			country_event = { id = croatia_balkan_occupation.7 }
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+
+
+}
+
+croatian_democratic_elections_category = {
+	make_a_rally_kosutic = {
+		cost = 15
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = kosutic_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 15		
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 15
+		days_re_enable = 15
+		complete_effect = {
+	custom_effect_tooltip = CRO_increase_kosutic_support_low_tt
+	add_to_variable = { CRO_kosutic_support = 0.5 }
+	clamp_variable = { var = CRO_kosutic_support min = 0 max = 100 }	
+	subtract_from_variable = { CRO_tripalo_support = 0.25 }
+	subtract_from_variable = { CRO_kucar_support = 0.25 }
+	}
+	}
+	
+	make_a_public_speech_kosutic = {
+		cost = 30
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = kosutic_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 30
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 12
+		}
+		
+		days_remove = 20
+		days_re_enable = 25
+		complete_effect = {
+	    custom_effect_tooltip = CRO_increase_kosutic_support_med_tt
+		clamp_variable = { var = CRO_kosutic_support min = 0 max = 100 }
+		subtract_from_variable = { CRO_tripalo_support = 1.25 }
+		subtract_from_variable = { CRO_kucar_support = 1.25 }
+		}
+	}
+
+	election_campaign_kosutic = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = kosutic_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 50
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 15
+		}
+		
+		days_remove = 30
+		days_re_enable = 15
+		remove_effect = {
+			random_list = {
+				50 = {
+					country_event = { id = cro_election_events.5 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.4 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.6 }
+				}
+			}
+		}
+	}
+	
+	attack_the_opposition_kosutic = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = kosutic_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 100
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 8
+		}
+		
+		days_remove = 25
+		complete_effect = {
+			add_stability = -0.05
+		}
+		remove_effect = {	
+    custom_effect_tooltip = CRO_decrease_tripalo_support_med_tt	
+	custom_effect_tooltip = CRO_decrease_kucar_support_med_tt
+	subtract_from_variable = { CRO_kucar_support = 2.5 }
+	clamp_variable = { var = CRO_kucar_support min = 0 max = 100 }
+	add_to_variable = { CRO_kosutic_support = 1.25 }
+	add_to_variable = { CRO_tripalo_support = 1.25 }
+	subtract_from_variable = { CRO_tripalo_support = 2.5 }
+	clamp_variable = { var = CRO_tripalo_support min = 0 max = 100 }
+	add_to_variable = { CRO_kosutic_support = 1.25 }
+	add_to_variable = { CRO_kucar_support = 1.25 }
+        }
+	}
+	
+	make_a_rally_tripalo = {
+		cost = 15
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = tripalo_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 15		
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 15
+		days_re_enable = 15
+		complete_effect = {
+	custom_effect_tooltip = CRO_increase_tripalo_support_low_tt
+	add_to_variable = { CRO_tripalo_support = 1.5 }
+	clamp_variable = { var = CRO_tripalo_support min = 0 max = 100 }
+	subtract_from_variable = { CRO_kosutic_support = 0.75 }
+	subtract_from_variable = { CRO_kucar_support = 0.75 }
+		}
+	}
+	
+	make_a_public_speech_tripalo = {
+		cost = 30
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = tripalo_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 30
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 12
+		}
+		
+		days_remove = 20
+		days_re_enable = 20
+		complete_effect = {
+    custom_effect_tooltip = CRO_increase_tripalo_support_med_tt
+	clamp_variable = { var = CRO_tripalo_support min = 0 max = 100 }
+	custom_effect_tooltip = CRO_increase_tripalo_support_med_tt
+		subtract_from_variable = { CRO_kosutic_support = 1.5 }
+		subtract_from_variable = { CRO_kucar_support = 1.5 }	
+		}
+	}
+	
+	election_campaign_tripalo = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = tripalo_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 50
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 15
+		}
+		
+		days_remove = 30
+		days_re_enable = 15
+		remove_effect = {
+			random_list = {
+				50 = {
+					country_event = { id = cro_election_events.5 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.4 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.6 }
+				}
+			}
+		}
+	}
+	
+	attack_the_opposition_tripalo = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = tripalo_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 100
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 8
+		}
+		
+		days_remove = 25
+		complete_effect = {
+			add_stability = -0.05
+		}
+		remove_effect = {		
+	custom_effect_tooltip = CRO_decrease_kosutic_support_med_tt
+	custom_effect_tooltip = CRO_decrease_kucar_support_med_tt
+	subtract_from_variable = { CRO_kucar_support = 2.5 }
+	clamp_variable = { var = CRO_kucar_support min = 0 max = 100 }
+	add_to_variable = { CRO_kosutic_support = 1.25 }
+	add_to_variable = { CRO_tripalo_support = 1.25 }
+	subtract_from_variable = { CRO_kosutic_support = 3 }
+	clamp_variable = { var = CRO_kosutic_support min = 0 max = 100 }
+	add_to_variable = { CRO_tripalo_support = 1.5 }
+	add_to_variable = { CRO_kucar_support = 1.5 }
+        }
+	}
+	
+	make_a_rally_kucar = {
+		cost = 15
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = kucar_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 15		
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 15
+		days_re_enable = 12
+		complete_effect = {
+	custom_effect_tooltip = CRO_increase_kucar_support_low_tt
+	add_to_variable = { CRO_kucar_support = 1 }
+	clamp_variable = { var = CRO_kucar_support min = 0 max = 100 }
+	subtract_from_variable = { CRO_kosutic_support = 0.5 }
+    subtract_from_variable = { CRO_tripalo_support = 0.5 }
+	}
+		}
+	
+	make_a_public_speech_kucar = {
+		cost = 30
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = kucar_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 30
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 12
+		}
+		
+		days_remove = 20
+		days_re_enable = 12
+		complete_effect = {
+	custom_effect_tooltip = CRO_increase_kucar_support_med_tt
+	add_to_variable = { CRO_kucar_support = 3 }
+	clamp_variable = { var = CRO_kucar_support min = 0 max = 100 }
+	subtract_from_variable = { CRO_kosutic_support = 1.5 }
+	subtract_from_variable = { CRO_tripalo_support = 1.5 }
+		}
+	}
+	
+	election_campaign_kucar = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = kucar_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 50
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 15
+		}
+		
+		days_remove = 30
+		days_re_enable = 15
+		remove_effect = {
+			random_list = {
+				50 = {
+					country_event = { id = cro_election_events.5 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.4 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.6 }
+				}
+			}
+		}
+	}
+	
+	attack_the_opposition_kucar = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = kucar_selected
+			has_active_mission = cro_democratic_elections_timeout
+			NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		available = {
+            has_political_power > 100
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 8
+		}
+		
+		days_remove = 15
+		complete_effect = {
+			add_stability = -0.05
+		}
+		remove_effect = {		
+	custom_effect_tooltip = CRO_decrease_kosutic_support_med_tt
+	custom_effect_tooltip = CRO_decrease_tripalo_support_med_tt
+	subtract_from_variable = { CRO_kosutic_support = 1 }
+	clamp_variable = { var = CRO_kosutic_support min = 0 max = 100 }
+		add_to_variable = { CRO_tripalo_support = 0.5 }
+		add_to_variable = { CRO_kucar_support = 0.5 }
+	subtract_from_variable = { CRO_tripalo_support = 2.5 }
+	clamp_variable = { var = CRO_tripalo_support min = 0 max = 100 }
+		add_to_variable = { CRO_kosutic_support = 1.25 }
+		add_to_variable = { CRO_kucar_support = 1.25 }
+        }
+	}
+	
+	kosutic_making_moves = {
+		icon = GFX_decision_generic_civil_support
+		available = {
+            has_country_flag = elections_over
+        }
+		
+		activation = {
+			has_active_mission = cro_democratic_elections_timeout
+			OR = {
+				has_country_flag = tripalo_selected
+				has_country_flag = kucar_selected
+			}
+		}
+		
+		is_good = yes
+		days_mission_timeout = 28
+		fire_only_once = no
+		
+		timeout_effect = {
+	custom_effect_tooltip = CRO_increase_kosutic_support_support_low_tt
+	custom_effect_tooltip = CRO_decrease_tripalo_support_med_tt
+	custom_effect_tooltip = CRO_decrease_kucar_support_med_tt
+	add_to_variable = { CRO_kosutic_support = 0.5 }
+	clamp_variable = { var = CRO_kosutic_support min = 0 max = 100 }
+	subtract_from_variable = { CRO_tripalo_support = 1.25 }
+	subtract_from_variable = { CRO_kucar_support = 1.25 }
+	subtract_from_variable = { CRO_tripalo_support = 2.5 }
+	clamp_variable = { var = CRO_tripalo_support min = 0 max = 100 }
+		add_to_variable = { CRO_kosutic_support = 1.25 }
+		add_to_variable = { CRO_kucar_support = 1.25 }
+	subtract_from_variable = { CRO_kucar_support = 2.5 }
+	clamp_variable = { var = CRO_kucar_support min = 0 max = 100 }
+		add_to_variable = { CRO_kosutic_support = 1.25 }
+		add_to_variable = { CRO_tripalo_support = 1.25 }
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+	
+	tripalo_making_moves = {
+		icon = GFX_decision_generic_civil_support
+		available = {
+            has_country_flag = elections_over
+        }
+		
+		activation = {
+			has_active_mission = cro_democratic_elections_timeout
+			OR = {
+				has_country_flag = kosutic_selected
+				has_country_flag = kucar_selected
+			}
+		}
+		
+		is_good = yes
+		days_mission_timeout = 24
+		fire_only_once = no
+		
+		timeout_effect = {
+	custom_effect_tooltip = CRO_increase_tripalo_support_med_tt
+	custom_effect_tooltip = CRO_decrease_kosutic_support_med_tt
+	custom_effect_tooltip = CRO_increase_kucar_support_med_tt
+	add_to_variable = { CRO_tripalo_support = 3 }
+	clamp_variable = { var = CRO_tripalo_support min = 0 max = 100 }
+		subtract_from_variable = { CRO_kosutic_support = 1.5 }
+		subtract_from_variable = { CRO_kucar_support = 1.5 }
+	subtract_from_variable = { CRO_kosutic_support = 1 }
+	clamp_variable = { var = CRO_kosutic_support min = 0 max = 100 }
+		add_to_variable = { CRO_tripalo_support = 0.5 }
+		add_to_variable = { CRO_kucar_support = 0.5 }
+	subtract_from_variable = { CRO_kucar_support = 0.5 }
+	clamp_variable = { var = CRO_kucar_support min = 0 max = 100 }
+		add_to_variable = { CRO_kosutic_support = 0.25 }
+		add_to_variable = { CRO_tripalo_support = 0.25 }
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+	
+	kucar_making_moves = {
+		icon = GFX_decision_generic_civil_support
+		available = {
+            has_country_flag = elections_over
+        }
+		
+		activation = {
+			has_active_mission = cro_democratic_elections_timeout
+			OR = {
+				has_country_flag = tripalo_selected
+				has_country_flag = kosutic_selected
+			}
+		}
+		
+		is_good = yes
+		days_mission_timeout = 20
+		fire_only_once = no
+		
+		timeout_effect = {
+	custom_effect_tooltip = CRO_increase_kucar_support_med_tt
+	custom_effect_tooltip = CRO_decrease_tripalo_support_med_tt
+	custom_effect_tooltip = CRO_decrease_kosutic_support_med_tt
+	add_to_variable = { CRO_kucar_support = 3 }
+	clamp_variable = { var = CRO_kucar_support min = 0 max = 100 }
+		subtract_from_variable = { CRO_kosutic_support = 1.5 }
+		subtract_from_variable = { CRO_tripalo_support = 1.5 }
+	subtract_from_variable = { CRO_tripalo_support = 2.5 }
+	clamp_variable = { var = CRO_tripalo_support min = 0 max = 100 }
+		add_to_variable = { CRO_kosutic_support = 1.25 }
+		add_to_variable = { CRO_kucar_support = 1.25 }
+	subtract_from_variable = { CRO_kosutic_support = 3 }
+	clamp_variable = { var = CRO_kosutic_support min = 0 max = 100 }
+		add_to_variable = { CRO_tripalo_support = 1.5 }
+		add_to_variable = { CRO_kucar_support = 1.5 }
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+	
+	cro_democratic_elections_timeout = {
+		
+		available = {
+            has_country_flag = elections_over
+        }
+		
+		activation = {
+			has_completed_focus = CRO_Announce_Snap_Elections
+			 NOT = { 
+				has_country_flag = elections_over
+			}
+		}
+		
+		is_good = yes
+		days_mission_timeout = 120
+		fire_only_once = yes
+		
+		timeout_effect = {
+			country_event = { days = 1 id = cro_election_events.7 }
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+}
+
+
+CRO_hebrang_purge_cat = {
+    	CRO_Case_Of_Tito_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Titoist_Clique
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Titoist_Clique
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}		
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Tito_Purged
+                set_country_flag = Josip_Broz_unavailable	
+                retire_ideology_leader = bolshevik_leninist
+			create_country_leader = {
+				name = "Power Vacuum"
+				#desc = ""
+				#picture = ""
+				expire = "1965.1.1"
+				ideology = titoism
+				traits = {
+					#
+				}
+			}
+		random_unit_leader = {
+			limit = { 
+				has_id = 100023
+			}
+			retire = yes
+		   }
+		}
+	}
+	    	CRO_Case_Of_Arso_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Titoist_Clique
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Titoist_Clique
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}			
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Arso_Purged
+		random_unit_leader = {
+			limit = { 
+				has_id = 100016
+			}
+			retire = yes
+		   }	
+		}
+	}
+	    	CRO_Case_Of_Koca_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Titoist_Clique
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Titoist_Clique
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}			
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Koca_Purged
+		random_unit_leader = {
+			limit = { 
+				has_id = 100017
+			}
+			retire = yes
+		   }	
+		}
+	}
+	    	CRO_Case_Of_Kosta_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Titoist_Clique
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Titoist_Clique
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}			
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Kosta_Purged
+		random_unit_leader = {
+			limit = { 
+				has_id = 100018
+			}
+			retire = yes
+		   }	
+		}
+	}
+	    	CRO_Case_Of_Karlo_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Social_Fascists
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Social_Fascists
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}			
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Karlo_Purged
+                set_country_flag = Karlo_Mrazovic_unavailable	
+                retire_ideology_leader = socialist
+			create_country_leader = {
+				name = "Power Vacuum"
+				#desc = ""
+				#picture = ""
+				expire = "1965.1.1"
+				ideology = radical_socialism
+				traits = {
+					#
+				}
+			}
+		random_unit_leader = {
+			limit = { 
+				has_id = 100011
+			}
+			retire = yes
+		   }				
+		}
+	}
+	    	CRO_Case_Of_Miko_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Social_Fascists
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Social_Fascists
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}			
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Miko_Purged
+                set_country_flag = Miko_Tripalo_unavailable	
+                retire_ideology_leader = social_democrat
+			create_country_leader = {
+				name = "Power Vacuum"
+				#desc = ""
+				#picture = ""
+				expire = "1965.1.1"
+				ideology = left-wing_populism
+				traits = {
+					#
+				}
+			}	
+		}
+	}
+	    	CRO_Case_Of_Kosutic_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Reactionaries
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Reactionaries
+        }
+			modifier = {
+			political_power_cost = 0.1
+		}		
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Kosutic_Purged
+                set_country_flag = August_Kosutic_unavailable	
+                retire_ideology_leader = conservative
+			create_country_leader = {
+				name = "Power Vacuum"
+				#desc = ""
+				#picture = ""
+				expire = "1965.1.1"
+				ideology = agrarianism
+				traits = {
+					#
+				}
+			}	
+		}
+	}
+	    	CRO_Case_Of_Kucar_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Reactionaries
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Reactionaries
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}			
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Savka_Purged
+                set_country_flag = Savka_Kucar_unavailable	
+                retire_ideology_leader = liberal
+			create_country_leader = {
+				name = "Power Vacuum"
+				#desc = ""
+				#picture = ""
+				expire = "1965.1.1"
+				ideology = market_liberalism
+				traits = {
+					#
+				}
+			}	
+		}
+	}
+	    	CRO_Case_Of_Lorkovic_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Reactionaries
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Reactionaries
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}			
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+                set_country_flag = Mladen_Purged
+                set_country_flag = Mladen_Lorkovic_unavailable	
+                retire_ideology_leader = fascist
+			create_country_leader = {
+				name = "Power Vacuum"
+				#desc = ""
+				#picture = ""
+				expire = "1965.1.1"
+				ideology = fascism
+				traits = {
+					#
+				}
+			}	
+		}
+	}
+	    	CRO_Case_Of_Francetic_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Hebrang_Reactionaries
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Hebrang_Reactionaries
+        }
+		modifier = {
+			political_power_cost = 0.1
+		}			
+		ai_will_do = {
+			factor = 99
+		}
+                fire_only_once = yes
+                days_remove = 70
+		remove_effect = {
+				remove_ideas = CRO_Ustashe_Resistance_idea
+                set_country_flag = Jure_Purged
+                set_country_flag = Jure_Francetic_unavailable	
+                retire_ideology_leader = national_socialist
+			create_country_leader = {
+				name = "Power Vacuum"
+				#desc = ""
+				#picture = ""
+				expire = "1965.1.1"
+				ideology = ultranationalism
+				traits = {
+					#
+				}
+			}	
+		}
+	}
+
+		
+	
+	}
+
+
+cro_diplomacy_cat = {
+    	CRO_reunify_croatia_decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = CRO_Reunify_Croatia_decision_flag
+			 original_tag = CRO
+			NOT = { has_global_flag = form_croatia_reunited_flag }
+		}
+		available = {
+			has_country_flag = CRO_Reunify_Croatia_decision_flag
+			NOT = { has_global_flag = form_croatia_reunited_flag }
+				819 = {
+                                        is_owned_by = CRO
+				}
+				163 = {
+                                        is_owned_by = CRO
+				}
+				815 = {
+                                        is_owned_by = CRO
+				}
+				813 = {
+                                        is_owned_by = CRO
+				}
+        }
+		
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+                set_global_flag = form_croatia_reunited_flag 
+				custom_effect_tooltip = cro_core_croatia_tt
+                        hidden_effect = { 
+            add_state_core = 109
+			add_state_core = 104 
+			add_state_core = 983  
+			add_state_core = 163 
+			add_state_core = 815
+            add_state_core = 981
+            add_state_core = 982
+            add_state_core = 819
+            add_state_core = 815
+           	add_state_core = 45
+                        }
+			swap_ideas = {
+				remove_idea = CRO_dream_of_a_greater_croatia 
+				add_idea = CRO_Croatia_Reunited
+			}
+		IF = {
+			limit = {
+			has_completed_focus = CRO_Embrace_Italo_Fascist_Doctrine
+                                }
+           	      news_event = { id = croatianews.13 }
+				  }
+		IF = {
+			limit = {
+			has_completed_focus = CRO_Dalmatian_Democracy
+                                }
+           	      news_event = { id = croatianews.15 }
+				  }
+		IF = {
+			limit = {
+			has_completed_focus = CRO_Kingdom_As_Rome_Commands
+                                }
+           	      news_event = { id = croatianews.16 }
+				  }
+		IF = {
+			limit = {
+			has_completed_focus = CRO_Francetic
+                                }
+           	      news_event = { id = croatianews.17 }
+				  }
+		IF = {
+			limit = {
+			has_country_leader = { name = "Ante Vokić" ruling_only = yes }
+                          }
+           	      news_event = { id = croatianews.25 }
+				  }
+		IF = {
+			limit = {
+			has_completed_focus = CRO_Crusaders_Victorious
+			NOT = { has_completed_focus = CRO_Reach_Out_To_HOP }
+                          }
+		set_country_flag = crusader_unified
+		set_cosmetic_tag = CRO_crusader_unified
+		news_event = { id = croatianews.39 }
+				}
+		IF = {
+			limit = {
+			has_completed_focus = CRO_Crusaders_Victorious
+			has_completed_focus = CRO_Reach_Out_To_HOP
+                          }
+		set_country_flag = crusader_unified
+		news_event = { id = croatianews.39 }
+				}
+			}
+		}
+	    CRO_ask_germany_for_membership = {
+                icon = GFX_decision_generic_political_discourse
+ 		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Artukovic_The_Master_Race_Arrives
+                        has_government = national_socialist
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+			 original_tag = CRO
+		}
+		available = {
+			has_completed_focus = CRO_Artukovic_The_Master_Race_Arrives
+                        has_government = national_socialist
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+                OR = {
+                                    	GER = {
+					exists = yes
+					has_war = no
+                                        is_faction_leader = yes
+				        } 
+                                    	HGR = {
+					exists = yes
+					has_war = no
+                                        is_faction_leader = yes
+				        } 
+                                    	HSS = {
+					exists = yes
+					has_war = no
+                                        is_faction_leader = yes
+				        } 
+                 }
+                }
+		
+		ai_will_do = {
+			factor = 0
+		}
+                fire_only_once = yes
+		complete_effect = {
+			if = {
+				limit = {
+                                    	GER = {
+					exists = yes
+					has_war = no
+                                        is_faction_leader = yes
+				        } 
+				}
+                                 GER = { country_event = { id = twrcroatia.252 hours = 5 } }
+				}
+				else_if = {
+					limit = {
+					HGR = {
+					exists = yes
+					has_war = no
+                                        is_faction_leader = yes
+				         } 
+					}
+                                 HGR = { country_event = { id = twrcroatia.252 hours = 5 } }
+				}
+				else_if = {
+					limit = {
+					HSS = {
+					exists = yes
+					has_war = no
+                                        is_faction_leader = yes
+				         } 
+					}
+                                 HSS = { country_event = { id = twrcroatia.252 hours = 5 } }
+				}
+			}	
+		}
+CRO_retake_the_coast_decision = {
+                icon = GFX_decision_infiltrate_state
+				cost = 150
+ 		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+		has_country_flag = CRO_Reunify_Croatia_decision_flag
+                ITA = { 
+		owns_state = 163
+		owns_state = 813
+		owns_state = 815
+                      }
+		}
+		available = {
+		has_country_flag = CRO_Reunify_Croatia_decision_flag
+                ITA = { 
+		owns_state = 163
+		owns_state = 813
+		owns_state = 815
+                      }
+                }
+		
+		ai_will_do = {
+			factor = 100
+		}
+                fire_only_once = yes
+		complete_effect = {
+		create_wargoal = {
+			type = take_state_focus
+			target = ITA
+		        }
+		}
+	}
+CRO_retake_Vojvodina_decision = {
+                icon = GFX_decision_infiltrate_state
+				cost = 150
+ 		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+		has_country_flag = CRO_Reunify_Croatia_decision_flag
+        NOT = { owns_state = 45}
+		}
+		available = {
+		has_country_flag = CRO_Reunify_Croatia_decision_flag
+        NOT = { owns_state = 45}
+                }
+		
+		ai_will_do = {
+			factor = 100
+		}
+                fire_only_once = yes
+		complete_effect = {
+		IF = {
+			limit = {
+				ROM = {
+					OR = {
+						owns_state = 45
+						owns_state = 772
+					}
+				}
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ROM
+			}
+		}
+		else_if = {
+			limit = {
+				HUN = {
+					OR = {
+						owns_state = 45
+						owns_state = 772
+					}
+				}
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = HUN
+			}
+		}
+		else_if = {
+			limit = {
+				SBA = {
+					OR = {
+						owns_state = 45
+						owns_state = 772
+					}
+				}
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SBA
+			}
+		}
+		else_if = {
+			limit = {
+				BNT = {
+					OR = {
+						owns_state = 45
+						owns_state = 772
+					}
+				}
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BNT
+			}
+		}
+		}
+	}
+CRO_retake_italian_land = {
+                icon = GFX_decision_infiltrate_state
+ 		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+                NOT = { has_country_leader = { name = "Tomislav II" ruling_only = yes } }
+                        ITA = { 
+                       OR = { 
+                        has_war_with = USA
+                        has_war_with = ENG
+                        has_war_with = GER
+                            }
+                ITA = { 
+		owns_state = 163
+		owns_state = 813
+		owns_state = 815
+                      }
+                          }
+			 original_tag = CRO
+		}
+		available = {
+                ITA = { 
+		owns_state = 163
+		owns_state = 813
+		owns_state = 815
+                      }
+                }
+		
+		ai_will_do = {
+			factor = 100
+		}
+                fire_only_once = yes
+		complete_effect = {
+                ITA = { country_event = { id = cro_diplomacy.1 hours = 2 }	}
+		}
+	}
+CRO_restore_order_in_bosnia = {
+        icon = GFX_decision_infiltrate_state
+ 		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+		    BOS = { 
+			 exists = yes
+			  }
+			 original_tag = CRO
+			has_country_flag = lost_in_bosnia
+		}
+		available = {
+		    BOS = { 
+			 exists = yes
+			  }
+				custom_trigger_tooltip = {
+					tooltip = CRO_economic_depression_ended_tt
+					has_completed_focus = CRO_The_Worst_is_Behind_Us
+				}
+                }
+		ai_will_do = {
+			factor = 100
+		}
+        fire_only_once = yes
+		complete_effect = {
+        		declare_war_on = {
+			target = BOS
+			type = annex_everything
+		}       
+		}
+	}
+CRO_restore_order_in_chetnik_bosnia = {
+        icon = GFX_decision_infiltrate_state
+ 		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+		    BOS = { 
+			 exists = yes
+			  }
+			 original_tag = CRO
+			has_global_flag = BOSNIAN_CHETNIK_VICTORY
+		}
+		available = {
+		    BOS = { 
+			 exists = yes
+			  }
+				custom_trigger_tooltip = {
+					tooltip = CRO_economic_depression_ended_tt
+					has_completed_focus = CRO_The_Worst_is_Behind_Us
+					}
+                }
+		ai_will_do = {
+			factor = 100
+		}
+        fire_only_once = yes
+		complete_effect = {
+        declare_war_on = {
+			target = BOS
+			type = annex_everything
+			}    
+		activate_mission = CRO_Second_Bosnian_Chetnik_Ceasefire   
+		hidden_effect = {
+				IF = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = CRO
+				autonomy_state = autonomy_free
+			}
+			else = {
+				end_puppet = CRO
+					}
+				}
+			}
+		}
+	}
+}
+
+CRO_crusaders_cat = {
+           	CRO_crusader_coup_timer = {
+                icon = GFX_decision_revolt
+                allowed = {
+                     original_tag = CRO 
+					}
+         fire_only_once = yes                
+		activation = {
+		always = no
+		}
+                available = {
+         NOT = { has_idea = CRO_Ustashe_Resistance_idea }
+                 }
+		is_good = no
+		days_mission_timeout = 110
+       fire_only_once = yes
+		complete_effect = {
+			country_event = { id = croatiauprising.27 }
+		}
+		timeout_effect = {
+		custom_effect_tooltip = crusader_revolt_tt
+		set_global_flag = CRUSADER_REVOLT_LAUNCHED
+		hidden_effect = {
+		country_event = { id = twr_croatia_crusader.2 }
+			}
+		}
+	}
+		CRO_sabotage_crusaders_decision = {
+		icon = GFX_decision_generic_operation
+		cost = 10
+                allowed = {
+					OR = {
+                     original_tag = CRO 
+                     original_tag = SER 
+                         }
+					}
+		visible = {
+       has_active_mission = CRO_crusader_coup_timer
+		}
+		available = {
+       has_idea = CRO_Ustashe_Resistance_idea
+       }
+		fire_only_once = no
+		ai_will_do = {
+			factor = 99
+		}
+		days_re_enable = 10
+		days_remove = 10
+		remove_effect = {
+		add_days_mission_timeout = {
+    		mission = CRO_crusader_coup_timer
+    		days = 25
+				}
+	      	}
+		}
+	}
+
+
+
+CRO_Reunification_Of_Yugoslavia_Decision_cat = {
+		CRO_Reunification_Of_Yugoslavia_Decision = {
+		icon = GFX_decision_generic_form_nation
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+				has_completed_focus = CRO_Yugo_Consolidate_Socialist_Yugoslavia
+			 original_tag = CRO
+		}
+		available = {
+				has_completed_focus = CRO_Yugo_Consolidate_Socialist_Yugoslavia
+        owns_state = 105
+        owns_state = 109
+        owns_state = 104
+        owns_state = 983
+        owns_state = 103
+        owns_state = 1016
+        owns_state = 163
+        owns_state = 770
+        owns_state = 102
+        owns_state = 765
+        owns_state = 815
+        owns_state = 814
+        owns_state = 813
+        owns_state = 812
+        owns_state = 772
+        owns_state = 819
+        owns_state = 45
+        owns_state = 981
+        owns_state = 979
+        owns_state = 980
+        owns_state = 772
+        owns_state = 107
+        owns_state = 108
+        owns_state = 982
+                 }
+		ai_will_do = {
+			factor = 99
+		}
+        fire_only_once = yes
+		complete_effect = {
+		set_country_flag = YUGO_Formed
+		IF = { 
+		limit = {
+		has_country_leader = { name = "Vladimir Bakarić" ruling_only = yes } 
+				} 
+		news_event = { id = croatianews.30 }
+		swap_ruler_traits = {
+				remove = loyal_titoist
+				add = marshal_of_brotherhood_and_unity
+			}
+		}
+		IF = { 
+		limit = {
+		has_country_leader = { name = "Josip Manolić" ruling_only = yes } 
+				} 
+		news_event = { id = croatianews.30 }
+		}
+		IF = { 
+		limit = {
+		has_country_leader = { name = "Ivan Ribar" ruling_only = yes } 
+				} 
+		news_event = { id = croatianews.30 }
+		}
+		IF = { 
+		limit = {
+		has_country_leader = { name = "Andrija Hebrang" ruling_only = yes } 
+				} 
+			news_event = { id = croatianews.19 }
+		}
+		IF = { 
+		limit = {
+		has_country_leader = { name = "Nikola Car" ruling_only = yes } 
+				} 
+		set_cosmetic_tag = CRO_Yug_Car
+		news_event = { id = croatianews.22 }
+		}
+			hidden_effect = {
+        add_state_core = 105
+        add_state_core = 109
+        add_state_core = 104
+        add_state_core = 983
+        add_state_core = 103
+        add_state_core = 1016
+        add_state_core = 163
+        add_state_core = 770
+        add_state_core = 102
+        add_state_core = 765
+        add_state_core = 815
+        add_state_core = 814
+        add_state_core = 813
+        add_state_core = 812
+        add_state_core = 772
+        add_state_core = 819
+        add_state_core = 45
+        add_state_core = 981
+        add_state_core = 979
+        add_state_core = 980
+        add_state_core = 772
+        add_state_core = 107
+        add_state_core = 108
+        add_state_core = 982
+		add_state_core = 812
+			}
+		}
+	}
+	CRO_Incorporate_Albania_Decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = YUGO_Formed
+			original_tag = CRO
+			ALB = { is_subject_of = CRO }
+		}
+		available = {
+			has_country_flag = YUGO_Formed
+                 }
+		ai_will_do = {
+			factor = 99
+		}
+        fire_only_once = yes
+		complete_effect = {
+				IF = { 
+				limit = { 
+				 ALB = { is_subject_of = CRO }
+				  }
+				 annex_country = { target = ALB transfer_troops = yes }
+				 every_state = { limit = { is_core_of = ALB } CRO = { add_state_core = CRO } }
+				 }		
+				}	
+			}		
+	CRO_Incorporate_Bulgaria_Decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = YUGO_Formed
+			original_tag = CRO
+			BUL = { is_subject_of = CRO }
+		}
+		available = {
+			has_country_flag = YUGO_Formed
+                 }
+		ai_will_do = {
+			factor = 99
+		}
+        fire_only_once = yes
+		complete_effect = {
+				IF = { 
+				limit = { 
+				 BUL = { is_subject_of = CRO }
+				  }
+				 annex_country = { target = BUL transfer_troops = yes }
+				 every_state = { limit = { is_core_of = BUL } CRO = { add_state_core = CRO } }
+				 }
+				}			
+			}		
+	CRO_Incorporate_Central_Macedonia_Decision = {
+		allowed = {
+			 original_tag = CRO
+		}
+		visible = {
+			has_country_flag = YUGO_Formed
+			original_tag = CRO
+			GRE = { is_subject_of = CRO }
+		}
+		available = {
+			has_country_flag = YUGO_Formed
+                 }
+		ai_will_do = {
+			factor = 99
+		}
+        fire_only_once = yes
+		complete_effect = {
+				IF = { 
+				limit = { 
+				 GRE = { is_subject_of = CRO }
+				  }
+				  transfer_state = 731
+				  add_state_core = 731
+				}	
+		}
+	}
+}
+
+CRO_Army_With_A_State_cat = {
+	CRO_Army_Reform_1_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_The_Army_With_A_State
+		}
+		available = {
+		has_completed_focus = CRO_The_Army_With_A_State
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		set_country_flag = cro_army_reform_1_done_flag
+		custom_effect_tooltip = cro_army_reform_1_tt
+		add_to_variable = { CRO_Army_With_A_State_Modifier_pp_factor = 0.15 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_war_support_factor  = 0.15 }
+		}
+	}
+	CRO_Army_Reform_2_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_The_Army_With_A_State
+		}
+		available = {
+		has_completed_focus = CRO_The_Army_With_A_State
+		has_country_flag = cro_army_reform_1_done_flag
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		set_country_flag = cro_army_reform_2_done_flag
+		custom_effect_tooltip = cro_army_reform_2_tt
+		add_to_variable = { CRO_Army_With_A_State_Modifier_attrition = -0.15 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_morale_factor = 0.15 }
+		}
+	}
+	CRO_Army_Reform_3_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_The_Army_With_A_State
+		}
+		available = {
+		has_completed_focus = CRO_The_Army_With_A_State
+		has_country_flag = cro_army_reform_1_done_flag
+		has_country_flag = cro_army_reform_2_done_flag
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		set_country_flag = cro_army_reform_3_done_flag
+		custom_effect_tooltip = cro_army_reform_3_tt
+		add_to_variable = { CRO_Army_With_A_State_Modifier_land_reinforce_rate = 0.15 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_conscription = 0.05 }
+		}
+	}
+	CRO_Army_Reform_4_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_The_Army_With_A_State
+		}
+		available = {
+		has_completed_focus = CRO_The_Army_With_A_State
+		has_country_flag = cro_army_reform_1_done_flag
+		has_country_flag = cro_army_reform_2_done_flag
+		has_country_flag = cro_army_reform_3_done_flag
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		set_country_flag = cro_army_reform_4_done_flag
+		custom_effect_tooltip = cro_army_reform_4_tt
+		add_to_variable = { CRO_Army_With_A_State_Modifier_land_doctrine_cost_factor = -0.15 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_research_speed_factor = 0.15 }
+		}
+	}
+	CRO_Army_Reform_5_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_The_Army_With_A_State
+		}
+		available = {
+		has_completed_focus = CRO_The_Army_With_A_State
+		has_country_flag = cro_army_reform_1_done_flag
+		has_country_flag = cro_army_reform_2_done_flag
+		has_country_flag = cro_army_reform_3_done_flag
+		has_country_flag = cro_army_reform_4_done_flag
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		set_country_flag = cro_army_reform_5_done_flag
+		custom_effect_tooltip = cro_army_reform_5_tt
+		add_to_variable = { CRO_Army_With_A_State_Modifier_industrial_capacity_factory  = 0.15 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_production_factory_max_efficiency_factor  = 0.15 }
+		}
+	}
+	CRO_Finish_Army_Reform_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_The_Army_With_A_State
+		}
+		available = {
+		has_completed_focus = CRO_The_Army_With_A_State
+		has_country_flag = cro_army_reform_1_done_flag
+		has_country_flag = cro_army_reform_2_done_flag
+		has_country_flag = cro_army_reform_3_done_flag
+		has_country_flag = cro_army_reform_4_done_flag
+		has_country_flag = cro_army_reform_5_done_flag
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		custom_effect_tooltip = cro_army_reform_6_tt
+		add_to_variable = { CRO_Army_With_A_State_Modifier_pp_factor = 0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_war_support_factor  = 0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_attrition = -0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_morale_factor = 0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_land_reinforce_rate = 0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_conscription = 0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_land_doctrine_cost_factor = -0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_research_speed_factor = 0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_industrial_capacity_factory  = 0.05 }
+		add_to_variable = { CRO_Army_With_A_State_Modifier_production_factory_max_efficiency_factor  = 0.05 }
+		}
+	}
+}
+
+croatian_partisan_congress_category = {
+	make_a_rally_tito_cro = {
+		cost = 15
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = tito_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 15		
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 15
+		days_re_enable = 15
+		complete_effect = {
+	custom_effect_tooltip = CRO_increase_tito_support_low_tt
+	add_to_variable = { CRO_tito_support = 0.5 }
+	clamp_variable = { var = CRO_tito_support min = 0 max = 100 }	
+	subtract_from_variable = { CRO_mrazovic_support = 0.25 }
+	subtract_from_variable = { CRO_hebrang_support = 0.25 }
+	}
+	}
+	
+	make_a_public_speech_tito_cro = {
+		cost = 30
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = tito_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 30
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 12
+		}
+		
+		days_remove = 20
+		days_re_enable = 25
+		complete_effect = {
+	    custom_effect_tooltip = CRO_increase_tito_support_med_tt
+		clamp_variable = { var = CRO_tito_support min = 0 max = 100 }
+		subtract_from_variable = { CRO_mrazovic_support = 1.25 }
+		subtract_from_variable = { CRO_hebrang_support = 1.25 }
+		}
+	}
+
+	election_campaign_tito_cro = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = tito_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 50
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 15
+		}
+		
+		days_remove = 30
+		days_re_enable = 15
+		remove_effect = {
+			random_list = {
+				50 = {
+					country_event = { id = cro_election_events.5 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.4 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.6 }
+				}
+			}
+		}
+	}
+	
+	attack_the_opposition_tito_cro = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = tito_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 100
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 8
+		}
+		
+		days_remove = 25
+		complete_effect = {
+			add_stability = -0.05
+		}
+		remove_effect = {	
+    custom_effect_tooltip = CRO_decrease_mrazovic_support_med_tt	
+	custom_effect_tooltip = CRO_decrease_hebrang_support_med_tt
+	subtract_from_variable = { CRO_hebrang_support = 2.5 }
+	clamp_variable = { var = CRO_hebrang_support min = 0 max = 100 }
+	add_to_variable = { CRO_tito_support = 1.25 }
+	add_to_variable = { CRO_mrazovic_support = 1.25 }
+	subtract_from_variable = { CRO_mrazovic_support = 2.5 }
+	clamp_variable = { var = CRO_mrazovic_support min = 0 max = 100 }
+	add_to_variable = { CRO_tito_support = 1.25 }
+	add_to_variable = { CRO_hebrang_support = 1.25 }
+        }
+	}
+	
+	make_a_rally_mrazovic = {
+		cost = 15
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = mrazovic_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 15		
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 15
+		days_re_enable = 15
+		complete_effect = {
+	custom_effect_tooltip = CRO_increase_mrazovic_support_low_tt
+	add_to_variable = { CRO_mrazovic_support = 1.5 }
+	clamp_variable = { var = CRO_mrazovic_support min = 0 max = 100 }
+	subtract_from_variable = { CRO_tito_support = 0.75 }
+	subtract_from_variable = { CRO_hebrang_support = 0.75 }
+		}
+	}
+	
+	make_a_public_speech_mrazovic = {
+		cost = 30
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = mrazovic_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 30
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 12
+		}
+		
+		days_remove = 20
+		days_re_enable = 20
+		complete_effect = {
+    custom_effect_tooltip = CRO_increase_mrazovic_support_med_tt
+	clamp_variable = { var = CRO_mrazovic_support min = 0 max = 100 }
+	custom_effect_tooltip = CRO_increase_mrazovic_support_med_tt
+		subtract_from_variable = { CRO_tito_support = 1.5 }
+		subtract_from_variable = { CRO_hebrang_support = 1.5 }	
+		}
+	}
+	
+	election_campaign_mrazovic = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = mrazovic_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 50
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 15
+		}
+		
+		days_remove = 30
+		days_re_enable = 15
+		remove_effect = {
+			random_list = {
+				50 = {
+					country_event = { id = cro_election_events.5 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.4 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.6 }
+				}
+			}
+		}
+	}
+	
+	attack_the_opposition_mrazovic = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = mrazovic_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 100
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 8
+		}
+		
+		days_remove = 25
+		complete_effect = {
+			add_stability = -0.05
+		}
+		remove_effect = {		
+	custom_effect_tooltip = CRO_decrease_tito_support_med_tt
+	custom_effect_tooltip = CRO_decrease_hebrang_support_med_tt
+	subtract_from_variable = { CRO_hebrang_support = 2.5 }
+	clamp_variable = { var = CRO_hebrang_support min = 0 max = 100 }
+	add_to_variable = { CRO_tito_support = 1.25 }
+	add_to_variable = { CRO_mrazovic_support = 1.25 }
+	subtract_from_variable = { CRO_tito_support = 3 }
+	clamp_variable = { var = CRO_tito_support min = 0 max = 100 }
+	add_to_variable = { CRO_mrazovic_support = 1.5 }
+	add_to_variable = { CRO_hebrang_support = 1.5 }
+        }
+	}
+	
+	make_a_rally_hebrang = {
+		cost = 15
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = hebrang_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 15		
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 15
+		days_re_enable = 12
+		complete_effect = {
+	custom_effect_tooltip = CRO_increase_hebrang_support_low_tt
+	add_to_variable = { CRO_hebrang_support = 1 }
+	clamp_variable = { var = CRO_hebrang_support min = 0 max = 100 }
+	subtract_from_variable = { CRO_tito_support = 0.5 }
+    subtract_from_variable = { CRO_mrazovic_support = 0.5 }
+	}
+		}
+	
+	make_a_public_speech_hebrang = {
+		cost = 30
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = hebrang_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 30
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 12
+		}
+		
+		days_remove = 20
+		days_re_enable = 12
+		complete_effect = {
+	custom_effect_tooltip = CRO_increase_hebrang_support_med_tt
+	add_to_variable = { CRO_hebrang_support = 3 }
+	clamp_variable = { var = CRO_hebrang_support min = 0 max = 100 }
+	subtract_from_variable = { CRO_tito_support = 1.5 }
+	subtract_from_variable = { CRO_mrazovic_support = 1.5 }
+		}
+	}
+	
+	election_campaign_hebrang = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = hebrang_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 50
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 15
+		}
+		
+		days_remove = 30
+		days_re_enable = 15
+		remove_effect = {
+			random_list = {
+				50 = {
+					country_event = { id = cro_election_events.5 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.4 }
+				}
+				25 = {
+					country_event = { id = cro_election_events.6 }
+				}
+			}
+		}
+	}
+	
+	attack_the_opposition_hebrang = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		
+		visible = {
+			has_country_flag = hebrang_selected
+			has_active_mission = cro_partisan_elections_timeout
+			NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		available = {
+            has_political_power > 100
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 8
+		}
+		
+		days_remove = 15
+		complete_effect = {
+			add_stability = -0.05
+		}
+		remove_effect = {		
+	custom_effect_tooltip = CRO_decrease_tito_support_med_tt
+	custom_effect_tooltip = CRO_decrease_mrazovic_support_med_tt
+	subtract_from_variable = { CRO_tito_support = 1 }
+	clamp_variable = { var = CRO_tito_support min = 0 max = 100 }
+		add_to_variable = { CRO_mrazovic_support = 0.5 }
+		add_to_variable = { CRO_hebrang_support = 0.5 }
+	subtract_from_variable = { CRO_mrazovic_support = 2.5 }
+	clamp_variable = { var = CRO_mrazovic_support min = 0 max = 100 }
+		add_to_variable = { CRO_tito_support = 1.25 }
+		add_to_variable = { CRO_hebrang_support = 1.25 }
+        }
+	}
+	
+	tito_making_moves_cro = {
+		icon = GFX_decision_generic_civil_support
+		available = {
+            has_country_flag = cro_congress_over
+        }
+		
+		activation = {
+			has_active_mission = cro_partisan_elections_timeout
+			OR = {
+				has_country_flag = mrazovic_selected
+				has_country_flag = hebrang_selected
+			}
+		}
+		
+		is_good = yes
+		days_mission_timeout = 28
+		fire_only_once = no
+		
+		timeout_effect = {
+	custom_effect_tooltip = CRO_increase_tito_support_support_low_tt
+	custom_effect_tooltip = CRO_decrease_mrazovic_support_med_tt
+	custom_effect_tooltip = CRO_decrease_hebrang_support_med_tt
+	add_to_variable = { CRO_tito_support = 0.5 }
+	clamp_variable = { var = CRO_tito_support min = 0 max = 100 }
+	subtract_from_variable = { CRO_mrazovic_support = 1.25 }
+	subtract_from_variable = { CRO_hebrang_support = 1.25 }
+	subtract_from_variable = { CRO_mrazovic_support = 2.5 }
+	clamp_variable = { var = CRO_mrazovic_support min = 0 max = 100 }
+		add_to_variable = { CRO_tito_support = 1.25 }
+		add_to_variable = { CRO_hebrang_support = 1.25 }
+	subtract_from_variable = { CRO_hebrang_support = 2.5 }
+	clamp_variable = { var = CRO_hebrang_support min = 0 max = 100 }
+		add_to_variable = { CRO_tito_support = 1.25 }
+		add_to_variable = { CRO_mrazovic_support = 1.25 }
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+	
+	mrazovic_making_moves = {
+		icon = GFX_decision_generic_civil_support
+		available = {
+            has_country_flag = cro_congress_over
+        }
+		
+		activation = {
+			has_active_mission = cro_partisan_elections_timeout
+			OR = {
+				has_country_flag = tito_selected
+				has_country_flag = hebrang_selected
+			}
+		}
+		
+		is_good = yes
+		days_mission_timeout = 24
+		fire_only_once = no
+		
+		timeout_effect = {
+	custom_effect_tooltip = CRO_increase_mrazovic_support_med_tt
+	custom_effect_tooltip = CRO_decrease_tito_support_med_tt
+	custom_effect_tooltip = CRO_increase_hebrang_support_med_tt
+	add_to_variable = { CRO_mrazovic_support = 3 }
+	clamp_variable = { var = CRO_mrazovic_support min = 0 max = 100 }
+		subtract_from_variable = { CRO_tito_support = 1.5 }
+		subtract_from_variable = { CRO_hebrang_support = 1.5 }
+	subtract_from_variable = { CRO_tito_support = 1 }
+	clamp_variable = { var = CRO_tito_support min = 0 max = 100 }
+		add_to_variable = { CRO_mrazovic_support = 0.5 }
+		add_to_variable = { CRO_hebrang_support = 0.5 }
+	subtract_from_variable = { CRO_hebrang_support = 0.5 }
+	clamp_variable = { var = CRO_hebrang_support min = 0 max = 100 }
+		add_to_variable = { CRO_tito_support = 0.25 }
+		add_to_variable = { CRO_mrazovic_support = 0.25 }
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+	
+	hebrang_making_moves = {
+		icon = GFX_decision_generic_civil_support
+		available = {
+            has_country_flag = cro_congress_over
+        }
+		
+		activation = {
+			has_active_mission = cro_partisan_elections_timeout
+			OR = {
+				has_country_flag = mrazovic_selected
+				has_country_flag = tito_selected
+			}
+		}
+		
+		is_good = yes
+		days_mission_timeout = 20
+		fire_only_once = no
+		
+		timeout_effect = {
+	custom_effect_tooltip = CRO_increase_hebrang_support_med_tt
+	custom_effect_tooltip = CRO_decrease_mrazovic_support_med_tt
+	custom_effect_tooltip = CRO_decrease_tito_support_med_tt
+	add_to_variable = { CRO_hebrang_support = 3 }
+	clamp_variable = { var = CRO_hebrang_support min = 0 max = 100 }
+		subtract_from_variable = { CRO_tito_support = 1.5 }
+		subtract_from_variable = { CRO_mrazovic_support = 1.5 }
+	subtract_from_variable = { CRO_mrazovic_support = 2.5 }
+	clamp_variable = { var = CRO_mrazovic_support min = 0 max = 100 }
+		add_to_variable = { CRO_tito_support = 1.25 }
+		add_to_variable = { CRO_hebrang_support = 1.25 }
+	subtract_from_variable = { CRO_tito_support = 3 }
+	clamp_variable = { var = CRO_tito_support min = 0 max = 100 }
+		add_to_variable = { CRO_mrazovic_support = 1.5 }
+		add_to_variable = { CRO_hebrang_support = 1.5 }
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+	
+	cro_partisan_elections_timeout = {
+		
+		available = {
+            has_country_flag = cro_congress_over
+        }
+		
+		activation = {
+			has_completed_focus = CRO_The_Congress_Begins
+			 NOT = { 
+				has_country_flag = cro_congress_over
+			}
+		}
+		
+		is_good = yes
+		days_mission_timeout = 120
+		fire_only_once = yes
+		
+		timeout_effect = {
+			country_event = { days = 1 id = twr_croatia_communist.7 }
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+}
+
+hebrang_partisan_unrest_category = {
+	hebrang_start_partisan_unrest = {
+		
+		available = {
+		custom_trigger_tooltip = { tooltip = hebrang_unrest_medium_or_lower_tt }
+		check_variable = { CRO_hebrang_unrest < 8 }	
+        }
+		
+		activation = {
+		has_country_leader = { name = "Andrija Hebrang" ruling_only = yes }
+		check_variable = { CRO_hebrang_unrest > 8 }
+		NOT = { has_completed_focus = CRO_Hebrang_The_Revolution_Secured }
+		}
+		cancel_trigger = {
+		has_completed_focus = CRO_Hebrang_The_Revolution_Secured 
+		}
+		
+		is_good = yes
+		days_mission_timeout = 100
+		fire_only_once = no
+		
+		timeout_effect = {
+				country_event = {
+					id = twrcroatia.257
+					hours = 2
+                }
+		}
+		
+		complete_effect = {
+		custom_effect_tooltip = "A Coup will be averted"
+		}
+	}
+	hebrang_increase_partisan_unrest = {
+		
+		available = {
+		always = no
+        }
+		
+		activation = {
+		has_country_leader = { name = "Andrija Hebrang" ruling_only = yes }
+		NOT = { has_completed_focus = CRO_Hebrang_The_Revolution_Secured }
+		}
+
+		cancel_trigger = {
+		has_completed_focus = CRO_Hebrang_The_Revolution_Secured 
+		}
+		
+		
+		is_good = yes
+		days_mission_timeout = 20
+		fire_only_once = no
+		
+		timeout_effect = {
+			custom_effect_tooltip = CRO_increase_partisan_detachment_unrest_tt
+			add_to_variable = { CRO_hebrang_unrest = 2 }
+			clamp_variable = {
+				var = CRO_hebrang_unrest
+				min = 0
+				max = 20
+			}
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+	hebrang_decrease_partisan_unrest = {
+		icon = eng_blackshirt_march
+		cost = 10
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Hebrang" ruling_only = yes }
+		NOT = { has_completed_focus = CRO_Hebrang_The_Revolution_Secured }
+		}
+		available = {
+		has_country_leader = { name = "Andrija Hebrang" ruling_only = yes }
+		NOT = { has_completed_focus = CRO_Hebrang_The_Revolution_Secured }
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			weekly_manpower = -200
+			political_power_cost = 0.1
+		}
+		days_remove = 10
+		complete_effect = {
+		}
+		remove_effect = {
+			custom_effect_tooltip = CRO_decrease_partisan_detachment_unrest_tt
+			subtract_from_variable = { CRO_hebrang_unrest = 4 } 
+			clamp_variable = {
+				var = CRO_hebrang_unrest
+				min = 0
+				max = 20
+			}
+		}
+	}
+}
+
+
+the_artukovic_doctrine_category = {
+	CRO_Artukovic_Belgrade_Gaming_decision = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		SER = { is_subject_of = CRO }
+		}
+		available = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 25
+		}
+		complete_effect = {
+		custom_effect_tooltip = artukovic_belgrade_tt
+		hidden_effect = {
+		news_event = { id = croatianews.37 }
+			}
+		}
+	}
+	CRO_Artukovic_Enact_A_Minister_Purge_decision = {
+		icon = generic_political_discourse
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		}
+		available = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			weekly_manpower = -200
+			stability_weekly = 0.01
+			war_support_weekly = 0.01
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Artukovic_Stricter_Workshifts_decision = {
+		icon = ger_military_buildup
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		}
+		available = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			political_power_cost = 0.10
+			production_factory_efficiency_gain_factor = 0.05
+			production_speed_buildings_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Artukovic_Propaganda_Campaigns_decision = {
+		icon = eng_propaganda_campaigns
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		}
+		available = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			political_power_cost = 0.10
+			stability_weekly = 0.01
+			war_support_weekly = 0.01
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Artukovic_Forced_Conversions_decision = {
+		icon = eng_trade_unions_demand
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		}
+		available = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			political_power_cost = -0.10
+			stability_weekly = -0.01
+			conscription_factor = 0.1
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Artukovic_Expand_The_Vojnica_decision = {
+		icon = eng_blackshirt_march
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		}
+		available = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+		    national_socialist_drift = 0.01
+			conscription_factor = 0.1
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Artukovic_Resistance_Supression_decision = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		}
+		available = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			weekly_manpower = -200
+			resistance_growth = -0.25
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Artukovic_Irredentist_Propaganda_decision = {
+		icon = eng_blackshirt_speech
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		}
+		available = {
+		has_country_leader = { name = "Andrija Artuković" ruling_only = yes }
+		has_completed_focus = CRO_Artukovic_Secure_the_Poglavniks_Position
+		NOT = { has_global_flag = form_greater_croatia_flag }
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			war_support_weekly = 0.02
+			political_power_gain = 0.1
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	
+}
+
+the_francetic_doctrine_category = {
+	CRO_Francetic_Ensure_Stability_decision = {
+		icon = generic_political_discourse
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			weekly_manpower = -200
+			stability_weekly = 0.01
+			war_support_weekly = 0.01
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Francetic_Highten_Camp_Quotas_decision = {
+		icon = generic_industry
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			weekly_manpower = -300
+			production_factory_efficiency_gain_factor = 0.1
+			production_speed_buildings_factor = 0.1
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Francetic_Recruitment_For_Pardons_decision = {
+		icon = eng_blackshirt_march
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			weekly_manpower = 200
+			conscription_factor = 0.1
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Francetic_Send_Croats_To_Bosnia_decision = {
+		icon = eng_blackshirt_march
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		owns_state = 103
+		owns_state = 981
+		owns_state = 982
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			stability_weekly = -0.01
+		}
+		days_remove = 30
+		remove_effect = {
+		custom_effect_tooltip = CRO_SUPPORT_MIGR
+		109 = { add_manpower = -500 }
+		1030 = { add_manpower = -500 }
+		1016 = { add_manpower = -500 }
+		103 = { add_manpower = 500 }
+		981 = { add_manpower = 500 }
+		982 = { add_manpower = 500 }
+		}
+	}
+	CRO_Francetic_Propaganda_Campaigns_decision = {
+		icon = eng_propaganda_campaigns
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			political_power_cost = 0.10
+			stability_weekly = 0.01
+			war_support_weekly = 0.01
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Francetic_Purge_Ministers_decision = {
+		icon = eng_propaganda_campaigns
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			weekly_manpower = -200
+			stability_weekly = 0.01
+			war_support_weekly = 0.01
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Francetic_Stricter_Workshifts_decision = {
+		icon = eng_propaganda_campaigns
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+        }
+		fire_only_once = no
+		days_re_enable = 45
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			political_power_cost = 0.10
+			production_factory_efficiency_gain_factor = 0.05
+			production_speed_buildings_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+		}
+	}
+	CRO_Francetic_Recruit_Legion_Divisions_decision = {
+		icon = eng_blackshirt_march
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+        }
+		fire_only_once = no
+		days_re_enable = 90
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		days_remove = 10
+		remove_effect = {
+			if = {
+				limit = {
+					has_template = "Crna Legija"
+				}
+				#nothing
+				else = {
+					division_template = {
+						name = "Crna Legija"		# black legion paramilitaries
+						division_names_group = CRO_GAR_01
+					
+						regiments = {
+							militia = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+						}
+						support = {
+						}
+					}
+				}
+			}
+			random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"1. Satnija'\" division_template = \"Crna Legija\" start_experience_factor = 0.3" owner = ROOT
+				}
+			}
+			random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"2. Satnija'\" division_template = \"Crna Legija\" start_experience_factor = 0.3" owner = ROOT
+				}
+			}
+			random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"3. Satnija'\" division_template = \"Crna Legija\" start_experience_factor = 0.3" owner = ROOT
+				}
+			}
+		}
+	}
+	CRO_Francetic_Outreach_To_Washington_decision = {
+		icon = hol_exchange_intelligence_data
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+        }
+		fire_only_once = no
+		days_re_enable = 90
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		days_remove = 10
+		remove_effect = {
+		USA = { country_event = { id = cro_diplomacy.8 hours = 2 } }
+		}
+	}
+	CRO_Francetic_Isolation_decision = {
+		icon = hol_draw_up_staff_plans
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		}
+		available = {
+		has_country_leader = { name = "Jure Francetić" ruling_only = yes }
+		has_completed_focus = CRO_Francetic_Enshrine_The_Conqueror_Of_Drina
+		has_global_flag = form_croatia_reunited_flag 
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 25
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		days_remove = 30
+		remove_effect = {
+		add_ideas = neutrality_idea 
+		add_ideas = deterrence 
+		}
+	}
+}
+
+CRO_De_Ustashaization_cat = {
+	CRO_Abolish_Racial_Laws_decision = {
+		icon = eng_trade_unions_support
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		NOT = { 
+			has_government = national_socialist
+		}
+		}
+		available = {
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		modifier = {
+			political_power_cost = -0.10
+		    national_socialist_drift = -0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		add_stability = 0.20
+		set_country_flag = abolished_racial_laws
+		}
+	}
+	CRO_Demolish_Concentration_Camps_decision = {
+		icon = generic_scorched_earth
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		NOT = { 
+			has_government = national_socialist
+		}
+		}
+		available = {
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		modifier = {
+			political_power_cost = -0.10
+		    national_socialist_drift = -0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		add_stability = 0.1
+		set_country_flag = demolished_camps
+		}
+	}
+	CRO_Construct_Memorials_decision = {
+		icon = generic_construction
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		NOT = { 
+			has_government = national_socialist
+		}
+		}
+		available = {
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+			political_power_cost = -0.10
+		    national_socialist_drift = -0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		add_stability = 0.1
+		add_war_support = -0.1
+		set_country_flag = constructed_memorials
+		}
+	}
+	CRO_Hunt_Down_Crusaders_decision = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		NOT = { 
+			has_government = national_socialist
+		}
+		}
+		available = {
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		modifier = {
+			political_power_cost = -0.10
+		    national_socialist_drift = -0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		add_manpower = -2000
+		set_country_flag = hunted_crusaders
+		}
+	}
+	CRO_Arrest_Ustashe_Leaders_decision = {
+		icon = decision_prison
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		NOT = { 
+			has_government = national_socialist
+		}
+		}
+		available = {
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		modifier = {
+			political_power_cost = -0.10
+		    national_socialist_drift = -0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		add_manpower = -2000
+		set_country_flag = arrested_ustashe_leaders
+		}
+	}
+	CRO_Finish_De_Ustashaization_decision = {
+		icon = generic_civil_support
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		NOT = { 
+			has_government = national_socialist
+		}
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = abolished_racial_laws
+				has_country_flag = demolished_camps
+				has_country_flag = constructed_memorials
+				has_country_flag = hunted_crusaders
+				has_country_flag = arrested_ustashe_leaders
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		modifier = {
+			political_power_cost = -0.10
+		    national_socialist_drift = -0.05
+		}
+		days_remove = 30
+		remove_effect = {
+		add_ideas = CRO_De_Ustashization_Successful
+			}
+		}
+}
+
+cro_expanding_med_pact_category = {
+	CRO_med_pact_hungary_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+                NOT = {
+                        owns_state = 43
+                        }
+		       NOT = {
+                        HUN = { is_in_faction_with = CRO }
+                        }
+		}
+		available = {
+           
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = HUN
+				}     
+        }
+	}
+	CRO_med_pact_serbia_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+                    NOT = {
+                             owns_state = 107
+                    }
+		       NOT = {
+                    SER = { is_in_faction_with = CRO }
+                    }
+		}
+		available = {
+           
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = SER
+				}
+                
+                    }
+	      }
+	CRO_med_pact_romania_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+                    NOT = {
+                             owns_state = 1015
+                    }
+		       NOT = {
+                    ROM = { is_in_faction_with = CRO }
+                    }
+		}
+		available = {
+           
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = ROM
+				}
+                
+                    }
+	      }
+	CRO_med_pact_bulgaria_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+                    NOT = {
+                             owns_state = 48
+                    }
+		       NOT = {
+                    BUL = { is_in_faction_with = CRO }
+                    }
+		}
+		available = {
+           
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = BUL
+				}
+                
+                    }
+	      }
+	CRO_med_pact_greece_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+                    NOT = {
+                             owns_state = 877
+                    }
+		       NOT = {
+                    GRE = { is_in_faction_with = CRO }
+                    }
+		}
+		available = {
+           
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = GRE
+				}
+                
+                    }
+	      }
+	CRO_med_pact_albania_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+                    NOT = {
+                             owns_state = 44
+                    }
+		       NOT = {
+                    ALB = { is_in_faction_with = CRO }
+                    }
+		}
+		available = {
+           
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = ALB
+				}
+                
+                    }
+	      }
+	CRO_med_pact_turkey_attack_decision = {
+		cost = 100
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+                    NOT = {
+                             owns_state = 49
+                    }
+		       NOT = {
+                    TUR = { is_in_faction_with = CRO }
+                    }
+		}
+		available = {
+           
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+	        create_wargoal = {
+					type = annex_everything
+					target = TUR
+				}
+                
+                    }
+	      }
+	CRO_med_pact_give_albania_to_italy_decision = {
+		icon = infiltrate_state
+		allowed = {
+			original_tag = CRO
+		}
+		activation = {
+		has_government = fascist
+		is_in_faction_with = ITA
+		ALB = { is_subject_of = CRO }
+		}
+		available = {
+		always = no
+		}
+		cancel_trigger = {
+		ALB = { is_subject_of = ITA }
+		}
+		fire_only_once = yes
+		is_good = no
+		days_mission_timeout = 10
+		timeout_effect = {
+		ITA = {
+				annex_country = {
+				target = ALB
+				transfer_troops = yes
+						}
+					}
+		}
+	}
+	CRO_med_pact_give_greece_to_italy_decision = {
+		icon = infiltrate_state
+		allowed = {
+			original_tag = CRO
+		}
+		activation = {
+		has_government = fascist
+		is_in_faction_with = ITA
+		GRE = { is_subject_of = CRO }
+		}
+		available = {
+		always = no
+		}
+		cancel_trigger = {
+		GRE = { is_subject_of = ITA }
+		}
+		fire_only_once = yes
+		is_good = no
+		days_mission_timeout = 10
+		timeout_effect = {
+		ITA = {
+				annex_country = {
+				target = GRE
+				transfer_troops = yes
+						}
+					}
+		}
+	}
+	CRO_med_pact_give_TUR_to_italy_decision = {
+		icon = infiltrate_state
+		allowed = {
+			original_tag = CRO
+		}
+		activation = {
+		has_government = fascist
+		is_in_faction_with = ITA
+		TUR = { is_subject_of = CRO }
+		}
+		available = {
+		always = no
+		}
+		cancel_trigger = {
+		TUR = { is_subject_of = ITA }
+		}
+		fire_only_once = yes
+		is_good = no
+		days_mission_timeout = 10
+		timeout_effect = {
+		ITA = {
+				annex_country = {
+				target = TUR
+				transfer_troops = yes
+						}
+					}
+		}
+	}
+}
+
+political_actions = {
+	CRO_reunify_with_serbia_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			is_communist = yes
+			SER = { is_communist = yes NOT = { is_subject_of = CRO } }
+		}
+		available = {
+		is_communist = yes
+		has_country_flag = cro_congress_over
+		SER = { is_communist = yes has_country_flag = elections_over }
+		has_war = no
+		has_completed_focus = CRO_The_Worst_is_Behind_Us
+       }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+               SER = { country_event = { id = twr_croatia_communist.15 } }
+				remove_opinion_modifier = {
+					target = SER
+					modifier = hostile_status
+				}
+				SER = { 
+					remove_opinion_modifier = {
+					target = CRO
+					modifier = hostile_status
+				}
+			}
+		}
+	}
+	SER_reunify_with_croatia_decision = {
+		cost = 50
+		allowed = {
+			original_tag = SER
+		}
+		visible = {
+			is_communist = yes
+			CRO = { is_communist = yes }
+		}
+		available = {
+		is_communist = yes
+		has_country_flag = elections_over 
+		CRO = { is_communist = yes has_country_flag = cro_congress_over }
+		has_war = no
+		has_completed_focus = SER_Begin_the_Liberation
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+                CRO = { country_event = { id = twr_croatia_communist.15 } }
+				remove_opinion_modifier = {
+					target = CRO
+					modifier = hostile_status
+				}
+				CRO = { 
+					remove_opinion_modifier = {
+					target = SER
+					modifier = hostile_status
+				}
+			}
+		}
+	}
+	CRO_SER_Slovenian_Partisan_Generals_decision = {
+        #cost = freedec?0
+		allowed = {
+			OR = {
+			original_tag = CRO
+			original_tag = SER
+			}
+		}
+		visible = {
+			is_communist = yes
+			owns_state = 102
+			NOT = { has_country_flag = slovenia_joined }
+		}
+		available = {
+			is_communist = yes
+			owns_state = 102
+			NOT = { has_country_flag = slovenia_joined }
+       }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+			add_manpower = 5000
+			create_field_marshal = {
+				name = "Boris Kidrič"
+				picture = "Portrait_SLV_Boris_Kidric.dds"
+				traits = { partisan_general  }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			create_corps_commander = {
+				name = "Janko Premrl"
+				picture = "Portrait_SLV_Janko_Premrl.dds"
+				traits = { partisan_general  }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Karel Destovnik"
+				picture = "Portrait_SLV_Karel_Destovnik.dds"
+				traits = { partisan_general }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+	}
+
+}
+
+
+new_ustashism_category = {
+	CRO_New_Ustashism_decision_1 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Re_Ustashization
+		}
+		available = {
+		has_completed_focus = CRO_Re_Ustashization
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		available = {
+			NOT = { has_country_flag = cro_ustashism_reforming_flag }
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_ustashism_reforming_flag
+		}
+		remove_effect = {
+		clr_country_flag = cro_ustashism_reforming_flag
+		custom_effect_tooltip = cro_new_ustashism_decision_tt
+		add_to_variable = { CRO_New_Ustashism_Modifier_pp_factor = 0.10 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_war_support_factor = 0.10 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_natsoc_drift_factor = 0.02 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_research_speed_factor = -0.05 }
+		}
+	}
+	CRO_New_Ustashism_decision_2 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Re_Ustashization
+		}
+		available = {
+		has_completed_focus = CRO_Re_Ustashization
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		available = {
+			NOT = { has_country_flag = cro_ustashism_reforming_flag }
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_ustashism_reforming_flag
+		}
+		remove_effect = {
+		clr_country_flag = cro_ustashism_reforming_flag
+		custom_effect_tooltip = cro_new_ustashism_decision_tt
+		add_to_variable = { CRO_New_Ustashism_Modifier_army_attack_factor = 0.05 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_weekly_manpower = -200 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_natsoc_drift_factor = 0.03 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_research_speed_factor = -0.05 }
+		}
+	}
+	CRO_New_Ustashism_decision_3 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Re_Ustashization
+		}
+		available = {
+		has_completed_focus = CRO_Re_Ustashization
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		available = {
+			NOT = { has_country_flag = cro_ustashism_reforming_flag }
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_ustashism_reforming_flag
+		}
+		remove_effect = {
+		clr_country_flag = cro_ustashism_reforming_flag
+		custom_effect_tooltip = cro_new_ustashism_decision_tt
+		add_to_variable = { CRO_New_Ustashism_Modifier_army_attack_factor = 0.05 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_weekly_manpower = -200 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_conscription = -0.02 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_research_speed_factor = -0.05 }
+		}
+	}
+	CRO_New_Ustashism_decision_4 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Re_Ustashization
+		}
+		available = {
+		has_completed_focus = CRO_Re_Ustashization
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		available = {
+			NOT = { has_country_flag = cro_ustashism_reforming_flag }
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_ustashism_reforming_flag
+		}
+		remove_effect = {
+		clr_country_flag = cro_ustashism_reforming_flag
+		custom_effect_tooltip = cro_new_ustashism_decision_tt
+		add_to_variable = { CRO_New_Ustashism_Modifier_production_factory_max_efficiency_factor = 0.15 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_weekly_manpower = -200 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_research_speed_factor = -0.05 }
+		}
+	}
+	CRO_New_Ustashism_decision_5 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Re_Ustashization
+		}
+		available = {
+		has_completed_focus = CRO_Re_Ustashization
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		available = {
+			NOT = { has_country_flag = cro_ustashism_reforming_flag }
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_ustashism_reforming_flag
+		}
+		remove_effect = {
+		clr_country_flag = cro_ustashism_reforming_flag
+		custom_effect_tooltip = cro_new_ustashism_decision_tt
+		add_to_variable = { CRO_New_Ustashism_Modifier_attrition = -0.05 }
+		add_to_variable = { CRO_New_Ustashism_Modifier_research_speed_factor = -0.05 }
+		}
+	}
+
+}
+
+cro_resource_exploitation_category = { 
+	CRO_Zagrebs_Steel_Mills_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+
+		}
+		available = {
+		owns_state = 109
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+			add_resource = {
+				type = steel
+				amount = 8
+				state = 109
+			}
+		}
+	}
+	CRO_Slavonian_Oil_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+
+		}
+		available = {
+		owns_state = 1030
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+			add_resource = {
+				type = oil
+				amount = 10
+				state = 1030
+			}
+		}
+	}
+	CRO_Dalmatian_Oil_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+
+		}
+		available = {
+		owns_state = 103
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+			add_resource = {
+				type = oil
+				amount = 8
+				state = 103
+			}
+		}
+	}
+	CRO_Mostars_Aluminium_Plant_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+
+		}
+		available = {
+		owns_state = 104
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+			add_resource = {
+				type = aluminium
+				amount = 10
+				state = 104
+			}
+		}
+	}
+	CRO_Herzegovinian_Chromium_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+
+		}
+		available = {
+		owns_state = 983
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+			add_resource = {
+				type = chromium
+				amount = 15
+				state = 983
+			}
+		}
+	}
+	CRO_Podgorica_Aluminium_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		owns_state = 105
+		}
+		available = {
+		owns_state = 105
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+			add_resource = {
+				type = aluminium
+				amount = 12
+				state = 105
+			}
+		}
+	}
+	CRO_Kosovo_Chromium_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		owns_state = 818
+		}
+		available = {
+		owns_state = 818
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+			add_resource = {
+				type = chromium
+				amount = 18
+				state = 818
+			}
+		}
+	}
+	CRO_Bor_Tungsten_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+		owns_state = 108
+		}
+		available = {
+		owns_state = 108
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 150
+		remove_effect = {
+			add_resource = {
+				type = tungsten
+				amount = 10
+				state = 108
+			}
+		}
+	}
+}
+
+
+Croatian_Culture_category = {
+	CRO_Culture_decision_1 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = cro_culture_decisions_flag
+		}
+		available = {
+			NOT= { has_country_flag = cro_culture_project_in_progress }
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_culture_project_in_progress
+		}
+		remove_effect = {
+			clr_country_flag = cro_culture_project_in_progress
+		IF = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_5
+				}
+			}
+		}
+	}
+	CRO_Culture_decision_2 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = cro_culture_decisions_flag
+		}
+		available = {
+			NOT= { has_country_flag = cro_culture_project_in_progress }
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_culture_project_in_progress
+		}
+		remove_effect = {
+			clr_country_flag = cro_culture_project_in_progress
+		IF = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_5
+				}
+			}
+		}
+	}
+	CRO_Culture_decision_3 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = cro_culture_decisions_flag
+		}
+		available = {
+			NOT= { has_country_flag = cro_culture_project_in_progress }
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_culture_project_in_progress
+		}
+		remove_effect = {
+			clr_country_flag = cro_culture_project_in_progress
+		IF = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_5
+				}
+			}
+		}
+	}
+	CRO_Culture_decision_4 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = cro_culture_decisions_flag
+		}
+		available = {
+			NOT= { has_country_flag = cro_culture_project_in_progress }
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_culture_project_in_progress
+		}
+		remove_effect = {
+			clr_country_flag = cro_culture_project_in_progress
+		IF = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_5
+				}
+			}
+		}
+	}
+	CRO_Culture_decision_5 = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_country_flag = cro_culture_decisions_flag
+		}
+		available = {
+			NOT= { has_country_flag = cro_culture_project_in_progress }
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		modifier = {
+			political_power_cost = 0.1
+			consumer_goods_factor = 0.05
+		}
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = cro_culture_project_in_progress
+		}
+		remove_effect = {
+			clr_country_flag = cro_culture_project_in_progress
+		IF = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea 
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_1
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_2
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+			}
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_3
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = CRO_Croatian_Cultural_Golden_Age_idea_4
+				add_idea = CRO_Croatian_Cultural_Golden_Age_idea_5
+				}
+			}
+		}
+	}
+}
+
+
+national_struggle_decision_category = {
+	CRO_Pacify_Serbia_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Renew_The_National_Fight
+			SER = {
+				NOT = { is_subject_of = CRO }
+			}
+		}
+		available = {
+			has_completed_focus = CRO_Renew_The_National_Fight
+			SER = {
+				NOT = { is_subject_of = CRO }
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+				declare_war_on = {
+					target = SER
+					type = annex_everything
+				}
+		}
+	}
+	CRO_Serbian_Government_decision = {
+		cost = 50
+		allowed = {
+			original_tag = CRO
+		}
+		visible = {
+			has_completed_focus = CRO_Renew_The_National_Fight
+			SER = {
+				is_subject_of = CRO 
+			}
+		}
+		available = {
+			has_completed_focus = CRO_Renew_The_National_Fight
+			SER = {
+				is_subject_of = CRO
+			}
+        }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 99
+		}
+		complete_effect = {
+		SER = {
+				set_cosmetic_tag = SER_CRO_PUPPET_Pacification
+				create_country_leader = {
+					name = "Ljubo Miloš"
+					desc = ""
+					picture = "Ljubo_Milos.dds"
+					expire = "1965.1.1"
+					ideology = ustasa_movement 		
+				}	
+			}
+				swap_ideas = {
+					remove_idea = CRO_An_Insurgent_State
+					add_idea = CRO_National_Struggle_Triumphant
+				}
+		}
+	}
+}

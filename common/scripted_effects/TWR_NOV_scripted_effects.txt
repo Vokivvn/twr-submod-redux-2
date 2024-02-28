@@ -1,0 +1,350 @@
+###################
+### Variables
+###################
+
+NOV_Clamp_Cornboy_mechanic = {
+	clamp_variable = { var = NOV_RTC_Progress min = 0 max = 100 }
+	clamp_variable = { var = NOV_RTC_STABILITY min = 0 max = 100 }
+}
+
+NOV_Clamp_Voz_mechanic = {
+	clamp_variable = { var = NOV_Sovietification_Progress min = 0 max = 100 }
+	clamp_variable = { var = NOV_ELM_Progress min = 0 max = 100 }
+	clamp_variable = { var = NOV_Apathists_Influence min = 1 max = 5 }
+}
+
+NOV_Clamp_politburo = {
+	clamp_variable = { var = NOV_DSOST_Realists min = 0 max = 4 }
+	clamp_variable = { var = NOV_DSOST_Idealists min = 0 max = 4 }
+}
+
+NOV_Sovietification_Progress_mechanic = {
+	set_variable = { NOV_SOVPROG_checker = NOV_Sovietification_Progress }
+	divide_variable = { NOV_SOVPROG_checker = 400 }
+	set_variable = { SOVPROG_STAB = NOV_SOVPROG_checker }
+	set_variable = { SOVPROG_WAR_SUPPORT = NOV_SOVPROG_checker }
+	set_variable = { SOVPROG_PP = NOV_SOVPROG_checker }
+	set_variable = { SOVPROG_RECRUIT = NOV_SOVPROG_checker }
+	set_variable = { SOVPROG_ENCRYPT = NOV_SOVPROG_checker }
+	set_variable = { SOVPROG_DECRYPT = NOV_SOVPROG_checker }
+	set_variable = { SOVPROG_REPAIR = NOV_SOVPROG_checker }
+}
+
+NOV_ELM_Progress_mechanic = {
+	set_variable = { NOV_ELM_checker = NOV_ELM_Progress }
+	divide_variable = { NOV_ELM_checker = 500 }
+	set_variable = { ELM_RESEARCH = NOV_ELM_checker }
+	set_variable = { ELM_ATTK = NOV_ELM_checker }
+	set_variable = { ELM_DEF = NOV_ELM_checker }
+	set_variable = { ELM_COMMND_PWR = NOV_ELM_checker }
+	set_variable = { ELM_FACEFF = NOV_ELM_checker }
+	set_variable = { ELM_MAXEFF = NOV_ELM_checker }
+	set_variable = { ELM_STARTEFF = NOV_ELM_checker }
+}
+
+
+
+NOV_Road_To_Gommunism_mechanic = {
+	set_variable = { NOV_RTC_checker = NOV_RTC_Progress }
+	divide_variable = { NOV_RTC_checker = 400 }
+	set_variable = { RTC_FACTORY = NOV_RTC_checker }
+	set_variable = { RTC_ATTK = NOV_RTC_checker }
+	set_variable = { RTC_DEF = NOV_RTC_checker }
+	set_variable = { RTC_BUILD = NOV_RTC_checker }
+	set_variable = { RTC_SPEED = NOV_RTC_checker }
+	set_variable = { RTC_MORALE = NOV_RTC_checker }
+	set_variable = { RTC_ORG = NOV_RTC_checker }
+}
+
+NOV_Stability_mechanic = {
+	set_variable = { NOV_STAB_checker = NOV_RTC_STABILITY }
+	divide_variable = { NOV_STAB_checker = 450 }
+	set_variable = { STAB_STAB = NOV_STAB_checker }
+	set_variable = { STAB_WAR_SUPPORT = NOV_STAB_checker }
+	set_variable = { STAB_PP = NOV_STAB_checker }
+	set_variable = { STAB_ENCRYPT = NOV_STAB_checker }
+	set_variable = { STAB_DECRYPT = NOV_STAB_checker }
+	set_variable = { STAB_ATTK = NOV_STAB_checker }
+	set_variable = { STAB_DEF = NOV_STAB_checker }
+}
+
+NOV_apathist_decrease_mechanic = {
+	if = {
+		limit = {
+			check_variable = { NOV_Apathists_Influence = 1 }
+		}
+		remove_ideas = { NOV_apathist_influence_1_idea }
+	}
+	if = {
+		limit = {
+			check_variable = { NOV_Apathists_Influence = 1 }
+		}
+		swap_ideas = {
+			remove_idea = NOV_apathist_influence_2_idea
+			add_idea = NOV_apathist_influence_1_idea
+		}
+	}
+	if = {
+		limit = {
+			check_variable = { NOV_Apathists_Influence = 2 }
+		}
+		swap_ideas = {
+			remove_idea = NOV_apathist_influence_3_idea
+			add_idea = NOV_apathist_influence_2_idea
+		}
+	}
+	if = {
+		limit = {
+			check_variable = { NOV_Apathists_Influence = 3 }
+		}
+		swap_ideas = {
+			remove_idea = NOV_apathist_influence_4_idea
+			add_idea = NOV_realists_favoured_3_idea
+		}
+	}
+	
+}
+
+NOV_apathist_mechanic = {
+	if = {
+		limit = {
+			has_country_flag = NO_MORE_APATHISTS
+		}
+	}
+	else = {
+		if = {
+			limit = {
+			 check_variable = { NOV_Apathists_Influence = 1 }
+			}
+			add_ideas = { NOV_apathist_influence_1_idea }
+		}
+		if = {
+			limit = {
+			 check_variable = { NOV_Apathists_Influence = 2 }
+			}
+			swap_ideas = { 
+				remove_idea = NOV_apathist_influence_1_idea
+				add_idea = NOV_apathist_influence_2_idea 
+			}
+		}
+		if = {
+			limit = {
+			 check_variable = { NOV_Apathists_Influence = 3 }
+			}
+			swap_ideas = { 
+				remove_idea = NOV_apathist_influence_2_idea
+				add_idea = NOV_apathist_influence_3_idea 
+			}
+		}
+		if = {
+			limit = {
+			 check_variable = { NOV_Apathists_Influence = 4 }
+			}
+			swap_ideas = { 
+				remove_idea = NOV_apathist_influence_3_idea
+				add_idea = NOV_apathist_influence_4_idea 
+			}
+		}
+		if = {
+			limit = {
+			 check_variable = { NOV_Apathists_Influence = 5 }
+			}
+			set_variable = { NOV_Apathists_Influence = 0 }
+			remove_ideas = { NOV_apathist_influence_4_idea }
+			NOV = {
+				country_event = {
+					id = novapathists.1
+				}
+			}
+			set_country_flag = NO_MORE_APATHISTS
+		}
+	}
+}
+
+NOV_realist_mechanic = {
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = NO_MORE_REALISTS
+			}
+		}
+		add_to_variable = {
+			var = NOV_DSOST_Realists
+			value = 1
+		}
+		if = {
+			limit = {
+			 has_idea = NOV_the_politburo_idea 
+			}
+			swap_ideas = { 
+				remove_idea = NOV_the_politburo_idea
+				add_idea = NOV_realists_favoured_1_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_realists_favoured_1_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_realists_favoured_1_idea
+				add_idea = NOV_realists_favoured_2_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_realists_favoured_2_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_realists_favoured_2_idea
+				add_idea = NOV_realists_favoured_3_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_realists_favoured_3_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_realists_favoured_3_idea
+				add_idea = NOV_realists_favoured_4_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_realists_favoured_4_idea
+			}
+			country_event = { id = novrealists.1 days = 2}
+			set_country_flag = NO_MORE_REALISTS
+			set_country_flag = NO_MORE_IDEALISTS
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_idealists_favoured_4_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_idealists_favoured_4_idea
+				add_idea = NOV_idealists_favoured_3_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_idealists_favoured_3_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_idealists_favoured_3_idea
+				add_idea = NOV_idealists_favoured_2_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_idealists_favoured_2_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_idealists_favoured_2_idea
+				add_idea = NOV_idealists_favoured_1_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_idealists_favoured_1_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_idealists_favoured_1_idea
+				add_idea = NOV_the_politburo_idea 
+			}
+		}
+	}
+}
+
+NOV_idealist_mechanic = {
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = NO_MORE_IDEALISTS
+			}
+		}
+		add_to_variable = {
+			var = NOV_DSOST_Idealists
+			value = 1
+		}
+		if = {
+			limit = {
+			 has_idea = NOV_the_politburo_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_the_politburo_idea
+				add_idea = NOV_idealists_favoured_1_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_idealists_favoured_1_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_idealists_favoured_1_idea
+				add_idea = NOV_idealists_favoured_2_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_idealists_favoured_2_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_idealists_favoured_2_idea
+				add_idea = NOV_idealists_favoured_3_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_idealists_favoured_3_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_idealists_favoured_3_idea
+				add_idea = NOV_idealists_favoured_4_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_idealists_favoured_4_idea
+			}
+			country_event = { id = novidealists.1 days = 2 }
+			set_country_flag = NO_MORE_IDEALISTS
+			set_country_flag = NO_MORE_REALISTS
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_realists_favoured_4_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_realists_favoured_4_idea
+				add_idea = NOV_realists_favoured_3_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_realists_favoured_3_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_realists_favoured_3_idea
+				add_idea = NOV_realists_favoured_2_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_realists_favoured_2_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_realists_favoured_2_idea
+				add_idea = NOV_realists_favoured_1_idea 
+			}
+		}
+		else_if = {
+			limit = {
+			 has_idea = NOV_realists_favoured_1_idea
+			}
+			swap_ideas = { 
+				remove_idea = NOV_realists_favoured_1_idea
+				add_idea = NOV_the_politburo_idea 
+			}
+		}
+	}
+}

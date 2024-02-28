@@ -1,0 +1,3692 @@
+###################
+## Uprising Tree ##
+###################
+shared_focus = {
+	id = SBR_Calling_All_Patriots
+	icon = GFX_SBR_Calling_all_Patriots
+	x = 6
+	y = 0
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Calling_All_Patriots"
+		add_ideas = SBR_Freedom_Rings_idea
+	}
+}
+
+shared_focus = {
+	id = SBR_Strike_Behind_Their_Lines
+	icon = GFX_SBR_Strike_behind_their_lines
+	x = -2
+	y = 1
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	relative_position_id = SBR_Calling_All_Patriots
+	prerequisite = {
+		focus = SBR_Calling_All_Patriots
+	}
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Strike_Behind_Their_Lines"
+		custom_effect_tooltip = SBR_partisan_time_tt
+		hidden_effect = {
+			load_oob = SBR_partizans
+		}
+
+	}
+}
+
+shared_focus = {
+	id = SBR_Secure_Their_Depots
+	icon = GFX_GENERIC_open_crate
+	x = 0
+	y = 1
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	prerequisite = {
+		focus = SBR_Calling_All_Patriots
+	}
+	relative_position_id = SBR_Calling_All_Patriots
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Secure_Their_Depots"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 2000
+			producer = RUS
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 1500
+			producer = RUS
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Disrupting_Their_Supply_Lines
+	icon = GFX_GENERIC_Partisans
+	x = -1
+	y = 1
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	prerequisite = {
+		focus = SBR_Secure_Their_Depots
+	}
+	prerequisite = {
+		focus = SBR_Strike_Behind_Their_Lines
+	}
+	relative_position_id = SBR_Secure_Their_Depots
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Disrupting_Their_Supply_Lines"
+		BRY = {
+			add_ideas = SBR_Disrupted_Supplies_idea
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Encourage_Enemy_Defections
+	icon = GFX_RUS_russian_spirit
+	x = 2
+	y = 1
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	prerequisite = {
+		focus = SBR_Calling_All_Patriots
+	}
+	relative_position_id = SBR_Calling_All_Patriots
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Encourage_Enemy_Defections"
+		BRY = {
+			add_manpower = -10000
+		}
+		SBR = {
+			add_manpower = 10000
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Freedom_Or_Death
+	icon = GFX_GENERIC_Soviet_Soldier
+	x = 1
+	y = 1
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	prerequisite = {
+		focus = SBR_Secure_Their_Depots
+	}
+	prerequisite = {
+		focus = SBR_Encourage_Enemy_Defections
+	}
+	relative_position_id = SBR_Secure_Their_Depots
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Freedom_Or_Death"
+		add_ideas = SBR_Freedom_Or_Death_idea
+	}
+}
+
+shared_focus = {
+	id = SBR_End_The_District_idea
+	icon = GFX_SBR_End_the_District
+	x = 1
+	y = 1
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	prerequisite = {
+		focus = SBR_Freedom_Or_Death
+	}
+	prerequisite = {
+		focus = SBR_Disrupting_Their_Supply_Lines
+	}
+	relative_position_id = SBR_Disrupting_Their_Supply_Lines
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_End_The_District"
+		add_ideas = SBR_End_The_District_idea
+	}
+}
+
+########################
+## Reunification Tree ##
+########################
+
+shared_focus = {
+	id = SBR_Buryat_Revolutionary_Base
+	icon = GFX_GENERIC_Global_Revolution
+	x = 6
+	y = 0
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Buryat_Revolutionary_Base"
+		add_timed_idea = {
+			idea = SBR_Revolutionary_Base_idea
+			days = 150
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Placate_The_Left
+	icon = GFX_GENERIC_left_wing_victory
+	x = -4
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Buryat_Revolutionary_Base
+	}
+	mutually_exclusive = {
+		focus = SBR_Supporting_The_Common_Man
+	}
+	relative_position_id = SBR_Buryat_Revolutionary_Base
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Placate_The_Left"
+		add_to_variable = { SBR_trot_var = 1 }
+		custom_effect_tooltip = SBR_trot_army_tt
+		swap_ideas = {
+			remove_idea = SBR_United_Front_idea
+			add_idea = SBR_United_Front_Trots_idea
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Lessons_From_The_NEP
+	icon = GFX_SOV_Revise_NEP
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Placate_The_Left
+	}
+	relative_position_id = SBR_Placate_The_Left
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Lessons_From_The_NEP"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_ideas = SBR_NEP_Lessons_idea
+	}
+}
+shared_focus = {
+	id = SBR_Supporting_The_Common_Man
+	icon = GFX_SOV_Old_Worker
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Buryat_Revolutionary_Base
+	}
+	mutually_exclusive = {
+		focus = SBR_Placate_The_Left
+	}
+	relative_position_id = SBR_Buryat_Revolutionary_Base
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_A_Bayonet_And_Sickle"
+		add_to_variable = { SBR_agrsoc_var = 1 }
+		custom_effect_tooltip = SBR_agrsoc_army_tt
+		swap_ideas = {
+			remove_idea = SBR_United_Front_idea
+			add_idea = SBR_United_Front_Agrsoc_idea
+		}
+	}
+}
+shared_focus = {
+	id = SBR_A_Bayonet_And_Sickle
+	icon = GFX_RAJ_Sickle_in_One_Hand_Bayonet_in_the_Other
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Supporting_The_Common_Man
+	}
+	relative_position_id = SBR_Supporting_The_Common_Man
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_A_Bayonet_And_Sickle"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_ideas = SBR_Bayonet_And_Sickle_idea
+	}
+}
+
+shared_focus = {
+	id = SBR_Stave_Off_Hunger
+	icon = GFX_RMD_Addressing_the_hunger_crisis
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_A_Bayonet_And_Sickle
+		focus = SBR_Lessons_From_The_NEP
+	}
+	relative_position_id = SBR_A_Bayonet_And_Sickle
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_A_Bayonet_And_Sickle"
+		swap_ideas = {
+			remove_idea = SBR_Famine_idea
+			add_idea = SBR_Famine_idea1
+		}
+	}
+}
+shared_focus = {
+	id = SBR_A_Professional_Army
+	icon = GFX_combing_ranks_for_prospects
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Buryat_Revolutionary_Base
+	}
+	mutually_exclusive = {
+		focus = SBR_Lessons_From_Yanan
+	}
+	relative_position_id = SBR_Buryat_Revolutionary_Base
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_A_Professional_Army"
+		add_to_variable = { SBR_trot_var = 1 }
+		custom_effect_tooltip = SBR_trot_army_tt
+	}
+}
+shared_focus = {
+	id = SBR_Abandoning_Hit_And_Run
+	icon = GFX_GENERIC_Barricade
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_A_Professional_Army
+	}
+	relative_position_id = SBR_A_Professional_Army
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_A_Professional_Army"
+		swap_ideas = {
+			remove_idea = SBR_Partisan_Army_idea
+			add_idea = SBR_Partisan_Army_Trot_idea
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Lessons_From_Yanan
+	icon = GFX_focus_chi_cooperation_with_the_communists
+	x = 4
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Buryat_Revolutionary_Base
+	}
+	mutually_exclusive = {
+		focus = SBR_A_Professional_Army
+	}
+	
+	relative_position_id = SBR_Buryat_Revolutionary_Base
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Lessons_From_Yanan"
+		add_to_variable = { SBR_agrsoc_var = 1 }
+		custom_effect_tooltip = SBR_agrsoc_army_tt
+	}
+}
+shared_focus = {
+	id = SBR_Embracing_Protracted_Warfare
+	icon = GFX_focus_generic_provoke_border_clashes
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Lessons_From_Yanan
+	}
+	relative_position_id = SBR_Lessons_From_Yanan
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Embracing_Protracted_Warfare"
+		swap_ideas = {
+			remove_idea = SBR_Partisan_Army_idea
+			add_idea = SBR_Partisan_Army_Agrsoc_idea
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Raising_Invasion_Force
+	icon = GFX_GENERIC_RED_army_manpower
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Embracing_Protracted_Warfare
+		focus = SBR_Abandoning_Hit_And_Run
+	}
+	relative_position_id = SBR_Abandoning_Hit_And_Run
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Raising_Invasion_Force"
+		division_template = {
+			name = "Fermerskiye Rezervy"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+				infantry = { x = 1 y = 3 }
+			}
+			support = { 
+			}
+			is_locked = no
+		}
+		random_owned_state = {
+			limit = {
+				is_capital = yes
+			}
+			create_unit = {
+				division = "name = \"1. Fermerskiye Rezervy\" division_template = \"Fermerskiye Rezervy\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"2. Fermerskiye Rezervy\" division_template = \"Fermerskiye Rezervy\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"3. Fermerskiye Rezervy\" division_template = \"Fermerskiye Rezervy\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"4. Fermerskiye Rezervy\" division_template = \"Fermerskiye Rezervy\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Onto_Vladivostok
+	icon = GFX_GENERIC_Russian_Warcry
+	x = 0
+	y = 4
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Raising_Invasion_Force
+	}
+	prerequisite = {
+		focus = SBR_Stave_Off_Hunger
+	}
+	will_lead_to_war_with = RUS
+	relative_position_id = SBR_Buryat_Revolutionary_Base
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Onto_Vladivostok"
+		declare_war_on = {
+			target = RUS
+			type = civil_war
+		}
+		RUS = {
+			country_event = {
+				id = sbr.2
+			}
+		}
+		hidden_effect = {
+			574 = { add_core_of = SBR }
+			561 = { add_core_of = SBR }
+			644 = { add_core_of = SBR }
+			637 = { add_core_of = SBR }
+			562 = { add_core_of = SBR }
+			560 = { add_core_of = SBR }
+			657 = { add_core_of = SBR }
+			870 = { add_core_of = SBR }
+			409 = { add_core_of = SBR }
+			408 = { add_core_of = SBR }
+			655 = { add_core_of = SBR }
+			537 = { add_core_of = SBR }
+			555 = { add_claim_by = SBR }
+			add_manpower = 6500
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Proclaim_Russian_SR
+	icon = GFX_SBR_Russian_SR
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Onto_Vladivostok
+	}
+	available = {
+		has_war = no
+	}
+	relative_position_id = SBR_Onto_Vladivostok
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Proclaim_Russian_SR"
+		country_event = {
+			id = sbr.3
+		}
+		set_capital = { state = 408 }
+		set_cosmetic_tag = BRY_AGRSOC
+		add_research_slot = 1
+	}
+}
+shared_focus = {
+	id = SBR_Peace
+	icon = GFX_GENERIC_Dove_of_Peace
+	x = -2
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Proclaim_Russian_SR
+	}
+	relative_position_id = SBR_Proclaim_Russian_SR
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Peace"
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = SBR_Integrate_General_Staff
+	icon = GFX_SOV_General_Staff
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Peace
+	}
+	relative_position_id = SBR_Peace
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Integrate_General_Staff"
+		swap_ideas = {
+			remove_idea = SBR_Army_In_Tattars_idea
+			add_idea = SBR_Army_In_Tattars_idea1
+		}
+		create_corps_commander = {
+			name = "Viktorin Molchanov"
+			picture = "Viktorin_Molchanov.dds"
+			traits = { old_guard ranger }
+			id = 980
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+
+		create_corps_commander = {
+			name = "Lev Vlasyevsky"
+			picture = "Lev_Vlasyevsky.dds"
+			traits = { }
+			id = 981
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+
+		create_corps_commander = {
+			name = "Vladimir Vitkovsky"
+			picture = "Vladimir_Vitkovsky.dds"
+			traits = { }
+			id = 982
+			skill = 2
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 3
+			logistics_skill = 1
+		}
+
+		create_corps_commander = {
+			name = "Pavel Petrov"
+			picture = "Pavel_Petrov.dds"
+			traits = { }
+			id = 983
+			skill = 2
+			attack_skill = 1
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 1
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Land
+	icon = GFX_GENERIC_Land_Reform
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Proclaim_Russian_SR
+	}
+	relative_position_id = SBR_Proclaim_Russian_SR
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Land"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		add_political_power = 60
+	}
+}
+shared_focus = {
+	id = SBR_Reaffirm_Reunification
+	icon = GFX_focus_generic_treaty
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Land
+	}
+	relative_position_id = SBR_Land
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Reaffirm_Reunification"
+		swap_ideas = {
+			remove_idea = SBR_Shoddy_Legitimacy_idea
+			add_idea = SBR_Shoddy_Legitimacy_idea1
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Bread
+	icon = GFX_GENERIC_Bread_Icon
+	x = 2
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Proclaim_Russian_SR
+	}
+	relative_position_id = SBR_Proclaim_Russian_SR
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Bread"
+		add_war_support = 0.05
+		add_timed_idea = {
+			idea = SBR_Food_idea
+			days = 400
+		}
+
+	}
+}
+shared_focus = {
+	id = SBR_Integrate_Friendly_Parties
+	icon = GFX_RMD_Formation_of_Opposition_parties
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Bread
+	}
+	relative_position_id = SBR_Bread
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Integrate_Friendly_Parties"
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.05
+		}
+		swap_ideas = {
+			remove_idea = SBR_Unruly_Duma_idea
+			add_idea = SBR_Unruly_Duma_idea1
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Undermine_Reactionary_Parties
+	icon = GFX_GENERIC_Chess_Move
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Reaffirm_Reunification
+	}
+	prerequisite = {
+		focus = SBR_Integrate_Friendly_Parties
+	}
+	relative_position_id = SBR_Reaffirm_Reunification
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Undermine_Reactionary_Parties"
+		remove_ideas = SBR_Unruly_Duma_idea1
+	}
+}
+shared_focus = {
+	id = SBR_Purge_Disloyal_Officers
+	icon = GFX_GENERIC_Checkmate
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Reaffirm_Reunification
+	}
+	prerequisite = {
+		focus = SBR_Integrate_General_Staff
+	}
+	relative_position_id = SBR_Reaffirm_Reunification
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Purge_Disloyal_Officers"
+		remove_ideas = SBR_Army_In_Tattars_idea1
+		add_timed_idea = {
+			idea = SBR_Army_Purge_idea
+			days = 365
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Convene_Revolutionary_Council
+	icon = GFX_GENERIC_Socialist_Revolution
+	x = 0
+	y = 2
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Purge_Disloyal_Officers
+	}
+	prerequisite = {
+		focus = SBR_Undermine_Reactionary_Parties
+	}
+	relative_position_id = SBR_Reaffirm_Reunification
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	select_effect = {
+			country_event = { id = sbr.4 days = 2 }
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Convene_Revolutionary_Council"
+		custom_effect_tooltip = SBR_rev_council_time_tt
+	}
+}
+
+
+#################
+## AGRSOC TREE ##
+#################
+
+shared_focus = {
+	id = SBR_The_Revolution_Avenged
+	icon = GFX_NOV_SR_vets
+	x = 10
+	y = 0
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_The_Revolution_Avenged"
+		custom_effect_tooltip = SBR_agrsoc_time_tt
+	}
+}
+
+shared_focus = {
+	id = SBR_Assessing_Rogozhins_damage
+	icon = GFX_SBR_Assess_Rogo
+	x = 3
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_The_Revolution_Avenged
+	prerequisite = {
+		focus = SBR_The_Revolution_Avenged
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Assessing_Rogozhins_damage"
+		add_ideas = SBR_economic_recovery_idea
+	}
+}
+
+shared_focus = {
+	id = SBR_doing_what_kerensky_couldnt
+	icon = GFX_RUS_Kerensky_Cult
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_Assessing_Rogozhins_damage
+	prerequisite = {
+		focus = SBR_Assessing_Rogozhins_damage
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_doing_what_kerensky_couldnt"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = SBR_reconciliation_with_religious_institutions
+	icon = GFX_GENERIC_Orthodoxy
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_doing_what_kerensky_couldnt
+	prerequisite = {
+		focus = SBR_doing_what_kerensky_couldnt
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_reconciliation_with_religious_institutions"
+		add_political_power = 50
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = SBR_autonomy_for_siberians
+	icon = GFX_RUS_Natives_Status
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_reconciliation_with_religious_institutions
+	prerequisite = {
+		focus = SBR_reconciliation_with_religious_institutions
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_autonomy_for_siberians"
+		unlock_decision_category_tooltip = SOV_ASSR_decisions
+		set_country_flag = ENABLE_ASSR_SETUP_SOV
+	}
+}
+
+shared_focus = {
+	id = SBR_anti_racism_campaign
+	icon = GFX_RUS_Diversity
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_doing_what_kerensky_couldnt
+	prerequisite = {
+		focus = SBR_doing_what_kerensky_couldnt
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_anti_racism_campaign"
+		add_timed_idea = {
+			idea = SBR_no_more_racism_idea
+			days = 200
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_equality_for_all
+	icon = GFX_RUS_Encourage_minority_enlistment
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_anti_racism_campaign
+	prerequisite = {
+		focus = SBR_anti_racism_campaign
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_equality_for_all"
+		modify_timed_idea = {
+			idea = SBR_no_more_racism_idea
+			days = 250
+		}
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = SBR_rebuilding_the_shattered_east
+	icon = GFX_RUS_To_Revive_a_Nation
+	x = -3
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_The_Revolution_Avenged
+	prerequisite = {
+		focus = SBR_The_Revolution_Avenged
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_rebuilding_the_shattered_east"
+		custom_effect_tooltip = RUS_build_infrastruture_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					infrastructure < 2
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_expropriate_land_wealth
+	icon = GFX_KOR_seize_the_wealth
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_rebuilding_the_shattered_east
+	prerequisite = {
+		focus = SBR_rebuilding_the_shattered_east
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_expropriate_land_wealth"
+		add_ideas = { SBR_seized_means_idea }
+	}
+}
+
+shared_focus = {
+	id = SBR_establish_peasant_communes
+	icon = GFX_RUS_Volunteers
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_expropriate_land_wealth
+	prerequisite = {
+		focus = SBR_expropriate_land_wealth
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_establish_peasant_communes"
+		every_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_progressive_tax_reform
+	icon = GFX_SPA_prog_tax
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_establish_peasant_communes
+	prerequisite = {
+		focus = SBR_establish_peasant_communes
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_progressive_tax_reform"
+		if = {
+			limit = {
+				has_idea = SBR_socialist_state_idea
+			}
+			swap_ideas = {
+				remove_idea = SBR_socialist_state_idea
+				add_idea = SBR_socialist_state_idea1
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = SBR_seized_means_idea
+				add_idea = SBR_socialist_state_idea
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_socialist_welfare_programs
+	icon = GFX_GENERIC_socialist_realism
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_expropriate_land_wealth
+	prerequisite = {
+		focus = SBR_expropriate_land_wealth
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_socialist_welfare_programs"
+		if = {
+			limit = {
+				has_idea = SBR_socialist_state_idea
+			}
+			swap_ideas = {
+				remove_idea = SBR_socialist_state_idea
+				add_idea = SBR_socialist_state_idea1
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = SBR_seized_means_idea
+				add_idea = SBR_socialist_state_idea
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_industrial_expansion
+	icon = GFX_GENERIC_military_industry_produce
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_socialist_welfare_programs
+	prerequisite = {
+		focus = SBR_socialist_welfare_programs
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_industrial_expansion"
+		408 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		408 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_maintain_the_revolutionary_government
+	icon = GFX_GENERIC_Commie_Government
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_equality_for_all
+	prerequisite = {
+		focus = SBR_equality_for_all
+	}
+	prerequisite = {
+		focus = SBR_autonomy_for_siberians
+	}
+	prerequisite = {
+		focus = SBR_industrial_expansion
+	}
+	prerequisite = {
+		focus = SBR_progressive_tax_reform
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	mutually_exclusive = {
+		focus = SBR_restore_civilian_rule
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_maintain_the_revolutionary_government"
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.3
+		}
+		if = {
+			limit = {
+				has_idea = SBR_United_Front_Agrsoc_idea
+			}
+			swap_ideas = {
+				remove_idea = SBR_United_Front_Agrsoc_idea
+				add_idea = SBR_United_Front_Agrsoc_absolutist_idea
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = SBR_United_Front_Trots_idea
+				add_idea = SBR_United_Front_Agrsoc_absolutist_idea
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_taking_care_of_loose_ends
+	icon = GFX_GENERIC_Purge_Paper
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_maintain_the_revolutionary_government
+	prerequisite = {
+		focus = SBR_maintain_the_revolutionary_government
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_taking_care_of_loose_ends"
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.3
+		}
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.3
+		}
+		add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = -0.3
+		}
+		
+	}
+}
+
+shared_focus = {
+	id = SBR_rehabilitate_savinkov
+	icon = GFX_SBR_Remember_Savinkov
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_taking_care_of_loose_ends
+	prerequisite = {
+		focus = SBR_taking_care_of_loose_ends
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_rehabilitate_savinkov"
+		country_event = {
+			id = sbrsavinkov.1
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_glorify_violence
+	icon = GFX_GENERIC_Soviet_Soldiers_Village
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_rehabilitate_savinkov
+	prerequisite = {
+		focus = SBR_rehabilitate_savinkov
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_glorify_violence"
+		if = {
+			limit = {
+				has_idea = SBR_Partisan_Army_Trot_idea
+			}
+			swap_ideas = {
+				remove_idea = SBR_Partisan_Army_Trot_idea
+				add_idea = SBR_srco_paramilitaries_idea
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = SBR_Partisan_Army_idea
+				add_idea = SBR_srco_paramilitaries_idea
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_control_the_unions
+	icon = GFX_SPA_Union
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_taking_care_of_loose_ends
+	prerequisite = {
+		focus = SBR_taking_care_of_loose_ends
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_control_the_unions"
+		swap_ideas = {
+			remove_idea = SBR_socialist_state_idea1
+			add_idea = SBR_socialist_dictatorship_state_idea
+		}
+	}
+}
+
+
+shared_focus = {
+	id = SBR_an_enlightened_dictatorship
+	icon = GFX_RUS_Dictator_Hat
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_control_the_unions
+	prerequisite = {
+		focus = SBR_control_the_unions
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_an_enlightened_dictatorship"
+		swap_ideas = {
+			remove_idea = authoritarian_system
+			add_idea = fanatical_dictatorship
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_more_army_than_state
+	icon = GFX_GENERIC_Red_Army_Overhaul
+	x = 0
+	y = 3
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_taking_care_of_loose_ends
+	prerequisite = {
+		focus = SBR_an_enlightened_dictatorship
+	}
+	prerequisite = {
+		focus = SBR_glorify_violence
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_more_army_than_state"
+		add_manpower = 60000
+		increase_conscription = yes
+		add_research_slot = 1
+	}
+}
+
+
+
+shared_focus = {
+	id = SBR_restore_civilian_rule
+	icon = GFX_GENERIC_Military_Civillian_Transition
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_progressive_tax_reform
+	prerequisite = {
+		focus = SBR_equality_for_all
+	}
+	prerequisite = {
+		focus = SBR_autonomy_for_siberians
+	}
+	prerequisite = {
+		focus = SBR_industrial_expansion
+	}
+	prerequisite = {
+		focus = SBR_progressive_tax_reform
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	mutually_exclusive = {
+		focus = SBR_maintain_the_revolutionary_government
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_restore_civilian_rule"
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Andrei Sinyavsky"
+			desc = "POLITICS_ANDREI_SINYAVSKY_DESC"
+			picture = "Andrei_Sinyavsky.dds"
+			expire = "1965.1.1"
+			ideology = agrarian_socialism
+			traits = {
+				
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_sinyavskys_government
+	icon = GFX_SBR_Sinyavsky_Government
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_restore_civilian_rule
+	prerequisite = {
+		focus = SBR_restore_civilian_rule
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_sinyavskys_government"
+		country_event = { id = sbr.15 }
+	}
+}
+
+shared_focus = {
+	id = SBR_formalize_the_united_front
+	icon = GFX_ITA_Approach_the_Socialists
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_sinyavskys_government
+	prerequisite = {
+		focus = SBR_sinyavskys_government
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_formalize_the_united_front"
+		if = {
+			limit = {
+				has_idea = SBR_United_Front_Agrsoc_idea
+			}
+			remove_ideas = { SBR_United_Front_Agrsoc_idea }
+		}
+		else = {
+			remove_ideas = { SBR_United_Front_Trots_idea }
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.5
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.4
+			}
+			add_popularity = {
+				ideology = marxist_leninist
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = bolshevik_leninist
+				popularity = 0.2
+			}
+		}
+
+	}
+}
+
+shared_focus = {
+	id = SBR_hold_soviet_elections
+	icon = GFX_GENERIC_Authoritarian_Democracy
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_formalize_the_united_front
+	prerequisite = {
+		focus = SBR_formalize_the_united_front
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_hold_soviet_elections"
+		country_event = {
+			id = sbr.11
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_reign_in_the_militarists
+	icon = GFX_focus_generic_diplomatic_treaty
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_sinyavskys_government
+	prerequisite = {
+		focus = SBR_sinyavskys_government
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_reign_in_the_militarists"
+		army_experience = -10
+		add_war_support = -0.05
+		add_stability = 0.1
+	}
+}
+
+shared_focus = {
+	id = SBR_our_right_to_survive
+	icon = GFX_GENERIC_Freedom
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_reign_in_the_militarists
+	prerequisite = {
+		focus = SBR_reign_in_the_militarists
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_our_right_to_survive"
+		add_ideas = { SBR_for_democracy_idea }
+	}
+}
+
+shared_focus = {
+	id = SBR_the_true_heirs_to_kerensky
+	icon = GFX_RUS_kerensky
+	x = 0
+	y = 3
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	relative_position_id = SBR_sinyavskys_government
+	prerequisite = {
+		focus = SBR_our_right_to_survive
+	}
+	prerequisite = {
+		focus = SBR_hold_soviet_elections
+	}
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_the_true_heirs_to_kerensky"
+		swap_ideas = {
+			remove_idea = authoritarian_system
+			add_idea = facade_democracy
+		}
+		add_research_slot = 1
+	}
+}
+
+
+
+
+#####################
+## TROTSKYIST TREE ##
+#####################
+
+shared_focus = {
+	id = SBR_In_Lenins_Footsteps
+	icon = GFX_GENERIC_Lenin_Lives
+	x = 10
+	y = 0
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_In_Lenins_Footsteps"
+		custom_effect_tooltip = SBR_trotskyism_tt
+	}
+}
+shared_focus = {
+	id = SBR_State_Reorganization
+	icon = GFX_GENERIC_ussr_map
+	x = 0
+	y = 1
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_In_Lenins_Footsteps
+	}
+	relative_position_id = SBR_In_Lenins_Footsteps
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_State_Reorganization"
+		add_timed_idea = {
+			idea = SBR_state_reorganization_idea
+			days = 100
+		}
+		if = {
+			limit = {
+				has_idea = SBR_United_Front_Agrsoc_idea
+			}
+			swap_ideas = { 
+				remove_idea = SBR_United_Front_Agrsoc_idea 
+				add_idea = SBR_United_Front_Trots_idea
+			}
+			add_popularity = {
+				ideology = bolshevik_leninist
+				popularity = 0.3
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = bolshevik_leninist
+				popularity = 0.6
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Establish_Red_Guards
+	icon = GFX_ITA_Hunt_Down_the_Reds
+	x = -2
+	y = 1
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_State_Reorganization
+	}
+	relative_position_id = SBR_State_Reorganization
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Establish_Red_Guards"
+		add_manpower = 9000
+		increase_conscription = yes
+	}
+}
+shared_focus = {
+	id = SBR_Refound_OGPU
+	icon = GFX_SOV_local_intel
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Establish_Red_Guards
+	}
+	relative_position_id = SBR_Establish_Red_Guards
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Refound_OGPU"
+		add_ideas = { SBR_OGPU_idea }
+	}
+}
+shared_focus = {
+	id = SBR_Return_To_Centralism
+	icon = GFX_GENERIC_General_Staff_Meeting
+	x = -4
+	y = 1
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_State_Reorganization
+	}
+	relative_position_id = SBR_State_Reorganization
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Return_To_Centralism"
+		add_stability = 0.05
+		add_political_power = 50 
+	}
+}
+shared_focus = {
+	id = SBR_Reestablish_Soviets
+	icon = GFX_focus_generic_soviet_politics
+	x = 0
+	y = 1
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Return_To_Centralism
+	}
+	relative_position_id = SBR_Return_To_Centralism
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Reestablish_Soviets"
+		add_popularity = {
+		    ideology = bolshevik_leninist
+		    popularity = 0.1
+		}
+	}
+}
+shared_focus = {
+	id = SBR_End_Rebellious_Peasant_Groups
+	icon = GFX_GENERIC_land_redistribution
+	x = 2
+	y = 1
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_State_Reorganization
+	}
+	mutually_exclusive = {
+		focus = SBR_Undermine_The_Agrarians
+	}
+	relative_position_id = SBR_State_Reorganization
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_End_Rebellious_Peasant_Groups"
+		add_war_support = -0.05
+		add_political_power = -70
+	}
+}
+
+shared_focus = {
+	id = SBR_Down_With_False_Idols
+	icon = GFX_KAZ_Stalin_is_Dead_Details_Later
+	x = 0
+	y = 1
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_End_Rebellious_Peasant_Groups
+	}
+	relative_position_id = SBR_End_Rebellious_Peasant_Groups
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Down_With_False_Idols"
+		add_ideas = { SBR_false_idols_destroyed_idea }
+	}
+}
+shared_focus = {
+	id = SBR_Undermine_The_Agrarians
+	icon = GFX_GENERIC_socialist_announcement
+	x = 4
+	y = 1
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_State_Reorganization
+	}
+	mutually_exclusive = {
+		focus = SBR_End_Rebellious_Peasant_Groups
+	}
+	relative_position_id = SBR_State_Reorganization
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Undermine_The_Agrarians"
+		add_war_support = -0.05
+		add_stability = 0.1
+	}
+}
+shared_focus = {
+	id = SBR_Forgiving_Our_Enemies
+	icon = GFX_GENERIC_peaceful_socialism
+	x = 0
+	y = 1
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Undermine_The_Agrarians
+	}
+	relative_position_id = SBR_Undermine_The_Agrarians
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Forgiving_Our_Enemies"
+		add_ideas = { SBR_enemies_forgiven_idea }
+	}
+}
+shared_focus = {
+	id = SBR_Formalize_The_Party
+	icon = GFX_GENERIC_elite_party
+	x = 0
+	y = 3
+	cost = 3
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Down_With_False_Idols
+		focus = SBR_Forgiving_Our_Enemies
+	}
+	prerequisite = {
+		focus = SBR_Reestablish_Soviets
+	}
+	prerequisite = {
+		focus = SBR_Refound_OGPU
+	}
+	relative_position_id = SBR_State_Reorganization
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Formalize_The_Party"
+		country_event = {
+				id = sbr.12
+		}
+		add_research_slot = 1
+	}
+}
+shared_focus = {
+	id = SBR_Rehab_Stalins_Opponents
+	icon = GFX_GENERIC_Trotsky
+	x = -3
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Formalize_The_Party
+	}
+	relative_position_id = SBR_Formalize_The_Party
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Rehab_Stalins_Opponents"
+		country_event = {
+			id = sbr.13
+		}
+	}
+}
+shared_focus = {
+	id = SBR_On_Religion
+	icon = GFX_SER_focus_religion_policy
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Rehab_Stalins_Opponents
+	}
+	relative_position_id = SBR_Rehab_Stalins_Opponents
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_On_Religion"
+		country_event = {
+			id = sbr.14
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Snuffing_Out_Masses_Opium
+	icon = GFX_RFP_Anti_drug_campaign
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_On_Religion
+	}
+	mutually_exclusive = {
+		focus = SBR_Reconcile_With_Religion
+	}
+	relative_position_id = SBR_On_Religion
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_On_Religion"
+		custom_effect_tooltip = SBR_atheism_tt
+	}
+}
+shared_focus = {
+	id = SBR_Close_Religious_Institutions
+	icon = GFX_GENERIC_School
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Snuffing_Out_Masses_Opium
+	}
+	relative_position_id = SBR_Snuffing_Out_Masses_Opium
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Close_Religious_Institutions"
+		add_political_power = 70
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Governance_By_Reason
+	icon = GFX_LAO_revolutionary_schools
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Close_Religious_Institutions
+	}
+	relative_position_id = SBR_Close_Religious_Institutions
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Governance_By_Reason"
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = SBR_Reconcile_With_Religion
+	icon = GFX_GENERIC_handshake
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_On_Religion
+	}
+	mutually_exclusive = {
+		focus = SBR_Snuffing_Out_Masses_Opium
+	}
+	relative_position_id = SBR_On_Religion
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Reconcile_With_Religion"
+		custom_effect_tooltip = SBR_laicity_tt
+	}
+}
+shared_focus = {
+	id = SBR_Liberation_From_Poverty
+	icon = GFX_RUS_Prepare_for_the_Bolshevik_Menace
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Reconcile_With_Religion
+	}
+	relative_position_id = SBR_Reconcile_With_Religion
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Liberation_From_Poverty"
+		if = {
+			limit = {
+				has_idea = SBR_false_idols_destroyed_idea
+			}
+			swap_ideas = {
+				remove_idea = SBR_false_idols_destroyed_idea
+				add_idea = SBR_false_idols_destroyed_idea1
+			}
+		}
+		else = {
+			swap_ideas = {
+				remove_idea = SBR_enemies_forgiven_idea
+				add_idea = SBR_enemies_forgiven_idea1
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SBR_Governance_By_Tolerance
+	icon = GFX_focus_KRA_The_Plurination_Unification_Plan
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Liberation_From_Poverty
+	}
+	relative_position_id = SBR_Liberation_From_Poverty
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Governance_By_Tolerance"
+		add_war_support = 0.05
+	}
+}
+shared_focus = {
+	id = SBR_A_New_Four_Year_Plan
+	icon = GFX_goal_generic_soviet_construction
+	x = 3
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Formalize_The_Party
+	}
+	relative_position_id = SBR_Formalize_The_Party
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_A_New_Four_Year_Plan"
+		add_timed_idea = {
+			idea = SBR_four_year_plan_idea
+			days = 1460
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_New_GOSPLAN
+	icon = GFX_GENERIC_Construction_Engineering
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_A_New_Four_Year_Plan
+	}
+	relative_position_id = SBR_A_New_Four_Year_Plan
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_New_GOSPLAN"
+		add_ideas = { SBR_socialist_state_idea1 }
+	}
+}
+
+shared_focus = {
+	id = SBR_Modernized_Civilian_Sector
+	icon = GFX_goal_generic_consumer_goods
+	x = -2
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_New_GOSPLAN
+	}
+	relative_position_id = SBR_New_GOSPLAN
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Modernized_Civilian_Sector"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Mechanisation
+	icon = GFX_GENERIC_air_production
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Modernized_Civilian_Sector
+	}
+	relative_position_id = SBR_Modernized_Civilian_Sector
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Mechanisation"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Enforce_Collectivisation
+	icon = GFX_SOV_Collective_Efforts
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Mechanisation
+	}
+	relative_position_id = SBR_Mechanisation
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Enforce_Collectivisation"
+		add_ideas = { SBR_collectivisation_idea }
+	}
+}
+
+shared_focus = {
+	id = SBR_Landlord_Compensation
+	icon = GFX_GENERIC_corruption_money
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Enforce_Collectivisation
+	}
+	relative_position_id = SBR_Enforce_Collectivisation
+	mutually_exclusive = {
+		focus = SBR_expropriate_landlord_holdings
+	}
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Landlord_Compensation"
+		add_political_power = -50
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = SBR_expropriate_landlord_holdings
+	icon = GFX_SOV_Dekulak
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_Enforce_Collectivisation
+	}
+	relative_position_id = SBR_Enforce_Collectivisation
+	mutually_exclusive = {
+		focus = SBR_Landlord_Compensation
+	}
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_expropriate_landlord_holdings"
+		add_political_power = 50
+		add_stability = -0.05
+	}
+}
+
+shared_focus = {
+	id = SBR_resource_development_scheme
+	icon = GFX_SOV_konev_NKVD_Resource_Department
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_New_GOSPLAN
+	}
+	relative_position_id = SBR_New_GOSPLAN
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_resource_development_scheme"
+		set_country_flag = MINING_RESOURCES
+        custom_effect_tooltip = RUS_Resource_Prospecting_tt
+	}
+}
+
+shared_focus = {
+	id = SBR_from_the_earth
+	icon = GFX_GENERIC_socialist_world_peace
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_resource_development_scheme
+	}
+	relative_position_id = SBR_resource_development_scheme
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_from_the_earth"
+		add_tech_bonus = {
+            name = industrial_bonus
+            bonus = 1
+            uses = 2
+            category = excavation_tech
+        }
+	}
+}
+
+shared_focus = {
+	id = SBR_dockyard_expansion
+	icon = GFX_goal_generic_construct_naval_dockyard
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_from_the_earth
+	}
+	relative_position_id = SBR_from_the_earth
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_dockyard_expansion"
+		408 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+		408 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_bureaucratic_overhaul
+	icon = GFX_SER_focus_Organic_Bureaucracy
+	x = 2
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_New_GOSPLAN
+	}
+	relative_position_id = SBR_New_GOSPLAN
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_bureaucratic_overhaul"
+		add_ideas = { SBR_collectivisation_idea }
+	}
+}
+
+
+shared_focus = {
+	id = SBR_oil_the_gears_of_war
+	icon = GFX_goal_generic_oil_refinery
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_bureaucratic_overhaul
+	}
+	relative_position_id = SBR_bureaucratic_overhaul
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_oil_the_gears_of_war"
+		swap_ideas = {
+			remove_idea = SBR_collectivisation_idea
+			add_idea = SBR_collectivisation_idea1
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_industrial_quotas
+	icon = GFX_GENERIC_worker
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_oil_the_gears_of_war
+	}
+	relative_position_id = SBR_oil_the_gears_of_war
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_industrial_quotas"
+		swap_ideas = {
+			remove_idea = SBR_collectivisation_idea1
+			add_idea = SBR_collectivisation_idea2
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_building_frenzy
+	icon = GFX_RUS_Volunteers
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_industrial_quotas
+	}
+	relative_position_id = SBR_industrial_quotas
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_building_frenzy"
+		swap_ideas = {
+			remove_idea = SBR_collectivisation_idea2
+			add_idea = SBR_collectivisation_idea3
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_shalamovist_economic_miracle
+	icon = GFX_GENERIC_Death_To_The_Workers
+	x = -2
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_building_frenzy
+	}
+	prerequisite = {
+		focus = SBR_expropriate_landlord_holdings
+		focus = SBR_Landlord_Compensation
+	}
+	relative_position_id = SBR_building_frenzy
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_shalamovist_economic_miracle"
+		add_political_power = 100
+		swap_ideas = {
+			remove_idea = SBR_collectivisation_idea3
+			add_idea = SBR_collectivisation_idea4
+		}
+	}
+}
+
+
+###############
+## ARMY TREE ##
+###############
+
+shared_focus = {
+	id = SBR_A_Peoples_Army
+	icon = GFX_GENERIC_A_Big_Push
+	x = -3
+	y = 0
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_A_Peoples_Army"
+		army_experience = 50
+		navy_experience = 50
+		air_experience = 50
+		add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = SBR_the_red_army
+	icon = GFX_GENERIC_Russian_Female_Troops
+	x = -5
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_A_Peoples_Army
+	}
+	relative_position_id = SBR_A_Peoples_Army
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_the_red_army"
+		army_experience = 100
+	}
+}
+
+shared_focus = {
+	id = SBR_new_weapon_innovations
+	icon = GFX_SOV_kalashnikov_rifle
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_the_red_army
+	}
+	relative_position_id = SBR_the_red_army
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_new_weapon_innovations"
+		add_tech_bonus = {
+			bonus = 0.4
+			uses = 1
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_salvage_old_equipment
+	icon = GFX_GENERIC_Mosins
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_the_red_army
+	}
+	relative_position_id = SBR_the_red_army
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_salvage_old_equipment"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 100
+			producer = RFP
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 50
+			producer = RFP
+		}
+		add_equipment_to_stockpile = {
+			type = APC_equipment
+			amount = 50
+			producer = RFP
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_recruitment_effort
+	icon = GFX_GENERIC_recruitment
+	x = 0
+	y = 2
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_salvage_old_equipment
+	}
+	prerequisite = {
+		focus = SBR_new_weapon_innovations
+	}
+	relative_position_id = SBR_the_red_army
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_recruitment_effort"
+		add_ideas = { ENG_recruitment_campaign }
+	}
+}
+
+shared_focus = {
+	id = SBR_the_red_airforce
+	icon = GFX_goal_generic_air_fighter2
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_A_Peoples_Army
+	}
+	relative_position_id = SBR_A_Peoples_Army
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_the_red_airforce"
+		air_experience = 100
+	}
+}
+
+shared_focus = {
+	id = SBR_rebuild_republics_airforce
+	icon = GFX_GENERIC_air_production
+	x = 1
+	y = 1
+	relative_position_id = SBR_the_red_airforce
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = SBR_the_red_airforce
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_rebuild_republics_airforce"
+		add_equipment_to_stockpile = {
+			type = fighter_equipment
+			amount = 500
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = tac_bomber_equipment
+			amount = 50
+			producer = USA
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_new_airfields
+	icon = GFX_GENERIC_airliner_take_off
+	x = -1
+	y = 1
+	relative_position_id = SBR_the_red_airforce
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = SBR_the_red_airforce
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_new_airfields"
+		564 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = air_base
+				level = 1
+				instant_build = yes
+			}
+		}
+		565 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = air_base
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_support_from_the_skies
+	icon = GFX_GENERIC_airland_battle
+	x = 0
+	y = 2
+	relative_position_id = SBR_the_red_airforce
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = SBR_new_airfields
+	}
+	prerequisite = {
+		focus = SBR_rebuild_republics_airforce
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_support_from_the_skies"
+		add_tech_bonus = {
+				name = cas_bonus
+				bonus = 0.5
+				uses = 2
+				category = cas
+				category = interceptor
+			}
+	}
+}
+
+shared_focus = {
+	id = SBR_the_red_navy
+	icon = GFX_GENERIC_socialist_navy
+	x = 5
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_A_Peoples_Army
+	}
+	relative_position_id = SBR_A_Peoples_Army
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_the_red_navy"
+		navy_experience = 100
+	}
+}
+
+shared_focus = {
+	id = SBR_restore_the_republican_fleet
+	icon = GFX_GENERIC_Naval_Industry
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_the_red_navy
+	}
+	relative_position_id = SBR_the_red_navy
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_restore_the_republican_fleet"
+		load_oob = "RUS_1952_naval_legacy"
+	}
+}
+
+shared_focus = {
+	id = SBR_review_soviet_blueprints
+	icon = GFX_SOV_Naval_Draft
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_the_red_navy
+	}
+	relative_position_id = SBR_the_red_navy
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_review_soviet_blueprints"
+		add_tech_bonus = {
+			name = destroyer_bonus
+			bonus = 0.4
+			uses = 1
+			category = dd_tech
+		}
+		add_tech_bonus = {
+			name = sub_bonus
+			bonus = 0.4
+			uses = 1
+			category = ss_tech
+		}
+		add_tech_bonus = {
+			name = cruiser_bonus
+			bonus = 0.4
+			uses = 1
+			category = cl_tech
+			category = dd_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_own_the_seas
+	icon = GFX_goal_generic_navy_doctrines_tactics
+	x = 0
+	y = 2
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_review_soviet_blueprints
+	}
+	prerequisite = {
+		focus = SBR_restore_the_republican_fleet
+	}
+	relative_position_id = SBR_the_red_navy
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_own_the_seas"
+		navy_experience = 100
+	}
+}
+
+
+#####################
+## RECONQUEST TREE ##
+#####################
+
+shared_focus = {
+	id = SBR_One_Russia
+	icon = GFX_focus_CDA_the_union_is_here
+	x = 20
+	y = 0
+	cost = 1
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_One_Russia"
+		custom_effect_tooltip = RUS_claims_on_all_russian_states_tt
+		hidden_effect = {
+			#Krasnoyarsk
+			329 = { add_claim_by = SBR }
+			566 = { add_claim_by = SBR }
+			567 = { add_claim_by = SBR }
+			568 = { add_claim_by = SBR }
+			875 = { add_claim_by = SBR }
+			978 = { add_claim_by = SBR }
+			#Norilsk
+			516 = { add_claim_by = SBR }
+			1021 = { add_claim_by = SBR }
+			575 = { add_claim_by = SBR }
+			576 = { add_claim_by = SBR }
+			#Novosibirsk
+			40 = { add_claim_by = SBR }
+			569 = { add_claim_by = SBR }
+			570 = { add_claim_by = SBR }
+			578 = { add_claim_by = SBR }
+			654 = { add_claim_by = SBR }
+			#Kazakhstan
+			404 = { add_claim_by = SBR }
+			588 = { add_claim_by = SBR }
+			1017 = { add_claim_by = SBR }
+			1018 = { add_claim_by = SBR }
+			#USSR
+			250 = { add_claim_by = SBR }
+			252 = { add_claim_by = SBR }
+			255 = { add_claim_by = SBR }
+			256 = { add_claim_by = SBR }
+			1028 = { add_claim_by = SBR }
+			1029 = { add_claim_by = SBR }
+			262 = { add_claim_by = SBR }
+			397 = { add_claim_by = SBR }
+			398 = { add_claim_by = SBR }
+			399 = { add_claim_by = SBR }
+			400 = { add_claim_by = SBR }
+			402 = { add_claim_by = SBR }
+			403 = { add_claim_by = SBR }
+			571 = { add_claim_by = SBR }
+			572 = { add_claim_by = SBR }
+			573 = { add_claim_by = SBR }
+			577 = { add_claim_by = SBR }
+			579 = { add_claim_by = SBR }
+			653 = { add_claim_by = SBR }
+			580 = { add_claim_by = SBR }
+			581 = { add_claim_by = SBR }
+			582 = { add_claim_by = SBR }
+			583 = { add_claim_by = SBR }
+			587 = { add_claim_by = SBR }
+			590 = { add_claim_by = SBR }
+			651 = { add_claim_by = SBR }
+			1019 = { add_claim_by = SBR }
+			#Kazan
+			239 = { add_claim_by = SBR }
+			249 = { add_claim_by = SBR }
+			251 = { add_claim_by = SBR }
+			401 = { add_claim_by = SBR }
+			406 = { add_claim_by = SBR }
+			407 = { add_claim_by = SBR }
+			652 = { add_claim_by = SBR }
+			961 = { add_claim_by = SBR }
+			#Germany
+			137 = { add_claim_by = SBR }
+			195 = { add_claim_by = SBR }
+			205 = { add_claim_by = SBR }
+			208 = { add_claim_by = SBR }
+			209 = { add_claim_by = SBR }
+			210 = { add_claim_by = SBR }
+			214 = { add_claim_by = SBR }
+			217 = { add_claim_by = SBR }
+			218 = { add_claim_by = SBR }
+			220 = { add_claim_by = SBR }
+			222 = { add_claim_by = SBR }
+			223 = { add_claim_by = SBR }
+			224 = { add_claim_by = SBR }
+			232 = { add_claim_by = SBR }
+			233 = { add_claim_by = SBR }
+			234 = { add_claim_by = SBR }
+			235 = { add_claim_by = SBR }
+			236 = { add_claim_by = SBR }
+			237 = { add_claim_by = SBR }
+			238 = { add_claim_by = SBR }
+			240 = { add_claim_by = SBR }
+			242 = { add_claim_by = SBR }
+			243 = { add_claim_by = SBR }
+			244 = { add_claim_by = SBR }
+			245 = { add_claim_by = SBR }
+			246 = { add_claim_by = SBR }
+			247 = { add_claim_by = SBR }
+			248 = { add_claim_by = SBR }
+			351 = { add_claim_by = SBR }
+			253 = { add_claim_by = SBR }
+			254 = { add_claim_by = SBR }
+			257 = { add_claim_by = SBR }
+			258 = { add_claim_by = SBR }
+			260 = { add_claim_by = SBR }
+			263 = { add_claim_by = SBR }
+			264 = { add_claim_by = SBR }
+			265 = { add_claim_by = SBR }
+			970 = { add_claim_by = SBR }
+			971 = { add_claim_by = SBR }
+			972 = { add_claim_by = SBR }
+			973 = { add_claim_by = SBR }
+			974 = { add_claim_by = SBR }
+			975 = { add_claim_by = SBR }
+			976 = { add_claim_by = SBR }
+			977 = { add_claim_by = SBR }
+			999 = { add_claim_by = SBR }
+			1000 = { add_claim_by = SBR }
+			1001 = { add_claim_by = SBR }
+			1002 = { add_claim_by = SBR }
+			1003 = { add_claim_by = SBR }
+			1004 = { add_claim_by = SBR }
+			1005 = { add_claim_by = SBR }
+			1006 = { add_claim_by = SBR }
+			1007 = { add_claim_by = SBR }
+			set_country_flag = CENTRAL_RUSSIA_REUNIFICATION
+			set_country_flag = reconquering_russia
+			set_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_bring_order_to_siberia
+	icon = GFX_GENERIC_Conquer_Central_Siberia
+	x = 0
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_One_Russia
+	}
+	will_lead_to_war_with = KRA
+	will_lead_to_war_with = NOV
+	will_lead_to_war_with = NRI
+	will_lead_to_war_with = IRK
+	will_lead_to_war_with = TAN
+	will_lead_to_war_with = KCS
+	bypass = {
+		KRA = { exists = no }
+		NOV = { exists = no }
+		NRI = { exists = no }
+		IRK = { exists = no }
+		TAN = { exists = no }
+		KCS = { exists = no }
+	}
+	relative_position_id = SBR_One_Russia
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_bring_order_to_siberia"
+		IF = {
+			limit = {
+				KRA = { exists = yes }
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = KRA
+			}
+		}
+		IF = {
+			limit = {
+				NOV = { exists = yes }
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NOV
+			}
+		}
+		IF = {
+			limit = {
+				NRI = { exists = yes }
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NRI
+			}
+		}
+		IF = {
+			limit = {
+				KCS = { exists = yes }
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = KCS
+			}
+		}
+		IF = {
+			limit = {
+				TAN = { exists = yes }
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = TAN
+			}
+		}
+		IF = {
+			limit = {
+				IRK = { exists = yes }
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = IRK
+			}
+		}
+		
+		IF = {
+			limit = {
+				KRA = { exists = no }
+				NOV = { exists = no }
+				NRI = { exists = no }
+				KCS = { exists = no }
+				TAN = { exists = no }
+				IRK = { exists = no }
+			}
+			custom_effect_tooltip = RUS_Reconquest_Bypass_tt
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_defend_against_perm
+	icon = GFX_SOV_To_Hell_With_Internationale
+	x = -1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_bring_order_to_siberia
+	}
+	relative_position_id = SBR_bring_order_to_siberia
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_defend_against_perm"
+		custom_effect_tooltip = RUS_forts_soviets_tt
+		hidden_effect = {
+			564 = {
+				add_building_construction = {
+					type = bunker
+					province = 1762
+					level = 1
+					instant_build = yes
+				}
+			}
+			565 = {
+				add_building_construction = {
+					type = bunker
+					province = 12575
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 4734
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 1792
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 12538
+					level = 1
+					instant_build = yes
+				}
+			}
+			574 = {
+				add_building_construction = {
+					type = bunker
+					province = 12611
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 1852
+					level = 1
+					instant_build = yes
+				}
+			}
+			644 = {
+				add_building_construction = {
+					type = bunker
+					province = 2853
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 1722
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 3184
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_emergency_red_guards
+	icon = GFX_REM_The_Yellow_Guards
+	x = 1
+	y = 1
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	prerequisite = {
+		focus = SBR_bring_order_to_siberia
+	}
+	available = {
+		OR = {
+			is_neighbor_of = SOV
+			is_neighbor_of = KAZ
+			is_neighbor_of = TRV
+		}
+	}
+	relative_position_id = SBR_bring_order_to_siberia
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_emergency_red_guards"
+		division_template = {
+			name = "Batal'on Krasnoy Gvardii"
+			regiments = {
+				militia = { x = 0 y = 0 }
+				militia = { x = 0 y = 1 }
+				militia = { x = 0 y = 2 }
+				militia = { x = 0 y = 3 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+			}
+			support = { 
+			}
+			is_locked = yes
+		}
+		random_owned_state = {
+			limit = {
+				is_capital = yes
+			}
+			create_unit = {
+				division = "name = \"1. Batal'on Krasnoy Gvardii\" division_template = \"Batal'on Krasnoy Gvardii\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"2. Batal'on Krasnoy Gvardii\" division_template = \"Batal'on Krasnoy Gvardii\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"3. Batal'on Krasnoy Gvardii\" division_template = \"Batal'on Krasnoy Gvardii\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"4. Batal'on Krasnoy Gvardii\" division_template = \"Batal'on Krasnoy Gvardii\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"5. Batal'on Krasnoy Gvardii\" division_template = \"Batal'on Krasnoy Gvardii\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"6. Batal'on Krasnoy Gvardii\" division_template = \"Batal'on Krasnoy Gvardii\" start_experience_factor = 0 start_equipment_factor = 1"
+				owner = ROOT
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RFP_Revenge_Against_Beriaism
+	icon = GFX_SOV_Denounce_Beria
+	x = -1
+	y = 1
+	relative_position_id = SBR_emergency_red_guards
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = SBR_emergency_red_guards
+	}
+	prerequisite = {
+		focus = SBR_defend_against_perm
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RFP_Revenge_Against_Beriaism"
+		if = {
+			limit = {
+				country_exists = SOV
+			}
+			SOV = {
+				country_event = {
+					id = russianreconquest.3
+				}
+				hidden_effect = {
+                	add_ideas = SOV_oh_no_not_perm
+                }
+			}
+			declare_war_on = {
+				target = SOV
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = {
+				country_exists = KAZ
+			}
+			KAZ = {
+				country_event = {
+					id = russianreconquest.3
+				}
+			}
+			declare_war_on = {
+				target = KAZ
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = {
+				country_exists = TRV
+			}
+			TRV = {
+				country_event = {
+					id = russianreconquest.3
+				}
+			}
+			declare_war_on = {
+				target = TRV
+				type = annex_everything
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Halt_The_False_Revolution
+	icon = GFX_GENERIC_Riot_focus
+	x = -3
+	y = 1
+	relative_position_id = RFP_Revenge_Against_Beriaism
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RFP_Revenge_Against_Beriaism
+	}
+	available = {
+		owns_state = 398
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Halt_The_False_Revolution"
+		IF = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea
+				add_idea = RUS_Overextended_Administration_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_1
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_1
+				add_idea = RUS_Overextended_Administration_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_2
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_2
+				add_idea = RUS_Overextended_Administration_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_3
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_3
+				add_idea = RUS_Overextended_Administration_idea_4
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Setting_The_Records_Straight
+	icon = GFX_SAF_The_Real_Treason_Trials
+	x = -1
+	y = 1
+	relative_position_id = RFP_Revenge_Against_Beriaism
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RFP_Revenge_Against_Beriaism
+	}
+	available = {
+		owns_state = 398
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Setting_The_Records_Straight"
+		IF = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea
+				add_idea = RUS_Overextended_Administration_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_1
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_1
+				add_idea = RUS_Overextended_Administration_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_2
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_2
+				add_idea = RUS_Overextended_Administration_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_3
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_3
+				add_idea = RUS_Overextended_Administration_idea_4
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_In_Lenins_Name
+	icon = GFX_GENERIC_Global_Revolution
+	x = 1
+	y = 1
+	relative_position_id = RFP_Revenge_Against_Beriaism
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RFP_Revenge_Against_Beriaism
+	}
+	available = {
+		owns_state = 398
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_In_Lenins_Name"
+		IF = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea
+				add_idea = RUS_Overextended_Administration_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_1
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_1
+				add_idea = RUS_Overextended_Administration_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_2
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_2
+				add_idea = RUS_Overextended_Administration_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_3
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_3
+				add_idea = RUS_Overextended_Administration_idea_4
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Fuel_Hun_Hatred
+	icon = GFX_RMD_Anti_Nazi_Crusade
+	x = 3
+	y = 1
+	relative_position_id = RFP_Revenge_Against_Beriaism
+	cost = 4
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RFP_Revenge_Against_Beriaism
+	}
+	available = {
+		owns_state = 398
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SBR_Fuel_Hun_Hatred"
+		add_war_support = 0.1
+		IF = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea
+				add_idea = RUS_Overextended_Administration_idea_1
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_1
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_1
+				add_idea = RUS_Overextended_Administration_idea_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_2
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_2
+				add_idea = RUS_Overextended_Administration_idea_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = RUS_Overextended_Administration_idea_3
+			}
+			swap_ideas = {
+				remove_idea = RUS_Overextended_Administration_idea_3
+				add_idea = RUS_Overextended_Administration_idea_4
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SBR_Finish_The_Peoples_Revolution
+	icon = GFX_SOV_gagarin_The_Committee_For_Revolutionary_Stability
+	x = 0
+	y = 2
+	relative_position_id = RFP_Revenge_Against_Beriaism
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = SBR_Fuel_Hun_Hatred
+	}
+	prerequisite = {
+		focus = SBR_In_Lenins_Name
+	}
+	prerequisite = {
+		focus = SBR_Setting_The_Records_Straight
+	}
+	prerequisite = {
+		focus = SBR_Halt_The_False_Revolution
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_Reconquest_Crossing_the_AA_Line"
+		custom_effect_tooltip = UNLOCK_LIBERATE_RUSSIA
+		set_country_flag = WESTERN_RUSSIA_UNIFICATION
+		set_country_flag = CENTRAL_ASIA_REUNIFICATION
+		remove_ideas = RUS_Overextended_Administration_idea_4
+		add_research_slot = 1
+	}
+}

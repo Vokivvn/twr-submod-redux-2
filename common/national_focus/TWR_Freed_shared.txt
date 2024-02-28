@@ -1,0 +1,411 @@
+shared_focus = {
+	id = RSB_The_Last_Stand
+	icon = GFX_GENERIC_anarchist
+	x = 6
+	y = 0
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_The_Last_Stand"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = RSB_Rally_the_Inmates
+	icon = GFX_GENERIC_RED_army_manpower
+	x = 0
+	y = 1
+	relative_position_id = RSB_The_Last_Stand
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_The_Last_Stand
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_Rally_the_Inmates"
+		add_war_support = 0.1
+		hidden_effect = {
+			add_ideas = TWR_SECRET_AGGRESSIVE_WACK
+		}
+	}
+}
+
+shared_focus = {
+	id = RSB_A_Gun_for_Every_Soul
+	icon = GFX_GENERIC_Weapons
+	x = -2
+	y = 1
+	relative_position_id = RSB_Rally_the_Inmates
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_Rally_the_Inmates
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_A_Gun_for_Every_Soul"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = GER
+		}
+	}
+}
+
+shared_focus = {
+	id = RSB_Meet_with_Partisan_Leadership
+	icon = GFX_GENERIC_handshake
+	x = 0
+	y = 1
+	relative_position_id = RSB_Rally_the_Inmates
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_Rally_the_Inmates
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_Meet_with_Partisan_Leadership"
+		country_event = {
+			id = rsb.1
+		}
+	}
+}
+
+shared_focus = {
+	id = RSB_Execute_the_Officers
+	icon = GFX_GENERIC_The_Noose
+	x = 2
+	y = 1
+	relative_position_id = RSB_Rally_the_Inmates
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_Rally_the_Inmates
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_Execute_the_Officers"
+		country_event = {
+			id = rsb.3
+		}
+	}
+}
+
+shared_focus = {
+	id = RSB_An_Eye_for_an_Eye
+	icon = GFX_GENERIC_Gun_Purge
+	x = 1
+	y = 1
+	relative_position_id = RSB_A_Gun_for_Every_Soul
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_A_Gun_for_Every_Soul
+	}
+	prerequisite = {
+		focus = RSB_Meet_with_Partisan_Leadership
+	}
+	prerequisite = {
+		focus = RSB_Execute_the_Officers
+	}
+	mutually_exclusive = {
+		focus = RSB_The_Chain_Ends_Here
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_An_Eye_for_an_Eye"
+		add_ideas = RSB_Anti_German_Terror_idea
+		hidden_effect = {
+			RMO = {
+				country_event = {
+					id = rsb.5
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RSB_The_Chain_Ends_Here
+	icon = GFX_GENERIC_Halt_Deportation
+	x = 1
+	y = 1
+	relative_position_id = RSB_Meet_with_Partisan_Leadership
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_A_Gun_for_Every_Soul
+	}
+	prerequisite = {
+		focus = RSB_Meet_with_Partisan_Leadership
+	}
+	prerequisite = {
+		focus = RSB_Execute_the_Officers
+	}
+	mutually_exclusive = {
+		focus = RSB_An_Eye_for_an_Eye
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_The_Chain_Ends_Here"
+		add_stability = 0.1
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = RSB_Arise_Comrades
+	icon = GFX_GENERIC_Victory_or_DEATH
+	x = 1
+	y = 1
+	relative_position_id = RSB_An_Eye_for_an_Eye
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_An_Eye_for_an_Eye
+		focus = RSB_The_Chain_Ends_Here
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_Arise_Comrades"
+		add_war_support = 0.1
+		load_oob = RSB_UPRISING_OOB
+	}
+}
+
+shared_focus = {
+	id = RSB_Soup_for_the_Needy
+	icon = GFX_NOV_A_World_Full_of_Horror_and_Poverty
+	x = -1
+	y = 1
+	relative_position_id = RSB_Arise_Comrades
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_Arise_Comrades
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_Soup_for_the_Needy"
+		add_ideas = RSB_Soup_for_the_Needy_idea
+	}
+}
+
+shared_focus = {
+	id = RSB_Bread_and_Bullets
+	icon = GFX_GENERIC_Famine
+	x = 0
+	y = 1
+	relative_position_id = RSB_Soup_for_the_Needy
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_Soup_for_the_Needy
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_Bread_and_Bullets"
+		swap_ideas = {
+			remove_idea = RSB_Soup_for_the_Needy_idea
+			add_idea = RSB_Soup_for_the_Needy_idea1
+		}
+	}
+}
+
+shared_focus = {
+	id = RSB_Fight_the_Collaborators
+	icon = GFX_GENERIC_Volunteer
+	x = 1
+	y = 1
+	relative_position_id = RSB_Arise_Comrades
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_Arise_Comrades
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_Fight_the_Collaborators"
+		add_timed_idea = {
+			idea = RSB_Fighting_the_Collaborators_idea
+			days = 70
+		}
+	}
+}
+
+shared_focus = {
+	id = RSB_The_Issue_of_the_Red_Army
+	icon = GFX_GENERIC_United_Soviets
+	x = 0
+	y = 1
+	relative_position_id = RSB_Fight_the_Collaborators
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_Fight_the_Collaborators
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+		RMO = { country_exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_The_Issue_of_the_Red_Army"
+		country_event = {
+			id = rsb.6
+		}
+	}
+}
+
+shared_focus = {
+	id = RSB_The_World_Cannot_Remain_Silent
+	icon = GFX_GENERIC_Freedom
+	x = 1
+	y = 1
+	relative_position_id = RSB_Bread_and_Bullets
+	cost = 5
+	cancel_if_invalid = yes
+	available_if_capitulated = no
+	cancelable = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = RSB_Bread_and_Bullets
+	}
+	prerequisite = {
+		focus = RSB_The_Issue_of_the_Red_Army
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RSB_karbyshev_alive_tt
+			has_country_leader = { name = "Dmitry Karbyshev" }
+		}
+		RMO = { country_exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RSB_The_World_Cannot_Remain_Silent"
+		add_war_support = 0.2
+	}
+}

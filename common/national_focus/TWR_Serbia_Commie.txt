@@ -1,0 +1,190 @@
+focus_tree = {
+    id = serbian_tree_commie
+	
+	###############################################################
+	###===========| SERBIA COMMIE STARTING TREE |===============###
+	###==========|     Made by Canadian Lizard      |============##
+	####============|     Coded by GreyShadow     |=============###
+	###############################################################
+    
+    country = {
+        factor = 0
+    }
+    continuous_focus_position = { x = 50 y = -1000 }    
+    default = no
+    reset_on_civilwar = no
+
+    focus = {
+		cancelable = no
+		id = SER_Death_to_Fascism
+		icon = GFX_SER_focus_death_to_fascism
+		x = 7
+		y = 0
+		cost = 3
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Death_to_Fascism"
+			add_ideas = SER_fanatical_resistance
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_And_freedom_to_the_people
+		icon = GFX_SER_focus_freedom_to_the_people
+		prerequisite = { focus = SER_Death_to_Fascism }
+		x = 0
+		y = 1
+		relative_position_id = SER_Death_to_Fascism
+		cost = 3
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_And_freedom_to_the_people"
+			custom_effect_tooltip = SER_Partisan_milita_tt
+			hidden_effect = {
+				load_oob = SER_Partisan_milita
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Dinic_trial
+		icon = GFX_SER_focus_Dinics_trial
+		prerequisite = { focus = SER_And_freedom_to_the_people }
+		x = -2
+		y = 1
+		relative_position_id = SER_And_freedom_to_the_people
+		cost = 2
+		available = {
+			has_civil_war = no
+		}
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Dinic_trial"
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = national_socialist
+				popularity = -0.2
+			}
+			country_event = { days = 1 id = twrserbia.22 }
+			hidden_effect = {
+				add_popularity = {
+					ideology = bolshevik_leninist
+					popularity = 0.1
+				}
+				add_popularity = {
+					ideology = marxist_leninist
+					popularity = 0.1
+				}
+				add_popularity = {
+					ideology = socialist
+					popularity = 0.1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_First_phase_of_land_reform
+		icon = GFX_focus_generic_industry_1
+		prerequisite = { focus = SER_And_freedom_to_the_people }
+		x = 0
+		y = 1
+		relative_position_id = SER_And_freedom_to_the_people
+		cost = 2
+		available = {
+			has_civil_war = no
+		}
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_First_phase_of_land_reform"
+			remove_ideas = SER_in_ruins_3
+			107 = {
+				add_extra_state_shared_building_slots = 1
+			}
+			108 = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_Promise_minority_rights
+		icon = GFX_SER_focus_promise_minority_rights
+		prerequisite = { focus = SER_And_freedom_to_the_people }
+		x = 2
+		y = 1
+		relative_position_id = SER_And_freedom_to_the_people
+		cost = 2
+		available = {
+			has_civil_war = no
+		}
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Promise_minority_rights"
+			add_stability = 0.1
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SER_The_first_SKOJ_session
+		icon = GFX_SER_focus_SOKJ_Session
+		prerequisite = { focus = SER_Dinic_trial }
+		prerequisite = { focus = SER_First_phase_of_land_reform }
+		prerequisite = { focus = SER_Promise_minority_rights }
+		x = 0
+		y = 1
+		relative_position_id = SER_First_phase_of_land_reform
+		cost = 8
+		available = {
+			has_civil_war = no
+		}
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_first_SKOJ_session"
+			country_event = { id = twrserbia.23 }
+			set_variable = {
+				var = SER_tito_support
+				value = 50
+			}
+			set_variable = {
+				var = SER_rankovic_support
+				value = 35
+			}
+			set_variable = {
+				var = SER_dilas_support
+				value = 15
+			}
+			hidden_effect = {
+				country_event = { days = 15 id = twrserbia.26 }
+				country_event = { days = 10 id = twrserbia.25 }
+				country_event = { days = 5 id = twrserbia.24 }
+				set_popularities = {
+					bolshevik_leninist = 50
+					marxist_leninist = 35
+					socialist = 15
+				}
+			}
+		}
+	}
+}

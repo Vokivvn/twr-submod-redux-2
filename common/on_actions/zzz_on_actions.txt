@@ -1,0 +1,385 @@
+on_actions = {
+	#Not run on a specific country.
+	on_startup = {
+		effect = {
+		}
+	}
+
+	on_daily = {
+		effect = {
+		}
+	}
+
+	#ROOT is subject FROM is previous overlord
+	on_subject_free = {
+		effect = {
+			log = "[GetDateText] [Root.GetName]: on_subject_free FORMER OVERLORD: [From.GetName]"
+		}
+	}
+	#ROOT is subject FROM is overlord
+	on_subject_autonomy_level_change = {
+		effect = {
+			log = "[GetDateText] [Root.GetName]: on_subject_autonomy_level_change OVERLORD: [From.GetName]"
+		}
+	}
+	#ROOT is subject FROM is overlord
+	on_subject_annexed = {
+		effect = {
+			log = "[GetDateText] [Root.GetName]: on_subject_annexed OVERLORD: [From.GetName]"
+		}
+	}
+
+	#ROOT is winner #FROM gets annexed - For civil wars on_civil_war_end is also fired
+	on_annex = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] has annexed [From.GetName]"
+		}
+	}
+
+	#FROM is war target
+	on_declare_war = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] has declared war on [From.GetName]"
+		}
+	}
+	#ROOT is winner #FROM is loser
+	on_peaceconference_ended = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] (ROOT) on_peaceconference_ended [From.GetName] (FROM)"
+		}
+	}
+
+	# ROOT is capitulated country, FROM is winner
+	on_capitulation = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] has capitulated to [From.GetName]"
+		}
+	}
+	# ROOT is previously capitulated country
+	on_uncapitulation = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] has uncapitulated"
+		}
+	}
+
+	on_coup_succeeded = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_coup_succeeded"
+		}
+	}
+
+	on_border_war_lost = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_border_war_lost"
+		}
+	}
+
+	#ROOT is winner #FROM gets annexed - This will also fire on_annex
+	on_civil_war_end = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_civil_war_end"
+		}
+	}
+
+	on_leave_faction = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_leave_faction FROM = [From.GetName]"
+		}
+	}
+
+	# FROM = country giving access, ROOT = country asking for access
+	on_military_access = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] has asked for military access to [From.GetName]"
+		}
+	}
+	# FROM = country receiving access, ROOT = country offering access
+	on_offer_military_access = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] has offered military access to [From.GetName]"
+		}
+	}
+
+	# FROM = country being called, ROOT = country calling
+	on_call_allies = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] has called its ally [From.GetName] into its war"
+		}
+	}
+	# FROM = country being joined, ROOT = country joining
+	on_join_allies = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] is joining [From.GetName] in its war"
+		}
+	}
+
+	# FROM = country receiving goods, ROOT = country sending goods
+	on_lend_lease = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] is offering a lend lease to [From.GetName]"
+		}
+	}
+	# FROM = country requesting goods, ROOT = country sending goods
+	on_incoming_lend_lease = {
+		effect = {
+			log = "[GetDateText] [From.GetName] has requested a lend lease from [From.GetName]"
+		}
+	}
+	# FROM = country receiving volunteers, ROOT = country sending volunteers
+	on_send_volunteers = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] is sending volunteers to [From.GetName]"
+		}
+	}
+	# FROM = country to which theyre sent, ROOT = sending country
+	on_send_expeditionary_force = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] is sending an expeditionary force to [From.GetName]"
+		}
+	}
+	# FROM = country from which the forces are returning, ROOT = country who sent them
+	on_return_expeditionary_forces = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] is recalling its expeditionary force from [From.GetName]"
+		}
+	}
+	# FROM = country requesting them, ROOT = requesting country
+	on_request_expeditionary_forces = {
+		effect = {
+			log = "[GetDateText] [From.GetName] has requested expeditionary forces from [Root.GetName]"
+		}
+	}
+
+	# FROM = country on whom the wargoal is being generated, ROOT = country generating wargoal
+	on_generate_wargoal = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] is generating a wargoal on [From.GetName]"
+		}
+	}
+
+	# FROM = country giving control of the state, ROOT = country asking for control of the state
+	on_ask_for_state_control = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] is asking for state control from [From.GetName]"
+		}
+	}
+	# FROM = country accepting control of the state, ROOT = country giving control of the state
+	on_give_state_control = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] is giving state control to [From.GetName]"
+		}
+	}
+
+	on_wargoal_expire = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_wargoal_expire"
+		}
+	}
+
+	#FROM is state #ROOT is broken as hell
+	on_nuke_drop = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_nuke_drop STATE: [From.From.GetName]"
+		}
+	}
+
+	# Ace pilots
+	# country, FROM = ace
+	on_ace_promoted = {
+	}
+	# country, FROM = ace, PREV = enemy ace
+	# This event fires twice, once for each ace.
+	on_aces_killed_each_other = {
+	}
+	# country, FROM = our ace,
+	# PREV = enemy ace, has killed FROM
+	on_ace_killed_by_ace = {
+	}
+	# country, FROM = our ace,
+	# PREV = enemy ace, killed by FROM
+	on_ace_killed_other_ace = {
+	}
+	# country, FROM = ace
+	on_ace_killed = {
+	}
+
+	#used when puppeting in a peace conference
+	#ROOT = nation being puppeted, FROM = overlord
+	on_puppet = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_puppet FROM = [From.GetName]"
+		}
+	}
+	#used when puppeting through the occupied territories menu during peace time (or when releasing from non-core but owned territory, f.e. Britain releasing Egypt)
+	#ROOT = nation being released, FROM = overlord
+	on_release_as_puppet = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_release_as_puppet FROM = [From.GetName]"
+		}
+	}
+	#ROOT is free nation FROM is releaser
+	on_release_as_free = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_release_as_free FROM = [From.GetName]"
+		}
+	}
+
+	#FROM is country getting invited.
+	on_offer_join_faction = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_offer_join_faction FROM = [From.GetName]"
+		}
+	}
+	#FROM is faction leader on join faction requests. THIS DOES NOT FIRE ON ADD_TO_FACTION EFFECT! USE ON_OFFER_JOIN_FACTION!
+	on_join_faction = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_join_faction FROM = [From.GetName]"
+		}
+	}
+	# When a new faction is formed
+	on_faction_formed = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_faction_formed"
+		}
+	}
+
+	on_government_change = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_government_change"
+		}
+	}
+
+	#ROOT is new controller #FROM is old controller #FROM.FROM is state ID
+	on_state_control_changed = {
+		effect = {
+		}
+	}
+
+	on_new_term_election = {
+		effect = {
+		}
+	}
+
+	on_unit_leader_created = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_unit_leader_created"
+		}
+	}
+
+	# From is owner country
+	on_army_leader_daily = {
+		effect = {
+		}
+	}
+
+	# From is owner country
+	on_army_leader_won_combat = {
+		effect = {
+		}
+	}
+
+	# From is owner country
+	on_army_leader_lost_combat = {
+		effect = {
+		}
+	}
+	on_army_leader_promoted = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_army_leader_promoted [From.GetName]"
+		}
+	}
+
+	# Scope is the country owner of the PotF, FROM is the country of the killer
+	on_pride_of_the_fleet_sunk = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_pride_of_the_fleet_sunk [From.GetName]"
+		}
+	}
+
+	on_government_exiled = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_government_exiled"
+		}
+	}
+
+	#Root is exile
+	#From is new host
+	#FromFrom is old host
+	on_host_changed_from_capitulation = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_host_changed_from_capitulation"
+		}
+	}
+
+	#Root is exile
+	#From is old host
+	on_exile_government_reinstated = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_exile_government_reinstated"
+		}
+	}
+
+	#THIS is country that has just gotten into a war
+	on_war = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_war"
+		}
+	}
+
+	#ROOT is winner #FROM gets annexed - This will also fire on_annex
+	on_civil_war_end = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_civil_war_end"
+		}
+	}
+
+	#ROOT is winner #FROM gets annexed - This fires just before FROM gets annexed, meaning the country and everything it owns still exists. It will also fire on_annex and on_civil_war_end
+	on_civil_war_end_before_annexation = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_civil_war_end_before_annexation"
+		}
+	}
+
+	#FROM is war target
+	on_declare_war = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_declare_war"
+		}
+	}
+
+	# called when a country send volunteers to another
+	# ROOT is sender, FROM is receiver
+	on_send_volunteers = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_send_volunteers"
+		}
+	}
+
+	#FROM is country getting invited.
+	on_offer_join_faction = {
+		effect = {
+			log = "[GetDateText] [Root.GetName] on_offer_join_faction"
+		}
+	}
+
+	# ROOT is capitulated country, FROM is winner
+	on_capitulation = {
+		effect = {
+		}
+	}
+
+	# called a country fully decrypts cipher of a target country
+	# scope is the target country that its cipher is decrypted
+	# from scope is the decrypter country
+	on_fully_decrypted_cipher = {
+
+	}
+
+	# called when a country activates its active cipher bonuses against a target
+	# scope is the target country
+	# from scope is the country that activates its bonuses
+	on_activated_active_decryption_bonuses = {
+
+	}
+
+}

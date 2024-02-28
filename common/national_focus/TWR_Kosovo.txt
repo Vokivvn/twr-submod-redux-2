@@ -1,0 +1,527 @@
+focus_tree = {
+    id = kosovo_tree
+    
+    country = {
+        factor = 0
+        modifier = {
+            add = 10
+            tag = KOS
+        }
+    }
+    continuous_focus_position = { x = 50 y = -1000 }  
+    default = no
+    reset_on_civilwar = no
+
+    focus = {
+		cancelable = no
+		id = KOS_Form_a_new_Government
+		icon = GFX_GENERIC_Government
+		x = 4
+		y = 0
+		cost = 7
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Form_a_new_Government"
+			add_political_power = 75
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = KOS_Country_investment
+		icon = GFX_GENERIC_financial_assistance
+		prerequisite = { focus = KOS_Form_a_new_Government }
+		x = -2
+		y = 1
+		relative_position_id = KOS_Form_a_new_Government
+		cost = 7
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Country_investment"
+			818 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			980 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = KOS_Stabilize_the_Country
+		icon = GFX_GENERIC_Restricting_Workers_Right
+		prerequisite = { focus = KOS_Form_a_new_Government }
+		x = 2
+		y = 1
+		relative_position_id = KOS_Form_a_new_Government
+		cost = 7
+		ai_will_do = {
+		    factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Stabilize_the_Country"
+			add_stability = 0.15
+		}
+	}
+	
+	######################
+	####Serbian Path
+	######################
+	
+	focus = {
+		cancelable = no
+		id = KOS_Side_with_Serbia
+		icon = GFX_KOS_focus_side_with_yugoslavia
+		prerequisite = { focus = KOS_Stabilize_the_Country }
+		prerequisite = { focus = KOS_Country_investment }
+		mutually_exclusive = { focus = KOS_Side_with_Albania }
+		x = 3
+		y = 1
+		relative_position_id = KOS_Country_investment
+		cost = 5
+		ai_will_do = {
+		    factor = 5
+		}
+		available = {
+			SER = {
+				AND = {	
+					check_variable = { SER_influence > 49 }
+					check_variable = { SER_power > 54 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = SER_influence_tt
+				SER = {
+					check_variable = { SER_influence > 49 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = SER_power_tt
+				SER = {
+					check_variable = { SER_power > 54 }
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Side_with_Serbia"
+			effect_tooltip = {
+				SER_increase_influence_med = yes
+				ALB_decrease_influence_med = yes
+			}
+			hidden_effect = {
+				SER = {
+					SER_increase_influence_med = yes
+					ALB_decrease_influence_med = yes
+				}
+				ALB = {
+					SER_increase_influence_med = yes
+					ALB_decrease_influence_med = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = KOS_Increase_Serbian_population
+		icon = GFX_GENERIC_Refugees
+		prerequisite = { focus = KOS_Side_with_Serbia }
+		x = 0
+		y = 1
+		relative_position_id = KOS_Side_with_Serbia
+		cost = 5
+		ai_will_do = {
+		    factor = 5
+		}
+		available = {
+			SER = {
+				AND = {	
+					check_variable = { SER_influence > 49 }
+					check_variable = { SER_power > 54 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = SER_influence_tt
+				SER = {
+					check_variable = { SER_influence > 49 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = SER_power_tt
+				SER = {
+					check_variable = { SER_power > 54 }
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Increase_Serbian_population"
+			effect_tooltip = {
+				SER_increase_influence_low = yes
+				ALB_decrease_influence_low = yes
+				SER_increase_power_low = yes
+				ALB_decrease_power_low = yes
+			}
+			hidden_effect = {
+				SER = {
+					SER_increase_influence_low = yes
+					ALB_decrease_influence_low = yes
+					SER_increase_power_low = yes
+					ALB_decrease_power_low = yes
+				}
+				ALB = {
+					SER_increase_influence_low = yes
+					ALB_decrease_influence_low = yes
+					SER_increase_power_low = yes
+					ALB_decrease_power_low = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = KOS_Contact_Serbia
+		icon = GFX_GENERIC_Spy
+		prerequisite = { focus = KOS_Increase_Serbian_population }
+		x = 0
+		y = 1
+		relative_position_id = KOS_Increase_Serbian_population
+		cost = 5
+		ai_will_do = {
+		    factor = 5
+		}
+		available = {
+			SER = {
+				AND = {	
+					check_variable = { SER_influence > 49 }
+					check_variable = { SER_power > 54 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = SER_influence_tt
+				SER = {
+					check_variable = { SER_influence > 49 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = SER_power_tt
+				SER = {
+					check_variable = { SER_power > 54 }
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Contact_Serbia"
+			effect_tooltip = {
+				SER_increase_influence_low = yes
+				ALB_decrease_influence_low = yes
+				SER_increase_power_med = yes
+				ALB_decrease_power_med = yes
+			}
+			hidden_effect = {
+				SER = {
+					SER_increase_influence_low = yes
+					ALB_decrease_influence_low = yes
+					SER_increase_power_med = yes
+					ALB_decrease_power_med = yes
+				}
+				ALB = {
+					SER_increase_influence_low = yes
+					ALB_decrease_influence_low = yes
+					SER_increase_power_med = yes
+					ALB_decrease_power_med = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = KOS_Pro_Serbian_Government
+		icon = GFX_KOS_focus_pro_serbian_government
+		prerequisite = { focus = KOS_Contact_Serbia }
+		x = 0
+		y = 1
+		relative_position_id = KOS_Contact_Serbia
+		cost = 5
+		ai_will_do = {
+		    factor = 5
+		}
+		available = {
+			SER = {
+				AND = {	
+					check_variable = { SER_influence > 49 }
+					check_variable = { SER_power > 54 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = SER_influence_tt
+				SER = {
+					check_variable = { SER_influence > 49 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = SER_power_tt
+				SER = {
+					check_variable = { SER_power > 54 }
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Pro_Serbian_Government"
+			effect_tooltip = {
+				SER_increase_power_high = yes
+				ALB_decrease_power_high = yes
+			}
+			hidden_effect = {
+				SER = {
+					SER_increase_power_high = yes
+					ALB_decrease_power_high = yes
+				}
+				ALB = {
+					SER_increase_power_high = yes
+					ALB_decrease_power_high = yes
+				}
+			}
+		}
+	}
+	
+	######################
+	####Albanian Path
+	######################
+	
+	focus = {
+		cancelable = no
+		id = KOS_Side_with_Albania
+		icon = GFX_KOS_focus_side_with_albania
+		prerequisite = { focus = KOS_Stabilize_the_Country }
+		prerequisite = { focus = KOS_Country_investment }
+		mutually_exclusive = { focus = KOS_Side_with_Serbia }
+		x = 1
+		y = 1
+		relative_position_id = KOS_Country_investment
+		cost = 5
+		ai_will_do = {
+		    factor = 5
+		}
+		available = {
+			ALB = {
+				AND = {	
+					check_variable = { ALB_influence > 49 }
+					check_variable = { ALB_power > 54 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = ALB_influence_tt
+				ALB = {
+					check_variable = { ALB_influence > 49 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = ALB_power_tt
+				ALB = {
+					check_variable = { ALB_power > 54 }
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Side_with_Albania"
+			effect_tooltip = {
+				ALB_increase_influence_med = yes
+				SER_decrease_influence_med = yes
+			}
+			hidden_effect = {
+				SER = {
+					ALB_increase_influence_med = yes
+					SER_decrease_influence_med = yes
+				}
+				ALB = {
+					ALB_increase_influence_med = yes
+					SER_decrease_influence_med = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = KOS_Deport_Serbs
+		icon = GFX_GENERIC_deport_people
+		prerequisite = { focus = KOS_Side_with_Albania }
+		x = 0
+		y = 1
+		relative_position_id = KOS_Side_with_Albania
+		cost = 5
+		ai_will_do = {
+		    factor = 5
+		}
+		available = {
+			ALB = {
+				AND = {	
+					check_variable = { ALB_influence > 49 }
+					check_variable = { ALB_power > 54 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = ALB_influence_tt
+				ALB = {
+					check_variable = { ALB_influence > 49 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = ALB_power_tt
+				ALB = {
+					check_variable = { ALB_power > 54 }
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Deport_Serbs"
+			effect_tooltip = {
+				ALB_increase_influence_low = yes
+				SER_decrease_influence_low = yes
+				ALB_increase_power_low = yes
+				SER_decrease_power_low = yes
+			}
+			hidden_effect = {
+				SER = {
+					ALB_increase_influence_low = yes
+					SER_decrease_influence_low = yes
+					ALB_increase_power_low = yes
+					SER_decrease_power_low = yes
+				}
+				ALB = {
+					ALB_increase_influence_low = yes
+					SER_decrease_influence_low = yes
+					ALB_increase_power_low = yes
+					SER_decrease_power_low = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = KOS_Help_From_Albanian
+		icon = GFX_GENERIC_socialist_production
+		prerequisite = { focus = KOS_Deport_Serbs }
+		x = 0
+		y = 1
+		relative_position_id = KOS_Deport_Serbs
+		cost = 5
+		ai_will_do = {
+		    factor = 5
+		}
+		available = {
+			ALB = {
+				AND = {	
+					check_variable = { ALB_influence > 49 }
+					check_variable = { ALB_power > 54 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = ALB_influence_tt
+				ALB = {
+					check_variable = { ALB_influence > 49 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = ALB_power_tt
+				ALB = {
+					check_variable = { ALB_power > 54 }
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Help_From_Albanian"
+			effect_tooltip = {
+				ALB_increase_influence_low = yes
+				SER_decrease_influence_low = yes
+				ALB_increase_power_med = yes
+				SER_decrease_power_med = yes
+			}
+			hidden_effect = {
+				SER = {
+					ALB_increase_influence_low = yes
+					SER_decrease_influence_low = yes
+					ALB_increase_power_med = yes
+					SER_decrease_power_med = yes
+				}
+				ALB = {
+					ALB_increase_influence_low = yes
+					SER_decrease_influence_low = yes
+					ALB_increase_power_med = yes
+					SER_decrease_power_med = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = KOS_Pro_Albanian_Government
+		icon = GFX_KOS_focus_pro_albanina_government
+		prerequisite = { focus = KOS_Help_From_Albanian }
+		x = 0
+		y = 1
+		relative_position_id = KOS_Help_From_Albanian
+		cost = 5
+		ai_will_do = {
+		    factor = 5
+		}
+		available = {
+			ALB = {
+				AND = {	
+					check_variable = { ALB_influence > 49 }
+					check_variable = { ALB_power > 54 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = ALB_influence_tt
+				ALB = {
+					check_variable = { ALB_influence > 49 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = ALB_power_tt
+				ALB = {
+					check_variable = { ALB_power > 54 }
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KOS_Pro_Albanian_Government"
+			effect_tooltip = {
+				ALB_increase_power_high = yes
+				SER_decrease_power_high = yes
+			}
+			hidden_effect = {
+				SER = {
+					ALB_increase_power_high = yes
+					SER_decrease_power_high = yes
+				}
+				ALB = {
+					ALB_increase_power_high = yes
+					SER_decrease_power_high = yes
+				}
+			}
+		}
+	}
+	
+}

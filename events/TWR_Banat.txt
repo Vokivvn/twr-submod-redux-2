@@ -1,0 +1,989 @@
+﻿
+###########################STARTING FOCUS EVENTS###########################
+add_namespace = twrbanat
+add_namespace = twrbanatser
+add_namespace = twrbanatraiding
+country_event = {
+	id = twrbanatser.1 #Banat Serbian
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanatser.1"}
+	title = twrbanatser.1.t
+	desc = twrbanatser.1.d
+	picture = GFX_report_event_banat_invasion
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanatser.1.a #respond with force
+		add_manpower = -3000
+		add_stability = -0.1
+		SBA = {
+			country_event = {
+				id = twrbanat.5 days = 2
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = twrbanatser.1.b #diplomatic protest
+		add_manpower = -600
+		add_war_support = -0.1
+		SBA = {
+			country_event = {
+				id = twrbanat.6 days = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrbanat.1 #starting
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.1"}
+	title = twrbanat.1.t
+	desc = twrbanat.1.d
+	picture = GFX_report_event_banat_starting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.1.a
+	}
+}
+
+country_event = {
+	id = twrbanat.2 #reign of terror
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.2"}
+	title = twrbanat.2.t
+	desc = twrbanat.2.d
+	picture = GFX_report_event_orpo_jew_hunt
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.2.a
+		772 = {
+			add_manpower = -1500
+		}
+		hidden_effect = {
+			country_event = { id = twrbanat.3 days = 9 random = 300 }
+		}
+	}
+}
+
+country_event = {
+	id = twrbanat.3 #second terror
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.3"}
+	title = twrbanat.3.t
+	desc = twrbanat.3.d
+	picture = GFX_report_event_orpo_jew_hunt
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.3.a
+		772 = {
+			add_manpower = -2000
+		}
+		hidden_effect = {
+			country_event = { id = twrbanat.4 days = 10 random = 300 }
+		}
+	}
+}
+
+country_event = {
+	id = twrbanat.4 #final terror
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.4"}
+	title = twrbanat.4.t
+	desc = twrbanat.4.d
+	picture = GFX_report_event_orpo_jew_hunt
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.4.a
+		add_stability = 0.05
+		772 = {
+			add_manpower = -2000
+		}
+		swap_ideas = {
+			remove_idea = SBA_miserable_locals
+			add_idea = SBA_submissive_locals
+		}
+	}
+}
+
+country_event = {
+	id = twrbanat.5 #Serbian responds with force
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.5"}
+	title = twrbanat.5.t
+	desc = twrbanat.5.d
+	picture = GFX_report_event_serbian_state_guard
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.5.a #pressure the advisor
+		add_stability = -0.05
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 772
+				num_provinces = 1
+				on_win = twrbanat.6
+				on_lose = twrbanat.7
+				on_cancel = twrbanat.6
+			}
+
+			defender = {
+				state = 107
+				num_provinces = 1
+				on_win = twrbanat.8
+				on_lose = twrbanat.9
+				on_cancel = twrbanat.8
+			}
+		}
+		hidden_effect = {
+			set_border_war_data = {
+				attacker = 772
+				defender = 107
+				attacker_modifier  = 0.25
+				combat_width = 40
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.6 #Banat victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.6"}
+	title = twrbanat.6.t
+	desc = twrbanat.6.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.6.a
+		add_stability = 0.05
+		add_war_support = 0.1
+		772 = {
+			add_manpower = 1000
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.7 #Banat lost
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.7"}
+	title = twrbanat.7.t
+	desc = twrbanat.7.d
+	picture = GFX_report_event_failed_banat
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.7.a
+		add_stability = -0.1
+		add_manpower = -1000
+	}
+}
+country_event = {
+	id = twrbanat.8 #Serbian Victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.8"}
+	title = twrbanat.8.t
+	desc = twrbanat.8.d
+	picture = GFX_report_event_serbian_state_guard
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.8.a
+		add_war_support = 0.1
+		add_manpower = -700
+	}
+}
+country_event = {
+	id = twrbanat.9 #Serbian Defeat
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.9"}
+	title = twrbanat.9.t
+	desc = twrbanat.9.d
+	picture = GFX_report_event_serbian_state_guard
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.9.a
+		add_war_support = -0.1
+		add_stability = -0.1
+		add_manpower = -1500
+	}
+}
+country_event = {
+	id = twrbanat.10 #italian mafia operation starts
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.10"}
+	title = twrbanat.10.t
+	desc = twrbanat.10.d
+	picture = GFX_report_event_italian_gang
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.10.a
+		add_political_power = 50
+		add_stability = -0.01
+		hidden_effect = {
+			country_event = {
+				id = twrbanat.11 days = 7 random = 300
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.11 #german gang protest
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.11"}
+	title = twrbanat.11.t
+	desc = twrbanat.11.d
+	picture = GFX_report_event_german_gangs
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.11.a
+		add_political_power = -5
+		hidden_effect = {
+			country_event = {
+				id = twrbanat.12 days = 8 random = 300
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.12 #firefight in the capital
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.12"}
+	title = twrbanat.12.t
+	desc = twrbanat.12.d
+	picture = GFX_report_event_gcw_starts
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.12.a
+		add_political_power = -5
+		add_manpower = -20
+		hidden_effect = {
+			country_event = {
+				id = twrbanat.13 days = 6 random = 300
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.13 #start of the neverending gang war
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.13"}
+	title = twrbanat.13.t
+	desc = twrbanat.13.d
+	picture = GFX_report_event_burning_car
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.13.a
+		add_stability = -0.05
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = twrbanat.14 days = 10 random = 600 } }
+				50 = { country_event = { id = twrbanat.15 days = 10 random = 600 } }
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.14 #factory bombing
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.14"}
+	title = twrbanat.14.t
+	desc = twrbanat.14.d
+	picture = GFX_report_event_ruined_german_factories
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.14.a
+		add_stability = -0.01
+		capital_scope = {
+			damage_building = {
+				type = industrial_complex
+				damage = 1
+			}
+		}
+		hidden_effect = {
+			random_list = {
+				25 = { country_event = { id = twrbanat.14 days = 7 random = 600 } }
+				25 = { country_event = { id = twrbanat.15 days = 7 random = 600 } }
+				25 = { country_event = { id = twrbanat.16 days = 7 random = 600 } }
+				25 = { country_event = { id = twrbanat.17 days = 7 random = 600 } }
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.15 #mafia shootings
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.15"}
+	title = twrbanat.15.t
+	desc = twrbanat.15.d
+	picture = GFX_report_event_ruined_german_factories
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.15.a
+		add_stability = -0.07
+		add_political_power = -10
+		hidden_effect = {
+			random_list = {
+				25 = { country_event = { id = twrbanat.14 days = 7 random = 600 } }
+				25 = { country_event = { id = twrbanat.15 days = 7 random = 600 } }
+				25 = { country_event = { id = twrbanat.16 days = 7 random = 600 } }
+				25 = { country_event = { id = twrbanat.17 days = 7 random = 600 } }
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.16 #italian mafia victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.16"}
+	title = twrbanat.16.t
+	desc = twrbanat.16.d
+	picture = GFX_report_event_italian_gang
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.16.a
+		add_stability = 0.05
+		add_political_power = 10
+	}
+}
+country_event = {
+	id = twrbanat.17 #german mafia victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.17"}
+	title = twrbanat.17.t
+	desc = twrbanat.17.d
+	picture = GFX_report_event_german_gangs
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.16.a
+		add_stability = 0.05
+		add_political_power = 10
+	}
+}
+country_event = {
+	id = twrbanat.21 #failed pillages
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.21"}
+	title = twrbanat.21.t
+	desc = twrbanat.21.d
+	picture = GFX_report_event_failed_banat
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.21.a
+		add_manpower = -500
+	}
+}
+country_event = {
+	id = twrbanat.22 #stolen guns
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.22"}
+	title = twrbanat.22.t
+	desc = twrbanat.22.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.22.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 1000
+			producer = SER
+		}
+	}
+}
+country_event = {
+	id = twrbanat.23 #stolen mech
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.23"}
+	title = twrbanat.23.t
+	desc = twrbanat.23.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.23.a
+		add_equipment_to_stockpile = {
+			type = APC_1950_equipment_1
+			amount = 30
+			producer = SER
+		}
+	}
+}
+country_event = {
+	id = twrbanat.24 #stolen equipment
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.24"}
+	title = twrbanat.24.t
+	desc = twrbanat.24.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.23.a
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 95
+			producer = SER
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_1
+			amount = 100
+			producer = SER
+		}
+	}
+}
+country_event = {
+	id = twrbanat.25 #Banat Deal
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.25"}
+	title = twrbanat.25.t
+	desc = twrbanat.25.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.25.a
+		ai_chance = {
+		factor = 70
+		}
+		add_ideas = SBA_offered_deal
+		add_manpower = -1000
+		send_equipment = {
+	    equipment = infantry_equipment
+	    amount = 500
+	    target = SBA
+	}
+		SBA = { country_event = twrbanat.27 }
+	}
+	option = {
+		name = twrbanat.25.b
+		ai_chance = {
+		factor = 0
+		}
+		SBA = { country_event = twrbanat.29 }
+	}
+}
+country_event = {
+	id = twrbanat.26 #Germany has fallen
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.26"}
+	title = twrbanat.26.t
+	desc = twrbanat.26.d
+	picture = GFX_report_event_gcw_starts
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.26.a
+		add_ideas = SBA_chaos
+	}
+}
+country_event = {
+	id = twrbanat.27 #GBanat
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.27"}
+	title = twrbanat.27.t
+	desc = twrbanat.27.d
+	picture = GFX_report_event_gcw_starts
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.27.a
+		add_ideas = SBA_offered_deal_to_RGO
+		add_stability = 0.4
+        add_war_support = 0.4
+        add_manpower = 1000
+        effect_tooltip = {
+	    add_equipment_to_stockpile = {
+	    type = infantry_equipment
+	    amount = 500
+	    producer = RGO
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.28 #Banat dies
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.28"}
+	title = twrbanat.28.t
+	desc = twrbanat.28.d
+	picture = GFX_report_event_banat_invasion
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.28.a
+		set_stability = 0
+		set_war_support = 0
+		custom_effect_tooltip = BANAT_HAS_FULLY_COLLAPSED
+		hidden_effect = {
+		set_country_flag = BANAT_CHAOS_NO_END
+		retire_country_leader = yes
+		create_country_leader = {
+		name = "Stability Junta"
+		desc = "Stability_Junta_DESC"
+		picture = "SS_Bands.dds"
+		expire = "1965.1.1"
+		ideology = esoteric_national_socialism
+		traits = {
+			absolute_chaos
+			}
+		}
+		create_field_marshal = {
+			name = "Eggert Neumann"
+			picture = "Eggert_Neumann.dds"
+			traits = { ss_general harsh_leader }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Heinrich Petersen"
+			picture = "Heinrich_Petersen.dds"
+			traits = { ss_general harsh_leader }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		set_country_flag = Sepp_Janko_unavailable
+		set_country_flag = Felix_Benzler_unavailable
+		set_country_flag = August_Meyszner_unavailable
+		set_country_flag = Franz_Neuhausen_unavailable
+		set_country_flag = Artur_Phleps_unavailable
+		set_country_flag = Otto_Kumm_unavailable
+		set_country_flag = Josef_Kammhuber_unavailable
+		news_event = twrbanat.31
+		}
+	}
+}
+country_event = {
+	id = twrbanat.29 #Departure
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.29"}
+	title = twrbanat.29.t
+	desc = twrbanat.29.d
+	picture = GFX_report_event_generic_plane
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.28.a
+		custom_effect_tooltip = REMOVE_ALL_MINISTERS
+		if = {
+		limit = { country_exists = RGO }
+		RGO = {
+		country_event = { id = twrbanat.30 days = 2 }
+			}
+		}
+		remove_ideas = SBA_ss_aristocracy
+		add_country_leader_trait = exiled
+		hidden_effect = {
+		country_event = { id = twrbanat.28 days = 4 }
+		set_country_flag = Sepp_Janko_unavailable
+		set_country_flag = Felix_Benzler_unavailable
+		set_country_flag = August_Meyszner_unavailable
+		set_country_flag = Franz_Neuhausen_unavailable
+		set_country_flag = Artur_Phleps_unavailable
+		set_country_flag = Otto_Kumm_unavailable
+		set_country_flag = Josef_Kammhuber_unavailable
+		every_unit_leader = {
+		retire = yes
+			}
+		}
+	}
+}
+country_event = {
+	id = twrbanat.30 #Banat staff arrives
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.30"}
+	title = twrbanat.30.t
+	desc = twrbanat.30.d
+	picture = GFX_report_event_generic_plane
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrbanat.30.a
+		add_manpower = 300
+		create_field_marshal = {
+			name = "Otto Kumm"
+			picture = "Otto_Kumm.dds"
+			traits = { ss_general harsh_leader }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 4
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "August Schmidhuber"
+			picture = "August_Schmidhuber.dds"
+			traits = { ss_general }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 1
+		}
+	}
+}
+
+news_event = {
+	id = twrbanat.31 #Banat Collapsed
+	title = twrbanat.31.t 
+	desc = twrbanat.31.d      
+	picture = GFX_report_event_banat_specialist
+
+	major = yes
+	is_triggered_only = yes 
+	fire_only_once = no 
+
+	option = { #oh no 
+		name = twrbanat.31.a									
+	}
+} 
+
+country_event = {
+	id = twrbanat.32 #Banat wants money
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.32"}
+	title = twrbanat.32.t 
+	desc = twrbanat.32.d      
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+
+	option = { #fine
+		ai_chance = {
+			factor = 40
+		}
+		name = twrbanat.32.a
+		SBA = {
+			clr_country_flag = SBA_raid_in_progress
+			add_equipment_to_stockpile = {
+				type = support_equipment_1
+				amount = 30
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = 30
+			}
+			add_equipment_to_stockpile = {
+				type = APC_1950_equipment_1
+				amount = 30
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 30
+			}
+			country_event = {
+				id = twrbanat.33 days = 1
+			}
+			
+		}
+		add_stability = -0.02
+		add_war_support = -0.02
+
+	}
+
+	option = { #no
+		ai_chance = {
+			factor = 60
+		}
+		name = twrbanat.32.b
+		if = {
+			limit = {
+				tag = ROM
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 772
+					num_provinces = 3
+					on_win = twrbanatraiding.1
+					on_lose = twrbanatraiding.2
+					#on_cancel = 
+				}		
+				defender = {
+					state = 82
+					num_provinces = 3
+					on_win = twrbanatraiding.3
+					on_lose = twrbanatraiding.4
+					#on_cancel = 
+				}
+			}
+			else_if = {
+				limit = {
+					tag = HUN
+				}
+				start_border_war = {
+					change_state_after_war = no
+					attacker = {
+						state = 772
+						num_provinces = 3
+						on_win = twrbanatraiding.1
+						on_lose = twrbanatraiding.2
+						#on_cancel = 
+					}		
+					defender = {
+						state = 45
+						num_provinces = 3
+						on_win = twrbanatraiding.3
+						on_lose = twrbanatraiding.4
+						#on_cancel = 
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					tag = SER
+				}
+				start_border_war = {
+					change_state_after_war = no
+					attacker = {
+						state = 772
+						num_provinces = 3
+						on_win = twrbanatraiding.1
+						on_lose = twrbanatraiding.2
+						#on_cancel = 
+					}		
+					defender = {
+						state = 107
+						num_provinces = 3
+						on_win = twrbanatraiding.3
+						on_lose = twrbanatraiding.4
+						#on_cancel = 
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					tag = SER
+				}
+				start_border_war = {
+					change_state_after_war = no
+					attacker = {
+						state = 772
+						num_provinces = 3
+						on_win = twrbanatraiding.1
+						on_lose = twrbanatraiding.2
+						#on_cancel = 
+					}		
+					defender = {
+						state = 819
+						num_provinces = 3
+						on_win = twrbanatraiding.3
+						on_lose = twrbanatraiding.4
+						#on_cancel = 
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrbanat.33 #They paid up
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanat.33"}
+	title = twrbanat.33.t 
+	desc = twrbanat.33.d      
+	picture = GFX_report_event_banat_specialist
+
+	is_triggered_only = yes
+	
+	fire_only_once = no
+
+	option = { #coolio
+		name = twrbanat.33.a									
+	}
+}    
+
+
+country_event = {
+	id = twrbanatraiding.1 #Border War Victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanatraiding.1"}
+	title = twrbanatraiding.1.t
+	desc = twrbanatraiding.1.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	
+	option = { # Easyyyy
+		name = twrbanatraiding.1.a
+		add_stability = 0.02
+		add_war_support = 0.05
+		army_experience = 10
+		SBA = {
+			clr_country_flag = SBA_raid_in_progress
+			random_list = {
+				25 = {
+					add_equipment_to_stockpile = {
+						type = support_equipment_1
+						amount = 70
+					}
+				}
+				25 = {
+					add_equipment_to_stockpile = {
+						type = artillery_equipment_1
+						amount = 75
+					}
+				}
+				25 = {
+					add_equipment_to_stockpile = {
+						type = APC_1950_equipment_1
+						amount = 45
+					}
+				}
+				25 = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment_0
+						amount = 200
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrbanatraiding.2 #Border War Fail
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanatraiding.2"}
+	title = twrbanatraiding.2.t
+	desc = twrbanatraiding.2.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	
+	option = { # Fuuuuuck
+		name = twrbanatraiding.2.a
+		add_stability = -0.02
+		add_war_support = -0.05
+		add_manpower = -250
+		SBA = {
+			clr_country_flag = SBA_raid_in_progress
+		}
+	}
+}
+
+country_event = {
+	id = twrbanatraiding.3 #Defender: Border War Victory
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanatraiding.3"}
+	title = twrbanatraiding.3.t
+	desc = twrbanatraiding.3.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	
+	option = { # Easyyyy
+		name = twrbanatraiding.3.a
+		add_stability = 0.02
+		add_war_support = 0.03
+		army_experience = 5
+	}
+}
+
+country_event = {
+	id = twrbanatraiding.4 #Defender: Border War Fail
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrbanatraiding.4"}
+	title = twrbanatraiding.4.t
+	desc = twrbanatraiding.4.d
+	picture = GFX_report_event_banat_specialist
+	
+	is_triggered_only = yes
+	
+	fire_only_once = no
+	
+	option = { # Fuuuuuck
+		name = twrbanatraiding.4.a
+		add_stability = -0.02
+		add_war_support = -0.05
+		add_manpower = -100
+	}
+}

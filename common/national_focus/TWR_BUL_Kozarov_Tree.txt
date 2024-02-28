@@ -1,0 +1,267 @@
+focus_tree = {
+	id = TWR_BUL_Kozarov_Tree
+	country = {
+		factor = 0
+	}
+	default = no
+	
+ 	continuous_focus_position = { x = 50 y = -1000 }
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_Military_Coup
+		icon = GFX_KOR_coup
+		cost = 6
+		x = 9
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			remove_ideas = BUL_The_Crisis_of_52
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Declare_Martial_Law
+		icon = GFX_GENERIC_Police_Equipment
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = BUL_The_Military_Coup
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_Military_Coup
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_ideas = authoritarian_system
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Trail_the_Fascists
+		icon = GFX_GENERIC_Judge_White 
+		cost = 6
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = BUL_Declare_Martial_Law
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Declare_Martial_Law
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			country_event = { id = bulgaria.31 }
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Establish_the_Council_of_Generals
+		icon = GFX_GENERIC_Military_Government
+		cost = 6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_Declare_Martial_Law
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Declare_Martial_Law
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_stability = 0.05
+			add_political_power = 60
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Tear_down_Fascist_Monuments
+		icon = GFX_GENERIC_Iconoclasts
+		cost = 6
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = BUL_Trail_the_Fascists
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Trail_the_Fascists
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = national_socialist
+				popularity = -0.05
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Liberalisation_of_the_Media
+		icon = GFX_goal_generic_propaganda
+		cost = 6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_Trail_the_Fascists
+		}
+		prerequisite = {
+			focus = BUL_Establish_the_Council_of_Generals
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Trail_the_Fascists
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_stability = -0.05
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Form_a_Military_Party
+		icon = GFX_KOR_army_cabinet
+		cost = 6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_Establish_the_Council_of_Generals
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Establish_the_Council_of_Generals
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.1
+			}
+			set_party_name = { 
+    			ideology = paternal_autocrat
+    			long_name = "Voenna Partiya (Military Party)"
+    			name = "V"
+			}
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Unalligned_Diplomacy
+		icon = GFX_BUL_Three_FLags
+		cost = 6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_Tear_down_Fascist_Monuments
+		}
+		prerequisite = {
+			focus = BUL_Liberalisation_of_the_Media
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Tear_down_Fascist_Monuments
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_ideas = BUL_non_aligned
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_Legalise_Certain_Opposition_Parties
+		icon = GFX_goal_tripartite_pact
+		cost = 6
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_Liberalisation_of_the_Media
+		}
+		prerequisite = {
+			focus = BUL_Form_a_Military_Party
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Liberalisation_of_the_Media
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			add_stability = 0.03
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_First_Election
+		icon = GFX_GENERIC_Democracy
+		cost = 10
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = BUL_Unalligned_Diplomacy
+		}
+		prerequisite = {
+			focus = BUL_Legalise_Certain_Opposition_Parties
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_Unalligned_Diplomacy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			country_event = { id = bulgaria.32 }
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = BUL_The_Facade_Democracy
+		icon = GFX_GENERIC_Fake_Democracy
+		cost = 8
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = BUL_The_First_Election
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		relative_position_id = BUL_The_First_Election
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_october_fifth_incident"
+			swap_ideas = {
+				remove_idea = authoritarian_system 
+				add_idea = facade_democracy
+			}
+		}
+	}
+	
+}

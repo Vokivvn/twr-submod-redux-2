@@ -1,0 +1,3764 @@
+focus_tree = {
+	id = USA
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = USA
+		}
+	}
+
+	continuous_focus_position = { x = 50 y = -1000 }
+
+	default = no
+	reset_on_civilwar = no
+
+### Presidents ###
+	focus = {
+	cancelable = no
+		id = USA_The_1952_Presidential_Elections 
+		icon = GFX_USA_elections
+		x = 7
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_1952_Presidential_Elections"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Establishment_Republicans 
+		icon = GFX_USA_establishment_rep
+		x = 2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = USA_The_1952_Presidential_Elections 
+		}
+		mutually_exclusive = {
+			focus = USA_Taft_Cons
+			focus = USA_Macarthur
+			focus = USA_Thurmond
+			focus = USA_Moderate_Democrats
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Establishment_Republicans"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Smash_Mafia
+		icon = GFX_USA_mafia
+		x = 1
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_Establishment_Republicans
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Smash_Mafia"
+			add_stability = 0.05
+			add_political_power = 20
+			country_event = {
+				id = twrusaflavour.38
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Traditional_Values
+		icon = GFX_USA_family
+		x = 1
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Smash_Mafia
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Traditional_Values"
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Public_Housing
+		icon = GFX_USA_housing
+		x = 3
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_Establishment_Republicans
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Public_Housing"
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_American_Capitalism
+		icon = GFX_USA_capitalism
+		x = 3
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Public_Housing
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_American_Capitalism"
+			add_ideas = USA_american_capitalism
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Land_Of_The_Free
+		icon = GFX_USA_free
+		x = 2
+		y = 4
+		cost = 10
+		prerequisite = {
+			focus = USA_American_Capitalism
+		}
+		prerequisite = {
+			focus = USA_Traditional_Values
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Land_Of_The_Free"
+			swap_ideas = {
+    			remove_idea = home_of_the_free
+    			add_idea = home_of_the_free_2
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Taft_Cons
+		icon = GFX_USA_taft
+		x = 5
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = USA_The_1952_Presidential_Elections 
+		}
+		mutually_exclusive = {
+			focus = USA_Establishment_Republicans
+			focus = USA_Macarthur
+			focus = USA_Thurmond
+			focus = USA_Moderate_Democrats
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Taft_Cons"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Isolationism
+		icon = GFX_USA_isolationism
+		x = 5
+		y = 2
+		cost = 8
+		prerequisite = {
+			focus = USA_Taft_Cons
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Isolationism"
+			hidden_effect = {
+				country_event = {
+					id = twrusaflavour.39
+				}
+    		}
+			every_other_country = {
+				limit = {
+					is_in_faction_with = USA
+				}
+				add_opinion_modifier = {
+					target = USA
+					modifier = abandoned_by_the_yanks
+				}
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Conservative_Education
+		icon = GFX_USA_conservative_education
+		x = 5
+		y = 3
+		cost = 8
+		prerequisite = {
+			focus = USA_Isolationism
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Conservative_Education"
+			add_political_power = 30
+			country_event = {
+				id = twrusa.15
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Macarthur
+		icon = GFX_USA_macarthur
+		x = 7
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = USA_The_1952_Presidential_Elections 
+		}
+		mutually_exclusive = {
+			focus = USA_Taft_Cons
+			focus = USA_Establishment_Republicans
+			focus = USA_Thurmond
+			focus = USA_Moderate_Democrats
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Macarthur"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_No_Appeasement
+		icon = GFX_USA_no_appeasement
+		x = 7
+		y = 2
+		cost = 8
+		prerequisite = {
+			focus = USA_Macarthur
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_No_Appeasement"
+			add_political_power = 100
+			GER = {
+				add_opinion_modifier = {
+					target = USA
+					modifier = americas_foreign_policy
+				}
+			}
+			add_threat = 10
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_American_Dream
+		icon = GFX_USA_american_dream
+		x = 7
+		y = 3
+		cost = 8
+		prerequisite = {
+			focus = USA_No_Appeasement
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_American_Dream"
+			swap_ideas = {
+    			remove_idea = home_of_the_free
+    			add_idea = home_of_the_free_2
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Thurmond
+		icon = GFX_USA_thurmond
+		x = 9
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = USA_The_1952_Presidential_Elections 
+		}
+		mutually_exclusive = {
+			focus = USA_Taft_Cons
+			focus = USA_Establishment_Republicans
+			focus = USA_Macarthur
+			focus = USA_Moderate_Democrats
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Thurmond"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Enforce_Segregation
+		icon = GFX_USA_segregation
+		x = 9
+		y = 2
+		cost = 8
+		prerequisite = {
+			focus = USA_Thurmond
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Enforce_Segregation"
+			add_stability = -0.05
+			swap_ideas = {
+    			remove_idea = USA_segregation
+    			add_idea = USA_segregation_2
+			}
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_States_Rights
+		icon = GFX_USA_states_rights
+		x = 9
+		y = 3
+		cost = 8
+		prerequisite = {
+			focus = USA_Enforce_Segregation
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_States_Rights"
+			add_ideas = USA_states_rights
+			add_political_power = 20
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Home_Of_The_Brave
+		icon = GFX_USA_home_of_the_brave
+		x = 7
+		y = 4
+		cost = 10
+		prerequisite = {
+			focus = USA_Conservative_Education
+			focus = USA_American_Dream
+			focus = USA_States_Rights
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Home_Of_The_Brave"
+			swap_ideas = {
+    			remove_idea = home_of_the_free
+    			add_idea = home_of_the_free_2
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Moderate_Democrats
+		icon = GFX_USA_moderate_democrats
+		x = 12
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = USA_The_1952_Presidential_Elections 
+		}
+		mutually_exclusive = {
+			focus = USA_Taft_Cons
+			focus = USA_Establishment_Republicans
+			focus = USA_Macarthur
+			focus = USA_Thurmond
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Moderate_Democrats"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Increase_Federal_Funding
+		icon = GFX_USA_federal_spending
+		x = 11
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_Moderate_Democrats
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Increase_Federal_Funding"
+			add_timed_idea = { idea = USA_start_interstate days = 200 }
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Progressive_Economics
+		icon = GFX_GENERIC_economic_prosperity
+		x = 11
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Increase_Federal_Funding
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Progressive_Economics"
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Consumer_Protection
+		icon = GFX_USA_consumer_goods
+		x = 13
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_Moderate_Democrats
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Consumer_Protection"
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Policing_Reform
+		icon = GFX_USA_policing_reform
+		x = 13
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Consumer_Protection
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Policing_Reform"
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_For_The_People
+		icon = GFX_USA_for_the_people
+		x = 12
+		y = 4
+		cost = 10
+		prerequisite = {
+			focus = USA_Progressive_Economics
+		}
+		prerequisite = {
+			focus = USA_Policing_Reform
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_For_The_People"
+			swap_ideas = {
+    			remove_idea = home_of_the_free
+    			add_idea = home_of_the_free_3
+			}
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Presidential_Mandate
+		icon = GFX_goal_support_democracy
+		x = 7
+		y = 5
+		cost = 10
+		prerequisite = {
+			focus = USA_Land_Of_The_Free
+			focus = USA_Home_Of_The_Brave
+			focus = USA_For_The_People
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Presidential_Mandate"
+			add_political_power = 50
+			complete_national_focus = USA_1952-1956_Policies
+			set_country_flag = USA_1952_term
+		}
+	}
+
+
+	focus = {
+	cancelable = no
+		id = USA_The_United_Sates_Armed_Forces
+		icon = GFX_USA_armed_forces
+		x = 28
+		y = 0
+		cost = 6
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_United_Sates_Armed_Forces"
+			add_command_power = 50
+			country_event = {
+				id = twrusaflavour.54
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_The_United_States_Army
+		icon = GFX_USA_Arsenal_of_Democracy
+		x = 18
+		y = 1
+		cost = 6
+		prerequisite = {
+			focus = USA_The_United_Sates_Armed_Forces
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_United_States_Army"
+			army_experience = 25
+			country_event = {
+				id = twrusaflavour.57
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Recruitment_Drive
+		icon = GFX_GENERIC_recruitment
+		x = 20
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Army
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Recruitment_Drive"
+			add_manpower = 100000
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Patton's_Doctrine
+		icon = GFX_USA_patton_doctrine
+		x = 17
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Army
+		}
+		mutually_exclusive = {
+			focus = USA_Firepower_Doctrine
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Patton's_Doctrine"
+			country_event = {
+				id = twrusaflavour.55
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Mobile_Logistics
+		icon = GFX_USA_logistics
+		x = 16
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Patton's_Doctrine
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Mobile_Logistics"
+			add_ideas = USA_mobile_supply
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Helicopters
+		icon = GFX_GENERIC_helicopter
+		x = 20
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = USA_Recruitment_Drive
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Helicopters"
+			add_ideas = USA_battlefield_helicopters
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = helicopter
+			}
+		}
+	}
+
+
+	focus = {
+	cancelable = no
+		id = USA_Tanks_for_All_Terrain
+		icon = GFX_GENERIC_iron_sherman
+		x = 18
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Patton's_Doctrine
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Tanks_for_All_Terrain"
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = armor
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Motorised_Flexibility
+		icon = GFX_GENERIC_mechanisation
+		x = 17
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = USA_Tanks_for_All_Terrain
+		}
+		prerequisite = {
+			focus = USA_Mobile_Logistics
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Motorised_Flexibility"
+			add_ideas = USA_motorisation
+		}
+	}
+
+
+	focus = {
+	cancelable = no
+		id = USA_Firepower_Doctrine
+		icon = GFX_USA_firepower_doctrine
+		x = 23
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Army
+		}
+		mutually_exclusive = {
+			focus = USA_Patton's_Doctrine
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Firepower_Doctrine"
+			country_event = {
+				id = twrusaflavour.56
+			}
+		}
+	}
+
+
+	focus = {
+	cancelable = no
+		id = USA_Modernise_the_Old
+		icon = GFX_USA_modernize_old
+		x = 22
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Firepower_Doctrine
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Modernise_the_Old"
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = artillery
+			}
+		}
+	}
+
+
+	focus = {
+	cancelable = no
+		id = USA_Artillery_From_Above
+		icon = GFX_GENERIC_firepower
+		x = 22
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = USA_Modernise_the_Old
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Artillery_From_Above"
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = spart_artillery
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Experiment_Rocket_Artillery
+		icon = GFX_GENERIC_rocket_art
+		x = 24
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Firepower_Doctrine
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Experiment_Rocket_Artillery"
+			add_ideas = USA_rocket_artillery
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = mot_rockets
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Develop_Cruise_Missile
+		icon = GFX_USA_Cruise_Missile
+		x = 25
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = USA_Experiment_Rocket_Artillery
+		}
+		prerequisite = {
+			focus = USA_The_United_States_Air_Force
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Develop_Cruise_Missile"
+			add_ideas = USA_cruise_missiles
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = rocketry
+			}
+		}
+	}
+
+
+	focus = {
+	cancelable = no
+		id = USA_The_Chiefs_of_Staff
+		icon = GFX_USA_Joint_Staff
+		x = 20
+		y = 5
+		cost = 6
+		prerequisite = {
+			focus = USA_Motorised_Flexibility
+			focus = USA_Artillery_From_Above
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_Chiefs_of_Staff"
+			add_ideas = USA_joint_chiefs
+		}
+	}
+
+
+
+focus = {
+	cancelable = no
+		id = USA_The_United_States_Air_Force
+		icon = GFX_USA_Air_Force
+		x = 28
+		y = 1
+		cost = 6
+		prerequisite = {
+			focus = USA_The_United_Sates_Armed_Forces
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_United_States_Air_Force"
+			air_experience = 25
+			country_event = {
+				id = twrusaflavour.59
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Lessons_From_Japan
+		icon = GFX_USA_Lesson_from_Japan
+		x = 28
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Air_Force
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Lessons_From_Japan"
+			air_experience = 10
+			country_event = {
+				id = twrusaflavour.60
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Air_Superiority
+		icon = GFX_GENERIC_air_superiority
+		x = 27
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Lessons_From_Japan
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Air_Superiority"
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = battlefield_support_tree
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Air_To_Air_Missiles
+		icon = GFX_GENERIC_missile
+		x = 27
+		y = 5
+		cost = 5
+		prerequisite = {
+			focus = USA_Air_Superiority
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Air_To_Air_Missiles"
+			add_ideas = USA_air_to_air_missiles
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Strategic_Bombing
+		icon = GFX_goal_generic_air_bomber
+		x = 29
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Lessons_From_Japan
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Strategic_Bombing"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = cat_strategic_theorem
+			}
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = strategic_destruction_tree
+			}
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = cat_strategic_bomber
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_The_Stratofortress
+		icon = GFX_USA_B52
+		x = 29
+		y = 5
+		cost = 5
+		prerequisite = {
+			focus = USA_Strategic_Bombing
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_Stratofortress"
+			custom_effect_tooltip = UNLOCK_B52
+			hidden_effect = {
+				set_technology = {
+    				heavy_air_1960 = 1
+    			}
+    			load_oob = "USA_B52"
+    		}
+    		custom_effect_tooltip = GAIN_5_B52s
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Napalm
+		icon = GFX_USA_napalm
+		x = 29
+		y = 6
+		cost = 5
+		prerequisite = {
+			focus = USA_The_Stratofortress
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Napalm"
+			add_ideas = USA_napalm
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Supersonic_Aircraft
+		icon = GFX_USA_supersonic
+		x = 31
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Air_Force
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Supersonic_Aircraft"
+			country_event = {
+				id = twrusa.133
+			}
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = light_air
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Experimental_Rocket_Planes
+		icon = GFX_USA_space_plane
+		x = 31
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Supersonic_Aircraft
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			date > 1958.01.01
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Experimental_Rocket_Planes"
+			add_tech_bonus = {
+				bonus = 0.3
+				uses = 1
+				category = light_air
+			}
+			add_timed_idea = { idea = USA_space_experiments days = 365 }
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_New_Doctrine
+		icon = GFX_GENERIC_doctrine
+		x = 28
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = USA_Strategic_Bombing
+		}
+		prerequisite = {
+			focus = USA_Air_Superiority
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_New_Doctrine"
+			air_experience = 30
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_The_United_States_Navy
+		icon = GFX_USA_Navy
+		x = 38
+		y = 1
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_Sates_Armed_Forces
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_United_States_Navy"
+			navy_experience = 25
+			country_event = {
+				id = twrusaflavour.58
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Legacy_of_Pacific_War
+		icon = GFX_USA_pacific_war
+		x = 38
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Navy
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Legacy_of_Pacific_War"
+			navy_experience = 10
+			country_event = {
+				id = twrusaflavour.61
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Carrier_Strike_Groups
+		icon = GFX_USA_strike_groups
+		x = 37
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Legacy_of_Pacific_War
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Carrier_Strike_Groups"
+			add_ideas = USA_carrier_strike_groups
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Updating_Carriers
+		icon = GFX_GENERIC_carrier
+		x = 37
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = USA_Carrier_Strike_Groups
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Updating_Carriers"
+			add_tech_bonus = {
+				name = carrier_bonus
+				bonus = 0.5
+				uses = 1
+				category = cv_tech
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Supercarrier_Program
+		icon = GFX_USA_supercarriers
+		x = 37
+		y = 6
+		cost = 5
+		prerequisite = {
+			focus = USA_Updating_Carriers
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Supercarrier_Program"
+			add_ideas = USA_supercarriers
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Modern_Destroyers
+		icon = GFX_focus_generic_destroyer
+		x = 39
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Legacy_of_Pacific_War
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Modern_Destroyers"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = dd_tech
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Submarine_Warfare
+		icon = GFX_USA_submarine_warfare
+		x = 34
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Navy
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Submarine_Warfare"
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = submarine_doctrine
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Submarine_Development
+		icon = GFX_goal_generic_navy_submarine
+		x = 33
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Submarine_Warfare
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Submarine_Development"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Nuclear_Submarines
+		icon = GFX_GENERIC_nuclear_submarines
+		x = 35
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Submarine_Warfare
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			date > 1958.01.01
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Nuclear_Submarines"
+			custom_effect_tooltip = UNLOCK_NUCLEAR_SUBS
+			hidden_effect = {
+				set_technology = {
+    				basic_nuclear_submarine = 1
+    			}
+    		}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Destroyer_Leaders
+		icon = GFX_USA_destroyer_leaders
+		x = 39
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = USA_Modern_Destroyers
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Destroyer_Leaders"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cl_tech
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Modern_Naval_Doctrine
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		x = 38
+		y = 5
+		cost = 5
+		prerequisite = {
+			focus = USA_Updating_Carriers
+		}
+		prerequisite = {
+			focus = USA_Destroyer_Leaders
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Modern_Naval_Doctrine"
+			add_ideas = USA_naval_doctrine
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.3
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Controlling_The_Sea_Lanes
+		icon = GFX_goal_generic_navy_cruiser
+		x = 42
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Navy
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Controlling_The_Sea_Lanes"
+			add_ideas = USA_control_seas
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Protecting_World_Trade
+		icon = GFX_GENERIC_secure_trade
+		x = 41
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Controlling_The_Sea_Lanes
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Protecting_World_Trade"
+			add_ideas = USA_protect_trade
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Anti-Submarine_Strategy
+		icon = GFX_goal_generic_air_naval_bomber
+		x = 43
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = USA_Controlling_The_Sea_Lanes
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Anti-Submarine_Strategy"
+			add_ideas = USA_anti-submarine_warfare
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Naval_Station_Norfolk
+		icon = GFX_GENERIC_dockyards
+		x = 45
+		y = 2
+		cost = 5
+		prerequisite = {
+			focus = USA_The_United_States_Navy
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Naval_Station_Norfolk"
+			country_event = {
+				id = twrusaflavour.63
+			}
+			362 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Naval_Station_San_Diego
+		icon = GFX_GENERIC_dockyards
+		x = 45
+		y = 3
+		cost = 6
+		prerequisite = {
+			focus = USA_Naval_Station_Norfolk
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Naval_Station_San_Diego"
+			country_event = {
+				id = twrusaflavour.64
+			}
+			378 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_Naval_Aircraft_Development
+		icon = GFX_GENERIC_naval_aviation
+		x = 34
+		y = 6
+		cost = 6
+		prerequisite = {
+			focus = USA_Air-Navy_Cooperation
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Naval_Aircraft_Development"
+			add_ideas = USA_naval_aviation_improvements
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = naval_air
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_1952-1956_Policies
+		icon = GFX_USA_capitol
+		x = 7
+		y = 6
+		cost = 10
+		prerequisite = {
+			focus = USA_Presidential_Mandate
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_1952-1956_Policies"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_finish_desegregating_army
+		icon = GFX_USA_desegregate_army
+		x = 1
+		y = 7
+		cost = 40
+		prerequisite = {
+			focus = USA_1952-1956_Policies
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			NOT = { has_completed_focus = USA_Thurmond }
+			has_country_flag = USA_1952_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		select_effect = {
+        	country_event = { id = twrusaflavour.33 days = 100 }
+    	}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_finish_desegregating_army"
+			add_political_power = -100
+			swap_ideas = {
+    			remove_idea = USA_segregation
+    			add_idea = USA_segregation_without_army
+			}
+			add_stability = 0.05
+			set_country_flag = USA_desegregated_army
+			custom_effect_tooltip = 1952-1956_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_start_the_interstate_system
+		icon = GFX_USA_start_interstate
+		x = 3
+		y = 7
+		cost = 40
+		prerequisite = {
+			focus = USA_1952-1956_Policies
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1952_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_start_the_interstate_system"
+			set_country_flag = USA_interstate
+			custom_effect_tooltip = interstate_decisions
+			add_political_power = -100
+			add_timed_idea = { idea = USA_start_interstate days = 730 }
+			custom_effect_tooltip = inflation_increase_0.4
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.4
+			}
+			373 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			383 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = 1952-1956_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_reverse_new_deal
+		icon = GFX_USA_reverse_new_deal
+		x = 5
+		y = 7
+		cost = 40
+		prerequisite = {
+			focus = USA_1952-1956_Policies
+		}
+		mutually_exclusive = {
+			focus = USA_expand_welfare
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1952_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_reverse_new_deal"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_reduced_welfare days = 730 }
+			custom_effect_tooltip = 1952-1956_only
+			add_to_variable = {
+				var = USA_var_inflation
+				value = -1.2
+			}
+			custom_effect_tooltip = inflation_decrease_1.2
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_expand_welfare
+		icon = GFX_USA_expand_welfare
+		x = 7
+		y = 7
+		cost = 40
+		prerequisite = {
+			focus = USA_1952-1956_Policies
+		}
+		mutually_exclusive = {
+			focus = USA_reverse_new_deal
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1952_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_expand_welfare"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_expanded_welfare days = 730 }
+			custom_effect_tooltip = 1952-1956_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_increase_science_funding
+		icon = GFX_GENERIC_science
+		x = 9
+		y = 7
+		cost = 40
+		prerequisite = {
+			focus = USA_1952-1956_Policies
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1952_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		select_effect = {
+        	country_event = { id = twrusaflavour.34 days = 100 }
+    	}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_increase_science_funding"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_science_funding days = 730 }
+			custom_effect_tooltip = 1952-1956_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_increase_government_investment
+		icon = GFX_USA_gov_investment
+		x = 11
+		y = 7
+		cost = 40
+		prerequisite = {
+			focus = USA_1952-1956_Policies
+		}
+		mutually_exclusive = {
+			focus = USA_increase_private_investment
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1952_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		select_effect = {
+        	country_event = { id = twrusaflavour.35 days = 100 }
+        	country_event = { id = twrusaflavour.43 days = 200 }
+    	}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_increase_government_investment"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_increase_government_investment days = 730 }
+			custom_effect_tooltip = 1952-1956_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_increase_private_investment
+		icon = GFX_GENERIC_business
+		x = 13
+		y = 7
+		cost = 40
+		prerequisite = {
+			focus = USA_1952-1956_Policies
+		}
+		mutually_exclusive = {
+			focus = USA_increase_government_investment
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1952_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		select_effect = {
+        	country_event = { id = twrusaflavour.35 days = 100 }
+        	country_event = { id = twrusaflavour.41 days = 200 }
+    	}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_increase_private_investment"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_increase_private_investment days = 730 }
+			custom_effect_tooltip = 1952-1956_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_1956-1960_Policies
+		icon = GFX_USA_capitol
+		x = 7
+		y = 8
+		cost = 10
+		prerequisite = {
+			focus = USA_increase_private_investment
+			focus = USA_increase_government_investment
+			focus = USA_increase_science_funding
+			focus = USA_expand_welfare
+			focus = USA_reverse_new_deal
+			focus = USA_finish_desegregating_army
+			focus = USA_start_the_interstate_system
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_1956-1960_Policies"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_military_improvement_program
+		icon = GFX_USA_military_expansion
+		x = 1
+		y = 9
+		cost = 40
+		prerequisite = {
+			focus = USA_1956-1960_Policies
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1956_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_finish_desegregating_army"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_military_improvement days = 730 }
+			custom_effect_tooltip = 1956-60_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_interstate_2
+		icon = GFX_USA_start_interstate
+		x = 3
+		y = 9
+		cost = 40
+		prerequisite = {
+			focus = USA_1956-1960_Policies
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1956_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_interstate_2"
+			set_country_flag = USA_interstate
+			custom_effect_tooltip = interstate_decisions
+			add_political_power = -100
+			add_timed_idea = { idea = USA_start_interstate days = 730 }
+			custom_effect_tooltip = inflation_increase_0.4
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.4
+			}
+			358 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			393 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			376 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			370 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = 1956-60_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_resource_extraction_focus
+		icon = GFX_USA_resources
+		x = 5
+		y = 9
+		cost = 40
+		prerequisite = {
+			focus = USA_1956-1960_Policies
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1956_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_resource_extraction_focus"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_resource_extraction_focus days = 730 }
+			custom_effect_tooltip = inflation_decrease_0.3
+			add_to_variable = {
+				var = USA_var_inflation
+				value = -0.3
+			}
+			custom_effect_tooltip = 1956-60_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_welfare_focus
+		icon = GFX_USA_expand_welfare
+		x = 7
+		y = 9
+		cost = 40
+		prerequisite = {
+			focus = USA_1956-1960_Policies
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1956_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		select_effect = {
+        	country_event = { id = twrusaflavour.42 days = 150 }
+    	}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_expand_welfare"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_expanded_welfare days = 730 }
+			custom_effect_tooltip = 1956-60_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_science_funding_2
+		icon = GFX_GENERIC_science
+		x = 9
+		y = 9
+		cost = 40
+		prerequisite = {
+			focus = USA_1956-1960_Policies
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1956_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_expand_welfare"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_increase_government_investment days = 730 }
+			custom_effect_tooltip = 1956-60_only
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_increase_government_investment_2
+		icon = GFX_USA_gov_investment
+		x = 11
+		y = 9
+		cost = 40
+		prerequisite = {
+			focus = USA_1956-1960_Policies
+		}
+		mutually_exclusive = {
+			focus = USA_increase_private_investment_2
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1956_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_increase_government_investment"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_increase_government_investment days = 730 }
+			custom_effect_tooltip = 1956-60_only
+			custom_effect_tooltip = inflation_increase_0.5
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.5
+			}
+		}
+	}
+
+focus = {
+	cancelable = no
+		id = USA_increase_private_investment_2
+		icon = GFX_GENERIC_business
+		x = 13
+		y = 9
+		cost = 40
+		prerequisite = {
+			focus = USA_1956-1960_Policies
+		}
+		mutually_exclusive = {
+			focus = USA_increase_government_investment_2
+		}
+		ai_will_do = {
+			factor = 8
+		}
+		available = {
+			has_country_flag = USA_1956_term
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_increase_private_investment"
+			add_political_power = -100
+			add_timed_idea = { idea = USA_increase_private_investment days = 730 }
+			custom_effect_tooltip = 1956-60_only
+		}
+	}
+
+#	focus = {
+#	cancelable = no
+#		id = USA_Bigger_is_Better #;)
+#		icon = GFX_goal_unknown
+#		x = 37
+#		y = 2
+#		cost = 10
+#		prerequisite = {
+#			focus = USA_The_United_States_Navy
+#		}
+#		ai_will_do = {
+#			factor = 4
+#		}
+#		available = {
+#		}
+#		completion_reward = {
+#			
+#		}
+#	}
+#	
+#	focus = {
+#	cancelable = no
+#		id = USA_Modern_Battleship_Designs
+#		icon = GFX_goal_unknown
+#		x = 37
+#		y = 3
+#		cost = 10
+#		prerequisite = {
+#			focus = USA_Bigger_is_Better
+#		}
+#		ai_will_do = {
+#			factor = 4
+#		}
+#		available = {
+#		}
+#		completion_reward = {
+#			
+#		}
+#	}
+#
+
+#	focus = {
+#	cancelable = no
+#		id = USA_Fast_Behemouths
+#		icon = GFX_goal_unknown
+#		x = 37
+#		y = 4
+#		cost = 10
+#		prerequisite = {
+#			focus = USA_Modern_Battleship_Designs
+#		}
+#		ai_will_do = {
+#			factor = 4
+#		}
+#		available = {
+#		}
+#		completion_reward = {
+#			
+#		}
+#	}
+#	
+#	focus = {
+#	cancelable = no
+#		id = USA_Carriers_Are_The_Future
+#		icon = GFX_goal_unknown
+#		x = 39
+#		y = 2
+#		cost = 10
+#		prerequisite = {
+#			focus = USA_The_United_States_Navy
+#		}
+#		ai_will_do = {
+#			factor = 4
+#		}
+#		available = {
+#		}
+#		completion_reward = {
+#			
+#		}
+#	}
+
+#	focus = {
+#	cancelable = no
+#		id = USA_Carrier_Strike_Groups
+#		icon = GFX_goal_unknown
+#		x = 39
+#		y = 3
+#		cost = 10
+#		prerequisite = {
+#			focus = USA_Carriers_Are_The_Future
+#		}
+#		ai_will_do = {
+#			factor = 4
+#		}
+#		available = {
+#		}
+#		completion_reward = {
+#			
+#		}
+#	}
+
+#	focus = {
+#	cancelable = no
+#		id = USA_Naval_Fighter_Development
+#		icon = GFX_goal_unknown
+#		x = 39
+#		y = 4
+#		cost = 10
+#		prerequisite = {
+#			focus = USA_Carrier_Strike_Groups
+#		}
+#		ai_will_do = {
+#			factor = 4
+#		}
+#		available = {
+#		}
+#		completion_reward = {
+#			
+#		}
+#	}
+
+#	focus = {
+#	cancelable = no
+#		id = USA_Liberty_on_Sea
+#		icon = GFX_goal_unknown
+#		x = 38
+#		y = 5
+#		cost = 10
+#		prerequisite = {
+#			focus = USA_Naval_Fighter_Development
+#			focus = USA_Fast_Behemouths
+#		}
+#		ai_will_do = {
+#			factor = 4
+#		}
+#		available = {
+#		}
+#		completion_reward = {
+#			
+#		}
+#	}
+#
+
+	focus = {
+	cancelable = no
+		id = USA_Army_Air_Cooperation
+		icon = GFX_USA_Army-Air_Coop
+		x = 23
+		y = 5
+		cost = 10
+		prerequisite = {
+			focus = USA_Artillery_From_Above
+			focus = USA_Motorised_Flexibility
+		}
+		prerequisite = {
+			focus = USA_New_Doctrine
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Army_Air_Cooperation"
+			air_experience = 20
+			army_experience = 20
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_rapid_air_support
+		icon = GFX_USA_air_support
+		x = 23
+		y = 6
+		cost = 5
+		prerequisite = {
+			focus = USA_Army_Air_Cooperation
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_rapid_air_support"
+			add_ideas = USA_rapid_air_support
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_airdrop_resupply
+		icon = GFX_GENERIC_paradrop
+		x = 21
+		y = 6
+		cost = 5
+		prerequisite = {
+			focus = USA_Army_Air_Cooperation
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_airdrop_resupply"
+			add_ideas = USA_paradrop
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_legacy_of_101st
+		icon = GFX_focus_generic_paratrooper
+		x = 25
+		y = 6
+		cost = 5
+		prerequisite = {
+			focus = USA_Army_Air_Cooperation
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_legacy_of_101st"
+			add_ideas = USA_legacy_of_101st_idea 
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = para_tech
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Air-Navy_Cooperation
+		icon = GFX_USA_air_navy_cooperation
+		x = 34
+		y = 5
+		cost = 5
+		prerequisite = {
+			focus = USA_Updating_Carriers
+			focus = USA_Destroyer_Leaders
+		}
+		prerequisite = {
+			focus = USA_New_Doctrine
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Air-Navy_Cooperation"
+			air_experience = 20
+			navy_experience = 20
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.3
+				uses = 1
+				category = naval_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.3
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_Hydrogen_Bomb
+		icon = GFX_GENERIC_nuke
+		x = 15
+		y = 0
+		cost = 8
+		ai_will_do = {
+			factor = 7
+		}
+		available = {
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Hydrogen_Bomb"
+			news_event = {
+				id = twrnews.66
+			}
+			add_war_support = 0.02
+			add_tech_bonus = {
+				bonus = 0.3
+				uses = 2
+				category = nuclear
+			}
+		}
+	}
+
+### Foreign Policy ###
+	focus = {
+	cancelable = no
+		id = USA_german_civil_war
+		icon = GFX_USA_GCW
+		x = 20
+		y = 8
+		cost = 8
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = USA_containment_of_nazism
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_german_civil_war"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_containment_of_nazism
+		icon = GFX_USA_containment
+		x = 30
+		y = 8
+		cost = 8
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = USA_german_civil_war
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_containment_of_nazism"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_activate_reserves
+		icon = GFX_USA_reserves
+		x = 18
+		y = 9
+		cost = 6
+		ai_will_do = {
+			factor = 1000
+		}
+		prerequisite = {
+			focus = USA_german_civil_war
+		}
+		completion_reward = {
+			add_manpower = 500000
+			log = "[GetDateText]: [Root.GetName]: Focus USA_activate_reserves"
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_aid_british_arming
+		icon = GFX_USA_aid_brits
+		x = 22
+		y = 9
+		cost = 6
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			is_in_faction_with = ENG
+		}
+		prerequisite = {
+			focus = USA_german_civil_war
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_aid_british_arming"
+			country_event = {
+				id = twrusa.16
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_begin_aerial_reconaissence
+		icon = GFX_USA_air_spying
+		x = 20
+		y = 9
+		cost = 6
+		ai_will_do = {
+			factor = 1000
+		}
+		prerequisite = {
+			focus = USA_german_civil_war
+		}
+		completion_reward = {
+			set_country_flag = USA_air_spying
+			log = "[GetDateText]: [Root.GetName]: Focus USA_begin_aerial_reconaissence"
+			custom_effect_tooltip = AIR_SPYING
+			country_event = {
+				id = twrusaflavour.65
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_north_sea_military_exercises
+		icon = GFX_USA_north_sea
+		x = 20
+		y = 10
+		cost = 7
+		ai_will_do = {
+			factor = 1000
+		}
+		prerequisite = {
+			focus = USA_aid_british_arming
+		}
+		prerequisite = {
+			focus = USA_activate_reserves
+		}
+		prerequisite = {
+			focus = USA_begin_aerial_reconaissence
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_military_exercises"
+			country_event = {
+				id = twrusa.24
+			}
+			add_war_support = 0.1
+			navy_experience = 20
+			news_event = {
+				id = twrnews.144
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_expand_toronto_accord
+		icon = GFX_USA_expand_TA
+		x = 25
+		y = 9
+		cost = 7
+		ai_will_do = {
+			factor = 1000
+		}
+		prerequisite = {
+			focus = USA_german_civil_war
+			focus = USA_containment_of_nazism
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_expand_toronto_accord"
+			country_event = {
+				id = twrusaflavour.62
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_invite_portugal
+		icon = GFX_USA_invite_portugal
+		x = 24
+		y = 10
+		cost = 7
+		ai_will_do = {
+			factor = 1000
+		}
+		prerequisite = {
+			focus = USA_expand_toronto_accord
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_invite_portugal"
+			if = {
+				limit = {
+					POR = {
+						is_in_faction = no
+					} 
+				}
+				POR = {
+					country_event = {
+						id = twrusa.17
+					}
+				}	
+			}
+			custom_effect_tooltip = only_if_no_faction_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_invite_sweden
+		icon = GFX_USA_invite_sweden
+		x = 26
+		y = 10
+		cost = 7
+		ai_will_do = {
+			factor = 1000
+		}
+		prerequisite = {
+			focus = USA_expand_toronto_accord
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_invite_sweden"
+			if = {
+				limit = {
+					SWE = {
+						is_in_faction = no
+					} 
+				}
+				SWE = {
+					country_event = {
+						id = twrusa.20
+					}
+				}	
+			}
+			custom_effect_tooltip = only_if_no_faction_tt
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_a_great_crusade
+		icon = GFX_USA_crusade
+		x = 23
+		y = 11
+		cost = 10
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			has_global_flag = german_civil_war_started
+			NOT = {
+				has_global_flag = TA_GCW_FORCED_CEASEFIRE
+			}
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		prerequisite = {
+			focus = USA_north_sea_military_exercises
+		}
+		prerequisite = {
+			focus = USA_invite_sweden
+		}
+		prerequisite = {
+			focus = USA_invite_portugal
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_a_great_crusade"
+			country_event = {
+				id = twrusa.23
+			}
+			add_war_support = 0.1
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_aid_rebels
+		icon = GFX_USA_aid_rebels
+		x = 16
+		y = 10
+		cost = 6
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			country_exists = POL
+			country_exists = CZE
+			has_global_flag = german_civil_war_started
+		}
+		prerequisite = {
+			focus = USA_aid_british_arming
+		}
+		prerequisite = {
+			focus = USA_activate_reserves
+		}
+		prerequisite = {
+			focus = USA_begin_aerial_reconaissence
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_activate_reserves"
+			set_country_flag = USA_supporting_rebels
+			custom_effect_tooltip = AIDING_REBELS
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_support_peoples_germany
+		icon = GFX_USA_aid_ddr
+		x = 16
+		y = 11
+		cost = 6
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			country_exists = DDR
+			has_global_flag = german_civil_war_started
+		}
+		prerequisite = {
+			focus = USA_aid_rebels
+		}
+		completion_reward = {
+			send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 5000
+		    	target = DDR
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus USA_activate_reserves"
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_begin_aerial_reconaissence_2
+		icon = GFX_USA_air_spying
+		x = 28
+		y = 9
+		cost = 8
+		ai_will_do = {
+			factor = 100
+		}
+		prerequisite = {
+			focus = USA_containment_of_nazism
+		}
+		completion_reward = {
+			set_country_flag = USA_air_spying_2
+			log = "[GetDateText]: [Root.GetName]: Focus USA_begin_aerial_reconaissence_2"
+			custom_effect_tooltip = AIR_SPYING
+			country_event = {
+				id = twrusaflavour.65
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_spy_satellites
+		icon = GFX_USA_satellite
+		x = 28
+		y = 10
+		cost = 8
+		ai_will_do = {
+			factor = 100
+		}
+		prerequisite = {
+			focus = USA_begin_aerial_reconaissence_2
+		}
+		available = {
+			date > 1959.01.01
+		}
+		completion_reward = {
+			set_country_flag = USA_satellites
+			log = "[GetDateText]: [Root.GetName]: Focus USA_spy_satellites"
+			custom_effect_tooltip = SPACE_SPYING
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_infiltrate_nazi_europe
+		icon = GFX_USA_infiltrate_europe
+		x = 32
+		y = 9
+		cost = 12
+		ai_will_do = {
+			factor = 100
+		}
+		prerequisite = {
+			focus = USA_containment_of_nazism
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_infiltrate_nazi_europe"
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_back_the_french
+		icon = GFX_USA_back_french
+		x = 30
+		y = 10
+		cost = 8
+		ai_will_do = {
+			factor = 100
+		}
+		prerequisite = {
+			focus = USA_infiltrate_nazi_europe
+		}
+		available = {
+			OR = {
+				FRA  = {
+					has_government = marxist_leninist
+				}
+				FRA  = {
+					has_government = bolshevik_leninist
+				}
+				FRA  = {
+					has_government = socialist
+				}
+				FRA  = {
+					has_government = social_democrat
+				}
+				FRA  = {
+					has_government = liberal
+				}
+				FRA  = {
+					has_government = conservative
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_back_the_french"
+			send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 10000
+		    	target = FRA
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_guarantee_turkey
+		icon = GFX_USA_guarantee_turkey
+		x = 32
+		y = 10
+		cost = 8
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = USA_infiltrate_nazi_europe
+		}
+		available = {
+			TUR = {
+				is_in_faction = no
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_guarantee_turkey"
+			country_event = {
+				id = twrusaforeign.1
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_overtures_to_italy
+		icon = GFX_USA_overtures_to_italy
+		x = 34
+		y = 10
+		cost = 8
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			country_exists = ITA
+			ITA = { has_war = no }
+		}
+		prerequisite = {
+			focus = USA_infiltrate_nazi_europe
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_overtures_to_italy"
+			ITA = {
+				country_event = {
+					id = twritalyforeign.68
+					days = 5
+				}
+			}
+			set_global_flag = US_italy_diplomacy
+			custom_effect_tooltip = ITALY_DIPLOMACY_TT
+			custom_effect_tooltip = ITALY_RELATIONS_TT
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_weapons_to_soviets
+		icon = GFX_USA_soviets
+		x = 36
+		y = 9
+		cost = 8
+		ai_will_do = {
+			factor = 100
+		}
+		prerequisite = {
+			focus = USA_containment_of_nazism
+		}
+		available = {
+			country_exists = SOV
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_weapons_to_soviets"
+			send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 5000
+		    	target = SOV
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = USA
+					modifier = small_increase
+				}
+			}
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = USA_weapons_to_transvolga
+		icon = GFX_USA_transvolga
+		x = 36
+		y = 10
+		cost = 8
+		ai_will_do = {
+			factor = 100
+		}
+		prerequisite = {
+			focus = USA_weapons_to_soviets
+		}
+		available = {
+			country_exists = TRV
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_weapons_to_transvolga"
+			send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 5000
+		    	target = TRV
+			}
+			TRV = {
+				add_opinion_modifier = {
+					target = USA
+					modifier = small_increase
+				}
+			}
+		}
+	}
+
+#	focus = {
+#	cancelable = no
+#		id = USA_pacific_policy
+#		icon = GFX_USA_pacific_policy
+#		x = 42
+#		y = 8
+#		cost = 8
+#		ai_will_do = {
+#			factor = 20
+#		}
+#		available = {
+#			date > 1953.01.01
+#		}
+#		mutually_exclusive = {
+#			focus = USA_german_civil_war
+#		}
+#		completion_reward = {
+#			log = "[GetDateText]: [Root.GetName]: Focus USA_containment_of_nazism"
+#		}
+#	}
+	
+	focus = {
+	cancelable = no
+		id = USA_The_Coup
+		icon = GFX_USA_coup
+		x = 51
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_Coup"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_A_Generals_America
+		icon = GFX_SOV_deport_officers
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = USA_The_Coup
+		}
+		relative_position_id = USA_The_Coup
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_A_Generals_America"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Powers_Dictatorship
+		icon = GFX_USA_power
+		x = -3
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = USA_A_Generals_America
+		}
+		relative_position_id = USA_A_Generals_America
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Powers_Dictatorship"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Military_Rule
+		icon = GFX_GENERIC_old_guard
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}		prerequisite = {
+			focus = USA_Powers_Dictatorship
+		}
+		relative_position_id = USA_Powers_Dictatorship
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Military_Rule"
+			add_ideas = USA_military_rule
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_The_Question_of_Congress
+		icon = GFX_USA_capitol
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Military_Rule
+		}
+		relative_position_id = USA_Military_Rule
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_Question_of_Congress"
+			country_event = {
+				id = twrusa.134
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Repeal_the_22nd_Ammendment
+		icon = GFX_ENG_chaos_in_cabinet
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_The_Question_of_Congress
+		}
+		relative_position_id = USA_The_Question_of_Congress
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Repeal_the_22nd_Ammendment"
+			swap_ideas = {
+    			remove_idea = USA_instability
+    			add_idea = USA_presidency_for_life
+			}
+			hidden_effect = {
+				create_country_leader = {
+					name = "Thomas S. Power"
+					desc = "none"
+					picture = "UnitedStates_Thomas_Power.dds"
+					expire = "1985.1.1"
+					ideology = military_dictatorshipz
+					traits = {}
+				}
+				swap_ideas = {
+					remove_idea = established_democracy
+					add_idea = authoritarian_system
+				}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Promote_the_New_America
+		icon = GFX_USA_reserves
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Repeal_the_22nd_Ammendment
+		}
+		relative_position_id = USA_Repeal_the_22nd_Ammendment
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Promote_the_New_America"
+			swap_ideas = {
+    			remove_idea = USA_presidency_for_life
+    			add_idea = USA_presidency_for_life_2
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Walkers_Junta
+		icon = GFX_USA_walker
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = USA_A_Generals_America
+		}
+		relative_position_id = USA_A_Generals_America
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Walkers_Junta"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Conservative_Values
+		icon = GFX_KRA_shield_of_christ
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Walkers_Junta
+		}
+		relative_position_id = USA_Walkers_Junta
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Conservative_Values"
+			add_ideas = USA_conservative_values
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Lemnitzers_Government
+		icon = GFX_USA_lemnitzer
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = USA_A_Generals_America
+		}
+		relative_position_id = USA_A_Generals_America
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: USA_Lemnitzers_Government"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Restructured_Nation
+		icon = GFX_USA_save_the_republic
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Lemnitzers_Government
+		}
+		relative_position_id = USA_Lemnitzers_Government
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Restructured_Nation"
+			add_ideas = USA_restructured_nation
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_A_Rigged_Democracy
+		icon = GFX_GENERIC_Fake_Democracy
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		mutually_exclusive = {
+			focus = USA_Real_Democracy
+		}
+		prerequisite = {
+			focus = USA_Conservative_Values
+			focus = USA_Restructured_Nation
+		}
+		relative_position_id = USA_Conservative_Values
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_A_Rigged_Democracy"
+			swap_ideas = {
+    			remove_idea = established_democracy
+    			add_idea = facade_democracy
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Promote_Claims_of_Democracy
+		icon = GFX_USA_free
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_A_Rigged_Democracy
+		}
+		relative_position_id = USA_A_Rigged_Democracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Promote_Claims_of_Democracy"
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.2
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Coalition_for_the_Republic
+		icon = GFX_USA_coalition
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Promote_Claims_of_Democracy
+		}
+		relative_position_id = USA_Promote_Claims_of_Democracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: USA_Coalition_for_the_Republic"
+			set_party_name = { 
+    			ideology = paternal_autocrat
+    			long_name = "Democrat-Republican Coalition"
+    			name = "Coalition"
+			}
+			swap_ideas = {
+    			remove_idea = USA_instability
+    			add_idea = USA_lingering_authoritarianism
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Ridgeways_Leadership
+		icon = GFX_USA_ridgway
+		x = 3
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = USA_A_Generals_America
+		}
+		relative_position_id = USA_A_Generals_America
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: USA_Ridgeways_Leadership"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Real_Democracy
+		icon = GFX_USA_real_democracy
+		x = 0
+		y = 2
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Ridgeways_Leadership
+			focus = USA_Restructured_Nation
+		}
+		mutually_exclusive = {
+			focus = USA_A_Rigged_Democracy
+		}
+		relative_position_id = USA_Ridgeways_Leadership
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Real_Democracy"
+			
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Uphold_American_Democracy
+		icon = GFX_USA_secure_democracy
+		x = 4
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = USA_The_Coup
+		}
+		relative_position_id = USA_The_Coup
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Uphold_American_Democracy"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_The_Acting_President
+		icon = GFX_GENERIC_government_power
+		x = 0
+		y = 3
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Uphold_American_Democracy
+		}
+		relative_position_id = USA_Uphold_American_Democracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_The_Acting_President"
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Restore_Democratic_Institutions
+		icon = GFX_USA_restore_democracy
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_The_Acting_President
+			focus = USA_Real_Democracy
+		}
+		
+		relative_position_id = USA_The_Acting_President
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Restore_Democratic_Institutions"
+			swap_ideas = {
+    			remove_idea = USA_instability
+    			add_idea = USA_instability_democracy_2
+			}
+			clr_country_flag = us_coup
+			hidden_effect = {
+				country_event = { id = twrusa.25 days = 50 }
+				country_event = { id = twrusa.26 days = 100 }
+    		}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = USA_Prepare_for_New_Elections
+		icon = GFX_USA_elections
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Restore_Democratic_Institutions
+		}
+		relative_position_id = USA_Restore_Democratic_Institutions
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_Prepare_for_New_Elections"
+			remove_ideas = USA_instability_democracy_2
+			set_country_flag = USA_democracy_restored
+		}
+	}
+}
+
+
+
+
+
+

@@ -1,0 +1,306 @@
+#############################
+## Govenment Uprising Tree ##
+#############################
+shared_focus = {
+	id = CRO_The_Revolt_Begins
+	icon = GFX_CRO_An_Uneasy_Calm
+	cost = 5
+	x = 7
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_The_Revolt_Begins"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		hidden_effect = { add_ideas = CRO_Croatian_Civil_War_idea }
+		hidden_effect = {
+			1016 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_partisan_hq
+				}
+			}
+			109 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_ustase_hq
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Slash_and_Burn
+	icon = GFX_GRE_Feed_off_the_Weak_Fire
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = CRO_The_Revolt_Begins
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_The_Revolt_Begins
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Slash_and_Burn"
+		add_timed_idea = {
+			idea = CRO_Slash_and_Burn_idea
+			days = 75
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcroatia.20
+				days = 15
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_No_Mercy_for_Partisans
+	icon = GFX_GENERIC_Partisans
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Slash_and_Burn
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Slash_and_Burn
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_No_Mercy_for_Partisans"
+		add_timed_idea = {
+			idea = CRO_No_Mercy_for_Partisans_idea
+			days = 50
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcroatia.21
+				days = 10
+			}
+			country_event = {
+				id = twrcroatia.22
+				days = 25
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Roaming_Pacification_Battalions
+	icon = GFX_GENERIC_German_Soldier
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_No_Mercy_for_Partisans
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_No_Mercy_for_Partisans
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Roaming_Pacification_Battalions"
+		add_timed_idea = {
+			idea = CRO_Roaming_Pacification_Battalions_idea
+			days = 75
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcroatia.23
+				days = 15
+			}
+			country_event = {
+				id = twrcroatia.24
+				days = 40
+			}
+			country_event = {
+				id = twrcroatia.25
+				days = 65
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Arms_Smuggling
+	icon = GFX_GENERIC_Holding_Gun
+	cost = 3
+	x = 1
+	y = 1
+	relative_position_id = CRO_The_Revolt_Begins
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_The_Revolt_Begins
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Arms_Smuggling"
+		country_event = {
+			id = twrcroatia.26
+			hours = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Invent_a_Scapegoat
+	icon = GFX_GENERIC_crush_jews
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Arms_Smuggling
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Arms_Smuggling
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Invent_a_Scapegoat"
+		add_timed_idea = {
+			idea = CRO_The_Scapegoat_idea
+			days = 50
+		}
+		hidden_effect = {
+			country_event = {
+				id = twrcroatia.27
+				hours = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Indiscriminate_Bombing_Campaigns
+	icon = GFX_GENERIC_Dropping_Bombs
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Invent_a_Scapegoat
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Invent_a_Scapegoat
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Indiscriminate_Bombing_Campaigns"
+		add_timed_idea = {
+			idea = CRO_Indiscriminate_Bombing_Campaigns_idea
+			days = 50
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					BOS = {
+						has_war_with = ROOT
+					}
+				}
+				BOS = {
+					add_timed_idea = {
+						idea = CRO_Indiscriminate_Bombing_Campaigns_BOS_idea
+						days = 50
+					}
+				}
+				else = {
+					random_other_country = {
+						limit = {
+							original_tag = CRO
+						}
+						add_timed_idea = {
+							idea = CRO_Indiscriminate_Bombing_Campaigns_BOS_idea
+							days = 50
+						}
+					}
+				}
+			}
+			country_event = {
+				id = twrcroatia.28
+				days = 10
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_One_Last_Offensive
+	icon = GFX_GENERIC_crowd_war
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = CRO_Indiscriminate_Bombing_Campaigns
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Roaming_Pacification_Battalions
+	}
+	prerequisite = {
+		focus = CRO_Indiscriminate_Bombing_Campaigns
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_One_Last_Offensive"
+		add_timed_idea = {
+			idea = CRO_One_Last_Offensive_idea
+			days = 80
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Our_Victory
+	icon = GFX_CRO_A_Terrible_Swarm_of_Avengers
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_One_Last_Offensive
+	cancelable = no
+	prerequisite = {
+		focus = CRO_One_Last_Offensive
+	}
+	available = {
+		CRO_has_won_against_the_uprising = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Our_Victory"
+		set_cosmetic_tag = CRO
+		clr_country_flag = CRO_resistance_mechanic_enabled
+		custom_effect_tooltip = CRO_military_influence_10_increase_tt
+			add_to_variable = {
+				var = CRO_Military_Influence
+				value = 10
+			}
+		country_event = {
+			hours = 2 id = croatiauprising.22
+		}
+		hidden_effect = {
+				1016 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_partisan_hq
+				}
+			}
+			109 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_ustase_hq
+				}
+			}
+		}
+	}
+}

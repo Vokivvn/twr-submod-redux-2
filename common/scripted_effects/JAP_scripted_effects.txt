@@ -1,0 +1,32 @@
+JAP_add_support = {
+	for_loop_effect = {
+		start = 0
+		end = LDP_support_array^num
+
+		add_to_temp_array = { temp_LDP_support_array = v }
+	}
+
+	remove_from_temp_array = { temp_LDP_support_array = temp_leader }
+	add_to_variable = { LDP_support_array^temp_leader = temp_value_added }
+
+	while_loop_effect = {
+		limit = { check_variable = { temp_value_added > 0 } }
+
+		for_loop_effect = {
+			start = 0
+			end = temp_LDP_support_array^num
+			
+			if = {
+				limit = {
+					check_variable = { LDP_support_array^temp_LDP_support_array^v > 0 }
+					check_variable = { temp_value_added > 0 }
+				}
+				subtract_from_variable = { LDP_support_array^temp_LDP_support_array^v = 1 }
+				subtract_from_temp_variable = { temp_value_added = 1 }
+			}
+		}
+	}
+
+	clear_array = temp_LDP_support_array
+	clear_variable = temp_value_added
+}

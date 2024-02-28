@@ -1,0 +1,461 @@
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Kaukasus_Civil_War
+		icon = GFX_SOV_attack_kaukasus
+		cost = 0
+		x = 28
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		
+		search_filters = { Focus_RKA_Civil_War }
+		
+		completion_reward = {
+		add_stability = -0.1
+		add_ideas = RKA_Slavic_Hell
+		remove_ideas = GER_RK_repression
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Chemical_Bombing
+		icon = GFX_GENERIC_Chemical_War
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = RAK_Kaukasus_Civil_War
+		}
+		relative_position_id = RAK_Kaukasus_Civil_War
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Civil_War }
+		
+		completion_reward = {
+			add_ideas = RKA_Chemical_Warfare
+			add_manpower = -5000
+		}
+		cost = 2.2
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Purchase_Gotische_Nukes
+		icon = GFX_RGO_totenkopf_nuke
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = RAK_Chemical_Bombing
+		}
+		relative_position_id = RAK_Chemical_Bombing
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Civil_War }
+		
+		completion_reward = {
+		hidden_effect = {
+			set_technology = {
+			nukes = 1
+			}
+			add_nuclear_bombs = 2
+			}
+		custom_effect_tooltip = RKANukes	
+		}
+		cost = 2.9
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Burn_the_Oil_Wells
+		icon = GFX_GENERIC_conflict
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = RAK_Purchase_Gotische_Nukes
+		}
+		relative_position_id = RAK_Purchase_Gotische_Nukes
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Civil_War }
+		
+		completion_reward = {
+		hidden_effect = {
+			add_ideas = RKA_No_More_Oil
+			remove_ideas = RKA_oil_extraction
+			add_resource = {
+                type = oil
+                amount = -10
+                state = 234
+            }
+			add_resource = {
+                type = oil
+                amount = -10
+                state = 971
+            }
+		}
+		custom_effect_tooltip = RKAOil	
+		}
+		cost = 5
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_The_Nuclear_Solution
+		icon = GFX_GENERIC_nuclear_hellfire
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = RAK_Purchase_Gotische_Nukes
+		}
+		relative_position_id = RAK_Purchase_Gotische_Nukes
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Civil_War }
+		
+		completion_reward = {
+		hidden_effect = {	
+			add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = icbm
+			}
+			set_technology = {
+			ww_2_rocketry = 1
+			}
+		}	
+		custom_effect_tooltip = RKASolution
+		}
+		cost = 2.2
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Burn_the_Kaukasus
+		icon = GFX_GENERIC_Volunteer
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = RAK_Burn_the_Oil_Wells
+		}
+		prerequisite = {
+			focus = RAK_The_Nuclear_Solution
+		}
+		relative_position_id = RAK_Burn_the_Oil_Wells
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Civil_War }
+		
+		completion_reward = {
+		hidden_effect = {	
+			218 = {
+			add_manpower = -100000
+			add_building_construction = {
+					type = infrastructure
+					level = -2
+					instant_build = yes
+					}
+			add_building_construction = {
+					type = industrial_complex
+					level = -1
+					instant_build = yes
+					}
+			add_building_construction = {
+					type = arms_factory
+					level = -1
+					instant_build = yes
+					}
+			}
+			265 = {
+			add_manpower = -50000
+			add_building_construction = {
+					type = infrastructure
+					level = -2
+					instant_build = yes
+					}
+			}
+			217 = {
+			add_manpower = -60000
+			add_building_construction = {
+					type = infrastructure
+					level = -5
+					instant_build = yes
+					}
+			add_building_construction = {
+					type = industrial_complex
+					level = -1
+					instant_build = yes
+					}
+			}
+		}
+		custom_effect_tooltip = RKABurn
+		}
+		cost = 14.3
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Exhaust_the_Local_Resources
+		icon = GFX_GENERIC_mining
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = RAK_Burn_the_Kaukasus
+		}
+		relative_position_id = RAK_Burn_the_Kaukasus
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Civil_War }
+		
+		completion_reward = {
+		hidden_effect = {	
+			add_resource = {
+                type = tungsten
+                amount = -10
+                state = 234
+            }
+			add_resource = {
+                type = tungsten
+                amount = -10
+                state = 971
+            }
+			add_resource = {
+                type = chromium
+                amount = -5
+                state = 972
+            }
+			add_resource = {
+                type = chromium
+                amount = -15
+                state = 233
+            }
+			add_resource = {
+                type = chromium
+                amount = -5
+                state = 235
+            }
+			add_resource = {
+                type = chromium
+                amount = -5
+                state = 873
+            }
+		}
+		custom_effect_tooltip = RKAExhaust
+		}
+		cost = 7.2
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Return_of_the_Kaukasus
+		icon = GFX_GER_revolution
+		cost = 0
+		x = 33
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		
+		search_filters = { Focus_RKA_Victory }
+		
+		completion_reward = {
+		add_ideas = RKA_Victory_in_the_Kaukasus
+		hidden_effect = {
+		remove_ideas = RKA_Slavic_Hell
+		remove_ideas = RKA_Chemical_Warfare
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Restart_Oil_Production
+		icon = GFX_focus_CDA_our_oil
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = RAK_Return_of_the_Kaukasus
+		}
+		relative_position_id = RAK_Return_of_the_Kaukasus
+		ai_will_do = {
+			factor = 1
+		}
+			
+		search_filters = { Focus_RKA_Victory }
+		
+		completion_reward = {
+			remove_ideas = RKA_No_More_Oil
+			
+		}
+		cost = 7.2
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Repair_the_Oil_Wells
+		icon = GFX_GENERIC_Oil_Wells
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = RAK_Restart_Oil_Production
+		}
+		relative_position_id = RAK_Restart_Oil_Production
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Victory }
+
+		completion_reward = {
+			add_resource = {
+                type = oil
+                amount = 10
+                state = 234
+            }
+			add_resource = {
+                type = oil
+                amount = 10
+                state = 971
+            }
+			
+		}
+		cost = 5.8
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Grant_Local_Authority
+		icon = GFX_goal_generic_improve_relations
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = RAK_Restart_Oil_Production
+		}
+		relative_position_id = RAK_Restart_Oil_Production
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Victory }
+
+		completion_reward = {
+			add_ideas = RKA_Local_Autonomy
+			
+		}
+		cost = 4.3
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Production_First_Policy
+		icon = GFX_GENERIC_workers
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = RAK_Grant_Local_Authority
+		}
+		relative_position_id = RAK_Grant_Local_Authority
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Victory }
+
+		completion_reward = {
+			add_ideas = RKA_Priority_in_Production
+			
+		}
+		cost = 7.2
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Restart_Oil_Shipments
+		icon = GFX_GER_oil_barrels
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = RAK_Production_First_Policy
+		}
+		relative_position_id = RAK_Production_First_Policy
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Victory }
+
+		completion_reward = {
+			add_ideas = RKA_oil_extraction
+			
+		}
+		cost = 5
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Enrich_the_Rich
+		icon = GFX_GENERIC_elite_party
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = RAK_Production_First_Policy
+		}
+		relative_position_id = RAK_Production_First_Policy
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Victory }
+
+		completion_reward = {
+			add_ideas = RKA_Strong_Oligarchs
+			
+		}
+		cost = 5
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = RAK_Restart_Normal_Functions
+		icon = GFX_GENERIC_state_economy
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = RAK_Restart_Oil_Shipments
+		}
+		prerequisite = {
+			focus = RAK_Enrich_the_Rich
+		}
+		relative_position_id = RAK_Restart_Oil_Shipments
+		ai_will_do = {
+			factor = 1
+		}
+		
+		search_filters = { Focus_RKA_Victory }
+		
+		completion_reward = {
+			add_ideas = GER_RK_repression
+			
+		}
+		cost = 10
+	}
+	

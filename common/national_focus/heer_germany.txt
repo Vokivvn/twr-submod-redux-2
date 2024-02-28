@@ -1,0 +1,2902 @@
+focus_tree = {
+	id = heer_germany
+	country = {
+		factor = 0	
+	}
+	default = no
+	continuous_focus_position = { x = 50 y = -1000 }
+
+
+####MANSTEIN#####
+	focus = {
+	cancelable = no
+		id = HGR_Mansteins_Leadership
+		icon = GFX_HGR_Manstein
+		cost = 8.00
+		x = 2
+		y = 0
+		available = {
+		has_country_leader = {
+    	name = "Erich von Manstein"
+    	ruling_only = yes
+			}
+		}
+		bypass = {
+		has_country_leader = {
+    	name = "Erich von Manstein"
+    	ruling_only = yes
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Mansteins_Leadership"
+			custom_effect_tooltip = HGR_MANSTEIN_FOCUS_DESC
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_New_Bismarck
+		icon = GFX_GER_New_Bismarck
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Mansteins_Leadership
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = 0
+		y = 1
+		available = {
+		has_country_leader = {
+    	name = "Erich von Manstein"
+    	ruling_only = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_New_Bismarck" #TBD
+			add_war_support = 0.15
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_New_Nationalism
+		icon = GFX_GER_Totalen_Kreig
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_New_Bismarck
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = 1
+		y = 2
+		available = {
+		has_country_leader = {
+    	name = "Erich von Manstein"
+    	ruling_only = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_New_Nationalism"
+			add_ideas = GER_dictatorship_chamber_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Manstein_Cult
+		icon = GFX_HGR_Manstein_Cult
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_New_Nationalism
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = 1
+		y = 3
+		available = {
+		has_country_leader = {
+    	name = "Erich von Manstein"
+    	ruling_only = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Manstein_Cult"
+			country_event = twrheer.9
+			add_popularity = {
+    		ideology = national_socialist
+    		popularity = 0.4
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Cleansing_the_Politicians
+		icon = GFX_GENERIC_secret_service
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_New_Bismarck
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = -1
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Cleansing_the_Politicians" #TBD
+			add_timed_idea = {
+    			idea = GER_recent_faction_purge
+    			days = 90
+			}
+			add_political_power = 150
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Orthodox_Economy
+		icon = GFX_GENERIC_elite_party
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Cleansing_the_Politicians
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = -1
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Orthodox_Economy"
+			add_offsite_building = { type = arms_factory level = 1 }
+			custom_effect_tooltip = unlocked_economic_tree
+			hidden_effect = {
+			set_country_flag = HGR_unlocked_economic
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Against_the_Judeo_Bolsheviks
+		icon = GFX_SOV_reconsider_union
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Orthodox_Economy
+		}
+		prerequisite = {
+			focus = HGR_The_Manstein_Cult
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = 0
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Against_the_Judeo_Bolsheviks"
+			add_ideas = HGR_Against_Bolsheviks
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Mobilizing_the_Reserves
+		icon = GFX_GENERIC_Rally_the_People
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Against_the_Judeo_Bolsheviks
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = 0
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Mobilizing_the_Reserves"
+			add_manpower = 50000
+			add_equipment_to_stockpile = {
+    		type = infantry_equipment
+    		amount = 1000
+    		producer = HGR
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Anti_Bolshevik_Fortifications
+		icon = GFX_goal_generic_fortify_city
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Against_the_Judeo_Bolsheviks
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = -2
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Anti_Bolshevik_Fortifications"
+			add_timed_idea = {
+    		idea = HGR_Fortification_Hours
+    		days = 180
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Operation_Wiedergeburt
+		icon = GFX_GENERIC_RK_Flag
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Against_the_Judeo_Bolsheviks
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = 2
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Operation_Wiedergeburt"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Strike_the_Judeo_Bolsheviks
+		icon = GFX_focus_attack_soviet
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Operation_Wiedergeburt
+		}
+		prerequisite = {
+			focus = HGR_Anti_Bolshevik_Fortifications
+		}
+		prerequisite = {
+			focus = HGR_Mobilizing_the_Reserves
+		}
+		relative_position_id = HGR_Mansteins_Leadership
+		x = 0
+		y = 6
+		available = {
+		has_army_manpower = {
+    	size > 1000000
+    		}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Strike_the_Judeo_Bolsheviks"
+			remove_ideas = GER_grand_power_struggles
+			custom_effect_tooltip = UNLOCK_WAR_ON_RUSSIA
+		}
+	}	
+#END#
+
+#TRADITIONALIST HEER#
+	focus = {
+	cancelable = no
+		id = HGR_The_Traditionalist_Wehrmacht
+		icon = GFX_GER_Generic_German_General
+		cost = 8.00
+		x = 7
+		y = 0
+		available = {
+		OR = {
+		has_country_leader = {
+    	name = "Franz Halder"
+    	ruling_only = yes
+    			}
+   		has_country_leader = {
+    	name = "Friedrich Olbricht"
+    	ruling_only = yes
+    			}
+			}
+		}
+		bypass = {
+		OR = {
+		has_country_leader = {
+    	name = "Franz Halder"
+    	ruling_only = yes
+    			}
+   		has_country_leader = {
+    	name = "Friedrich Olbricht"
+    	ruling_only = yes
+    			}
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Traditionalist_Wehrmacht"
+			custom_effect_tooltip = HGR_TRADITIONALISTS_FOCUS_DESC
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Olbricht_Doctrine
+		icon = GFX_HGR_Olbricht
+		cost = 7.00
+		available = {
+   		has_country_leader = {
+    	name = "Friedrich Olbricht"
+    	ruling_only = yes
+    			}
+		}
+		prerequisite = {
+			focus = HGR_The_Traditionalist_Wehrmacht
+		}
+		mutually_exclusive = {
+			focus = HGR_Halder_Doctrine
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = 1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Olbricht_Doctrine"
+			add_political_power = 150
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Rehabilitate_the_Reformists
+		icon = GFX_ROS_Land_Grants_to_Germans
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Olbricht_Doctrine
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = 2
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Rehabilitate_the_Reformists"
+			add_stability = 0.1
+			add_political_power = -250
+			create_field_marshal = {
+			name = "Erwin Rommel"
+			picture = "Erwin_Rommel.dds"
+			traits = { trait_reckless war_hero armor_officer media_personality heer_staff }
+			skill = 4
+			id = 903
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 2
+			logistics_skill = 1
+			}
+			create_corps_commander = {
+			name = "Hans Speidel"
+			picture = "Hans_Speidel.dds"
+			traits = { skilled_staffer trait_cautious heer_staff }
+			skill = 4
+			id = 940
+			attack_skill = 4
+			defense_skill = 2
+			planning_skill = 4
+			logistics_skill = 3
+			}
+			create_field_marshal = {
+			name = "Hasso von Manteuffel"
+			picture = "Hasso_von_Manteuffel.dds"
+			traits = { trait_reckless harsh_leader armor_officer heer_staff }
+			skill = 3
+			id = 906
+			attack_skill = 4
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			}
+			hidden_effect = {
+			clr_country_flag = HGR_purged
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Shifting_the_Economy
+		icon = GFX_GENERIC_planned_economy
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Rehabilitate_the_Reformists
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = 2
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Shifting_the_Economy"
+			custom_effect_tooltip = unlocked_economic_tree
+			hidden_effect = {
+			set_country_flag = HGR_unlocked_economic
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Army_with_a_State
+		icon = GFX_GENERIC_German_Soldiers2
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Shifting_the_Economy
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = 2
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Army_with_a_State" #TBD
+			add_ideas = GER_influential_general_staff
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Halder_Doctrine
+		icon = GFX_HGR_Halder
+		cost = 7.00
+		available = {
+   		has_country_leader = {
+    	name = "Franz Halder"
+    	ruling_only = yes
+    			}
+		}
+		prerequisite = {
+			focus = HGR_The_Traditionalist_Wehrmacht
+		}
+		mutually_exclusive = {
+			focus = HGR_Olbricht_Doctrine
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = -1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Halder_Doctrine"
+			add_political_power = 150
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Blame_the_Party_and_SS
+		icon = GFX_GENERIC_Nazi_Falls
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Halder_Doctrine
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = -2
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Blame_the_Party_and_SS" #TBD
+			country_event = { id = twrheer.10 hours = 3 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Economic_Stability
+		icon = GFX_GER_reform_reichmark
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Blame_the_Party_and_SS
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = -2
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Economic_Stability"
+			custom_effect_tooltip = unlocked_economic_tree
+			hidden_effect = {
+			set_country_flag = HGR_unlocked_economic
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Nazi_Status_Quo
+		icon = GFX_GER_nazi_party_mandatory
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Economic_Stability
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = -2
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Nazi_Status_Quo"
+			add_stability = 0.15
+			add_popularity = {
+    		ideology = national_socialist
+    		popularity = 0.5
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Restoring_the_Tricolour
+		icon = GFX_GER_Imperial_Flag
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Olbricht_Doctrine
+			focus = HGR_Halder_Doctrine
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = 0
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Restoring_the_Tricolour"
+			add_political_power = 50
+			set_cosmetic_tag = GER_OLD_FLAG
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Embrace_Traditionalism
+		icon = GFX_GENERIC_Imperial_Eagle
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Restoring_the_Tricolour
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = 0
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Embrace_Traditionalism"
+			add_timed_idea = {
+				idea = GER_imperial_nostalgia
+				days = 150
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Reclaiming_the_East
+		icon = GFX_GER_rk_eagle
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Embrace_Traditionalism
+		}
+		prerequisite = {
+			focus = HGR_Shifting_the_Economy
+			focus = HGR_Economic_Stability
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = 0
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Reclaiming_the_East"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_First_Military_Government
+		icon = GFX_GENERIC_Military_Government
+		cost = 10.00
+		prerequisite = {
+			focus = HGR_Reclaiming_the_East
+		}
+		prerequisite = {
+			focus = HGR_The_Army_with_a_State
+			focus = HGR_The_Nazi_Status_Quo
+		}
+		relative_position_id = HGR_The_Traditionalist_Wehrmacht
+		x = 0
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_First_Military_Government"
+			add_command_power = 50
+			remove_ideas = GER_grand_power_struggles
+		}
+	}
+#END
+####SPEIDEL#####
+	focus = {
+	cancelable = no
+		id = HGR_Speidels_Leadership
+		icon = GFX_HGR_Speidel
+		cost = 8.00
+		x = 13
+		y = 0
+		available = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+		}
+		bypass = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Speidels_Leadership"
+			custom_effect_tooltip = HGR_SPEIDEL_DESC
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Great_Reshuffle
+		icon = GFX_GENERIC_Burn_the_Parliament
+		cost = 9.00
+		prerequisite = {
+			focus = HGR_Speidels_Leadership
+		}
+		select_effect = {
+		country_event = { id = twrheer.21 days = 5 }
+		}
+		relative_position_id = HGR_Speidels_Leadership
+		available = {
+		has_completed_focus = HGR_Appoint_a_President
+		}
+		x = -1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Great_Reshuffle"
+			add_timed_idea = {
+    			idea = GER_recent_faction_purge
+    			days = 90
+			}
+			add_ideas = GER_moderate_policies_1
+			add_country_leader_trait = reformist
+		}
+	}	
+	focus = {
+	cancelable = no
+		id = HGR_Appoint_a_President
+		icon = GFX_GER_Reichs_President
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Speidels_Leadership
+		}
+		relative_position_id = HGR_Speidels_Leadership
+		x = 1
+		y = 1
+		select_effect = {
+		country_event = { id = twrheer.2 hours = 5 }
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Appoint_a_President"
+			country_event = { id = twrheer.1 days = 5 }
+		}
+	}	
+	focus = {
+	cancelable = no
+		id = HGR_Repelling_the_Nuremberg_Laws
+		icon = GFX_GER_burn_the_blacklist
+		cost = 9.00
+		prerequisite = {
+			focus = HGR_Appoint_a_President
+		}
+		prerequisite = {
+			focus = HGR_The_Great_Reshuffle
+		}
+		select_effect = {
+		country_event = { id = twrheer.3 days = 5 }
+		}
+		relative_position_id = HGR_Speidels_Leadership
+		x = 0
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Repelling_the_Nuremberg_Laws" #TBD
+			add_popularity = {
+   			ideology = national_socialist
+    		popularity = -0.9
+			}
+			swap_ideas = {
+				remove_idea = GER_moderate_policies_1
+				add_idea = GER_moderate_policies_2
+			}
+
+		}
+	}	
+	focus = {
+	cancelable = no
+		id = HGR_Independent_Chamber
+		icon = GFX_GER_Parliament_State
+		cost = 8.00
+		available = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+		}	
+		prerequisite = {
+			focus = HGR_Repelling_the_Nuremberg_Laws
+		}
+		relative_position_id = HGR_Speidels_Leadership
+		x = 0
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Independent_Chamber"
+			add_ideas = authoritarian_system
+			add_ideas = GER_symbolic_parliament_1
+			add_political_power = 150
+			add_ideas = {
+			GER_HoG_Wilhelm_Leuschner
+			GER_FM_Claus_von_Stauffenberg
+			GER_MoS_Helmuth_James_von_Moltke
+			GER_CoS_Johannes_Blaskowitz
+			}
+			hidden_effect = {
+			if = {
+			limit = { has_country_flag = pres_Wilhelm_Canaris }
+			country_event = {
+			id = twrheer.8
+			days = 2
+				}
+			}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Economic_Reconstruction
+		icon = GFX_GER_Labourist
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Independent_Chamber
+		}
+		available = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+		}	
+		relative_position_id = HGR_Speidels_Leadership
+		x = 0
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Economic_Reconstruction"
+			custom_effect_tooltip = unlocked_economic_tree
+			hidden_effect = {
+			set_country_flag = HGR_unlocked_economic
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_East_Is_Ours
+		icon = GFX_GENERIC_Europe
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Independent_Chamber
+		}
+		available = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+		}	
+		relative_position_id = HGR_Speidels_Leadership
+		x = 2
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_East_Is_Ours"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+		}
+	}	
+	focus = {
+	cancelable = no
+		id = HGR_Diplomatic_Efforts
+		icon = GFX_focus_generic_diplomatic_treaty
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Independent_Chamber
+		}
+		available = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+		}	
+		relative_position_id = HGR_Speidels_Leadership
+		x = -2
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Diplomatic_Efforts" #TBD DECISIONS
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Learn_from_Mussolini
+		icon = GFX_ITA_Father_of_the_Nation
+		cost = 8.00
+		available = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+			has_full_control_of_state = 10
+			has_full_control_of_state = 90
+			has_full_control_of_state = 92
+			has_full_control_of_state = 88
+			has_full_control_of_state = 89
+			has_full_control_of_state = 91
+			has_full_control_of_state = 984
+			has_full_control_of_state = 985
+
+			has_full_control_of_state = 75
+			has_full_control_of_state = 9
+		}	
+		prerequisite = {
+			focus = HGR_Diplomatic_Efforts
+		}
+		prerequisite = {
+			focus = HGR_Economic_Reconstruction
+		}
+		relative_position_id = HGR_Speidels_Leadership
+		x = -1
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Learn_from_Mussolini" #TBD
+			country_event = { id = twrheer.4 hours = 3 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Germany_for_Germans
+		icon = GFX_HGR_Germany_For_Germans
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_East_Is_Ours
+		}
+		prerequisite = {
+			focus = HGR_Economic_Reconstruction
+		}
+		available = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+		}	
+		relative_position_id = HGR_Speidels_Leadership
+		x = 1
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Germany_for_Germans" #TBD
+			remove_ideas = GER_Natives_Unrest
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Fascist_Triumphant
+		icon = GFX_HGR_Fascist_Triumphant
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Germany_for_Germans
+		}
+		prerequisite = {
+			focus = HGR_Learn_from_Mussolini
+		}
+		available = {
+		has_country_leader = {
+    	name = "Hans Speidel"
+    	ruling_only = yes
+			}
+		}	
+		relative_position_id = HGR_Speidels_Leadership
+		x = 0
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Fascist_Triumphant"
+			add_popularity = {
+    		ideology = fascist
+    		popularity = 0.9
+				}
+				add_stability = 0.15
+				remove_ideas = GER_grand_power_struggles
+				drop_cosmetic_tag = yes
+				set_cosmetic_tag = GER_HANS
+		}
+	}
+#END
+####ROMMEL#####
+	focus = {
+	cancelable = no
+		id = HGR_Rommels_Intervention
+		icon = GFX_HGR_Rommel
+		cost = 8.00
+		x = 18
+		y = 0
+		available = {
+		has_country_leader = {
+    	name = "Erwin Rommel"
+    	ruling_only = yes
+			}
+		}
+		bypass = {
+		has_country_leader = {
+    	name = "Erwin Rommel"
+    	ruling_only = yes
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Rommels_Intervention"
+			custom_effect_tooltip = HGR_ROMMEL_DESC
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Denounce_Speidel
+		icon = GFX_GENERIC_The_Noose
+		cost = 5.00
+		prerequisite = {
+			focus = HGR_Rommels_Intervention
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = -1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Denounce_Speidel" #TBD
+			remove_ideas = GER_moderate_policies_1
+			add_stability = -0.15
+			add_popularity = {
+    		ideology = fascist
+    		popularity = -0.5
+				}			
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Safeguarding_the_Reich
+		icon = GFX_GER_gray_swastika_government
+		cost = 5.00
+		prerequisite = {
+			focus = HGR_Denounce_Speidel
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = -1
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Safeguarding_the_Reich"
+			add_ideas = fanatical_dictatorship 
+			add_war_support = -0.05
+			add_stability = -0.05
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Rehabilitate_the_Old 
+		icon = GFX_GER_gray_swastika_troops
+		cost = 9.00
+		prerequisite = {
+			focus = HGR_Rommels_Intervention
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = 1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Rehabilitate_the_Old"
+			add_popularity = {
+    		ideology = national_socialist
+    		popularity = 0.05
+				}				
+			create_corps_commander = {
+			name = "Gotthard Heinrici"
+			picture = "gotthard_heinrici.dds"
+			traits = { panzer_leader }
+			skill = 3
+			id = 926
+			attack_skill = 2
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 1
+			}
+			create_corps_commander = {
+			name = "Alfred Jodl"
+			picture = "Alfred_Jodl.dds"
+			traits = { trait_cautious organizer }
+			skill = 3
+			id = 914
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 3
+			logistics_skill = 2
+			}
+			create_corps_commander = {
+			name = "Hermann Hoth"
+			picture = "Hermann_Hoth.dds"
+			traits = { panzer_leader armor_officer }
+			skill = 4
+			id = 916
+			attack_skill = 5
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Restore_the_Hitler_Oath
+		icon = GFX_GER_reform_bill
+		cost = 5.00
+		prerequisite = {
+			focus = HGR_Rehabilitate_the_Old
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = 1
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Restore_the_Hitler_Oath"
+			add_ideas = GER_nsdap_heer_1
+			add_popularity = {
+    		ideology = national_socialist
+    		popularity = 0.15
+				}	
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Restore_the_NSDAP
+		icon = GFX_GER_NSDAP_Focus
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Restore_the_Hitler_Oath
+		}
+		prerequisite = {
+			focus = HGR_Safeguarding_the_Reich
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = 0
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Restore_the_NSDAP" #TBD EVENT
+			add_political_power = 150
+			country_event = { id = twrheer.11 hours = 7 }
+			custom_effect_tooltip = RESTORED_NSDAP_HGR
+			hidden_effect = {
+			set_party_name = { 
+    		ideology = national_socialist 
+    		long_name = GER_national_socialist_party_long 
+    		name = GER_national_socialist_party 
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Economi_Development
+		icon = GFX_GER_good_economy
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Restore_the_NSDAP
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = -1
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Economi_Development"
+			custom_effect_tooltip = unlocked_economic_tree
+			hidden_effect = {
+			set_country_flag = HGR_unlocked_economic
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Reclaiming_Our_Empire
+		icon = GFX_GENERIC_Nazi_over_europe
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Restore_the_NSDAP
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = 1
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Reclaiming_Our_Empire"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Rommel_Our_Saviour
+		icon = GFX_HGR_Rommel_Our_Saviour
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Reclaiming_Our_Empire
+		}
+		prerequisite = {
+			focus = HGR_Economi_Development
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = 0
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Rommel_Our_Saviour"
+			add_ideas = HGR_Rommel_Our_Model
+			add_popularity = {
+    		ideology = national_socialist
+    		popularity = 0.15
+				}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Return_to_Hitler_Era
+		icon = GFX_GER_hitler_hat
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Reclaiming_Our_Empire
+		}
+		prerequisite = {
+			focus = HGR_Rommel_Our_Saviour
+		}
+		relative_position_id = HGR_Rommels_Intervention
+		x = 0
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Return_to_Hitler_Era"
+			remove_ideas = {
+			GER_grand_power_struggles
+			GER_junta_martial_laws
+			}
+			add_political_power = 150
+		}
+	}
+#END
+####OSTER#####
+	focus = {
+	cancelable = no
+		id = HGR_Hans_Oster_Coup
+		icon = GFX_HGR_Oster
+		cost = 8.00
+		x = 22
+		y = 0
+		available = {
+		has_country_leader = {
+    	name = "Hans Oster"
+    	ruling_only = yes
+			}
+		}
+		bypass = {
+		has_country_leader = {
+    	name = "Hans Oster"
+    	ruling_only = yes
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Hans_Oster_Coup"
+			custom_effect_tooltip = HGR_OSTER_DESC
+
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Great_Reveal
+		icon = GFX_SPA_search_for_revisionists
+		cost = 10.00
+		prerequisite = {
+			focus = HGR_Hans_Oster_Coup
+		}
+		relative_position_id = HGR_Hans_Oster_Coup
+		x = 0
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Great_Reveal" #TBD
+			add_political_power = -500
+			add_war_support = -0.5
+			add_popularity = {
+    		ideology = national_socialist
+    		popularity = -0.5
+			}
+			news_event = { id = twrheernews.8 hours = 3 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Posthumous_Pardon
+		icon = GFX_HGR_von_Tresckow_Pardon
+		cost = 7.00
+		prerequisite = {
+			focus = HGR_The_Great_Reveal
+		}
+		relative_position_id = HGR_Hans_Oster_Coup
+		x = -1
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Posthumous_Pardon" #TBD
+			add_timed_idea = {
+    		idea = GER_militarist_policies_1
+    		days = 100
+			}
+			news_event = { id = twrheernews.9 hours = 3 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Releasing_Political_Prisoners
+		icon = GFX_GENERIC_Mass_Imprisonment
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Great_Reveal
+		}
+		relative_position_id = HGR_Hans_Oster_Coup
+		x = 1
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Releasing_Political_Prisoners" #TBD
+			add_ideas = liberty_ethos_focus
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_A_Grand_Coalition
+		icon = GFX_HGR_Grand_Coalition
+		cost = 9.00
+		prerequisite = {
+			focus = HGR_Releasing_Political_Prisoners
+		}
+		prerequisite = {
+			focus = HGR_Posthumous_Pardon
+		}
+		relative_position_id = HGR_Hans_Oster_Coup
+		x = 0
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_A_Grand_Coalition"
+			add_stability = 0.35
+			swap_ideas = {
+    		remove_idea = GER_Natives_Unrest
+    		add_idea = HGR_Grand_Coalition
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Restoring_the_Constitution
+		icon = GFX_GER_Weimar_Constitution
+		cost = 9.00
+		prerequisite = {
+			focus = HGR_A_Grand_Coalition
+		}
+		relative_position_id = HGR_Hans_Oster_Coup
+		x = -1
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Restoring_the_Constitution"
+			remove_ideas = GER_junta_martial_laws
+			add_ideas = facade_democracy
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Theological_Peace
+		icon = GFX_GENERIC_Catholic_Education
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_A_Grand_Coalition
+		}
+		relative_position_id = HGR_Hans_Oster_Coup
+		x = 1
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Theological_Peace" #TBD
+			remove_ideas = GER_grand_power_struggles
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Period_of_Reconstruction
+		icon = GFX_GENERIC_Building_Complex
+		cost = 9.00
+		prerequisite = {
+			focus = HGR_Theological_Peace
+		}
+		prerequisite = {
+			focus = HGR_Restoring_the_Constitution
+		}
+		relative_position_id = HGR_Hans_Oster_Coup
+		x = 0
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Period_of_Reconstruction"
+			custom_effect_tooltip = unlocked_economic_tree
+			hidden_effect = {
+			set_country_flag = HGR_unlocked_economic
+			}			
+		}
+	}
+#END#
+	focus = {
+	cancelable = no
+		id = HGR_Rethink_The_Economy
+		icon = GFX_GENERIC_planned_economy
+		cost = 8.00
+		x = 30
+		y = 0
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = unlocked_economic_tree
+				has_country_flag = HGR_unlocked_economic
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Rethink_The_Economy"
+			add_tech_bonus = {
+				name = HGR_Rethink_The_Economy
+				bonus = 0.45
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Greatest_Army
+		icon = GFX_GER_land_army
+		cost = 8.00
+		x = 40
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Greatest_Army"
+			army_experience = 50
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Mixture_Of_Air_And_Navy
+		icon = GFX_GENERIC_bigger_ship_plane
+		cost = 8.00
+		x = 50
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Mixture_Of_Air_And_Navy"
+			air_experience = 15
+			navy_experience = 15
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Changes_In_The_Air
+		icon = GFX_GENERIC_economic_prosperity
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Rethink_The_Economy
+		}
+		mutually_exclusive = {
+			focus = HGR_Old_Ways
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Changes_In_The_Air"
+			swap_ideas = {
+				remove_idea = GER_economic_stagnation
+				add_idea = GER_economic_recovery_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Military_Isnt_Business
+		icon = GFX_GENERIC_curtrail_army
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Changes_In_The_Air
+		}
+		mutually_exclusive = {
+			focus = HGR_Military_Cooperations
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -3
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Military_Isnt_Business"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_1
+				add_idea = GER_economic_recovery_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Regional_Businesses
+		icon = GFX_GENERIC_urbanization2
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Military_Isnt_Business
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -3
+		y = 3
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = HGR_Regional_Businesses_civ }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Regional_Businesses"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_Regional_Businesses_civ
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_Regional_Businesses_civ
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_Regional_Businesses_civ
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Help_From_Experts
+		icon = GFX_GENERIC_brain
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Regional_Businesses
+		}
+		mutually_exclusive = {
+			focus = HGR_Army_Tries
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -5
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Help_From_Experts"
+			add_ideas = GER_economists_recruited
+			custom_effect_tooltip = LUDWIG_ERHARD_HIRED
+			set_country_flag = ECONOMIC_EXPERT_GERMAN
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Army_Tries
+		icon = GFX_GENERIC_friends_in_high_places
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Regional_Businesses
+		}
+		mutually_exclusive = {
+			focus = HGR_Help_From_Experts
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -3
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Army_Tries"
+			add_ideas = GER_economic_department_of_wehrmacht
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Simplify_Tax_Codes
+		icon = GFX_GENERIC_money
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Help_From_Experts
+			focus = HGR_Army_Tries
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -4
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Simplify_Tax_Codes"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_2
+				add_idea = GER_economic_recovery_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Laxer_Economics
+		icon = GFX_GENERIC_industrial_quota
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Simplify_Tax_Codes
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -3
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Laxer_Economics"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_3
+				add_idea = GER_economic_recovery_4
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Open_Up_Trades
+		icon = GFX_GER_Nazi_Trade
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Simplify_Tax_Codes
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -5
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Open_Up_Trades"
+			add_timed_idea = {
+				idea = GER_reopen_trade
+				days = 200
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Military_Cooperations
+		icon = GFX_GENERIC_industrial_grey
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Changes_In_The_Air
+		}
+		mutually_exclusive = {
+			focus = HGR_Military_Isnt_Business
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -1
+		y = 2
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = HGR_Military_Cooperations_mil }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Military_Cooperations"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_Military_Cooperations_mil
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_Military_Cooperations_mil
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_Military_Cooperations_mil
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Rationing
+		icon = GFX_GENERIC_rations
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Military_Cooperations
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -1
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Rationing"
+			swap_ideas = {
+				remove_idea = GER_economic_stagnation
+				add_idea = GER_economic_recovery_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Profits_Fund_Army
+		icon = GFX_GENERIC_temp_tax
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Rationing
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -1
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Profits_Fund_Army"
+			add_ideas = GER_funds_for_the_army
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Governments_Army
+		icon = GFX_GER_Volksturm
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Profits_Fund_Army
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -1
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Governments_Army"
+			add_manpower = 20000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_A_War_Economy
+		icon = GFX_GENERIC_military_industry_produce
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Governments_Army
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -1
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_A_War_Economy"
+			remove_ideas = GER_economic_recovery_1
+			add_timed_idea = {
+				idea = GER_economic_recovery_2
+				days = 712
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Old_Ways
+		icon = GFX_GER_Chained_Eagles
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Rethink_The_Economy
+		}
+		mutually_exclusive = {
+			focus = HGR_Changes_In_The_Air
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Old_Ways"
+			swap_ideas = {
+				remove_idea = GER_economic_stagnation
+				add_idea = GER_economic_recovery_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_State_Owned_Industry
+		icon = GFX_GER_bussiness_as_usual
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Old_Ways
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 1
+		y = 2
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = HGR_State_Owned_Industry_civ }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_State_Owned_Industry"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_State_Owned_Industry_civ
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_State_Owned_Industry_civ
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = HGR_State_Owned_Industry_civ
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Funding_The_War_Machine
+		icon = GFX_GER_panzer_parts
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_State_Owned_Industry
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 1
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Funding_The_War_Machine"
+			add_timed_idea = {
+				idea = GER_ground_production_effort
+				days = 200
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Economic_Status_Quo
+		icon = GFX_GER_ger_labour
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Funding_The_War_Machine
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 1
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Economic_Status_Quo"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_1
+				add_idea = GER_economic_recovery_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Handshakings
+		icon = GFX_GER_Capitalists
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Economic_Status_Quo
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 1
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Handshakings"
+			add_stability = -0.10
+			add_political_power = -75
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Hegemonic_Consortiums
+		icon = GFX_GENERIC_bag_of_money
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_State_Owned_Industry
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 3
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Hegemonic_Consortiums"
+			add_ideas = GER_industrial_hegemons
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Labour_Camps_Eco
+		icon = GFX_GENERIC_imprison_opposition
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Hegemonic_Consortiums
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 3
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Labour_Camps_Eco"
+			add_ideas = GER_slave_labor_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Slave_Exports
+		icon = GFX_GER_slaves
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Labour_Camps_Eco
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 3
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Slave_Exports"
+			swap_ideas = {
+				remove_idea = GER_slave_labor_1
+				add_idea = GER_slave_labor_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_FIxed_Values
+		icon = GFX_GER_reich_standard
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Handshakings
+		}
+		prerequisite = {
+			focus = HGR_Slave_Exports
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 2
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_FIxed_Values"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_2
+				add_idea = GER_economic_recovery_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Tame_The_Economy
+		icon = GFX_GER_Economic_Reform
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Open_Up_Trades
+		}
+		prerequisite = {
+			focus = HGR_Laxer_Economics
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = -4
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Tame_The_Economy"
+			remove_ideas = GER_economic_recovery_4
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Hire_Experts
+		icon = GFX_GENERIC_economy_control
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_FIxed_Values
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 2
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Hire_Experts"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_3
+				add_idea = GER_economic_recovery_4
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Prussian_Economy
+		icon = GFX_GER_Prussian_Shits
+		cost =10.00
+		prerequisite = {
+			focus = HGR_Hire_Experts
+		}
+		relative_position_id = HGR_Rethink_The_Economy
+		x = 2
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Prussian_Economy"
+			remove_ideas = GER_economic_recovery_4
+			add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Air_Army
+		icon = GFX_GER_the_luftwaffe
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Mixture_Of_Air_And_Navy
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = -1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Air_Army"
+			add_doctrine_cost_reduction = {
+				name = HGR_The_Air_Army
+				cost_reduction = 0.8
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Flying_Eagles
+		icon = GFX_GER_yellow_eagle
+		cost = 8.00
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		prerequisite = {
+			focus = HGR_The_Air_Army
+		}
+		x = -3
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Flying_Eagles"
+			air_experience = 15
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Invest_In_Jets
+		icon = GFX_GER_interceptor
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Flying_Eagles
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = -3
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Invest_In_Jets"
+			add_tech_bonus = {
+				name = HGR_Invest_In_Jets
+				bonus = 0.5
+				uses = 3
+				category = jet_strat_bomber
+				category = jet_tac
+				category = jet_fighter
+				category = jet_cas
+				category = jet_mca
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_New_Age_Of_Flying
+		icon = GFX_USA_escort_fighters
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Invest_In_Jets
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = -3
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_New_Age_Of_Flying"
+			add_doctrine_cost_reduction = {
+				name = HGR_New_Age_Of_Flying
+				cost_reduction = 0.8
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Tool_Of_The_Heer
+		icon = GFX_GENERIC_air_construction
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Air_Army
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = -1
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Tool_Of_The_Heer"
+			add_ideas = GER_heer_air_support_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Air_Support
+		icon = GFX_GENERIC_air_superiority
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Tool_Of_The_Heer
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = -1
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Air_Support"
+			add_tech_bonus = {
+				name = HGR_Air_Support
+				bonus = 1.0
+				uses = 2
+				category = jet_fighter
+				category = jet_cas
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Professional_Supports
+		icon = GFX_GENERIC_Air_Force_two
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Air_Support
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = -1
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Professional_Supports"
+			swap_ideas = {
+				remove_idea = GER_heer_air_support_1
+				add_idea = GER_heer_air_support_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Sky_Heer
+		icon = GFX_focus_generic_paratrooper
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_New_Age_Of_Flying
+		}
+		prerequisite = {
+			focus = HGR_Professional_Supports
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = -2
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Sky_Heer"
+			add_tech_bonus = {
+				name = HGR_The_Sky_Heer
+				bonus = 2.0
+				uses = 1
+				category = para_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Kriegsmarine
+		icon = GFX_GER_Kriegsmarine
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Mixture_Of_Air_And_Navy
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = 1
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Kriegsmarine"
+			add_doctrine_cost_reduction = {
+				name = HGR_Kriegsmarine
+				cost_reduction = 0.8
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Escort_Fleet
+		icon = GFX_GENERIC_socialist_navy
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Kriegsmarine
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = 1
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Escort_Fleet"
+			add_tech_bonus = {
+				name = HGR_Escort_Fleet
+				bonus = 1.0
+				uses = 2
+				category = cl_tech
+				category = ca_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Patrol_Boats
+		icon = GFX_focus_generic_destroyer
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Kriegsmarine
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = 3
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Patrol_Boats"
+			add_tech_bonus = {
+				name = HGR_Patrol_Boats
+				bonus = 1.0
+				uses = 2
+				category = dd_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Seas_Of_Germania
+		icon = GFX_USA_destroyer_leaders
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Escort_Fleet
+		}
+		prerequisite = {
+			focus = HGR_Patrol_Boats
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = 2
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Seas_Of_Germania"
+			add_ideas = GER_seas_of_germania
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Sea_Wall
+		icon = GFX_focus_generic_coastal_fort
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Seas_Of_Germania
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = 2
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Sea_Wall"
+			add_timed_idea = {
+				idea = GER_sea_walls
+				days = 100
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Untoucable_Coasts
+		icon = GFX_goal_generic_fortify_city
+		cost = 15
+		prerequisite = {
+			focus = HGR_The_Sea_Wall
+		}
+		relative_position_id = HGR_Mixture_Of_Air_And_Navy
+		x = 2
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Untoucable_Coasts"
+			add_war_support = 0.10
+			every_owned_state = {
+				limit = { 
+					is_coastal = yes
+					is_owned_by	= ROOT				
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+					province = {
+						 all_provinces = yes
+						 limit_to_coastal = yes
+					}
+				}
+			}	
+		}
+	}
+
+	focus = {
+	cancelable = no
+		id = HGR_The_Old_Officer_Corp
+		icon = GFX_KOR_army_cabinet
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Greatest_Army
+		}
+		x = -3
+		y = 1
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Old_Officer_Corp"
+			add_command_power = 25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Masters_Of_Doctrines
+		icon = GFX_GENERIC_draw_borders
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Old_Officer_Corp
+		}
+		x = -3
+		y = 2
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Masters_Of_Doctrines"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.8
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Keep_The_Blitz
+		icon = GFX_GENERIC_tank_destruction
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Masters_Of_Doctrines
+		}
+		mutually_exclusive = {
+			focus = HGR_The_Proudy_Army
+		}
+		x = -4
+		y = 3
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Keep_The_Blitz"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.8
+				uses = 1
+				category = cat_combined_operations
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Proudy_Army
+		icon = GFX_GENERIC_army_guy
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Masters_Of_Doctrines
+		}
+		mutually_exclusive = {
+			focus = HGR_Keep_The_Blitz
+		}
+		x = -2
+		y = 3
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Proudy_Army"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.8
+				uses = 1
+				category = cat_strategic_theorem
+			}
+			if = {
+			limit = { has_idea = GER_SS_Infightings }
+			remove_ideas = GER_SS_Infightings
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Fire_The_Guns
+		icon = GFX_GENERIC_AA_Gun
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Proudy_Army
+		}
+		x = -2
+		y = 4
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Fire_The_Guns"
+			add_tech_bonus = {
+				name = artillery_bonus
+				bonus = 1.0
+				uses = 2
+				category = artillery
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Legged_First
+		icon = GFX_GENERIC_a_boot
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Fire_The_Guns
+		}
+		x = -2
+		y = 5
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Legged_First"
+			add_tech_bonus = {
+				name = HGR_Legged_First
+				bonus = 1.0
+				uses = 2
+				category = support_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Military_Civil_Services
+		icon = GFX_GENERIC_workers_rights
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Greatest_Army
+		}
+		x = 0
+		y = 1
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Military_Civil_Services"
+			add_stability = 0.05
+			add_ideas = GER_heer_military_civil_service
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Summon_MPs
+		icon = GFX_GENERIC_mobilize_police
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Military_Civil_Services
+		}
+		x = -1
+		y = 2
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Summon_MPs"
+			custom_effect_tooltip = GER_summon_mp_units_tt
+			hidden_effect = {
+				division_template = {
+					name = "Militärpolizei"
+					priority = 1
+					division_names_group = GER_Inf_01
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 1 y = 0 }
+						militia = { x = 1 y = 1 }
+					}
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"Germania Militärpolizei\" division_template = \"Militärpolizei\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Brandenburgische Militärpolizei\" division_template = \"Militärpolizei\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Reserve Militärpolizei\" division_template = \"Militärpolizei\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Neu_Feuerschutzpolizei
+		icon = GFX_GER_Fire_Police
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Military_Civil_Services
+		}
+		x = 1
+		y = 2
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Neu_Feuerschutzpolizei"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Advanced_Militia_Trainings
+		icon = GFX_GER_Professional_Militia
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Summon_MPs
+		}
+		prerequisite = {
+			focus = HGR_Neu_Feuerschutzpolizei
+		}
+		x = 0
+		y = 3
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Advanced_Militia_Trainings"
+			add_ideas = GER_national_militia
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Professional_Garrisons
+		icon = GFX_BEL_army_system
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Advanced_Militia_Trainings
+		}
+		x = 0
+		y = 4
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Professional_Garrisons"
+			add_ideas = GER_professional_garrison
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Hardware
+		icon = GFX_GER_equipment
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Greatest_Army
+		}
+		x = 3
+		y = 1
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Hardware"
+			add_timed_idea = {
+				idea = GER_ground_production_effort
+				days = 200
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Fundings_For_Research
+		icon = GFX_GENERIC_Military_Science
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Hardware
+		}
+		x = 3
+		y = 2
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Fundings_For_Research"
+			add_ideas = GER_wehrmacht_research
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Greatest_Equipment
+		icon = GFX_GER_two_rifles
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Fundings_For_Research
+		}
+		x = 2
+		y = 3
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Greatest_Equipment"
+			add_ideas = GER_aryan_engineering
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Grand_Rifles
+		icon = GFX_GER_stg_45
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Fundings_For_Research
+		}
+		x = 4
+		y = 3
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Grand_Rifles"
+			add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 1.0
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Important_Needs
+		icon = GFX_USA_gov_investment
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Grand_Rifles
+		}
+		x = 4
+		y = 4
+		relative_position_id = HGR_The_Greatest_Army
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = HGR_The_Important_Needs_mil }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Important_Needs"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = HGR_The_Important_Needs_mil
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Improve_Supply_Routes
+		icon = GFX_GENERIC_Support_Equipment
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Important_Needs
+		}
+		x = 4
+		y = 5
+		relative_position_id = HGR_The_Greatest_Army
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = HGR_Improve_Supply_Routes_infra }
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Improve_Supply_Routes"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = HGR_Improve_Supply_Routes_infra
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = HGR_Improve_Supply_Routes_infra
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Full_Mech_Army
+		icon = GFX_GER_panzer_expansion
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Panzer_Stars
+		}
+		x = -4
+		y = 5
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Full_Mech_Army"
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 2
+			    category = cat_mechanized_equipment
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Prussian_Planning_Office
+		icon = GFX_GER_reform_officers
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_The_Full_Mech_Army
+			focus = HGR_Legged_First
+		}
+		x = -3
+		y = 6
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Prussian_Planning_Office"
+			add_research_slot = 1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_The_Panzer_Stars
+		icon = GFX_GER_A_Tiger_Tank
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Keep_The_Blitz
+		}
+		x = -4
+		y = 4
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_The_Panzer_Stars"
+			add_ideas = GER_ghost_division
+			add_tech_bonus = {
+				name = tank_bonus
+				bonus = 1.0
+				uses = 2
+				category = armor
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Masterful_Weapons
+		icon = GFX_GENERIC_Weapons
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Greatest_Equipment
+		}
+		x = 2
+		y = 4
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Masterful_Weapons"
+			swap_ideas = {
+				remove_idea = GER_aryan_engineering
+				add_idea = GER_very_aryan_engineering
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Immortal_Panzers
+		icon = GFX_GER_A_Tiger_Tank
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Masterful_Weapons
+		}
+		x = 2
+		y = 5
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Immortal_Panzers"
+			add_tech_bonus = {
+				name = tank_bonus
+				bonus = 1.0
+				uses = 2
+				category = armor
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = HGR_Never_Defeated
+		icon = GFX_focus_ger_oppose_hitler
+		cost = 8.00
+		prerequisite = {
+			focus = HGR_Immortal_Panzers
+		}
+		prerequisite = {
+			focus = HGR_Improve_Supply_Routes
+		}
+		x = 3
+		y = 6
+		relative_position_id = HGR_The_Greatest_Army
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HGR_Never_Defeated"
+			add_ideas = GER_unbeatable_army
+		}
+	}
+}

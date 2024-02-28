@@ -1,0 +1,315 @@
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+
+germany_ally = {
+	enable = {
+		tag = ITA
+		has_completed_focus = ITA_Keep_The_Pact_Of_Steel
+		country_exists = GER
+	}
+	abort = {
+		NOT = { country_exists = GER }
+	}
+	
+	ai_strategy = {
+		type = befriend
+		id = "GER"			
+		value = 100
+	}
+	ai_strategy = {
+		type = alliance
+		id = "GER"			
+		value = 100
+	}	
+}
+
+romania_ally = {
+	enable = {
+		tag = ITA
+		country_exists = ROM
+		ROM = {
+		is_fascist = yes
+		}
+	}
+	abort = {
+		NOT = { 
+		ITA = {
+		is_fascist = yes
+		}
+		ROM = { is_fascist = yes }
+		country_exists = ROM
+		}
+	}
+	
+	ai_strategy = {
+		type = befriend
+		id = "ROM"			
+		value = 200
+	}
+	ai_strategy = {
+		type = alliance
+		id = "ROM"			
+		value = 200
+	}	
+}
+
+bulgaria_ally = {
+	enable = {
+		tag = ITA
+		country_exists = BUL
+		BUL = {
+		is_fascist = yes
+		}
+	}
+	abort = {
+		NOT = {
+		ITA = {
+		is_fascist = yes
+		}
+		BUL = { is_fascist = yes }
+		country_exists = BUL
+		}
+	}
+	
+	ai_strategy = {
+		type = befriend
+		id = "BUL"			
+		value = 200
+	}
+	ai_strategy = {
+		type = alliance
+		id = "BUL"			
+		value = 200
+	}	
+}
+
+ITA_template_design_2 = {
+	enable = {
+		original_tag = ITA			
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = cavalry
+		value = 50
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = MBT
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = IFV
+		value = 125
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = APC
+		value = 125
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = infantry
+		value = 125
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = light_infantry
+		value = 15
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = marines
+		value = 25
+	}
+}
+
+
+# extra scaryness around italy, this together with sufficient enemy superiority will make ai avoid transports around its coast
+italy_be_careful_transporting_through_the_med = {
+	enable = {
+		tag = ITA
+		has_war = yes
+		enemies_naval_strength_ratio > 1
+	}
+	abort = {
+		OR = {
+			has_war = no
+			enemies_naval_strength_ratio < 1
+		}
+	}
+	
+	ai_strategy = {
+		type = naval_avoid_region
+		id = 68
+		value = 50
+	}
+
+	ai_strategy = {
+		type = naval_avoid_region
+		id = 169
+		value = 50
+	}
+
+	ai_strategy = {
+		type = naval_avoid_region
+		id = 29
+		value = 50
+	}
+
+	ai_strategy = {
+		type = naval_avoid_region
+		id = 168
+		value = 50
+	}
+
+	ai_strategy = {
+		type = naval_avoid_region
+		id = 69
+		value = 50
+	}
+}
+
+defend_greece_from_rebels = {
+	enable = {
+		tag = ITA
+		has_war = no
+		has_war_support > 0.15
+		country_exists = GRE
+		is_fascist = yes
+	}
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "GRE"	
+		value = 1000
+	}
+}
+
+defend_IEA_from_rebels = {
+	enable = {
+		tag = ITA
+		has_war = no
+		has_war_support > 0.15
+		country_exists = IEA
+		is_fascist = yes
+	}
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "IEA"	
+		value = 1000
+	}
+}
+
+support_HGR = {
+	enable = {
+		tag = ITA
+		has_war = no
+		country_exists = HGR
+		is_fascist = yes
+		has_country_flag = ITA_DIRECT_SUPPORT_UNLOCKED_HGR
+		has_global_flag = german_civil_war_started
+	}
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "HGR"	
+		value = 100
+	}
+
+}
+
+material_support_HGR = {
+	enable = {
+		tag = ITA
+		has_war = no
+		country_exists = HGR
+		is_fascist = yes
+		has_global_flag = german_civil_war_started
+		HGR = {
+		has_country_leader = {
+			    name = "Hans Speidel"
+			    ruling_only = yes
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = support
+		id = "HGR"
+		value = 150
+	}	
+}
+
+## ------------------ Region Priorities -------------------------------------------------------------
+## Ita Region Priorities
+ITA_area_priority = {
+	enable = {
+		original_tag = ENG
+	}
+	ai_strategy = {
+		type = area_priority
+		id = europe
+		value = 200
+	}
+	ai_strategy = {
+		type = area_priority
+		id = north_america
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = south_america
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = pacific
+		value = 20
+	}
+	ai_strategy = {
+		type = area_priority
+		id = oceania
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 150
+	}
+	ai_strategy = {
+		type = area_priority
+		id = suez
+		value = 150
+	}
+	ai_strategy = {
+		type = area_priority
+		id = africa
+		value = 120
+	}
+}

@@ -1,0 +1,2214 @@
+shared_focus = {
+	cancelable = no
+	id = ROM_St_Mausoleum
+	icon = GFX_ROM_Ion_Memorial
+	x = 2
+	y = 0
+	cost = 1
+	
+	available = {
+		always = no
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = ROMANIAN_ION_MAUSOLEUM
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_St_Turmoil_in_Romania
+	icon = GFX_ROM_national_turmoil
+	relative_position_id = ROM_St_Mausoleum
+	prerequisite = { focus = ROM_St_Mausoleum }
+	x = 0
+	y = 1
+	cost = 1
+	
+	available = {
+		always = no
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = ROMANIAN_TURMOIL
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_St_Great_Game_of_Romania
+	icon = GFX_ROM_romanian_game
+	relative_position_id = ROM_St_Mausoleum
+	prerequisite = { focus = ROM_St_Report_on_Legion_Activity }
+	prerequisite = { focus = ROM_St_Report_On_Monarchist_Activity }
+	x = 0
+	y = 3
+	cost = 3
+	
+	completion_reward = {
+		country_event = twrromania.11
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_St_Report_on_Legion_Activity
+	icon = GFX_ROM_Iron_Guard_Report
+	relative_position_id = ROM_St_Mausoleum
+	prerequisite = { focus = ROM_St_Turmoil_in_Romania }
+	x = 1
+	y = 2
+	cost = 1
+	
+	completion_reward = {
+		country_event = twrromania.10
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_St_Report_On_Monarchist_Activity
+	icon = GFX_ROM_monarchist_report
+	relative_position_id = ROM_St_Mausoleum
+	prerequisite = { focus = ROM_St_Turmoil_in_Romania }
+	x = -1
+	y = 2
+	cost = 1
+	completion_reward = {
+		country_event = twrromania.9
+	}
+}
+
+shared_focus = {
+	id = ROM_Stm_Monarchist
+	icon = GFX_ROM_Mihai
+	relative_position_id = ROM_St_Great_Game_of_Romania
+	prerequisite = { focus = ROM_St_Great_Game_of_Romania }
+	mutually_exclusive = { focus = ROM_Stg_Guard }
+	x = -3
+	y = 1
+	cost = 1
+	available = {
+	always = no
+	}	
+
+	completion_reward = {
+	custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = ROM_Stm_ProKing1 #Glorify the King
+	icon = GFX_ROM_Glorify_the_King
+	relative_position_id = ROM_Stm_Monarchist
+	prerequisite = { focus = ROM_Stm_Monarchist }
+	x = -1
+	y = 1
+	cost = 1
+	
+	completion_reward = {
+	every_owned_state = {
+	limit = { is_capital = no }
+		custom_effect_tooltip = MONARCHIST_INCREASE_5
+		set_temp_variable = { ROM_power_adjustment = 5 }
+		ROM_power_adjust_mod = yes
+		}
+	add_stability = 0.05
+	add_popularity = {
+    ideology = paternal_autocrat
+    popularity = 0.1
+	}
+	hidden_effect = {
+	ROM_power_recalc = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = ROM_Stm_ProKing2 #Reassure Moderate Politicians
+	icon = GFX_GER_internal_politics
+	relative_position_id = ROM_Stm_Monarchist
+	prerequisite = { focus = ROM_Stm_ProKing1 }
+	x = -2
+	y = 2
+	cost = 1
+	
+	completion_reward = {
+		add_political_power = 150
+		swap_ideas = {
+    	remove_idea = ROM_political_uncertainties
+    	add_idea = ROM_moderate_cooperation
+		}
+	}
+}
+
+shared_focus = {
+	id = ROM_Stm_ProKing3 #Security in Bucharest
+	icon = GFX_REM_Yellow_Guards_infantry
+	relative_position_id = ROM_Stm_Monarchist
+	prerequisite = { focus = ROM_Stm_AntiLeg2 }
+	prerequisite = { focus = ROM_Stm_ProKing2 }
+	x = -1
+	y = 3
+	cost = 1
+	
+	completion_reward = {
+		1015 = {
+		add_building_construction = {
+	    type = bunker
+	    level = 1
+	    instant_build = yes
+	    province = {
+	        all_provinces = yes
+	    }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = ROM_Stm_ProKing4 #Loosen Security Laws
+	icon = GFX_GENERIC_loosen_regulations
+	relative_position_id = ROM_Stm_Monarchist
+	prerequisite = { focus = ROM_Stm_ProKing2 }
+	x = -3
+	y = 3
+	cost = 1
+	
+	completion_reward = {
+		custom_effect_tooltip = MOBILIZE_PEOPLE_AGAINST_IG
+		add_stability = -0.05
+	}
+}
+
+shared_focus = {
+	id = ROM_Stm_AntiLeg1 #Ensure Police Loyalty
+	icon = GFX_ROM_Police_Loyalty
+	relative_position_id = ROM_Stm_Monarchist
+	prerequisite = { focus = ROM_Stm_Monarchist }
+	x = 1
+	y = 1
+	cost = 1
+	
+	completion_reward = {
+	custom_effect_tooltip = IF_CW_POLICE_JOIN
+	set_global_flag = ROM_POLICE_LOYALTY
+	add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = ROM_Stm_AntiLeg2 #Protect Against Violence
+	icon = GFX_ROM_Anti_Violence
+	relative_position_id = ROM_Stm_Monarchist
+	prerequisite = { focus = ROM_Stm_ProKing1 }
+	prerequisite = { focus = ROM_Stm_AntiLeg1 }
+	x = 0
+	y = 2
+	cost = 1
+	
+	completion_reward = {
+		custom_effect_tooltip = ROM_ACTIONS_AGAINST_THE_IRON_GUARD
+		add_political_power = 70
+	}
+}
+
+shared_focus = {
+	id = ROM_Stm_AntiLeg3 #Anti-Paramilitary Laws
+	icon = GFX_ROM_Destroy_Iron_Guard
+	relative_position_id = ROM_Stm_Monarchist
+	prerequisite = { focus = ROM_Stm_AntiLeg1 }
+	prerequisite = { focus = ROM_Stm_AntiLeg2 }
+	x = 1
+	y = 3
+	cost = 1
+	
+	completion_reward = {
+		add_manpower = -1000
+		custom_effect_tooltip = IF_CIVIL_WAR_IG_LESS_MANPOWER
+		set_global_flag = LESS_MANPOWER_IG
+		swap_ideas = {
+		remove_idea = ROM_iron_guard_medium
+		add_idea = ROM_iron_guard_battles
+		}
+		79 = {
+		custom_effect_tooltip = IRON_GUARD_DECREASE_MINOR
+		set_temp_variable = { ROM_power_adjustment = -15 }
+		ROM_power_adjust_guard = yes	
+		}
+		hidden_effect = {
+		ROM_power_recalc = yes
+		}	
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_Guard
+	icon = GFX_ROM_Horia_Sima
+	relative_position_id = ROM_St_Great_Game_of_Romania
+	prerequisite = { focus = ROM_St_Great_Game_of_Romania }
+	mutually_exclusive = { focus = ROM_Stm_Monarchist }
+	x = 3
+	y = 1
+	cost = 1
+	available = {
+	always = no
+	}	
+
+	completion_reward = {
+	custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_AntiKing1 #Infiltrate the Palace
+	icon = GFX_ROM_Palace_Infl
+	relative_position_id = ROM_Stg_Guard
+	prerequisite = { focus = ROM_Stg_Guard }
+	x = -1
+	y = 1
+	cost = 1
+	
+	completion_reward = {
+		46 = {
+		custom_effect_tooltip = IRON_GUARD_INCREASE
+		set_temp_variable = { ROM_power_adjustment = 35 }
+		ROM_power_adjust_guard = yes			
+		}
+		hidden_effect = {
+		ROM_power_recalc = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_AntiKing2 #Intimidate the King
+	icon = GFX_ROM_Threat_King
+	relative_position_id = ROM_Stg_Guard
+	prerequisite = { focus = ROM_Stg_AntiKing1 }
+	x = -2
+	y = 2
+	cost = 1
+	
+	completion_reward = {
+	every_owned_state = {
+	limit = { is_capital = no }
+		custom_effect_tooltip = MONARCHIST_DECREASE_5
+		set_temp_variable = { ROM_power_adjustment = -5 }
+		ROM_power_adjust_mod = yes
+		}	
+		hidden_effect = {
+		ROM_power_recalc = yes
+		}	
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_AntiKing3 #Tighten the Laws
+	icon = GFX_focus_rom_handle_king
+	relative_position_id = ROM_Stg_Guard
+	prerequisite = { focus = ROM_Stg_AntiKing2 }
+	x = -2
+	y = 3
+	cost = 2
+	
+	completion_reward = {
+		add_political_power = -95
+		swap_ideas = {
+		remove_idea = ROM_political_uncertainties
+		add_idea = ROM_iron_guard_cooperation
+		}
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_ProGuard1 #Legionary Expansion
+	icon = GFX_GER_Professional_Militia
+	relative_position_id = ROM_Stg_Guard
+	prerequisite = { focus = ROM_Stg_Guard }
+	x = 1
+	y = 1
+	cost = 1
+	
+	completion_reward = {
+	custom_effect_tooltip = ROM_ACTIONS_AGAINST_THE_MODERATES
+	swap_ideas = {
+	remove_idea = ROM_iron_guard_light
+	add_idea = ROM_iron_guard_medium
+		}
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_ProGuard2 #Arms for the Legionaires
+	icon = GFX_goal_generic_small_arms
+	relative_position_id = ROM_Stg_Guard
+	prerequisite = { focus = ROM_Stg_ProGuard1 }
+	x = 0
+	y = 2
+	cost = 1
+	
+	completion_reward = {
+		custom_effect_tooltip = IF_CIVIL_WAR_LEGION_MORE_EQUIPMENT
+		set_global_flag = IG_MORE_EQUIPMENT
+		add_stability = -0.1
+		every_owned_state = {
+		limit = { is_capital = no }
+		custom_effect_tooltip = IRON_GUARD_INCREASE_5
+		set_temp_variable = { ROM_power_adjustment = 5 }
+		ROM_power_adjust_guard = yes
+		}	
+		hidden_effect = {
+		ROM_power_recalc = yes
+		}			
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_ProGuard3 #Legionnaire Recruitment Propaganda
+	icon = GFX_GENERIC_recruitment
+	relative_position_id = ROM_Stg_Guard
+	prerequisite = { focus = ROM_Stg_ProGuard1 }
+	x = 2
+	y = 2
+	cost = 1
+	
+	completion_reward = {
+	custom_effect_tooltip = IF_CIVIL_WAR_LEGION_MORE_MANPOWER
+	set_global_flag = IG_MORE_MANPOWER
+	swap_ideas = {
+	remove_idea = ROM_iron_guard_medium
+	add_idea = ROM_iron_guard_heavy
+		}		
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_ProGuard4 #A Blind Eye to the Legion
+	icon = GFX_ROM_Blind_Eye_Legion
+	relative_position_id = ROM_Stg_Guard
+	prerequisite = { focus = ROM_Stg_ProGuard2 }
+	prerequisite = { focus = ROM_Stg_ProGuard3 }
+	mutually_exclusive = { focus = ROM_Stg_ProGuard5 }
+	x = 0
+	y = 3
+	cost = 1
+	
+	completion_reward = {
+		add_political_power = 100
+		set_country_flag = IRON_GUARD_COOPERATION
+		add_popularity = {
+    	ideology = national_socialist
+    	popularity = 0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = ROM_Stg_ProGuard5 #Formalize the Legionary Position
+	icon = GFX_ROM_Formalize_Position
+	relative_position_id = ROM_Stg_Guard
+	prerequisite = { focus = ROM_Stg_ProGuard2 }
+	prerequisite = { focus = ROM_Stg_ProGuard3 }
+	mutually_exclusive = { focus = ROM_Stg_ProGuard4 }
+	x = 2
+	y = 3
+	cost = 1
+	
+	completion_reward = {
+		add_manpower = 50000
+		add_stability = -0.1
+		set_country_flag = IRON_GUARD_COOPERATION
+		set_global_flag = ROM_IRON_GUARD_FIELD_COMMANDERS
+		create_field_marshal = {
+		name = "Platon Chirnoagă"
+		portrait_path = "gfx/leaders/ROM/Platon_Chirnoaga.dds"
+		traits = { iron_guard_general organisational_leader }
+		skill = 3
+		attack_skill = 3
+		defense_skill = 3
+		planning_skill = 3
+		logistics_skill = 3
+			}
+		create_corps_commander = {
+		name = "Virgil Popa"
+		portrait_path = "gfx/leaders/ROM/Virgil_Popa.dds"
+		traits = { iron_guard_general armor_officer }
+		skill = 3
+		attack_skill = 3
+		defense_skill = 1
+		planning_skill = 3
+		logistics_skill = 2
+			}
+		create_corps_commander = {
+		name = "Ion Gavrilă Ogoranu"
+		portrait_path = "gfx/leaders/ROM/Ion_Gavrila_Ogoranu.dds"
+		traits = { iron_guard_general trickster harsh_leader }
+		skill = 2
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 1
+		logistics_skill = 2
+			}
+		create_corps_commander = {
+		name = "Leon Susman"
+		portrait_path = "gfx/leaders/ROM/Leon_Susman.dds"
+		traits = { iron_guard_general trickster }
+		skill = 2
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 3
+			}
+		create_corps_commander = {
+		name = "Radu Gyr"
+		portrait_path = "gfx/leaders/ROM/Radu_Gyr.dds"
+		traits = { iron_guard_general }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+			}
+		create_corps_commander = {
+		name = "Dumitru Grozea"
+		portrait_path = "gfx/leaders/ROM/Dumitru_Grozea.dds"
+		traits = { iron_guard_general politically_connected }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+			}
+		create_corps_commander = {
+		name = "Demetrius Leonties"
+		portrait_path = "gfx/leaders/ROM/Demetrius_Leonties.dds"
+		traits = { iron_guard_general }
+		skill = 1
+		attack_skill = 1
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 1
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_The_Romanian_Wolf
+	icon = GFX_ROM_Eyes_on_Transylvania
+	x = 10
+	y = 0
+	cost = 2
+	
+	available = {
+	custom_trigger_tooltip = {
+		tooltip = HITLER_REALLY_SICK
+		has_country_flag = ROM_HITLER_DYING
+		}
+	}
+	
+	completion_reward = {
+		ROM_increase_wolf = yes
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Patriotic_Propaganda
+	icon = GFX_GENERIC_Radio_Towers
+	prerequisite = { focus = ROM_Fp_The_Romanian_Wolf }
+	relative_position_id = ROM_Fp_The_Romanian_Wolf
+	x = -1
+	y = 1
+	cost = 4
+	
+	completion_reward = {
+		ROM_increase_wolf = yes
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Drill_The_Army
+	icon = GFX_GENERIC_massive_army
+	prerequisite = { focus = ROM_Fp_The_Romanian_Wolf }
+	relative_position_id = ROM_Fp_The_Romanian_Wolf
+	x = 1
+	y = 1
+	cost = 4
+	
+	completion_reward = {
+		ROM_increase_wolf = yes
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Revanchist_Rallys
+	icon = GFX_GENERIC_Fist_People
+	prerequisite = { focus = ROM_Fp_Patriotic_Propaganda }
+	relative_position_id = ROM_Fp_The_Romanian_Wolf
+	x = -1
+	y = 2
+	cost = 4
+	
+	completion_reward = {
+		ROM_increase_wolf = yes
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Exercises_On_Border
+	icon = GFX_ROM_exercise_on_border
+	prerequisite = { focus = ROM_Fp_Drill_The_Army }
+	relative_position_id = ROM_Fp_The_Romanian_Wolf
+	x = 1
+	y = 2
+	cost = 4
+	
+	completion_reward = {
+		ROM_increase_wolf = yes
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Avenge_Transylvania
+	icon = GFX_ROM_Reverse_Vienna_Treaty
+	prerequisite = { 
+		focus = ROM_Fp_Patriotic_Propaganda
+		focus = ROM_Fp_Drill_The_Army
+		focus = ROM_Fp_Revanchist_Rallys
+		focus = ROM_Fp_Exercises_On_Border
+	}
+	relative_position_id = ROM_Fp_The_Romanian_Wolf
+	x = 0
+	y = 3
+	cost = 1
+	
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = ROM_Fp_Avenge_Transylvania_tt
+			always = no
+		}
+	}
+	
+	completion_reward = {
+		declare_war_on = {
+			target = HUN
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Victory
+	icon = GFX_ROM_Glorious_Victory
+	prerequisite = { focus = ROM_Fp_Avenge_Transylvania }
+	mutually_exclusive = { focus = ROM_Fp_Defeat }
+	relative_position_id = ROM_Fp_Avenge_Transylvania
+	x = 0
+	y = 1
+	cost = 4
+	
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = ROM_Fp_Victory_tt
+			always = no
+		}
+	}
+	
+	completion_reward = {
+	custom_effect_tooltip = ROM_Fp_Victory_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Defeat
+	icon = GFX_ROM_Hungarian_Victory
+	prerequisite = { focus = ROM_Fp_Avenge_Transylvania }
+	mutually_exclusive = { focus = ROM_Fp_Victory }
+	relative_position_id = ROM_Fp_Avenge_Transylvania
+	x = 2
+	y = 1
+	cost = 4
+	
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = ROM_Fp_Defeat_tt
+			always = no
+		}
+	}
+	
+	completion_reward = {
+	custom_effect_tooltip = ROM_Fp_Defeat_tt
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Alfold
+	icon = GFX_ROM_Police_The_Buffer
+	prerequisite = { 
+		focus = ROM_Fp_Victory
+		focus = ROM_Fp_Defeat
+	}
+	relative_position_id = ROM_Fp_Avenge_Transylvania
+	x = -2
+	y = 2
+	cost = 4
+	
+	available = {
+		owns_state = 154
+	}
+	
+	completion_reward = {
+	154 = {
+	add_manpower = -1500
+	remove_building = {
+    type = industrial_complex
+    level = 1
+	}
+	add_resistance = -10
+		}
+	add_offsite_building = { type = industrial_complex level = 1 }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Core_Transylvania
+	icon = GFX_ROM_Reintegrate_Transylvania
+	prerequisite = { 
+		focus = ROM_Fp_Victory
+		focus = ROM_Fp_Defeat
+	}
+	relative_position_id = ROM_Fp_Avenge_Transylvania
+	x = 0
+	y = 2
+	cost = 4
+	
+	available = {
+		owns_state = 838
+		owns_state = 839
+		owns_state = 76
+	}
+	
+	completion_reward = {
+		838 = { 
+		remove_core_of = HUN
+		add_claim_by = HUN
+		}
+		839 = { 
+		remove_core_of = HUN
+		add_claim_by = HUN
+		}
+		76 = { 
+		remove_core_of = HUN
+		add_claim_by = HUN
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Try_Again
+	icon = GFX_ROM_Never_Give_Up
+	prerequisite = { 
+		focus = ROM_Fp_Defeat
+	}
+	available = {
+	NOT = {
+	has_country_flag = POLITICAL_CRISIS_OVER_ROM
+		}
+	}
+	relative_position_id = ROM_Fp_Avenge_Transylvania
+	x = 2
+	y = 2
+	cost = 4
+	
+	completion_reward = {
+		unlock_decision_tooltip = rom_fpdec_attack_hungary_again
+	}
+}
+
+#Political Tree
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_The_Dictatorships_Victory
+	icon = GFX_ROM_Dictatorship_victory
+	x = 16
+	y = 0
+	cost = 1
+	
+	available = {
+		always = no
+	}
+	bypass = {
+	has_completed_focus = ROM_Fp_Victory
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Handling_Our_Ally
+	icon = GFX_ROM_sweep_allies
+	prerequisite = { 
+		focus = ROM_PP_The_Dictatorships_Victory
+	}
+	relative_position_id = ROM_PP_The_Dictatorships_Victory
+	x = 0
+	y = 1
+	cost = 5
+	select_effect = {
+		if = {
+		limit = { has_country_flag = ROM_POWER_STRUGGLE_MOD }
+		country_event = { id = twrromMON.5 days = 5 }
+		}
+		if = {
+		limit = { has_country_flag = ROM_POWER_STRUGGLE_IG }
+		country_event = { id = twrromIG.5 days = 5 }
+		}
+	}		
+	completion_reward = {
+	add_stability = 0.15
+	add_political_power = 100
+	}
+}
+shared_focus = {
+	id = ROM_PP_Consolidation_of_Power
+	icon = GFX_GENERIC_government_power
+	relative_position_id = ROM_PP_The_Dictatorships_Victory
+	prerequisite = { focus = ROM_PP_Handling_Our_Ally }
+	mutually_exclusive = { focus = ROM_PP_A_Convenient_Car_Crash }
+	x = -1
+	y = 2
+	cost = 5
+	available = {
+	has_country_flag = DICTATORSHIP_ENFORCED_ROM
+	}	
+
+	completion_reward = {
+	add_stability = 0.05
+	add_popularity = {
+    ideology = paternal_autocrat
+    popularity = 0.3
+		}
+	}
+}
+shared_focus = {
+	id = ROM_PP_A_Convenient_Car_Crash
+	icon = GFX_GENERIC_Car_Crash
+	relative_position_id = ROM_PP_The_Dictatorships_Victory
+	prerequisite = { focus = ROM_PP_Handling_Our_Ally }
+	mutually_exclusive = { focus = ROM_PP_Consolidation_of_Power }
+	x = 1
+	y = 2
+	cost = 5
+	available = {
+	has_country_flag = DICTATORSHIP_ENFORCED_ROM
+	}	
+
+	completion_reward = {
+	kill_country_leader = yes
+	add_political_power = 150
+	add_stability = -0.05
+	set_party_name = { 
+    ideology = paternal_autocrat 
+    long_name = ROM_paternal_autocrat_party_ALT_long 
+    name = ROM_paternal_autocrat_party_ALT 
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Pragmatic_Diplomacy
+	icon = GFX_SER_focus_Organic_Diplomacy
+	prerequisite = { 
+		focus = ROM_PP_A_Convenient_Car_Crash
+		focus = ROM_PP_Consolidation_of_Power
+	}
+	relative_position_id = ROM_PP_The_Dictatorships_Victory
+	x = -2
+	y = 3
+	cost = 8
+	
+	completion_reward = {
+	add_political_power = 150
+	custom_effect_tooltip = DIPLOMACY_TREE_ROM
+	set_country_flag = DIPLO_TREE_UNLOCKED
+	#this should also unlock diplo decisions
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Uphold_the_Status_Quo
+	icon = GFX_GENERIC_Wine_1
+	prerequisite = { 
+		focus = ROM_PP_A_Convenient_Car_Crash
+		focus = ROM_PP_Consolidation_of_Power
+	}
+	relative_position_id = ROM_PP_The_Dictatorships_Victory
+	x = 0
+	y = 3
+	cost = 8
+	
+	completion_reward = {
+	add_stability = 0.1
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_A_Loyal_Chamber
+	icon = GFX_GENERIC_Government
+	prerequisite = { 
+		focus = ROM_PP_Pragmatic_Diplomacy
+	}
+	prerequisite = { 
+		focus = ROM_PP_Uphold_the_Status_Quo
+	}
+		
+	relative_position_id = ROM_PP_Pragmatic_Diplomacy
+	x = 0
+	y = 1
+	cost = 8
+	
+	completion_reward = {
+	swap_ideas = {
+    remove_idea = ROM_political_backstab
+    add_idea = ROM_political_backstab_2
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Ally_The_Clergy
+	icon = GFX_GENERIC_Orthodoxy
+	prerequisite = { 
+		focus = ROM_PP_Uphold_the_Status_Quo
+	}
+	relative_position_id = ROM_PP_Uphold_the_Status_Quo
+	x = 0
+	y = 1
+	cost = 8
+	
+	completion_reward = {
+	country_event = twrromPOL.1
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Crush_the_Opposition
+	icon = GFX_KOR_destroy_opposition
+	prerequisite = { 
+		focus = ROM_PP_A_Convenient_Car_Crash
+		focus = ROM_PP_Consolidation_of_Power
+	}
+	relative_position_id = ROM_PP_The_Dictatorships_Victory
+	x = 2
+	y = 3
+	cost = 8
+	
+	completion_reward = {
+	country_event = twrromPOL.2
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Raze_the_Archives
+	icon = GFX_GER_burn_the_blacklist
+	prerequisite = { 
+		focus = ROM_PP_Crush_the_Opposition
+	}
+	relative_position_id = ROM_PP_Crush_the_Opposition
+	x = 0
+	y = 1
+	cost = 6
+	
+	completion_reward = {
+	country_event = twrromPOL.3
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Propaganda_Campaign
+	icon = GFX_GENERIC_speech
+	prerequisite = { 
+		focus = ROM_PP_Raze_the_Archives
+	}
+	prerequisite = { 
+		focus = ROM_PP_Ally_The_Clergy
+	}
+	prerequisite = { 
+		focus = ROM_PP_A_Loyal_Chamber
+	}
+	relative_position_id = ROM_PP_Uphold_the_Status_Quo
+	x = 0
+	y = 2
+	cost = 8
+	
+	completion_reward = {
+	if = {
+	limit = {
+	has_country_leader_with_trait = dubious_figure
+	}
+	remove_country_leader_trait = dubious_figure
+		}
+	if = {
+	limit = {
+	has_country_leader_with_trait = unpopular_figurehead
+	}
+	remove_country_leader_trait = unpopular_figurehead
+		}
+	add_stability = 0.15
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Bucharest_Days
+	icon = GFX_GENERIC_Building_Complex
+	prerequisite = { 
+		focus = ROM_PP_Propaganda_Campaign
+	}
+	relative_position_id = ROM_PP_Uphold_the_Status_Quo
+	x = 0
+	y = 3
+	cost = 8
+	
+	completion_reward = {
+	remove_ideas = ROM_political_backstab_2
+	}
+}
+
+
+#Political Tree Monarchist
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Glory_to_the_King
+	icon = GFX_ROM_Glory_to_the_King
+	x = 16
+	y = 0
+	cost = 1
+	
+	available = {
+		always = no
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_The_Kings_Cabinet
+	icon = GFX_GENERIC_Government
+	prerequisite = { 
+		focus = ROM_PP_Glory_to_the_King
+	}
+	relative_position_id = ROM_PP_Glory_to_the_King
+	x = 0
+	y = 1
+	cost = 5	
+	completion_reward = {
+	country_event = twrromMON.8
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_The_Royal_Dictatorship
+	icon = GFX_focus_rom_coup
+	mutually_exclusive = { focus = ROM_PP_Parliamentary_Election }
+	prerequisite = { 
+		focus = ROM_PP_The_Kings_Cabinet
+	}
+	available = {
+		has_country_flag = ROYAL_DICTATORSHIP_PATH
+	}
+	relative_position_id = ROM_PP_Glory_to_the_King
+	x = 0
+	y = 2
+	cost = 6	
+	completion_reward = {
+	add_ideas = dictatorship
+	add_ideas = ROM_political_backstab
+	add_popularity = {
+    ideology = conservative
+    popularity = -0.25
+		}
+	add_popularity = {
+    ideology = liberal
+    popularity = -0.25
+		}
+	add_popularity = {
+    ideology = social_democrat
+    popularity = -0.25
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Reform_the_FRN
+	icon = GFX_ROM_FRN
+	prerequisite = { 
+		focus = ROM_PP_The_Royal_Dictatorship
+	}
+	relative_position_id = ROM_PP_Glory_to_the_King
+	x = 0
+	y = 3
+	cost = 8	
+	completion_reward = {
+		set_party_name = { 
+			ideology = paternal_autocrat
+			name = "FRN"
+			long_name = "Frontul Renasterii Naționale (National Renaissance Front)"
+		}
+		swap_ideas = {
+		remove_idea = ROM_political_backstab
+		add_idea = ROM_political_backstab_2
+		}
+		country_event = twrromMON.9
+		add_political_power = 150
+		add_stability = 0.15
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Stepping_Back
+	icon = GFX_GER_internal_politics
+	mutually_exclusive = { focus = ROM_PP_Maintain_Power }
+	prerequisite = { 
+		focus = ROM_PP_Reform_the_FRN
+	}
+	relative_position_id = ROM_PP_Reform_the_FRN
+	x = 1
+	y = 1
+	cost = 8	
+	completion_reward = {
+	country_event = twrromMON.10
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Maintain_Power
+	icon = GFX_focus_rom_royal_dictatorship
+	mutually_exclusive = { focus = ROM_PP_Stepping_Back }
+	prerequisite = { 
+		focus = ROM_PP_Reform_the_FRN
+	}
+	relative_position_id = ROM_PP_Reform_the_FRN
+	x = -1
+	y = 1
+	cost = 8	
+	completion_reward = {
+	add_country_leader_trait = autocratic_imperialist
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Diplomatic_Efforts
+	icon = GFX_GENERIC_green_diplomacy
+	prerequisite = { 
+		focus = ROM_PP_Maintain_Power
+		focus = ROM_PP_Stepping_Back
+	}
+	relative_position_id = ROM_PP_Reform_the_FRN
+	x = -2
+	y = 2
+	cost = 8	
+	completion_reward = {
+	add_political_power = 150
+	custom_effect_tooltip = DIPLOMACY_TREE_ROM
+	set_country_flag = DIPLO_TREE_UNLOCKED
+	#this should also unlock diplo decisions
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Royalist_Propaganda
+	icon = GFX_goal_generic_propaganda
+	prerequisite = { 
+		focus = ROM_PP_Maintain_Power
+		focus = ROM_PP_Stepping_Back
+	}
+	relative_position_id = ROM_PP_Reform_the_FRN
+	x = 0
+	y = 2
+	cost = 8	
+	completion_reward = {
+	add_stability = 0.15
+	add_war_support = 0.15
+	remove_ideas = ROM_political_backstab_2
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_For_Your_Countrymen
+	icon = GFX_ROM_revanchist_rallies
+	prerequisite = { 
+		focus = ROM_PP_Maintain_Power
+		focus = ROM_PP_Stepping_Back
+	}
+	relative_position_id = ROM_PP_Reform_the_FRN
+	x = 2
+	y = 2
+	cost = 8	
+	completion_reward = {
+	add_manpower = 50000
+	add_ideas = ROM_nationalist_drive
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Embrace_Traditionalism
+	icon = GFX_GENERIC_Conservative
+	prerequisite = { 
+		focus = ROM_PP_For_Your_Countrymen
+	}
+	prerequisite = { 
+		focus = ROM_PP_Royalist_Propaganda
+	}
+	relative_position_id = ROM_PP_Reform_the_FRN
+	x = 1
+	y = 3
+	cost = 8	
+	completion_reward = {
+	swap_ideas = {
+	remove_idea = ROM_nationalist_drive
+	add_idea = ROM_nationalist_drive_2
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Aligning_the_TA
+	icon = GFX_ENG_USA_atlantic_union
+	prerequisite = { 
+		focus = ROM_PP_Diplomatic_Efforts
+	}
+	prerequisite = { 
+		focus = ROM_PP_Royalist_Propaganda
+	}
+	relative_position_id = ROM_PP_Reform_the_FRN
+	x = -1
+	y = 3
+	cost = 8	
+	completion_reward = {
+	add_opinion_modifier = {
+    target = USA
+    modifier = medium_increase
+	}
+	reverse_add_opinion_modifier = {
+    target = USA
+    modifier = medium_increase
+	}
+	if = {
+	limit = { country_exists = USA }
+	activate_targeted_decision = {
+	target = USA
+	decision = buy_old_tanks_d
+	}
+	activate_targeted_decision = {
+	target = USA
+	decision = buy_motorized_equipment
+	}
+	activate_targeted_decision = {
+	target = USA
+	decision = buy_artillery
+		}
+	}
+	if = {
+	limit = { country_exists = ENG }
+	activate_targeted_decision = {
+	target = ENG
+	decision = buy_old_tanks_d
+	}
+	activate_targeted_decision = {
+	target = ENG
+	decision = buy_motorized_equipment
+	}
+	activate_targeted_decision = {
+	target = ENG
+	decision = buy_artillery
+		}
+	}
+	#Unlock special decision asking for TA
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Long_Live_Romania
+	icon = GFX_ROM_Long_Live
+	prerequisite = { 
+		focus = ROM_PP_Aligning_the_TA
+	}
+	prerequisite = { 
+		focus = ROM_PP_Embrace_Traditionalism
+	}
+	relative_position_id = ROM_PP_Reform_the_FRN
+	x = 0
+	y = 4
+	cost = 8	
+	completion_reward = {
+	add_ideas = ROM_romanianism
+	custom_effect_tooltip = IF_POLITICAL_CRISIS_ITS_OVER
+	clr_country_flag = POLITICAL_CRISIS_OVER_ROM
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Parliamentary_Election
+	icon = GFX_GENERIC_Democracy
+	mutually_exclusive = { focus = ROM_PP_The_Royal_Dictatorship }
+	prerequisite = { 
+		focus = ROM_PP_The_Kings_Cabinet
+	}
+	available = {
+		has_country_flag = ROMANIAN_DEMOCRACY_PATH
+	}
+	relative_position_id = ROM_PP_Glory_to_the_King
+	x = -2
+	y = 2
+	cost = 6	
+	completion_reward = {
+	add_ideas = established_democracy
+	complete_national_focus = ROM_PP_Democracy_in_Romania
+	country_event = twrromMON.11
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Democracy_in_Romania
+	icon = GFX_GENERIC_Social_Liberalism
+	x = 21
+	y = 0
+	cost = 1
+	
+	available = {
+		always = no
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_PNT_Victory
+	icon = GFX_ROM_PNT
+	prerequisite = { 
+		focus = ROM_PP_Democracy_in_Romania
+	}
+	available = {
+		has_government = conservative
+	}
+	mutually_exclusive = { focus = ROM_PP_PNL_Victory }
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = -1
+	y = 1
+	cost = 3
+	completion_reward = {
+	add_political_power = 100
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_National_Solidarity
+	icon = GFX_goal_generic_national_unity
+	prerequisite = { 
+		focus = ROM_PP_PNT_Victory
+	}
+	available = {
+		has_government = conservative
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = -2
+	y = 2
+	cost = 8	
+	completion_reward = {
+	add_stability = 0.15
+	add_war_support = 0.15
+	add_popularity = {
+   	ideology = conservative
+    popularity = 0.15
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Traditional_Society
+	icon = GFX_SER_focus_farmer_battalions
+	prerequisite = { 
+		focus = ROM_PP_National_Solidarity
+	}
+	available = {
+		has_government = conservative
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = -2
+	y = 3
+	cost = 8	
+	completion_reward = {
+	add_ideas = ROM_traditional_society_idea
+	add_popularity = {
+   	ideology = conservative
+    popularity = 0.1
+		}
+	random_owned_state = {
+	add_extra_state_shared_building_slots = 2
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_PNL_Victory
+	icon = GFX_ROM_PNL
+	prerequisite = { 
+		focus = ROM_PP_Democracy_in_Romania
+	}
+	available = {
+		has_government = liberal
+	}
+	mutually_exclusive = { focus = ROM_PP_PNT_Victory }
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = 1
+	y = 1
+	cost = 3	
+	completion_reward = {
+	add_political_power = 100
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Industrial_Subsidies
+	icon = GFX_GENERIC_industrial_quota
+	prerequisite = { 
+		focus = ROM_PP_PNL_Victory
+	}
+	available = {
+		has_government = liberal
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = 2
+	y = 2
+	cost = 8	
+	completion_reward = {
+	add_political_power = -100
+	add_stability = 0.1
+	add_ideas = ROM_liberal_industrial_subs
+	add_popularity = {
+   	ideology = liberal
+    popularity = 0.15
+		}	
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Party_of_the_Elites
+	icon = GFX_GENERIC_elite_party
+	prerequisite = { 
+		focus = ROM_PP_Industrial_Subsidies
+	}
+	available = {
+		has_government = liberal
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = 2
+	y = 3
+	cost = 8	
+	completion_reward = {
+	add_offsite_building = { type = industrial_complex level = 2 }
+	add_stability = 0.05
+	add_popularity = {
+   	ideology = liberal
+    popularity = 0.15
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Diplomatic_Efforts_DEM
+	icon = GFX_GENERIC_handshake
+	prerequisite = { 
+		focus = ROM_PP_PNL_Victory
+		focus = ROM_PP_PNT_Victory
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = 0
+	y = 2
+	cost = 8	
+	completion_reward = {
+	custom_effect_tooltip = DIPLOMACY_TREE_ROM
+	set_country_flag = DIPLO_TREE_UNLOCKED
+	#this should also unlock diplo decisions
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Realign_With_the_TA
+	icon = GFX_TA_Big_Four
+	prerequisite = { 
+		focus = ROM_PP_Diplomatic_Efforts_DEM
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = 0
+	y = 3
+	cost = 8	
+	completion_reward = {
+	add_opinion_modifier = {
+    target = USA
+    modifier = medium_increase
+	}
+	reverse_add_opinion_modifier = {
+    target = USA
+    modifier = medium_increase
+	}
+	if = {
+	limit = { country_exists = USA }
+	activate_targeted_decision = {
+	target = USA
+	decision = buy_old_tanks_d
+	}
+	activate_targeted_decision = {
+	target = USA
+	decision = buy_motorized_equipment
+	}
+	activate_targeted_decision = {
+	target = USA
+	decision = buy_artillery
+		}
+	}
+	if = {
+	limit = { country_exists = ENG }
+	activate_targeted_decision = {
+	target = ENG
+	decision = buy_old_tanks_d
+	}
+	activate_targeted_decision = {
+	target = ENG
+	decision = buy_motorized_equipment
+	}
+	activate_targeted_decision = {
+	target = ENG
+	decision = buy_artillery
+		}
+	}
+	#Unlock special decision asking for TA
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Protectionism_in_Trade
+	icon = GFX_GENERIC_secure_trade
+	prerequisite = { 
+		focus = ROM_PP_Realign_With_the_TA
+	}
+	prerequisite = { 
+		focus = ROM_PP_Party_of_the_Elites
+	}
+	available = {
+		has_government = liberal
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = 1
+	y = 4
+	cost = 8	
+	completion_reward = {
+	swap_ideas = {
+	remove_idea = ROM_liberal_industrial_subs
+	add_idea = ROM_liberal_industrial_subs_2
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Economic_Self-Reliance 
+	icon = GFX_GENERIC_christian_economy
+	prerequisite = { 
+		focus = ROM_PP_Realign_With_the_TA
+	}
+	prerequisite = { 
+		focus = ROM_PP_Traditional_Society
+	}
+	available = {
+		has_government = conservative
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = -1
+	y = 4
+	cost = 8	
+	completion_reward = {
+	add_ideas = ROM_economic_self_reliance
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_A_Free_Romania
+	icon = GFX_ROM_Free_Romania
+	prerequisite = { 
+		focus = ROM_PP_Economic_Self-Reliance
+		focus = ROM_PP_Protectionism_in_Trade
+	}
+	available = {
+		has_government = conservative
+	}
+	relative_position_id = ROM_PP_Democracy_in_Romania
+	x = 0
+	y = 5
+	cost = 8	
+	completion_reward = {
+	add_ideas = ROM_romanianism
+	custom_effect_tooltip = IF_POLITICAL_CRISIS_ITS_OVER
+	clr_country_flag = POLITICAL_CRISIS_OVER_ROM
+	}
+}
+
+
+#Guardist Political Tree
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Guardist_Victory
+	icon = GFX_ROM_Guardist_Victory
+	x = 16
+	y = 0
+	cost = 1
+	
+	available = {
+		always = no
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Restructure_the_Kingdom
+	icon = GFX_ROM_Never_Give_Up
+	prerequisite = { 
+		focus = ROM_PP_Guardist_Victory
+	}
+	mutually_exclusive = { focus = ROM_PP_Formalize_the_National_Legionary_State }
+	available = {
+		has_cosmetic_tag = ROM_GUARD_SPEC
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = -1
+	y = 1
+	cost = 8	
+	completion_reward = {
+	country_event = twrromIG.8
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Formalize_the_National_Legionary_State
+	icon = GFX_focus_rom_preserve_romania
+	prerequisite = { 
+		focus = ROM_PP_Guardist_Victory
+	}
+	mutually_exclusive = { focus = ROM_PP_Restructure_the_Kingdom }
+	available = {
+	NOT = {
+		has_cosmetic_tag = ROM_GUARD_SPEC
+		}
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = 1
+	y = 1
+	cost = 8	
+	completion_reward = {
+	add_political_power = 100
+	add_stability = 0.05
+	news_event = twrromIG.9
+	add_popularity = {
+    ideology = national_socialist
+    popularity = 0.15
+		}
+	add_popularity = {
+    ideology = fascist
+    popularity = 0.1
+		}
+	set_country_flag = ROM_LEGIONARY_STATE
+	hidden_effect = {
+	country_event = { id = twrromIG.10 days = 5 }
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Cult_of_Corneliu_Zelea_Codreanu
+	icon = GFX_ROM_Cult_of_IG
+	prerequisite = { 
+		focus = ROM_PP_Formalize_the_National_Legionary_State
+		focus = ROM_PP_Restructure_the_Kingdom
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = 0
+	y = 2
+	cost = 8	
+	completion_reward = {
+	country_event = twrromIG.12
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Police-Death_Squad_Cooperation
+	icon = GFX_GER_SS_police
+	prerequisite = { 
+		focus = ROM_PP_Cult_of_Corneliu_Zelea_Codreanu
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = -2
+	y = 3
+	cost = 8	
+	completion_reward = {
+	add_stability = -0.15
+	add_manpower = 25000
+	add_equipment_to_stockpile = {
+    type = infantry_equipment_0
+    amount = 1000
+    producer = GER
+	}
+	hidden_effect = {
+	country_event = { id = twrromIG.15 days = 7 random = 300 }
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Legionary_Senate
+	icon = GFX_SOV_duumvirist_senate
+	prerequisite = { 
+		focus = ROM_PP_Police-Death_Squad_Cooperation
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = -2
+	y = 4
+	cost = 8	
+	completion_reward = {
+	add_political_power = 150
+	hidden_effect = {
+	country_event = { id = twrromIG.13 days = 14 random = 300 }
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Legionary_Diplomacy
+	icon = GFX_SER_focus_Organic_Diplomacy
+	prerequisite = { 
+		focus = ROM_PP_Cult_of_Corneliu_Zelea_Codreanu
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = 0
+	y = 3
+	cost = 8	
+	completion_reward = {
+	custom_effect_tooltip = DIPLOMACY_TREE_ROM
+	set_country_flag = DIPLO_TREE_UNLOCKED
+	#this should also unlock diplo decisions
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_A_Romanian_Society
+	icon = GFX_SER_focus_farmer_battalions
+	prerequisite = { 
+		focus = ROM_PP_Legionary_Diplomacy
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = 0
+	y = 4
+	cost = 8	
+	completion_reward = {
+	every_owned_state = {
+	add_extra_state_shared_building_slots = 2
+	}
+	add_ideas = agrarian_nation
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Church_Supremacy
+	icon = GFX_GENERIC_Orthodoxy
+	prerequisite = { 
+		focus = ROM_PP_Cult_of_Corneliu_Zelea_Codreanu
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = 2
+	y = 3
+	cost = 8	
+	completion_reward = {
+	add_stability = 0.15
+	swap_ideas = {
+    remove_idea = ROM_legacy_of_funny_man
+    add_idea = ROM_legacy_of_funny_man_2
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_Archangel_Michaels_Will
+	icon = GFX_ROM_Michael
+	prerequisite = { 
+		focus = ROM_PP_Church_Supremacy
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = 2
+	y = 4
+	cost = 8	
+	completion_reward = {
+	every_unit_leader = {
+	limit = { has_trait = iron_guard_general }
+	add_attack = 1
+		}
+	swap_ideas = {
+    remove_idea = ROM_legacy_of_funny_man_2
+    add_idea = ROM_legacy_of_funny_man_3
+		}
+	}
+}
+shared_focus = {
+	cancelable = no
+	id = ROM_PP_An_Iron_Romania
+	icon = GFX_ROM_Iron_Romania
+	prerequisite = { 
+		focus = ROM_PP_Archangel_Michaels_Will
+	}
+	prerequisite = {
+		focus = ROM_PP_A_Romanian_Society
+	}
+	prerequisite = {
+		focus = ROM_PP_Legionary_Senate
+	}
+	available = {
+		NOT = {
+		has_idea = ROM_collapsed_authority
+		}
+	}
+	relative_position_id = ROM_PP_Guardist_Victory
+	x = 0
+	y = 5
+	cost = 8	
+	completion_reward = {
+	remove_ideas = ROM_legionary_infighting
+	add_political_power = 150
+	custom_effect_tooltip = IF_POLITICAL_CRISIS_ITS_OVER
+	clr_country_flag = POLITICAL_CRISIS_OVER_ROM	
+	}
+}
+
+
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Your_Banat_Hand_It_Over
+	icon = GFX_SS_Cleansed_Europe
+	x = 16
+	y = 0
+	cost = 4
+	offset = {
+	x = 6
+	y = 0
+	trigger = {
+		has_focus_tree = Rom_AntGovWon
+		}
+	}	
+	offset = {
+	x = 11
+	y = 0
+	trigger = {
+		has_focus_tree = Rom_MONGov
+		}
+	}	
+	offset = {
+	x = 6
+	y = 0
+	trigger = {
+		has_focus_tree = Rom_IG
+		}
+	}	
+	available = {
+		has_country_flag = DIPLO_TREE_UNLOCKED
+	}
+	
+	completion_reward = {
+		unlock_decision_tooltip = rom_fpdec_banat_kill
+		set_country_flag = ROM_fpol_can_attack_banat
+		if = {
+		limit = { is_fascist = yes }
+		set_country_flag = enable_ROM_legionary_administrations
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Influence_Serbia
+	icon = GFX_SER_focus_call_upon_Mihailovic
+	x = 0
+	y = 1
+	relative_position_id = ROM_Fp_Your_Banat_Hand_It_Over
+	cost = 4
+	prerequisite = {
+		focus = ROM_Fp_Your_Banat_Hand_It_Over
+	}
+	
+	available = {
+		OR = {
+			AND = {
+				SER = {
+					has_civil_war = yes
+				}
+				any_country = {
+					original_tag = SER
+					has_government = paternal_autocrat
+				}
+			}
+			AND = {
+				is_fascist = yes
+				SER = {
+					OR = {
+						is_communist = yes
+						is_fascist = yes
+					}
+					custom_trigger_tooltip = {
+						tooltip = ROM_fpdec_lent_invite_ser_tt2
+						has_country_flag = serbian_power_struggle_over
+						NOT = {
+							OR = {
+								has_country_flag = zbor_partisan_revolt
+								has_country_flag = zbor_chetnik_revolt
+								has_country_flag = chetnik_partisan_revolt
+								has_country_flag = chetnik_zbor_revolt
+								has_country_flag = partisan_chetnik_revolt
+								has_country_flag = partisan_zbor_revolt
+							}
+							has_global_flag = serbian_civil_war
+						}
+					}
+				}
+			}
+		}
+	}
+	bypass = {
+		is_fascist = yes
+		SER = {
+			OR = {
+				is_communist = yes
+				is_fascist = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = ROM_fpdec_lent_invite_ser_tt2
+				has_country_flag = serbian_power_struggle_over
+				NOT = {
+					OR = {
+						has_country_flag = zbor_partisan_revolt
+						has_country_flag = zbor_chetnik_revolt
+						has_country_flag = chetnik_partisan_revolt
+						has_country_flag = chetnik_zbor_revolt
+						has_country_flag = partisan_chetnik_revolt
+						has_country_flag = partisan_zbor_revolt
+					}
+					has_global_flag = serbian_civil_war
+				}
+			}
+		}
+	}
+	
+	completion_reward = {
+		unlock_decision_tooltip = ROM_fpdec_support_chetnik_serbia
+		set_country_flag = ROM_fpol_can_support_serbia
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_German_Alliance
+	icon = GFX_focus_cze_german_puppet
+	relative_position_id = ROM_Fp_Influence_Serbia
+	x = -2
+	y = 1
+	cost = 5
+	prerequisite = {
+		focus = ROM_Fp_Your_Banat_Hand_It_Over
+		focus = ROM_Fp_Influence_Serbia
+	}
+	select_effect = {
+	855 = {
+	owner = {
+	country_event = { id = twrromania_diplo.7 hours = 12 }
+			}
+		}
+	}	
+	
+	available = {
+		has_government = national_socialist
+		has_war = no
+		OR = {
+			has_global_flag = gcw_avoided
+			has_global_flag = german_civil_war_over
+		}
+		OR = {
+		country_exists = GER
+		country_exists = HSS
+		AND = {
+		country_exists = HGR
+		HGR = { has_government = national_socialist }
+			}
+		}
+	}
+
+	mutually_exclusive = {
+		focus = ROM_Fp_Little_Entente
+		focus = ROM_Fp_Isolationism
+	}
+	
+	completion_reward = {
+	news_event = twrromania_diplo.11
+	hidden_effect = {
+		if = {
+			limit = {
+				HUN = {
+					is_subject_of = ROM
+				}
+			}
+			855 = {
+				owner = {
+					set_autonomy = {
+						target = HUN
+						autonomy_state = autonomy_satellite
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				BUL = {
+					is_subject_of = ROM
+				}
+			}
+			855 = {
+				owner = {
+					set_autonomy = {
+						target = BUL
+						autonomy_state = autonomy_satellite
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				SER = {
+					is_subject_of = ROM
+				}
+			}
+			855 = {
+				owner = {
+					set_autonomy = {
+						target = SER
+						autonomy_state = autonomy_satellite
+					}
+				}
+			}
+		}
+	}
+	855 = {
+	owner = {
+	set_autonomy = {
+    target = ROM
+    autonomy_state = autonomy_satellite
+	}
+	set_country_flag = ROM_PUPPET_OF_GER
+			}
+		}
+	set_country_flag = PUPPET_OF_GER_TAG_ROM
+	ROM = {
+	add_popularity = {
+    ideology = national_socialist
+    popularity = 0.35
+	}
+	add_ideas = ROM_bent_the_knee
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Little_Entente
+	icon = GFX_focus_generic_treaty
+	prerequisite = {
+		focus = ROM_Fp_Your_Banat_Hand_It_Over
+	}
+	prerequisite = {
+		focus = ROM_Fp_Influence_Serbia
+	}
+	relative_position_id = ROM_Fp_Influence_Serbia
+	x = 0
+	y = 1
+	cost = 4
+
+	available = {
+	NOT = {
+		has_government = national_socialist
+		has_completed_focus = ROM_PP_Pragmatic_Diplomacy
+		}
+	}
+
+	mutually_exclusive = {
+		focus = ROM_Fp_German_Alliance
+		focus = ROM_Fp_Isolationism
+	}	
+	
+	completion_reward = {
+		create_faction = "Bucharest Pact"
+		news_event = twrromania_diplo.10
+		unlock_decision_tooltip = rom_fpdec_lent_invite_ser
+		unlock_decision_tooltip = rom_fpdec_lent_invite_slo
+		unlock_decision_tooltip = rom_fpdec_lent_invite_cze
+		set_country_flag = ROM_BUCH_PACT
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Isolationism
+	icon = GFX_GENERIC_Isolated_Island
+	relative_position_id = ROM_Fp_Influence_Serbia
+	x = 2
+	y = 1
+	cost = 4
+	prerequisite = {
+		focus = ROM_Fp_Your_Banat_Hand_It_Over
+		focus = ROM_Fp_Influence_Serbia
+	}
+	
+	available = {
+		has_government = fascist
+		has_war = no
+		has_country_flag = FAILED_ROM_KNEE
+		is_subject = no
+	}
+
+	mutually_exclusive = {
+		focus = ROM_Fp_Little_Entente
+		focus = ROM_Fp_German_Alliance
+	}
+	
+	completion_reward = {
+	add_ideas = closed_economy
+	add_ideas = ROM_iron_guard
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Little_Entente_Research
+	icon = GFX_GENERIC_Research_Buff
+	prerequisite = {
+		focus = ROM_Fp_Little_Entente
+	}
+	relative_position_id = ROM_Fp_Little_Entente
+	x = 2
+	y = 1
+	cost = 4
+	
+	
+	completion_reward = {
+	custom_effect_tooltip = RESEARCH_PACT_ROM
+		every_country = {
+			limit = {
+				is_in_faction_with = ROM
+			}
+			add_to_tech_sharing_group = bucharest_pact_research
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Little_Entente_Military_Assistance
+	icon = GFX_GENERIC_training_1
+	prerequisite = {
+		focus = ROM_Fp_Little_Entente
+	}
+	relative_position_id = ROM_Fp_Little_Entente
+	x = -2
+	y = 1
+	cost = 4
+	
+	
+	completion_reward = {
+	army_experience = 50
+		every_country = {
+			limit = {
+				is_in_faction_with = ROM
+				NOT = {
+				tag = ROM
+				}
+			}
+			army_experience = 50
+		}		
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_Little_Entente_Military_Coordination
+	icon = GFX_ROM_military_drills
+	prerequisite = {
+		focus = ROM_Fp_Little_Entente_Research
+	}
+	prerequisite = {
+		focus = ROM_Fp_Little_Entente_Military_Assistance
+	}
+	relative_position_id = ROM_Fp_Little_Entente
+	x = 0
+	y = 2
+	cost = 4
+	
+	
+	completion_reward = {
+		every_country = {
+			limit = {
+				is_in_faction_with = ROM
+			}
+			add_ideas = BUH_Joint_Military_Staff
+		}		
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = ROM_Fp_The_Dead_Reich
+	icon = GFX_DDR_New_Germany
+	prerequisite = {
+		focus = ROM_Fp_Little_Entente
+	}
+	relative_position_id = ROM_Fp_Little_Entente
+	x = 0
+	y = 1
+	cost = 4
+	
+	available = {
+		OR = {
+			country_exists = PGR
+			AND = {
+				has_country_flag = german_civil_war_over
+				country_exists = DDR
+			}
+		}
+	}
+	
+	completion_reward = {
+		add_stability = 0.15
+	}
+}

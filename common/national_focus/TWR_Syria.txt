@@ -1,0 +1,980 @@
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Greater_Syrian_Diplomacy
+	icon = GFX_focus_generic_diplomatic_treaty
+	cost = 7
+	x = 40
+	y = 0
+	ai_will_do = {
+	factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	completion_reward = {
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Dream_of_Greater_Syria
+	icon = GFX_SYR_Greater_Syria
+	cost = 10
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Greater_Syrian_Diplomacy
+	}
+	mutually_exclusive = {
+		focus = SYR_Glorious_Isolation
+	}
+	relative_position_id = SYR_Greater_Syrian_Diplomacy	
+	completion_reward = {
+		country_event = {
+			id = twrsyria.1
+		}
+		set_global_flag = GREATER_SYRIA
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Pressing_the_Southern_Claims
+	icon = GFX_goal_generic_territory_or_war
+	cost = 10
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	prerequisite = {
+		focus = SYR_Dream_of_Greater_Syria
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	relative_position_id = SYR_Dream_of_Greater_Syria	
+	completion_reward = {
+		add_threat = 2
+		add_state_claim = 455
+		add_state_claim = 676
+		add_state_claim = 1008
+		add_state_claim = 291
+		add_state_claim = 675
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Preparing_the_Invasion
+	icon = GFX_goal_generic_position_armies
+	cost = 8
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	prerequisite = {
+		focus = SYR_Pressing_the_Southern_Claims
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	relative_position_id = SYR_Pressing_the_Southern_Claims	
+	completion_reward = {
+		SYR = { add_ai_strategy = {
+                type = conquer
+                id = IRQ
+                value = 100
+            }
+        }
+        SYR = { add_ai_strategy = {
+                type = conquer
+                id = JOR
+                value = 100
+            }
+        }
+        add_manpower = 20000
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Breaking_the_Bloc
+	icon = GFX_GENERIC_middle_east_fist
+	cost = 8
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	prerequisite = {
+		focus = SYR_Preparing_the_Invasion
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	relative_position_id = SYR_Preparing_the_Invasion	
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = ISR
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = PAL
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = JLM
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Pan_Syrianism
+	icon = GFX_GENERIC_Fist_People
+	cost = 8
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Preparing_the_Invasion
+	}
+	relative_position_id = SYR_Preparing_the_Invasion	
+	completion_reward = {
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Liberating_the_Levant
+	icon = GFX_SYR_Iraq_War
+	cost = 10
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Breaking_the_Bloc
+	}
+	prerequisite = {
+		focus = SYR_Pan_Syrianism
+	}
+	relative_position_id = SYR_Breaking_the_Bloc	
+	completion_reward = {
+		declare_war_on = {
+		    target = IRQ
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = JOR
+		    type = annex_everything
+		}
+		country_event = {
+			id = twrsyria.2 days = 1
+		}
+		custom_effect_tooltip = SYRIA_INTERVENTION
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Anti_Imperialist_Crusade
+	icon = GFX_focus_rom_parties_end
+	cost = 10
+	x = -3
+	y = 1
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	available = {
+		NOT = { has_war = yes }
+	}
+	prerequisite = {
+		focus = SYR_Liberating_the_Levant
+	}
+	mutually_exclusive = {
+		focus = SYR_Consolidating_Greater_Syria
+	}
+	relative_position_id = SYR_Liberating_the_Levant	
+	completion_reward = {
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Liberating_Our_Island
+	icon = GFX_ENG_fortress_cyprus
+	cost = 10
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Anti_Imperialist_Crusade
+	}
+	relative_position_id = SYR_Anti_Imperialist_Crusade	
+	completion_reward = {
+		add_state_claim = 183
+		create_wargoal = { type = annex_everything target = CYP }
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Onward_to_Tehran
+	icon = GFX_GENERIC_Army_Cooperation
+	cost = 10
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	available = {
+		NOT = { has_war = yes }
+	}
+	prerequisite = {
+		focus = SYR_Anti_Imperialist_Crusade
+	}
+	relative_position_id = SYR_Anti_Imperialist_Crusade	
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = PER
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Crushing_the_Saudis
+	icon = GFX_GENERIC_a_boot
+	cost = 10
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	available = {
+		NOT = { has_war = yes }
+	}
+	prerequisite = {
+		focus = SYR_Anti_Imperialist_Crusade
+	}
+	relative_position_id = SYR_Anti_Imperialist_Crusade	
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = SAU
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Testing_the_British
+	icon = GFX_GENERIC_Scatter_Tommies
+	cost = 10
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+		owns_state = 413
+		owns_state = 1008
+		has_war = no
+	}
+	prerequisite = {
+		focus = SYR_Liberating_Our_Island
+	}
+	prerequisite = {
+		focus = SYR_Onward_to_Tehran
+	}
+	prerequisite = {
+		focus = SYR_Crushing_the_Saudis
+	}
+	relative_position_id = SYR_Onward_to_Tehran	
+	completion_reward = {
+		create_wargoal = {
+			type = take_state_focus
+			target = ENG
+			generator = { 656 183 }
+		}
+		declare_war_on = {
+		    target = ENG
+		    type = take_state_focus
+		    generator = { 656 183 }
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Consolidating_Greater_Syria
+	icon = GFX_SPA_generic_protest
+	cost = 10
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_war = yes }
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Liberating_the_Levant
+	}
+	mutually_exclusive = {
+		focus = SYR_Anti_Imperialist_Crusade
+	}
+	relative_position_id = SYR_Liberating_the_Levant	
+	completion_reward = {
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Handling_the_Resistances
+	icon = GFX_GENERIC_kill_with_fire
+	cost = 20
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Consolidating_Greater_Syria
+	}
+	relative_position_id = SYR_Consolidating_Greater_Syria	
+	completion_reward = {
+		swap_ideas = {
+    		remove_idea = SYR_Lebanese_Unrest
+    		add_idea = SYR_Lebanese_Unrest_3
+		}
+		swap_ideas = {
+    		remove_idea = SYR_Opposition_Parties
+    		add_idea = SYR_Opposition_Parties_2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Glorious_Isolation
+	icon = GFX_GENERIC_Isolated_Island
+	cost = 10
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Greater_Syrian_Diplomacy
+	}
+	mutually_exclusive = {
+		focus = SYR_Dream_of_Greater_Syria
+	}
+	relative_position_id = SYR_Greater_Syrian_Diplomacy	
+	completion_reward = {
+		add_stability = 0.1
+		add_war_support = -0.1
+		hidden_effect = {
+			set_global_flag = ISOLATED_SYRIA
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Crushing_the_Lebanese
+	icon = GFX_LEB_Leabanese_Revolution
+	cost = 10
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Glorious_Isolation
+	}
+	relative_position_id = SYR_Glorious_Isolation	
+	completion_reward = {
+		swap_ideas = {
+    		remove_idea = SYR_Lebanese_Unrest
+    		add_idea = SYR_Lebanese_Unrest_2
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Pacifying_the_Kurds
+	icon = GFX_focus_cze_german_puppet
+	cost = 10
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Glorious_Isolation
+	}
+	relative_position_id = SYR_Glorious_Isolation	
+	completion_reward = {
+		add_ideas = SYR_No_More_Kurdish_Opposition
+		add_manpower = -10000
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Silencing_Arab_Nationalism
+	icon = GFX_GENERIC_gag
+	cost = 10
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Crushing_the_Lebanese
+	}
+	prerequisite = {
+		focus = SYR_Pacifying_the_Kurds
+	}
+	relative_position_id = SYR_Crushing_the_Lebanese	
+	completion_reward = {
+		add_stability = 0.05
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.1
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Fortress_Doctrine
+	icon = GFX_goal_generic_fortify_city
+	cost = 10
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Silencing_Arab_Nationalism
+	}
+	relative_position_id = SYR_Silencing_Arab_Nationalism	
+	completion_reward = {
+		add_ideas = SYR_Fortress_Doctrine
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_Act_Strong_Do_Nothing
+	icon = GFX_GENERIC_left_wing_victory
+	cost = 10
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Silencing_Arab_Nationalism
+	}
+	relative_position_id = SYR_Silencing_Arab_Nationalism	
+	completion_reward = {
+		add_stability = 0.1
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = SYR_The_Black_Spot_of_the_Middle_East
+	icon = GFX_ENG_Syria
+	cost = 10
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 3
+	}
+	available = {
+		NOT = { has_global_flag = syria_defeated }
+	}
+	prerequisite = {
+		focus = SYR_Fortress_Doctrine
+	}
+	prerequisite = {
+		focus = SYR_Act_Strong_Do_Nothing
+	}
+	relative_position_id = SYR_Fortress_Doctrine	
+	completion_reward = {
+		swap_ideas = {
+    		remove_idea = SYR_Fortress_Doctrine
+    		add_idea = SYR_Fortress_Doctrine_2
+		}
+	}
+}
+	
+#	shared_focus = {
+#	cancelable = no
+#	id = SYR_Syrian_Diplomacy
+#	icon = GFX_goal_generic_improve_relations
+#	cost = 7
+#	x = 49
+#	y = 0
+#	ai_will_do = {
+#	factor = 1
+#	}
+#	available = {
+#	}
+#	mutually_exclusive = {
+#		focus = SYR_Greater_Syrian_Diplomacy
+#	}
+#	mutually_exclusive = {
+#		focus = SYR_Embracing_Arab_Diplomacy
+#	}
+#	completion_reward = {
+#		add_political_power = 50
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Dissolve_Greater_Syria
+#	icon = GFX_SPA_generic_protest
+#	cost = 10
+#	x = 0
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Syrian_Diplomacy
+#	}
+#	relative_position_id = SYR_Syrian_Diplomacy	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Normalizing_Diplomatic_Ties
+#	icon = GFX_GENERIC_elite_party
+#	cost = 10
+#	x = 0
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Dissolve_Greater_Syria
+#	}
+#	relative_position_id = SYR_Dissolve_Greater_Syria	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Renouncing_Greater_Syrian_Claims
+#	icon = GFX_GENERIC_Born_Torn_Treaty
+#	cost = 10
+#	x = -3
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Normalizing_Diplomatic_Ties
+#	}
+#	relative_position_id = SYR_Normalizing_Diplomatic_Ties	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Focus_on_Internal_Matters
+#	icon = GFX_GENERIC_CIvil_Oversight
+#	cost = 10
+#	x = 0
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Renouncing_Greater_Syrian_Claims
+#	}
+#	relative_position_id = SYR_Renouncing_Greater_Syrian_Claims	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Enforcing_Neutrality
+#	icon = GFX_goal_generic_neutrality_focus
+#	cost = 10
+#	x = -1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Normalizing_Diplomatic_Ties
+#	}
+#	mutually_exclusive = {
+#		focus = SYR_Pandering_to_the_Community
+#	}
+#	relative_position_id = SYR_Normalizing_Diplomatic_Ties	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Lackluster_Diplomacy
+#	icon = GFX_focus_rom_parties_end
+#	cost = 10
+#	x = 0
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Enforcing_Neutrality
+#	}
+#	relative_position_id = SYR_Enforcing_Neutrality	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Pandering_to_the_Community
+#	icon = GFX_focus_generic_concessions
+#	cost = 10
+#	x = 1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Normalizing_Diplomatic_Ties
+#	}
+#	mutually_exclusive = {
+#		focus = SYR_Enforcing_Neutrality
+#	}
+#	relative_position_id = SYR_Normalizing_Diplomatic_Ties	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Trade_and_Cooperation
+#	icon = GFX_GENERIC_Trading
+#	cost = 10
+#	x = 0
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Pandering_to_the_Community
+#	}
+#	relative_position_id = SYR_Pandering_to_the_Community	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Cooperate_with_the_Accord
+#	icon = GFX_USA_expand_TA
+#	cost = 10
+#	x = 2
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Pandering_to_the_Community
+#	}
+#	relative_position_id = SYR_Pandering_to_the_Community	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Embracing_Arab_Diplomacy
+#	icon = GFX_GENERIC_global_propaganda
+#	cost = 7
+#	x = 55
+#	y = 0
+#	ai_will_do = {
+#	factor = 1
+#	}
+#	available = {
+#	}
+#	mutually_exclusive = {
+#		focus = SYR_Greater_Syrian_Diplomacy
+#	}
+#	mutually_exclusive = {
+#		focus = SYR_Syrian_Diplomacy
+#	}
+#	completion_reward = {
+#		add_political_power = 50
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_The_Dream_of_an_Arab_Nation
+#	icon = GFX_GENERIC_Islamic_Government
+#	cost = 10
+#	x = 0
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Embracing_Arab_Diplomacy
+#	}
+#	relative_position_id = SYR_Embracing_Arab_Diplomacy	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_An_Alliance_with_the_Egyptians
+#	icon = GFX_goal_generic_major_alliance
+#	cost = 10
+#	x = -1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_The_Dream_of_an_Arab_Nation
+#	}
+#	mutually_exclusive = {
+#		focus = SYR_Apply_to_Join_the_Egyptians
+#	}
+#	relative_position_id = SYR_The_Dream_of_an_Arab_Nation	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Mutual_Cooperation_with_Arabs
+#	icon = GFX_GENERIC_Army_Cooperation
+#	cost = 10
+#	x = 0
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_An_Alliance_with_the_Egyptians
+#	}
+#	relative_position_id = SYR_An_Alliance_with_the_Egyptians	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Arm_the_Palestinians
+#	icon = GFX_PAL_War_Fight
+#	cost = 10
+#	x = -1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Mutual_Cooperation_with_Arabs
+#	}
+#	relative_position_id = SYR_Mutual_Cooperation_with_Arabs	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Apply_to_Join_the_Egyptians
+#	icon = GFX_goal_generic_alliance
+#	cost = 10
+#	x = 1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_The_Dream_of_an_Arab_Nation
+#	}
+#	mutually_exclusive = {
+#		focus = SYR_An_Alliance_with_the_Egyptians
+#	}
+#	relative_position_id = SYR_The_Dream_of_an_Arab_Nation	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Aftermath_of_the_Federation
+#	icon = GFX_goal_generic_dangerous_deal
+#	cost = 10
+#	x = 0
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Apply_to_Join_the_Egyptians
+#	}
+#	relative_position_id = SYR_Apply_to_Join_the_Egyptians	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Maintain_Relations_with_Egypt
+#	icon = GFX_GENERIC_green_diplomacy
+#	cost = 10
+#	x = 1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Aftermath_of_the_Federation
+#	}
+#	relative_position_id = SYR_Aftermath_of_the_Federation	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Support_Neighbouring_Baathists
+#	icon = GFX_GENERIC_green_white_pact
+#	cost = 10
+#	x = 1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Mutual_Cooperation_with_Arabs
+#		focus = SYR_Aftermath_of_the_Federation
+#	}
+#	relative_position_id = SYR_Mutual_Cooperation_with_Arabs	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Cooperare_with_the_Iraqis
+#	icon = GFX_SAU_Islamic_Converts
+#	cost = 10
+#	x = -1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Support_Neighbouring_Baathists
+#	}
+#	relative_position_id = SYR_Support_Neighbouring_Baathists	
+#	completion_reward = {
+#	}
+#}#
+
+#shared_focus = {
+#	cancelable = no
+#	id = SYR_Believer_of_Arab_Greatness
+#	icon = GFX_SAU_Islamic_Officers
+#	cost = 10
+#	x = 1
+#	y = 1
+#	ai_will_do = {
+#		factor = 1
+#	}
+#	prerequisite = {
+#		focus = SYR_Support_Neighbouring_Baathists
+#	}
+#	relative_position_id = SYR_Support_Neighbouring_Baathists	
+#	completion_reward = {
+#	}
+#}
+

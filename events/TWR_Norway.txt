@@ -1,0 +1,1555 @@
+add_namespace = twrnorway
+
+country_event = {
+	id = twrnorway.1 #starting event
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.1"}
+	title = twrnorway.1.t
+	desc = twrnorway.1.d
+	picture = GFX_report_event_norge_starting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = twrnorway.1.a
+	}
+}
+country_event = {
+	id = twrnorway.2 #an incident in narvik
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.2"}
+	title = twrnorway.2.t
+	desc = twrnorway.2.d
+	picture = GFX_report_event_norwegian_gestapo
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.2.a
+		add_political_power = -50
+		complete_national_focus = NOR_Question_of_the_Quisling_Regime
+		hidden_effect = {
+			country_event = { id = twrnorway.3 days = 3 }
+		}
+	}
+}
+country_event = {
+	id = twrnorway.3 #norwegian demonstration
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.3"}
+	title = twrnorway.3.t
+	desc = twrnorway.3.d
+	picture = GFX_report_event_general_strike
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.3.a
+		add_stability = -0.15
+		add_ideas = NOR_party_crisis
+		hidden_effect = {
+			country_event = { id = twrnorway.4 days = 7 }
+		}
+	}
+}
+country_event = {
+	id = twrnorway.4 #Quisling phone call
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.4"}
+	title = twrnorway.4.t
+	desc = twrnorway.4.d
+	picture = GFX_report_event_norwegian_call
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.4.a
+		hidden_effect = {
+			GER = {
+				country_event = twrnorway.41
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.41 #Quisling phone call
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.41"}
+	title = twrnorway.41.t
+	desc = twrnorway.41.d
+	picture = GFX_report_event_norwegian_call
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.41.a #make some allowrance
+		add_stability = 0.05
+		add_political_power = 50
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_NOR_RK
+			}
+		}
+		hidden_effect = {
+			NOR = {
+				country_event = twrnorway.42
+			}
+		}
+	}
+	option = {
+		name = twrnorway.41.b #trick them
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_NOR_HIRDEN
+			}
+		}
+		hidden_effect = {
+			add_to_variable = {
+				var = goebbelstrust
+				value = 1
+			}
+			NOR = {
+				country_event = twrnorway.42
+				set_country_flag = rk_trickery
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.42 #Quisling phone call responded
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.4"}
+	title = twrnorway.42.t
+	desc = twrnorway.42.d
+	picture = GFX_report_event_norwegian_call
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.42.a
+		add_political_power = 50
+		hidden_effect = {
+			country_event = { id = twrnorway.5 days = 3 }
+			news_event = twrnorway.43
+		}
+	}
+}
+news_event = {
+	id = twrnorway.43 #norwegian thaw
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.43"}
+	title = twrnorway.43.t
+	desc = twrnorway.43.d
+	picture = GFX_news_event_norwegian_protest
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnorway.43.a
+		trigger = {
+			NOT = {
+				TAG = NOR
+			}
+		}
+	}
+	option = {
+		name = twrnorway.43.b
+		trigger = { TAG = NOR }
+	}
+}
+country_event = {
+	id = twrnorway.5 #Kommissar Recalled
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.5"}
+	title = twrnorway.5.t
+	desc = twrnorway.5.d
+	picture = GFX_report_event_norway_recalled
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.5.a
+		add_political_power = 50
+		hidden_effect = {
+			country_event = { id = twrnorway.6 days = 2 }
+			complete_national_focus = NOR_Terboven_Recalled
+			remove_ideas = hos_tyranical_overseer
+			clr_country_flag = has_symbolic_figurehead
+			clr_country_flag = rk_josef_terboven
+		}
+	}
+}
+country_event = {
+	id = twrnorway.6 #Party Crisis worsens
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.6"}
+	title = twrnorway.6.t
+	desc = twrnorway.6.d
+	picture = GFX_report_event_quisling_in_crisis
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.6.a
+		add_political_power = -100
+		hidden_effect = {
+			complete_national_focus = NOR_1952_Party_Crisis
+			country_event = { id = twrnorway.7 days = 2 }
+		}
+	}
+}
+country_event = {
+	id = twrnorway.7 #Congress time
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.7"}
+	title = twrnorway.7.t
+	desc = twrnorway.7.d
+	picture = GFX_report_event_NS_meeting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.7.a
+		custom_effect_tooltip = CONGRESSNOR
+		hidden_effect = {
+			complete_national_focus = NOR_Summon_the_Congress
+			country_event = { id = twrnorway.8 days = 3 }
+		}
+	}
+}
+country_event = {
+	id = twrnorway.8 #german ties
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.8"}
+	title = twrnorway.8.t
+	desc = twrnorway.8.d
+	picture = GFX_report_event_NS_meeting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.8.a #Maintain Germanic ties
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_QUISLING
+					has_global_flag = COUNTRY_PATH_NOR_RK
+					has_global_flag = COUNTRY_PATH_NOR_HIRDEN
+					has_global_flag = COUNTRY_PATH_NOR_FREEDOM
+				}
+			}
+		}
+		custom_effect_tooltip = GSSNINFLUENCE
+		add_stability = 0.05
+		hidden_effect = {
+			set_country_flag = GSSN_ONE
+			country_event = { id = twrnorway.9 days = 3 }
+		}
+	}
+	option = {
+		name = twrnorway.8.b #Norwegian Stance
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_GSSN
+					has_global_flag = COUNTRY_PATH_NOR_RK
+					has_global_flag = COUNTRY_PATH_NOR_HIRDEN
+					has_global_flag = COUNTRY_PATH_NOR_FREEDOM
+				}
+			}
+		}
+		custom_effect_tooltip = QUISLINGINFLUENCE
+		add_political_power = 150
+		hidden_effect = {
+			set_country_flag = QUIS_ONE
+			country_event = { id = twrnorway.9 days = 3 }
+		}
+	}
+	option = {
+		name = twrnorway.8.c #In complete disagreement
+		ai_chance = {
+			factor = 9
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_GSSN
+					has_global_flag = COUNTRY_PATH_NOR_QUISLING
+				}
+			}
+		}
+		custom_effect_tooltip = STALEMATE
+		add_political_power = -200
+		hidden_effect = {
+			set_country_flag = STALE_ONE
+			country_event = { id = twrnorway.9 days = 3 }
+		}
+	}
+}
+country_event = {
+	id = twrnorway.9 #administration
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.9"}
+	title = twrnorway.9.t
+	desc = twrnorway.9.d
+	picture = GFX_report_event_NS_meeting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.9.a #Mimic the Nazis
+		ai_chance = {
+			factor = 2
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_QUISLING
+					has_global_flag = COUNTRY_PATH_NOR_RK
+					has_global_flag = COUNTRY_PATH_NOR_HIRDEN
+					has_global_flag = COUNTRY_PATH_NOR_FREEDOM
+				}
+			}
+		}
+		custom_effect_tooltip = GSSNINFLUENCE
+		add_stability = -0.05
+		hidden_effect = {
+			set_country_flag = GSSN_TWO
+			country_event = { id = twrnorway.10 days = 3 }
+		}
+	}
+	option = {
+		name = twrnorway.9.b #Ensure the rule of Nasjonal Samling
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_GSSN
+					has_global_flag = COUNTRY_PATH_NOR_RK
+					has_global_flag = COUNTRY_PATH_NOR_HIRDEN
+					has_global_flag = COUNTRY_PATH_NOR_FREEDOM
+				}
+			}
+		}
+		custom_effect_tooltip = QUISLINGINFLUENCE
+		add_political_power = 100
+		hidden_effect = {
+			set_country_flag = QUIS_TWO
+			country_event = { id = twrnorway.10 days = 3 }
+		}
+	}
+	option = {
+		name = twrnorway.9.c #In complete disagreement
+		ai_chance = {
+			factor = 12
+			modifier = {
+				factor = 6
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_GSSN
+					has_global_flag = COUNTRY_PATH_NOR_QUISLING
+				}
+			}
+		}
+		custom_effect_tooltip = STALEMATE
+		add_political_power = -200
+		hidden_effect = {
+			set_country_flag = STALE_TWO
+			country_event = { id = twrnorway.10 days = 3 }
+		}
+	}
+}
+country_event = {
+	id = twrnorway.10 #military
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.10"}
+	title = twrnorway.10.t
+	desc = twrnorway.10.d
+	picture = GFX_report_event_NS_meeting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.10.a #Expand the Volunteers
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_QUISLING
+					has_global_flag = COUNTRY_PATH_NOR_RK
+					has_global_flag = COUNTRY_PATH_NOR_HIRDEN
+					has_global_flag = COUNTRY_PATH_NOR_FREEDOM
+				}
+			}
+		}
+		custom_effect_tooltip = GSSNINFLUENCE
+		add_manpower = 10000
+		hidden_effect = {
+			set_country_flag = GSSN_THREE
+			country_event = { id = twrnorway.11 days = 4 random = 300 }
+		}
+	}
+	option = {
+		name = twrnorway.10.b #Turn the Hirden into a Regular force
+		ai_chance = {
+			factor = 2
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_GSSN
+					has_global_flag = COUNTRY_PATH_NOR_RK
+					has_global_flag = COUNTRY_PATH_NOR_HIRDEN
+					has_global_flag = COUNTRY_PATH_NOR_FREEDOM
+				}
+			}
+		}
+		custom_effect_tooltip = QUISLINGINFLUENCE
+		army_experience = 30
+		hidden_effect = {
+			set_country_flag = QUIS_THREE
+			country_event = { id = twrnorway.11 days = 4 random = 300 }
+		}
+	}
+	option = {
+		name = twrnorway.10.c #In complete disagreement
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_NOR_GSSN
+					has_global_flag = COUNTRY_PATH_NOR_QUISLING
+				}
+			}
+		}
+		custom_effect_tooltip = STALEMATE
+		add_political_power = -200
+		hidden_effect = {
+			set_country_flag = STALE_THREE
+			country_event = { id = twrnorway.11 days = 4 random = 300 }
+		}
+	}
+}
+country_event = {
+	id = twrnorway.11 #congress results
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.11"}
+	title = twrnorway.11.t
+	desc = twrnorway.11.d
+	picture = GFX_report_event_NS_meeting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.11.a #who won
+		hidden_effect = {
+			if = {
+				limit = {
+					count_triggers = {
+						amount = 2
+						has_country_flag = GSSN_ONE
+						has_country_flag = GSSN_TWO
+						has_country_flag = GSSN_THREE
+					}
+				}
+				country_event = { id = twrnorway.12 days = 2 }
+			}
+			else_if = {
+				limit = {
+					count_triggers = {
+						amount = 2
+						has_country_flag = QUIS_ONE
+						has_country_flag = QUIS_TWO
+						has_country_flag = QUIS_THREE
+					}
+				}
+				country_event = { id = twrnorway.13 days = 2 }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						count_triggers = {
+							amount = 2
+							has_country_flag = STALE_ONE
+							has_country_flag = STALE_TWO
+							has_country_flag = STALE_THREE
+						}
+						NOT = {
+							count_triggers = {
+								amount = 2
+								has_country_flag = QUIS_ONE
+								has_country_flag = QUIS_TWO
+								has_country_flag = QUIS_THREE
+							}
+							count_triggers = {
+								amount = 2
+								has_country_flag = GSSN_ONE
+								has_country_flag = GSSN_TWO
+								has_country_flag = GSSN_THREE
+							}
+						}
+					}
+				}
+				country_event = { id = twrnorway.14 days = 2 }
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.12 #GSSN
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.12"}
+	title = twrnorway.12.t
+	desc = twrnorway.12.d
+	picture = GFX_report_event_jonas_lie_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.12.a #Jonas Lie in power
+		complete_national_focus = NOR_Lies_Coup
+		add_popularity = {
+			ideology = national_socialist
+			popularity = 0.4
+		}
+		news_event = { id = twrnorway.994 hours = 5 }
+		set_politics = {
+			ruling_party = national_socialist
+		}
+		drop_cosmetic_tag = yes
+	}
+}
+country_event = {
+	id = twrnorway.13 #Quisling affirmed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.13"}
+	title = twrnorway.13.t
+	desc = twrnorway.13.d
+	picture = GFX_report_event_quisling_in_crisis
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.13.a #Expand the Volunteers
+		complete_national_focus = NOR_Quislings_Leadership
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.1
+		}
+		add_stability = 0.1
+		drop_cosmetic_tag = yes
+		news_event = { id = twrnorway.993 hours = 5 }
+		swap_ideas = {
+			remove_idea = NOR_The_GSSN
+			add_idea = NOR_discontented_GSSN
+		}
+	}
+}
+country_event = {
+	id = twrnorway.14 #NS Collapse
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.14"}
+	title = twrnorway.14.t
+	desc = twrnorway.14.d
+	picture = GFX_report_event_NS_meeting
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.13.a #Hirden coup
+		add_stability = -0.1
+		complete_national_focus = NOR_Nasjonal_Samling_Crumbled
+		trigger = {
+			NOT = {
+				has_country_flag = rk_trickery
+			}
+		}
+		hidden_effect = {
+			random_list = {
+				30 = {
+					modifier = {
+						factor = 12
+						has_global_flag = COUNTRY_PATH_NOR_FREEDOM
+					}
+					country_event = { id = twrnorway.15 days = 2 }
+				}
+				30 = {
+					modifier = {
+						factor = 2
+						has_global_flag = COUNTRY_PATH_NOR_HIRDEN
+					}
+					country_event = { id = twrnorway.99 days = 2 }
+				}
+			}
+		}
+	}
+	option = {
+		name = twrnorway.13.b #RK coup
+		add_stability = -0.1
+		complete_national_focus = NOR_Nasjonal_Samling_Crumbled
+		trigger = {
+			has_country_flag = rk_trickery
+		}
+		hidden_effect = {
+			random_list = {
+				30 = {
+					modifier = {
+						factor = 2
+						has_global_flag = COUNTRY_PATH_NOR_FREEDOM
+					}
+					country_event = { id = twrnorway.16 days = 2 }
+				}
+				30 = {
+					modifier = {
+						factor = 12
+						has_global_flag = COUNTRY_PATH_NOR_RK
+					}
+					country_event = { id = twrnorway.99 days = 2 }
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.15 #Hirden coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.15"}
+	title = twrnorway.15.t
+	desc = twrnorway.15.d
+	picture = GFX_report_event_hirden_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.15.a #Expand the Volunteers
+		complete_national_focus = NOR_Hirden_Coup
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Orvar Sæther"
+			desc = "Orvar Sæther_DESC"
+			picture = "Ovar_Saether.dds"
+			expire = "1965.1.1"
+			ideology = fascism
+			traits = {
+
+			}
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.1
+		}
+		set_party_name = { 
+			ideology = fascist 
+			long_name = NOR_hirden_long 
+			name = NOR_hirden 
+		}
+		news_event = { id = twrnorway.995 hours = 5 }
+		add_political_power = -150
+		drop_cosmetic_tag = yes
+	}
+}
+country_event = {
+	id = twrnorway.16 #Hirden German coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.16"}
+	title = twrnorway.16.t
+	desc = twrnorway.16.d
+	picture = GFX_report_event_hirden_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.16.a #Expand the Volunteers
+		complete_national_focus = NOR_Return_of_Terboven
+		create_country_leader = {
+			name = "Josef Terboven"
+			desc = "Josef_Terboven_DESC"
+			picture = "Josef_Terboven.dds"
+			expire = "1965.1.1"
+			ideology = national_socialism
+			traits = {
+
+			}
+		}
+		news_event = { id = twrnorway.996 hours = 5 }
+		add_popularity = {
+			ideology = national_socialist
+			popularity = 0.3
+		}
+		set_party_name = { 
+			ideology = national_socialist 
+			long_name = NOR_GERMAN_LONG
+			name = NOR_GERMAN
+		}
+		set_politics = {
+			ruling_party = national_socialist
+		}
+		add_political_power = -200
+	}
+}
+country_event = {
+	id = twrnorway.17 #Dealing with the Devil
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.17"}
+	title = twrnorway.17.t
+	desc = twrnorway.17.d
+	picture = GFX_report_event_quisling_in_crisis
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.17.a #Pay for our freedom
+		add_political_power = -150
+		GER = {
+			country_event = {
+				id = twrnorway.171 days = 2
+			}
+		}
+	}
+	option = {
+		name = twrnorway.17.b #Offer our men
+		add_political_power = -150
+		GER = {
+			country_event = {
+				id = twrnorway.172 days = 2
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.171 #Norwegian pay for their freedom
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.171"}
+	title = twrnorway.171.t
+	desc = twrnorway.171.d
+	picture = GFX_report_event_quisling_in_crisis
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.171.a #Accept the deal
+		ai_chance = {
+			factor = 80
+		}
+		add_timed_idea = {
+			idea = NOR_paid
+			days = 80
+		}
+		add_offsite_building = { type = arms_factory level = 2 }
+		NOR = {
+			country_event = {
+				id = twrnorway.1711 days = 2
+			}
+		}
+	}
+	option = {
+		name = twrnorway.171.b #No
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		NOR = {
+			country_event = {
+				id = twrnorway.1712 days = 2
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.172 #Norwegian pay with divisions
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.172"}
+	title = twrnorway.172.t
+	desc = twrnorway.172.d
+	picture = GFX_report_event_quisling_in_crisis
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.172.a #Accept the deal
+		ai_chance = {
+			factor = 80
+		}
+		add_manpower = 25000
+		custom_effect_tooltip = NOR_LEGIONS
+		NOR = {
+			country_event = {
+				id = twrnorway.17112 days = 2
+			}
+		}
+		hidden_effect = {
+			set_country_flag = NOR_LEGIONS_READY
+		}
+	}
+	option = {
+		name = twrnorway.172.b #No
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.1
+		NOR = {
+			country_event = {
+				id = twrnorway.1712 days = 2
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.1711 #Dealing with the Devil
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.1711"}
+	title = twrnorway.1711.t
+	desc = twrnorway.1711.d
+	picture = GFX_report_event_quisling_in_crisis
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.1711.a #Pay for our freedom
+		add_timed_idea = {
+			idea = NOR_payment
+			days = 80
+		}
+		every_army_leader = {
+			limit = {
+				NOT = {
+					has_trait = norwegian_general
+				}
+			}
+			set_nationality = GER
+		}
+		every_navy_leader = {
+			limit = {
+				NOT = {
+					has_trait = norwegian_general
+				}
+			}
+			set_nationality = GER
+		}
+		hidden_effect = {
+			GER = {
+				set_autonomy = {
+					target = NOR
+					autonomy_state = autonomy_free
+				}
+			end_puppet = NOR
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.17112 #Dealing with the Devil reaction
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.17112"}
+	title = twrnorway.1711.t
+	desc = twrnorway.1711.d
+	picture = GFX_report_event_quisling_in_crisis
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.17111.a #Pay for our freedom
+		add_manpower = -25000
+		every_army_leader = {
+			limit = {
+				NOT = {
+					has_trait = norwegian_general
+				}
+			}
+			set_nationality = GER
+		}
+		every_navy_leader = {
+			limit = {
+				NOT = {
+					has_trait = norwegian_general
+				}
+			}
+			set_nationality = GER
+		}
+		transfer_navy = {
+			target = GER
+		}
+		hidden_effect = {
+			GER = {
+				set_autonomy = {
+					target = NOR
+					autonomy_state = autonomy_free
+				}
+			end_puppet = NOR
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.1712 #Crisis
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.1712"}
+	title = twrnorway.1712.t
+	desc = twrnorway.1712.d
+	picture = GFX_report_event_quisling_in_crisis
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.1712.a #oh no
+		add_political_power = -500
+		add_timed_idea = {
+			idea = NOR_crisis_independence
+			days = 140
+		}
+		GER = {
+			set_autonomy = {
+				target = NOR
+				autonomy_state = autonomy_free
+			}
+			end_puppet = NOR
+		}
+		every_army_leader = {
+			limit = {
+				NOT = {
+					has_trait = norwegian_general
+				}
+			}
+			set_nationality = GER
+		}
+		every_navy_leader = {
+			limit = {
+				NOT = {
+					has_trait = norwegian_general
+				}
+			}
+			set_nationality = GER
+		}
+	}
+}
+country_event = {
+	id = twrnorway.99 #Revolution time
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.99"}
+	title = twrnorway.99.t
+	desc = twrnorway.99.d
+	picture = GFX_report_event_norway_resistance
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.99.a
+		add_stability = -0.05
+		end_puppet = NOR
+		leave_faction = yes
+		set_politics = {
+			ruling_party = paternal_autocrat
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.3
+		}
+		news_event = { id = twrnorway.992 hours = 5 }
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+			complete_national_focus = NOR_The_Oslo_Revolution
+			add_ideas = facade_democracy
+			remove_ideas = NOR_the_norwegian_resistance
+			remove_ideas = NOR_quisling_nazi_puppet
+			remove_ideas = NOR_party_crisis
+			remove_ideas = NOR_The_GSSN
+			set_country_flag = ns_germans_gone
+			GER = {
+			set_autonomy = {
+				target = NOR
+				autonomy_state = autonomy_free
+			}
+			end_puppet = NOR
+			}			
+			every_navy_leader = {
+				retire = yes
+			}
+			every_army_leader = {
+				retire = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						GER = {
+							has_idea = GER_grand_power_struggles
+						}
+					}
+				}  
+				GER = {
+					country_event = {
+						id = twrnorway.991 days = 2
+					}
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.9910 #Revolution time
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.99"}
+	title = twrnorway.99.t
+	desc = twrnorway.99.d
+	picture = GFX_report_event_norway_resistance
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.99.a
+		ai_chance = {
+		factor = 50
+		}
+		add_stability = -0.05
+		leave_faction = yes
+		set_politics = {
+			ruling_party = paternal_autocrat
+		}
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.3
+		}
+		news_event = { id = twrnorway.992 hours = 5 }
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+			complete_national_focus = NOR_The_Oslo_Revolution
+			add_ideas = facade_democracy
+			remove_ideas = NOR_the_norwegian_resistance
+			set_country_flag = ns_germans_gone
+			GER = {
+			set_autonomy = {
+				target = NOR
+				autonomy_state = autonomy_free
+			}
+			end_puppet = NOR
+			}			
+			every_navy_leader = {
+				retire = yes
+			}
+			every_army_leader = {
+				retire = yes
+			}
+		}
+	}
+	
+	option = {
+		name = twrnorway.99.b
+		ai_chance = {
+		factor = 30
+		}
+		add_stability = -0.15
+		add_war_support = -0.15
+		add_timed_idea = {
+	    idea = NOR_crushed_revolt
+	    days = 180
+		}
+	}
+}
+country_event = {
+	id = twrnorway.100 #Liberation time
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.100"}
+	title = twrnorway.100.t
+	desc = twrnorway.100.d
+	picture = GFX_report_event_liberated_norway
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.100.a
+		trigger = {
+			is_in_faction_with = USA
+		}
+		NOR = {
+			transfer_state = 110
+			transfer_state = 142
+			transfer_state = 143
+			transfer_state = 144
+		}
+		USA = {
+			puppet = NOR
+			set_autonomy = {
+				target = NOR
+				autonomy_state = autonomy_USA_Sponsored_Regime
+			}
+		}
+		hidden_effect = {
+			NOR = {
+				drop_cosmetic_tag = yes
+				set_politics = {
+					ruling_party = paternal_autocrat
+				}
+				add_popularity = {
+					ideology = paternal_autocrat
+					popularity = 0.3
+				}
+				create_country_leader = {
+					name = "Keller Emrick Rockey"
+					desc = "Keller_Emrick_Rockey_DESC"
+					picture = "Keller_Emrick_Rockey.dds"
+					expire = "1965.1.1"
+					ideology = transitional_regime
+					traits = {
+
+					}
+				}			
+				set_party_name = { 
+					ideology = paternal_autocrat 
+					long_name = TA_MILITARY_PARTY_LONG 
+					name = TA_MILITARY_PARTY
+				}
+				complete_national_focus = NOR_Under_Occupation
+				add_ideas = facade_democracy
+				remove_ideas = NOR_the_norwegian_resistance
+				remove_ideas = NOR_quisling_nazi_puppet
+				remove_ideas = {
+				NOR_party_crisis
+				NOR_discontented_GSSN
+				NOR_The_GSSN
+				NOR_The_Statspolitiet
+				NOR_purge_of_oppositions
+				NOR_payment
+				NOR_paid
+				NOR_crisis_independence
+				NOR_fishing_industries
+				NOR_junta_rule
+				NOR_ss_esotericism_1
+				NOR_ss_esotericism_2
+				NOR_powerful_GSSN
+				NOR_diplomatic_renewal
+				}
+				set_country_flag = ns_germans_gone
+				clr_country_flag = rk_josef_terboven
+				clr_country_flag = has_symbolic_figurehead
+				set_cosmetic_tag = NOR_TA
+				every_navy_leader = {
+					retire = yes
+				}
+				every_army_leader = {
+					retire = yes
+				}
+
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					tag = USA
+				}
+			}
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	option = {
+		name = twrnorway.100.a
+		trigger = {
+			NOT = {
+				is_in_faction_with = USA
+			}
+		}
+		release = NOR
+		puppet = NOR
+		set_autonomy = {
+			target = NOR
+			autonomy_state = autonomy_puppet
+		}
+		hidden_effect = {
+			NOR = {
+				set_politics = {
+					ruling_party = paternal_autocrat
+				}
+				add_popularity = {
+					ideology = paternal_autocrat
+					popularity = 0.3
+				}
+				complete_national_focus = NOR_Under_Occupation
+				add_ideas = facade_democracy
+				remove_ideas = NOR_the_norwegian_resistance
+				remove_ideas = NOR_quisling_nazi_puppet
+				remove_ideas = NOR_The_Statspolitiet
+				set_country_flag = ns_germans_gone
+				clr_country_flag = rk_josef_terboven
+				clr_country_flag = has_symbolic_figurehead
+				every_navy_leader = {
+					retire = yes
+				}
+				every_army_leader = {
+					retire = yes
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.991 #German reaction
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.991"}
+	title = twrnorway.991.t
+	desc = twrnorway.991.d
+	picture = GFX_report_event_norway_resistance
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.991.a
+		add_stability = 0.05
+		custom_effect_tooltip = SPEER_BOOST
+		custom_effect_tooltip = GOERING_BOOST
+		hidden_effect = {
+			add_to_variable = {
+				var = speerpower
+				value = 0.1
+			}
+			add_to_variable = {
+				var = goeringpower
+				value = 0.1
+			}
+		}
+	}
+	option = {
+		name = twrnorway.991.b
+		custom_effect_tooltip = GOEBBELS_BOOST
+		custom_effect_tooltip = BORMANN_BOOST
+		custom_effect_tooltip = FUTURE_NORWEGIAN_WAR
+		hidden_effect = {
+			set_country_flag = SEEDS_FUTURE_WAR
+			add_to_variable = {
+				var = goebbelspower
+				value = 0.1
+			}
+			add_to_variable = {
+				var = bormannpower
+				value = 0.1
+			}
+		}
+	}
+}
+country_event = {
+	id = twrnorway.101 #return of the exiles
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.101"}
+	title = twrnorway.101.t
+	desc = twrnorway.101.d
+	picture = GFX_report_event_liberated_norway
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twrnorway.101.a
+		trigger = {
+			date < 1957.09.21
+		}
+		add_stability = 0.05
+		remove_ideas = NOR_the_london_exiles
+		drop_cosmetic_tag = yes
+		hidden_effect = {
+			set_country_flag = has_symbolic_figurehead
+			set_country_flag = mon_Haakon_VII
+			add_ideas = hos_popular_figurehead 
+		}
+	}
+	option = {
+		name = twrnorway.101.b
+		trigger = {
+			date > 1957.09.21
+		}
+		add_stability = 0.05
+		drop_cosmetic_tag = yes
+		remove_ideas = NOR_the_london_exiles
+		hidden_effect = {
+			set_country_flag = has_symbolic_figurehead
+			set_country_flag = mon_Olav_V
+			add_ideas = hos_popular_figurehead
+		}
+	}
+}
+country_event = {
+	id = twrnorway.102 #election
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.102"}
+	title = twrnorway.102.t
+	desc = twrnorway.102.d
+	picture = GFX_report_event_election_results
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	immediate = {
+		hidden_effect = {
+			add_ideas = established_democracy
+		}
+	}
+	
+	option = {
+		name = twrnorway.102.a #social democrats
+		add_stability = 0.05
+		add_political_power = 60
+		set_politics = {
+			ruling_party = social_democrat
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.1
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = NOR_MONARCH_LONG 
+			name = NOR_MONARCH_PARTY
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					date < 1957.09.21
+				}
+				create_country_leader = {
+					name = "Haakon VII"
+					desc = "Haakon_VII_desc"
+					picture = "Haakon_VII.dds"
+					expire = "1965.1.1"
+					ideology = monarchism
+					traits = {
+
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					date > 1957.09.21
+				}
+				create_country_leader = {
+					name = "Olav V"
+					desc = "Olav_V_desc"
+					picture = "Olav_V.dds"
+					expire = "1965.1.1"
+					ideology = monarchism
+					traits = {
+
+					}
+				}			
+			}
+		}
+		ai_chance = {
+			factor = 60
+		}
+	}
+	option = {
+		name = twrnorway.102.b #cons
+		add_political_power = 40
+		set_politics = {
+			ruling_party = conservative
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.15
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = NOR_MONARCH_LONG 
+			name = NOR_MONARCH_PARTY
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					date < 1957.09.21
+				}
+				create_country_leader = {
+					name = "Haakon VII"
+					desc = "Haakon_VII_desc"
+					picture = "Haakon_VII.dds"
+					expire = "1965.1.1"
+					ideology = monarchism
+					traits = {
+
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					date > 1957.09.21
+				}
+				create_country_leader = {
+					name = "Olav V"
+					desc = "Olav_V_desc"
+					picture = "Olav_V.dds"
+					expire = "1965.1.1"
+					ideology = monarchism
+					traits = {
+
+					}
+				}			
+			}
+		}
+		ai_chance = {
+			factor = 40
+		}
+	}
+	option = {
+		name = twrnorway.102.c #liberals
+		add_political_power = 30
+		set_politics = {
+			ruling_party = liberal
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.15
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = NOR_MONARCH_LONG 
+			name = NOR_MONARCH_PARTY
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					date < 1957.09.21
+				}
+				create_country_leader = {
+					name = "Haakon VII"
+					desc = "Haakon_VII_desc"
+					picture = "Haakon_VII.dds"
+					expire = "1965.1.1"
+					ideology = monarchism
+					traits = {
+
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					date > 1957.09.21
+				}
+				create_country_leader = {
+					name = "Olav V"
+					desc = "Olav_V_desc"
+					picture = "Olav_V.dds"
+					expire = "1965.1.1"
+					ideology = monarchism
+					traits = {
+
+					}
+				}			
+			}
+		}
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+news_event = {
+	id = twrnorway.992 #norwegian revolution
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.992"}
+	title = twrnorway.992.t
+	desc = twrnorway.992.d
+	picture = GFX_news_event_norwegian_revolution
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnorway.992.a
+		trigger = {
+			NOT = {
+				TAG = NOR
+				is_german = yes
+			}
+		}
+	}
+	option = {
+		name = twrnorway.992.b
+		trigger = { TAG = NOR }
+	}
+	option = {
+		name = twrnorway.992.c
+		trigger = { is_german = yes }
+	}
+}
+news_event = {
+	id = twrnorway.993 #quisling power struggle
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.993"}
+	title = twrnorway.993.t
+	desc = twrnorway.993.d
+	picture = GFX_news_event_quisling_affirmed
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnorway.993.a
+	}
+}
+news_event = {
+	id = twrnorway.994 #lie power struggle
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.994"}
+	title = twrnorway.994.t
+	desc = twrnorway.994.d
+	picture = GFX_news_event_paramount_leader_lie
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnorway.994.a
+	}
+}
+news_event = {
+	id = twrnorway.995 #hirden coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.995"}
+	title = twrnorway.995.t
+	desc = twrnorway.995.d
+	picture = GFX_news_event_hird_coup
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnorway.995.a
+	}
+}
+news_event = {
+	id = twrnorway.996 #rk coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnorway.996"}
+	title = twrnorway.996.t
+	desc = twrnorway.996.d
+	picture = GFX_news_event_rk_coup
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnorway.996.a
+	}
+}

@@ -1,0 +1,4849 @@
+﻿add_namespace = twrnews
+add_namespace = germannews
+add_namespace = hidnews #for on_action
+add_namespace = twrcitiesfall
+###########################
+# Capitulation Events
+###########################
+
+add_namespace = TWR_country_capitulated
+
+# 	# FROM.FROM is winner
+news_event = {
+	id = TWR_country_capitulated.0
+	title = country_capitulated.0.t
+	trigger = {
+	OR = {
+	has_war_with = FROM.FROM
+	is_ally_with = ROOT
+	has_opinion = {
+    target = ROOT
+    value > 90
+			}
+		}
+	}
+	#Good news
+	desc = {
+		text = country_capitulated.0.d_positive_collab_diff_ideology
+		trigger = {
+			NOT = { tag = ROOT }
+			NOT = {
+				OR = {
+					AND = {
+						ROOT = { is_fascist = yes }
+						FROM.FROM = { is_fascist = yes}
+					}
+					AND = {
+						ROOT = { is_democratic = yes }
+						FROM.FROM = { is_democratic = yes }
+					}
+					AND = {
+						ROOT = { is_communist = yes }
+						FROM.FROM = { is_communist = yes }
+					}
+					AND = {
+						ROOT = { has_government = paternal_autocrat }
+						FROM.FROM = { has_government = paternal_autocrat }
+					}
+				}
+			}
+			FROM.FROM = {
+				has_collaboration = {
+					target = ROOT
+					value > 0.6
+				}
+			}
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_positive_collab_invaded_same_ideology
+		trigger = {
+			OR = {
+				AND = {
+					ROOT = { is_fascist = yes}
+					FROM.FROM = { is_fascist = yes}
+				}
+				AND = {
+					ROOT = { is_communist = yes }
+					FROM.FROM = { is_communist = yes }
+				}
+			}
+			FROM.FROM = {
+				has_collaboration = {
+					target = ROOT
+					value > 0.6
+				}
+			}
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_positive_both_no_faction
+		trigger = {
+			OR = {
+				has_war_with = ROOT
+				any_allied_country = { has_war_with = ROOT }
+			}
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			ROOT = { is_in_faction = no }			
+			FROM = { FROM = { NOT = { any_allied_country = { has_war_with = ROOT } } } }
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_positive_prev_no_faction
+		trigger = {
+			OR = {
+				has_war_with = ROOT
+				any_allied_country = { has_war_with = ROOT }
+			}
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			ROOT = { is_in_faction = yes }
+			FROM = { FROM = { NOT = { any_allied_country = { has_war_with = ROOT } } } }
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_positive_prev_faction
+		trigger = {
+			OR = {
+				has_war_with = ROOT
+				any_allied_country = { has_war_with = ROOT }
+			}
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			ROOT = { is_in_faction = yes }
+			FROM = { FROM = { any_allied_country = { has_war_with = ROOT } } }
+		}
+	}
+	#Bad news
+	desc = {
+		text = country_capitulated.0.d_negative_collab_diff_ideology
+		trigger = {
+			tag = ROOT
+			NOT = {
+				OR = {
+					AND = {
+						ROOT = { is_fascist = yes}
+						FROM.FROM = { is_fascist = yes}
+					}
+					AND = {
+						ROOT = { is_democratic = yes }
+						FROM.FROM = { is_democratic = yes }
+					}
+					AND = {
+						ROOT = { is_communist = yes }
+						FROM.FROM = { is_communist = yes }
+					}
+					AND = {
+						ROOT = { has_government = paternal_autocrat }
+						FROM.FROM = { has_government = paternal_autocrat }
+					}
+				}
+			}
+			FROM.FROM = {
+				has_collaboration = {
+					target = ROOT
+					value > 0.6
+				}
+			}
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_negative_both_no_faction
+		trigger = {
+			OR = {
+				has_war_together_with = ROOT
+				is_in_faction_with = ROOT
+				tag = ROOT
+			}
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			ROOT = { is_in_faction = no }
+			FROM = { FROM = { NOT = { any_allied_country = { has_war_with = ROOT } } } }
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_negative_prev_no_faction
+		trigger = {
+			OR = {
+				is_in_faction_with = ROOT
+				tag = ROOT
+			}
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			ROOT = { is_in_faction = yes }
+			FROM = { FROM = { NOT = { any_allied_country = { has_war_with = ROOT } } } }
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_negative_prev_faction
+		trigger = {
+			OR = {
+				is_in_faction_with = ROOT
+				tag = ROOT
+			}
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			ROOT = { is_in_faction = yes }
+			FROM = { FROM = { any_allied_country = { has_war_with = ROOT } } }
+		}
+	}
+	#Neutral news
+	desc = {
+		text = country_capitulated.0.d_neutral_both_no_faction
+		trigger = {
+			NOT = { has_war_together_with = ROOT }
+			NOT = { is_in_faction_with = ROOT }
+			NOT = { has_war_with = ROOT }
+			NOT = { any_allied_country = { has_war_with = ROOT } }
+			ROOT = { is_in_faction = no }
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			FROM = { FROM = { NOT = { any_allied_country = { has_war_with = ROOT } } } }
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_neutral_prev_no_faction
+		trigger = {
+			NOT = { is_in_faction_with = ROOT }
+			NOT = { has_war_with = ROOT }
+			NOT = { any_allied_country = { has_war_with = ROOT } }
+			ROOT = { is_in_faction = yes }
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			FROM = { FROM = { NOT = { any_allied_country = { has_war_with = ROOT } } } }
+		}
+	}
+	desc = {
+		text = country_capitulated.0.d_neutral_prev_faction
+		trigger = {
+			NOT = { is_in_faction_with = ROOT }
+			NOT = { has_war_with = ROOT }	
+			NOT = { any_allied_country = { has_war_with = ROOT } }
+			ROOT = { is_in_faction = yes }
+			NOT = {
+				FROM.FROM = {
+					has_collaboration = {
+						target = ROOT
+						value > 0.6
+					}
+				}
+			}
+			FROM = { FROM = { any_allied_country = { has_war_with = ROOT } } }
+		}
+	}
+
+	picture = GFX_news_event_generic_sign_treaty2
+
+	major = yes
+
+	is_triggered_only = yes
+
+	hidden = no
+
+	fire_only_once = no
+
+	option = {
+		name = country_capitulated.0.a
+		trigger = {
+			OR = {
+				any_allied_country = {
+					has_war_with = ROOT
+				}				
+				has_war_with = ROOT
+			}
+		}
+	}
+	option = {
+		name = country_capitulated.0.b
+		trigger = {
+			OR = {
+				has_war_together_with = ROOT
+				is_in_faction_with = ROOT
+			}
+		}
+	}
+	option = {
+		name = country_capitulated.0.c
+		trigger = {
+			NOT = { has_war_together_with = ROOT }
+			NOT = { is_in_faction_with = ROOT }
+			NOT = { any_allied_country = { has_war_with = ROOT } }
+			NOT = { has_war_with = ROOT }
+			NOT = { tag = ROOT }
+		}
+	}
+}
+
+
+##CITIES 
+country_event = { #twrgeroccupation.7777 on action
+	id = twrcitiesfall.7777
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrgeroccupation.7777
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #twrcitiesfall.1 on action
+	id = twrcitiesfall.0 
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrcitiesfall.1
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+news_event = {
+	id = twrcitiesfall.1 #Fall of London
+	title = twrcitiesfall.1.t
+	desc = twrcitiesfall.1.d
+	picture = GFX_news_event_fall_of_london
+	
+	major = yes
+	
+	trigger = {
+		NOT = { has_global_flag = fall_of_london_ger }
+	}
+	is_triggered_only = yes
+	immediate = {
+		set_global_flag = fall_of_london_usa
+	}
+	option = {
+		name = twrcitiesfall.1.a
+		trigger = {
+			NOT = {
+				TAG = ENG
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.1.b
+		trigger = { 
+			OR = {
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.1.c
+		trigger = { TAG = ENG }
+	}
+}
+country_event = { #twrcitiesfall.3 on action
+	id = twrcitiesfall.2
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrcitiesfall.3
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+news_event = {
+	id = twrcitiesfall.3 #Fall of New York
+	title = twrcitiesfall.3.t
+	desc = twrcitiesfall.3.d
+	picture = GFX_news_event_new_york_falls
+	
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = fall_of_ny_ger }
+	}
+	
+	immediate = {
+		set_global_flag = fall_of_london_usa
+	}
+	option = {
+		name = twrcitiesfall.3.a
+		trigger = {
+			NOT = {
+				TAG = USA
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.3.b
+		trigger = { 
+			OR = {
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.3.c
+		trigger = { TAG = USA }
+	}
+}
+country_event = { #twrcitiesfall.5 on action
+	id = twrcitiesfall.4
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrcitiesfall.5
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+news_event = {
+	id = twrcitiesfall.5 #Fall of Berlin
+	title = twrcitiesfall.5.t
+	desc = twrcitiesfall.5.d
+	picture = GFX_news_event_soviet_in_berlin
+	
+	major = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_flag = fall_of_berlin_ger }
+	}
+	
+	immediate = {
+		set_global_flag = fall_of_berlin_ger
+		hidden_effect = { sound_effect = "RUS_URA_URA" }
+	}
+	
+	option = {
+		name = twrcitiesfall.5.a
+		trigger = {
+			NOT = {
+				TAG = SOV
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.5.b #losers
+		trigger = { 
+			OR = {
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.5.c #winner
+		trigger = { TAG = SOV }
+	}
+}
+country_event = { #twrcitiesfall.7 on action
+	id = twrcitiesfall.6
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrcitiesfall.7
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+news_event = {
+	id = twrcitiesfall.7 #Fall of dc
+	title = twrcitiesfall.7.t
+	desc = twrcitiesfall.7.d
+	picture = GFX_news_event_nazi_dc
+	
+	major = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_flag = fall_of_dc_ger }
+	}
+	
+	immediate = {
+		set_global_flag = fall_of_dc_ger
+	}
+	option = {
+		name = twrcitiesfall.7.a
+		trigger = {
+			NOT = {
+				TAG = SOV
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.7.b #winner
+		trigger = { 
+			OR = {
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.7.c #loser
+		trigger = { TAG = USA }
+	}
+}
+country_event = { #twrcitiesfall.9 on action
+	id = twrcitiesfall.8
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrcitiesfall.9
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+news_event = {
+	id = twrcitiesfall.9 #Fall of Berlin USA
+	title = twrcitiesfall.9.t
+	desc = twrcitiesfall.9.d
+	picture = GFX_news_event_american_victory_berlin
+	
+	major = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_flag = fall_of_berlin_usa }
+	}
+	
+	immediate = {
+		set_global_flag = fall_of_berlin_ger_usa
+	}
+	option = {
+		name = twrcitiesfall.9.a
+		trigger = {
+			NOT = {
+				TAG = USA
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.9.b #losers
+		trigger = { 
+			OR = {
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.9.c #winner
+		trigger = { TAG = USA }
+	}
+}
+
+country_event = { #twrcitiesfall.9 on action
+	id = twrcitiesfall.10
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrcitiesfall.11
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+news_event = {
+	id = twrcitiesfall.11 #Fall of Perm SOV GER
+	title = twrcitiesfall.11.t
+	desc = twrcitiesfall.11.d
+	picture = GFX_news_event_perm_capture
+	
+	major = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_flag = fall_of_perm_sov_ger }
+	}
+	
+	immediate = {
+		set_global_flag = fall_of_perm_sov_ger
+	}
+	option = {
+		name = twrcitiesfall.11.a #neutral
+		trigger = {
+			NOT = {
+				TAG = SOV
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.11.b #winner
+		trigger = { 
+			OR = {
+				TAG = GER
+				TAG = RGO
+				TAG = HSS
+				TAG = HGR
+			}
+		}
+	}
+	option = {
+		name = twrcitiesfall.11.c #loser
+		trigger = { TAG = SOV }
+	}
+}
+####HID
+country_event = { #twrnews.34 on action
+	id = hidnews.0 
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrnews.34
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #twrnews.65 on action
+	id = hidnews.2
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrnews.65
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #twrnews.402 on action
+	id = hidnews.3
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrnews.402
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #twrnews.74 on action
+	id = hidnews.4
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrnews.74
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #twrnews.67 on action
+	id = hidnews.5
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrnews.67
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #germannews.2 on action
+	id = hidnews.6
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = germannews.2
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #twrnews.25 on action
+	id = hidnews.7
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrnews.25
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #twrnews.26 on action
+	id = hidnews.8
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrnews.26
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #germannews.502 on action
+	id = hidnews.9
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = germannews.502
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #twrnews.24 on action
+	id = hidnews.10
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = twrnews.24
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+country_event = { #germannews.501 on action
+	id = hidnews.11
+
+	is_triggered_only = yes
+
+	hidden = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		news_event = germannews.501
+	}
+	
+	option = {
+		name = hidnews.1.a
+	}
+}
+############################################
+news_event = {
+	id = germannews.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.1"}
+	title = germannews.1.t
+	desc = germannews.1.d
+	picture = GFX_news_event_001
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+
+	immediate = {
+		set_global_flag = international_ss
+	}
+
+	trigger = {
+		has_global_flag = GERINTSS
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = germannews.1.a
+		trigger = {
+			NOT = {
+				TAG = GER
+			}
+		}
+	}
+	option = {
+		name = germannews.1.b
+		trigger = { TAG = GER }
+		custom_effect_tooltip = gerss_decisions
+	}
+}
+
+news_event = {
+	id = germannews.2 #hitler fucking dead
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.2"}
+	title = germannews.2.t
+	desc = germannews.2.d
+	picture = GFX_news_event_hitler_death
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	immediate = {
+		hidden_effect = {
+			set_global_flag = hitler_is_dead
+			GER = {
+				kill_country_leader = yes
+				country_event = { days = 15 id = germanps.9 }
+				if = {
+					limit = {
+						is_debug = yes
+					}
+					create_country_leader = {
+						name = "The Senate"
+						desc = "NAZI_SENATE_DESC"
+						picture = "Temporary_Council_THESENATE.dds"
+						expire = "1965.1.1"
+						ideology = national_socialism
+						traits = {
+							cabinet_crisis
+						}
+					}
+				}
+				else = {
+					create_country_leader = {
+						name = "The Senate"
+						desc = "NAZI_SENATE_DESC"
+						picture = "Temporary_Council.dds"
+						expire = "1965.1.1"
+						ideology = national_socialism
+						traits = {
+							cabinet_crisis
+						}
+					}
+				}
+				country_event = {
+					id = germanps.9999
+					days = 10
+					random = 30
+				}
+				country_event = {
+					id = twrgersw.11
+					days = 5
+				}
+				end_puppet = SBA
+				end_puppet = RGO
+
+			}
+			RUK = {
+				country_event = {
+					id = twrukraineuprisings.1
+					days = 17
+					random = 100
+				}			
+			}
+			RKA = {
+				country_event = {
+					id = twrrkauprisings.777
+					days = 15
+					random = 100
+				}	
+			}
+			RMO = {
+				complete_national_focus = RMO_new_plan
+				country_event = {
+					id = twrmoscowuprisings.1
+					days = 7
+					random = 50
+				}
+			}
+			ROM = {
+				country_event = { id = twrromania_war.1 days = 10 random = 700 }
+			}
+			if = {
+			limit = {
+			NOR = {
+			is_in_faction_with = GER
+				}
+			}
+			NOR = {
+			leave_faction = yes
+				}
+			}
+			SBA = {
+			leave_faction = yes
+			}
+			RGO = {
+			leave_faction = yes
+			}
+		}
+	}
+
+	option = {
+		name = germannews.2.a
+		trigger = {
+			NOT = {
+				TAG = GER
+			}
+		}
+	}
+	option = {
+		name = germannews.2.b
+		trigger = { TAG = GER }
+		add_ideas = GER_grand_power_struggles
+		if = {
+		limit = {
+		has_global_flag = hitler_is_dead
+		has_country_flag = hitlerpickedatwat
+		}
+		country_event = { days = 3 id = germanps.3 } #successor time
+		}
+		if = {
+		limit = {
+		has_country_flag = hitlerbrainlet
+		has_global_flag = hitler_is_dead
+		}
+		country_event = { days = 3 id = germanps.8 } #council time
+		}
+		if = {
+		limit = {
+		has_country_flag = hitlerslastwill
+		has_global_flag = hitler_is_dead
+		}
+		country_event = { days = 3 id = twrgersw.1 } #council time ALT
+		}
+	}
+}
+
+news_event = {
+	id = germannews.3 #BRITISH WAR
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.3"}
+	title = germannews.3.t
+	desc = germannews.3.d
+	picture = GFX_report_event_osttreffen
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = {
+		GER = { has_war_with = ENG }
+	}
+
+	option = {
+		name = germannews.3.a
+		trigger = {
+			NOT = {
+				TAG = GER
+			}
+		}
+	}
+	option = {
+		name = germannews.3.b
+		trigger = { TAG = GER }
+	}
+} 
+
+news_event = {
+	id = germannews.4 #German space
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.4"}
+	title = germannews.4.t
+	desc = germannews.4.d
+	picture = GFX_news_event_german_rocket
+
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	fire_only_once = no
+	immediate = {
+		hidden_effect = {
+			add_named_threat = { 
+				threat = 10
+				name = GER_reaches_space
+			}
+		}
+	}
+	option = {
+		name = germannews.4.a
+		trigger = {
+			is_german = no
+		}
+	}
+	option = {
+		name = germannews.4.b
+		trigger = { is_german = yes }
+	}
+} 
+
+news_event = {
+	id = germannews.5 #Goering coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.5"}
+	title = germannews.5.t
+	desc = germannews.5.d
+	picture = GFX_news_event_goering_address
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	fire_only_once = no
+	
+	option = {
+		name = germannews.5.a
+		trigger = {
+			is_german = no
+		}
+	}
+	option = {
+		name = germannews.5.b
+		trigger = { is_german = yes }
+	}
+} 
+
+news_event = {
+	id = germannews.6 #birth of the SS Burgundy
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.6"}
+	title = germannews.6.t
+	desc = germannews.6.d
+	picture = GFX_news_event_ss_germany_formed
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	fire_only_once = no
+	
+	option = {
+		name = germannews.6.a
+	}
+} 
+########RK NEWS##########
+news_event = {
+	id = germannews.501 #RKA Breakdown
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.501"}
+	title = germannews.501.t
+	desc = germannews.501.d
+	picture = GFX_news_event_rka_breakdown
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.501.a
+		trigger = {
+			NOT = {
+				is_german = yes
+			}
+		}
+	}
+	option = {
+		name = germannews.501.b
+		trigger = {
+			is_german = yes
+		}
+	}
+}
+
+news_event = {
+	id = germannews.502 #RUK Breakdown
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.502"}
+	title = germannews.502.t
+	desc = germannews.502.d
+	picture = GFX_news_event_ruk_collapse
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.502.a
+	}
+}
+
+news_event = {
+	id = germannews.503 #Formation of Ukraine
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.503"}
+	title = germannews.503.t
+	desc = germannews.503.d
+	picture = GFX_news_event_the_ukrainian_government
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.503.a
+	}
+}
+
+news_event = {
+	id = germannews.504 #Ukraine Civil War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.504"}
+	title = germannews.504.t
+	desc = germannews.504.d
+	picture = GFX_news_event_rka_breakdown
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.504.a
+	}
+}
+
+news_event = {
+	id = germannews.505 #Polish Civil War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.505"}
+	title = germannews.505.t
+	desc = germannews.505.d
+	picture = GFX_news_event_polish_civil_war
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.505.a
+	}
+}
+
+news_event = {
+	id = germannews.506 #Ukraine Civil War 2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.506"}
+	title = germannews.506.t
+	desc = germannews.506.d
+	picture = GFX_news_event_ukrainian_civil_war
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.506.a
+	}
+}
+
+news_event = {
+	id = germannews.507 #Moscow Civil War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.507"}
+	title = germannews.507.t
+	desc = germannews.507.d
+	picture = GFX_news_event_moscow_civil_war
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.507.a
+	}
+}
+
+news_event = {
+	id = germannews.7000 #Himmler is fucking dead
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.7000"}
+	title = germannews.7000.t
+	desc = germannews.7000.d
+	picture = GFX_news_event_himmler_dead
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.7000.a
+	}
+}
+
+news_event = {
+	id = germannews.7001 #Himmler is removed
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.7001"}
+	title = germannews.7001.t
+	desc = germannews.7001.d
+	picture = GFX_news_event_himmler_removed
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.7001.a
+	}
+}
+
+news_event = {
+	id = germannews.7002 #Moderate Coup
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.7002"}
+	title = germannews.7002.t
+	desc = germannews.7002.d
+	picture = GFX_news_event_heer_moderate_coup
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.7002.a
+	}
+}
+
+news_event = {
+	id = germannews.7003 #German Civil War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.7003"}
+	title = germannews.7003.t
+	desc = germannews.7003.d
+	picture = GFX_news_event_gcw_news
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.7003.a
+	}
+}
+
+news_event = {
+	id = germannews.7004 #Burning of the Chancellery
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.7004"}
+	title = germannews.7004.t
+	desc = germannews.7004.d
+	picture = GFX_news_event_burnt_nazi
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = germannews.7004.a
+	}
+}
+
+news_event = {
+	id = germannews.9001 #German Successor made public
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.9001"}
+	title = {
+		text = germannews.9001.t      #this is the localisable text name, which needs to be unique.
+	}
+
+	desc = {                               
+		text = germannews.9001.d      
+	}
+	picture = GFX_news_event_nazi_announcment
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		trigger = {
+			NOT = {
+				TAG = GER
+			}
+		}
+		name = germannews.9001.a
+	}
+	option = {
+		trigger = {
+			TAG = GER
+		}
+		name = germannews.9001.b
+	}
+}
+
+news_event = {
+	id = germannews.9002 #A New Fuhrer
+	immediate = {log = "[GetDateText]: [Root.GetName]: event germannews.9002"}
+	title = {
+		text = germannews.9002.t      #this is the localisable text name, which needs to be unique.
+	}
+	desc = {                               #Dead, appoint goebbels
+		text = germannews.9002.d      #this is the localisable text name, which needs to be unique.
+	}
+	picture = GFX_news_event_nazi_announcment
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		trigger = {
+			NOT = {
+				TAG = GER
+			}
+		}
+		name = germannews.9002.a
+	}
+	option = {
+		trigger = {
+			TAG = GER
+		}
+		name = germannews.9002.b
+	}
+}
+########NORMAL NEWS############
+news_event = {
+	id = twrnews.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.1"}
+	title = twrnews.1.t
+	desc = twrnews.1.d
+	picture = GFX_news_event_nazi_death
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnews.1.a
+		trigger = {
+			NOT = {
+				TAG = GER
+			}
+		}
+	}
+	option = {
+		name = twrnews.1.b
+		trigger = { TAG = GER }
+		random_unit_leader = {
+			limit = { 
+				has_id = 937 
+			}
+			retire = yes
+		}
+	}
+}
+
+news_event = {
+	id = twrnews.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.2"}
+	title = twrnews.2.t
+	desc = twrnews.2.d
+	picture = GFX_news_event_congo_rebellion_crushed
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	immediate = {
+		set_global_flag = congo_crushed
+	}
+
+	option = {
+		name = twrnews.2.a
+	}
+}
+
+news_event = {
+	id = twrnews.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.3"}
+	title = twrnews.3.t
+	desc = twrnews.3.d
+	picture = GFX_news_event_nazi_planes
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.3.a
+		trigger = { 
+			OR = {
+				is_german = yes
+				is_ss = yes
+			}
+		}
+	}
+	option = {
+		name = twrnews.3.b
+		trigger = { 
+			TAG = SOV
+		}
+	}
+	option = {
+		trigger = { 
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+		name = twrnews.3.c
+	}
+}
+
+news_event = {
+	id = twrnews.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.4"}
+	title = twrnews.4.t #End of the air war
+	desc = twrnews.4.d
+	picture = GFX_news_event_end_of_the_air_war
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.4.a
+		trigger = { 
+			OR = {
+				is_german = yes
+				is_ss = yes
+			}
+		}
+	}
+	option = {
+		name = twrnews.4.b
+		trigger = { 
+			TAG = SOV
+		}
+	}
+	option = {
+		trigger = { 
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+		name = twrnews.4.c
+	}
+}
+news_event = {
+	id = twrnews.5 #Execution of emperor
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.5"}
+	title = twrnews.5.t
+	desc = twrnews.5.d
+	picture = GFX_news_event_chinese_soldiers_march
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.5.a
+	}
+}
+news_event = {
+	id = twrnews.6 #Polish Revolt
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.6"}
+	title = twrnews.6.t
+	desc = twrnews.6.d
+	picture = GFX_news_event_polish_uprising
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.6.a
+		trigger = { 
+			OR = {
+				is_german = yes
+				is_ss = yes
+			}
+		}
+	}
+	option = {
+		trigger = { 
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+		name = twrnews.6.b
+	}
+}
+news_event = {
+	id = twrnews.7 #Czech Revolt
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.7"}
+	title = twrnews.7.t
+	desc = twrnews.7.d
+	picture = GFX_news_event_prague_uprising
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.7.a
+		trigger = { 
+			OR = {
+				is_german = yes
+				is_ss = yes
+			}
+		}
+	}
+	option = {
+		trigger = { 
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+		name = twrnews.7.b
+	}
+}
+news_event = {
+	id = twrnews.8 #German Revolt
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.8"}
+	title = twrnews.8.t
+	desc = twrnews.8.d
+	picture = GFX_news_event_german_spring
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.8.a
+		trigger = { 
+			OR = {
+				is_german = yes
+				is_ss = yes
+			}
+		}
+	}
+	option = {
+		trigger = { 
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+		name = twrnews.8.b
+	}
+}
+news_event = {
+	id = twrnews.9 #Slovak Spring
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.9"}
+	title = twrnews.9.t
+	desc = twrnews.9.d
+	picture = GFX_news_event_slovak_spring
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.9.a
+		trigger = { 
+			OR = {
+				is_german = yes
+				is_ss = yes
+			}
+		}
+	}
+	option = {
+		trigger = { 
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+		name = twrnews.9.b
+	}
+}
+news_event = {
+	id = twrnews.10 #Hungarian Invasion
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.10"}
+	title = twrnews.10.t
+	desc = twrnews.10.d
+	picture = GFX_news_event_slovak_war
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.10.a
+		trigger = { 
+			OR = {
+				is_german = yes
+				is_ss = yes
+			}
+		}
+	}
+	option = {
+		name = twrnews.10.b
+		trigger = { 
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+	}
+}
+news_event = { #Russian retreat to sakhalin
+	id = twrnews.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.11"}
+	title = twrnews.11.t
+	desc = twrnews.11.d
+	picture = GFX_news_event_saka_news
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.11.a
+		trigger = {
+			tag = SOV
+		}
+	}
+	option = {
+		name = twrnews.11.b
+		trigger = {
+			OR = { 
+				tag = RUS 
+			}
+		}
+	}
+	option = {
+		name = twrnews.11.c
+		trigger = {
+			NOT = {
+				OR = { 
+					tag = RUS 
+					tag = SOV
+				}
+			}
+		}
+	}
+}
+news_event = { #The U Bahn Expansions
+	id = twrnews.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.12"}
+	title = twrnews.12.t
+	desc = twrnews.12.d
+	picture = GFX_news_event_ubahn2
+	
+	is_triggered_only = yes
+	hidden = no
+	major = no
+	
+
+	option = {
+		name = twrnews.12.a
+	}
+}
+news_event = { #Moskau
+	id = twrnews.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.13"}
+	title = twrnews.13.t
+	desc = twrnews.13.d
+	picture = GFX_news_event_moskau_moskau
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.13.a
+	}
+}
+
+news_event = { #UK nuke
+	id = twrnews.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.14"}
+	title = twrnews.14.t
+	desc = twrnews.14.d
+	picture = GFX_news_event_uk_nuke
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.14.a
+		trigger = {
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = twrnews.14.b
+		trigger = {
+			OR = { 				
+				is_german = yes
+				is_ss = yes 
+			}
+		}
+	}
+}
+
+news_event = { #Swiss revolt
+	id = twrnews.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.15"}
+	title = twrnews.15.t
+	desc = twrnews.15.d
+	picture = GFX_news_event_swiss_revolt
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.15.a
+		trigger = {
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = twrnews.15.b
+		trigger = {
+			OR = { 				
+				is_german = yes
+				is_ss = yes 
+			}
+		}
+	}
+}
+
+news_event = { #German nuke
+	id = twrnews.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.16"}
+	title = twrnews.16.t
+	desc = twrnews.16.d
+	picture = GFX_news_event_german_bomb_testing
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	immediate = {
+		hidden_effect = {
+			add_named_threat = { 
+				threat = 10
+				name = GER_nuclear_testing
+			}
+		}
+	}
+	option = {
+		name = twrnews.16.a
+		trigger = {
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = twrnews.16.b
+		trigger = {
+			OR = { 				
+				is_german = yes
+				is_ss = yes 
+			}
+		}
+	}
+}
+
+news_event = { #Benelux Revolt
+	id = twrnews.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.17"}
+	title = twrnews.17.t
+	desc = twrnews.17.d
+	picture = GFX_news_event_benelux_uprising
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.17.a
+		trigger = {
+			NOT = {
+				OR = {
+					is_german = yes
+					is_ss = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = twrnews.17.b
+		trigger = {
+			OR = { 				
+				is_german = yes
+				is_ss = yes 
+			}
+		}
+	}
+}
+
+news_event = { #Attlee wins
+	id = twrnews.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.18"}
+	title = twrnews.18.t
+	desc = twrnews.18.d
+	picture = GFX_news_event_uk_attlee
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.18.a
+	}
+}
+
+news_event = { #Butler
+	id = twrnews.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.19"}
+	title = twrnews.19.t
+	desc = twrnews.19.d
+	picture = GFX_news_event_uk_butler
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.19.a
+	}
+}
+
+news_event = { #Mosley wins
+	id = twrnews.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.20"}
+	title = twrnews.20.t
+	desc = twrnews.20.d
+	picture = GFX_news_event_uk_mosley
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.20.a
+	}
+}
+
+news_event = { #Nobody wins
+	id = twrnews.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.21"}
+	title = twrnews.21.t
+	desc = twrnews.21.d
+	picture = GFX_news_event_uk_no_winner
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.21.a
+	}
+}
+
+news_event = { #Korea Overthrown
+	id = twrnews.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.22"}
+	title = twrnews.22.t
+	desc = twrnews.22.d
+	picture = GFX_news_event_korean_revolution
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.22.a
+	}
+}
+
+news_event = { #Korea Crushed
+	id = twrnews.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.23"}
+	title = twrnews.23.t
+	desc = twrnews.23.d
+	picture = GFX_news_event_korean_revolution
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.23.a
+	}
+}
+news_event = { #Indonesia Revolt
+	id = twrnews.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.24"}
+	title = twrnews.24.t
+	desc = twrnews.24.d
+	picture = GFX_news_event_indonesian_revolution
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		trigger = {
+			NOT = {
+				tag = INS
+			}
+		}
+		name = twrnews.24.a
+	}
+	option = {
+		trigger = {
+			tag = INS
+		}
+		name = twrnews.24.b
+	}
+}
+news_event = { #Indonesia Peace
+	id = twrnews.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.25"}
+	title = twrnews.25.t
+	desc = twrnews.25.d
+	picture = GFX_news_event_un_council
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		trigger = {
+			NOT = {
+				OR = {
+					tag = INS
+					tag = HOL
+				}
+			}
+		}
+		name = twrnews.25.a
+	}
+	option = {
+		trigger = {
+			tag = INS
+		}
+		name = twrnews.25.b
+	}
+	option = {
+		trigger = {
+			tag = HOL
+		}
+		name = twrnews.25.c
+	}
+}
+news_event = { #Indonesia Peace failed
+	id = twrnews.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.26"}
+	title = twrnews.26.t
+	desc = twrnews.26.d
+	picture = GFX_news_event_un_council
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.26.a
+	}
+}
+
+news_event = { #PM Gaitskell
+	id = twrnews.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.27"}
+	title = twrnews.27.t
+	desc = twrnews.27.d
+	picture = GFX_news_event_uk_no_winner
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.27.a
+	}
+}
+
+news_event = { #PM Freeman
+	id = twrnews.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.28"}
+	title = twrnews.28.t
+	desc = twrnews.28.d
+	picture = GFX_news_event_uk_no_winner
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.28.a
+	}
+}
+news_event = { #Indonesia Nationhood
+	id = twrnews.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.29"}
+	title = twrnews.29.t
+	desc = twrnews.29.d
+	picture = GFX_news_event_indonesia_nationhood
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.29.a
+	}
+}
+news_event = { #Dutch Retreat
+	id = twrnews.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.30"}
+	title = twrnews.30.t
+	desc = twrnews.30.d
+	picture = GFX_news_event_dutch_retreat
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.30.a
+	}
+}
+news_event = { #Iceland President death
+	id = twrnews.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.31"}
+	title = twrnews.31.t
+	desc = twrnews.31.d
+	picture = GFX_news_event_sveinn_death
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	hidden = no
+	major = no
+	
+	fire_only_once = no
+
+	option = {
+		name = twrnews.31.a
+	}
+}
+news_event = { #Iceland Socialists
+	id = twrnews.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.32"}
+	title = twrnews.32.t
+	desc = twrnews.32.d
+	picture = GFX_news_event_iceland_socialist_won
+	
+	is_triggered_only = yes
+	hidden = no
+	major = no
+	
+	fire_only_once = no
+
+	option = {
+		name = twrnews.32.a
+	}
+}
+news_event = { #Swedish Fascists
+	id = twrnews.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.33"}
+	title = twrnews.33.t
+	desc = twrnews.33.d
+	picture = GFX_news_event_new_swedish_movement
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	fire_only_once = no
+
+	option = {
+		name = twrnews.33.a
+	}
+}
+
+news_event = { #German Falls
+	id = twrnews.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.34"}
+	title = twrnews.34.t
+	desc = twrnews.34.d
+	picture = GFX_news_event_german_surrender
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twrnews.34.a
+	}
+}
+
+news_event = { #First Summit
+	id = twrnews.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.35"}
+	title = twrnews.35.t
+	desc = twrnews.35.d
+	picture = GFX_news_event_summit
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	fire_only_once = no
+
+	option = {
+		name = twrnews.35.a
+	}
+}
+
+news_event = { #Danish Independence
+	id = twrnews.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.36"}
+	title = twrnews.36.t
+	desc = twrnews.36.d
+	picture = GFX_news_event_danes_freedom
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	fire_only_once = no
+
+	option = {
+		name = twrnews.36.a
+	}
+}
+
+news_event = { #Slovenian Independence
+	id = twrnews.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.37"}
+	title = twrnews.37.t
+	desc = twrnews.37.d
+	picture = GFX_news_event_slovenian_guards
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	fire_only_once = no
+
+	option = {
+		name = twrnews.37.a
+	}
+}
+
+news_event = { #Serbian Coup
+	id = twrnews.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.38"}
+	title = twrnews.38.t
+	desc = twrnews.38.d
+	picture = GFX_news_event_yugoslav_partisans
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+
+	option = {
+		name = twrnews.38.a
+	}
+}
+
+news_event = { #Serbian Civil War
+	id = twrnews.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.41"}
+	title = twrnews.41.t
+	desc = twrnews.41.d
+	picture = GFX_news_event_yugoslav_partisans
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+
+	option = {
+		name = twrnews.41.a
+	}
+}
+country_event = {
+	id = twrnews.39001
+
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event hiddentwrwar.205"
+		news_event = twrnews.39
+	}
+} 
+news_event = { #Coronation of Elizabeth II
+	id = twrnews.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.39"}
+	title = twrnews.39.t
+	desc = twrnews.39.d
+	picture = GFX_news_event_coronation
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = twrnews.39.a
+	}
+}
+
+news_event = { #Toronto Accord Intervention - immediate
+	id = twrnews.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.40"}
+	title = twrnews.40.t
+	desc = twrnews.40.d
+	picture = GFX_news_event_us_army
+	is_triggered_only = yes
+	major = yes
+	trigger = {
+		has_global_flag = ta_intervention
+	}
+
+	option = {
+		name = twrnews.40.a
+	}
+}
+
+news_event = { #Toronto Accord Intervention - Civil War
+	id = twrnews.401
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.40"}
+	title = twrnews.401.t
+	desc = twrnews.401.d
+	picture = GFX_news_event_us_army
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnews.401.a
+	}
+}
+
+news_event = { #Toronto Accord Intervention - No civil war
+	id = twrnews.402
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.40"}
+	title = twrnews.402.t
+	desc = twrnews.402.d
+	picture = GFX_news_event_us_army
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = twrnews.402.a
+	}
+}
+
+news_event = { #Taft Elected
+	id = twrnews.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.42"}
+	title = twrnews.42.t
+	desc = twrnews.42.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.42.a
+	}
+}
+
+news_event = { #Dewey Elected
+	id = twrnews.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.43"}
+	title = twrnews.43.t
+	desc = twrnews.43.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.43.a
+	}
+}
+
+news_event = { #Warren Elected
+	id = twrnews.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.44"}
+	title = twrnews.44.t
+	desc = twrnews.44.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.44.a
+	}
+}
+
+news_event = { #Truman Elected
+	id = twrnews.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.45"}
+	title = twrnews.45.t
+	desc = twrnews.45.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.45.a
+	}
+}
+
+news_event = { #Kefauver Elected
+	id = twrnews.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.46"}
+	title = twrnews.46.t
+	desc = twrnews.46.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.46.a
+	}
+}
+
+news_event = { #Stevenson Elected
+	id = twrnews.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.47"}
+	title = twrnews.47.t
+	desc = twrnews.47.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.47.a
+	}
+}
+
+news_event = { #Thurmond Elected
+	id = twrnews.48
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.48"}
+	title = twrnews.48.t
+	desc = twrnews.48.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+	option = {
+		name = twrnews.48.a
+	}
+}
+
+news_event = { #Macarthur Elected
+	id = twrnews.49
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.49"}
+	title = twrnews.49.t
+	desc = twrnews.49.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.49.a
+	}
+}
+
+news_event = { #US Inauguration
+	id = twrnews.50
+	immediate = {
+	log = "[GetDateText]: [Root.GetName]: event twrnews.50"
+	hidden_effect = { sound_effect = "President_Oath" } 
+	}
+	title = twrnews.50.t
+	desc = twrnews.50.d
+	picture = GFX_news_event_inauguration
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.50.a
+	}
+}
+news_event = { #Gotiische International
+	id = twrnews.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.51"}
+	title = twrnews.51.t
+	desc = twrnews.51.d
+	picture = GFX_news_event_gotische_airport
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.51.a
+	}
+}
+news_event = { #Gotiische Glory
+	id = twrnews.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.52"}
+	title = twrnews.52.t
+	desc = twrnews.52.d
+	picture = GFX_news_event_v2_space_launch
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		trigger = { NOT = { tag = RGO } }
+		name = twrnews.52.a
+	}
+	option = {
+		trigger = { tag = RGO }
+		name = twrnews.52.b
+		add_named_threat = { 
+			threat = 10
+			name = RGO_IN_SPACE
+		}
+	}
+}
+news_event = { #Greater Banat
+	id = twrnews.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.53"}
+	title = twrnews.53.t
+	desc = twrnews.53.d
+	picture = GFX_news_event_banat_conquest
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		trigger = { NOT = { tag = SBA } }
+		name = twrnews.53.a
+	}
+	option = {
+		trigger = { tag = SBA }
+		name = twrnews.53.b
+	}
+}
+news_event = { #Greater Gotenland
+	id = twrnews.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.54"}
+	title = twrnews.54.t
+	desc = twrnews.54.d
+	picture = GFX_news_event_gotische_conquest
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		trigger = { NOT = { tag = RGO } }
+		name = twrnews.54.a
+	}
+	option = {
+		trigger = { tag = RGO }
+		name = twrnews.54.b
+	}
+}
+
+news_event = { #Mosley died
+	id = twrnews.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.55"}
+	title = twrnews.55.t
+	desc = twrnews.55.d
+	picture = GFX_news_event_mosley_assassinated
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.55.a
+	}
+}
+
+news_event = { #USA Coup
+	id = twrnews.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.56"}
+	title = twrnews.56.t
+	desc = twrnews.56.d
+	picture = GFX_news_event_us_coup
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.56.a
+	}
+}
+
+news_event = { #Egyptian Martial Law declared
+	id = twrnews.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.57"}
+	title = twrnews.57.t
+	desc = twrnews.57.d
+	picture = GFX_news_event_egyptian_martial_law
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.57.a
+	}
+}
+news_event = { #Egyptian Officer Coup
+	id = twrnews.58
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.58"}
+	title = twrnews.58.t
+	desc = twrnews.58.d
+	picture = GFX_news_event_1952_revolution
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.58.a
+	}
+}
+
+news_event = { #Zapadoslavia formed
+	id = twrnews.59
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.59"}
+	title = twrnews.59.t
+	desc = twrnews.59.d
+	picture = GFX_news_event_rubble
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.59.a
+	}
+}
+
+news_event = { #Counter Coup
+	id = twrnews.60
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.60"}
+	title = twrnews.60.t
+	desc = twrnews.60.d
+	picture = GFX_news_event_counter_revolution_egypt
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.60.a
+	}
+}
+
+news_event = { #Counter Coup - By Italy
+	id = twrnews.61
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.61"}
+	title = twrnews.61.t
+	desc = twrnews.61.d
+	picture = GFX_news_event_counter_revolution_egypt
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.61.a
+	}
+}
+
+news_event = { # UK Coup
+	id = twrnews.62
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.62"}
+	title = twrnews.62.t
+	desc = twrnews.62.d
+	picture = GFX_news_event_uk_coup
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.62.a
+	}
+}
+
+news_event = { # Korea Joins Toronto Accord
+	id = twrnews.63
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.63"}
+	title = twrnews.63.t
+	desc = twrnews.63.d
+	picture = GFX_news_event_toronto_accord
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.63.a
+	}
+}
+
+news_event = { # UK Leaves Toronto Accord
+	id = twrnews.64
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.64"}
+	title = twrnews.64.t
+	desc = twrnews.64.d
+	picture = GFX_news_event_toronto_accord
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.64.a
+	}
+}
+
+news_event = { # DNA discovered
+	id = twrnews.65
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.65"}
+	title = twrnews.65.t
+	desc = twrnews.65.d
+	picture = GFX_news_event_dna
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.65.a
+	}
+}
+
+news_event = { # US Hydrogen Bomb
+	id = twrnews.66
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.66"}
+	title = twrnews.66.t
+	desc = twrnews.66.d
+	picture = GFX_news_event_hydrogen_bomb
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.66.a
+	}
+}
+
+news_event = { # Polio vaccine
+	id = twrnews.67
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.67"}
+	title = twrnews.67.t
+	desc = twrnews.67.d
+	picture = GFX_news_event_polio
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.67.a
+	}
+}
+
+news_event = { # UK Recognises Indian Claims
+	id = twrnews.68
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.68"}
+	title = twrnews.68.t
+	desc = twrnews.68.d
+	picture = GFX_news_event_indian_flag
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.68.a
+	}
+}
+
+news_event = { # Anglo-Iranian War
+	id = twrnews.69
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.69"}
+	title = twrnews.69.t
+	desc = twrnews.69.d
+	picture = GFX_news_event_iran_war
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.69.a
+	}
+}
+
+news_event = { # Suez canal blocked to Italy
+	id = twrnews.70
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.70"}
+	title = twrnews.70.t
+	desc = twrnews.70.d
+	picture = GFX_news_event_suez
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.70.a
+	}
+}
+
+news_event = { # Britain denounces Italy
+	id = twrnews.71
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.71"}
+	title = twrnews.71.t
+	desc = twrnews.71.d
+	picture = GFX_news_event_egypt
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.71.a
+		trigger = {
+		NOT = { tag = ITA }
+		}
+	}
+	option = {
+		name = twrnews.71.b
+		trigger = {
+		tag = ITA
+		}
+		set_country_flag = EGY_ITA_SECURED
+	}
+}
+
+news_event = { # Italy withdraws from Egypt
+	id = twrnews.72
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.72"}
+	title = twrnews.72.t
+	desc = twrnews.72.d
+	picture = GFX_news_event_egypt
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.72.a
+	}
+}
+
+news_event = { # Egyptian Revolt
+	id = twrnews.73
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.73"}
+	title = twrnews.73.t
+	desc = twrnews.73.d
+	picture = GFX_news_event_egypt_war
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.73.a
+	}
+}
+
+news_event = { # Malayan Emergency
+	id = twrnews.74
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.74"}
+	title = twrnews.74.t
+	desc = twrnews.74.d
+	picture = GFX_news_event_malayan_emergency
+	
+	major = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrnews.74.a
+	}
+}
+
+news_event = { # Malayan Emergency Ended
+	id = twrnews.75
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.75"}
+	title = twrnews.75.t
+	desc = twrnews.75.d
+	picture = GFX_news_event_malayan_emergency
+	
+	major = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrnews.75.a
+	}
+}
+
+news_event = { # Communist Malaya
+	id = twrnews.75101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.75101"}
+	title = twrnews.75101.t
+	desc = twrnews.75101.d
+	picture = GFX_news_event_malayan_communists_win
+	
+	major = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = twrnews.75101.a
+	}
+}
+
+news_event = { # Warren Elected 1956
+	id = twrnews.76
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.76"}
+	title = twrnews.76.t
+	desc = twrnews.76.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.76.a
+	}
+}
+
+news_event = { # Craig Elected 1956
+	id = twrnews.77
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.77"}
+	title = twrnews.77.t
+	desc = twrnews.77.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.77.a
+	}
+}
+
+news_event = { # Potter Elected 1956
+	id = twrnews.78
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.78"}
+	title = twrnews.78.t
+	desc = twrnews.78.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.78.a
+	}
+}
+
+news_event = { # Stevenson Elected 1956
+	id = twrnews.79
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.79"}
+	title = twrnews.79.t
+	desc = twrnews.79.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.79.a
+	}
+}
+
+news_event = { # Harriman Elected 1956
+	id = twrnews.80
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.80"}
+	title = twrnews.80.t
+	desc = twrnews.80.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.80.a
+	}
+}
+
+news_event = { # Kefauver Elected 1956
+	id = twrnews.81
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.81"}
+	title = twrnews.81.t
+	desc = twrnews.81.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.81.a
+	}
+}
+
+news_event = { # Republican Victory Egypt
+	id = twrnews.82
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.82"}
+	title = twrnews.82.t
+	desc = twrnews.82.d
+	picture = GFX_news_event_egyptian_republican_victory
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.82.a
+	}
+}
+
+news_event = { # Eisenhower Elected 1956
+	id = twrnews.83
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.83"}
+	title = twrnews.83.t
+	desc = twrnews.83.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.83.a
+	}
+}
+
+news_event = { # Taft VP Elected 1956
+	id = twrnews.84
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.84"}
+	title = twrnews.84.t
+	desc = twrnews.84.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.84.a
+	}
+}
+
+news_event = { # Macarthur elected 1956
+	id = twrnews.85
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.85"}
+	title = twrnews.85.t
+	desc = twrnews.85.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.85.a
+	}
+}
+
+news_event = { # Patton elected 1956
+	id = twrnews.86
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.86"}
+	title = twrnews.86.t
+	desc = twrnews.86.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.86.a
+	}
+}
+
+news_event = { # Prison Germany
+	id = twrnews.87
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.87"}
+	title = twrnews.87.t
+	desc = twrnews.87.d
+	picture = GFX_news_event_summit
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.87.a
+	}
+}
+
+news_event = { # Dewey elected 1956
+	id = twrnews.88
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.88"}
+	title = twrnews.88.t
+	desc = twrnews.88.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.88.a
+	}
+}
+
+news_event = { # Warren elected 1956
+	id = twrnews.89
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.89"}
+	title = twrnews.89.t
+	desc = twrnews.89.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.89.a
+	}
+}
+
+news_event = { # Iraq-Jordan
+	id = twrnews.90
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.90"}
+	title = twrnews.90.t
+	desc = twrnews.90.d
+	picture = GFX_news_event_iraq_jordan
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.90.a
+	}
+}
+
+news_event = { # Eisenhower meets with Franco
+	id = twrnews.91
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.91"}
+	title = twrnews.91.t
+	desc = twrnews.91.d
+	picture = GFX_news_event_franco_eisenhower
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.91.a
+		trigger = {
+			NOT = {
+				has_government = fascist
+				has_government = national_socialist
+			}
+		}
+	}
+	option = {
+		name = twrnews.91.b
+		trigger = {
+			OR = {
+				has_government = fascist
+				has_government = national_socialist
+			}
+		}
+	}
+}
+
+news_event = { # China blames Vietnam
+	id = twrnews.92
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.92"}
+	title = twrnews.92.t
+	desc = twrnews.92.d
+	picture = GFX_news_event_chiang_speech
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.92.a
+	}
+}
+
+news_event = { # China invades Vietnam
+	id = twrnews.93
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.93"}
+	title = twrnews.93.t
+	desc = twrnews.93.d
+	picture = GFX_news_event_vietnam_war
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.93.a
+	}
+}
+
+news_event = { # America criticises China
+	id = twrnews.94
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.94"}
+	title = twrnews.94.t
+	desc = twrnews.94.d
+	picture = GFX_news_event_usa_white_house
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.94.a
+	}
+}
+
+news_event = { # China Loses Vietnam War
+	id = twrnews.95
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.95"}
+	title = twrnews.95.t
+	desc = twrnews.95.d
+	picture = GFX_news_event_vietnam_victory
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.95.a
+	}
+}
+
+news_event = { # China Wins Vietnam War
+	id = twrnews.96
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.96"}
+	title = twrnews.96.t
+	desc = twrnews.96.d
+	picture = GFX_news_event_china_victory
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.96.a
+	}
+}
+
+news_event = { # Vietnam Armistice
+	id = twrnews.97
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.97"}
+	title = twrnews.97.t
+	desc = twrnews.97.d
+	picture = GFX_news_event_vietnam_armistice
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.97.a
+	}
+}
+
+news_event = { # Rashtriya Swayamsevak Sangh defeated
+	id = twrnews.98
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.98"}
+	title = twrnews.98.t
+	desc = twrnews.98.d
+	picture = GFX_news_event_indian_troops
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.98.a
+	}
+}
+
+news_event = { # Sudan Gains Independence
+	id = twrnews.99
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.99"}
+	title = twrnews.99.t
+	desc = twrnews.99.d
+	picture = GFX_news_event_sudan_independent
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.99.a
+	}
+}
+
+news_event = { # Sudan Joins Egypt
+	id = twrnews.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.100"}
+	title = twrnews.100.t
+	desc = twrnews.100.d
+	picture = GFX_news_event_sudan_egypt
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.100.a
+	}
+}
+
+news_event = { # Sudan secessions
+	id = twrnews.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.101"}
+	title = twrnews.101.t
+	desc = twrnews.101.d
+	picture = GFX_news_event_sudan_secede
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.101.a
+	}
+}
+
+news_event = { # Bengal Truce
+	id = twrnews.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.102"}
+	title = twrnews.102.t
+	desc = twrnews.102.d
+	picture = GFX_news_event_india_war
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.102.a
+	}
+}
+
+news_event = { # Thurmond Resigns
+	id = twrnews.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.103"}
+	title = twrnews.103.t
+	desc = twrnews.103.d
+	picture = GFX_news_event_thurmond_resigns
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.103.a
+	}
+}
+
+news_event = { # Syria declares Greater Syria
+	id = twrnews.104
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.104"}
+	title = twrnews.104.t
+	desc = twrnews.104.d
+	picture = GFX_news_event_syria
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.104.a
+	}
+}
+
+news_event = { # Syria Invades Hashemite States
+	id = twrnews.105
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.105"}
+	title = twrnews.105.t
+	desc = twrnews.105.d
+	picture = GFX_news_event_desert_war
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.105.a
+	}
+}
+
+news_event = { # Turkey Intervenes
+	id = twrnews.106
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.106"}
+	title = twrnews.106.t
+	desc = twrnews.106.d
+	picture = GFX_news_event_turkish_army
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.106.a
+	}
+}
+
+news_event = { # Brown v Board
+	id = twrnews.107
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.107"}
+	title = twrnews.107.t
+	desc = twrnews.107.d
+	picture = GFX_news_event_brown_board
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.107.a
+	}
+}
+
+news_event = { # Iraqi Revolution 1
+	id = twrnews.108
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.108"}
+	title = twrnews.108.t
+	desc = twrnews.108.d
+	picture = GFX_news_event_iraq_revolution
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.108.a
+	}
+}
+
+news_event = { # Iraqi Revolution 2 (federation)
+	id = twrnews.109
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.109"}
+	title = twrnews.109.t
+	desc = twrnews.109.d
+	picture = GFX_news_event_iraq_revolution
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.109.a
+	}
+}
+
+news_event = { # Golden Square coup
+	id = twrnews.110
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.110"}
+	title = twrnews.110.t
+	desc = twrnews.110.d
+	picture = GFX_news_event_iraq_golden_square
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.110.a
+	}
+}
+
+news_event = { # Baath Coup
+	id = twrnews.111
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.111"}
+	title = twrnews.111.t
+	desc = twrnews.111.d
+	picture = GFX_news_event_iraq_baath
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.111.a
+	}
+}
+
+news_event = { # Iraq Declares Arab State
+	id = twrnews.112
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.112"}
+	title = twrnews.112.t
+	desc = twrnews.112.d
+	picture = GFX_news_event_baghdad
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.112.a
+	}
+}
+
+news_event = { # Uprising in Dominican Rep.
+	id = twrnews.113
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.113"}
+	title = twrnews.113.t
+	desc = twrnews.113.d
+	picture = GFX_news_event_latin_american_coup
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.113.a
+	}
+}
+
+news_event = { # Cuba Batista Coup
+	id = twrnews.114
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.114"}
+	title = twrnews.114.t
+	desc = twrnews.114.d
+	picture = GFX_news_event_batista_coup
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.114.a
+	}
+}
+
+news_event = { # Guatamala Coup
+	id = twrnews.115
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.115"}
+	title = twrnews.115.t
+	desc = twrnews.115.d
+	picture = GFX_news_event_latin_american_coup
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.115.a
+	}
+}
+
+news_event = { # European Refugee Crisis
+	id = twrnews.116
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.116"}
+	title = twrnews.116.t
+	desc = twrnews.116.d
+	picture = GFX_news_event_refugees
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.116.a
+	}
+}
+
+news_event = { # Kingdom of Montenegro Created
+	id = twrnews.117
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.117"}
+	title = twrnews.117.t
+	desc = twrnews.117.d
+	picture = GFX_news_event_montenegro_map
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.117.a
+	}
+}
+
+news_event = { # Mediterranean Union
+	id = twrnews.118
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.118"}
+	title = twrnews.118.t
+	desc = twrnews.118.d
+	picture = GFX_news_event_med_map
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.118.a
+	}
+}
+
+news_event = { # Pact of Steel 2
+	id = twrnews.119
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.119"}
+	title = twrnews.119.t
+	desc = twrnews.119.d
+	picture = GFX_news_event_steel_pact
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.119.a
+	}
+}
+
+news_event = { # Ethiopian Uprising
+	id = twrnews.120
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.120"}
+	title = twrnews.120.t
+	desc = twrnews.120.d
+	picture = GFX_news_event_ethiopian_soldiers
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.120.a
+	}
+}
+
+news_event = { # Death of Mussolini
+	id = twrnews.121
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.121"}
+	title = twrnews.121.t
+	desc = twrnews.121.d
+	picture = GFX_news_event_mussolini_dead
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.121.a
+	}
+}
+
+news_event = { # balbo wins
+	id = twrnews.122
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.122"}
+	title = twrnews.122.t
+	desc = twrnews.122.d
+	picture = GFX_news_event_balbo
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.122.a
+	}
+}
+
+news_event = { # ciano wins
+	id = twrnews.123
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.123"}
+	title = twrnews.123.t
+	desc = twrnews.123.d
+	picture = GFX_news_event_ciano
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.123.a
+	}
+}
+
+news_event = { # Germany rekt
+	id = twrnews.124
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.124"}
+	title = twrnews.124.t
+	desc = twrnews.124.d
+	picture = GFX_news_event_germany_rekt
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.124.a
+	}
+}
+
+news_event = { # US launches satellite
+	id = twrnews.125
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.125"}
+	title = twrnews.125.t
+	desc = twrnews.125.d
+	picture = GFX_news_event_usa_rocket
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.125.a
+	}
+}
+
+news_event = { # Vietnam creates alliance
+	id = twrnews.126
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.126"}
+	title = twrnews.126.t
+	desc = twrnews.126.d
+	picture = GFX_news_event_vietnam_alliance
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.126.a
+	}
+}
+
+news_event = { # Vietnam India alliance merge
+	id = twrnews.127
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.127"}
+	title = twrnews.127.t
+	desc = twrnews.127.d
+	picture = GFX_news_event_vietnam_alliance
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.127.a
+	}
+}
+
+news_event = { # Conservatives win Korean elections
+	id = twrnews.128
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.128"}
+	title = twrnews.128.t
+	desc = twrnews.128.d
+	picture = GFX_news_event_korea_elections
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.128.a
+	}
+}
+
+news_event = { # Leftists win Korean elections
+	id = twrnews.129
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.129"}
+	title = twrnews.129.t
+	desc = twrnews.129.d
+	picture = GFX_news_event_korea_elections
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.129.a
+	}
+}
+
+news_event = { # Korean Military Coup
+	id = twrnews.130
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.130"}
+	title = twrnews.130.t
+	desc = twrnews.130.d
+	picture = GFX_news_event_korea_coup
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.130.a
+	}
+}
+
+news_event = { # German Intervention in Italy
+	id = twrnews.131
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.131"}
+	title = twrnews.131.t
+	desc = twrnews.131.d
+	picture = GFX_news_event_germans_in_italy
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.131.a
+	}
+}
+
+news_event = { # UN occupation of Germany
+	id = twrnews.132
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.132"}
+	title = twrnews.132.t
+	desc = twrnews.132.d
+	picture = GFX_news_event_un_council
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.132.a
+	}
+}
+
+news_event = { # UN backs war on Germany
+	id = twrnews.133
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.133"}
+	title = twrnews.133.t
+	desc = twrnews.133.d
+	picture = GFX_news_event_un_council
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+
+	option = {
+		name = twrnews.133.a
+	}
+}
+
+news_event = { # Italian-TA settlement
+	id = twrnews.134
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.134"}
+	title = twrnews.134.t
+	desc = twrnews.134.d
+	picture = GFX_news_event_grand_council_italy
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.134.a
+	}
+}
+
+news_event = { # Fascists resign
+	id = twrnews.135
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.135"}
+	title = twrnews.135.t
+	desc = twrnews.135.d
+	picture = GFX_news_event_grand_council_italy
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.135.a
+	}
+}
+
+news_event = { # UN resolution on Vietnam fails
+	id = twrnews.136
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.136"}
+	title = twrnews.136.t
+	desc = twrnews.136.d
+	picture = GFX_news_event_un_council
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.136.a
+	}
+}
+
+news_event = { # UN forces end of Vietnam war
+	id = twrnews.137
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.137"}
+	title = twrnews.137.t
+	desc = twrnews.137.d
+	picture = GFX_news_event_un_council
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.137.a
+	}
+}
+
+news_event = { # Gulag Revolts
+	id = twrnews.138
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.138"}
+	title = twrnews.138.t
+	desc = twrnews.138.d
+	picture = GFX_news_event_gulag_revolt
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.138.a
+	}
+}
+
+news_event = { # Russian People's Republic
+	id = twrnews.139
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.139"}
+	title = twrnews.139.t
+	desc = twrnews.139.d
+	picture = GFX_news_event_khrushchev
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.139.a
+	}
+}
+
+news_event = { # Death of Beria
+	id = twrnews.140
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.140"}
+	title = twrnews.140.t
+	desc = twrnews.140.d
+	picture = GFX_news_event_beria
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.140.a
+	}
+}
+
+news_event = { # Zhukov Takes Power
+	id = twrnews.141
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.141"}
+	title = twrnews.141.t
+	desc = twrnews.141.d
+	picture = GFX_news_event_zhukov
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.141.a
+	}
+}
+
+news_event = { # Konev Takes Power
+	id = twrnews.142
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.142"}
+	title = twrnews.142.t
+	desc = twrnews.142.d
+	picture = GFX_news_event_konev
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.142.a
+	}
+}
+
+news_event = { # Bulganin Takes Power
+	id = twrnews.143
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.143"}
+	title = twrnews.143.t
+	desc = twrnews.143.d
+	picture = GFX_news_event_bulganin
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.143.a
+	}
+}
+
+news_event = { # North Sea exercises
+	id = twrnews.144
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.144"}
+	title = twrnews.144.t
+	desc = twrnews.144.d
+	picture = GFX_news_event_us_carrier
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.144.a
+	}
+}
+
+news_event = { # Iran caves to Britain
+	id = twrnews.145
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.145"}
+	title = twrnews.145.t
+	desc = twrnews.145.d
+	picture = GFX_news_event_middle_east_map
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.145.a
+	}
+}
+
+news_event = { # Iraq Nationalises Oil
+	id = twrnews.146
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.146"}
+	title = twrnews.146.t
+	desc = twrnews.146.d
+	picture = GFX_news_event_middle_east_map
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.146.a
+	}
+}
+
+news_event = { # Sino-Indian War
+	id = twrnews.147
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.147"}
+	title = twrnews.147.t
+	desc = twrnews.147.d
+	picture = GFX_news_event_sino_indian_war
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.147.a
+	}
+}
+
+news_event = { # Sino-Indian War - India Wins
+	id = twrnews.148
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.148"}
+	title = twrnews.148.t
+	desc = twrnews.148.d
+	picture = GFX_news_event_sino_indian_war
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.148.a
+	}
+}
+
+news_event = { # Sino-Indian War - China Wins
+	id = twrnews.149
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.149"}
+	title = twrnews.149.t
+	desc = twrnews.149.d
+	picture = GFX_news_event_sino_indian_war
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.149.a
+	}
+}
+
+news_event = { # Sino-Indian War - Draw
+	id = twrnews.150
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.150"}
+	title = twrnews.150.t
+	desc = twrnews.150.d
+	picture = GFX_news_event_sino_indian_war
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.150.a
+	}
+}
+
+news_event = { # de Havilland Comet
+	id = twrnews.151
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.151"}
+	title = twrnews.151.t
+	desc = twrnews.151.d
+	picture = GFX_news_event_comet_jet
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.151.a
+	}
+}
+
+news_event = { # TA invades Norway
+	id = twrnews.152
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.152"}
+	title = twrnews.152.t
+	desc = twrnews.152.d
+	picture = GFX_news_event_invasion_of_norway
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.152.a
+	}
+}
+
+news_event = { # TA invades Denmark
+	id = twrnews.153
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.153"}
+	title = twrnews.153.t
+	desc = twrnews.153.d
+	picture = GFX_news_event_ta_invasion_denmark
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.153.a
+	}
+}
+
+news_event = { # Kuznetsov Coup
+	id = twrnews.154
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.154"}
+	title = twrnews.154.t
+	desc = twrnews.154.d
+	picture = GFX_news_event_sov_army
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.154.a
+	}
+}
+
+news_event = { # Join UN
+	id = twrnews.155
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.155"}
+	title = twrnews.155.t
+	desc = twrnews.155.d
+	picture = GFX_news_event_un_council
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.155.a
+	}
+}
+
+news_event = { # Climate change report
+	id = twrnews.156
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.156"}
+	title = twrnews.156.t
+	desc = twrnews.156.d
+	picture = GFX_news_event_climate_scientists
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.156.a
+	}
+}
+
+news_event = { # President Taft Dead
+	id = twrnews.157
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.157"}
+	title = twrnews.157.t
+	desc = twrnews.157.d
+	picture = GFX_news_event_usa_taft
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.157.a
+	}
+}
+
+news_event = { # Soviet Union Reunified
+	id = twrnews.158
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.158"}
+	title = twrnews.158.t
+	desc = twrnews.158.d
+	picture = GFX_news_event_sov_parade
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.158.a
+	}
+}
+
+news_event = { # Soviet Union Reunified - Bulganin
+	id = twrnews.159
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.159"}
+	title = twrnews.159.t
+	desc = twrnews.159.d
+	picture = GFX_news_event_russian_celebration
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.159.a
+	}
+}
+
+news_event = { # Vladivostok Reunification
+	id = twrnews.160
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.160"}
+	title = twrnews.160.t
+	desc = twrnews.160.d
+	picture = GFX_news_event_russian_celebration
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.160.a
+	}
+}
+
+news_event = { # Novosibirsk Reunification
+	id = twrnews.161
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.161"}
+	title = twrnews.161.t
+	desc = twrnews.161.d
+	picture = GFX_news_event_russian_celebration
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.161.a
+	}
+}
+
+news_event = { # Bulgarian Riots
+	id = twrnews.162
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.162"}
+	title = twrnews.162.t
+	desc = twrnews.162.d
+	picture = GFX_news_event_bulgaria_protests
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.162.a
+	}
+}
+
+news_event = { # Bulgarian Fascists Maintain Power
+	id = twrnews.163
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.163"}
+	title = twrnews.163.t
+	desc = twrnews.163.d
+	picture = GFX_news_event_bulgarian_army
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.163.a
+	}
+}
+
+news_event = { # Bulgarian Fascists Removed
+	id = twrnews.164
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.164"}
+	title = twrnews.164.t
+	desc = twrnews.164.d
+	picture = GFX_news_event_bulgarian_revolution
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.164.a
+	}
+}
+
+news_event = { # Bulgarian civil war
+	id = twrnews.165
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.165"}
+	title = twrnews.165.t
+	desc = twrnews.165.d
+	picture = GFX_news_event_bulgarian_communists
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.165.a
+	}
+}
+
+news_event = { # Bulgarian lukov dead
+	id = twrnews.166
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.166"}
+	title = twrnews.166.t
+	desc = twrnews.166.d
+	picture = GFX_news_event_bulgaria_lukov
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.166.a
+	}
+}
+
+news_event = { # Haile Selassie Returns
+	id = twrnews.167
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.167"}
+	title = twrnews.167.t
+	desc = twrnews.167.d
+	picture = GFX_news_event_haile_selassie
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.167.a
+	}
+}
+
+news_event = { # Slovakian-Hungarian Border Tensions
+	id = twrnews.168
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.168"}
+	title = twrnews.168.t
+	desc = twrnews.168.d
+	picture = GFX_news_event_slovenian_guards
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.168.a
+	}
+}
+
+news_event = { # The Slovak Spring Border Tensions
+	id = twrnews.169
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.169"}
+	title = twrnews.169.t
+	desc = twrnews.169.d
+	picture = GFX_news_event_slovak_spring
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.169.a
+	}
+}
+
+news_event = { # Ante Pavelic Assassinated
+	id = twrnews.170
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.170"}
+	title = twrnews.170.t
+	desc = twrnews.170.d
+	picture = GFX_news_event_pavelic_dead
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.170.a
+	}
+	
+	option = {
+		trigger = {
+			original_tag = SER
+		}
+		name = twrnews.170.b
+	}
+}
+
+news_event = { # The Bosnian War
+	id = twrnews.171
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.171"}
+	title = twrnews.171.t
+	desc = twrnews.171.d
+	picture = GFX_news_event_bosnian_war
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.171.a
+	}
+}
+
+news_event = { # Andrija Artukovic Consolidates Power
+	id = twrnews.172
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.172"}
+	title = twrnews.172.t
+	desc = twrnews.172.d
+	picture = GFX_news_event_artukovic_croatia
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.172.a
+	}
+}
+
+news_event = { # Antifascist Coup in Croatia
+	id = twrnews.173
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.173"}
+	title = twrnews.173.t
+	desc = twrnews.173.d
+	picture = GFX_news_event_croatia_lorkovic
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.173.a
+	}
+}
+
+news_event = { # Kingdom of Croatia Established
+	id = twrnews.174
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.174"}
+	title = twrnews.174.t
+	desc = twrnews.174.d
+	picture = GFX_news_event_croatia_kingdom
+	
+	fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = twrnews.174.a
+	}
+}
+
+news_event = { # Italian Yemen
+	id = twrnews.175
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.175"}
+	title = twrnews.175.t
+	desc = twrnews.175.d
+	picture = GFX_news_event_italian_expansion
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.175.a
+	}
+}
+
+news_event = { # Italian Egypt
+	id = twrnews.176
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.176"}
+	title = twrnews.176.t
+	desc = twrnews.176.d
+	picture = GFX_news_event_italian_expansion
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.176.a
+	}
+}
+
+news_event = { # 1952 Helsinki Olympics
+	id = twrnews.177
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.177"}
+	title = twrnews.177.t
+	desc = twrnews.177.d
+	picture = GFX_news_event_helsinki_olympics
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.177.a
+	}
+}
+
+news_event = { # Famine in Germany
+	id = twrnews.178
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.178"}
+	title = twrnews.178.t
+	desc = twrnews.178.d
+	picture = GFX_news_event_famine_germany
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+
+	option = {
+		name = twrnews.178.a
+	}
+}
+
+news_event = { # Newfoundland Summit
+	id = twrnews.179
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.179"}
+	title = twrnews.179.t
+	desc = twrnews.179.d
+	picture = GFX_news_event_diplomats
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.179.a
+	}
+}
+news_event = { # House of Sovs is built
+	id = twrnews.180
+	immediate = {
+	log = "[GetDateText]: [Root.GetName]: event twrnews.180"
+			hidden_effect = { 
+			219 = {
+				remove_province_modifier = {
+				static_modifiers = { terrain_moscow_healed }
+				province = { id = 6380 }	 
+				}
+			}
+		}
+	
+	}
+	title = twrnews.180.t
+	desc = twrnews.180.d
+	picture = GFX_news_event_palace_of_sovs_built
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.180.a
+
+	}
+}
+
+news_event = { # House of Sovs 2 - electric boogaloo
+	id = twrnews.181
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrnews.181"}
+	title = twrnews.181.t
+	desc = twrnews.181.d
+	picture = GFX_news_event_palace_of_sovs_2
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twrnews.181.a
+	}
+}
+

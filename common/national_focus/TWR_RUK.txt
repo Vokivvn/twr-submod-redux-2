@@ -1,0 +1,666 @@
+	
+shared_focus = {
+	cancelable = no
+	id = RUK_The_Ukrainian_Civil_War
+	icon = GFX_SOV_attack_ukraine
+	cost = 0.8
+	x = 28
+	y = 0
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_war_with = SUK
+	}
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = ROS_ethnic_tensions
+			add_idea = RMO_chaos_uprising
+		}
+		hidden_effect = {	
+			remove_ideas = GER_RK_repression
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Emergency_Retreat
+	icon = GFX_GENERIC_conflict
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_The_Ukrainian_Civil_War
+	}
+	relative_position_id = RUK_The_Ukrainian_Civil_War
+	ai_will_do = {
+		factor = 1
+	}
+	cost = 2.2
+	completion_reward = {
+		add_timed_idea = {
+			idea = RUK_Mass_Retreat
+			days = 70
+		}
+	}
+} 
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Form_Ukrainian_Divisions
+	icon = GFX_GENERIC_recruitment
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_Emergency_Retreat
+	}
+	relative_position_id = RUK_Emergency_Retreat
+	ai_will_do = {
+		factor = 1
+	}
+	cost = 2.9
+	completion_reward = {
+		division_template = {
+			name = "Ukrainian Infantry"
+
+			division_names_group = BRENGL_INF_01
+
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 1 y = 0 }
+				light_infantry = { x = 1 y = 1 }
+				light_infantry = { x = 1 y = 2 }
+				light_infantry = { x = 2 y = 0 }
+				light_infantry = { x = 2 y = 1 }
+
+			}
+		}
+		random_owned_controlled_state = {
+
+			create_unit = {
+				division = "name = \"Ukrainian Auxiliary Police Division\" division_template = \"Ukrainian Infantry\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+				owner = RUK
+			}
+		}	
+		random_owned_controlled_state = {
+
+			create_unit = {
+				division = "name = \"Nachtigall Division\" division_template = \"Ukrainian Infantry\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+				owner = RUK
+			}
+		}	
+
+		random_owned_controlled_state = {
+
+			create_unit = {
+				division = "name = \"Roland Division\" division_template = \"Ukrainian Infantry\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+				owner = RUK
+			}
+		}
+
+		random_owned_controlled_state = {
+
+			create_unit = {
+				division = "name = \"Freiwilligen-Stamm-Regiment Division\" division_template = \"Ukrainian Infantry\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+				owner = RUK
+			}
+		}
+
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Form_the_National_Republic
+	icon = GFX_RUK_National_Republic
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = RUK_Form_Ukrainian_Divisions
+	}
+	available = {
+		has_country_flag = COLLAB_WITH_UKRAINE
+	}
+	mutually_exclusive = {
+		focus = RUK_The_Ukrainian_Endsieg
+	}
+	relative_position_id = RUK_Form_Ukrainian_Divisions
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		country_event = twrukraineuprisings.503
+		add_ideas = UKR_OUN_Divide
+
+	}
+	cost = 7.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Negotiate_with_the_Insurgents
+	icon = GFX_RUK_Deal_With_Insurgents
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = RUK_Form_the_National_Republic
+	}
+	relative_position_id = RUK_Form_the_National_Republic
+	ai_will_do = {
+		factor = 1
+	}
+	completion_reward = {
+		annex_country = {
+			target = UIA
+			transfer_troops = yes
+		}
+		UKR = {
+			country_event = twrukraineuprisings.7
+		}
+
+	}
+	cost = 8.6
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_United_Against_Tyrants
+	icon = GFX_GENERIC_destroy_nazism
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = RUK_Negotiate_with_the_Insurgents
+	}
+	relative_position_id = RUK_Negotiate_with_the_Insurgents
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_completed_focus = RUK_Follow_the_German_Agreement
+	}
+
+	completion_reward = {
+		add_ideas = RK_against_the_communists
+		UKR = {
+			country_event = twrukraineuprisings.10
+		}
+	}
+	cost = 7.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Shattered_Peace
+	icon = GFX_GENERIC_kill_with_fire
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_United_Against_Tyrants
+		focus = RUK_Follow_the_German_Agreement
+	}
+	available = {
+		always = no
+	}
+	relative_position_id = RUK_United_Against_Tyrants
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_manpower = 70000
+		add_stability = -0.15
+	}
+	cost = 0
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Follow_the_German_Agreement
+	icon = GFX_GER_rk_quotas
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUK_Negotiate_with_the_Insurgents
+	}
+	relative_position_id = RUK_Negotiate_with_the_Insurgents
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_ideas = RUK_German_Landlords
+		add_stability = -0.1
+	}
+	cost = 7.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Free_Independent_Ukraine
+	icon = GFX_RUK_Ukraine
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_United_Against_Tyrants
+		focus = RUK_Follow_the_German_Agreement
+	}
+	relative_position_id = RUK_Follow_the_German_Agreement
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_war = no
+	}
+	cancel = {
+		has_war = yes
+	}
+	completion_reward = {
+		if = {
+			limit = {
+				country_exists = UKR
+			}
+			annex_country = {
+				target = UKR
+				transfer_troops = yes
+			}
+		}
+		add_stability = 0.05
+		remove_ideas = RUK_Ukrainian_Serfdom
+		news_event = { id = twrslavnews.4 days = 2 }
+		hidden_effect = {
+			load_focus_tree = generic
+			remove_ideas = {
+				rk_labour_slavs
+				rk_wehrbauer
+				rk_the_loyal_few
+				rk_slavic_education
+				rk_good_products
+				rk_slavic_breeding
+				rk_slavic_not_breeding
+				rk_airwing
+				rk_local_air
+				rk_theoretical_fighters
+				rk_theoretical_bombers
+				rk_cas
+				rk_sb
+				rk_quotas
+				rk_raw_material
+				rk_new_army
+				rk_ss_neu
+				rk_training_facilities
+				rk_local_heer
+				rk_local_ss
+				rk_native_officer
+				rk_armaments
+				rk_germanic_officers
+				rk_local_security_force
+				rk_extraction_in_progress
+				rk_volksdeutsche_government
+				rk_baltic_port
+				rk_white_sea_fleet
+				rk_gotische_support
+				RK_eastern_spring
+				RK_settlement_spirit
+				RK_red_army_revolt
+				RUK_Mass_Retreat
+				RUK_Operation_Vernichten
+				RUK_Total_Retreat
+				RUK_Our_Last_Stand
+				RUK_Victory_in_Ukraine
+				RUK_Cut_Our_Losses
+				RUK_Infastructure_Back_Up
+				RUK_disorganised_militia
+				RUK_lesser_resistance
+			}
+				every_state = {
+					remove_core_of = SUK
+				}
+				every_state = {
+					remove_core_of = UKW
+				}
+				every_state = {
+					remove_core_of = UIA
+				}
+		}
+			annex_country = {
+				target = BGS
+				transfer_troops = yes
+			}
+	}
+	cost = 7.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Total_Retreat
+	icon = GFX_GENERIC_Volunteer
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUK_Form_the_National_Republic
+		focus = RUK_The_Ukrainian_Endsieg
+	}
+	available = {
+		has_war = yes
+	}
+	relative_position_id = RUK_Form_the_National_Republic
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_ideas = RUK_Total_Retreat
+
+	}
+	cost = 2.9
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_The_Ukrainian_Endsieg
+	icon = GFX_RUK_Flag_Burning
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUK_Form_Ukrainian_Divisions
+	}
+	available = {
+		has_war = yes
+	}
+	mutually_exclusive = {
+		focus = RUK_Form_the_National_Republic
+	}
+	relative_position_id = RUK_Form_Ukrainian_Divisions
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = RMO_chaos_uprising
+			add_idea = RMO_chaos_state_focus2
+		}
+
+	}
+	cost = 7.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Not_One_Step_Back
+	icon = GFX_RUK_no_retreat
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUK_The_Ukrainian_Endsieg
+	}
+	relative_position_id = RUK_The_Ukrainian_Endsieg
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_war_support = 0.1
+		add_manpower = 50000
+		add_political_power = -250
+	}
+	cost = 0.8
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_The_Only_Solution
+	icon = GFX_goal_generic_secret_weapon
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_Not_One_Step_Back
+	}
+	relative_position_id = RUK_Not_One_Step_Back
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_ideas = RUK_Our_Last_Stand
+
+	}
+	cost = 2.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Operation_Vernichten
+	icon = GFX_RUK_operation_vengeance
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_The_Only_Solution
+	}
+	relative_position_id = RUK_The_Only_Solution
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		hidden_effect = {
+			random_owned_controlled_state = {
+				add_manpower = -30000
+				add_building_construction = {
+					type = infrastructure
+					level = -3
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				add_manpower = -30000
+				add_building_construction = {
+					type = infrastructure
+					level = -3
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				add_manpower = -30000
+				add_building_construction = {
+					type = infrastructure
+					level = -3
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_manpower = -30000
+				add_building_construction = {
+					type = infrastructure
+					level = -3
+					instant_build = yes
+				}
+			}
+			add_ideas = RUK_Operation_Vernichten
+		}
+		custom_effect_tooltip = RUKBurn
+
+	}
+	cost = 12.9
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_From_the_Ashes
+	icon = GFX_RUK_Flag_torn
+	cost = 0
+	x = 33
+	y = 0
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		always = no
+	}
+	bypass = {
+	has_country_flag = RUK_RESTORED
+	}
+	completion_reward = {
+		add_ideas = RUK_Victory_in_Ukraine
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Repair_the_Grain_Industry
+	icon = GFX_GENERIC_agricultural_subsidies
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_From_the_Ashes
+	}
+	relative_position_id = RUK_From_the_Ashes
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_ideas = RUK_focus_on_food_export
+
+	}
+	cost = 5
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Reconstruction_Scheme
+	icon = GFX_GENERIC_Factory_Planning
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_Repair_the_Grain_Industry
+	}
+	relative_position_id = RUK_Repair_the_Grain_Industry
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}	
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}	
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+
+	}
+	cost = 7.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Cut_Our_Losses
+	icon = GFX_GENERIC_corruption_money
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUK_Reconstruction_Scheme
+	}
+	relative_position_id = RUK_Reconstruction_Scheme
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+
+		add_ideas = RUK_Cut_Our_Losses
+	}
+	cost = 5.8
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Aid_the_German_Settlers
+	icon = GFX_GENERIC_minority_aimed_projects
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = RUK_Cut_Our_Losses
+	}
+	relative_position_id = RUK_Cut_Our_Losses
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_manpower = 10000
+		add_stability = 0.1
+		add_political_power = 150
+	}
+	cost = 7.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Restart_the_Facilities
+	icon = GFX_GENERIC_Power_Plant
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUK_Cut_Our_Losses
+	}
+	relative_position_id = RUK_Cut_Our_Losses
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_ideas = RUK_Infastructure_Back_Up
+
+	}
+	cost = 7.2
+}
+
+shared_focus = {
+	cancelable = no
+	id = RUK_Sense_of_Normalcy
+	icon = GFX_GENERIC_elite_party
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUK_Aid_the_German_Settlers
+	}
+	prerequisite = {
+		focus = RUK_Restart_the_Facilities
+	}
+	relative_position_id = RUK_Aid_the_German_Settlers
+	ai_will_do = {
+		factor = 1
+	}
+
+	completion_reward = {
+		add_ideas = GER_RK_repression
+
+	}
+	cost = 10
+}

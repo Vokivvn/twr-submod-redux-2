@@ -1,0 +1,2767 @@
+	shared_focus = {
+	cancelable = no
+		id = GER_Speer_As_Head
+		icon = GFX_GER_speer
+		cost = 1.00
+		x = 12
+		y = 0
+		available = {
+			has_country_leader = {
+				name = "Albert Speer"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Albert Speer"
+				ruling_only = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Speer_As_Head"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Goebbels_As_Head
+		icon = GFX_GER_goebbels
+		cost = 1.00
+		x = 4
+		y = 0
+		available = {
+			has_country_leader = {
+				name = "Joseph Goebbels"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Joseph Goebbels"
+				ruling_only = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Goebbels_As_Head"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Speer_Economics
+		icon = GFX_GENERIC_brain
+		cost = 3.00
+		x = 37
+		y = 0
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Speer_Economics"
+			custom_effect_tooltip = SPEER_ECONOMIC_POLICIES
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Goebbels_Economics
+		icon = GFX_GENERIC_curtrail_army
+		cost = 3.00
+		x = 31
+		y = 0
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Goebbels_Economics"
+			custom_effect_tooltip = GOEBBELS_ECONOMIC_POLICIES
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Army_Stuff
+		text = GER_Land_Army
+		icon = GFX_focus_ger_oppose_hitler
+		cost = 8.00
+		x = 51
+		y = 0
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			country_event = twrspeergoebbels.2
+			if = {
+			limit = { has_idea = GER_SS_Infightings }
+			remove_ideas = GER_SS_Infightings
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Military_Reforms
+		icon = GFX_GER_land_army
+		cost = 5
+		relative_position_id = GER_Army_Stuff
+		x = -1
+		y = 1
+		available = {
+			has_country_leader = {
+				name = "Albert Speer"
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = GER_Army_Stuff
+		}
+		mutually_exclusive = {
+			focus = GER_Total_Warfare
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			army_experience = 50
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Formalize_Doctrines
+		icon = GFX_GENERIC_doctrine
+		cost = 8
+		relative_position_id = GER_Military_Reforms
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Military_Reforms
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_ideas = {
+				GER_Formalized_Doctrines
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Revitalize_Army
+		icon = GFX_GER_gray_iron_cross
+		cost = 8
+		relative_position_id = GER_Formalize_Doctrines
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Formalize_Doctrines
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_timed_idea = {
+				idea = GER_increase_production
+				days = 365
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Train_NCOs
+		icon = GFX_GENERIC_German_Soldiers2
+		cost = 8
+		relative_position_id = GER_Formalize_Doctrines
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = GER_Formalize_Doctrines
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_ideas = {
+				GER_reformed_officer_corps
+			}
+			remove_ideas = {
+				GER_overgrown_officer_corps
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Central_Research_Department
+		icon = GFX_GER_useless_fuck
+		cost = 8
+		relative_position_id = GER_Revitalize_Army
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Revitalize_Army
+		}
+		prerequisite = {
+			focus = GER_Train_NCOs
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_ideas = {
+				GER_Research_Department
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Total_Warfare
+		cost = 5
+		icon = GFX_GENERIC_German_Retreat
+		relative_position_id = GER_Army_Stuff
+		x = 1
+		y = 1
+		available = {
+			has_country_leader = {
+				name = "Joseph Goebbels"
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = GER_Army_Stuff
+		}
+		mutually_exclusive = {
+			focus = GER_Military_Reforms
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_war_support = 0.15
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Expand_Draft
+		icon = GFX_GER_Expand_the_Draft
+		cost = 8
+		relative_position_id = GER_Total_Warfare
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Total_Warfare
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_ideas = {
+				GER_Expanded_Draft
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Peoples_Storm
+		icon = GFX_GER_great_wave
+		cost = 8
+		relative_position_id = GER_Expand_Draft
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Expand_Draft
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_ideas = {
+				GER_Storm_People
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Mobilize_Stockpile
+		icon = GFX_GER_revolution
+		cost = 8
+		relative_position_id = GER_Expand_Draft
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = GER_Expand_Draft
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 7500
+				producer = DDR
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Purge_High_Command
+		icon = GFX_GER_crystal_purges
+		cost = 8
+		relative_position_id = GER_Mobilize_Stockpile
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = GER_Peoples_Storm
+		}
+		prerequisite = {
+			focus = GER_Mobilize_Stockpile
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			remove_ideas = {
+				GER_overgrown_officer_corps
+			}
+			add_timed_idea = {
+				idea = GER_Command_Purged
+				days = 180
+			}
+			country_event = {
+				id = twrgoebbels.17
+				days = 180
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Reform_Recruitment_System
+		icon = GFX_GER_political_rodeo
+		cost = 8
+		relative_position_id = GER_Purge_High_Command
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = GER_Central_Research_Department
+			focus = GER_Purge_High_Command
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			remove_ideas = {
+				GER_nazi_recruitment_system
+			}
+			add_ideas = {
+				GER_Reformed_Recruitment_System
+			}
+		}
+	}
+	shared_focus = {
+		cancelable = no
+		id = GER_Unify_Regional_Commands
+		icon = GFX_GER_punch_heer
+		cost = 8
+		relative_position_id = GER_Reform_Recruitment_System
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Reform_Recruitment_System
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Stuff"
+			add_ideas = {
+				GER_Unified_Regional_Commands
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Navy_Stuff
+		text = GER_Gros_Kriegsmarine
+		icon = GFX_GER_navy
+		cost = 8.00
+		x = 57
+		y = 0
+		
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_The_Navy"
+			country_event = twrspeergoebbels.1
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Wolfpack_Training
+		text = GER_Wolfpack_Training
+		icon = GFX_goal_generic_wolf_pack
+		cost = 7.00
+		relative_position_id = GER_Navy_Stuff
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Navy_Stuff
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Wolfpack_Training"
+			add_ideas = GER_Wolfpack_Training_IDEA
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Expand_Dockyard_Capacity
+		text = GER_Expand_Dockyard_Capacity
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 8.00
+		relative_position_id = GER_Wolfpack_Training
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = GER_Wolfpack_Training
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Expand_Dockyard_Capacity"
+			58 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Refit_Navy
+		text = GER_Refit_Navy
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 8.00
+		relative_position_id = GER_Wolfpack_Training
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = GER_Wolfpack_Training
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Refit_Navy"
+			add_ideas = GER_Refit_Navy_IDEA
+			navy_experience = 30
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Destroyer_Fleet
+		text = GER_Destroyer_Fleet
+		icon = GFX_USA_destroyer_leaders
+		cost = 8.00
+		relative_position_id = GER_Refit_Navy
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Refit_Navy
+		}
+		available = {
+			has_country_leader = {
+				name = "Albert Speer"
+				ruling_only = yes
+			}
+		}
+		mutually_exclusive = {
+			focus = GER_Invasion_fleet
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Destroyer_Fleet"
+			add_ideas = GER_Destroyer_Fleet_IDEA
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Limit_Naval_Spendings
+		text = GER_Limit_Naval_Spendings
+		icon = GFX_GENERIC_divert_into_navy
+		cost = 8.00
+		relative_position_id = GER_Destroyer_Fleet
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = GER_Destroyer_Fleet
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Limit_Naval_Spendings"
+			add_ideas = GER_Limit_Naval_Spendings_IDEA
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Invasion_fleet
+		text = GER_Invasion_fleet
+		icon = GFX_FRA_Fleet_for_France
+		cost = 8.00
+		relative_position_id = GER_Expand_Dockyard_Capacity
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Expand_Dockyard_Capacity
+		}
+		available = {
+			has_country_leader = {
+				name = "Joseph Goebbels"
+				ruling_only = yes
+			}
+		}
+		mutually_exclusive = {
+			focus = GER_Destroyer_Fleet
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Invasion_fleet"
+			add_ideas = GER_Invasion_fleet_IDEA
+		}
+	}
+	shared_focus = {
+		cancelable = no
+		id = GER_Submarine_Production
+		text = GER_Submarine_Production
+		icon = GFX_GER_submarine
+		cost = 8.00
+		relative_position_id = GER_Destroyer_Fleet
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = GER_Destroyer_Fleet
+			focus = GER_Invasion_fleet
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Submarine_Production"
+			add_ideas = GER_Submarine_Production_IDEA
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Capable_navy
+		text = GER_Capable_navy
+		icon = GFX_GENERIC_Nazi_Eagle
+		cost = 8.00
+		relative_position_id = GER_Submarine_Production
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = GER_Submarine_Production
+		}
+		prerequisite = {
+			focus = GER_Limit_Naval_Spendings
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Capable_navy"
+			remove_ideas = GER_oversized_fleet
+		}
+	}	
+	shared_focus = {
+		cancelable = no
+		id = GER_Prepare_for_Sealion
+		text = GER_Prepare_for_Sealion
+		icon = GFX_ENG_home_seas
+		cost = 8.00
+		relative_position_id = GER_Invasion_fleet
+		x = -1
+		y = 1
+		available = {
+			has_war = yes
+		}
+		prerequisite = {
+			focus = GER_Invasion_fleet
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Prepare_for_Sealion"
+			add_timed_idea = {
+				idea = GER_Prepare_for_Sealion_IDEA
+				days = 180
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = GER_Naval_Frenzy
+		text = GER_Naval_Frenzy
+		icon = GFX_GER_surface_crafts
+		cost = 8.00
+		relative_position_id = GER_Prepare_for_Sealion
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = GER_Prepare_for_Sealion
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Naval_Frenzy"
+			swap_ideas = {
+				remove_idea = GER_oversized_fleet
+				add_idea = GER_Naval_Frenzy_IDEA
+			}
+		}
+	}
+	
+	shared_focus = {
+	cancelable = no
+		id = GER_Economic_Failure
+		icon = GFX_ROS_edge_of_economic_collapse
+		cost = 8.00
+		x = 48
+		y = 0
+		allow_branch = {
+			has_country_flag = SPEER_ECO_FAILURE
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Economic_Failure"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Airforce
+		text = GER_The_Luftwaffe
+		icon = GFX_GER_the_luftwaffe
+		cost = 8.00
+		x = 80
+		y = 0
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Airforce"
+			country_event = twrspeergoebbels.3
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Position_Of_Speer
+		icon = GFX_GER_Speer_Position
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Goebbels_As_Head
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Position_Of_Speer"
+			country_event = twrgoebbels.2
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_A_Fanatic_Nation
+		icon = GFX_GER_Fanatic_Germany
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Goebbels_As_Head
+		}
+		x = 6
+		y = 1
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_A_Fanatic_Nation"
+			custom_effect_tooltip = GOEBBELS_PROJECT_START
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Full_Background_Checks
+		icon = GFX_GENERIC_Purge_Paper
+		cost = 8.00
+		prerequisite = {
+			focus = GER_A_Fanatic_Nation
+		}
+		x = 2
+		y = 2
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Full_Background_Checks"
+			country_event = twrgoebbels.3
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Resistance_On_Every_Corner
+		icon = GFX_GER_Nazi_Victory
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Goebbels_As_Head
+		}
+		x = 4
+		y = 1
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Resistance_On_Every_Corner"
+			add_ideas = GOEBBELS_absolute_resistance
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_The_Grand_Goal
+		icon = GFX_GER_grand_plan
+		cost = 6.00
+		prerequisite = {
+			focus = GER_Resistance_On_Every_Corner
+		}
+		prerequisite = {
+			focus = GER_A_Fanatic_Nation
+		}
+		prerequisite = {
+			focus = GER_Position_Of_Speer
+		}
+		x = 4
+		y = 2
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_The_Grand_Goal"
+			country_event = twrgoebbels.5
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_A_Target
+		icon = GFX_GENERIC_Anti_US
+		cost = 8.00
+		prerequisite = {
+			focus = GER_The_Grand_Goal
+		}
+		x = 2
+		y = 3
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_A_Target"
+			add_ideas = GOEBBELS_the_targets
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_A_New_Agency #important marked
+		icon = GFX_GENERIC_spy_meeting
+		cost = 8.00
+		prerequisite = {
+			focus = GER_A_Target
+		}
+		x = 1
+		y = 4
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_A_New_Agency"
+			custom_effect_tooltip = FORM_THE_TOTAL_WAR_OFFICE
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_A_Task
+		icon = GFX_GER_Volksturm
+		cost = 8.00
+		prerequisite = {
+			focus = GER_The_Grand_Goal
+		}
+		x = 4
+		y = 3
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_A_Task"
+			add_war_support = 0.1
+			add_ideas = service_by_requirement
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Finger_Pointing
+		icon = GFX_GENERIC_AGAINST_THEM
+		cost = 8.00
+		prerequisite = {
+			focus = GER_A_Task
+		}
+		prerequisite = {
+			focus = GER_A_Target
+		}
+		x = 3
+		y = 4
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Finger_Pointing"
+			add_stability = -0.25
+			country_event = twrgoebbels.6
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Total_War_Machine
+		icon = GFX_GENERIC_buy_equipment
+		cost = 8.00
+		prerequisite = {
+			focus = GER_A_Task
+		}
+		x = 5
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Total_War_Machine"
+			add_timed_idea = {
+				idea = GOEBBELS_engine
+				days = 180
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_A_Party_United
+		icon = GFX_GER_order_reestablished
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Total_War_Machine
+		}
+		x = 4
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_A_Party_United"
+			add_ideas = GOEBBELS_united_party
+			custom_effect_tooltip = GOEBBELS_DRUM_UP_SUPPORT_FOR_TOTAL_WAR
+			hidden_effect = {
+				add_to_variable = {
+					var = totalwarsupport
+					value = 2
+				} 
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Abolish_The_Honoary
+		icon = GFX_GER_Aryan_Question
+		cost = 3.00
+		prerequisite = {
+			focus = GER_A_Fanatic_Nation
+		}
+		x = 6
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Abolish_The_Honoary"
+			country_event = twrgoebbels.4
+			add_ideas = GOEBBELS_an_even_more_pure_nation
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_A_Future #important
+		icon = GFX_SPA_generic_protest
+		cost = 8.00
+		prerequisite = {
+			focus = GER_The_Grand_Goal
+		}
+		x = 6
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_A_Future"
+			custom_effect_tooltip = GOEBBELSCHILDSOLDIERS
+
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_The_Greater_Good
+		icon = GFX_GER_yellow_eagle
+		cost = 8.00
+		prerequisite = {
+			focus = GER_A_Future
+		}
+		x = 7
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_The_Greater_Good"
+			add_ideas = GOEBBELS_greater_good
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Mighty_Propaganda
+		icon = GFX_GENERIC_speech
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Total_War_Machine
+			focus = GER_The_Greater_Good
+		}
+		x = 6
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Mighty_Propaganda"
+			add_war_support = 0.15
+		}
+	}
+
+#START OF SPEER
+	shared_focus = {
+	cancelable = no
+		id = GER_Cooperation_Of_Leaders
+		icon = GFX_GENERIC_Government
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Speer_As_Head
+		}
+		x = 12
+		y = 1
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Cooperation_Of_Leaders"
+			country_event = twrspeerpolitics.1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Goebbels_HoG
+		icon = GFX_GER_sperr_goebbels_bloc
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Cooperation_Of_Leaders
+		}
+		mutually_exclusive = {
+			focus = GER_Goebbels_Less_Role
+		}
+		x = 9
+		y = 2
+		ai_will_do = {
+		factor = 50
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Goebbels_HoG"
+			add_ideas = GER_HoG_Joseph_Goebbels
+			custom_effect_tooltip = TRADITIONALIST_LOCK
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Propaganda_Is_Powerful
+		icon = GFX_GENERIC_Appease_People
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Goebbels_HoG
+		}
+		x = 9
+		y = 3
+		ai_will_do = {
+		factor = 50
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Propaganda_Is_Powerful"
+			add_war_support = 0.10
+			add_stability = 0.05
+			add_ideas = GOEBBELS_greater_good
+			custom_effect_tooltip = speer_support_increases
+			hidden_effect = {
+				add_to_variable = {
+					var = speerssupport
+					value = 2
+				} 
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Goebbels_Less_Role
+		icon = GFX_GER_Sideline_Goebbels
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Cooperation_Of_Leaders
+		}
+		mutually_exclusive = {
+			focus = GER_Goebbels_HoG
+		}
+		x = 11
+		y = 2
+		ai_will_do = {
+		factor = 50
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Goebbels_Less_Role"
+			custom_effect_tooltip = GOEBBELSSIDELINED
+			add_political_power = 150
+			add_stability = 0.1
+			custom_effect_tooltip = speer_support_lowered
+			hidden_effect = {
+				set_country_flag = Joseph_Goebbels_unavailable
+				subtract_from_variable = {
+					var = speerssupport
+					value = 2
+				} 
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Moderate_Approach
+		icon = GFX_GER_trip_to_argentina
+		cost = 6.00
+		prerequisite = {
+			focus = GER_Goebbels_Less_Role
+		}
+		x = 11
+		y = 3
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Moderate_Approach"
+			add_ideas = SPEER_moderate
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Traditional_Policies #traditional politics i dont know what to do
+		icon = GFX_focus_generic_treaty
+		cost = 9.00
+		prerequisite = {
+			focus = GER_Moderate_Approach
+			focus = GER_Propaganda_Is_Powerful
+		}
+		x = 10
+		y = 4
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Traditional_Policies"
+			add_popularity = {
+				ideology = national_socialist
+				popularity = 0.3
+			}
+			add_stability = 0.15
+			add_political_power = 100
+			custom_effect_tooltip = speer_support_increases
+			hidden_effect = {
+				add_to_variable = {
+					var = speerssupport
+					value = 2
+				} 
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_With_Hitlers_Mindset
+		icon = GFX_GER_old_hitler
+		cost = 2.00
+		prerequisite = {
+			focus = GER_Cooperation_Of_Leaders
+		}
+		available = {
+			OR = {
+				has_completed_focus = GER_Goebbels_HoG
+				has_completed_focus = GER_Goebbels_Less_Role
+			}
+		}
+		x = 13
+		y = 2
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_With_Hitlers_Mindset"
+			country_event = twrspeerpolitics.2
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Speer_Manifesto
+		icon = GFX_GENERIC_Whats_The_Plan
+		cost = 8.00
+		prerequisite = {
+			focus = GER_With_Hitlers_Mindset
+		}
+		x = 13
+		y = 3
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Speer_Manifesto"
+			add_stability = 0.05
+			remove_country_leader_trait = dubious_figure
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Mutual_Assistance #decisions
+		icon = GFX_GER_mutual_corruption
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Speer_Manifesto
+		}
+		x = 13
+		y = 4
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Mutual_Assistance"
+			add_ideas = GER_mutual_assistance_idea
+			custom_effect_tooltip = unlocks_new_decisions_mutual_speer
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Resume_The_Reforms #decisions
+		icon = GFX_focus_rom_parties_end
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Cooperation_Of_Leaders
+		}
+		x = 15
+		y = 2
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Resume_The_Reforms"
+			add_popularity = { ideology = national_socialist popularity = 0.05 }
+			custom_effect_tooltip = unlocks_old_hitler_decisions
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_LIttle_Steps
+		icon = GFX_GENERIC_a_boot
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Resume_The_Reforms
+		}
+		mutually_exclusive = {
+			focus = GER_True_Believer
+			focus = GER_Speers_Way
+		}
+		available = {
+			has_completed_focus = GER_With_Hitlers_Mindset
+			OR = {
+				has_country_flag = LOYALIST_SPEER
+				has_country_flag = REFORMIST_SPEER
+			}
+		}
+		x = 15
+		y = 3
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_LIttle_Steps"
+			add_stability = 0.05
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Minor_Adjustments
+		icon = GFX_GENERIC_handshake
+		cost = 8.00
+		prerequisite = {
+			focus = GER_LIttle_Steps
+		}
+		x = 15
+		y = 4
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Minor_Adjustments"
+			add_ideas = GER_minor_political_reform_1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Long_Term_Reformations
+		icon = GFX_KOR_seize_the_wealth
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Minor_Adjustments
+		}
+		x = 15
+		y = 5
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Long_Term_Reformations"
+			swap_ideas = {
+				remove_idea = GER_minor_political_reform_1
+				add_idea = GER_minor_political_reform_2
+			}
+			complete_national_focus = GER_Speer_Economics
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Speer_Status_Quo
+		icon = GFX_GER_status_quo
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Long_Term_Reformations
+		}
+		x = 15
+		y = 6
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Speer_Status_Quo"
+			swap_ideas = {
+				remove_idea = GER_minor_political_reform_2
+				add_idea = GER_minor_political_reform_3
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_True_Believer
+		icon = GFX_GER_true_believer
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Resume_The_Reforms
+		}
+		mutually_exclusive = {
+			focus = GER_Speers_Way
+			focus = GER_LIttle_Steps
+		}
+		available = {
+			has_completed_focus = GER_With_Hitlers_Mindset
+			has_country_flag = LOYALIST_SPEER
+		}
+		x = 17
+		y = 3
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_True_Believer"
+			add_stability = 0.10
+			add_timed_idea = {
+				idea = GER_proud_to_be_german
+				days = 100
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_As_Hitler_Intended
+		icon = GFX_GER_hitler_intended
+		cost = 8.00
+		prerequisite = {
+			focus = GER_True_Believer
+		}
+		x = 17
+		y = 4
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_As_Hitler_Intended"
+			add_ideas = GER_true_to_hitlerism_1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Reactionary_Approach
+		icon = GFX_GER_reactionary_fist
+		cost = 8.00
+		prerequisite = {
+			focus = GER_As_Hitler_Intended
+		}
+		x = 17
+		y = 5
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Reactionary_Approach"
+			swap_ideas = {
+				remove_idea = GER_true_to_hitlerism_1
+				add_idea = GER_true_to_hitlerism_2
+			}
+			complete_national_focus = GER_Speer_Economics
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Old_System
+		icon = GFX_GER_Hitlers_Plan
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Reactionary_Approach
+		}
+		x = 17
+		y = 6
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Old_System"
+			swap_ideas = {
+				remove_idea = GER_true_to_hitlerism_2
+				add_idea = GER_true_to_hitlerism_3
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Speers_Way
+		icon = GFX_GER_Speers_Way
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Resume_The_Reforms
+		}
+		mutually_exclusive = {
+			focus = GER_True_Believer
+			focus = GER_LIttle_Steps
+		}
+		available = {
+			has_completed_focus = GER_With_Hitlers_Mindset
+			has_country_flag = REFORMIST_SPEER
+		}
+		x = 19
+		y = 3
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Speers_Way"
+			add_popularity = { ideology = national_socialist popularity = -0.10 }
+			add_political_power = -150
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Reform_Intelligence_Agencies
+		icon = GFX_GER_new_agency
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Speers_Way
+		}
+		x = 19
+		y = 4
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Reform_Intelligence_Agencies"
+			add_stability = -0.05
+			country_event = { id = twrspeerpolitics.10 hours = 8 }
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_The_Grand_Reforms
+		icon = GFX_GENERIC_cardplay
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Reform_Intelligence_Agencies
+		}
+		available = {
+		has_political_power > 99
+		custom_trigger_tooltip = {
+    	tooltip = SPEER_enough_support		
+			check_variable = {
+    		var = speerssupport
+    		value = 5
+    		compare = greater_than_or_equals
+    			}
+			}
+		}
+		x = 19
+		y = 5
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_The_Grand_Reforms"
+			add_popularity = { ideology = national_socialist popularity = -0.10 }
+			add_country_leader_trait = reformist
+			add_political_power = -100
+			news_event = { id = twrspeerpolitics.3 days = 1 }
+			custom_effect_tooltip = speer_support_lowered
+			hidden_effect = {
+			subtract_from_variable = {
+    		var = speerssupport
+    		value = 5
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Reshape_The_NSDAP
+		icon = GFX_GER_nazi_star
+		cost = 8.00
+		prerequisite = {
+			focus = GER_The_Grand_Reforms
+		}
+		available = {
+		custom_trigger_tooltip = {
+    	tooltip = SPEER_enough_support		
+			check_variable = {
+    		var = speerssupport
+    		value = 5
+    		compare = greater_than_or_equals
+    			}
+			}
+		}
+		x = 19
+		y = 6
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Reshape_The_NSDAP"
+			add_ideas = GER_speertard_reform_1
+			country_event = { id = twrspeerpolitics.12 hours = 8 }
+			custom_effect_tooltip = speer_support_lowered
+			hidden_effect = {
+			subtract_from_variable = {
+    		var = speerssupport
+    		value = 5
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Nation_Like_Businesses
+		icon = GFX_GENERIC_bag_of_money
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Reshape_The_NSDAP
+		}
+		x = 17
+		y = 7
+		available = {
+		custom_trigger_tooltip = {
+    	tooltip = SPEER_enough_support		
+			check_variable = {
+    		var = speerssupport
+    		value = 3
+    		compare = greater_than_or_equals
+    			}
+			}
+		}
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Nation_Like_Businesses"
+			add_ideas = GER_speer_corporate_state
+			custom_effect_tooltip = speer_support_lowered
+			hidden_effect = {
+			subtract_from_variable = {
+    		var = speerssupport
+    		value = 3
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Revamp_The_Government
+		icon = GFX_goal_tfv_saf_support_ossebrandwag
+		cost = 9.00
+		prerequisite = {
+			focus = GER_Reshape_The_NSDAP
+		}
+		x = 19
+		y = 7
+		ai_will_do = {
+		factor = 100
+		}
+		available = {
+		custom_trigger_tooltip = {
+    	tooltip = SPEER_enough_support		
+			check_variable = {
+    		var = speerssupport
+    		value = 5
+    		compare = greater_than_or_equals
+    			}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Revamp_The_Government"
+			swap_ideas = {
+				remove_idea = GER_speertard_reform_1
+				add_idea = GER_speertard_reform_2
+			}
+			country_event = { id = twrspeerpolitics.14 hours = 5 }
+			custom_effect_tooltip = speer_support_lowered
+			hidden_effect = {
+			subtract_from_variable = {
+    		var = speerssupport
+    		value = 5
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Define_Germany
+		icon = GFX_GENERIC_draw_borders
+		cost = 2.00
+		prerequisite = {
+			focus = GER_Revamp_The_Government
+		}
+		x = 19
+		y = 8
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Define_Germany"
+			country_event = { id = twrspeerpolitics.11 hours = 5 }
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Full_Liberalisation
+		icon = GFX_GER_Nazi_Trade
+		cost = 10.00
+		prerequisite = {
+			focus = GER_Reshape_The_NSDAP
+		}
+		x = 21
+		y = 7
+		ai_will_do = {
+		factor = 100
+		}
+		available = {
+		has_war = no
+		custom_trigger_tooltip = {
+    	tooltip = SPEER_enough_support		
+			check_variable = {
+    		var = speerssupport
+    		value = 5
+    		compare = greater_than_or_equals
+    			}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Full_Liberalisation"
+			add_ideas = free_trade
+			news_event = { id = twrspeerpolitics.4 hours = 5 }
+			add_stability = -0.1
+			custom_effect_tooltip = speer_support_lowered
+			hidden_effect = {
+			subtract_from_variable = {
+    		var = speerssupport
+    		value = 7
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Declare_Economy_First
+		icon = GFX_GENERIC_Gold_Growth
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Full_Liberalisation
+		}
+		x = 21
+		y = 8
+		ai_will_do = {
+		factor = 100
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Declare_Economy_First"
+			add_timed_idea = {
+				idea = GER_economy_first_idea
+				days = 400
+			}
+			complete_national_focus = GER_Speer_Economics
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Our_Total_War
+		icon = GFX_GENERIC_crowd_war
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Goebbels_Economics
+		}
+		available = {
+		has_war = yes
+		}
+		x = 31
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Our_Total_War"
+			add_ideas = GER_our_total_war_idea
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Everyone_A_House
+		icon = GFX_GENERIC_house
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Our_Total_War
+		}
+		x = 23
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Everyone_A_House"
+			add_stability = 0.15
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Industrial_Quotas
+		icon = GFX_GENERIC_industrial_quota
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Our_Total_War
+		}
+		x = 27
+		y = 2
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Industrial_Quotas"
+			add_ideas = GER_work_culture_1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Back_Into_The_Fold
+		icon = GFX_GER_rk_eagle
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Goebbels_Economics
+			focus = GER_Speer_Economics
+		}
+		ai_will_do = {
+		factor = 200
+		}
+		relative_position_id = GER_Speer_Economics
+		x = -3
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Back_Into_The_Fold"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_RK_Ost
+		icon = GFX_GER_RK_Ost
+		cost = 10.00
+		prerequisite = {
+			focus = GER_Back_Into_The_Fold
+		}
+		relative_position_id = GER_Back_Into_The_Fold
+		x = 0
+		y = 1
+
+		available = {
+			RUK = {
+				if = {
+					limit = { exists = yes }
+				}
+				is_subject_of = ROOT
+			}
+			ROS = {
+				if = {
+					limit = { exists = yes }
+				}
+				is_subject_of = ROOT
+			}
+			RMO = {
+				if = {
+					limit = { exists = yes }
+				}
+				is_subject_of = ROOT
+			}
+			RKA = {
+				if = {
+					limit = { exists = yes }
+				}
+				is_subject_of = ROOT
+			}
+			RGO = {
+				if = {
+					limit = { exists = yes }
+				}
+				is_subject_of = ROOT
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_RK_Ost"
+			custom_effect_tooltip = GER_RK_ost_created_tt
+			hidden_effect = {
+				GER_create_RK_ost = yes
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Labour_Death_Camps
+		icon = GFX_GENERIC_workers
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Our_Total_War
+		}
+		x = 25
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Labour_Death_Camps"
+			add_ideas = GER_labor_death_camps
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Homemade_Rifles
+		icon = GFX_GER_two_rifles
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Industrial_Quotas
+		}
+		x = 25
+		y = 3
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Homemade_Rifles"
+			add_ideas = GER_homemade_equipment_1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Homemade_Equipment
+		icon = GFX_GER_equipment
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Homemade_Rifles
+		}
+		x = 25
+		y = 4
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Homemade_Equipment"
+			swap_ideas = {
+				remove_idea = GER_homemade_equipment_1
+				add_idea = GER_homemade_equipment_2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Homemade_Tank_Parts
+		icon = GFX_GER_panzer_parts
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Homemade_Equipment
+		}
+		x = 25
+		y = 5
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Homemade_Tank_Parts"
+			swap_ideas = {
+				remove_idea = GER_homemade_equipment_2
+				add_idea = GER_homemade_equipment_3
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Unpaid_Overtime
+		icon = GFX_GENERIC_time_factory
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Industrial_Quotas
+		}
+		x = 27
+		y = 3
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Unpaid_Overtime"
+			swap_ideas = {
+				remove_idea = GER_work_culture_1
+				add_idea = GER_work_culture_2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Enforce_The_KdF
+		icon = GFX_german_labour_union
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Unpaid_Overtime
+		}
+		x = 27
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Enforce_The_KdF"
+			add_political_power = -75
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Fanatic_Workers
+		icon = GFX_GENERIC_air_production
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Enforce_The_KdF
+		}
+		x = 27
+		y = 5
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Fanatic_Workers"
+			swap_ideas = {
+				remove_idea = GER_work_culture_2
+				add_idea = GER_work_culture_3
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Military_Equipment_First
+		icon = GFX_GENERIC_army_agreement
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Our_Total_War
+		}
+		x = 29
+		y = 2
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Military_Equipment_First"
+			add_tech_bonus = {
+				name = GER_Military_Equipment_First
+				bonus = 0.5
+				uses = 2
+				category = infantry_tech
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_All_Resources_To_The_Bomb
+		icon = GFX_RGO_totenkopf_nuke
+		cost = 10.00
+		prerequisite = {
+			focus = GER_Military_Equipment_First
+		}
+		x = 29
+		y = 3
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_All_Resources_To_The_Bomb"
+			add_tech_bonus = {
+				name = GER_All_Resources_To_The_Bomb
+				bonus = 3.0
+				uses = 1
+				category = nuclear
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Volkswagen_Conversion
+		icon = GFX_GER_volkswagen_1
+		cost = 8.00
+		prerequisite = {
+			focus = GER_All_Resources_To_The_Bomb
+		}
+		x = 29
+		y = 4
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Volkswagen_Conversion"
+			add_timed_idea = {
+				idea = GER_volkswagen_military_vehicles
+				days = 100
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_The_Goebbels_System
+		icon = GFX_GENERIC_industrial_grey
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Volkswagen_Conversion
+		}
+		x = 29
+		y = 5
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_The_Goebbels_System"
+			add_ideas = GER_the_goebbels_system_1
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Everyones_Equal
+		icon = GFX_GENERIC_Refugees
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Homemade_Tank_Parts
+		}
+		prerequisite = {
+			focus = GER_The_Goebbels_System
+		}
+		prerequisite = {
+			focus = GER_Fanatic_Workers
+		}
+		x = 27
+		y = 6
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Everyones_Equal"
+			custom_effect_tooltip = GER_combine_all_ideas_tt
+			hidden_effect = {
+				remove_ideas = GER_work_culture_3
+				remove_ideas = GER_homemade_equipment_3
+				remove_ideas = GER_the_goebbels_system_1
+				add_ideas = GER_the_goebbels_system_2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_The_Greater_Germany
+		icon = GFX_GENERIC_Nazi_over_europe
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Our_Total_War
+		}
+		available = {
+		has_war = yes
+		}		
+		x = 32
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_The_Greater_Germany"
+			swap_ideas = {
+				remove_idea = GER_economic_stagnation
+				add_idea = GER_economic_recovery_1
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Proud_Aryan_Workers
+		icon = GFX_GER_aryan_workers
+		cost = 8.00
+		prerequisite = {
+			focus = GER_The_Greater_Germany
+		}
+		x = 31
+		y = 3
+		available = {
+		has_war = yes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Proud_Aryan_Workers"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_1
+				add_idea = GER_economic_recovery_2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Enforce_Birth_Quota
+		icon = GFX_GENERIC_rations
+		cost = 8.00
+		prerequisite = {
+			focus = GER_The_Greater_Germany
+		}
+		x = 33
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Enforce_Birth_Quota"
+			add_ideas = GER_birth_quotas
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Forget_The_Economy
+		icon = GFX_GENERIC_End_Trade
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Proud_Aryan_Workers
+		}
+		prerequisite = {
+			focus = GER_Enforce_Birth_Quota
+		}
+		x = 32
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Forget_The_Economy"
+			remove_ideas = GER_economic_recovery_2
+			add_timed_idea = {
+				idea = GER_economic_recovery_2
+				days = 712
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Abolishment_Of_the_Bank
+		icon = GFX_GER_Reichsbank_Abolished
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Forget_The_Economy
+		}
+		x = 32
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Abolishment_Of_the_Bank"
+			add_political_power = 150
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Civil_Engineering
+		icon = GFX_GER_benz
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Speer_Economics
+		}
+		x = 37
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Civil_Engineering"
+			add_tech_bonus = {
+				name = GER_Civil_Engineering
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Expand_The_Autobahn
+		icon = GFX_GENERIC_highway
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Civil_Engineering
+		}
+		x = 37
+		y = 2
+		
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = GER_Expand_The_Autobahn_infa }
+				set_building_level = {
+					type = infrastructure
+					level = 7
+				}
+			}			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Expand_The_Autobahn"
+			every_state = {
+				limit = {
+					infrastructure < 7
+					is_core_of = GER
+				}
+				set_building_level = {
+					type = infrastructure
+					level = 7
+				}
+				set_state_flag = GER_Expand_The_Autobahn_infa
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_The_Value_Of_Slaves
+		icon = GFX_GER_Slavery
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Expand_The_Autobahn
+		}
+		x = 35
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_The_Value_Of_Slaves"
+			add_ideas = GER_slave_labor_1
+			country_event = twrspeerpolitics.5
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Corporatism
+		icon = GFX_GENERIC_corruption_money
+		cost = 8.00
+		prerequisite = {
+			focus = GER_The_Value_Of_Slaves
+		}
+		x = 35
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Corporatism"
+			swap_ideas = {
+				remove_idea = GER_slave_labor_1
+				add_idea = GER_slave_labor_2
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Warsaw_No_Longer
+		icon = GFX_goal_generic_attack_allies
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Expand_The_Autobahn
+		}
+		available = {
+			ROOT = {
+				owns_state = 10
+			}
+		}
+		x = 37
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Warsaw_No_Longer"
+			custom_effect_tooltip = ERASE_WARSAW
+			add_political_power = 100
+			add_stability = 0.05
+			news_event = twrspeercities.5
+				
+				10 = { #Warsaw
+				remove_province_modifier = {
+					static_modifiers = { terrain_warsaw }
+					province = { id = 3544 }
+				}
+
+				
+				add_province_modifier = {
+					static_modifiers = { terrain_warsaw_pabst }
+					province = { id = 3544 }	 
+				}
+		    }
+			
+			hidden_effect = {
+				10 = {
+					remove_building = {
+						type = arms_factory
+						level = 5
+					}
+					remove_building = {
+						type = industrial_complex 
+						level = 5
+					}
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Parteivolkshalle
+		icon = GFX_GENERIC_urbanization1
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Warsaw_No_Longer
+		}
+		x = 37
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Parteivolkshalle"
+			10 = {
+				if = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 1
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
+				if = {
+					limit = {
+						infrastructure < 8
+					}
+					set_building_level = {
+						type = infrastructure
+						level = 8
+					}
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Germanise_Polen
+		icon = GFX_focus_generic_polish_deal
+		cost = 20.00
+		prerequisite = {
+			focus = GER_Parteivolkshalle
+		}
+		x = 37
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Germanise_Polen"
+			every_state = {
+				limit = {
+					is_core_of = POL
+					NOT = {
+					is_core_of = GER
+					is_core_of = BLR
+					is_core_of = UKR
+					}
+				}
+				add_core_of = GER
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Rail_Expansions
+		icon = GFX_GENERIC_Train_choo
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Expand_The_Autobahn
+		}
+		x = 39
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Rail_Expansions"
+			add_timed_idea = { idea = GER_railway_construction_scheme days = 140 }
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Copehagen_Tyrol_Highway
+		icon = GFX_GENERIC_fix_crap_rails
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Rail_Expansions
+		}
+		available = {
+			has_completed_focus = GER_The_Value_Of_Slaves
+		}
+		x = 39
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Copehagen_Tyrol_Highway"
+			custom_effect_tooltip = GER_Copehagen_Tyrol_Highway_tt
+			hidden_effect = {
+				GER_construct_copehagen_tyrol_highway = yes
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Breitspurbahn_Lines
+		icon = GFX_GENERIC_Europe
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Copehagen_Tyrol_Highway
+		}
+		x = 39
+		y = 5
+		available = {
+			has_completed_focus = GER_The_Value_Of_Slaves
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Breitspurbahn_Lines"
+			custom_effect_tooltip = GER_Breitspurbahn_Lines_tt
+			hidden_effect = {
+				GER_construct_breitspurbahn_stuff = yes
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Economy_Recovery
+		icon = GFX_GENERIC_economic_prosperity
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Civil_Engineering
+		}
+		x = 42
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Economy_Recovery"
+			swap_ideas = {
+				remove_idea = GER_economic_stagnation
+				add_idea = GER_economic_recovery_1
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Expand_Lufthansa
+		icon = GFX_GER_Lufthansa
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Economy_Recovery
+		}
+		x = 41
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Expand_Lufthansa"
+			add_tech_bonus = {
+				name = GER_Expand_Lufthansa
+				bonus = 1.0
+				uses = 2
+				category = heavy_air
+			}
+			custom_effect_tooltip = UNLOCK_LUFTHANSA
+			set_country_flag = Lufthansa_Expansion
+			if = {
+				limit = {
+					has_idea = GER_economic_recovery_1
+				}
+				swap_ideas = {
+					remove_idea = GER_economic_recovery_1
+					add_idea = GER_economic_recovery_2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = GER_economic_recovery_2
+					add_idea = GER_economic_recovery_3
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Germanian_International_Airport
+		icon = GFX_GENERIC_air_construction
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Rail_Expansions
+		}
+		x = 41
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Germanian_International_Airport"
+			855 = {
+			set_building_level = {
+				type = air_base 
+				level = 10
+				instant_build = yes
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Volkswagen_Benefits
+		icon = GFX_GER_volkswagen_benefits
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Economy_Recovery
+		}
+		x = 43
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Volkswagen_Benefits"
+			add_tech_bonus = {
+				name = GER_Volkswagen_Benefits
+				bonus = 2.0
+				uses = 1
+				category = motorized_equipment
+			}
+			if = {
+				limit = {
+					has_idea = GER_economic_recovery_1
+				}
+				swap_ideas = {
+					remove_idea = GER_economic_recovery_1
+					add_idea = GER_economic_recovery_2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = GER_economic_recovery_2
+					add_idea = GER_economic_recovery_3
+				}
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Tax_Incomes
+		icon = GFX_GENERIC_money
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Volkswagen_Benefits
+		}
+		prerequisite = {
+			focus = GER_Expand_Lufthansa
+		}
+		x = 43
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Tax_Incomes"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_3
+				add_idea = GER_economic_recovery_4
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Profits_Of_The_Free_Market
+		icon = GFX_GENERIC_Slush_Cash
+		mutually_exclusive = {
+		focus = GER_Profits_Of_The_Slave_Market
+		}
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Tax_Incomes
+		}
+		available = {
+			has_completed_focus = GER_Full_Liberalisation
+		}
+		x = 44
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Profits_Of_The_Free_Market"
+			remove_ideas = GER_economic_recovery_4
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Profits_Of_The_Slave_Market
+		icon = GFX_GER_slaves
+		mutually_exclusive = {
+		focus = GER_Profits_Of_The_Free_Market
+		}
+		cost = 10.00
+		prerequisite = {
+			focus = GER_Tax_Incomes
+		}
+		available = {
+			NOT = {
+			has_country_leader = {
+		    name = "Albert Speer"
+		    ruling_only = yes
+				}
+			}
+		}
+		x = 42
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Profits_Of_The_Slave_Market"
+			add_stability = -0.1
+			remove_ideas = GER_economic_recovery_4
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Project_Wirklichkeit #first phase
+		icon = GFX_GER_Wirklichkeit
+		cost = 10.00
+		prerequisite = {
+			focus = GER_Civil_Engineering
+		}
+		x = 46
+		y = 2
+		available = {
+			has_completed_focus = GER_The_Value_Of_Slaves
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Project_Wirklichkeit"
+			custom_effect_tooltip = SPEER_FIRST_PLAN
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_The_Grand_Plans #second phase
+		icon = GFX_GER_Volkshalle
+		cost = 10.00
+		prerequisite = {
+			focus = GER_Project_Wirklichkeit
+		}
+		x = 46
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Racing_For_The_Bomb"
+			custom_effect_tooltip = SPEER_SECOND_PLAN
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Racing_For_The_Bomb
+		icon = GFX_GENERIC_nuclear
+		cost = 10.00
+		prerequisite = {
+			focus = GER_The_Grand_Plans
+		}
+		x = 46
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Racing_For_The_Bomb"
+			add_tech_bonus = {
+				name = GER_Racing_For_The_Bomb
+				bonus = 3.0
+				uses = 1
+				category = nuclear
+			}
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Speers_Vision_Realized
+		icon = GFX_GER_Speers_Vision
+		cost = 2.00
+		prerequisite = {
+			focus = GER_Racing_For_The_Bomb
+		}
+		x = 46
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Speers_Vision_Realized"
+			add_political_power = 150
+			add_stability = 0.10
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Gone_With_The_Wind
+		icon = GFX_RGO_totenkopf_nuke
+		cost = 1.00
+		prerequisite = {
+			focus = GER_Economic_Failure
+		}
+		mutually_exclusive = {
+			focus = GER_Cease_All_Operations
+		}
+		x = 47
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Gone_With_The_Wind"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Cease_All_Operations
+		icon = GFX_GENERIC_loosen_regulations
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Economic_Failure
+		}
+		mutually_exclusive = {
+			focus = GER_Gone_With_The_Wind
+		}
+		x = 49
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Cease_All_Operations"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Plea_For_Aid
+		icon = GFX_GENERIC_Burn_the_Parliament
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Cease_All_Operations
+		}
+		x = 48
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Plea_For_Aid"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Accept_Our_Faults
+		icon = GFX_GER_Chained_Eagles
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Plea_For_Aid
+		}
+		x = 48
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Accept_Our_Faults"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_A_Cult_Of_Truth
+		icon = GFX_GENERIC_Stamp_Christain
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Finger_Pointing
+		}
+		prerequisite = {
+			focus = GER_A_New_Agency
+		}
+		x = 2
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_A_Cult_Of_Truth"
+			add_country_leader_trait = saviour_of_aryans
+			add_manpower = 500000
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Loyalty_And_Purity
+		icon = GFX_GER_End_Of_The_Civil_War
+		cost = 8.00
+		prerequisite = {
+			focus = GER_A_Cult_Of_Truth
+		}
+		prerequisite = {
+			focus = GER_A_Party_United
+		}
+		prerequisite = {
+			focus = GER_Mighty_Propaganda
+		}
+		x = 4
+		y = 6
+
+		completion_reward = {
+			add_ideas = GOEBBELS_loyalty_purity
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Loyalty_And_Purity"
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Old_Glory
+		icon = GFX_GER_Germany_Once_More
+		cost = 10.00
+		prerequisite = {
+			focus = GER_Traditional_Policies
+		}
+		x = 10
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Old_Glory"
+			remove_ideas = GER_grand_power_struggles
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_The_Strongman_Leader
+		icon = GFX_GENERIC_Nazi_Myth
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Define_Germany
+		}
+		prerequisite = {
+			focus = GER_Declare_Economy_First
+		}
+		x = 20
+		y = 9
+		available = {
+		num_of_civilian_factories > 95
+		has_war = no
+		has_stability > 0.7
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_The_Strongman_Leader"
+			swap_ideas = {
+				remove_idea = GER_speertard_reform_2
+				add_idea = GER_speertard_reform_3
+			}
+			news_event = { id = twrspeerpolitics.15 hours = 5 }
+		}
+	}
+	shared_focus = {
+	cancelable = no
+		id = GER_Start_The_Struggle
+		icon = GFX_GENERIC_From_the_depths
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Loyalty_And_Purity
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = enough_total_war_support		
+				check_variable = {
+					var = totalwarsupport
+					value = 10
+					compare = greater_than_or_equals
+				}
+			}
+		}
+		x = 4
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Start_The_Struggle"
+			news_event = twrgoebbels.1
+			add_named_threat = { 
+				threat = 25
+				name = GER_total_war
+			}
+			remove_ideas = GER_grand_power_struggles
+			complete_national_focus = GER_Goebbels_Economics
+		}
+	}

@@ -1,0 +1,2787 @@
+
+focus_tree = {
+	id = twr_russia_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 69
+			tag = RUS
+		}
+	}
+	continuous_focus_position = { x = 50 y = -1000 }
+	
+	focus = {
+	cancelable = no
+		id = RUS_winning_the_siberian_war
+		icon = GFX_RUS_Volunteers
+		x = 18
+		y = 0
+		cost = 8
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_winning_the_siberian_war"
+			custom_effect_tooltip = enable_decisions_russia_tt
+			set_country_flag = fighting_siberian_war
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_march_in_amur
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = RUS_winning_the_siberian_war}
+		x = 0
+		y = 1
+		relative_position_id = RUS_winning_the_siberian_war
+		cost = 5
+		available = {
+			controls_state = 561
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 4
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_march_in_amur"
+			if = {
+				limit = {
+					is_ai = no
+				}
+				effect_tooltip = {
+					activate_decision = russia_march_in_amur
+				}
+			}
+			else = {
+				effect_tooltip = {
+					activate_decision = russia_march_in_amur
+				}
+				hidden_effect = {
+					country_event = { id = russia.200 days = 20 }
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_military_base_in_amur
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = RUS_march_in_amur}
+		x = 0
+		y = 2
+		relative_position_id = RUS_winning_the_siberian_war
+		cost = 8
+		available = {
+			controls_state = 561
+			has_country_flag = control_over_amur_russia
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_military_base_in_amur"
+			add_state_core = 561
+			add_political_power = 25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_march_in_yakutsk
+		icon = GFX_focus_generic_strike_at_democracy1
+		prerequisite = { focus = RUS_march_in_amur}
+		x = 2
+		y = 2
+		relative_position_id = RUS_winning_the_siberian_war
+		cost = 5
+		available = {
+			controls_state = 574
+			controls_state = 644
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 4
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_march_in_yakutsk"
+			if = {
+				limit = {
+					is_ai = no
+				}
+				effect_tooltip = {
+					activate_decision = russia_march_in_yakutsk
+				}
+			}
+			else = {
+				effect_tooltip = {
+					activate_decision = russia_march_in_yakutsk
+				}
+				hidden_effect = {
+					country_event = { id = russia.201 days = 20 }
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_military_base_in_yakutsk
+		icon = GFX_GENERIC_static_defense
+		prerequisite = { focus = RUS_march_in_yakutsk}
+		x = 2
+		y = 3
+		relative_position_id = RUS_winning_the_siberian_war
+		cost = 8
+		available = {
+			has_country_flag = control_over_yakutsk_russia
+			controls_state = 574
+			controls_state = 644
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_military_base_in_yakutsk"
+			add_state_core = 574
+			add_state_core = 644
+			add_political_power = 25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_march_in_chita
+		icon = GFX_GENERIC_deport_people
+		prerequisite = { focus = RUS_military_base_in_amur}
+		x = 0
+		y = 3
+		relative_position_id = RUS_winning_the_siberian_war
+		cost = 5
+		available = { 
+			controls_state = 563
+			controls_state = 564
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 4
+		}
+		bypass = {
+			country_exists = FAR
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_march_in_chita"
+			if = {
+				limit = {
+					is_ai = no
+				}
+				effect_tooltip = {
+					activate_decision = russia_march_in_chita
+				}
+			}
+			else = {
+				effect_tooltip = {
+					activate_decision = russia_march_in_chita
+				}
+				hidden_effect = {
+					country_event = { id = russia.202 days = 20 }
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_military_base_in_chita
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = RUS_march_in_chita}
+		x = -1
+		y = 4
+		relative_position_id = RUS_winning_the_siberian_war
+		cost = 8
+		available = {
+			has_country_flag = control_over_chita_russia
+			controls_state = 563
+		}
+		bypass = {
+			country_exists = FAR
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 4
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_military_base_in_chita"
+			add_state_core = 563
+			add_political_power = 25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_buryatia_forward_post
+		icon = GFX_TRV_picture_of_a_border_post
+		prerequisite = { focus = RUS_march_in_chita}
+		x = 1
+		y = 4
+		relative_position_id = RUS_winning_the_siberian_war
+		cost = 5
+		available = {
+			has_country_flag = control_over_chita_russia
+			controls_state = 564
+		}
+		bypass = {
+			country_exists = FAR
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 4
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_buryatia_forward_post"
+			add_state_core = 564
+			add_political_power = 5
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_trek_westwards
+		icon = GFX_RUS_expand_russia
+		prerequisite = { focus = RUS_buryatia_forward_post }
+		prerequisite = { focus = RUS_military_base_in_chita}
+		x = 0
+		y = 5
+		cost = 8
+		relative_position_id = RUS_winning_the_siberian_war
+		available = {
+			has_army_manpower = {
+				size > 125000 #a think about this
+			}
+			NOT = { has_idea = RUS_siberian_war }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_trek_westwards"
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = NOV
+						is_core_of = KRA
+						is_core_of = BRY
+						is_core_of = TAN
+						is_core_of = NRI
+					}
+					NOT = { is_core_of = RUS }
+				}
+				add_claim_by = RUS
+			}
+			#add event
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_ultimatum_to_buryatia
+		icon = GFX_BRY_flag_icon
+		prerequisite = { focus = RUS_trek_westwards }
+		x = 1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_trek_westwards
+		available = {
+			BRY = {
+				exists = yes
+			}
+		}
+		bypass = {
+			BRY = {
+				OR = {
+					exists = no
+					has_war_with = RUS
+					is_puppet_of = RUS
+					is_puppet = yes
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.4
+				has_war = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_ultimatum_to_buryatia"
+			BRY = {
+				save_global_event_target_as = russia_ultimatum_to_target
+			}
+			country_event = russia.207
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_crush_norilsk
+		icon = GFX_NRI_flag_icon
+		prerequisite = { focus = RUS_trek_westwards }
+		prerequisite = { focus = RUS_military_base_in_yakutsk }
+		x = 4
+		y = 1
+		cost = 8
+		relative_position_id = RUS_trek_westwards
+		available = {
+			NRI = {
+				exists = yes
+			}
+		}
+		bypass = {
+			NRI = {
+				OR = {
+					exists = no
+					has_war_with = RUS
+					is_puppet_of = RUS
+					is_puppet = yes
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 4
+			modifier = {
+				factor = 0.4
+				has_war = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_crush_norilsk"
+			NRI = {
+				save_global_event_target_as = russia_ultimatum_to_target
+			}
+			country_event = russia.207
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_destroying_krasnoyarsk
+		icon = GFX_KRA_flag_icon
+		prerequisite = { focus = RUS_crush_norilsk focus = RUS_ultimatum_to_buryatia }
+		x = 1
+		y = 2
+		cost = 8
+		relative_position_id = RUS_trek_westwards
+		available = {
+			KRA = {
+				exists = yes
+			}
+		}
+		bypass = {
+			KRA = {
+				OR = {
+					exists = no
+					has_war_with = RUS
+					is_puppet_of = RUS
+					is_puppet = yes
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.4
+				has_war = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_destroying_krasnoyarsk"
+			KRA = {
+				save_global_event_target_as = russia_ultimatum_to_target
+			}
+			country_event = russia.207
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_freeing_sakhalin
+		icon = GFX_RUS_liberate_sakhalin
+		prerequisite = { focus = RUS_trek_westwards }
+		x = -4
+		y = 1
+		cost = 8
+		relative_position_id = RUS_trek_westwards
+		available = {
+			OR = {
+				655 = { NOT = { is_owned_by = RUS } }
+				537 = { NOT = { is_owned_by = RUS } }
+			}
+			NOT = { has_war_with = USA }
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 3
+				USA = {
+					has_opinion = {
+						target = RUS
+						value > 20
+					}
+				}
+			}
+		}
+		bypass = {
+			owns_state = 655
+			owns_state = 537
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_freeing_sakhalin"
+			random_country = {
+				limit = {
+					OR = {
+						owns_state = 655
+						owns_state = 537
+					}
+					NOT = { tag = RUS }
+				}
+				country_event = { id = russia.212 days = 3 }
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_fortress_sakhalin
+		icon = GFX_RUS_retreat_to_sakhalin
+		prerequisite = { focus = RUS_freeing_sakhalin }
+		x = 0
+		y = 1
+		cost = 2
+		relative_position_id = RUS_freeing_sakhalin
+		available = {
+			has_war_with = SOV
+			surrender_progress > 0.2
+			owns_state = 655
+			owns_state = 537
+			controls_state = 655
+			controls_state = 537
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0.3
+				surrender_progress < 0.35
+			}
+			modifier = {
+				factor = 0
+				surrender_progress < 0.25
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_fortress_sakhalin"
+			add_ideas = RUS_the_great_retreat
+			effect_tooltip = {
+				activate_decision = rus_surrender_the_mainland
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_return_of_order
+		icon = GFX_goal_generic_demand_territory #¤GFX_GENERIC_Curtail_the_Military
+		prerequisite = { focus = RUS_trek_westwards }
+		x = -2
+		y = 1
+		cost = 8
+		relative_position_id = RUS_trek_westwards
+		available = {
+			country_exists = FAR
+		}
+		bypass = {
+			OR = {
+				NOT = {country_exists = FAR}
+				has_war_with = FAR
+				owns_state = 564
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_return_of_order"
+			create_wargoal = {
+				type = annex_everything
+				target = FAR
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						is_ai = yes
+					}
+					add_state_core = 563
+					add_state_core = 564
+				}
+				else = {
+					activate_decision = russia_march_in_chita
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_ending_altai
+		icon = GFX_TAN_flag_icon
+		prerequisite = { focus = RUS_ultimatum_to_buryatia }
+		prerequisite = { focus = RUS_return_of_order }
+		x = -1
+		y = 2
+		cost = 8
+		relative_position_id = RUS_trek_westwards
+		available = {
+			TAN = {
+				exists = yes
+			}
+		}
+		bypass = {
+			OR = {
+				TAN = { exists = no }
+				TAN = { has_war_with = RUS }
+				TAN = { is_puppet_of = RUS }
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.4
+				has_war = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_ending_altai"
+			TAN = {
+				country_event = { id = russia.210 days = 4 }
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_move_through_novosibirsk
+		icon = GFX_NOV_flag_icon
+		prerequisite = { focus = RUS_ending_altai }
+		prerequisite = { focus = RUS_destroying_krasnoyarsk }
+		x = 0
+		y = 3
+		cost = 8
+		relative_position_id = RUS_trek_westwards
+		available = {
+			NOV = {
+				exists = yes
+				NOT = {
+				has_country_leader = {
+			    name = "Nikita Khrushchev"
+			    ruling_only = yes
+				}
+				}
+			}
+		}
+		bypass = {
+			OR = {
+				NOV = { exists = no }
+				NOV = { has_war_with = RUS }
+				NOV = { is_puppet_of = RUS }
+				NOV = { is_puppet = yes }
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.4
+				has_war = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_move_through_novosibirsk"
+			NOV = {
+				save_global_event_target_as = russia_ultimatum_to_target
+			}
+			country_event = russia.207
+		} 
+	}
+	focus = {
+	cancelable = no
+		id = RUS_the_soviet_border
+		icon = GFX_GENERIC_frontlines
+		x = 3
+		y = 3
+		cost = 2
+		relative_position_id = RUS_trek_westwards
+		available = {
+			is_neighbor_of = SOV
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_the_soviet_border"
+			country_event = russia.217
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = RUS_leadership_struggle 
+		icon = GFX_RUS_sergei
+		x = 6
+		y = 0
+		cost = 5
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 420
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_leadership_struggle"
+			custom_effect_tooltip = no_complete_effect_tt
+		}
+	}
+#Vlasov Tree
+	focus = {
+	cancelable = no
+		id = RUS_Vlasov
+		icon = GFX_RUS_Vlasov
+		x = -1
+		y = 1
+		cost = 5
+		prerequisite = { focus = RUS_leadership_struggle }
+		relative_position_id = RUS_leadership_struggle
+		mutually_exclusive = { focus = RUS_Zhigarev }
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 420
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Vlasov"
+			custom_effect_tooltip = VLASOV_PRESIDENT
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Republican_Front
+		icon = GFX_GENERIC_Align_Russia
+		x = 0
+		y = 1
+		cost = 5
+		prerequisite = { focus = RUS_Vlasov }
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 420
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Republican_Front"
+			add_ideas = RUS_Republican_Front
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_The_Republican_Security_Bureau
+		icon = GFX_GENERIC_spy_meeting
+		x = 0
+		y = 2
+		cost = 5
+		prerequisite = { focus = RUS_Republican_Front }
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_The_Republican_Security_Bureau"
+			add_ideas = RUS_rsb
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Create_the_Oligarchs
+		icon = GFX_SOV_create_oligarchs
+		x = -2
+		y = 1
+		cost = 5
+		prerequisite = { focus = RUS_Vlasov }
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Create_the_Oligarchs"
+			add_ideas = kleptocratic_regime 
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Cooperate_With_The_Fascist
+		icon = GFX_goal_generic_support_fascism
+		x = -2
+		y = 2
+		cost = 5
+		prerequisite = { focus = RUS_Create_the_Oligarchs }
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Cooperate_With_The_Fascist"
+			add_popularity = { ideology = fascist popularity = 0.1 }
+			#fascist minister
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Russian_Nationalism
+		icon = GFX_RUS_russian_dawn
+		x = -1
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = RUS_The_Republican_Security_Bureau
+		}
+		prerequisite = {
+			focus = RUS_Cooperate_With_The_Fascist
+		}
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Russian_Nationalism"
+			add_ideas = RUS_russian_identity
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Stabilize_the_Republic
+		icon = GFX_TRV_institute_senate
+		x = -1
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = RUS_Russian_Nationalism
+		}
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Stabilize_the_Republic"
+			remove_ideas = RUS_unstability_idea
+			add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Anti_Communism_Front
+		icon = GFX_GENERIC_Anti_Com
+		x = -3
+		y = 5
+		cost = 5
+		prerequisite = { focus = RUS_Stabilize_the_Republic }
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Anti_Communism_Front"
+			add_ideas = RUS_Anti_Communist_Front
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Chinese_Advisors
+		icon = GFX_CHI_military_affairs
+		x = -1
+		y = 5
+		cost = 5
+		prerequisite = { focus = RUS_Stabilize_the_Republic }
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Chinese_Advisors"
+			add_ideas = RUS_Chinese_Advisors
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Project_Russian_Glory
+		icon = GFX_GENERIC_Soviet_Soldier
+		x = 1
+		y = 5
+		cost = 10
+		prerequisite = {
+		focus = RUS_Stabilize_the_Republic
+		focus = RUS_Resolve_Instability
+		}
+		available = {
+		has_completed_focus = RUS_move_through_novosibirsk
+		}
+		relative_position_id = RUS_Vlasov
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Immigration_Programme"
+			custom_effect_tooltip = BEGIN_CORING
+		}
+	}
+#Zhigarev Tree
+	focus = {
+	cancelable = no
+		id = RUS_Zhigarev
+		icon = GFX_RUS_Zhigarev
+		x = 1
+		y = 1
+		cost = 5
+		prerequisite = { focus = RUS_leadership_struggle }
+		relative_position_id = RUS_leadership_struggle
+		mutually_exclusive = { focus = RUS_Vlasov }
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 420
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Zhigarev"
+			custom_effect_tooltip = ZHIGAREV_PRESIDENT
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Empowering_Populism
+		icon = GFX_GENERIC_Rally_the_People
+		x = 0
+		y = 1
+		cost = 5
+		prerequisite = { focus = RUS_Zhigarev }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Empowering_Populism"
+			add_ideas = RUS_Russian_Populism
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Coalition_with_Democrats
+		icon = GFX_GENERIC_Social_Democracy_Time
+		x = 2
+		y = 1
+		cost = 5
+		prerequisite = { focus = RUS_Zhigarev }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Coalition_with_Democrats"
+			add_popularity = { ideology = conservative popularity = 0.03 }
+			add_popularity = { ideology = liberal popularity = 0.03 }
+			add_popularity = { ideology = social_democrat popularity = 0.04 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_The_Zhigarev_Revolution
+		icon = GFX_GENERIC_Holding_Gun
+		x = 1
+		y = 2
+		cost = 5
+		prerequisite = { focus = RUS_Coalition_with_Democrats }
+		prerequisite = { focus = RUS_Empowering_Populism }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_The_Zhigarev_Revolution"
+			country_event = twrrussia.6
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Land_Reforms
+		icon = GFX_GENERIC_CIvil_Oversight
+		x = -1
+		y = 3
+		cost = 5
+		prerequisite = { focus = RUS_The_Zhigarev_Revolution }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = RUS_Land_Reforms_slots }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Land_Reforms"
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				set_state_flag = RUS_Land_Reforms_slots
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				set_state_flag = RUS_Land_Reforms_slots
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Raise_the_Republican_Militias
+		icon = GFX_RUS_russian_spirit
+		x = 1
+		y = 3
+		cost = 5
+		prerequisite = { focus = RUS_The_Zhigarev_Revolution }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Raise_the_Republican_Militias"
+			add_ideas = RUS_Republican_Militias
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Jewish_Communities
+		icon = GFX_Generic_Rehabilitate_Jews
+		x = 3
+		y = 3
+		cost = 5
+		prerequisite = { focus = RUS_The_Zhigarev_Revolution }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Jewish_Communities"
+			add_ideas = RUS_Jewish_Communities
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Resolve_Instability
+		icon = GFX_GENERIC_Dove_of_Peace
+		x = 1
+		y = 4
+		cost = 5
+		prerequisite = { focus = RUS_Raise_the_Republican_Militias }
+		prerequisite = { focus = RUS_Jewish_Communities }
+		prerequisite = { focus = RUS_Land_Reforms }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Resolve_Instability"
+			remove_ideas = RUS_unstability_idea
+			add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Plan_Rigged_Elections
+		icon = GFX_USA_voter_registration_act
+		x = 1
+		y = 5
+		cost = 5
+		prerequisite = { focus = RUS_Resolve_Instability }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Plan_Rigged_Elections"
+			country_event = twrrussia.7
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_Immigration_Programme
+		icon = GFX_TRV_nice_hat
+		x = 3
+		y = 5
+		cost = 5
+		prerequisite = { focus = RUS_Resolve_Instability }
+		relative_position_id = RUS_Zhigarev
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_Immigration_Programme"
+			add_manpower = 132000
+			add_stability = -0.05
+		}
+	}
+#END OF ZHIGAREV
+	focus = {
+	cancelable = no
+		id = RUS_military_industrial_complex
+		icon = GFX_focus_generic_industry_2
+		x = 35
+		y = 0
+		cost = 8
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_military_industrial_complex"
+			add_political_power = 50
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_russian_will
+		icon = GFX_RUS_russian_spirit
+		prerequisite = { focus = RUS_military_industrial_complex }
+		x = -2
+		y = 1
+		cost = 8
+		relative_position_id = RUS_military_industrial_complex
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_russian_will"
+			if = {
+				limit = {
+					NOT = { has_country_flag = russia_america_path }
+				}
+				set_country_flag = russia_local_path
+			}
+			IMPROVE_RUSSIAN_WILL = yes
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_american_steel
+		icon = GFX_USA_american_steel
+		prerequisite = { focus = RUS_military_industrial_complex }
+		x = 2
+		y = 1
+		cost = 8
+		relative_position_id = RUS_military_industrial_complex
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_american_steel"
+			if = {
+				limit = {
+					NOT = { has_country_flag = russia_local_path }
+				}
+				set_country_flag = russia_america_path
+			}
+			USA = {
+				add_ideas = RUS_american_assistance_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_create_national_arms_factory
+		icon = GFX_GENERIC_arms_industry
+		prerequisite = { focus = RUS_russian_will }
+		x = -4
+		y = 1
+		cost = 8
+		relative_position_id = RUS_russian_will
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_create_national_arms_factory"
+			random_owned_controlled_state = { 
+				limit = {
+					is_core_of = RUS
+					state_population > 200000
+					free_building_slots = {
+						building = arms_factory
+						size > 5
+						include_locked = yes
+					}
+				}
+				set_state_flag = gun_factory_state
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			} 
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_open_up_vladivostok_docks
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = RUS_russian_will }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_russian_will
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		available = {
+			controls_state = 408
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_open_up_vladivostok_docks"
+			408 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_capital_region_strategy
+		icon = GFX_GENERIC_capital_region
+		prerequisite = { focus = RUS_russian_will }
+		x = -5
+		y = 2
+		cost = 8
+		relative_position_id = RUS_russian_will
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_capital_region_strategy"
+			408 = {
+				if = {
+					limit = { 
+						infrastructure < 8
+					}
+					set_building_level = {
+						type = infrastructure
+						level = 8
+						instant_build = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_up_iron_production
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = RUS_russian_will }
+		x = -2
+		y = 2
+		cost = 8
+		relative_position_id = RUS_russian_will
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_up_iron_production"
+			add_resource = {
+				type = steel
+				amount = 25
+				state = 560
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_drawing_up_naval_designs
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = RUS_open_up_vladivostok_docks }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_open_up_vladivostok_docks
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_drawing_up_naval_designs"
+			add_tech_bonus = {
+				name = navy_bonus
+				bonus = 0.5
+				uses = 2
+				category = naval_equipment
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_stimulus_plan
+		icon = GFX_USA_expand_welfare
+		prerequisite = { focus = RUS_capital_region_strategy }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_capital_region_strategy
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_stimulus_plan"
+			add_timed_idea = {
+				idea = RUS_stimulus_plan_idea
+				days = 70
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_heavy_steel_works
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = RUS_up_iron_production }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_up_iron_production
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_heavy_steel_works"
+			random_owned_controlled_state = { 
+				limit = {
+					is_core_of = RUS
+					state_population > 150000
+					free_building_slots = {
+						building = industrial_complex
+						size > 2
+						include_locked = yes
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_stop_the_brain_drain
+		icon = GFX_GENERIC_brain
+		prerequisite = { focus = RUS_stimulus_plan }
+		x = -2
+		y = 2
+		cost = 8
+		relative_position_id = RUS_capital_region_strategy
+		available = {
+			
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_stop_the_brain_drain"
+			remove_ideas = RUS_brain_drain
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_expand_the_national_arms_factory
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = RUS_create_national_arms_factory }
+		prerequisite = { focus = RUS_heavy_steel_works }
+		x = 0
+		y = 3
+		cost = 8
+		relative_position_id = RUS_create_national_arms_factory
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_expand_the_national_arms_factory"
+			random_owned_controlled_state = { 
+				limit = {
+					has_state_flag = gun_factory_state
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			} 
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_aim_for_self_sufficiency
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = RUS_heavy_steel_works }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_heavy_steel_works
+		available = {
+			NOT = {
+				is_puppet = yes
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_aim_for_self_sufficiency"
+			IMPROVE_RUSSIAN_WILL = yes
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_expanding_docks
+		icon = GFX_GENERIC_dockyards
+		prerequisite = { focus = RUS_heavy_steel_works }
+		prerequisite = { focus = RUS_drawing_up_naval_designs }
+		x = 0
+		y = 2
+		cost = 8
+		relative_position_id = RUS_drawing_up_naval_designs
+		available = {
+			controls_state = 408
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_expanding_docks"
+			408 = {
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_reinvigorating_far_eastern_university
+		icon = GFX_focus_research
+		prerequisite = { focus = RUS_stop_the_brain_drain }
+		x = -1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_stop_the_brain_drain
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_reinvigorating_far_eastern_university"
+			add_research_slot = 1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_industrial_resurgence
+		icon = GFX_focus_generic_industry_2
+		prerequisite = { focus = RUS_stimulus_plan }
+		prerequisite = { focus = RUS_expand_the_national_arms_factory focus = RUS_stop_the_brain_drain }
+		x = 0
+		y = 2
+		cost = 8
+		relative_position_id = RUS_stimulus_plan
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_industrial_resurgence"
+			IMPROVE_RUSSIAN_WILL = yes
+			random_owned_controlled_state = { 
+				limit = {
+					is_core_of = RUS
+					state_population > 150000
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = { 
+				limit = {
+					is_core_of = RUS
+					state_population > 150000
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_artillery_gun_production
+		icon = GFX_GENERIC_artillery
+		prerequisite = { focus = RUS_expand_the_national_arms_factory }
+		x = 1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_expand_the_national_arms_factory
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_artillery_gun_production"
+			#add artillery company
+			random_owned_controlled_state = { 
+				limit = {
+					is_core_of = RUS
+					OR = {
+						has_state_flag = gun_factory_state
+						state_population > 500000
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_the_white_russian_fleet
+		icon = GFX_GENERIC_socialist_navy
+		prerequisite = { focus = RUS_expanding_docks }
+		mutually_exclusive = { focus = RUS_coastal_defense_fleet }
+		x = -1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_expanding_docks
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			NOT = { has_tech = trade_interdiction }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_the_white_russian_fleet"
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_fleet_in_being
+				category = cat_base_strike
+			}
+
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_coastal_defense_fleet
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = RUS_expanding_docks }
+		mutually_exclusive = { focus = RUS_the_white_russian_fleet }
+		x = 1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_expanding_docks
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			NOT = { OR = {
+				has_tech = fleet_in_being
+				has_tech = base_strike
+			} }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_coastal_defense_fleet"
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_trade_interdiction
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_aeronautics_studies
+		icon = GFX_GENERIC_interceptors
+		prerequisite = { focus = RUS_reinvigorating_far_eastern_university }
+		x = -1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_reinvigorating_far_eastern_university
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_aeronautics_studies"
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 2
+				category = air_equipment
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_war_college
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = RUS_reinvigorating_far_eastern_university }
+		x = 1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_reinvigorating_far_eastern_university
+		cancel_if_invalid = yes
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_war_college"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_siberian_industrial_cities
+		icon = GFX_GENERIC_urbanization2
+		prerequisite = { focus = RUS_industrial_resurgence }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_industrial_resurgence
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_siberian_industrial_cities"
+			563 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				if = {
+					limit = { 
+						free_building_slots = {
+							building = arms_factory
+							size > 1
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			565 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				if = {
+					limit = { 
+						free_building_slots = {
+							building = arms_factory
+							size > 1
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_naval_artillery
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = RUS_the_white_russian_fleet }
+		prerequisite = { focus = RUS_artillery_gun_production }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_the_white_russian_fleet
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_naval_artillery"
+			add_tech_bonus = {
+				name = navy_bonus
+				bonus = 0.35
+				uses = 3
+				category = naval_equipment
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_free_trade_agreement_with_japan
+		icon = GFX_focus_jap_pacific_guardian
+		prerequisite = { focus = RUS_coastal_defense_fleet focus = RUS_the_white_russian_fleet }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_coastal_defense_fleet
+		available = {
+			NOT = {
+				any_owned_state = {
+					OR = { is_claimed_by = JAP is_core_of = JAP }
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_america_path
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_free_trade_agreement_with_japan"
+			add_opinion_modifier = {
+				target = JAP
+				modifier = freetrade
+			}
+			JAP = {
+				add_opinion_modifier = {
+					target = RUS
+					modifier = freetrade
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_support_us_military_bases
+		icon = GFX_USA_military_advisors
+		prerequisite = { focus = RUS_american_steel }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_american_steel
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_support_us_military_bases"
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_usa_industrial_assistance
+		icon = GFX_GENERIC_economy_control
+		prerequisite = { focus = RUS_american_steel }
+		x = 4
+		y = 1
+		cost = 8
+		relative_position_id = RUS_american_steel
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		} 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_usa_industrial_assistance"
+			USA = {
+				swap_ideas = {
+					remove_idea = RUS_american_assistance_1
+					add_idea = RUS_american_assistance_2
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_naval_sale
+		icon = GFX_focus_generic_navy_battleship2
+		prerequisite = { focus = RUS_support_us_military_bases }
+		x = 1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_support_us_military_bases
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+			
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_naval_sale"
+			USA = {
+				country_event = twrrussia.8
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_air_sale
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = RUS_support_us_military_bases }
+		x = -1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_support_us_military_bases
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_air_sale"
+			USA = {
+				country_event = twrrussia.11
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_sherman_sale
+		icon = GFX_GENERIC_iron_sherman
+		prerequisite = { focus = RUS_support_us_military_bases }
+		x = 3
+		y = 1
+		cost = 8
+		relative_position_id = RUS_support_us_military_bases
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_sherman_sale"
+			USA = {
+				country_event = twrrussia.12
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_restarting_lend_lease
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = RUS_usa_industrial_assistance }
+		x = 1
+		y = 1
+		cost = 8
+		relative_position_id = RUS_usa_industrial_assistance
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_restarting_lend_lease"
+			USA = {
+				swap_ideas = {
+					remove_idea = RUS_american_assistance_2
+					add_idea = RUS_american_assistance_3
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_usa_heavy_equipment
+		icon = GFX_GENERIC_heavy_artillery
+		prerequisite = { focus = RUS_sherman_sale }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_sherman_sale
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_usa_heavy_equipment"
+			USA = {
+				country_event = twrrussia.13
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_attracting_investors
+		icon = GFX_GENERIC_foreign_investment
+		prerequisite = { focus = RUS_restarting_lend_lease }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_restarting_lend_lease
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_attracting_investors"
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_us_industrial_equipment
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = RUS_restarting_lend_lease }
+		x = 2
+		y = 1
+		cost = 8
+		relative_position_id = RUS_restarting_lend_lease
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_us_industrial_equipment"
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_naval_joint_exercise
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = RUS_naval_sale }
+		x = 0
+		y = 2
+		cost = 8
+		relative_position_id = RUS_naval_sale
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_naval_joint_exercise"
+			country_event = twrrussia.14
+			USA = {
+				country_event = twrrussia.14
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_air_joint_exercise
+		icon = GFX_goal_generic_air_doctrine
+		prerequisite = { focus = RUS_air_sale }
+		x = 0
+		y = 2
+		cost = 8
+		relative_position_id = RUS_air_sale
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_air_joint_exercise"
+			country_event = twrrussia.15
+			USA = {
+				country_event = twrrussia.15
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_land_joint_exercise
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = RUS_usa_heavy_equipment }
+		x = 0
+		y = 2
+		cost = 8
+		relative_position_id = RUS_sherman_sale
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+				has_military_access_to = RUS
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_land_joint_exercise"
+			country_event = twrrussia.16
+			USA = {
+				country_event = twrrussia.16
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_ford_plant
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = RUS_attracting_investors }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_attracting_investors
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_ford_plant"
+			random_owned_controlled_state = { 
+				limit = {
+					state_population > 200000
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			} 
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_purchasing_computers_from_america
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = RUS_us_industrial_equipment }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_us_industrial_equipment
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_purchasing_computers_from_america"
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_offshore_oil_fields
+		icon = GFX_GENERIC_oil_drilling
+		prerequisite = { focus = RUS_us_industrial_equipment }
+		x = 2
+		y = 1
+		cost = 8
+		relative_position_id = RUS_us_industrial_equipment
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			controls_state = 408
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_offshore_oil_fields"
+			add_offsite_building = { type = synthetic_refinery level = 2 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_fleet_planning
+		icon = GFX_GENERIC_naval_academy
+		prerequisite = { focus = RUS_naval_joint_exercise }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_naval_joint_exercise
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_fleet_planning"
+			add_tech_bonus = {
+				name = navy_bonus
+				bonus = 0.5
+				uses = 1
+				category = naval_equipment
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_equipment_research
+		icon = GFX_focus_secret_rearmament
+		prerequisite = { focus = RUS_land_joint_exercise }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_land_joint_exercise
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_equipment_research"
+			add_tech_bonus = {
+				name = infantry_artillery_bonus
+				bonus = 0.5
+				uses = 2
+				category = infantry_weapons
+				category = artillery
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_foreign_funded_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = RUS_ford_plant }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_ford_plant
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_foreign_funded_roads"
+			random_owned_controlled_state = { 
+				limit = {
+					state_population > 100000
+					free_building_slots = {
+						building = infrastructure
+						size > 2
+						include_locked = yes
+					}
+				}
+				prioritize = { 563 }
+				set_state_flag = american_corporate_roads
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			} 
+			random_owned_controlled_state = { 
+				limit = {
+					state_population > 150000
+					free_building_slots = {
+						building = infrastructure
+						size > 2
+						include_locked = yes
+					}
+				}
+				prioritize = { 564 }
+				set_state_flag = american_corporate_roads
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			} 
+			random_owned_controlled_state = { 
+				limit = {
+					state_population > 150000
+					free_building_slots = {
+						building = infrastructure
+						size > 2
+						include_locked = yes
+					}
+				}
+				prioritize = { 562 }
+				set_state_flag = american_corporate_roads
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			} 
+			random_owned_controlled_state = { 
+				limit = {
+					state_population > 175000
+					free_building_slots = {
+						building = infrastructure
+						size > 2
+						include_locked = yes
+					}
+				}
+				prioritize = { 561 }
+				set_state_flag = american_corporate_roads
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			} 
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_implementing_computers
+		icon = GFX_GENERIC_computer
+		prerequisite = { focus = RUS_purchasing_computers_from_america }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_purchasing_computers_from_america
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_implementing_computers"
+			add_political_power = 150
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_air_production
+		icon = GFX_goal_generic_air_production
+		prerequisite = { focus = RUS_air_joint_exercise }
+		x = 0
+		y = 2
+		cost = 8
+		relative_position_id = RUS_air_joint_exercise
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_air_production"
+			#add air company???
+			random_owned_controlled_state = { 
+				limit = {
+					state_population > 175000
+					free_building_slots = {
+						building = arms_factory
+						size > 2
+						include_locked = yes
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			} 
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_lease_american_dockyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = RUS_fleet_planning }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_fleet_planning
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		available = {
+			USA = {
+				has_opinion = {
+					target = RUS
+					value > 0
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0.5
+				has_country_flag = russia_local_path
+			}
+			modifier = {
+				factor = 0
+				
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_lease_american_dockyards"
+			USA = {
+				country_event = twrrussia.17
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_local_assembly
+		icon = GFX_GENERIC_military_industry_produce
+		prerequisite = { focus = RUS_equipment_research }
+		x = 0
+		y = 1
+		cost = 8
+		relative_position_id = RUS_equipment_research
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_local_assembly"
+			add_ideas = RUS_local_assembly_idea
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RUS_automotive_industry
+		icon = GFX_GENERIC_mechanisation
+		prerequisite = { focus = RUS_foreign_funded_roads }
+		x = 0
+		y = 2
+		cost = 8
+		relative_position_id = RUS_ford_plant
+		cancel_if_invalid = yes
+		available_if_capitulated = no
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RUS_automotive_industry"
+			#unlock motorized company
+			random_owned_controlled_state = { 
+				limit = {
+					state_population > 200000
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+
+}
+focus_tree = {
+	id = twr_russia_couped
+	country = {
+		factor = 0
+	}
+}

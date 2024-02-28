@@ -1,0 +1,525 @@
+	
+shared_focus = {
+	cancelable = no
+	id = DEN_Germany_in_Chaos
+	icon = GFX_GER_political_rodeo
+	cost = 7
+	x = 39
+	y = 0
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		add_ideas = DEN_uncertainty
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		
+		hidden_effect = {
+			remove_ideas = DEN_nazi_regime
+			remove_ideas = GER_RK_repression
+		}
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Hannekens_Junta
+	icon = GFX_GER_Nazi_Denmark
+	x = -3
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = DEN_Germany_in_Chaos
+	}
+	mutually_exclusive = {
+		focus = DEN_Bests_Schutzstaffel
+	}
+	relative_position_id = DEN_Germany_in_Chaos
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		add_ideas = DEN_Heer_Junta
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Arrest_the_Rebels
+	icon = GFX_GENERIC_Political_Purge
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = DEN_Hannekens_Junta
+	}
+	relative_position_id = DEN_Hannekens_Junta
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		add_political_power = 150
+		add_manpower = -1000
+		add_stability = 0.1
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Extend_the_Martial_Law
+	icon = GFX_GER_General_Staff
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = DEN_Arrest_the_Rebels
+	}
+	relative_position_id = DEN_Arrest_the_Rebels
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_global_flag = german_civil_war_started
+	}
+	
+	completion_reward = {
+		add_ideas = DEN_Martial_Law
+		country_event = { id = twrdenmark.7 }
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Fight_for_the_Heer
+	icon = GFX_focus_ger_oppose_hitler
+	x = -1
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = DEN_Extend_the_Martial_Law
+	}
+	mutually_exclusive = {
+		focus = DEN_Danish_Neutrality
+	}
+	relative_position_id = DEN_Extend_the_Martial_Law
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = DEN_Heer_Junta
+			add_idea = DEN_For_the_Heer
+		}
+		remove_ideas = {
+			DEN_uncertainty
+		}
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Danish_Neutrality
+	icon = GFX_goal_generic_neutrality_focus
+	x = 1
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = DEN_Extend_the_Martial_Law
+	}
+	mutually_exclusive = {
+		focus = DEN_Fight_for_the_Heer
+	}
+	relative_position_id = DEN_Extend_the_Martial_Law
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = DEN_Heer_Junta
+			add_idea = DEN_Denmark_for_itself
+		}
+		remove_ideas = {
+			DEN_uncertainty
+		}
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Bests_Schutzstaffel
+	icon = GFX_SS_Administration
+	x = 0
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = DEN_Germany_in_Chaos
+	}
+	mutually_exclusive = {
+		focus = DEN_Hannekens_Junta
+	}
+	relative_position_id = DEN_Germany_in_Chaos
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = BESTS_SS_DEN
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Conscript_the_Danish_Legion
+	icon = GFX_SS_Loyal_Guards
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = DEN_Bests_Schutzstaffel
+	}
+	relative_position_id = DEN_Bests_Schutzstaffel
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		division_template = {
+			name = "Danish SS"
+
+			division_names_group = DEN_INF_01
+
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+
+			}
+		}
+		random_owned_controlled_state = {
+
+			create_unit = {
+				division = "name = \"Frikorps Danmark\" division_template = \"Danish SS\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				owner = DEN
+			}
+		}	
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Work_with_the_SS
+	icon = GFX_GENERIC_SS_Hankshake
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = DEN_Conscript_the_Danish_Legion
+	}
+	relative_position_id = DEN_Conscript_the_Danish_Legion
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		add_ideas = DEN_SS_Cooperation
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Join_the_Fight
+	icon = GFX_SS_Stands_Alone
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = DEN_Work_with_the_SS
+	}
+	relative_position_id = DEN_Work_with_the_SS
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_global_flag = german_civil_war_started
+		country_exists = HSS
+	}
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = DEN_SS_Cooperation
+			add_idea = DEN_For_the_SS
+		}
+		remove_ideas = {
+			DEN_uncertainty
+		}
+		country_event = { id = twrdenmark.6 }	
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Peoples_Revolution
+	icon = GFX_DEN_Revolution
+	x = 3
+	y = 1
+	available = {
+		always = no
+	}
+	prerequisite = {
+		focus = DEN_Germany_in_Chaos
+	}
+	relative_position_id = DEN_Germany_in_Chaos
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = REVOLT_DEN
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Freedom_Council_Congress
+	icon = GFX_GENERIC_government_power
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = DEN_Peoples_Revolution
+	}
+	relative_position_id = DEN_Peoples_Revolution
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		add_political_power = 100
+		country_event = {
+			id = twrdenmark.5
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_The_Danish_Republic
+	icon = GFX_DEN_Republic
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = DEN_Freedom_Council_Congress
+	}
+	mutually_exclusive = {
+		focus = DEN_Restore_the_Kingdom
+	}
+	relative_position_id = DEN_Freedom_Council_Congress
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = DEN_REPUBLIC
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Restore_the_Kingdom
+	icon = GFX_focus_rom_royal_dictatorship
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = DEN_Freedom_Council_Congress
+		focus = DEN_Restoring_Pre_War_Status
+	}
+	mutually_exclusive = {
+		focus = DEN_The_Danish_Republic
+	}
+	relative_position_id = DEN_Freedom_Council_Congress
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		custom_effect_tooltip = ROYALS_RETURN_DEN
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Cooperate_with_the_Accord
+	icon = GFX_goal_generic_improve_relations
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = DEN_The_Danish_Republic
+		focus = DEN_Restore_the_Kingdom
+	}
+	relative_position_id = DEN_The_Danish_Republic
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		if = {
+			limit = {
+				is_subject_of = USA
+			}
+			add_stability = 0.1
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1000
+			producer = USA
+		}	
+		}
+		else_if = {
+			limit = {
+				NOT = {
+				is_subject_of = USA
+				}
+			}
+		USA = { add_to_faction = DEN }
+		}
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Restore_Democracy
+	icon = GFX_USA_real_democracy
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = DEN_Cooperate_with_the_Accord
+	}
+	relative_position_id = DEN_Cooperate_with_the_Accord
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		add_ideas = established_democracy 
+		add_stability = 0.15
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Danish_Security_Forces
+	icon = GFX_focus_generic_little_entente
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = DEN_Cooperate_with_the_Accord
+	}
+	relative_position_id = DEN_Cooperate_with_the_Accord
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		division_template = {
+			name = "Danish Security Forces"
+
+			division_names_group = DEN_INF_01
+
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				cavalry = { x = 1 y = 0 }
+				cavalry = { x = 1 y = 1 }
+				cavalry = { x = 1 y = 2 }
+
+			}
+			support = {
+				recon = { x = 0 y = 0 }      # Recon Group ACs comp + cavalry
+			}
+		}
+		random_owned_controlled_state = {
+
+			create_unit = {
+				division = "name = \"Dansk Sikkerhedsafdeling\" division_template = \"Danish Security Forces\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				owner = DEN
+			}
+		}
+
+	}
+	cost = 7
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_The_Accords_Occupation
+	icon = GFX_ENG_USA_atlantic_union
+	cost = 7
+	x = 44
+	y = 1
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		always = no
+	}
+	completion_reward = {
+		custom_effect_tooltip = OCCUPATION_DEN
+	}
+}
+
+shared_focus = {
+	cancelable = no
+	id = DEN_Restoring_Pre_War_Status
+	icon = GFX_focus_generic_home_defense
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = DEN_The_Accords_Occupation
+	}
+	relative_position_id = DEN_The_Accords_Occupation
+	ai_will_do = {
+		factor = 1
+	}
+	
+	completion_reward = {
+		country_event = twrdenmark.51
+		drop_cosmetic_tag = yes
+		USA = {
+			end_puppet = DEN
+		}
+	}
+	cost = 7
+}

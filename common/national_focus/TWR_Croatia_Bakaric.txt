@@ -1,0 +1,658 @@
+#####################
+##Coded by Spyeter###
+#####################
+
+shared_focus = {
+	id = CRO_Bakaric_Victory
+	icon = GFX_SER_focus_tito_victory
+	cost = 5
+	x = 14
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Victory"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		news_event = { id = croatianews.35 }
+                add_ideas = authoritarian_regime
+		hidden_effect = {
+			retire_country_leader = yes
+			retire_ideology_leader = marxist_leninist
+			retire_ideology_leader = bolshevik_leninist
+			cro_commie_leaders = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Bakaric_Prepare_To_Liberate_Serbia
+	icon = GFX_SER_focus_send_out_the_partisans
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Bakaric_Victory
+	prerequisite = {
+		focus = CRO_Bakaric_Victory
+	}
+        available = {
+        owns_state = 104
+        owns_state = 981
+        owns_state = 982
+        }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Prepare_To_Liberate_Serbia"
+                add_stability = 0.05
+                add_war_support = 0.05
+	}
+                }
+
+shared_focus = {
+	id = CRO_Bakaric_Letter_To_Serbia
+	icon = GFX_goal_generic_forceful_treaty
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Bakaric_Prepare_To_Liberate_Serbia
+	prerequisite = {
+		focus = CRO_Bakaric_Prepare_To_Liberate_Serbia
+	}
+	mutually_exclusive = { focus = CRO_Bakaric_Liberate_Serbia }
+	available = { SER = { OR = { has_government = socialist has_government = bolshevik_leninist } } }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Letter_To_Serbia"
+                SER = { country_event = twrcroatia.94 }
+	}
+                }
+
+shared_focus = {
+	id = CRO_Bakaric_Liberate_Serbia
+	icon = GFX_SER_focus_freedom_to_the_people
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Bakaric_Prepare_To_Liberate_Serbia
+	prerequisite = {
+		focus = CRO_Bakaric_Prepare_To_Liberate_Serbia
+	}
+	mutually_exclusive = { focus = CRO_Bakaric_Letter_To_Serbia }
+	available = { NOT = {  SER = { OR = { has_government = socialist has_government = bolshevik_leninist } } } }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Liberate_Serbia"
+                  declare_war_on = { type = annex_everything  target = SER }                 
+			}
+     	}
+
+shared_focus = {
+	id = CRO_Bakaric_Serbia_Liberated
+	icon = GFX_SER_focus_consolidate_socialist_yugoslavia
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Bakaric_Prepare_To_Liberate_Serbia
+	prerequisite = {
+		focus = CRO_Bakaric_Letter_To_Serbia
+		focus = CRO_Bakaric_Liberate_Serbia
+	}
+        available = {
+        owns_state = 107 
+                }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Serbia_Liberated"
+		        add_research_slot = 1
+        		set_cosmetic_tag = CRO_Yugoslavia
+				set_capital = { state = 107 }
+       	set_party_name = {
+                ideology = socialist
+                name = SSPJ
+                long_name = SSPJ_long
+      		 }
+		set_party_name = {
+			ideology = bolshevik_leninist 
+			name = SKJ
+			long_name = SKJ_long
+			}
+		set_party_name = {
+			ideology = marxist_leninist
+			name = KPJ
+			long_name = KPJ_long
+			}
+        add_state_core = 105
+        add_state_core = 104
+        add_state_core = 983
+        add_state_core = 103
+        add_state_core = 1016
+        add_state_core = 163
+        add_state_core = 770
+        add_state_core = 102
+        add_state_core = 765
+        add_state_core = 815
+        add_state_core = 814
+        add_state_core = 813
+        add_state_core = 812
+        add_state_core = 772
+        add_state_core = 819
+        add_state_core = 45
+        add_state_core = 981
+        add_state_core = 979
+        add_state_core = 980
+        add_state_core = 772
+        add_state_core = 107
+        add_state_core = 108
+        add_state_core = 982
+        add_state_core = 811
+        add_state_core = 818
+		add_state_core = 106
+			}
+     }
+
+
+shared_focus = {
+	id = CRO_Bakaric_Call_Upon_Tito
+	icon = GFX_SER_focus_tito_victory
+	cost = 5
+	x = -3
+	y = 1
+	relative_position_id = CRO_Bakaric_Serbia_Liberated
+	prerequisite = {
+		focus = CRO_Bakaric_Serbia_Liberated
+	}
+        available = {
+        NOT = { has_global_flag = Tito_killed }
+                }
+		mutually_exclusive = { focus = CRO_Bakaric_Stays }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Call_Upon_Tito"
+		custom_effect_tooltip = cro_expand_focus_tree_tt
+		set_country_flag = has_symbolic_figurehead
+        set_country_flag = secretary_of_the_party_bakaric
+		add_ideas = CRO_HoG_Josip_Broz
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Josip Broz"
+			desc = "Josip_Broz_desc"
+			picture = "CRO_Josip_Broz.dds"
+			expire = "1965.1.1"
+			ideology = titoism
+			traits = {
+				#
+			}
+		}
+	hidden_effect = {
+        SER = { change_tag_from = CRO }
+        SER = { 
+            annex_country = { 
+                target = CRO 
+                transfer_troops = yes 
+            }
+        }
+    SER = {
+	inherit_technology = CRO
+        set_country_flag = has_symbolic_figurehead
+        set_country_flag = secretary_of_the_party_bakaric
+        add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.60
+             }
+                set_capital = { state = 107 }
+                set_cosmetic_tag = SER_YUG
+           set_politics = {
+             ruling_party = bolshevik_leninist
+               } 
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Josip Broz"
+				desc = "Josip_Broz_desc"
+				picture = "SER_Josip_Broz.dds"
+				expire = "1965.1.1"
+				ideology = titoism
+				traits = {
+					#
+				}
+			}
+           country_event = { days = 3 id = twrcroatia.131 }
+                set_country_flag = tito_cabinet
+                remove_ideas = {
+                SER_in_ruins 
+                SER_german_detachment
+               }
+                add_ideas = {
+                    SER_HoG_Josip_Broz
+                    SER_FM_Stanoje_Simic
+                    SER_MoS_Maks_Bace_Milic
+                    SER_AM_Branko_Horvat
+                    SER_CoStaff_Velimir_Terzic
+                    SER_CoArmy_Arso_Jovanovic
+                    SER_CoNavy_Mate_Jerkovic
+                    SER_CoAir_Viktor_Bubanj
+                    SER_chetnik_issue
+                    SER_recovering_from_civil_war
+                }
+                every_unit_leader = {
+                     retire = yes
+                 }
+	create_field_marshal = {
+		name = "Josip Broz Tito"
+		picture = "Josip_Broz_Tito.dds"
+		traits = { war_hero offensive_doctrine inspirational_leader partisan_general }
+		skill = 4
+		attack_skill = 4
+		defense_skill = 2
+		planning_skill = 4
+		logistics_skill = 3
+	}
+	create_field_marshal = {
+		name = "Arso Jovanović"
+		picture = "Arso_Jovanovic.dds"
+		traits = { infantry_officer partisan_general }
+		skill = 3
+		attack_skill = 3
+		defense_skill = 3
+		planning_skill = 3
+		logistics_skill = 3
+	}
+	create_corps_commander = {
+		name = "Koča Popović"
+		picture = "Koca_Popovic.dds"
+		traits = { trickster partisan_general }
+		skill = 3
+
+		attack_skill = 3
+		defense_skill = 3
+		planning_skill = 3
+		logistics_skill = 3
+	}
+
+	create_corps_commander = {
+		name = "Kosta Nađ"
+		picture = "Kosta_Nađ.dds"
+		traits = { commando partisan_general }
+		skill = 2
+
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 2
+	}
+
+	create_corps_commander = {
+		name = "Petar Drapšin"
+		picture = "Petar_Drapsin.dds"
+		traits = { commando partisan_general }
+		skill = 3
+
+		attack_skill = 2
+		defense_skill = 3
+		planning_skill = 3
+		logistics_skill = 3
+	}
+
+	create_corps_commander = {
+		name = "Peko Dapčević"
+		picture = "Peko_Dapcevic.dds"
+		traits = { career_officer organizer partisan_general }
+		skill = 3
+
+		attack_skill = 2
+		defense_skill = 3
+		planning_skill = 2
+		logistics_skill = 3
+	}
+
+	create_corps_commander = {
+		name = "Rade Hamović"
+		picture = "Rade_Hamovic.dds"
+		traits = { career_officer partisan_general }
+		skill = 3
+
+		attack_skill = 3
+		defense_skill = 1
+		planning_skill = 3
+		logistics_skill = 2
+	}
+
+	create_corps_commander = {
+		name = "Ljubo Vučković"
+		picture = "Ljubo_Vuckovic.dds"
+		traits = { partisan_general }
+		skill = 2
+
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 1
+		logistics_skill = 1
+		}
+        load_focus_tree = serbia_tito_tree
+        complete_national_focus = SER_The_League_of_Communists
+ 		every_state = { limit = { is_core_of = CRO } add_core_of = SER }
+	}
+				CRO = { 
+			
+					every_unit_leader = {
+			
+						set_nationality = SER
+					}
+				}
+        SER = {
+                if = {
+                    limit = {
+                        has_idea = SER_chetnik_army
+                    }
+                    remove_ideas = SER_chetnik_army
+                }
+                if = {
+                    limit = {
+                        has_idea = SER_zbor_army
+                    }
+                    remove_ideas = SER_zbor_army
+                }
+                if = {
+                    limit = {
+                        has_idea = SER_chetnik_zbor_army
+                    }
+                    remove_ideas = SER_chetnik_zbor_army
+                }
+                if = {
+                    limit = {
+                        has_idea = SER_Zbor_Opposition
+                    }
+                    remove_ideas = SER_Zbor_Opposition
+                }
+                if = {
+                    limit = {
+                        has_idea = YUG_yugoslav_partisans
+                    }
+                    remove_ideas = YUG_yugoslav_partisans
+                }
+                if = {
+                    limit = {
+                        has_idea = YUG_yugoslav_partisans
+                    }
+                    remove_ideas = YUG_yugoslav_partisans
+                }
+            if = {
+                    limit = {
+                        NOT = {
+                            has_country_flag = serbian_power_struggle_over
+                        }
+                    }
+                set_country_flag = serbian_power_struggle_over
+					}
+				}
+			}
+		}
+	}
+
+
+shared_focus = {
+	id = CRO_Bakaric_Stays
+	icon = GFX_ITA_Approach_the_Socialists
+	cost = 5
+	x = 3
+	y = 1
+	relative_position_id = CRO_Bakaric_Serbia_Liberated
+	prerequisite = {
+		focus = CRO_Bakaric_Serbia_Liberated
+	}
+        available = {
+        has_global_flag = Tito_killed
+                }
+		mutually_exclusive = { focus = CRO_Bakaric_Call_Upon_Tito }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Stays"
+		custom_effect_tooltip = cro_expand_focus_tree_tt
+			}
+     }
+
+
+shared_focus = {
+	id = CRO_Bakaric_Death_Of_Tito
+	icon = GFX_SER_focus_matters_of_terrorism
+	cost = 5
+	x = 14
+	y = 5
+	allow_branch = {
+		has_completed_focus = CRO_Bakaric_Stays 
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Death_Of_Tito"
+		country_event = { id = twr_croatia_communist.12 hours = 2 }
+			}
+     }
+
+shared_focus = {
+	id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	icon = GFX_GENERIC_peaceful_socialism
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Bakaric_Death_Of_Tito
+	prerequisite = {
+		focus = CRO_Bakaric_Death_Of_Tito
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Fulfill_The_Marshals_Will"
+		swap_ideas = {
+			remove_idea = CRO_After_Tito_Tito
+			add_idea = CRO_After_Tito_Tito_1
+		}
+			}
+     }
+
+shared_focus = {
+	id = CRO_Bakaric_Enshrine_Minority_Rights
+	icon = GFX_SER_focus_promise_minority_rights
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	prerequisite = {
+		focus = CRO_Bakaric_Fulfill_The_Marshals_Will
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Fulfill_The_Marshals_Will"
+		add_ideas = SER_minority_enshrining 
+			}
+     }
+
+shared_focus = {
+	id = CRO_Bakaric_Reconstruction_Initiative
+	icon = GFX_SER_focus_the_yugoslavian_reconstruction_initiative
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	prerequisite = {
+		focus = CRO_Bakaric_Fulfill_The_Marshals_Will
+	}
+	available = {
+		has_completed_focus = CRO_A_New_Four_Year_Plan
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Reconstruction_Initiative"
+		add_ideas = SER_yugoslavian_reconstruction_initiative  
+		swap_ideas = {
+			remove_idea = CRO_Four_Year_Plan_idea 
+			add_idea = SER_yugo_five_year_plan
+		}
+		hidden_effect = {
+			remove_ideas = SER_yugo_five_year_plan
+			add_ideas = SER_yugo_five_year_plan
+		}
+			}
+     }
+
+shared_focus = {
+	id = CRO_Bakaric_Introduce_Market_Socialism
+	icon = GFX_GENERIC_Clogs_Socialist
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	prerequisite = {
+		focus = CRO_Bakaric_Reconstruction_Initiative
+	}
+	prerequisite = {
+		focus = CRO_Bakaric_Enshrine_Minority_Rights
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Introduce_Market_Socialism"
+		add_ideas = SER_illyrian_market_socialism_idea_2   
+			}
+     }
+
+shared_focus = {
+	id = CRO_Bakaric_The_Illyrian_Model
+	icon = GFX_SER_focus_illyrian_model
+	cost = 5
+	x = 2
+	y = 2
+	relative_position_id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	prerequisite = {
+		focus = CRO_Bakaric_Reconstruction_Initiative
+	}
+	prerequisite = {
+		focus = CRO_Bakaric_Enshrine_Minority_Rights
+	}
+	available = { has_completed_focus = CRO_Bakaric_Introduce_Market_Socialism }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Introduce_Market_Socialism"
+		swap_ideas = {
+			remove_idea = SER_illyrian_market_socialism_idea_2
+			add_idea = SER_illyrian_market_socialism_idea_4
+				}
+			}
+     }
+
+shared_focus = {
+	id = CRO_Bakaric_Purge_Stalinists
+	icon = GFX_focus_CDA_end_bourg_nationalism
+	cost = 5
+	x = -2
+	y = 2
+	relative_position_id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	prerequisite = {
+		focus = CRO_Bakaric_Reconstruction_Initiative
+	}
+	prerequisite = {
+		focus = CRO_Bakaric_Enshrine_Minority_Rights
+	}
+	available = { has_completed_focus = CRO_Bakaric_Introduce_Market_Socialism }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Purge_UDBA"
+		IF = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			cro_create_intelligence_agency = yes
+		}	
+                retire_ideology_leader = marxist_leninist
+	                add_stability = 0.05	
+                        add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.05
+		}
+			}
+     }
+
+shared_focus = {
+	id = CRO_Bakaric_Reluctant_Secularization
+	icon = GFX_SER_focus_reluctant_secularism
+	cost = 5
+	x = 1
+	y = 3
+	relative_position_id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	prerequisite = {
+		focus = CRO_Bakaric_Purge_Stalinists
+	}
+	prerequisite = {
+		focus = CRO_Bakaric_Introduce_Market_Socialism
+	}
+	prerequisite = {
+		focus = CRO_Bakaric_The_Illyrian_Model
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Purge_UDBA"
+		add_political_power = 50
+                add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+}
+                add_popularity = {
+			ideology = bolshevik_leninist
+			popularity = 0.10
+}
+                add_popularity = {
+			ideology = Marxist_leninist
+			popularity = 0.07
+}
+			}
+     }
+
+shared_focus = {
+	id = CRO_Bakaric_Purge_Rankovicites
+	icon = GFX_SER_focus_rankovic_victory
+	cost = 5
+	x = -1
+	y = 3
+	relative_position_id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	prerequisite = {
+		focus = CRO_Bakaric_Purge_Stalinists
+	}
+	prerequisite = {
+		focus = CRO_Bakaric_Introduce_Market_Socialism
+	}
+	prerequisite = {
+		focus = CRO_Bakaric_The_Illyrian_Model
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Purge_Rankovicites"
+                       add_popularity = {
+			ideology = marxist_leninist
+			popularity = -0.15
+		}
+     }
+}
+
+shared_focus = {
+	id = CRO_Bakaric_Enshrine_Titos_Legacy
+	icon = GFX_SER_focus_enshrine_marshal_tito
+	cost = 5
+	x = 0
+	y = 4
+	relative_position_id = CRO_Bakaric_Fulfill_The_Marshals_Will
+	prerequisite = {
+		focus = CRO_Bakaric_Purge_Rankovicites
+	}
+	prerequisite = {
+		focus = CRO_Bakaric_Reluctant_Secularization
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Bakaric_Purge_Rankovicites"
+		remove_ideas = CRO_Ustashe_Resistance_idea
+		remove_ideas = CRO_Unstable_Government_idea
+		country_event = { id = twr_croatia_communist.13 hours = 2 }
+		hidden_effect = { country_event = { id = twr_croatia_communist.14 days = 30 } }
+     }
+}
+
+
+
+
+
+
+

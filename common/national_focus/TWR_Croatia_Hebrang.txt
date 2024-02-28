@@ -1,0 +1,811 @@
+#####################
+##Coded by Spyeter###
+#####################
+
+shared_focus = {
+	id = CRO_Hebrang_Victory
+	icon = GFX_GENERIC_Stalin
+	cost = 5
+	x = 14
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Victory"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		news_event = { id = croatianews.36 }
+		hidden_effect = {
+			retire_country_leader = yes
+			retire_ideology_leader = marxist_leninist
+			retire_ideology_leader = bolshevik_leninist
+			cro_commie_leaders = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Hebrang_Transforming_The_Country
+	icon = GFX_NOV_Continue_Paving_The_Road_To_Communism
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_Victory
+	prerequisite = {
+		focus = CRO_Hebrang_Victory
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Transforming_The_Country"
+		add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.06
+    	}
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_The_First_Stage
+	icon = GFX_SOV_orlov_phase_one
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_Transforming_The_Country
+	prerequisite = {
+		focus = CRO_Hebrang_Transforming_The_Country
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_The_First_Stage"
+		add_dynamic_modifier = { modifier = CRO_Two_Stage_Theory_Modifier }
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.02 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Destroy_Church_Influence
+	icon = GFX_GENERIC_Stamp_Christain
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Hebrang_The_First_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_The_First_Stage
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Destroy_Church_Influence"
+		custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.01 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_ML_drift_factor = 0.01 }		
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Industrialize_The_Backward_Areas
+	icon = GFX_GENERIC_Factory_Planning
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_The_First_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_The_First_Stage
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Industrialize_The_Backward_Areas"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_production_speed_industrial_complex_factor = 0.05 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_production_speed_infrastructure_factor = 0.05 }				
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Education_For_The_Uneducated
+	icon = GFX_POR_Education_Reform
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Hebrang_The_First_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_The_First_Stage
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Education_For_The_Uneducated"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.01 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_research_speed_factor = 0.05 }						
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_The_Second_Stage
+	icon = GFX_SOV_orlov_phase_two
+	cost = 5
+	x = 0
+	y = 2
+	relative_position_id = CRO_Hebrang_The_First_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_Destroy_Church_Influence
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Industrialize_The_Backward_Areas
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Education_For_The_Uneducated
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_The_Second_Stage"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_war_support_factor = 0.05 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_ML_drift_factor = 0.01 }		
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Hebrang_Collectivization
+	icon = GFX_GENERIC_land_redistribution
+	cost = 5
+	x = -5
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Second_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_The_Second_Stage
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Collectivization"
+		
+                add_stability = -0.10
+                add_offsite_building = { type = industrial_complex level = 1 }
+                add_offsite_building = { type = industrial_complex level = 1 }		
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_End_The_Landowners
+	icon = GFX_SAF_Seize_Land
+	cost = 5
+	x = -3
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Second_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_The_Second_Stage
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_End_The_Landowners"
+                add_stability = -0.10
+                add_offsite_building = { type = infrastructure level = 1 }
+                add_offsite_building = { type = infrastructure level = 1 }		
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Central_Planning
+	icon = GFX_goal_generic_soviet_construction
+	cost = 5
+	x = -4
+	y = 2
+	relative_position_id = CRO_Hebrang_The_Second_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_Collectivization
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_End_The_Landowners
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Central_Planning"
+		add_ideas = CRO_Planned_Economy 
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Homes_For_The_Homeless
+	icon = GFX_NOV_New_Planned_Cities_in_Kazakhstan
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_Central_Planning
+	prerequisite = {
+		focus = CRO_Hebrang_Central_Planning
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Homes_For_The_Homeless"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_production_speed_infrastructure_factor = 0.1 }		
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.01 }					
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_The_Vanguard_Party
+	icon = GFX_GENERIC_Lenin_Lives
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Second_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_The_Second_Stage
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_The_Vanguard_Party"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.01 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_stability_factor = 0.02 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_ML_drift_factor = 0.01 }			
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Protect_Communism_From_Threats
+	icon = GFX_USA_soviets
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Vanguard_Party
+	prerequisite = {
+		focus = CRO_Hebrang_The_Vanguard_Party
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Protect_Communism_From_Threats"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_stability_factor = 0.02 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_ML_drift_factor = 0.1 }		
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Anti_Reactionary_Courts
+	icon = GFX_NRI_Military_Police_Jury_Courts
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Hebrang_Protect_Communism_From_Threats
+	prerequisite = {
+		focus = CRO_Hebrang_Protect_Communism_From_Threats
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Anti_Reactionary_Courts"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_war_support_factor = 0.05 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.01 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_stability_factor = 0.02 }		
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Surveillance
+	icon = GFX_SOV_surveillance_squads
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Hebrang_Protect_Communism_From_Threats
+	prerequisite = {
+		focus = CRO_Hebrang_Protect_Communism_From_Threats
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Surveillance"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.01 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_stability_factor = 0.02 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_ML_drift_factor = 0.01 }		
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Educate_The_Masses
+	icon = GFX_GENERIC_Classroom
+	cost = 5
+	x = 5
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Vanguard_Party
+	prerequisite = {
+		focus = CRO_Hebrang_The_Vanguard_Party
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Educate_The_Masses"
+		add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Spread_Class_Consciousness
+	icon = GFX_POR_Education_Reform
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_Educate_The_Masses
+	prerequisite = {
+		focus = CRO_Hebrang_Educate_The_Masses
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Spread_Class_Consciousness"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_research_speed_factor = 0.05 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_ML_drift_factor = 0.01 }			
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Democratic_Centralism
+	icon = GFX_NOV_Party_Election
+	cost = 5
+	x = -1
+	y = 2
+	relative_position_id = CRO_Hebrang_The_Second_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_The_Vanguard_Party
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Democratic_Centralism"
+		add_ideas = CRO_Supreme_Soviet
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_No_To_Factionalism
+	icon = GFX_SOV_Old_Worker
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Hebrang_Democratic_Centralism
+	prerequisite = {
+		focus = CRO_Hebrang_Democratic_Centralism
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_No_To_Factionalism"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.01 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_ML_drift_factor = 0.1 }				
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Strict_Party_Discipline
+	icon = GFX_SOV_Soviet_Election
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Hebrang_Democratic_Centralism
+	prerequisite = {
+		focus = CRO_Hebrang_Democratic_Centralism
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Strict_Party_Discipline"
+				custom_effect_tooltip = improve_Two_Stage_Theory_Modifier_tt
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_pp_factor = -0.01 }	
+		add_to_variable = { CRO_Two_Stage_Theory_Modifier_stability_factor = 0.02 }			
+	}
+}
+
+
+
+shared_focus = {
+	id = CRO_Hebrang_Secure_The_Revolution
+	icon = GFX_SOV_reconsider_union
+	cost = 5
+	x = 0
+	y = 4
+	relative_position_id = CRO_Hebrang_The_Second_Stage
+	prerequisite = {
+		focus = CRO_Hebrang_Homes_For_The_Homeless
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_No_To_Factionalism
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Strict_Party_Discipline
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Anti_Reactionary_Courts
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Surveillance
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Spread_Class_Consciousness
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Secure_The_Revolution"
+		custom_effect_tooltip = "We shall move to consolidate our rule over the Party"
+		custom_effect_tooltip = CRO_increase_partisan_detachment_unrest_tt
+						add_to_variable = { CRO_hebrang_unrest = 2 }		
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_The_Economy
+	icon = GFX_GENERIC_ignored_economy
+	cost = 5
+	x = -3
+	y = 1
+	relative_position_id = CRO_Hebrang_Secure_The_Revolution
+	prerequisite = {
+		focus = CRO_Hebrang_Secure_The_Revolution
+	}
+	available = { has_completed_focus = CRO_Hebrang_The_Final_Cleansing }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_The_Economy"
+			country_event = { hours = 2 id = twrcroatia.244 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Planned_Economy
+	icon = GFX_GENERIC_planned_economy
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Economy
+	prerequisite = {
+		focus = CRO_Hebrang_The_Economy
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Planned_Economy"
+                add_ideas = CRO_Planned_Economy 
+		IF = {
+			limit = {
+				NOT = { has_idea = CRO_AM_Branko_Horvat }
+			}
+			add_ideas = CRO_AM_Branko_Horvat 
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Church_Holdings
+	icon = GFX_KOR_seize_the_wealth
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Economy
+	prerequisite = {
+		focus = CRO_Hebrang_The_Economy
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Church_Holdings"
+                add_ideas = CRO_catholic_church_intimidated 
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Church
+	icon = GFX_GENERIC_Stamp_Christain
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_Church_Holdings
+	prerequisite = {
+		focus = CRO_Hebrang_Church_Holdings
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Church"
+                add_ideas = CRO_Forced_Secularization_idea
+                add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.05
+                      }
+                add_stability = -0.05
+                add_war_support = -0.05	
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Hebrang_Redistribution_Of_Wealth
+	icon = GFX_The_Worker-Soldier-Peasant
+	cost = 5
+	x = -1
+	y = 2
+	relative_position_id = CRO_Hebrang_Planned_Economy
+	prerequisite = {
+		focus = CRO_Hebrang_Planned_Economy
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Church
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Redistribution_Of_Wealth"
+                add_political_power = 150
+                add_stability = 0.10
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Hebrang_Lessons_From_Stalin
+	icon = GFX_GENERIC_Another_Cult_of_Stalin
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Hebrang_Secure_The_Revolution
+	prerequisite = {
+		focus = CRO_Hebrang_Secure_The_Revolution
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Lessons_From_Stalin"		
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Purge
+	icon = GFX_GENERIC_Old_Purge
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_Lessons_From_Stalin
+	prerequisite = {
+		focus = CRO_Hebrang_Lessons_From_Stalin
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Special_Security_Service"
+			country_event = { hours = 2 id = twrcroatia.242 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Gulags
+	icon = GFX_NOV_Gulag_Kings
+	cost = 5
+	x = 4
+	y = 1
+	relative_position_id = CRO_Hebrang_Purge
+	prerequisite = {
+		focus = CRO_Hebrang_Purge
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Gulags"
+                add_manpower = -2000
+		random_owned_state = { 
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = { 
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = { 
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		custom_effect_tooltip = CRO_increase_partisan_detachment_unrest_tt
+					add_to_variable = { CRO_hebrang_unrest = 2 }
+    }
+ }
+
+shared_focus = {
+	id = CRO_Hebrang_Special_Security_Service
+	icon = GFX_SOV_Party_Rules
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Hebrang_Purge
+	prerequisite = {
+		focus = CRO_Hebrang_Purge
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Special_Security_Service"
+			country_event = { hours = 2 id = twrcroatia.241 }
+		IF = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			cro_create_intelligence_agency = yes
+		}	
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Titoist_Clique
+	icon = GFX_SER_focus_tito_victory
+	cost = 5
+	x = -4
+	y = 1
+	relative_position_id = CRO_Hebrang_Purge
+	prerequisite = {
+		focus = CRO_Hebrang_Purge
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Titoist_Clique"
+		custom_effect_tooltip = CRO_Purge_Titoist_tt
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Hebrang_Social_Fascists
+	icon = GFX_Fuck_Social_Democrats
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Hebrang_Purge
+	prerequisite = {
+		focus = CRO_Hebrang_Purge
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Social_Fascists"
+		custom_effect_tooltip = CRO_Purge_Demsoc_tt
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Reactionaries
+	icon = GFX_GENERIC_Gun_Purge
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_Purge
+	prerequisite = {
+		focus = CRO_Hebrang_Purge
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Reactionaries"
+		custom_effect_tooltip = CRO_Purge_Dems_and_fash_tt
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_The_Final_Cleansing
+	icon = GFX_SOV_reconsider_union
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_Reactionaries
+	prerequisite = {
+		focus = CRO_Hebrang_Reactionaries
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Social_Fascists
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Titoist_Clique
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Special_Security_Service
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Gulags
+	}
+	available = {
+	CRO_has_finished_purge_decisions = yes
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_The_Final_Cleansing"
+		country_event = { hours = 2 id = twrcroatia.119 }
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Hebrang_A_New_Red_Dawn
+	icon = GFX_GENERIC_socialist_announcement
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Final_Cleansing
+	prerequisite = {
+		focus = CRO_Hebrang_Redistribution_Of_Wealth
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_The_Final_Cleansing
+	}
+	prerequisite = {
+		focus = CRO_Hebrang_Cult_Of_Personality
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_A_New_Red_Dawn"
+		add_ideas = CRO_Supreme_Ruler_Hebrang
+			country_event = { hours = 2 id = twrcroatia.245 }
+		custom_effect_tooltip = CRO_increase_partisan_detachment_unrest_tt
+					add_to_variable = { CRO_hebrang_unrest = 2 }			
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_The_Revolution_Secured
+	icon = GFX_SOV_Socialist_Russian_Char
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_A_New_Red_Dawn
+	prerequisite = {
+		focus = CRO_Hebrang_A_New_Red_Dawn
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_The_Revolution_Secured"
+		add_ideas = CRO_Supreme_Ruler_Hebrang
+		add_ideas = closed_economy
+        add_ideas = dictatorship
+		swap_ruler_traits = {
+				remove = croatian_stalinist
+				add = croatian_stalin
+			}
+        random_unit_leader = { limit = { has_id = 100009 } promote_leader = yes }
+		set_country_leader_ideology = stalinism
+        set_country_leader_portrait = {
+                ideology = marxist_leninist
+                portrait = GFX_Portrait_Hebrang_Drip
+            }
+		}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Cult_Of_Personality
+	icon = GFX_CRO_Hebrang_Cult_Of_Personality
+	cost = 3
+	x = 0
+	y = 2
+	relative_position_id = CRO_Hebrang_Secure_The_Revolution
+	prerequisite = {
+		focus = CRO_Hebrang_Secure_The_Revolution
+	}
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Cult_Of_Personality"
+                add_popularity = {
+			ideology = marxist_leninist
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Hebrang_Marxs_Legacy_Lives_On
+	icon = GFX_CRO_Legacy_Of_Marxism
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = CRO_Hebrang_The_Revolution_Secured
+	prerequisite = {
+                focus = CRO_Hebrang_The_Revolution_Secured
+	}
+	available = { has_completed_focus = CRO_Yugo_Consolidate_Socialist_Yugoslavia }
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Hebrang_Marxs_Legacy_Lives_On"
+                country_event = { id = cro_endings.8  hours = 2 }
+	}
+}
+
+
+
+

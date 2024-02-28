@@ -1,0 +1,243 @@
+﻿add_namespace = twrcounciwgewmany
+add_namespace = twrcouncilgermany
+add_namespace = twrcouncilgermanynews
+
+# owo whats this
+country_event = {
+	id = twrcounciwgewmany.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcounciwgewmany.1" }
+ 	title = twrcounciwgewmany.1.t
+ 	desc = twrcounciwgewmany.1.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcounciwgewmany.1.a # owo
+	}
+}
+
+# ding dong your economy is dead
+country_event = {
+	id = twrcouncilgermany.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermany.1" }
+ 	title = twrcouncilgermany.1.t
+ 	desc = twrcouncilgermany.1.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcouncilgermany.1.a # feck
+		add_stability = -0.30
+		add_political_power = -150
+		complete_national_focus = CGR_Crumbled_Germany
+	}
+}
+
+# economy good
+country_event = {
+	id = twrcouncilgermany.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermany.2" }
+ 	title = twrcouncilgermany.2.t
+ 	desc = twrcouncilgermany.2.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcouncilgermany.2.a # yee
+ 		complete_national_focus = CGR_Economy_Recovered
+	}
+}
+
+# himler ded
+country_event = {
+	id = twrcouncilgermany.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermany.3" }
+ 	title = twrcouncilgermany.3.t
+ 	desc = twrcouncilgermany.3.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcouncilgermany.3.a # oof
+		set_country_flag = Heinrich_Himmler_unavailable
+	}
+}
+
+# new reichsfuhrer
+country_event = {
+	id = twrcouncilgermany.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermany.4" }
+ 	title = twrcouncilgermany.4.t
+ 	desc = twrcouncilgermany.4.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcouncilgermany.4.a # ok
+		add_ideas = GER_HoI_Ernst_Kaltenbrunner
+	}
+}
+
+# The Austrian Myth
+country_event = {
+	id = twrcouncilgermany.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermany.5" }
+ 	title = twrcouncilgermany.5.t
+ 	desc = twrcouncilgermany.5.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcouncilgermany.5.a # ok
+	}
+}
+
+# germany invites us to european confederation
+country_event = {
+	id = twrcouncilgermany.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermany.6" }
+ 	title = twrcouncilgermany.6.t
+ 	desc = twrcouncilgermany.6.d
+
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcouncilgermany.6.a # yes
+		ai_chance = { 
+			factor = 30
+			modifier = {
+				factor = 100
+				OR = {
+				is_subject_of = GER
+				is_in_faction_with = GER
+				}
+			}
+			modifier = {
+				factor = 0
+				any_other_country = {
+					NOT = {
+					has_opinion = {
+    				target = GER
+    				value < 30
+						}
+					}
+				}
+			}
+		}
+		add_ideas = GER_european_market
+		GER = { country_event = twrcouncilgermany.7 }
+	}
+
+	option = {
+ 		name = twrcouncilgermany.6.b # no
+ 		trigger = {
+ 		NOT = {
+ 		is_subject_of = GER
+ 		is_in_faction_with = GER
+ 			}
+ 		}
+ 		ai_chance = { 
+			factor = 30
+			modifier = {
+				factor = 100
+				AND = {
+				tag = ITA
+				ITA = {
+				OR = {
+				has_completed_focus = ITA_Break_The_Pact_Of_Steel
+				NOT = {
+				is_in_faction_with = GER
+				}	
+				NOT = {
+				is_subject_of = GER
+						}
+					}
+				}
+			}
+		}
+			modifier = {
+				factor = 40
+				any_other_country = {
+					has_opinion = {
+    				target = GER
+    				value > 30
+					}
+				}
+			}
+		}
+		GER = { country_event = twrcouncilgermany.8 }
+		reverse_add_opinion_modifier = {
+    	target = GER
+    	modifier = protest_action_strong
+		}
+	}
+}
+
+# accepted
+country_event = {
+	id = twrcouncilgermany.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermany.7" }
+ 	title = twrcouncilgermany.7.t
+ 	desc = twrcouncilgermany.7.d
+
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcouncilgermany.7.a # good
+ 		add_political_power = 50
+ 		add_stability = 0.01
+	}
+}
+
+# rejected
+country_event = {
+	id = twrcouncilgermany.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermany.8" }
+ 	title = twrcouncilgermany.8.t
+ 	desc = twrcouncilgermany.8.d
+
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = twrcouncilgermany.8.a # oof
+	}
+}
+
+# germany very epic
+news_event = {
+	id = twrcouncilgermanynews.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermanynews.1" }
+ 	title = twrcouncilgermanynews.1.t
+ 	desc = twrcouncilgermanynews.1.d
+ 	picture = GFX_news_event_ss_germany_formed
+
+	is_triggered_only = yes
+	major = yes
+
+ 	option = {
+ 		name = twrcouncilgermanynews.1.a # we get it diplo boi
+	}
+}
+
+# nazi EU time
+news_event = {
+	id = twrcouncilgermanynews.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event twrcouncilgermanynews.2" }
+ 	title = twrcouncilgermanynews.2.t
+ 	desc = twrcouncilgermanynews.2.d
+ 	picture = GFX_news_event_nazi_eu_formed
+
+	is_triggered_only = yes
+	major = yes
+
+ 	option = {
+ 		name = twrcouncilgermanynews.2.a # wtf
+	}
+}
+

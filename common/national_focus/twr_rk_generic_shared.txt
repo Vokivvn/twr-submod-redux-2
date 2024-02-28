@@ -1,0 +1,1326 @@
+
+
+#Focus for Import From Germany
+	shared_focus = {
+	cancelable = no 
+		id = RKA_importfromgermany
+		icon = GFX_FRA_Airbases_for_the_Luftwaffee
+		x = 0
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		prerequisite = { focus = RKA_createcolonialairwings } 
+		mutually_exclusive = { focus = RKA_buildlocalcraft }
+		ai_will_do = { 
+			factor = 1
+		} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_importfromgermany"
+			create_import = {
+				resource = steel
+				amount = 14
+				exporter = GER
+			}
+		} 
+
+	} 
+
+#Focus for Handling The Slavs
+	shared_focus = {
+	cancelable = no 
+		id = RKA_handlingtheslavs
+		icon = GFX_GENERIC_starve_communists
+		x = 7
+		y = 0
+		cost = 8
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 1
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_handlingtheslavs"
+			add_manpower = 3000
+		} 
+
+	} 
+
+#Focus for They Are Labourers
+	shared_focus = {
+	cancelable = no 
+		id = RKA_theyarelabourers
+		icon = GFX_GENERIC_Skull_Shovels
+		x = 6
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		prerequisite = { focus = RKA_handlingtheslavs } 
+		mutually_exclusive = { focus = RKA_theyarevermin } 
+		ai_will_do = { 
+			factor = 1
+		} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_theyarelabourers"
+			add_ideas = rk_labour_slavs
+		} 
+	} 
+
+#Focus for They Are Vermin
+	shared_focus = {
+	cancelable = no 
+		id = RKA_theyarevermin
+		icon = GFX_GENERIC_kill_with_fire
+		x = 8
+		y = 1
+		cost = 8
+		available_if_capitulated = yes 
+		prerequisite = { focus = RKA_handlingtheslavs } 
+		mutually_exclusive = { focus = RKA_theyarelabourers } 
+		ai_will_do = { 
+			factor = 1
+		} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_theyarevermin"
+			random_owned_controlled_state = {
+				limit = { is_capital = yes }
+				add_manpower = -20000
+			}
+			add_stability = 0.1
+		} 
+	} 
+
+#Focus for Work Them To Death
+	shared_focus = {
+	cancelable = no 
+		id = RKA_workthemtodeath
+		icon = GFX_GENERIC_whip_people
+		x = 7
+		y = 2
+		cost = 8
+		available_if_capitulated = yes 
+		prerequisite = { focus = RKA_theyarevermin focus = RKA_theyarelabourers } 
+		mutually_exclusive = { focus = RKA_keepthemalivetowork }
+		mutually_exclusive = { focus = RKA_generalplanostinfull }
+		ai_will_do = { 
+			factor = 1
+		} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_workthemtodeath"
+			random_owned_controlled_state = {
+				limit = { is_capital = yes }
+				add_manpower = -20000
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		} 
+	} 
+
+#Focus for Keep Them Alive, To Work
+	shared_focus = {
+	cancelable = no 
+		id = RKA_keepthemalivetowork
+		icon = GFX_SOV_gulag_labour
+		x = 5
+		y = 2
+		cost = 8
+		available_if_capitulated = yes 
+		prerequisite = { focus = RKA_theyarelabourers } 
+		mutually_exclusive = {
+			focus = RKA_workthemtodeath 
+		}
+		mutually_exclusive = {
+			focus = RKA_generalplanostinfull 
+		} 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_keepthemalivetowork"
+				add_war_support = -0.05
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
+			} 
+		}
+
+#Focus for Generalplan Ost In Full
+		shared_focus = {
+	cancelable = no 
+			id = RKA_generalplanostinfull
+			icon = GFX_GENERIC_shadow_over_europe
+			x = 9
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_theyarevermin } 
+			ai_will_do = { 
+				factor = 1
+			} 
+			mutually_exclusive = {
+			focus =  RKA_keepthemalivetowork
+		}
+		mutually_exclusive = {
+			focus = RKA_workthemtodeath 
+		} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_generalplanostinfull"
+				add_war_support = 0.1
+				random_owned_controlled_state = {
+					limit = { is_capital = yes }
+					add_manpower = -20000
+					add_core_of = ROOT
+				}
+			}
+
+		} 
+
+#Focus for Indoctrinate The Loyal Few
+		shared_focus = {
+	cancelable = no 
+			id = RKA_indoctrinatetheloyalfew
+			icon = GFX_GER_tap_good_soldier_head
+			x = 3
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_keepthemalivetowork } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_indoctrinatetheloyalfew"
+				add_ideas = rk_the_loyal_few
+			}
+		} 
+
+#Focus for Create Rudimentary Housing
+		shared_focus = {
+	cancelable = no 
+			id = RKA_createrudimentaryhousing
+			icon = GFX_GENERIC_public_housing
+			x = 5
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_indoctrinatetheloyalfew } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_createrudimentaryhousing"
+				add_stability = 0.05
+			}
+		} 
+
+#Focus for Provide More Effective Machinery
+		shared_focus = {
+	cancelable = no 
+			id = RKA_providemoreeffectivemachinery
+			icon = GFX_goal_generic_production
+			x = 5
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_keepthemalivetowork focus = RKA_workthemtodeath } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_providemoreeffectivemachinery"
+				add_stability = 0.05
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		} 
+
+#Focus for Basic Slavic Schooling
+		shared_focus = {
+	cancelable = no 
+			id = RKA_basicslavicschooling
+			icon = GFX_GENERIC_Red_Thick_Book
+			x = 5
+			y = 5
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_createrudimentaryhousing } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_basicslavicschooling"
+				add_ideas = rk_slavic_education
+			}
+		} 
+
+#Focus for Institute High Quotas
+		shared_focus = {
+	cancelable = no 
+			id = RKA_institutehighquotas
+			icon = GFX_focus_generic_concessions
+			x = 7
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_workthemtodeath } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_institutehighquotas"
+				random_owned_controlled_state = {
+					limit = { is_capital = yes }
+					add_manpower = -3000
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		} 
+
+#Focus for Mandatory Quality Checks
+		shared_focus = {
+	cancelable = no 
+			id = RKA_mandatoryqualitychecks
+			icon = GFX_GENERIC_industrial_quota
+			x = 7
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_institutehighquotas } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_mandatoryqualitychecks"
+				add_ideas = rk_good_products
+			}
+		} 
+
+#Focus for Permit Family Burials
+		shared_focus = {
+	cancelable = no 
+			id = RKA_permitfamilyburials
+			icon = GFX_GENERIC_minority_aimed_projects
+			x = 7
+			y = 5
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_mandatoryqualitychecks } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_permitfamilyburials"
+				add_stability = 0.05
+				add_war_support = -0.05
+			}
+		} 
+
+#Focus for Cleanse The Lazy
+		shared_focus = {
+	cancelable = no 
+			id = RKA_cleansethelazy
+			icon = GFX_GENERIC_imprison_opposition
+			x = 9
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_generalplanostinfull focus = RKA_workthemtodeath } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_cleansethelazy"
+				add_war_support = 0.1
+				add_stability = -0.05
+			}
+		} 
+
+#Focus for Roving SS Squads
+		shared_focus = {
+	cancelable = no 
+			id = RKA_rovingsssquads
+			icon = GFX_GER_ss_volunteers
+			x = 11
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_generalplanostinfull } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_rovingsssquads"
+				add_manpower = 2500
+			}
+		} 
+
+#Focus for Carpet-Bomb Villages
+		shared_focus = {
+	cancelable = no 
+			id = RKA_carpetbombvillages
+			icon = GFX_GENERIC_Firebombing
+			x = 9
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_rovingsssquads } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_carpetbombvillages"
+				add_war_support = 0.1
+				add_political_power = 200
+				add_stability = -0.05
+			}
+		} 
+
+#Focus for Liquidate The Camps
+		shared_focus = {
+	cancelable = no 
+			id = RKA_liquidatethecamps #NOTE
+			icon = GFX_GENERIC_Skull_Shovels
+			x = 9
+			y = 5
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_carpetbombvillages } 
+			ai_will_do = { 
+				factor = 1
+			} 
+
+		} 
+
+#Focus for Allow Slavic Breeding
+		shared_focus = {
+	cancelable = no 
+			id = RKA_allowslavicbreeding
+			icon = GFX_GER_reform_bill
+			x = 6
+			y = 6
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_permitfamilyburials focus = RKA_basicslavicschooling } 
+			mutually_exclusive = { focus = RKA_forbidslavicbreeding }
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_allowslavicbreeding"
+				add_ideas = rk_slavic_breeding
+				add_war_support = -0.1
+				add_stability = -0.1
+			}
+		} 
+
+#Focus for Forbid Slavic Breeding
+		shared_focus = {
+	cancelable = no 
+			id = RKA_forbidslavicbreeding
+			icon = GFX_GENERIC_two_skulls_puppet_show
+			x = 8
+			y = 6
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_liquidatethecamps focus = RKA_permitfamilyburials } 
+			mutually_exclusive = { focus = RKA_allowslavicbreeding }ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_forbidslavicbreeding"
+				add_ideas = rk_slavic_not_breeding
+			}
+		} 
+
+#Focus for Create Colonial Airwings
+		shared_focus = {
+	cancelable = no 
+			id = RKA_createcolonialairwings
+			icon = GFX_GENERIC_Air_Force_two
+			x = 1
+			y = 0
+			cost = 8
+			available_if_capitulated = yes 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_createcolonialairwings"
+				add_ideas = rk_airwing
+				air_experience = 30
+			}
+		} 
+
+#Focus for Build Local Craft
+		shared_focus = {
+	cancelable = no 
+			id = RKA_buildlocalcraft
+			icon = GFX_goal_generic_air_fighter2
+			x = 2
+			y = 1
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_createcolonialairwings } 
+			mutually_exclusive = { focus = RKA_importfromgermany } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_buildlocalcraft"
+				add_ideas = rk_local_air
+			}
+		} 
+
+#Focus for Theoretical Fighter Models
+		shared_focus = {
+	cancelable = no 
+			id = RKA_theoreticalfightermodels
+			icon = GFX_GENERIC_air_superiority
+			x = 1
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_buildlocalcraft focus = RKA_importfromgermany } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_theoreticalfightermodels"
+				add_ideas = rk_theoretical_fighters
+			}
+		} 
+
+#Focus for Theoretical Bomber Models
+		shared_focus = {
+	cancelable = no 
+			id = RKA_theoreticalbombermodels
+			icon = GFX_GENERIC_Dropping_Bombs
+			x = 1
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_theoreticalfightermodels } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_theoreticalbombermodels"
+				add_ideas = rk_theoretical_bombers
+			}
+		} 
+
+#Focus for Theoretical CAS Models
+		shared_focus = {
+	cancelable = no 
+			id = RKA_theoreticalcasmodels
+			icon = GFX_GENERIC_interceptors
+			x = 0
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_theoreticalbombermodels } 
+			mutually_exclusive = { focus = RKA_theoreticalstrategicbombermodels }
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_theoreticalcasmodels"
+				add_ideas = rk_cas
+			}
+		} 
+
+#Focus for Theoretical Strategic Bomber Models
+		shared_focus = {
+	cancelable = no 
+			id = RKA_theoreticalstrategicbombermodels
+			icon = GFX_USA_air_spying
+			x = 2
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_theoreticalbombermodels } 
+			mutually_exclusive = { focus = RKA_theoreticalcasmodels }
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_theoreticalstrategicbombermodels"
+				add_ideas = rk_sb
+			}
+		} 
+
+#Focus for Airbase Construction
+		shared_focus = {
+	cancelable = no 
+			id = RKA_airbaseconstruction
+			icon = GFX_GENERIC_air_construction
+			x = 1
+			y = 5
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_theoreticalstrategicbombermodels focus = RKA_theoreticalcasmodels } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_airbaseconstruction"
+				random_owned_controlled_state = {
+					add_building_construction = {
+						type = air_base
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_controlled_state = {
+					add_building_construction = {
+						type = air_base
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		} 
+
+#Focus for Colonial Industrial Quotas
+		shared_focus = {
+	cancelable = no 
+			id = RKA_colonialindustrialquotas
+			icon = GFX_GER_rk_quotas
+			x = 14
+			y = 0
+			cost = 8
+			available_if_capitulated = yes 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_colonialindustrialquotas"
+				add_ideas = rk_quotas
+				add_stability = -0.1
+			}
+		} 
+
+#Focus for Raw Material Demands
+		shared_focus = {
+	cancelable = no 
+			id = RKA_rawmaterialdemands
+			icon = GFX_GER_oil_barrels
+			x = 13
+			y = 1
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_colonialindustrialquotas } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_rawmaterialdemands"
+				add_ideas = rk_raw_material
+			}
+		} 
+
+#Focus for Production Demands
+		shared_focus = {
+	cancelable = no 
+			id = RKA_productiondemands
+			icon = GFX_GER_equipment
+			x = 15
+			y = 1
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_colonialindustrialquotas } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_productiondemands"
+				add_stability = 0.05
+			}
+		} 
+
+#Focus for New Resource Ventures
+		shared_focus = {
+	cancelable = no 
+			id = RKA_newresourceventures
+			icon = GFX_focus_generic_steel
+			x = 12
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_rawmaterialdemands } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_newresourceventures"
+				random_owned_controlled_state = {
+					limit = { is_capital = yes }
+					add_resource = {
+						type = steel
+						amount = 20
+					}
+				}
+			}
+		} 
+
+#Focus for Renovate Old Factories
+		shared_focus = {
+	cancelable = no 
+			id = RKA_renovateoldfactories
+			icon = GFX_GENERIC_central_industry
+			x = 16
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_productiondemands } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_renovateoldfactories"
+				random_owned_controlled_state = {
+					limit = { is_capital = yes }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		} 
+
+#Focus for Use Slavic Workers
+		shared_focus = {
+	cancelable = no 
+			id = RKA_useslavicworkers
+			icon = GFX_SOV_deport_grunts
+			x = 14
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_rawmaterialdemands } 
+			prerequisite = { focus = RKA_productiondemands } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_useslavicworkers"
+				add_war_support = -0.05
+				add_manpower = 1000
+				random_owned_controlled_state = {
+					limit = { is_capital = yes }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		} 
+
+#Focus for Create New Mines
+		shared_focus = {
+	cancelable = no 
+			id = RKA_createnewmines
+			icon = GFX_goal_generic_construction2
+			x = 13
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_newresourceventures } 
+			prerequisite = { focus = RKA_useslavicworkers } 
+			mutually_exclusive = { focus = RKA_createslavicfactories } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_createnewmines"
+				random_owned_controlled_state = {
+					limit = { is_capital = yes }
+					add_resource = {
+						type = aluminium
+						amount = 15
+					}
+				}
+			}
+		} 
+
+#Focus for Create Slavic Factories
+		shared_focus = {
+	cancelable = no 
+			id = RKA_createslavicfactories
+			icon = GFX_GENERIC_Cogs_For_Factory
+			x = 15
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_useslavicworkers } 
+			prerequisite = { focus = RKA_renovateoldfactories } 
+			mutually_exclusive = { focus = RKA_createnewmines } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_createslavicfactories"
+				add_stability = -0.1
+				random_owned_controlled_state = {
+					limit = { is_capital = yes }
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = industrial_complex
+						level = 3
+						instant_build = yes
+					}
+				}
+			}
+		} 
+
+#Focus for New Oil Prospects
+		shared_focus = {
+	cancelable = no 
+			id = RKA_newoilprospects
+			icon = GFX_goal_generic_oil_refinery
+			x = 13
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_createnewmines } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_newoilprospects"
+				random_owned_controlled_state = {
+					add_resource = {
+						type = oil
+						amount = 10
+					}
+				}
+			}
+		} 
+
+#Focus for New Colonial Factories
+		shared_focus = {
+	cancelable = no 
+			id = RKA_newcolonialfactories
+			icon = GFX_GENERIC_Factory_Planning
+			x = 15
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_createslavicfactories } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_newcolonialfactories"
+				random_owned_controlled_state  = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		} 
+
+#Focus for Recommission Soviet Mines
+		shared_focus = {
+	cancelable = no 
+			id = RKA_recommissionsovietmines
+			icon = GFX_GENERIC_mining
+			x = 13
+			y = 5
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_newoilprospects focus = RKA_newcolonialfactories } 
+			mutually_exclusive = { focus = RKA_recommissionsovietplants }
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_recommissionsovietmines"
+				random_owned_controlled_state = {
+					add_resource = {
+						type = tungsten
+						amount = 10
+					}
+				}
+			}
+		} 
+
+#Focus for Recommission Soviet Plants
+		shared_focus = {
+	cancelable = no 
+			id = RKA_recommissionsovietplants
+			icon = GFX_GENERIC_Power_Plant
+			x = 15
+			y = 5
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_newcolonialfactories focus = RKA_newoilprospects } 
+			ai_will_do = { 
+				factor = 1
+			} 
+			mutually_exclusive = { focus = RKA_recommissionsovietmines }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_recommissionsovietplants"
+				random_owned_controlled_state = {
+					add_resource = {
+						type = rubber
+						amount = 5
+					}
+				}
+			}
+		} 
+
+#Focus for Infrastructure For Shipments
+		shared_focus = {
+	cancelable = no 
+			id = RKA_infrastructureforshipments
+			icon = GFX_GER_supply
+			x = 14
+			y = 6
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_recommissionsovietmines focus = RKA_recommissionsovietplants } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_infrastructureforshipments"
+				random_owned_controlled_state  = {
+					add_building_construction = {
+						type = infrastructure
+						level = 3
+						instant_build = yes
+					}
+				}
+			}
+		} 
+
+#Focus for RK Military Revampment
+		shared_focus = {
+	cancelable = no 
+			id = RKA_rkmilitaryrevampment
+			icon = GFX_GER_two_rifles
+			x = 21
+			y = 0
+			cost = 8
+			available_if_capitulated = yes 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_rkmilitaryrevampment"
+				army_experience = 30
+			}
+		} 
+
+#Focus for Unleash The Propaganda
+		shared_focus = {
+	cancelable = no 
+			id = RKA_unleashthepropaganda
+			icon = GFX_GER_propaganda
+			x = 21
+			y = 1
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_rkmilitaryrevampment } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_unleashthepropaganda"
+				add_war_support = 0.05
+				add_manpower = 2000
+			}
+		} 
+
+#Focus for New Army Structure
+		shared_focus = {
+	cancelable = no 
+			id = RKA_newarmystructure
+			icon = GFX_GER_land_army
+			x = 19
+			y = 1
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_rkmilitaryrevampment } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_newarmystructure"
+				add_ideas = rk_new_army
+			}
+		} 
+
+#Focus for New SS Structure
+		shared_focus = {
+	cancelable = no 
+			id = RKA_newssstructure
+			icon = GFX_GER_ss_officers
+			x = 23
+			y = 1
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_rkmilitaryrevampment } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_newssstructure"
+				add_ideas = rk_ss_neu
+			}
+		} 
+
+#Focus for Local Training Facilities
+		shared_focus = {
+	cancelable = no 
+			id = RKA_localtrainingfacilities
+			icon = GFX_GENERIC_training_1
+			x = 18
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_newarmystructure } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_localtrainingfacilities"
+				add_ideas = rk_training_facilities
+			}
+		} 
+
+#Focus for Draft A Local Heer
+		shared_focus = {
+	cancelable = no 
+			id = RKA_draftalocalheer
+			icon = GFX_focus_ger_oppose_hitler
+			x = 20
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_newarmystructure } 
+			prerequisite = { focus = RKA_unleashthepropaganda } 
+			mutually_exclusive = { focus = RKA_draftalocalss } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_draftalocalheer"
+				add_ideas = rk_local_heer
+			}
+		} 
+
+#Focus for Draft A Local SS
+		shared_focus = {
+	cancelable = no 
+			id = RKA_draftalocalss
+			icon = GFX_SS_Loyal_Guards
+			x = 22
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_newssstructure } 
+			prerequisite = { focus = RKA_unleashthepropaganda } 
+			mutually_exclusive = { focus = RKA_draftalocalheer } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_draftalocalss"
+				add_ideas = rk_local_ss
+			}
+		} 
+
+#Focus for Indoctrination Centers
+		shared_focus = {
+	cancelable = no 
+			id = RKA_indoctrinationcenters
+			icon = GFX_KOR_improve_training
+			x = 24
+			y = 2
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_newssstructure } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_indoctrinationcenters"
+				add_stability = 0.1
+				add_war_support = 0.1
+			}
+		} 
+
+#Focus for Service For Freedom
+		shared_focus = {
+	cancelable = no 
+			id = RKA_serviceforfreedom
+			icon = GFX_GENERIC_Skull_Mil
+			x = 19
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_localtrainingfacilities } 
+			prerequisite = { focus = RKA_draftalocalheer } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_serviceforfreedom"
+				add_manpower = 10000
+				add_stability = -0.1
+			}
+		} 
+
+#Focus for Native Officer Corp
+		shared_focus = {
+	cancelable = no 
+			id = RKA_nativeofficercorp
+			icon = GFX_GENERIC_Lone_Officer
+			x = 19
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_serviceforfreedom } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_nativeofficercorp"
+				add_war_support = -0.1
+				add_ideas = rk_native_officer
+			}
+		} 
+
+#Focus for Securing Funding
+		shared_focus = {
+	cancelable = no 
+			id = RKA_securingfunding
+			icon = GFX_GENERIC_money
+			x = 21
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_draftalocalss focus = RKA_draftalocalheer } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_securingfunding"
+				add_offsite_building = { type = arms_factory level = 1 }
+			}
+		} 
+
+#Focus for Procuring Armaments
+		shared_focus = {
+	cancelable = no 
+			id = RKA_procuringarmaments
+			icon = GFX_GENERIC_military_industry_produce
+			x = 21
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_securingfunding } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_procuringarmaments"
+				add_ideas = rk_armaments
+			}
+		} 
+
+#Focus for Service For Aryanship
+		shared_focus = {
+	cancelable = no 
+			id = RKA_serviceforaryanship
+			icon = GFX_GENERIC_ARYAN
+			x = 23
+			y = 3
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_draftalocalss } 
+			prerequisite = { focus = RKA_indoctrinationcenters } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_serviceforaryanship"
+				add_stability = 0.15
+				add_political_power = 250
+				add_war_support = -0.2
+			}
+		} 
+
+#Focus for Germanic Officer Schools
+		shared_focus = {
+	cancelable = no 
+			id = RKA_germanicofficerschools
+			icon = GFX_GER_hitler_youth
+			x = 23
+			y = 4
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_serviceforaryanship } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_germanicofficerschools"
+				add_ideas = rk_germanic_officers
+				army_experience = 50
+			}
+		} 
+
+#Focus for Officially Form Slawisch-Heer
+		shared_focus = {
+	cancelable = no 
+			id = RKA_officiallyformslawischheer
+			icon = GFX_GER_Army_With_State
+			x = 20
+			y = 5
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_nativeofficercorp } 
+			prerequisite = { focus = RKA_procuringarmaments } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_officiallyformslawischheer"
+				custom_effect_tooltip = RKHEER
+				hidden_effect = {
+					division_template = {
+						name = "Slawisch-Heer Division"
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+						}
+					}
+					random_owned_controlled_state = {
+						limit = { is_capital = yes }
+						create_unit = {
+							division = "name = \"Slawisch-Heer Division\" division_template = \"Slawisch-Heer Division\" start_experience_factor = 0.3 start_equipment_factor = 1"
+							owner = ROOT
+						}
+						create_unit = {
+							division = "name = \"Slawisch-Heer Division\" division_template = \"Slawisch-Heer Division\" start_experience_factor = 0.3 start_equipment_factor = 1"
+							owner = ROOT
+						}
+						create_unit = {
+							division = "name = \"Slawisch-Heer Division\" division_template = \"Slawisch-Heer Division\" start_experience_factor = 0.3 start_equipment_factor = 1"
+							owner = ROOT
+						}
+						create_unit = {
+							division = "name = \"Slawisch-Heer Division\" division_template = \"Slawisch-Heer Division\" start_experience_factor = 0.3 start_equipment_factor = 1"
+							owner = ROOT
+						}
+					}
+				}
+			} 
+		} 
+
+#Focus for Begin RK-SS Operations
+		shared_focus = {
+	cancelable = no 
+			id = RKA_beginrkssoperations
+			icon = GFX_GENERIC_ss_handshake
+			x = 22
+			y = 5
+			cost = 8
+			available_if_capitulated = yes 
+			prerequisite = { focus = RKA_procuringarmaments } 
+			prerequisite = { focus = RKA_germanicofficerschools } 
+			ai_will_do = { 
+				factor = 1
+			} 
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RKA_beginrkssoperations"
+				custom_effect_tooltip = RKSS
+				hidden_effect = {
+					division_template = {
+						name = "Einsatzgruppen Division"
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+						}
+						support = { 
+							military_police = { x = 0 y = 0 }
+						} 
+						priority = 1
+					}
+					random_owned_controlled_state = {
+						limit = { is_capital = yes }
+						create_unit = {
+							division = "name = \"Einsatzgruppen Division\" division_template = \"Einsatzgruppen Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+							owner = ROOT
+						}
+						create_unit = {
+							division = "name = \"Einsatzgruppen Division\" division_template = \"Einsatzgruppen Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+							owner = ROOT
+						}
+						create_unit = {
+							division = "name = \"Einsatzgruppen Division\" division_template = \"Einsatzgruppen Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+							owner = ROOT
+						}
+					}
+				}
+			} 
+		}

@@ -1,0 +1,458 @@
+SS_conquest = {
+	GER_conquest_of_the_greater_reich = {
+		icon = ger_reichskommissariats
+		available = {
+		has_war = no
+		RUK = {
+		is_subject_of = ROOT
+			}
+		ROS = {
+		is_subject_of = ROOT
+			}
+		RMO = {
+		is_subject_of = ROOT
+			}
+		RKA = {
+		is_subject_of = ROOT
+			}
+		}
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			AND = {
+			OR = {
+			tag = SWE
+			tag = ROM
+			tag = HUN
+			tag = CRO
+			tag = ALB
+			tag = GRE
+			tag = BOS
+			tag = BUL
+			tag = BLC
+			tag = SER
+			tag = CKR
+			}
+			is_subject = no
+			NOT = {
+			is_in_faction_with = USA
+			}
+			exists = yes
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 500
+			modifier = { #Only attack neighboring countries
+				factor = 0
+				NOT = {
+					FROM = {
+						any_neighbor_country = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+								is_in_faction_with = ROOT
+							}
+						}
+					}
+				}
+			}
+		}
+
+		cost = 70
+		days_remove = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_conquest_of_the_greater_reich"
+		}
+		remove_effect = {
+		create_wargoal = {
+    	type = annex_everything
+    	target = FROM
+			}
+		}
+	}
+	SS_RUS_WAR = {
+		icon = ger_reichskommissariats
+		
+		target_trigger = {
+			FROM = {
+			any_neighbor_country = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			OR = {
+			tag = SOV 
+			tag = TRV 
+			tag = IDE 
+			tag = TRK
+			tag = KAZ
+			tag = TRA
+			tag = UZB
+			tag = TJK
+			tag = KYR
+			tag = FIN
+			original_tag = TRK
+			}
+			NOT = {
+			is_subject_of = ROOT
+			has_war_with = ROOT
+			}
+			exists = yes
+
+			}
+		}
+
+		visible = {
+		FROM = {
+		exists = yes
+		NOT = {
+		is_in_faction_with = ROOT
+		has_war_with = ROOT
+				}
+		is_subject = no
+			}
+		}
+
+		available = {
+		has_war = no
+		}
+
+		cost = 30
+		fire_only_once = yes
+		days_remove = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		modifier = {
+			political_power_cost = 0.10
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SS_RUS_WAR"
+			hidden_effect = {
+			add_ai_strategy = {
+                type = conquer
+                id = FROM
+                value = 100
+            	}
+			}
+		}
+		remove_effect = {
+		declare_war_on = {
+    	target = FROM
+    	type = annex_everything
+			}
+		}
+	}
+}
+himmler_project = {
+	HIMMLER_confiscation_of_wealth = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_completed_focus = HSS_Nation_Of_Fear
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 100
+		days_remove = 30
+
+		modifier = {
+			political_power_cost = 0.10
+			consumer_goods_factor = 0.01
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_confiscation_of_wealth"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_confiscation_of_wealth"
+		add_resource = { 
+		type = steel #resource type to add/destroy 
+		amount = 5 #amount to add 
+		state = 855 #can be also read from scope 
+		days = 30 #a resource can be added/removed temporarily
+			}
+		add_resource = { 
+		type = oil #resource type to add/destroy 
+		amount = 3 #amount to add 
+		state = 855 #can be also read from scope 
+		days = 30 #a resource can be added/removed temporarily
+			}
+		add_resource = { 
+		type = tungsten #resource type to add/destroy 
+		amount = 5 #amount to add 
+		state = 855 #can be also read from scope 
+		days = 30 #a resource can be added/removed temporarily
+			}
+		add_resource = { 
+		type = aluminium #resource type to add/destroy 
+		amount = 5 #amount to add 
+		state = 855 #can be also read from scope 
+		days = 30 #a resource can be added/removed temporarily
+			}
+		}
+	}
+	HIMMLER_invest_in_CCTV = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_completed_focus = HSS_Supervise_All_Germans
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_invest_in_CCTV"
+			add_tech_bonus = {
+    		bonus = 0.5
+    		uses = 1
+    		category = electronics
+			}
+			hidden_effect = {
+			set_country_flag = CCTV_EVERYWHERE_HSSs
+			}
+		}
+	}
+	HIMMLER_video_surveillance_in_major_cities = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_country_flag = CCTV_EVERYWHERE_HSSs
+		}
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+
+		cost = 50
+		fire_only_once = yes
+		days_remove = 100
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_video_surveillance_in_major_cities"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_video_surveillance_in_major_cities"
+		add_ideas = HSS_CCTV_1
+		}
+	}
+	HIMMLER_247_centres = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_idea = HSS_CCTV_1
+		has_completed_focus = HSS_Central_Registery
+		}
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+
+		cost = 50
+		fire_only_once = yes
+		days_remove = 100
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_247_centres"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_247_centres"
+		swap_ideas = {
+    	remove_idea = HSS_CCTV_1
+    	add_idea = HSS_CCTV_2
+			}
+		}
+	}
+	HIMMLER_organic_surveillance = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_idea = HSS_CCTV_2
+		has_completed_focus = HSS_Central_Listening_Post
+		}
+		modifier = {
+			consumer_goods_factor = 0.02
+		}
+
+		cost = 50
+		fire_only_once = yes
+		days_remove = 100
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_247_centres"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_247_centres"
+		swap_ideas = {
+    	remove_idea = HSS_CCTV_2
+    	add_idea = HSS_CCTV_3
+			}
+		}
+	}
+	HIMMLER_aryan_maths = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_completed_focus = HSS_Altering_History
+		}
+
+		cost = 50
+		fire_only_once = yes
+		days_remove = 70
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_aryan_maths"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_aryan_maths"
+		country_event = twrhimmler.8
+		}
+	}
+	HIMMLER_aryan_phys = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_completed_focus = HSS_Altering_History
+		}
+
+		cost = 50
+		fire_only_once = yes
+		days_remove = 90
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_aryan_phys"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_aryan_phys"
+		country_event = twrhimmler.7
+		}
+	}
+	HIMMLER_hollow_earth_1 = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_completed_focus = HSS_Esoteric_Germany
+		has_completed_focus = HSS_Paganism_Endorsed
+		}
+
+		cost = 30
+		fire_only_once = yes
+		days_remove = 60
+
+		modifier = {
+			consumer_goods_factor = 0.01
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_hollow_earth_1"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_hollow_earth_1"
+		country_event = twrhimmler.9
+		}
+	}
+	HIMMLER_tibet_expedition = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_completed_focus = HSS_Esoteric_Germany
+		has_completed_focus = HSS_Paganism_Endorsed
+		}
+
+		cost = 30
+		fire_only_once = yes
+		days_remove = 60
+
+		modifier = {
+			consumer_goods_factor = 0.01
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_tibet_expedition"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_tibet_expedition"
+		country_event = twrhimmler.10
+		}
+	}
+	HIMMLER_use_the_medicine = {
+		icon = hol_draw_up_staff_plans
+
+		available = {
+		has_country_flag = HSS_USE_THE_ARTIFACTS_ABLE
+		}
+		visible = {
+		has_country_flag = HSS_USE_THE_ARTIFACTS_ABLE
+		}
+
+		cost = 45
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision HIMMLER_use_the_medicine"
+			country_event = twrhimmler.17
+		}
+	}
+}

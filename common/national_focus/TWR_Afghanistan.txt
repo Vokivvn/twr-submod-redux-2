@@ -1,0 +1,461 @@
+focus_tree = {
+    id = AFG_commie_tree
+    country = {
+        factor = 0
+        modifier = {
+            add = 0
+            tag = AFG
+        }
+    }
+    shared_focus = AFG_The_Scarlet_Banner_Over_Kabul
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_The_Scarlet_Banner_Over_Kabul
+    icon = GFX_AFG_The_Scarlet_Banner_Over_Kabul
+    x = 0
+    y = 0
+    cost = 0
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_The_Scarlet_Banner_Over_Kabul"
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Restaff_the_kings_cabinet
+    icon = GFX_AFG_Restaff_the_kings_cabinet
+    prerequisite = { focus = AFG_The_Scarlet_Banner_Over_Kabul }
+    relative_position_id = AFG_The_Scarlet_Banner_Over_Kabul
+    x = 0
+    y = 1
+    cost = 2
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Restaff_the_kings_cabinet"
+        #adding ministers
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Encourage_Soviet_Investment
+    icon = GFX_GENERIC_Soviet_Deal
+    prerequisite = { focus = AFG_Restaff_the_kings_cabinet }
+    relative_position_id = AFG_Restaff_the_kings_cabinet
+    x = -2
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Encourage_Soviet_Investment"
+        267 = {
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = {
+                type = arms_factory
+                level = 1
+                instant_build = yes
+            }
+        }
+        267 = {
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = {
+                type = industrial_complex
+                level = 1
+                instant_build = yes
+            }
+        }
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Rebuild_The_Army
+    icon = GFX_GENERIC_Red_Army_Overhaul
+    prerequisite = { focus = AFG_Restaff_the_kings_cabinet }
+    relative_position_id = AFG_Restaff_the_kings_cabinet
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Rebuild_The_Army"
+        load_oob = "commie_afghan"
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_End_The_Riots
+    icon = GFX_NRI_Norilsk_Quell_the_Bread_Riots
+    prerequisite = { focus = AFG_Restaff_the_kings_cabinet }
+    relative_position_id = AFG_Restaff_the_kings_cabinet
+    x = 2
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_End_The_Riots"
+        swap_ideas = {
+            remove_idea = AFG_urban_outrage
+            add_idea = AFG_urban_outrage_2
+        }
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_The_First_Afghani_Workers_Congress
+    icon = GFX_AFG_Congress
+    prerequisite = { focus = AFG_Rebuild_The_Army }
+    prerequisite = { focus = AFG_Encourage_Soviet_Investment }
+    prerequisite = { focus = AFG_End_The_Riots }
+    relative_position_id = AFG_Rebuild_The_Army
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_End_The_Riots"
+        country_event = { id = afghanistan.1 }
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_A_Pashtun_Government
+    icon = GFX_AFG_A_Pashtun_Government
+    prerequisite = { focus = AFG_The_First_Afghani_Workers_Congress }
+    relative_position_id = AFG_The_First_Afghani_Workers_Congress
+    mutually_exclusive = { focus = AFG_Power_To_The_Urbanites }
+    x = -2
+    y = 1
+    cost = 1
+    ai_will_do = {
+        factor = 20
+    }
+    available = {
+        has_country_flag = KHALQ_REGIME
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_End_The_Riots"
+        add_popularity = {
+            ideology = marxist_leninist
+            popularity = 0.5
+        }
+        set_politics = {
+            ruling_party = marxist_leninist
+        }
+
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Adopt_State_Aethism
+    icon = GFX_GENERIC_socialist_atheism
+    prerequisite = { focus = AFG_A_Pashtun_Government }
+    relative_position_id = AFG_A_Pashtun_Government
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_A_Pashtun_Government"
+        add_stability = -0.05
+        add_political_power = 50
+
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Arrest_Rebellious_Imams
+    icon = GFX_GENERIC_Islamic_Burning
+    prerequisite = { focus = AFG_Adopt_State_Aethism }
+    relative_position_id = AFG_Adopt_State_Aethism
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Arrest_Rebellious_Imams"
+        swap_ideas = {
+            remove_idea = AFG_rural_revolt
+            add_idea = AFG_rural_revolt_2
+        }
+
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Purge_Disloyal_Officers
+    icon = GFX_focus_CDA_purge_warlords
+    prerequisite = { focus = AFG_A_Pashtun_Government }
+    relative_position_id = AFG_A_Pashtun_Government
+    x = -2
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Purge_Disloyal_Officers"
+        add_timed_idea = {
+            idea = AFG_army_purge
+            days = 365
+        }
+
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Expropriate_Bourgeois_Property
+    icon = GFX_GENERIC_land_redistribution
+    prerequisite = { focus = AFG_Purge_Disloyal_Officers }
+    relative_position_id = AFG_Purge_Disloyal_Officers
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Expropriate_Bourgeois_Property"
+        267 = {
+            add_extra_state_shared_building_slots = 2
+        }
+        415 = {
+            add_extra_state_shared_building_slots = 2
+        }
+        add_political_power = -100
+        add_war_support = -0.1
+        add_stability = -0.05
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Power_To_The_Urbanites
+    icon = GFX_AFG_Power_to_the_Urbanites
+    prerequisite = { focus = AFG_The_First_Afghani_Workers_Congress }
+    relative_position_id = AFG_The_First_Afghani_Workers_Congress
+    mutually_exclusive = { focus = AFG_A_Pashtun_Government }
+    x = 2
+    y = 1
+    cost = 1
+    ai_will_do = {
+        factor = 20
+    }
+    available = {
+        has_country_flag = PARCHAM_REGIME
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_End_The_Riots"
+        add_popularity = {
+            ideology = socialist
+            popularity = 0.15
+        }
+        create_country_leader = {
+                name = "Mir Akbar Khyber"
+                desc = "KHYBER_DESC"
+                picture = "Khyber.dds"
+                expire = "1968.1.1"
+                ideology = zhukovism
+                traits = {}
+            }
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Soft_Secularism
+    icon = GFX_GENERIC_Islam_Secular
+    relative_position_id = AFG_Power_To_The_Urbanites
+    prerequisite = { focus = AFG_Power_To_The_Urbanites }
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Soft_Secularism"
+        add_stability = 0.05
+        add_political_power = -50
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Making_Amends
+    icon = GFX_GENERIC_handshake
+    relative_position_id = AFG_Soft_Secularism
+    prerequisite = { focus = AFG_Soft_Secularism }
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Making_Amends"
+        swap_ideas = {
+            remove_idea = AFG_rural_revolt
+            add_idea = AFG_rural_revolt_2
+        }
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_The_Beginning_Of_Industrialization
+    icon = GFX_POL_Ten_Year_Plan
+    relative_position_id = AFG_Power_To_The_Urbanites
+    prerequisite = { focus = AFG_Power_To_The_Urbanites }
+    x = 2
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_The_Beginning_Of_Industrialization"
+        add_timed_idea = {
+            idea = AFG_industry_time
+            days = 3650
+        }
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Socialized_Land_Reform
+    icon = GFX_GENERIC_Land_Reform
+    relative_position_id = AFG_The_Beginning_Of_Industrialization
+    prerequisite = { focus = AFG_The_Beginning_Of_Industrialization }
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Socialized_Land_Reform"
+        415 = {
+            add_extra_state_shared_building_slots = 1
+        }
+        add_stability = 0.1
+        add_war_support = 0.05
+        add_political_power = -70
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Education_Reform
+    icon = GFX_focus_research
+    prerequisite = { focus = AFG_Power_To_The_Urbanites focus = AFG_A_Pashtun_Government }
+    relative_position_id = AFG_A_Pashtun_Government
+    x = 2
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Education_Reform"
+        add_research_slot = 1
+
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_Encourage_Female_Equality
+    icon = GFX_RUS_New_Russian_Feminism
+    prerequisite = { focus = AFG_Education_Reform }
+    relative_position_id = AFG_Education_Reform
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_Encourage_Female_Equality"
+        add_ideas = { AFG_female_equality }
+
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_The_Monarchy_Question
+    icon = GFX_AFG_Afghan_Monarchy
+    prerequisite = { focus = AFG_Encourage_Female_Equality }
+    prerequisite = { focus = AFG_Expropriate_Bourgeois_Property }
+    prerequisite = { focus = AFG_Arrest_Rebellious_Imams }
+    relative_position_id = AFG_Arrest_Rebellious_Imams
+    x = 0
+    y = 1
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_The_Monarchy_Question"
+        clr_country_flag = king_zahir
+        clr_country_flag = has_symbolic_figurehead
+        remove_ideas = hos_mediocre
+        swap_ideas = {
+            remove_idea = AFG_urban_outrage_2
+            add_idea = AFG_urban_outrage_3
+        }
+    }
+}
+
+shared_focus = {
+    cancelable = no
+    id = AFG_A_Truly_Progressive_State
+    icon = GFX_GENERIC_peaceful_socialism
+    prerequisite = { focus = AFG_Encourage_Female_Equality }
+    prerequisite = { focus = AFG_Socialized_Land_Reform }
+    prerequisite = { focus = AFG_Making_Amends }
+    relative_position_id = AFG_Education_Reform
+    x = 2
+    y = 2
+    cost = 4
+    ai_will_do = {
+        factor = 20
+    }
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus AFG_A_Truly_Progressive_State"
+        add_stability = 0.2
+        swap_ideas = {
+            remove_idea = AFG_urban_outrage_2
+            add_idea = AFG_urban_outrage_3
+        }
+    }
+}
+

@@ -1,0 +1,415 @@
+﻿add_namespace = twrsyria
+
+country_event = { 
+	id = twrsyria.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.0"}
+	title = twrsyria.0.t
+	desc = twrsyria.0.d
+	picture = GFX_report_event_ssnp
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.0.a
+	}
+}
+
+country_event = { 
+	id = twrsyria.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.1"}
+	title = twrsyria.1.t
+	desc = twrsyria.1.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.1.a
+		add_political_power = 30
+		news_event = {
+			id = twrnews.104
+		}
+		set_cosmetic_tag = NAT_SYR
+		hidden_effect = {
+			IRQ = {
+				country_event = { days = 5 id = twriraq.1 }
+			}
+		}
+	}
+}
+
+country_event = { 
+	id = twrsyria.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.2"}
+	title = twrsyria.2.t
+	desc = twrsyria.2.d
+	picture = GFX_report_event_syria_war
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.2.a
+		news_event = {
+			id = twrnews.105
+		}
+	}
+}
+
+country_event = { # Puppet Saudi Arabia
+	id = twrsyria.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.3"}
+	title = twrsyria.3.t
+	desc = twrsyria.3.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.3.a
+		release_puppet = SAU
+		SAU = {
+			set_politics = {
+				ruling_party = paternal_autocrat
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Faisal bin Abdulaziz Al Saud"
+				desc = "Faisal_bin_Abdulaziz_Al_Saud_DESC"
+				picture = "faisal.dds"
+				expire = "1985.1.1"
+				ideology = monarchism
+				traits = {}
+			}
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 10
+			    paternal_autocrat = 70
+			    conservative = 10
+			    liberal = 4
+			    social_democrat = 4
+			    socialist = 2
+			    bolshevik_leninist = 0
+			    marxist_leninist = 0
+			}
+		}
+	}
+}
+
+country_event = { # Peace with Iran
+	id = twrsyria.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.4"}
+	title = twrsyria.4.t
+	desc = twrsyria.4.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.4.a
+		release = PER
+		transfer_state = 421
+		transfer_state = 413
+		PER = {
+		white_peace_with_ROOT = yes
+			country_event = { days = 1 id = twrsyria.5 }
+		}
+	}
+}
+
+country_event = { # Iran's reaction
+	id = twrsyria.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.5"}
+	title = twrsyria.5.t
+	desc = twrsyria.5.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.5.a
+	}
+}
+
+country_event = { # Peace with Turkey
+	id = twrsyria.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.6"}
+	title = twrsyria.6.t
+	desc = twrsyria.6.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.6.a
+		release = TUR
+		transfer_state = 803
+		transfer_state = 344
+		transfer_state = 350
+		transfer_state = 352
+		TUR = {
+		white_peace_with_ROOT = yes
+			country_event = { days = 1 id = twrsyria.7 }
+		}
+	}
+}
+
+country_event = { # Turkey's reaction
+	id = twrsyria.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.7"}
+	title = twrsyria.7.t
+	desc = twrsyria.7.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.7.a
+	}
+}
+
+country_event = { # Turkish Occupation of Syria
+	id = twrsyria.8
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event twrsyria.8"
+		hidden_effect = { set_global_flag = syria_defeated }
+	}
+	title = twrsyria.8.t
+	desc = twrsyria.8.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Hashemites formed
+		name = twrsyria.8.a
+		trigger = {
+			country_exists = IRQ
+			has_global_flag = iraq_federation
+		}
+		TUR = {
+			transfer_state = 677
+			transfer_state = 803
+		}
+		IRQ = {
+			transfer_state = 680
+			transfer_state = 554
+		}
+	}
+	option = { #No hashemites
+		name = twrsyria.8.a1
+		trigger = {
+			country_exists = IRQ
+			NOT = { has_global_flag = iraq_federation }
+		}
+		release_puppet = SYR
+		TUR = {
+		transfer_state = 677
+		transfer_state = 803
+		}
+		hidden_effect = {
+		SYR = {
+			transfer_state = 680
+			transfer_state = 554
+		}
+			SYR = {
+				load_focus_tree = generic
+				set_politics = {
+					ruling_party = paternal_autocrat
+					elections_allowed = no
+				}
+				set_popularities = {
+				    national_socialist = 10
+				    fascist = 20
+				    paternal_autocrat = 25
+				    conservative = 26
+				    liberal = 0
+				    social_democrat = 0
+				    socialist = 19
+				    bolshevik_leninist = 0
+				    marxist_leninist = 0
+				}
+			}
+		}
+	}
+	option = { #No hashemites
+		name = twrsyria.8.a2
+		trigger = {
+			country_exists = IRQ
+			NOT = { has_global_flag = iraq_federation }
+		}
+		release_puppet = SYR
+		TUR = {
+		transfer_state = 803
+		}
+		hidden_effect = {
+		SYR = {
+			transfer_state = 677
+			transfer_state = 680
+			transfer_state = 554
+		}
+			SYR = {
+				load_focus_tree = generic
+				set_politics = {
+					ruling_party = paternal_autocrat
+					elections_allowed = no
+				}
+				set_popularities = {
+				    national_socialist = 10
+				    fascist = 20
+				    paternal_autocrat = 25
+				    conservative = 26
+				    liberal = 0
+				    social_democrat = 0
+				    socialist = 19
+				    bolshevik_leninist = 0
+				    marxist_leninist = 0
+				}
+			}
+		}
+	}
+	option = {
+		name = twrsyria.8.c
+		trigger = {
+			NOT = { country_exists = IRQ }
+		}
+		release_puppet = SYR
+		release = PER
+		transfer_state = 803
+		hidden_effect = {
+			SYR = {
+				load_focus_tree = generic
+			SYR = {
+				transfer_state = 677
+				transfer_state = 680
+				transfer_state = 554
+			}
+				set_politics = {
+					ruling_party = paternal_autocrat
+					elections_allowed = no
+				}
+				set_popularities = {
+				    national_socialist = 10
+				    fascist = 20
+				    paternal_autocrat = 25
+				    conservative = 26
+				    liberal = 0
+				    social_democrat = 0
+				    socialist = 19
+				    bolshevik_leninist = 0
+				    marxist_leninist = 0
+				}
+			}
+		}
+	}
+}
+
+country_event = { # Iran beats Syria
+	id = twrsyria.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.9"}
+	title = twrsyria.9.t
+	desc = twrsyria.9.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = twrsyria.9.a
+		release_puppet = SYR
+		hidden_effect = {
+			release = TUR
+			SYR = {
+				set_politics = {
+					ruling_party = paternal_autocrat
+					elections_allowed = no
+				}
+				set_popularities = {
+				    national_socialist = 10
+				    fascist = 20
+				    paternal_autocrat = 25
+				    conservative = 26
+				    liberal = 0
+				    social_democrat = 0
+				    socialist = 19
+				    bolshevik_leninist = 0
+				    marxist_leninist = 0
+				}
+			}
+		}
+	}
+}
+
+
+### little event for Israel-Palestine and Syrian territory
+
+country_event = { # Return Syrian Territory
+	id = twrsyria.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.10"}
+	title = twrsyria.10.t
+	desc = twrsyria.10.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.10.a
+		release = SYR
+#		every_owned_state = {
+#			limit = {
+#				is_core_of = SYR
+#				NOT = { is_core_of = LEB }
+#			}
+#		}
+	}
+}
+
+### war with Britain
+
+country_event = { # War with Syria lost
+	id = twrsyria.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.11"}
+	title = twrsyria.11.t
+	desc = twrsyria.11.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.11.a
+	}
+}
+
+country_event = { # Victory by taking Cyprus
+	id = twrsyria.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.12"}
+	title = twrsyria.12.t
+	desc = twrsyria.12.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.12.a
+		white_peace = ENG
+		white_peace = USA
+		transfer_state = 656
+		transfer_state = 183
+		remove_mission = SYR_war_with_britain
+		ENG = {	
+			country_event = { id = twrsyria.13 days = 1 }
+		}
+	}
+}
+
+country_event = { # Syrian Victory by taking Cyprus
+	id = twrsyria.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrsyria.13"}
+	title = twrsyria.13.t
+	desc = twrsyria.13.d
+	picture = GFX_report_event_arabia_map
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = twrsyria.13.a
+	}
+}
+

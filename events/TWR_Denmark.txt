@@ -1,0 +1,680 @@
+	add_namespace = twrdenmark
+	add_namespace = twrdenmarknews
+
+	country_event = {
+		id = twrdenmark.1 #Danish question
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.1"}
+		title = twrdenmark.1.t
+		desc = twrdenmark.1.d
+		picture = GFX_report_event_danish_question
+		
+		is_triggered_only = yes
+		
+		fire_only_once = yes
+		
+		option = {
+			name = twrdenmark.1.a
+			add_political_power = -100
+			add_stability = -0.1
+			remove_ideas = DEN_nazi_regime
+			hidden_effect = { 
+				country_event = { id = twrdenmark.2 days = 5 random = 300 }
+				complete_national_focus = DEN_Germany_in_Chaos
+			}
+		}
+	}
+	country_event = {
+		id = twrdenmark.2 #Heer junta losing control
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.2"}
+		title = twrdenmark.2.t
+		desc = twrdenmark.2.d
+		picture = GFX_report_event_danish_car
+		
+		is_triggered_only = yes
+		
+		fire_only_once = yes
+		
+		option = {
+			name = twrdenmark.2.a
+			add_political_power = -150
+			add_popularity = {
+				ideology = national_socialist
+				popularity = -0.05
+			}
+			
+			hidden_effect = { 
+				country_event = { id = twrdenmark.3 days = 4 }
+				add_ideas = RMO_chaos_state_focus3
+			}
+		}
+	}
+	country_event = {
+		id = twrdenmark.3 #freedom council
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.3"}
+		title = twrdenmark.3.t
+		desc = twrdenmark.3.d
+		picture = GFX_report_event_freedom_council
+		
+		is_triggered_only = yes
+		
+		fire_only_once = yes
+		
+		option = {
+			name = twrdenmark.3.a
+			add_political_power = -150
+			hidden_effect = { 
+				country_event = { id = twrdenmark.4 days = 4 }
+				swap_ideas = {
+					remove_idea = RMO_chaos_state_focus3
+					add_idea = RMO_chaos_state_focus2
+				}
+			}
+		}
+	}
+	country_event = {
+		id = twrdenmark.4 #danish general strike
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.4"}
+		title = twrdenmark.4.t
+		desc = twrdenmark.4.d
+		picture = GFX_report_event_danish_strike
+		
+		is_triggered_only = yes
+		
+		fire_only_once = yes
+		
+		option = {
+			name = twrdenmark.4.a #Democracy prevails
+			add_political_power = 150
+			ai_chance = {
+				factor = 60
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_HEER
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_SS
+				}
+			}
+			add_stability = 0.1
+			kill_country_leader = yes
+			set_politics = {
+				ruling_party = social_democrat
+			}
+			add_ideas = ideological_fanaticism_focus
+			news_event = twrdenmark.101
+			hidden_effect = {
+				add_popularity = {
+					ideology = social_democrat
+					popularity = 0.6
+				}
+				country_event = { id = twrdenmark.5 days = 3 }
+				complete_national_focus = DEN_Peoples_Revolution
+				remove_ideas = RMO_chaos_state_focus2
+				every_army_leader = {
+					retire = yes
+				}
+				every_navy_leader = {
+					retire = yes
+				}
+				if = {
+					limit = {
+						has_war_with = USA
+					}
+					white_peace = USA
+				}
+				every_country = {
+					limit = {
+						OR = {
+							tag = GER
+							tag = HSS
+							tag = HGR
+							tag = RKN
+							tag = GGP
+							tag = ROS
+							tag = RMO
+							tag = RKA
+							tag = RUK
+							AND = {
+								tag = NOR
+								NOR = {
+									is_fascist = yes
+								}
+							}
+						}
+					}
+					diplomatic_relation = {
+						country = DEN
+						relation = non_aggression_pact
+						active = no
+					}
+					DEN = {
+						diplomatic_relation = {
+							country = PREV
+							relation = non_aggression_pact
+							active = no
+						}
+					}
+				}
+			}
+		}
+		option = {
+			name = twrdenmark.4.b #Heer crushes the protesters
+			ai_chance = {
+				factor = 50
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_REPUBLIC
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_KINGDOM
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_SS
+				}
+			}
+			add_political_power = -100
+			add_stability = -0.2
+			add_popularity = {
+				ideology = national_socialist
+				popularity = 0.5
+			}
+			hidden_effect = {
+				complete_national_focus = DEN_Hannekens_Junta
+				remove_ideas = RMO_chaos_state_focus2
+				news_event = twrdenmarknews.1
+			}
+		}
+		option = {
+			name = twrdenmark.4.c #SS suppresses everyone
+			ai_chance = {
+				factor = 20
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_REPUBLIC
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_KINGDOM
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_HEER
+				}
+			}
+			add_political_power = -200
+			add_stability = -0.3
+			add_war_support = 0.1
+			set_cosmetic_tag = DEN_SS
+			kill_country_leader = yes
+			add_popularity = {
+				ideology = national_socialist
+				popularity = 0.5
+			}
+			create_country_leader = {
+				name = "Werner Best"
+				desc = "Werner_Best_DESC"
+				picture = "Werner_Best.dds"
+				expire = "1965.1.1"
+				ideology = ultranationalism
+				traits = {
+
+				}
+			}
+			hidden_effect = {
+				country_event = { id = twrdenmark.6 days = 3 }
+				news_event = twrdenmarknews.2
+				complete_national_focus = DEN_Bests_Schutzstaffel
+				remove_ideas = RMO_chaos_state_focus2
+			}
+
+		}
+	}
+	country_event = {
+		id = twrdenmark.5 #monarchy question
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.5"}
+		title = twrdenmark.5.t
+		desc = twrdenmark.5.d
+		picture = GFX_report_event_freedom_council
+		
+		is_triggered_only = yes
+		
+		fire_only_once = yes
+		
+		option = {
+			name = twrdenmark.5.a #A republic
+			ai_chance = {
+				factor = 0
+				modifier = {
+					add = 50
+					has_global_flag = COUNTRY_PATH_DEN_REPUBLIC
+				}
+			}
+			set_cosmetic_tag = DEN_REP
+			news_event = twrdenmark.102
+			remove_ideas = {
+				DEN_uncertainty
+			}
+			hidden_effect = {
+				complete_national_focus = DEN_The_Danish_Republic
+			}
+		}
+		option = {
+			name = twrdenmark.5.b #A kingdom
+			ai_chance = {
+				factor = 50
+				modifier = {
+					factor = 0
+					has_global_flag = COUNTRY_PATH_DEN_REPUBLIC
+				}
+			}
+			add_stability = 0.01
+			remove_ideas = {
+				DEN_uncertainty
+			}
+			hidden_effect = {
+				complete_national_focus = DEN_Restore_the_Kingdom
+				set_country_flag = has_symbolic_figurehead
+				set_country_flag = king_frederick_IX
+				add_ideas = hos_popular_figurehead
+			}
+		}
+	}
+	country_event = {
+		id = twrdenmark.51 #monarch
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.51"}
+		title = twrdenmark.51.t
+		desc = twrdenmark.51.d
+		picture = GFX_report_event_return_of_the_king
+		
+		is_triggered_only = yes
+		
+		fire_only_once = yes
+
+		option = {
+			name = twrdenmark.5.b #A kingdom
+			add_stability = 0.01
+			set_politics = {
+				ruling_party = social_democrat
+			}
+			news_event = twrdenmarknews.3
+			hidden_effect = {
+				complete_national_focus = DEN_Restore_the_Kingdom
+				set_country_flag = has_symbolic_figurehead
+				set_country_flag = king_frederick_IX
+				add_popularity = {
+					ideology = social_democrat
+					popularity = 0.6
+				}
+				add_ideas = hos_popular_figurehead
+			}
+		}
+	}
+	country_event = {
+		id = twrdenmark.100 #Liberation time
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.100"}
+		title = twrdenmark.100.t
+		desc = twrdenmark.100.d
+		picture = GFX_report_event_danish_car
+		
+		is_triggered_only = yes
+		
+		option = {
+			name = twrdenmark.100.a
+			trigger = {
+				is_in_faction_with = USA
+			}
+			DEN = {
+				transfer_state = 37
+				transfer_state = 99
+				transfer_state = 804
+			}
+			USA = {
+				puppet = DEN
+				set_autonomy = {
+					target = DEN
+					autonomy_state = autonomy_USA_Sponsored_Regime
+				}
+			}
+			hidden_effect = {
+					every_country = {
+						limit = {
+							is_in_faction_with = ROOT
+						}
+						release = DEN
+					}
+				DEN = {
+					drop_cosmetic_tag = yes
+					set_politics = {
+						ruling_party = paternal_autocrat
+					}
+					add_popularity = {
+						ideology = paternal_autocrat
+						popularity = 0.3
+					}
+					create_country_leader = {
+						name = "Danish Occupation Command"
+						desc = "Danish_Occupation_Command_DESC"
+						picture = "Danish_Occupation_Command.dds"
+						expire = "1965.1.1"
+						ideology = transitional_regime
+						traits = {
+
+						}
+					}			
+					set_party_name = { 
+						ideology = paternal_autocrat 
+						long_name = TA_MILITARY_PARTY_LONG 
+						name = TA_MILITARY_PARTY
+					}
+					complete_national_focus = DEN_The_Accords_Occupation
+					add_ideas = facade_democracy
+					remove_ideas = {
+						DEN_nazi_regime
+						DEN_Heer_Junta
+						DEN_Martial_Law
+						DEN_For_the_Heer
+						DEN_Denmark_for_itself
+						DEN_SS_Cooperation
+						DEN_For_the_SS
+						DEN_uncertainty
+					}
+					set_country_flag = ns_germans_gone
+					set_cosmetic_tag = DEN_TA
+					every_navy_leader = {
+						retire = yes
+					}
+					every_army_leader = {
+						retire = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						tag = USA
+					}
+				}
+				add_offsite_building = { type = industrial_complex level = 2 }
+			}
+		}
+		option = {
+			name = twrdenmark.100.a
+			trigger = {
+				NOT = {
+					is_in_faction_with = USA
+				}
+			}
+			release = DEN
+			set_autonomy = {
+				target = DEN
+				autonomy_state = autonomy_puppet
+			}
+			hidden_effect = {
+					every_country = {
+						limit = {
+							is_in_faction_with = ROOT
+						}
+						release = DEN
+					}
+					DEN = {
+					set_politics = {
+						ruling_party = social_democrat 
+					}
+					add_popularity = {
+						ideology = social_democrat 
+						popularity = 0.3
+					}
+					add_ideas = facade_democracy
+					set_country_flag = ns_germans_gone
+					every_navy_leader = {
+						retire = yes
+					}
+					every_army_leader = {
+						retire = yes
+					}
+				}
+			}
+		}
+		option = {
+			name = twrdenmark.100.a
+			trigger = {
+				NOT = {
+					is_in_faction_with = USA
+				}
+			}
+			release = DEN
+			hidden_effect = {
+					every_country = {
+						limit = {
+							is_in_faction_with = ROOT
+						}
+						release = DEN
+					}
+					DEN = {
+					set_politics = {
+						ruling_party = social_democrat 
+					}
+					add_popularity = {
+						ideology = social_democrat 
+						popularity = 0.3
+					}
+					add_ideas = facade_democracy
+					set_country_flag = ns_germans_gone
+					every_navy_leader = {
+						retire = yes
+					}
+					every_army_leader = {
+						retire = yes
+					}
+				}
+			}
+		}
+	}
+	news_event = { #Danish Revolution
+		id = twrdenmark.101
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.101"}
+		title = twrdenmark.101.t
+		desc = twrdenmark.101.d
+		picture = GFX_news_event_danish_revolution
+		
+		major = yes
+
+		is_triggered_only = yes
+		
+		option = {
+			trigger = {
+				NOT = {
+					tag = DEN
+				}
+			}
+			name = twrdenmark.101.a
+		}
+		option = {
+			trigger = {
+				tag = DEN
+			}
+			name = twrdenmark.101.b
+		}
+	}
+	news_event = { #Danish Republic
+		id = twrdenmark.102
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.102"}
+		title = twrdenmark.102.t
+		desc = twrdenmark.102.d
+		picture = GFX_news_event_danish_flag
+		
+		major = yes
+
+		is_triggered_only = yes
+		
+		option = {
+			trigger = {
+				NOT = {
+					tag = DEN
+				}
+			}
+			name = twrdenmark.102.a
+		}
+		option = {
+			trigger = {
+				tag = DEN
+			}
+			name = twrdenmark.102.b
+		}
+	}
+		country_event = {
+			id = twrdenmark.6 #SS joins side
+			immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.6"}
+			title = twrdenmark.6.t
+			desc = twrdenmark.6.d
+			picture = GFX_report_event_SS_moving
+
+			is_triggered_only = yes
+
+			fire_only_once = yes
+
+			option = {
+				name = twrdenmark.6.a
+				add_war_support = 0.1
+				hidden_effect = {
+					HSS = {
+					if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = DEN
+						autonomous_state = autonomy_SS_Ordenstaat
+					}
+					else = {
+						puppet = DEN
+							}
+						}
+					}
+				}
+			}
+		}
+
+		country_event = {
+			id = twrdenmark.7 #Heer joins side
+			immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.7"}
+			title = twrdenmark.7.t
+			desc = twrdenmark.7.d
+			picture = GFX_report_event_heer_victory
+
+			is_triggered_only = yes
+
+			fire_only_once = yes
+
+			option = {
+				name = twrdenmark.7.a
+				ai_chance = {
+					factor = 20
+				}
+				add_war_support = 0.1
+				HGR = {
+					puppet = DEN
+				}
+				hidden_effect = {
+					complete_national_focus = DEN_Fight_for_the_Heer
+				}
+			}
+
+			option = {
+				name = twrdenmark.7.b
+				ai_chance = {
+					factor = 50
+				}
+				add_stability = 0.1
+				hidden_effect = {
+					complete_national_focus = DEN_Danish_Neutrality
+				}
+			}
+		}
+
+		country_event = {
+			id = twrdenmark.8 #German Denmark Occupation
+			immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmark.8"}
+			title = twrdenmark.8.t
+			desc = twrdenmark.8.d
+			picture = GFX_report_event_heer_victory
+
+			is_triggered_only = yes
+
+			fire_only_once = yes
+
+			option = {
+				name = twrdenmark.8.a
+				ai_chance = {
+					factor = 50
+				}
+				add_political_power = 50
+				add_war_support = 0.05
+				add_stability = 0.05
+				set_country_flag = DEN_FASH_OCC
+			}
+		}
+
+		news_event = {#Heer crushes protestors
+			id = twrdenmarknews.1
+			immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmarknews.1"}
+			title = twrdenmarknews.1.t
+			desc = twrdenmarknews.1.d
+			picture = GFX_news_event_danish_rebellion_crushed
+
+			is_triggered_only = yes
+			major = yes
+			
+
+			option = {
+				name = twrdenmarknews.1.a
+			}
+		}
+		news_event = {#SS crushes protestors
+			id = twrdenmarknews.2
+			immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmarknews.2"}
+			title = twrdenmarknews.2.t
+			desc = twrdenmarknews.2.d
+			picture = GFX_news_event_waffen_ss_in_denmark
+
+			is_triggered_only = yes
+			major = yes
+			
+
+			option = {
+				name = twrdenmarknews.2.a
+			}
+		}
+		news_event = {#King Returns
+			id = twrdenmarknews.3
+			immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmarknews.3"}
+			title = twrdenmarknews.3.t
+			desc = twrdenmarknews.3.d
+			picture = GFX_news_event_monarchy_returns_to_denmark
+
+			is_triggered_only = yes
+			major = yes
+			
+
+			option = {
+				name = twrdenmarknews.3.a
+			}
+		}
+		news_event = {#TA Invasion of Denmark
+			id = twrdenmarknews.4
+			immediate = {log = "[GetDateText]: [Root.GetName]: event twrdenmarknews.4"}
+			title = twrdenmarknews.4.t
+			desc = twrdenmarknews.4.d
+			picture = GFX_news_event_ta_invasion_denmark
+
+			is_triggered_only = yes
+			major = yes
+			
+
+			option = {
+				name = twrdenmarknews.4.a
+			}
+		}

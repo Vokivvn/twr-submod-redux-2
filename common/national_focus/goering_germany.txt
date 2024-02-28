@@ -1,0 +1,3098 @@
+focus_tree = {
+	id = goering_germany
+	country = {
+		factor = 0
+	}
+	default = no
+	continuous_focus_position = { x = 50 y = -1000 }
+	focus = {
+	cancelable = no
+		id = GGR_Goerings_Reich
+		icon = GFX_GER_goering
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+			available = {
+			has_country_leader = {
+    		name = "Hermann Göring"
+    		ruling_only = yes
+				}
+			}
+			bypass = {
+			has_country_leader = {
+    		name = "Hermann Göring"
+    		ruling_only = yes
+				}
+			}
+		x = 5
+		y = 0
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Goerings_Reich"
+			custom_effect_tooltip = GOERING_IN_POWER
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Economic_Policies
+		icon = GFX_GENERIC_state_economy
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+			available = {
+				has_completed_focus = GGR_Public_Fundings
+			}
+		x = 18
+		y = 0
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Economic_Policies"
+			add_tech_bonus = {
+				name = GGR_Economic_Policies
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Army
+		text = GER_Land_Army
+		icon = GFX_GER_land_army
+		cost = 8.00
+		available = {
+		has_completed_focus = GGR_The_Goering_Medals
+		}
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		x = 32
+		y = 0
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Army"
+			army_experience = 30
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Airforce
+		text = GER_The_Luftwaffe
+		icon = GFX_GER_the_luftwaffe
+		cost = 8.00
+		available = {
+		has_completed_focus = GGR_The_Goering_Medals
+		}
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		x = 41
+		y = 0
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Airforce"
+			air_experience = 30
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Navy
+		text = GER_Gros_Kriegsmarine
+		icon = GFX_GER_Kriegsmarine
+		cost = 8.00
+		available = {
+		has_completed_focus = GGR_The_Goering_Medals
+		}
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		x = 50
+		y = 0
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Navy"
+			navy_experience = 30
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_RK_Back_In_Fold
+		icon = GFX_GER_rk_eagle
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 100
+		}
+
+		prerequisite = {
+			focus = GGR_Goerings_Reich
+		}
+		x = 2
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_RK_Back_In_Fold"
+			unlock_decision_category_tooltip = GER_bring_the_RKs_back_into_the_fold_decisions
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Peoples_Will
+		icon = GFX_GENERIC_old_guard
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 30
+		}
+
+		prerequisite = {
+			focus = GGR_Goerings_Reich
+		}
+		x = 4
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Peoples_Will"
+			add_manpower = 5000
+			add_stability = 0.1
+			if = {
+			limit = { has_idea = GER_SS_Infightings }
+			remove_ideas = GER_SS_Infightings
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Power
+		icon = GFX_GER_Goering_Power
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Peoples_Will
+		}
+		x = 3
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Power"
+			add_political_power = 150
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Man_Of_The_People
+		icon = GFX_GER_Man_Of_The_People
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Power
+		}
+		x = 5
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Man_Of_The_People"
+			add_stability = 0.15
+			country_event = twrgoeringflavour.4
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_New_Age_Of_Progress
+		icon = GFX_GENERIC_Cogs_For_Factory
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Peoples_Will
+		}
+		x = 5
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_New_Age_Of_Progress"
+			add_tech_bonus = {
+				name = GGR_Economic_Policies
+				bonus = 0.7
+				uses = 2
+				category = computing_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_NatSoc_With_Goering
+		icon = GFX_GER_punch_swastikka
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Power
+		}
+		prerequisite = {
+			focus = GGR_New_Age_Of_Progress
+		}
+		x = 3
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_NatSoc_With_Goering"
+			add_ideas = GER_natsoc_with_goering_characteristics
+			set_country_leader_ideology = goering_natsoc
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Revisit_Operation_Reinhard
+		icon = GFX_GER_reinhard_ss
+		cost = 5.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		available = {
+		has_political_power > 99
+		}
+
+		prerequisite = {
+			focus = GGR_NatSoc_With_Goering
+		}
+		x = 3
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Revisit_Operation_Reinhard"
+			country_event = twrgoering.2
+			if = {
+			limit = { country_exists = ROS }
+			ROS = { country_event = twrgoering.2 }
+			}
+			if = {
+			limit = { country_exists = RKA }
+			RKA = { country_event = twrgoering.2 }
+			}
+			if = {
+			limit = { country_exists = RUK }
+			RUK = { country_event = twrgoering.2 }
+			}
+			if = {
+			limit = { country_exists = RMO }
+			RMO = { country_event = twrgoering.2}
+			}
+			if = {
+			limit = { country_exists = SBA }
+			SBA = { country_event = twrgoering.2}
+			}
+			if = {
+			limit = { country_exists = RGO }
+			RGO = { country_event = twrgoering.2}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Labour_Camps
+		icon = GFX_GENERIC_industry_agreement
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Revisit_Operation_Reinhard
+		}
+		x = 2
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Labour_Camps"
+			add_ideas = GER_labor_death_camps
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Deportation
+		icon = GFX_GENERIC_deport_people
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Revisit_Operation_Reinhard
+		}
+		x = 4
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Deportation"
+			country_event = twrgoering.3
+			if = {
+			limit = { country_exists = ISR }
+			ISR = { country_event = twrgoering.3 }
+			}
+			add_timed_idea = {
+				idea = GER_forced_deportations
+				days = 400
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Deeskalation
+		icon = GFX_GER_Deeskalation
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Deportation
+		}
+		prerequisite = {
+			focus = GGR_Labour_Camps
+		}
+		x = 3
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Deeskalation"
+			news_event = { id = twrgoering.1 days = 3 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Diplomatic_Ties
+		icon = GFX_GER_Diplomacy_Suitcase
+		cost = 8.00
+		available = {
+		has_global_flag = RESTORING_TIES_WITH_WEST
+		}
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+		mutually_exclusive = {
+		focus = GGR_Eastward_Focus
+		}
+		prerequisite = {
+			focus = GGR_The_Deeskalation
+		}
+		x = 2
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Diplomatic_Ties"
+			add_timed_idea = {
+				idea = GER_reestablishing_relations
+				days = 150
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_And_Hitlers
+		icon = GFX_GER_hitler_hat
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Goerings_Reich
+		}
+		x = 6
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_And_Hitlers"
+			add_country_leader_trait = dictator
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_SS_Only_In_Burgundy
+		icon = GFX_SSB_burgundy_generic
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Symbol_Of_Greatness
+		}
+		x = 6
+		y = 5
+
+		bypass = {
+			SSB = {
+				exists = no 
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_SS_Only_In_Burgundy"
+			SSB = {
+				add_political_power = 100
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Eastward_Focus
+		icon = GFX_GENERIC_Asia
+		cost = 8.00
+		mutually_exclusive = {
+		focus = GGR_Diplomatic_Ties
+		}
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+		available = {
+		has_global_flag = PEACEFUL_FAILED
+		}
+		prerequisite = {
+			focus = GGR_The_Deeskalation
+		}
+		x = 4
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Eastward_Focus"
+			add_war_support = 0.15
+			news_event = twrgoering.669
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_United_in_Anti_Bolshevism
+		icon = GFX_focus_attack_soviet
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+		available = {
+		has_army_manpower = {
+    	size > 1000000
+    		}
+		}
+		prerequisite = {
+			focus = GGR_Eastward_Focus
+		}
+		x = 4
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_United_in_Anti_Bolshevism"
+			custom_effect_tooltip = UNLOCK_WAR_ON_RUSSIA
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Confidant_Government
+		icon = GFX_GENERIC_government_power
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+		available = {
+		country_exists = SSB
+		}
+		prerequisite = {
+			focus = GGR_SS_Only_In_Burgundy
+		}
+		x = 6
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Confidant_Government"
+			add_stability = 0.10
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Cultural_Masters
+		icon = GFX_GER_Speers_Vision
+		cost = 3.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Goerings_Reich
+		}
+		x = 8
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Cultural_Masters"
+			custom_effect_tooltip = CULTURAL_DECISIONS
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Prussian_Traditions
+		icon = GFX_GER_Pickle_Helm
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_And_Hitlers
+		}
+		x = 7
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Prussian_Traditions"
+			add_ideas = GER_goering_cult_of_personality_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Eternal_Reichs_Commander
+		icon = GFX_GER_Eternal_Commander
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Prussian_Traditions
+		}
+		x = 7
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Eternal_Reichs_Commander"
+			swap_ideas = {
+				remove_idea = GER_goering_cult_of_personality_1
+				add_idea = GER_goering_cult_of_personality_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Empower_Honour
+		icon = GFX_GER_End_Of_The_Civil_War
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_And_Hitlers
+		}
+		x = 9
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Empower_Honour"
+			add_war_support = 0.10
+			add_stability = 0.10
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Goering_Medals
+		icon = GFX_GER_Medals
+		cost = 10.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Empower_Honour
+		}
+		x = 9
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Goering_Medals"
+			every_army_leader = {
+				limit = {
+					is_field_marshal = no
+					NOT = { has_trait = politically_connected }
+				}
+				add_unit_leader_trait = politically_connected
+				add_skill_level = 1
+			}
+			add_war_support = 0.1
+			custom_effect_tooltip = UNLOCKS_MILITARY_TREE
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Symbol_Of_Greatness
+		icon = GFX_GER_Nazi_Diplomacy
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Eternal_Reichs_Commander
+		}
+		prerequisite = {
+			focus = GGR_The_Goering_Medals
+		}
+		x = 8
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Symbol_Of_Greatness"
+			swap_ideas = {
+				remove_idea = GER_goering_cult_of_personality_2
+				add_idea = GER_goering_cult_of_personality_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Trust_System
+		icon = GFX_GER_mutual_corruption
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Symbol_Of_Greatness
+		}
+		x = 8
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Trust_System"
+			add_ideas = GER_the_trust_system_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Hands_Off
+		icon = GFX_GENERIC_Wine_2
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Symbol_Of_Greatness
+		}
+		x = 10
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Hands_Off"
+			add_popularity = { ideology = national_socialist popularity = 0.10 }
+			add_political_power = -75
+			add_ideas = dictatorship 
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Public_Fundings
+		icon = GFX_GENERIC_friends_in_high_places
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Hands_Off
+		}
+		x = 10
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Public_Fundings"
+			add_ideas = GER_welfare_programs_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Improve_Public_Agencies
+		icon = GFX_GENERIC_elite_party
+		cost = 7.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+		prerequisite = {
+			focus = GGR_Power_Not_Politics
+		}
+		prerequisite = {
+			focus = GGR_Public_Fundings
+		}
+		x = 9
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Improve_Public_Agencies"
+			swap_ideas = {
+				remove_idea = GER_welfare_programs_1
+				add_idea = GER_welfare_programs_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Leave_The_Plans_To_Others
+		icon = GFX_GENERIC_clean_hands
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Economic_Policies
+		}
+		x = 18
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Leave_The_Plans_To_Others"
+			add_political_power = -75
+			custom_effect_tooltip = LUDWIG_ERHARD_HIRED
+			set_country_flag = ECONOMIC_EXPERT_GERMAN
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Four_Year_Plans
+		icon = GFX_USA_gov_investment
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Leave_The_Plans_To_Others
+		}
+		x = 17
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Four_Year_Plans"
+			add_tech_bonus = {
+				name = GGR_The_Four_Year_Plans
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Ground_Productions
+		icon = GFX_GENERIC_Shells
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Four_Year_Plans
+		}
+		x = 14
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Ground_Productions"
+			add_timed_idea = {
+				idea = GER_ground_production_effort
+				days = 200
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Fundings_For_The_Bomb
+		icon = GFX_GENERIC_Red_Bomb
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Ground_Productions
+		}
+		x = 12
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Fundings_For_The_Bomb"
+			add_tech_bonus = {
+				name = GGR_Fundings_For_The_Bomb
+				bonus = 3.0
+				uses = 1
+				category = nuclear
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Air_Quotas
+		icon = GFX_GENERIC_fighters_and_bombers
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Four_Year_Plans
+		}
+		x = 16
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Air_Quotas"
+			add_ideas = GER_air_industry_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Market_Reforms
+		icon = GFX_GENERIC_bag_of_money
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Leave_The_Plans_To_Others
+		}
+		x = 19
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Market_Reforms"
+			add_political_power = -75
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Old_System
+		icon = GFX_GER_Economic_Reform
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Market_Reforms
+		}
+		x = 18
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Old_System"
+			add_ideas = free_trade
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Upper_Class
+		icon = GFX_GENERIC_business
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Old_System
+		}
+		x = 18
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Upper_Class"
+			add_political_power = 100
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Sweat_For_Reward
+		icon = GFX_GENERIC_Human_Cogs
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Upper_Class
+		}
+		x = 18
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Sweat_For_Reward"
+			add_timed_idea = {
+				idea = GER_sweat_makes_profit
+				days = 150
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_A_Free_Market
+		icon = GFX_GER_Nazi_Trade
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Market_Reforms
+		}
+		x = 20
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_A_Free_Market"
+			swap_ideas = {
+				remove_idea = GER_economic_stagnation
+				add_idea = GER_economic_recovery_1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Currency_Controlled
+		icon = GFX_GER_Reichsbank
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_A_Free_Market
+		}
+		x = 20
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Currency_Controlled"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_1
+				add_idea = GER_economic_recovery_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Gold_Reserve
+		icon = GFX_USA_reestablish_the_gold_standard
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Currency_Controlled
+		}
+		x = 20
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Gold_Reserve"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_2
+				add_idea = GER_economic_recovery_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Encourage_Market_Government
+		icon = GFX_GENERIC_gold_trade
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Sweat_For_Reward
+		}
+		prerequisite = {
+			focus = GGR_Gold_Reserve
+		}
+		x = 19
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Encourage_Market_Government"
+			swap_ideas = {
+				remove_idea = GER_economic_recovery_3
+				add_idea = GER_economic_recovery_4
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Big_Companies
+		icon = GFX_GER_Capitalists
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Market_Reforms
+		}
+		x = 22
+		y = 3
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = GGR_The_Big_Companies_civ }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Big_Companies"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_The_Big_Companies_civ
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_The_Big_Companies_civ
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Goering_Company
+		icon = GFX_GER_Goering_Corp
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Big_Companies
+		}
+		x = 22
+		y = 4
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = GGR_The_Goering_Company_civ }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Goering_Company"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_The_Goering_Company_civ
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_The_Goering_Company_civ
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Company_Pacts
+		icon = GFX_GENERIC_foreign_investment_2
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Goering_Company
+		}
+		x = 22
+		y = 5
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = GGR_Company_Pacts_civ }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Company_Pacts"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_Company_Pacts_civ
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_Company_Pacts_civ
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Lufthansa_Expansion
+		icon = GFX_GER_Lufthansa
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Big_Companies
+		}
+		x = 24
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Lufthansa_Expansion"
+			add_tech_bonus = {
+				name = GGR_Lufthansa_Expansion
+				bonus = 1.0
+				uses = 2
+				category = heavy_air
+			}
+			custom_effect_tooltip = UNLOCK_LUFTHANSA
+			set_country_flag = Lufthansa_Expansion
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Expand_The_Air_Might
+		icon = GFX_GENERIC_Air_Force_two
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Lufthansa_Expansion
+		}
+		x = 24
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Expand_The_Air_Might"
+			add_equipment_to_stockpile = {
+			    type = transport_plane_equipment_1
+			    amount = 75
+			    producer = GER
+		    }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Profits_From_Companies
+		icon = GFX_GENERIC_corruption_money
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Company_Pacts
+		}
+		prerequisite = {
+			focus = GGR_Expand_The_Air_Might
+		}
+		x = 23
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Profits_From_Companies"
+			add_ideas = GER_profits_from_the_companies
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Expand_The_Officers
+		icon = GFX_GER_reform_officers
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Army
+		}
+		x = 30
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Expand_The_Officers"
+			add_command_power = 20
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Traditional_Warfare
+		icon = GFX_GER_great_wave
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Expand_The_Officers
+		}
+		x = 29
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Traditional_Warfare"
+			add_ideas = GGR_Traditional_Warfare
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Specialist_Training
+		icon = GFX_GENERIC_Military_Science
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Traditional_Warfare
+		}
+		x = 27
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Specialist_Training"
+			add_tech_bonus = {
+				name = GGR_Specialist_Training
+				bonus = 0.5
+				uses = 1
+				category = marine_tech
+				category = para_tech
+				category = mountaineers_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Increase_The_Numbers
+		icon = GFX_GENERIC_Rally_the_People
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Traditional_Warfare
+		}
+		x = 29
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Increase_The_Numbers"
+			add_ideas = GGR_Mass_Training
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Improve_Productions
+		icon = GFX_GENERIC_military_industry_produce
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Increase_The_Numbers
+		}
+		x = 29
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Improve_Productions"
+			add_ideas = GGR_Improved_War_Production
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Shadow_Divisions
+		icon = GFX_GENERIC_Skull_Mil
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Increase_The_Numbers
+		}
+		x = 27
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Shadow_Divisions"
+			swap_ideas = {
+				remove_idea = GGR_Mass_Training
+				add_idea = GGR_Shadow_Divisions
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Fund_Military_Researches
+		icon = GFX_GENERIC_Military_Science
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Expand_The_Officers
+		}
+		x = 31
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Fund_Military_Researches"
+			add_tech_bonus = {
+				name = GGR_Fund_Military_Researches
+				bonus = 0.55
+				uses = 2
+				category = infantry_weapons
+				category = motorized_equipment
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Focus_On_Infantry_Trainings
+		icon = GFX_KOR_improve_training
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Fund_Military_Researches
+		}
+		x = 31
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Focus_On_Infantry_Trainings"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Officer_Trainings #Reform the High Command
+		icon = GFX_GER_reform_officers
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Focus_On_Infantry_Trainings
+		}
+		x = 31
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Officer_Trainings"
+			add_ideas = GGR_Reformed_Military_Command
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Goering_Field_Command
+		icon = GFX_GER_goering_in
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Army
+		}
+		x = 32
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Goering_Field_Command"
+			create_field_marshal = {
+				name = "Hermann Goering"
+				picture = "Hermann_Goering.dds"
+				traits = { old_guard war_hero aggressive_assaulter }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Tank_Army
+		icon = GFX_GER_A_Tiger_Tank
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Fund_Military_Researches
+		}
+		x = 33
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Tank_Army"
+			add_ideas = GGR_Panzer_Army
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Panzergrenadiers_Pride
+		icon = GFX_GER_panzer_parts
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Tank_Army
+		}
+		x = 33
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Panzergrenadiers_Pride"
+			add_tech_bonus = {
+				name = infantry_anti_tank_bonus
+				bonus = 0.55
+				uses = 2
+				category = cat_anti_tank
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Office_Of_Warfare
+		icon = GFX_GENERIC_Officer_Cap
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Shadow_Divisions
+		}
+		prerequisite = {
+			focus = GGR_Improve_Productions
+		}
+		prerequisite = {
+			focus = GGR_Officer_Trainings
+		}
+		prerequisite = {
+			focus = GGR_Panzergrenadiers_Pride
+		}
+		x = 30
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Office_Of_Warfare"
+			swap_ideas = {
+				remove_idea = GGR_Reformed_Military_Command
+				add_idea = GGR_Warfare_Command_Office
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Praise_The_Old_Guards
+		icon = GFX_HGR_Old_Germans
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Army
+		}
+		x = 34
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Praise_The_Old_Guards"
+			add_ideas = GGR_Old_German_Guard
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Military_Traditions
+		icon = GFX_GER_Imperial_Flag
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Praise_The_Old_Guards
+		}
+		x = 34
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Military_Traditions"
+			swap_ideas = {
+				remove_idea = GGR_Old_German_Guard
+				add_idea = GGR_Germanic_Traditions
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Air_Is_The_Future
+		icon = GFX_FRA_Airbases_for_the_Luftwaffee
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Airforce
+		}
+		x = 41
+		y = 1
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Air_Is_The_Future"
+			add_doctrine_cost_reduction = {
+				name = GGR_Air_Is_The_Future
+				cost_reduction = 0.8
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Hardware
+		icon = GFX_USA_air_support
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Air_Is_The_Future
+		}
+		x = 38
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Hardware"
+			add_tech_bonus = {
+				name = GGR_Hardware
+				bonus = 0.5
+				uses = 3
+				category = light_air
+				category = medium_air
+				category = heavy_air
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Luftwaffe_Research_Division
+		icon = GFX_GENERIC_Luftwaffe
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Hardware
+		}
+		x = 36
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Luftwaffe_Research_Division"
+			add_ideas = GER_luftwaffe_special_division_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Mass_Fundings
+		icon = GFX_GENERIC_money
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Hardware
+		}
+		x = 38
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Mass_Fundings"
+			add_ideas = GER_well_funded_luftwaffe
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Luftwaffe_Divisions
+		icon = GFX_GENERIC_mobilize_police
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Mass_Fundings
+		}
+		x = 38
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Luftwaffe_Divisions"
+			custom_effect_tooltip = GER_luftwaffe_ground_units_tt
+			hidden_effect = {
+				division_template = {
+					name = "Luftwaffen-Feld-Division"
+					priority = 2
+					division_names_group = GER_Inf_01
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+					}
+				}
+				855 = {
+					create_unit = {
+						division = "name = \"1. Luftwaffen-Feld-Division\" division_template = \"Luftwaffen-Feld-Division\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"2. Luftwaffen-Feld-Division\" division_template = \"Luftwaffen-Feld-Division\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"3. Luftwaffen-Feld-Division\" division_template = \"Luftwaffen-Feld-Division\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Fallscmarmee_And_Helicopters
+		icon = GFX_GENERIC_helicopter
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Luftwaffe_Divisions
+		}
+		x = 38
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Fallscmarmee_And_Helicopters"
+			add_tech_bonus = {
+				name = GGR_Fallscmarmee_And_Helicopters
+				bonus = 2.0
+				uses = 1
+				category = helicopter
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Frontier
+		icon = GFX_GER_interceptor
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Air_Is_The_Future
+		}
+		x = 40
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Frontier"
+			add_tech_bonus = {
+				name = GGR_Fallscmarmee_And_Helicopters
+				bonus = 1.0
+				uses = 1
+				category = jet_strat_bomber
+				category = jet_tac
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Improve_The_Luftwaffe_Every_Way
+		icon = GFX_goal_generic_build_airforce
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Frontier
+		}
+		x = 40
+		y = 3
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = GGR_Improve_The_Luftwaffe_Every_Way_airbase }
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Improve_The_Luftwaffe_Every_Way"
+			random_owned_controlled_state = {
+				limit = {
+					air_base < 9
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = GGR_Improve_The_Luftwaffe_Every_Way_airbase
+			}
+			random_owned_controlled_state = {
+				limit = {
+					air_base < 9
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = GGR_Improve_The_Luftwaffe_Every_Way_airbase
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_The_Flying_Fleet
+		icon = GFX_GENERIC_naval_aviation
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Mass_Fundings
+		}
+		x = 40
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_The_Flying_Fleet"
+			add_tech_bonus = {
+				name = GGR_The_Flying_Fleet
+				bonus = 1.0
+				uses = 1
+				category = naval_air
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_A_Jet_Airforce
+		icon = GFX_GENERIC_Jet_Fighters
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Flying_Fleet
+		}
+		x = 40
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_A_Jet_Airforce"
+			add_tech_bonus = {
+				name = GGR_A_Jet_Airforce
+				bonus = 0.5
+				uses = 3
+				category = jet_strat_bomber
+				category = jet_tac
+				category = jet_fighter
+				category = jet_cas
+				category = jet_mca
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Skills
+		icon = GFX_goal_generic_air_doctrine
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Air_Is_The_Future
+		}
+		x = 42
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Skills"
+			add_ideas = GER_skilled_pilots_1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Encourage_Aces
+		icon = GFX_GENERIC_air_superiority
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Skills
+		}
+		x = 42
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Encourage_Aces"
+			swap_ideas = {
+				remove_idea = GER_skilled_pilots_1
+				add_idea = GER_skilled_pilots_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Fearless_Pilots
+		icon = GFX_GENERIC_Firebombing
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Skills
+		}
+		x = 44
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Fearless_Pilots"
+			hidden_effect = {
+				set_rule = {
+					can_use_kamikaze_pilots = yes
+				}
+			}
+			custom_effect_tooltip = kamikaze_focus_tooltip
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Flying_Knights
+		icon = GFX_GENERIC_nazi_knights
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Encourage_Aces
+		}
+		prerequisite = {
+			focus = GGR_Fearless_Pilots
+		}
+		x = 43
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Flying_Knights"
+			swap_ideas = {
+				remove_idea = GER_skilled_pilots_2
+				add_idea = GER_skilled_pilots_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Best_Pilots
+		icon = GFX_GER_Fanatic_Germany
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Flying_Knights
+		}
+		x = 43
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Best_Pilots"
+			add_war_support = 0.10
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Air_Think_Tank
+		icon = GFX_GENERIC_brain
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Best_Pilots
+		}
+		x = 42
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Air_Think_Tank"
+			air_experience = 50
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Luftwaffe_Schools
+		icon = GFX_focus_generic_military_academy
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Air_Is_The_Future
+		}
+		x = 44
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Luftwaffe_Schools"
+			add_doctrine_cost_reduction = {
+				name = GGR_Luftwaffe_Schools
+				cost_reduction = 0.8
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Guide_Of_Air_War
+		icon = GFX_focus_hol_war_on_pacifism
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Best_Pilots
+		}
+		x = 44
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Guide_Of_Air_War"
+			add_doctrine_cost_reduction = {
+				name = GGR_Guide_Of_Air_War
+				cost_reduction = 0.8
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_High_Sea_Fleet
+		icon = GFX_GENERIC_socialist_navy
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Navy
+		}
+		x = 50
+		y = 1
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = GGR_High_Sea_Fleet_dockyard }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+        }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_High_Sea_Fleet"
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_High_Sea_Fleet_dockyard
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_High_Sea_Fleet_dockyard
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Second_Wolfpack
+		icon = GFX_goal_generic_wolf_pack
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_High_Sea_Fleet
+		}
+		x = 49
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Second_Wolfpack"
+			add_ideas = GER_wolf_pack
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_All_Purpose_Submarines
+		icon = GFX_goal_generic_navy_submarine
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Second_Wolfpack
+		}
+		x = 47
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_All_Purpose_Submarines"
+			add_tech_bonus = {
+				name = BGR_Submarine_Expansion
+				bonus = 1.0
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Masterful_Submarine_Production
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Second_Wolfpack
+		}
+		x = 49
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Masterful_Submarine_Production"
+			add_ideas = GER_submarine_construction
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Anti_Submarine_Boats
+		icon = GFX_goal_generic_navy_anti_submarine
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Masterful_Submarine_Production
+		}
+		x = 49
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Anti_Submarine_Boats"
+			add_tech_bonus = {
+				name = GGR_Anti_Submarine_Boats
+				bonus = 2.0
+				uses = 1
+				category = asw_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Kickstart_Naval_Dockyards
+		icon = GFX_GENERIC_Naval_Industry
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_High_Sea_Fleet
+		}
+		x = 51
+		y = 2
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Kickstart_Naval_Dockyards"
+			add_timed_idea = {
+				idea = GER_kickstart_naval_production
+				days = 100
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Modern_Battleships
+		icon = GFX_goal_generic_navy_battleship
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Kickstart_Naval_Dockyards
+		}
+		x = 51
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Modern_Battleships"
+			add_tech_bonus = {
+				name = GGR_Modern_Battleships
+				bonus = 1.0
+				uses = 1
+				category = bb_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Proud_Tactics
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Modern_Battleships
+		}
+		x = 51
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Proud_Tactics"
+			add_doctrine_cost_reduction = {
+				name = GGR_Proud_Tactics
+				cost_reduction = 0.8
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_A_Big_Navy
+		icon = GFX_GER_navy
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Anti_Submarine_Boats
+		}
+		prerequisite = {
+			focus = GGR_Proud_Tactics
+		}
+		x = 50
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_A_Big_Navy"
+			remove_ideas = GER_oversized_fleet
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Reshape_Death_Camps
+		icon = GFX_GENERIC_imprison_opposition
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Labour_Camps
+		}
+		x = 1
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Reshape_Death_Camps"
+			swap_ideas = {
+				remove_idea = GER_labor_death_camps
+				add_idea = GER_reformed_labor_death_camps
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Help_Of_Goebbels
+		icon = GFX_GER_goebbels
+		cost = 8.00
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+		available = {
+		NOT = {
+		has_country_flag = GOERING_bye_speer_and_goebbels
+			}
+		}
+		prerequisite = {
+			focus = GGR_Man_Of_The_People
+		}
+		x = 5
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Help_Of_Goebbels"
+			hidden_effect = {
+			clr_country_flag = goebbels_sphere_purged
+			clr_country_flag = Joseph_Goebbels_unavailable
+			}
+			add_ideas = GER_HoG_Joseph_Goebbels
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Power_Not_Politics
+		icon = GFX_GENERIC_authoritarian_fist
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 100
+		}
+
+		prerequisite = {
+			focus = GGR_SS_Only_In_Burgundy
+		}
+		prerequisite = {
+			focus = GGR_The_Trust_System
+		}
+		prerequisite = {
+			focus = GGR_Hands_Off
+		}
+		x = 8
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Power_Not_Politics"
+			remove_ideas = GER_grand_power_struggles
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Continue_The_War_Economy
+		icon = GFX_GENERIC_economy_control
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_The_Ground_Productions
+		}
+		x = 14
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Continue_The_War_Economy"
+			add_ideas = war_economy
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Streamline_Plane_Production
+		icon = GFX_GENERIC_air_construction
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Air_Quotas
+		}
+		x = 16
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Streamline_Plane_Production"
+			swap_ideas = {
+				remove_idea = GER_air_industry_1
+				add_idea = GER_air_industry_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Penal_Productions
+		icon = GFX_SOV_gulag_labour
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Continue_The_War_Economy
+		}
+		x = 14
+		y = 5
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = GGR_Penal_Productions_mil }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Penal_Productions"
+			add_manpower = -10000
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_Penal_Productions_mil
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GGR_Penal_Productions_mil
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Effective_Designs
+		icon = GFX_goal_generic_position_armies
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Streamline_Plane_Production
+		}
+		x = 16
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Effective_Designs"
+			swap_ideas = {
+				remove_idea = GER_air_industry_2
+				add_idea = GER_air_industry_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Public_Checkups
+		icon = GFX_GENERIC_Family
+		cost = 7.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Improve_Public_Agencies
+		}
+		x = 9
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Public_Checkups"
+			swap_ideas = {
+				remove_idea = GER_welfare_programs_2
+				add_idea = GER_welfare_programs_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Keep_The_Speed
+		icon = GFX_GER_aryan_workers
+		        cost = 8.00
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+        complete_tooltip = {
+
+        }
+
+        completion_reward = {
+
+        }
+		prerequisite = {
+			focus = GGR_Penal_Productions
+		}
+		prerequisite = {
+			focus = GGR_Effective_Designs
+		}
+		x = 15
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Keep_The_Speed"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Peace_In_Our_Time
+		icon = GFX_GER_global_industry
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Diplomatic_Ties
+		}
+		x = 2
+		y = 8
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Peace_In_Our_Time"
+			add_named_threat = { threat = -5 name = GGR_Peace_In_Our_Time }
+			add_stability = 0.25
+			add_war_support = -0.25
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_German_Unique_System
+		icon = GFX_GER_Germany_Once_More
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Encourage_Market_Government
+		}
+		prerequisite = {
+			focus = GGR_Profits_From_Companies
+		}
+		prerequisite = {
+			focus = GGR_Keep_The_Speed
+		}
+		x = 19
+		y = 7
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_German_Unique_System"
+			remove_ideas = GER_economic_recovery_4
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Combat_Ready_Army
+		icon = GFX_GER_Volksturm
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Office_Of_Warfare
+		}
+		x = 30
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Combat_Ready_Army"
+			remove_ideas = GER_overgrown_officer_corps
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Top_Designs
+		icon = GFX_goal_generic_air_production
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Luftwaffe_Research_Division
+		}
+		x = 36
+		y = 4
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Top_Designs"
+			swap_ideas = {
+				remove_idea = GER_luftwaffe_special_division_1
+				add_idea = GER_luftwaffe_special_division_2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Ahead_Of_The_Curve
+		icon = GFX_goal_generic_air_fighter2
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Top_Designs
+		}
+		x = 36
+		y = 5
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Ahead_Of_The_Curve"
+			swap_ideas = {
+				remove_idea = GER_luftwaffe_special_division_2
+				add_idea = GER_luftwaffe_special_division_3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_Masters_Of_Ground_And_Air
+		icon = GFX_GENERIC_airland_battle
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Ahead_Of_The_Curve
+		}
+		prerequisite = {
+			focus = GGR_Fallscmarmee_And_Helicopters
+		}
+		prerequisite = {
+			focus = GGR_A_Jet_Airforce
+		}
+		x = 38
+		y = 6
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_Masters_Of_Ground_And_Air"
+			air_experience = 100
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GGR_A_Carrier
+		icon = GFX_GENERIC_carrier
+		cost = 8.00
+
+        available_if_capitulated = no
+        ai_will_do = {
+		    factor = 5
+		}
+
+		prerequisite = {
+			focus = GGR_Kickstart_Naval_Dockyards
+		}
+		x = 53
+		y = 3
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GGR_A_Carrier"
+			if = {
+				limit = {
+					not = { has_dlc = "Man the Guns" }
+				}
+				if = {
+					limit = {
+						not = { has_tech = improved_carrier }
+					}
+					set_technology = {
+						improved_carrier = 1
+					}
+				}
+				custom_effect_tooltip = GER_goering_class_carriers_tt
+				hidden_effect = {
+					create_equipment_variant = {
+						name = "Göring Class"
+						type = carrier_3
+						upgrades = {
+							ship_deckspace_upgrade = 1
+							carrier_armor_upgrade = 2
+							ship_engine_upgrade = 2
+							ship_reliability_upgrade = 1
+						}
+					}
+					add_equipment_production = {
+						equipment = {
+							type = carrier_3
+							creator = "GER" 
+							version_name = "Göring Class"
+						}
+						name = "Hermann Göring" 
+						requested_factories = 1
+						progress = 0.9
+						amount = 1
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						has_dlc = "Man the Guns"
+						not = { has_tech = improved_ship_hull_carrier }
+					}
+					set_technology = {
+						improved_ship_hull_carrier = 1
+					}
+				}
+				custom_effect_tooltip = GER_goering_class_carriers_tt
+				hidden_effect = {
+					create_equipment_variant = {
+						name = "Göring Class"
+						type = ship_hull_carrier_3
+						modules = {
+							fixed_ship_deck_slot_1 = ship_deck_space
+							fixed_ship_deck_slot_2 = ship_deck_space
+							fixed_ship_anti_air_slot = empty
+							fixed_ship_radar_slot = empty
+							fixed_ship_engine_slot = carrier_ship_engine_2
+							fixed_ship_secondaries_slot = empty
+							front_1_custom_slot = ship_deck_space
+							mid_1_custom_slot = empty
+							mid_2_custom_slot = empty
+						}
+					}
+					add_equipment_production = {
+						equipment = {
+							type = ship_hull_carrier_3
+							creator = "GER" 
+							version_name = "Göring Class"
+						}
+						name = "Hermann Göring" 
+						requested_factories = 1
+						progress = 0.9
+						amount = 1
+					}
+				}
+			}
+		}
+	}
+}

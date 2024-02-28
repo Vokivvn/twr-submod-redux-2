@@ -1,0 +1,356 @@
+####################################################
+## United States
+#####################################################
+
+# air_factory_balance
+# alliance
+# antagonize
+# area_priority
+# befriend
+# build_army
+# build_building
+# build_ship
+# conquer
+# contain
+# equipment_production_factor
+# equipment_stockpile
+# garrison
+# ignore
+# influence
+# invade
+# pp_spend_priority
+# protect
+# research_tech
+# role_ratio
+# send_volunteers_desire
+# support
+# template_prio
+# template_xp_reserve 
+# unit_ratio
+
+## ------------------ Foreign Relations -------------------------------------------------------------
+
+# US-German Relations
+US_German_Relations = {
+	enable = {
+		original_tag = USA
+		USA = { is_democratic = yes }
+		GER = { is_fascist = yes }		
+	}
+	abort = {
+		GER = { is_fascist = no }
+	}
+	ai_strategy = {
+		type = antagonize
+		id = "GER"
+		value = 100
+	}	
+	ai_strategy = {
+		type = befriend
+		id = "GER"
+		value = -75
+	}
+	ai_strategy = {
+		type = alliance
+		id = "GER"
+		value = -200
+	}
+	ai_strategy = {
+		type = ignore
+		id = "GER"
+		value = -200
+	}
+	ai_strategy = {
+		type = invade
+		id = "GER"
+		value = 200
+	}
+	ai_strategy = {
+		type = conquer
+		id = "GER"
+		value = 200
+	}	
+	ai_strategy = {
+		type = contain
+		id = "GER"
+		value = 200
+	}		
+}
+
+# USA-Italian Relations
+US_Italian_Relations = {
+	enable = {
+		original_tag = USA
+		USA = { is_democratic = yes }
+		ITA = { is_fascist = yes }		
+	}
+	abort = {
+		ITA = { is_fascist = no }
+	}
+	ai_strategy = {
+		type = antagonize
+		id = "ITA"
+		value = 100
+	}	
+	ai_strategy = {
+		type = befriend
+		id = "ITA"
+		value = -75
+	}
+	ai_strategy = {
+		type = alliance
+		id = "ITA"
+		value = -200
+	}
+	ai_strategy = {
+		type = ignore
+		id = "ITA"
+		value = -200
+	}
+	ai_strategy = {
+		type = invade
+		id = "ITA"
+		value = 10
+	}
+	ai_strategy = {
+		type = conquer
+		id = "ITA"
+		value = 10
+	}	
+	ai_strategy = {
+		type = contain
+		id = "ITA"
+		value = 50
+	}
+	ai_strategy = {
+		type = invade
+		id = "IEA"
+		value = 10
+	}
+	ai_strategy = {
+		type = conquer
+		id = "IEA"
+		value = 10
+	}	
+	ai_strategy = {
+		type = contain
+		id = "IEA"
+		value = 50
+	}	
+}
+
+# US-British Relations
+US_British_Relations = {
+	enable = {
+		original_tag = USA
+		USA = { is_democratic = yes }
+		ENG = { is_democratic = yes }
+	}
+	abort = {
+		ENG = { is_democratic = no }	
+	}
+
+	ai_strategy = {
+		type = befriend
+		id = "ENG"
+		value = 50
+	}
+	ai_strategy = {
+		type = alliance
+		id = "ENG"
+		value = 150
+	}		
+	ai_strategy = {
+		type = ignore
+		id = "ENG"
+		value = 200
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "ENG"
+		value = 150
+	}		
+	ai_strategy = {
+		type = support
+		id = "ENG"
+		value = 200
+	}
+	ai_strategy = {
+		type = protect
+		id = "ENG"
+		value = 200
+	}	
+}
+
+# US-Soviet Relations
+US_Soviet_Relations = {
+	enable = {
+		original_tag = USA
+		USA = { is_democratic = yes }
+		SOV = { is_fascist = no }
+		SOV = {
+		OR = {
+		has_war_with = GER
+		has_war_with = HGR
+		has_war_with = HSS
+		}
+		}
+	}
+	abort = {
+		SOV = { is_fascist = yes }	
+		SOV = { has_war_with = RUS }
+	}
+
+	ai_strategy = {
+		type = befriend
+		id = "SOV"
+		value = 50
+	}
+	ai_strategy = {
+		type = alliance
+		id = "SOV"
+		value = -1500
+	}		
+	ai_strategy = {
+		type = ignore
+		id = "SOV"
+		value = 200
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "SOV"
+		value = -500
+	}		
+	ai_strategy = {
+		type = support
+		id = "SOV"
+		value = 200
+	}
+	ai_strategy = {
+		type = protect
+		id = "SOV"
+		value = 75
+	}	
+}
+
+## ------------------ Military Ops -------------------------------------------------------------
+## Help Australia in case theyre getting invaded
+USA_help_VIN = {
+	enable = {
+		tag = USA
+		USA = { is_democratic = yes }
+		has_war = no
+
+		CHI = { has_war_with = VIN }
+		VIN = {
+			surrender_progress > 0.15
+		}
+		has_opinion = {
+			target = VIN
+			value > 0
+		}
+	}
+	abort = {
+		OR = {
+			has_war_with = VIN
+			is_in_faction_with = CHI
+			CHI = {	
+				NOT = { has_war_with = VIN } 
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "VIN"			
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "VIN"			
+		value = -1000
+	}	
+}
+
+## Help the French
+USA_help_france = {
+	enable = {
+		tag = USA
+		USA = { is_democratic = yes }
+		has_war = no
+
+		GER = { has_war_with = FRA }
+		FRA = {
+			NOT = { is_fascist = yes	}
+			surrender_progress > 0.15
+		}
+	}
+	abort = {
+		OR = {
+			has_war_with = FRA
+			is_in_faction_with = GER
+			GER = {	
+				NOT = { has_war_with = FRA } 
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = support
+		id = "FRA"			
+		value = 100
+	}
+	ai_strategy = {
+		type = contain
+		id = "GER"			
+		value = 200
+	}
+}
+
+## ------------------ Region Priorities -------------------------------------------------------------
+## US Region Priorities
+US_area_priority = {
+	enable = {
+		original_tag = USA
+	}
+	ai_strategy = {
+		type = area_priority
+		id = europe
+		value = 200
+	}
+	ai_strategy = {
+		type = area_priority
+		id = north_america
+		value = 150
+	}
+	ai_strategy = {
+		type = area_priority
+		id = south_america
+		value = 25
+	}
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = 10
+	}
+	ai_strategy = {
+		type = area_priority
+		id = pacific
+		value = 150
+	}
+	ai_strategy = {
+		type = area_priority
+		id = oceania
+		value = 150
+	}
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 80
+	}
+	ai_strategy = {
+		type = area_priority
+		id = africa
+		value = 75
+	}
+}

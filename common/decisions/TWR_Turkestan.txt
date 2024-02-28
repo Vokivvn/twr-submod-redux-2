@@ -1,0 +1,1202 @@
+TRK_Turkmenistan_Uzbekistan_Phase_I = {
+	
+	TRK_Military_Exercises = {
+		icon = GFX_decision_generic_operation
+		visible = {
+            NOT = {
+				OR = {
+            		check_variable = { TRA_ARMY_EXP > 100 } 
+					check_variable = { UZB_ARMY_EXP > 100 }
+				}
+			}
+			has_country_flag = TRA_UZB_PHASE_I 
+			OR = {
+            	tag = TRA
+				tag = UZB
+			}
+        }
+			
+		days_remove = 25
+		
+		days_re_enable = 1
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_trigger = { command_power > 15 }
+		custom_cost_text = decision_cost_25_cp
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Army_Professionalism_Increase
+			add_command_power = -15
+			if = {
+				limit = {
+					tag = TRA 
+					check_variable = { TRA_ARMY_EXP < 100 }
+				}
+				add_to_variable = {
+					var = TRA_ARMY_EXP
+					value = 15
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+						check_variable = { UZB_ARMY_EXP < 100 }
+					}
+					add_to_variable = {
+						var = UZB_ARMY_EXP
+						value = 15
+					}
+				}
+			}
+        }
+	}
+	
+	TRA_UZB_Bribe_1 = {
+		icon = GFX_decision_hol_attract_foreign_investors
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			OR = {
+           		tag = TRA
+				tag = UZB
+			}
+        }
+		days_remove = 15
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		cost = 25
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Increase
+        }
+		
+		remove_effect = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = 10
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = 10
+					}
+				}
+			}
+		}
+	}
+	
+	TRA_UZB_Bribe_2 = {
+		icon = GFX_decision_hol_attract_foreign_investors
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+            	tag = TRA
+				tag = UZB
+			}
+        }
+		days_remove = 30
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		cost = 50
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Increase
+        }
+		
+		remove_effect = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = 25
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = 25
+					}
+				}
+			}
+		}
+	}
+	
+	TRA_UZB_Bribe_3 = {
+		icon = GFX_decision_hol_attract_foreign_investors
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			OR = {
+            	tag = TRA
+				tag = UZB
+			}
+        }
+		days_remove = 50
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		cost = 100
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Increase
+        }
+		
+		remove_effect = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = 50
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = 50
+					}
+				}
+			}
+		}
+	}
+	
+	TRA_German_Diplomatic_Relations_1 = {
+		icon = GFX_decision_generic_scorched_earth
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            tag = TRA
+			NOT = {
+				has_country_flag = TRA_Diplomacy_End
+			}
+        }
+		fire_only_once = yes	
+		days_remove = 10
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_text = decision_cost_5_stability_2000_population
+		
+		
+		complete_effect = {
+			custom_effect_tooltip = TRA_Diplomatic_Increase
+			add_stability = -0.05
+			random_owned_state = {
+				add_manpower = -2000
+			}
+        }
+		
+		remove_effect = {
+			add_to_variable = {
+				var = TRA_SPONSOR_RELATION
+				value = 10
+			}
+			add_manpower = 1000
+			set_country_flag = TRA_Diplomacy_Start
+		}
+	}
+	
+	TRA_German_Diplomatic_Relations_2 = {
+		icon = GFX_decision_generic_construction
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			has_country_flag = TRA_Diplomacy_Start
+            tag = TRA
+			NOT = {
+				has_country_flag = TRA_Diplomacy_End
+			}
+        }	
+		days_remove = 25
+		fire_only_once = yes	
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_text = decision_cost_export_idea
+		
+		
+		complete_effect = {
+			custom_effect_tooltip = TRA_Diplomatic_Increase
+			add_timed_idea = {
+				idea = TRA_Mass_Exports_to_RK_Kaukasus
+				days = 90
+			}
+        }
+		
+		remove_effect = {
+			add_to_variable = {
+				var = TRA_SPONSOR_RELATION
+				value = 20
+			}
+			add_manpower = 2500
+			set_country_flag = TRA_Diplomacy_Second
+		}
+	}
+	
+	TRA_German_Diplomatic_Relations_3 = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			has_country_flag = TRA_Diplomacy_Start
+			has_country_flag = TRA_Diplomacy_Second
+            tag = TRA
+			NOT = {
+				has_country_flag = TRA_Diplomacy_End
+			}
+        }	
+		days_remove = 40
+		fire_only_once = yes	
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_text = decision_cost_25_cp_5_war_support
+		
+		complete_effect = {
+			custom_effect_tooltip = TRA_Diplomatic_Increase
+			add_command_power = -25
+			add_war_support = -0.05
+        }
+		
+		remove_effect = {
+			add_to_variable = {
+				var = TRA_SPONSOR_RELATION
+				value = 35
+			}
+			set_country_flag = TRA_Diplomacy_Third
+		}
+	}
+	
+	TRA_German_Diplomatic_Relations_4 = {
+		icon = GFX_decision_ger_reichskommissariats
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			has_country_flag = TRA_Diplomacy_Start
+			has_country_flag = TRA_Diplomacy_Second
+			has_country_flag = TRA_Diplomacy_Third
+            tag = TRA
+			NOT = {
+				has_country_flag = TRA_Diplomacy_End
+			}
+        }	
+		days_remove = 70
+		fire_only_once = yes	
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_text = decision_cost_15_stability
+		
+		complete_effect = {
+			custom_effect_tooltip = TRA_Diplomatic_Increase
+			add_stability = -0.15
+			give_military_access = RKA
+        }
+		
+		remove_effect = {
+			add_to_variable = {
+				var = TRA_SPONSOR_RELATION
+				value = 100
+			}
+			clr_country_flag = TRA_Diplomacy_Start
+			clr_country_flag = TRA_Diplomacy_Second
+			clr_country_flag = TRA_Diplomacy_Third
+			set_country_flag = TRA_Diplomacy_End
+		}
+	}
+	
+	UZB_Vlasov_Diplomatic_Relations_1 = {
+		icon = GFX_decision_hol_exchange_intelligence_data
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            tag = UZB
+			NOT = {
+				has_country_flag = UZB_Diplomacy_End
+			}
+        }
+		fire_only_once = yes	
+		days_remove = 10
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_text = decision_cost_5_stability
+		
+		
+		complete_effect = {
+			custom_effect_tooltip = UZB_Diplomatic_Increase
+			add_stability = -0.05
+        }
+		
+		remove_effect = {
+			add_to_variable = {
+				var = UZB_SPONSOR_RELATION
+				value = 10
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 200
+				producer = KAZ
+			}
+			set_country_flag = UZB_Diplomacy_Start
+		}
+	}
+	
+	UZB_Vlasov_Diplomatic_Relations_2 = {
+		icon = GFX_decision_generic_artillery
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			has_country_flag = UZB_Diplomacy_Start
+            tag = UZB
+			NOT = {
+				has_country_flag = UZB_Diplomacy_End
+			}
+         }	
+		days_remove = 25
+		fire_only_once = yes	
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_text = decision_cost_1500_manpower_5_war_support
+		
+		
+		complete_effect = {
+			custom_effect_tooltip = UZB_Diplomatic_Increase
+			add_war_support = -0.05
+			add_manpower = -500
+        }
+		
+		remove_effect = {
+			add_to_variable = {
+				var = UZB_SPONSOR_RELATION
+				value = 20
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 350
+				producer = KAZ
+			}
+			set_country_flag = UZB_Diplomacy_Second
+		}
+	}
+	
+	UZB_Vlasov_Diplomatic_Relations_3 = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			has_country_flag = UZB_Diplomacy_Start
+			has_country_flag = UZB_Diplomacy_Second
+            tag = UZB
+			NOT = {
+				has_country_flag = UZB_Diplomacy_End
+			}
+    	}	
+		days_remove = 40
+		fire_only_once = yes	
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_text = decision_cost_1500_manpower
+		
+		complete_effect = {
+			custom_effect_tooltip = UZB_Diplomatic_Increase
+			add_manpower = -1500
+        }
+		
+		remove_effect = {
+			add_to_variable = {
+				var = UZB_SPONSOR_RELATION
+				value = 35
+			}
+			set_country_flag = UZB_Diplomacy_Third
+		}
+	}
+	
+	UZB_Vlasov_Diplomatic_Relations_4 = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			has_country_flag = UZB_Diplomacy_Start
+			has_country_flag = UZB_Diplomacy_Second
+			has_country_flag = UZB_Diplomacy_Third
+            tag = UZB
+			NOT = {
+				has_country_flag = UZB_Diplomacy_End
+			}
+        }	
+		days_remove = 70
+		fire_only_once = yes	
+			
+		ai_will_do = {
+			factor = 100
+		}
+		
+		custom_cost_text = decision_cost_3000_manpower_10_stability
+		
+		complete_effect = {
+			custom_effect_tooltip = UZB_Diplomatic_Increase
+			add_manpower = -3000
+			add_stability = -0.1
+        }
+		
+		remove_effect = {
+			add_to_variable = {
+				var = UZB_SPONSOR_RELATION
+				value = 100
+			}
+			clr_country_flag  = UZB_Diplomacy_Start
+			clr_country_flag  = UZB_Diplomacy_Second
+			clr_country_flag  = UZB_Diplomacy_Third
+			set_country_flag = UZB_Diplomacy_End
+		}
+	}
+	
+	TRA_UZB_Level_1_Equipment = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+				tag = TRA
+			 	tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 15
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 15
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -15
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -15
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+					producer = ROOT
+				}
+			}
+		}
+		
+	}
+		
+	TRA_UZB_Level_2_Equipment = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+				tag = TRA
+			 	tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 35
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 35
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -35
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -35
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1250
+					producer = ROOT
+				}
+			}
+		}
+	}
+	
+	TRA_UZB_Level_3_Equipment = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+				tag = TRA
+			 	tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 65
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 65
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -65
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -65
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 2500
+					producer = ROOT
+				}
+			}
+		}
+	}
+	
+	TRA_UZB_Level_1_Manpower = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+				tag = TRA
+			 	tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 20
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 20
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -20
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -20
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+			add_manpower = 1500
+			}
+		}
+		
+	}
+		
+	TRA_UZB_Level_2_Manpower = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+				tag = TRA
+			 	tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 40
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 40
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -40
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -40
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+			add_manpower = 3000
+			}
+		}
+	}
+	
+	TRA_UZB_Level_3_Manpower = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+				tag = TRA
+			 	tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 80
+					}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 80
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -80
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -80
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+			add_manpower = 7500
+			}
+		}
+	}
+	
+	TRA_UZB_Level_1_Experience = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+				tag = TRA
+			 	tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 10
+					}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 10
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -10
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -10
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+			army_experience = 10
+			}
+		}
+		
+	}
+		
+	TRA_UZB_Level_2_Experience = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+            OR = {
+				tag = TRA
+			 	tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 30
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 30
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -30
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -30
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+			army_experience = 25
+			}
+		}
+	}
+	
+	TRA_UZB_Level_3_Experience = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_country_flag = TRA_UZB_PHASE_I 
+			OR = {
+           		tag = TRA
+				tag = UZB
+			}
+        }
+		available = {
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				check_variable = {
+					TRA_SPONSOR_RELATION > 55
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					check_variable = {
+						UZB_SPONSOR_RELATION > 55
+					}
+				}
+			}
+		}
+		days_remove = 5
+		
+		days_re_enable = 0
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = TRK_Diplomatic_Decrease
+			if = {
+				limit = {
+					tag = TRA 
+				}
+				add_to_variable = {
+					var = TRA_SPONSOR_RELATION
+					value = -55
+				}
+				else_if = {
+					limit = {
+						tag = UZB 
+					}
+					add_to_variable = {
+						var = UZB_SPONSOR_RELATION
+						value = -55
+					}
+				}
+			}
+        }
+		
+		remove_effect = {
+			ROOT = {
+			army_experience = 50
+			}
+		}
+	}
+
+	TRK_Final_Showdown = {
+		icon = GFX_decision_revolt
+		available = {
+			OR = {
+				TRA = {
+					exists = no
+				}
+				UZB = {
+					exists = no
+				}
+			}
+		}
+		
+		activation = {
+			TRA = {
+				exists = yes
+			}
+			UZB = {
+				exists = yes
+			}
+		}
+		
+		is_good = no
+		days_mission_timeout = 365
+		fire_only_once = yes
+		
+		timeout_effect = {
+			TRA = {
+				declare_war_on = {
+					target = UZB
+					type = annex_everything
+				}
+			}
+			UZB = {
+				declare_war_on = {
+					target = TRA
+					type = annex_everything
+				}
+			}
+		}
+		
+		complete_effect = {
+			#
+		}
+	}
+	TRK_form_the_bigger_thing = {
+		icon = eng_trade_unions_support
+		available = {
+		owns_state = 997
+		owns_state = 584
+		owns_state = 998
+		owns_state = 995
+		owns_state = 585
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+		complete_effect = {
+		clr_country_flag = TRA_UZB_PHASE_I
+		clr_country_flag = TRA_UZB_PHASE_I
+		if = {
+		limit = { tag = TRA }
+		set_cosmetic_tag = TRA_TURKESTAN
+		country_event = { id = twrTurkmenistanPhaseI.8 days = 14 }
+			}
+		if = {
+		limit = { tag = UZB }
+		set_cosmetic_tag = UZB_TURKESTAN
+			}			
+		add_state_core = 997
+		add_state_core = 584
+		add_state_core = 998
+		add_state_core = 995
+		add_state_core = 585
+		add_state_core = 405
+		every_state = {
+		limit = { is_core_of = TRK }
+		add_claim_by = ROOT
+			}
+		}	
+	}
+}
+political_actions = {
+	TRK_join_soviets = {
+		icon = eng_trade_unions_support
+		allowed = { tag = TRK }
+		available = {
+		404 = {
+		owner = {
+		AND = {
+		has_war = no
+		is_puppet = no
+		is_communist = yes
+			}
+				}
+			}
+		}
+		visible = {
+		is_communist = yes
+		}		
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 5
+		complete_effect = {
+		404 = {
+		owner = {
+		country_event = twrtrk.10
+				}
+			}
+		}	
+	}	
+}

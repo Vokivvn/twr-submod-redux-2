@@ -1,0 +1,3223 @@
+focus_tree = {
+	id = FRA_FocusTree
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = FRA
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 50 y = -1000 }  
+	focus = {
+	cancelable = no
+		id = FRA_state_of_affair_0
+		icon = GFX_FRA_state_of_affairs  
+		cost = 1
+		ai_will_do = {
+		factor = 10
+		}
+		x = 4
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_state_of_affair_0"
+			country_event = { days = 0 id = twrfrance.1 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_meet_reichverter_1
+		icon = GFX_FRA_Expand_Reichsverter
+		cost = 3
+		prerequisite = {
+			focus = FRA_state_of_affair_0
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		relative_position_id = FRA_state_of_affair_0
+		x = -2
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_meet_reichverter_1"
+			country_event = { days = 2 id = twrfrance.2 }
+			add_political_power = 70
+			add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_negotiate_the_terms
+		icon = GFX_GER_Diplomacy_Suitcase
+		cost = 6
+		prerequisite = {
+			focus = FRA_meet_reichverter_1
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = -2
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_negotiate_the_terms"
+			add_stability = 0.1
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_restart_the_factories
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 3
+		prerequisite = {
+			focus = FRA_negotiate_the_terms
+		}
+		
+		prerequisite = {
+			focus = FRA_agricultural_reforms
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = -1
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_dealing_with_the_labourers" #event too 
+			country_event = twrfrance.5
+			16 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 4
+			}
+			24 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_independent_diplomatic_ties
+		icon = GFX_GENERIC_Diplomacy
+		cost = 3
+		prerequisite = {
+			focus = FRA_meet_reichverter_1
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = -4
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_independent_diplomatic_ties" #events with US
+			add_opinion_modifier = {
+				target = USA
+				modifier = opening_up
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = opening_up
+			}
+			reverse_add_opinion_modifier = {
+				target = USA
+				modifier = medium_increase 
+			}
+			reverse_add_opinion_modifier = {
+				target = ENG
+				modifier = medium_increase 
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_temporary_tax_hike_2
+		icon = GFX_FRA_tax_hike
+		cost = 6
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		prerequisite = {
+			focus = FRA_state_of_affair_0
+		}
+		relative_position_id = FRA_state_of_affair_0
+		x = 0
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_temporary_tax_hike_2"
+			add_timed_idea = {
+				idea = FRA_Temporary_Higher_Tax
+				days = 125
+			}
+
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_agricultural_reforms
+		icon = GFX_GENERIC_agricultural_subsidies
+		cost = 6
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		prerequisite = {
+			focus = FRA_temporary_tax_hike_2
+		}
+		relative_position_id = FRA_state_of_affair_0
+		x = 0
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_agricultural_reforms" #add ideas
+			add_timed_idea = {
+				idea = FRA_agricultural_reforms_time
+				days = 100
+			}
+
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_dealing_with_the_labourers
+		icon = GFX_GENERIC_Strike
+		cost = 5
+		prerequisite = {
+			focus = FRA_restart_the_factories
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = -1
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_dealing_with_the_labourers" #events
+			country_event = { id = twrfrance.6 days = 5 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_revive_nationalism
+		icon = GFX_FFR_France_First
+		cost = 5
+		prerequisite = {
+			focus = FRA_dealing_with_the_labourers
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = 0
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_revive_nationalism"
+			add_ideas = FRA_nationalism
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_economic_reform
+		icon = GFX_GENERIC_state_economy
+		cost = 6
+		prerequisite = {
+			focus = FRA_dealing_with_the_labourers
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = -2
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_economic_reform" #events
+			add_ideas = FRA_Economic_Reforms
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_lower_german_investments
+		icon = GFX_GENERIC_Topke
+		cost = 6
+		prerequisite = {
+			focus = FRA_economic_reform
+		}
+		prerequisite = {
+			focus = FRA_revive_nationalism
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = -1
+		y = 6
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_lower_german_investments"
+			add_stability = -0.15
+			add_offsite_building = { type = arms_factory level = 1 }
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_southern_development
+		icon = GFX_GENERIC_wrench_industry
+		cost = 9
+		prerequisite = {
+			focus = FRA_economic_reform
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = -3
+		y = 6
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_southern_development" #add factories
+			21 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			32 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			22 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			31 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_northern_development
+		icon = GFX_GENERIC_arms_industry
+		cost = 9
+		prerequisite = {
+			focus = FRA_southern_development
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = -3
+		y = 7
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_northern_development" #add factories
+			15 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			14 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			30 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			24 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_the_corridor_line
+		icon = GFX_goal_generic_fortify_city
+		cost = 10
+		prerequisite = {
+			focus = FRA_revive_nationalism
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = 1
+		y = 6
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_the_corridor_line" #add forts
+			add_manpower = -1500
+			15 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 9434
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 11563
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 6569
+				}
+			}
+			16 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 9534
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 11506
+				}				
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_the_Provence_line
+		icon = GFX_GENERIC_Skull_Fort
+		cost = 10
+		prerequisite = {
+			focus = FRA_the_corridor_line
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = 1
+		y = 7
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_the_corridor_line" #add forts
+			add_manpower = -1500
+			21 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 911
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 11834
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 958
+				}
+			}
+			20 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 6613
+				}
+			}
+			32 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 3768
+				}				
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_rumors_of_resistance_3
+		icon = GFX_FRA_rumors_of_resistance
+		cost = 4
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		prerequisite = {
+			focus = FRA_state_of_affair_0
+		}
+		relative_position_id = FRA_state_of_affair_0
+		x = 2
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_rumors_of_resistance_3"
+			country_event = { days = 2 id = twrfrance.3 }
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_recruitment_drive
+		icon = GFX_GENERIC_secret_rearmament_red
+		cost = 6
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		prerequisite = {
+			focus = FRA_rumors_of_resistance_3
+		}
+		relative_position_id = FRA_state_of_affair_0
+		x = 2
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_recruitment_drive"
+			add_manpower = 25000
+			add_war_support = 0.1
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_reform_the_officer_corp
+		icon = GFX_FRA_french_military
+		cost = 6
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		prerequisite = {
+			focus = FRA_rumors_of_resistance_3
+		}
+		relative_position_id = FRA_state_of_affair_0
+		x = 4
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_reform_the_officer_corp" #event
+			country_event = { id = twrfrance.9 }
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_limited_rearmament
+		icon = GFX_GENERIC_French_Helm
+		cost = 4
+		prerequisite = {
+			focus = FRA_recruitment_drive
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = 2
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_limited_rearmament" #maybe an idea instead
+			24 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_french_designs
+		icon = GFX_GENERIC_Weapons
+		cost = 3
+		prerequisite = {
+			focus = FRA_limited_rearmament
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = 2
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_designs"
+			add_tech_bonus = {
+				bonus = 0.35
+				uses = 2
+				category = infantry_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_restart_mas
+		icon = GFX_GENERIC_Ultranationalism
+		cost = 3
+		prerequisite = {
+			focus = FRA_french_designs
+		}
+		available = {
+			NOT = {
+				has_global_flag = hitler_is_dead
+			}
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		cancel_if_invalid = yes
+		relative_position_id = FRA_state_of_affair_0
+		x = 2
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_restart_mas" #unlocks company
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = infantry_tech
+			}
+		}
+	}
+##YEEE
+	focus = {
+	cancelable = no
+		id = FRA_death_of_hitler
+		icon = GFX_GER_Hitler_Fallen
+		cost = 1
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		bypass = {
+			has_global_flag = hitler_is_dead
+		}
+		x = 13
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_death_of_hitler"
+			custom_effect_tooltip = hitler_is_dead
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_celebration_4
+		icon = GFX_FRA_Crossed_Flags
+		cost = 1
+		prerequisite = {
+			focus = FRA_death_of_hitler
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		relative_position_id = FRA_death_of_hitler
+		x = 0
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_celebration_4"
+			custom_effect_tooltip = FRA_rejoice_hitler_ded
+			hidden_effect = {
+				country_event = { id = twrfrance.4 days = 2 }
+			}
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_weygangded_5
+		icon = GFX_FRA_Weygard_Dead
+		cost = 3
+		prerequisite = {
+			focus = FRA_celebration_4
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = FRA_doriot_plotexposed_6
+		}
+		relative_position_id = FRA_celebration_4
+		x = -2
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_weygangded_5"
+			custom_effect_tooltip = FRA_Chief_is_Dead_Sad
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_doriot_plotexposed_6
+		icon = GFX_FRA_doritos_plot_exposed
+		cost = 3
+		prerequisite = {
+			focus = FRA_celebration_4
+		}
+		mutually_exclusive = {
+			focus = FRA_weygangded_5
+		}
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		relative_position_id = FRA_celebration_4
+		x = 2
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_doriot_plotexposed_6"
+			custom_effect_tooltip = FRA_Plot_Revealed
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_Weygand_resigns_7
+		icon = GFX_FRA_resigns
+		cost = 1
+		prerequisite = {
+			focus = FRA_doriot_plotexposed_6
+		}
+		ai_will_do = {
+		factor = 100
+		}
+		relative_position_id = FRA_celebration_4
+		x = 1
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_Weygand_resigns_7"
+			country_event = twrfrance.8
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_RFL_Friends_8 #crush the RFL
+		icon = GFX_FRA_friends
+		cost = 8
+		prerequisite = {
+			focus = FRA_doriot_plotexposed_6
+		}
+		available = {
+			has_completed_focus = FRA_Weygand_resigns_7
+		}
+		ai_will_do = {
+		factor = 100
+		}
+		relative_position_id = FRA_celebration_4
+		x = 3
+		y = 2
+		select_effect = {
+			country_event = { id = twrfrance.10 hours = 8 }
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_RFL_Friends_8"
+			effect_tooltip = {
+    		country_event = twrfrance.10
+			}
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_Revolution_averted_9
+		icon = GFX_FRA_revolution_averted
+		cost = 1
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Weygand_resigns_7
+		}
+		prerequisite = {
+			focus = FRA_RFL_Friends_8
+		}
+		mutually_exclusive = {
+			focus = FRA_vivelarevolution_10
+		}
+		relative_position_id = FRA_celebration_4
+		x = 1
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_Revolution_averted_9"
+			set_country_flag = RevolutionAverted
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_vivelarevolution_10
+		icon = GFX_FRA_vive_la_revolution
+		cost = 1
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Weygand_resigns_7
+		}
+		prerequisite = {
+			focus = FRA_RFL_Friends_8
+		}
+		mutually_exclusive = {
+			focus = FRA_Revolution_averted_9
+		}
+		relative_position_id = FRA_celebration_4
+		x = 3
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_vivelarevolution_10"
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_Chaos_Paris_11
+		icon = GFX_FRA_paris_chaos
+		cost = 5
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_weygangded_5
+		}
+		relative_position_id = FRA_celebration_4
+		x = -2
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_Chaos_Paris_11"
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = FRA_Doriot_Coup_etat_12
+		icon = GFX_FRA_doriot_coup
+		cost = 1
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Chaos_Paris_11
+		}
+		mutually_exclusive = {
+			focus = FRA_Order_Restored
+		}
+		relative_position_id = FRA_celebration_4
+		x = -3
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_Doriot_Coup_etat_12"
+		}
+	}
+	focus = {
+	cancelable = no
+		id = FRA_Order_Restored
+		icon = GFX_focus_attack_france
+		cost = 1
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Chaos_Paris_11
+		}
+		mutually_exclusive = {
+			focus = FRA_Doriot_Coup_etat_12
+		}		
+		relative_position_id = FRA_celebration_4
+		x = -1
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_Order_Restored"
+		}
+	}
+##French Revolt
+	focus = {
+		cancelable = no
+		id = FRA_french_civil_war_won
+		icon = GFX_GENERIC_victory_liberty
+		cost = 4
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		x = 12
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_stability = 0.15
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_join_the_ta
+		icon = GFX_TA_Big_Four
+		cost = 1
+		available = {
+			has_war = no
+			is_in_faction = no
+			has_global_flag = german_civil_war_started
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		prerequisite = {
+			focus = FRA_a_democratic_france
+			focus = FRA_a_red_france
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = 1
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			USA = {
+				country_event = {
+					id = twrFranceNew.7
+					hours = 5
+				}
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_deepen_cooperation
+		icon = GFX_focus_generic_diplomatic_treaty
+		cost = 1
+		available = {
+			is_in_faction_with = USA
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_join_the_ta
+		}
+		prerequisite = {
+			focus = FRA_a_democratic_france
+			focus = FRA_a_red_france
+		}
+		mutually_exclusive = {
+			focus = FRA_leave_the_ta
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = 0
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			army_experience = 20
+			add_equipment_to_stockpile = {
+    		type = infantry_equipment_1
+    		amount = 5000
+    		producer = USA
+			}
+			add_equipment_to_stockpile = {
+    		type = support_equipment_1
+    		amount = 500
+    		producer = USA
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_leave_the_ta
+		icon = GFX_GENERIC_Cooperated_Isolation
+		cost = 1
+		available = {
+			has_war = no
+			PGR = {
+				exists = yes
+			}
+			is_in_faction_with = USA
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		prerequisite = {
+			focus = FRA_join_the_ta
+		}
+		prerequisite = {
+			focus = FRA_a_red_france
+		}
+		mutually_exclusive = {
+			focus = FRA_deepen_cooperation
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = 2
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_ideas = deterrence
+			hidden_effect = {
+			clr_global_flag = TA_BACK_FRANCE
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_a_democratic_france
+		icon = GFX_ENG_reassure_liberals
+		cost = 4
+		available = {
+			always = no
+		}
+		bypass = {
+			has_country_flag = RFL_right
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_french_civil_war_won
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = -2
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_stability = 0.15
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_secure_officers
+		icon = GFX_FRA_french_military
+		cost = 4
+		available = {
+			OR = {
+				is_democratic = yes
+				is_communist = yes
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_a_democratic_france
+			focus = FRA_a_red_france
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = -1
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_war_support = 0.35
+			add_command_power = -50
+			army_experience = -20
+			navy_experience = -10
+			air_experience = -10
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_purge_petainists
+		icon = GFX_GENERIC_Old_Purge
+		cost = 4
+		available = {
+			OR = {
+				is_democratic = yes
+				is_communist = yes
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_secure_officers
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = -2
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = -0.20
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.10
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_restore_civilian_rule
+		icon = GFX_GENERIC_Helmet_Knife
+		cost = 4
+		available = {
+			OR = {
+				is_democratic = yes
+				is_communist = yes
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_purge_petainists
+		}
+		prerequisite = {
+			focus = FRA_sideline_socialists
+			focus = FRA_sideline_liberals
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = 0
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			if = {
+				limit = {
+					has_country_flag = RFL_left
+				}
+				country_event = {
+					id = twrFranceNew.6
+					days = 3
+				}
+				else = {
+					country_event = {
+						id = twrFranceNew.5
+						days = 3
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_new_constitution
+		icon = GFX_GENERIC_Adapt_Constitution
+		cost = 4
+		available = {
+			OR = {
+				is_democratic = yes
+				is_communist = yes
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_restore_civilian_rule
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = 0
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_political_power = 200
+			add_stability = 0.10
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_sideline_socialists
+		icon = GFX_GENERIC_Anti_Com
+		cost = 4
+		available = {
+			is_democratic = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_secure_officers
+		}
+		prerequisite = {
+			focus = FRA_a_democratic_france
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = -4
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = bolshevik_leninist
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = marxist_leninist
+				popularity = -0.05
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_a_red_france
+		icon = GFX_GENERIC_peaceful_socialism
+		cost = 4
+		available = {
+			always = no
+		}
+		bypass = {
+			has_country_flag = RFL_left
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_french_civil_war_won
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = 2
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_stability = 0.15
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_prepare_economic_transition
+		icon = GFX_GENERIC_state_economy
+		cost = 6
+		available = {
+			is_communist = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_a_red_france
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = 3
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = FRA
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = FRA
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = FRA
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = FRA_sideline_liberals
+		icon = GFX_GENERIC_Anti_Dem
+		cost = 4
+		available = {
+			is_communist = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = FRA_prepare_economic_transition
+		}
+		relative_position_id = FRA_french_civil_war_won
+		x = 4
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_french_civil_war_won"
+			add_popularity = {
+				ideology = conservative
+				popularity = -0.08
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.08
+			}
+		}
+	}
+#Doriot
+	focus = {
+	cancelable = no 
+		id = FRA_libre_toi_france
+		icon = GFX_FRA_PPF
+		x = 21
+		y = 0
+		cost = 0
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_libre_toi_france"
+			 country_event = { id = twrDoriotNew.1 } 
+			}
+        } 
+
+	focus = {
+	cancelable = no 
+		id = FRA_le_mise_au_pas
+		icon = GFX_FRA_Crossed_Flags
+		x = 0
+		y = 1
+		cost = 4
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_libre_toi_france
+			} 
+		relative_position_id = FRA_libre_toi_france
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_le_mise_au_pas"
+			country_event = { id = twrDoriotNew.2 } 
+		}
+	} 
+
+	focus = {
+	cancelable = no 
+		id = FRA_destroy_military_clan
+		icon = GFX_FRA_Destroy_the_Military_Clan
+		x = -3
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+         focus = FRA_le_mise_au_pas
+		} 
+		relative_position_id = FRA_le_mise_au_pas
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_destroy_military_clan"
+
+	    
+		country_event = { id = twrDoriotNew.3 } 
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_control_milice
+		icon = GFX_FRA_Take_Control_of_the_Milice
+		x = -1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_le_mise_au_pas
+		} 
+		relative_position_id = FRA_le_mise_au_pas
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_control_milice"
+			country_event = { id = twrDoriotNew.4 } 
+		}
+	} 
+
+	focus = {
+	cancelable = no 
+		id = FRA_incorp_technos
+		icon = GFX_FRA_Incorporate_The_Technocrats
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_le_mise_au_pas
+		} 
+		relative_position_id = FRA_le_mise_au_pas
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_incorp_technos"
+			country_event = { id = twrDoriotNew.5 } 
+		}
+	} 
+
+	focus = {
+	cancelable = no 
+		id = FRA_purge_ultras
+		icon = GFX_FRA_Purge_the_Ultras
+		x = 3
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_le_mise_au_pas
+		} 
+		relative_position_id = FRA_le_mise_au_pas
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_purge_ultras"
+			 country_event = { id = twrDoriotNew.6 } 
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_new_police_oath  
+		icon = GFX_FRA_Police_Oath
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_destroy_military_clan
+		} 
+		prerequisite = {
+			focus = FRA_control_milice
+		} 
+		relative_position_id = FRA_destroy_military_clan
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_new_polad_oath"
+			
+			country_event = { id = twrDoriotNew.7 } 
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_everything_in_party
+		icon = GFX_FRA_Everything_in_the_Party
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_incorp_technos
+		} 
+		prerequisite = {
+			focus = FRA_purge_ultras
+		} 
+		relative_position_id = FRA_incorp_technos
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_everything_in_party"
+			country_event = { id = twrDoriotNew.15 }
+		}
+	} 
+	
+	focus = {
+	cancelable = no 
+		id = FRA_nation_soc_pop_revolution
+		icon = GFX_FRA_National_and_Popular_Revolution
+		x = 2
+		y = 1
+		cost = 3
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_new_police_oath
+		} 
+		prerequisite = {
+			focus = FRA_everything_in_party
+		} 
+		relative_position_id = FRA_new_police_oath
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_everything_in_party"
+			country_event = { id = twrDoriotNew.8 } 
+		}
+	}
+
+	focus = {
+	cancelable = no 
+		id = FRA_Cult_of_Marechal
+		icon = GFX_FRA_Marechal_Cult
+		x = -3
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_nation_soc_pop_revolution
+		} 
+		relative_position_id = FRA_nation_soc_pop_revolution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrDoriotNew.9 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_French_Popular_Youth
+		icon = GFX_FRA_French_Popular_Youth
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_Cult_of_Marechal
+		} 
+		relative_position_id = FRA_Cult_of_Marechal
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_ideas = FRA_French_Popular_Youth
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_City_of_National_Arts
+		icon = GFX_FRA_Centre_For_French_Culture
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_French_Popular_Youth
+		} 
+		relative_position_id = FRA_French_Popular_Youth
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrDoriotNew.16 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Great_Strategic_State
+		icon = GFX_FRA_We_Will_Endure
+		x = -1
+		y = 1
+		cost = 9
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_nation_soc_pop_revolution
+		} 
+		relative_position_id = FRA_nation_soc_pop_revolution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			swap_ideas = {
+			remove_idea = FRA_La_Mise_au_Pas_idea
+			add_idea = FRA_The_Great_Stategic_State
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_New_Corporatist_Economy
+		icon = GFX_GER_Economic_Reform
+		x = 0
+		y = 1
+		cost = 9
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_The_Great_Strategic_State
+		} 
+		relative_position_id = FRA_The_Great_Strategic_State
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			swap_ideas = {
+			remove_idea = FRA_The_Great_Stategic_State
+			add_idea = FRA_New_Corporatist_Economy
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Modern_Organic_Institutions
+		icon = GFX_FRA_Third_Armistice
+		x = 0
+		y = 1
+		cost = 9
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_New_Corporatist_Economy
+		} 
+		relative_position_id = FRA_New_Corporatist_Economy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			swap_ideas = {
+			remove_idea = FRA_New_Corporatist_Economy
+			add_idea = FRA_Modern_Organic_Institutions
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_French_Popular_State
+		icon = GFX_FRA_French_Popular_State
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_City_of_National_Arts
+		} 
+		prerequisite = {
+			focus = FRA_Modern_Organic_Institutions
+		} 
+		relative_position_id = FRA_City_of_National_Arts
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrDoriotNew.19 } 
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Negotiate_with_RFL
+		icon = GFX_FRA_Negotiate_with_RFL
+		x = 1
+		y = 1
+		cost = 9
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_nation_soc_pop_revolution
+		} 
+		relative_position_id = FRA_nation_soc_pop_revolution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrDoriotNew.10 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Crush_the_Communist_Terrorists
+		icon = GFX_FRA_Crush_the_Communist_Terrorists
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_Negotiate_with_RFL
+		} 
+		relative_position_id = FRA_Negotiate_with_RFL
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_stability = -0.1
+			custom_effect_tooltip = DoriotCommunists
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_France_on_par_with_the_Reich
+		icon = GFX_FRA_On_Par_with_the_Axis
+		x = 3
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_nation_soc_pop_revolution
+		} 
+		relative_position_id = FRA_nation_soc_pop_revolution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrDoriotNew.11 }
+			
+		} 
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Mediterranean_Atlantic_Axis
+		icon = GFX_FRA_Med_Axis
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_France_on_par_with_the_Reich
+		} 
+		relative_position_id = FRA_France_on_par_with_the_Reich
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrDoriotNew.12 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_A_Popular_State_Has_No_Friends
+		icon = GFX_FRA_A_Popular_State_has_no_Friends
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Crush_the_Communist_Terrorists
+		} 
+		prerequisite = {
+			focus = FRA_The_Mediterranean_Atlantic_Axis
+		}
+		available = {
+			is_fascist = yes
+		}
+		relative_position_id = FRA_Crush_the_Communist_Terrorists
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrDoriotNew.13 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_France_is_Back
+		icon = GFX_FRA_Our_New_Wonder
+		x = 0
+		y = 1
+		cost = 9
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_A_Popular_State_Has_No_Friends
+		} 
+		relative_position_id = FRA_A_Popular_State_Has_No_Friends
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrDoriotNew.14 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Vive_Doriot_Notre_Chief
+		icon = GFX_FRA_doriot_coup
+		x = 2
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_The_French_Popular_State
+		} 
+		prerequisite = {
+			focus = FRA_France_is_Back
+		} 
+		relative_position_id = FRA_The_French_Popular_State
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_stability = 0.15
+			add_political_power = 100
+			remove_ideas = FRA_incompetent_government
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Social_French_Order
+		icon = GFX_FRA_The_Social_French_Order
+		x = -2
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_Vive_Doriot_Notre_Chief
+		} 
+		relative_position_id = FRA_Vive_Doriot_Notre_Chief
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_ideas = FRA_The_Social_French_Order
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Time_for_Great_Works
+		icon = GFX_FRA_Made_in_France
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_Vive_Doriot_Notre_Chief
+		} 
+		relative_position_id = FRA_Vive_Doriot_Notre_Chief
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			custom_effect_tooltip = DoriotWorks
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Tricolour_Empire
+		icon = GFX_FRA_State_without_an_Army
+		x = 2
+		y = 1
+		cost = 9
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			is_fascist = yes
+		}
+		prerequisite = {
+			focus = FRA_Vive_Doriot_Notre_Chief
+		} 
+		relative_position_id = FRA_Vive_Doriot_Notre_Chief
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			custom_effect_tooltip = DoriotReclaimation
+		}
+	}
+	
+#Nogues
+	focus = {
+	cancelable = no 
+		id = FRA_Charles_Nogues_Assumes_Office
+		icon = GFX_FRA_Charles_Nogues_Assumes_Office
+		x = 33
+		y = 0
+		cost = 0
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_Charles_Nogues_Assumes_Office"
+			add_ideas = FRA_HoG_Charles_Nogues
+			remove_ideas = FRA_the_armistice
+			remove_ideas = FRA_incompetent_military
+			remove_ideas = FRA_war_reparations
+			}
+        }
+		
+	focus = {
+	cancelable = no 
+		id = FRA_Institute_a_Dynastic_Power
+		icon = GFX_FRA_State_without_an_Army
+		x = -1
+		y = 1
+		cost = 0.8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			has_country_flag = RevolutionAverted
+		}
+		prerequisite = {
+			focus = FRA_Charles_Nogues_Assumes_Office
+		} 
+		mutually_exclusive = {
+		focus = FRA_Break_Up_With_Darlan
+		}
+		relative_position_id = FRA_Charles_Nogues_Assumes_Office
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_ideas = FRA_HoG_Francois_Darlan
+			add_stability = 0.1
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Meet_the_American_Ambassador
+		icon = GFX_GENERIC_USA_Diplomat
+		x = 0
+		y = 1
+		cost = 0.8
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			has_country_flag = RevolutionAverted
+		}
+		prerequisite = {
+			focus = FRA_Institute_a_Dynastic_Power
+		} 
+		relative_position_id = FRA_Institute_a_Dynastic_Power
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.1 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Break_Up_With_Darlan
+		icon = GFX_FRA_Break_Up_with_Darlan
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			has_country_flag = RevolutionAverted
+		}
+		prerequisite = {
+			focus = FRA_Charles_Nogues_Assumes_Office
+		} 
+		mutually_exclusive = {
+		focus = FRA_Institute_a_Dynastic_Power
+		}
+		relative_position_id = FRA_Charles_Nogues_Assumes_Office
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_stability = -0.1
+			set_country_flag = Francois_Darlan_unavailable
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Meet_with_the_German_Ambassador
+		icon = GFX_GER_Diplomacy_Suitcase
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			has_country_flag = RevolutionAverted
+		}
+		bypass = {
+		has_global_flag = german_civil_war_started
+		}
+		prerequisite = {
+			focus = FRA_Break_Up_With_Darlan
+		} 
+		relative_position_id = FRA_Break_Up_With_Darlan
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.2 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Petain_is_Dead_Weygard_is_Dead_What_Now
+		icon = GFX_GENERIC_Whats_The_Plan
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+			has_country_flag = RevolutionAverted
+		}
+		prerequisite = {
+			focus = FRA_Meet_the_American_Ambassador
+			focus = FRA_Meet_with_the_German_Ambassador
+		} 
+		relative_position_id = FRA_Meet_the_American_Ambassador
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.1001 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Resume_the_Constitution_of_43
+		icon = GFX_GENERIC_Adapt_Constitution
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+		always = no
+		}
+		prerequisite = {
+			focus = FRA_Petain_is_Dead_Weygard_is_Dead_What_Now
+		} 
+		relative_position_id = FRA_Petain_is_Dead_Weygard_is_Dead_What_Now
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.3 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Republic_of_Petain
+		icon = GFX_FRA_The_Republic_of_Petain
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Resume_the_Constitution_of_43
+		} 
+		relative_position_id = FRA_Resume_the_Constitution_of_43
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.4 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_New_Parliament
+		icon = GFX_FRA_The_Assembly_of_the_Peoples_Delegates
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_Republic_of_Petain
+		} 
+		relative_position_id = FRA_The_Republic_of_Petain
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_political_power = 150
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Hierachy_and_Tradition   
+		icon = GFX_FRA_Hierarchy_and_Tradition
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_Republic_of_Petain
+		} 
+		relative_position_id = FRA_The_Republic_of_Petain
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Presidential_Authority
+		icon = GFX_goal_generic_political_pressure
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_Republic_of_Petain
+		} 
+		relative_position_id = FRA_The_Republic_of_Petain
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_war_support = 0.1
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Regional_Decentralisation
+		icon = GFX_focus_generic_treaty
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_New_Parliament
+		} 
+		relative_position_id = FRA_The_New_Parliament
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_stability = 0.05
+			16 = {
+			add_state_modifier = {
+    		modifier = {
+        	local_building_slots_factor = 0.5
+    				}
+				}
+			}
+			15 = {
+			add_state_modifier = {
+    		modifier = {
+        	local_building_slots_factor = 0.5
+    				}
+				}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_New_Family_Statutes
+		icon = GFX_GENERIC_Family
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_New_Parliament
+		} 
+		prerequisite = {
+			focus = FRA_Hierachy_and_Tradition
+		} 
+		relative_position_id = FRA_The_New_Parliament
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_manpower = 25000
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Reestablishment_of_Laicity
+		icon = GFX_GENERIC_Catholic_Government
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_Presidential_Authority
+		} 
+		prerequisite = {
+			focus = FRA_Hierachy_and_Tradition
+		} 
+		relative_position_id = FRA_Hierachy_and_Tradition
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_political_power = 50
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Strong_Executive_Power
+		icon = GFX_GENERIC_authoritarian_fist
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_Presidential_Authority
+		} 
+		relative_position_id = FRA_The_Presidential_Authority
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			custom_effect_tooltip = strong_leadership_for_france
+			add_country_leader_trait = headstrong
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_A_National_Social_and_Corporatist_Republic
+		icon = GFX_GENERIC_victory_liberty
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Regional_Decentralisation
+		} 
+		prerequisite = {
+			focus = FRA_The_New_Family_Statutes
+		} 
+		prerequisite = {
+			focus = FRA_Reestablishment_of_Laicity
+		} 
+		prerequisite = {
+			focus = FRA_Strong_Executive_Power
+		} 
+		relative_position_id = FRA_The_New_Family_Statutes
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_ideas = FRA_The_Republic_of_Petain
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_National_Plebiscite
+		icon = GFX_FRA_Referendum_for_the_National_Pact
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_A_National_Social_and_Corporatist_Republic
+		} 
+		relative_position_id = FRA_A_National_Social_and_Corporatist_Republic
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.5 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Darlan_Wins_the_Election
+		icon = GFX_FRA_Darlan_wins_the_Election
+		x = -4
+		y = 1
+		cost = 0
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_National_Plebiscite
+		} 
+		mutually_exclusive = {
+			focus = FRA_Nogues_Wins_the_Election
+		}
+		relative_position_id = FRA_National_Plebiscite
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.0 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Marechals_Footsteps
+		icon = GFX_FRA_Marechals_Footsteps
+		x = -2
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Darlan_Wins_the_Election
+		} 
+		relative_position_id = FRA_Darlan_Wins_the_Election
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.6 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_National_Concorde
+		icon = GFX_FRA_National_Concord
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Marechals_Footsteps
+		} 
+		relative_position_id = FRA_Marechals_Footsteps
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.8 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Education_Reforms
+		icon = GFX_POR_Education_Reform
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_National_Concorde
+		} 
+		relative_position_id = FRA_National_Concorde
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_ideas = FRA_Education_Reform
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Abrogate_the_Status_Laws
+		icon = GFX_GENERIC_Ripping_Papers
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_National_Concorde
+		} 
+		relative_position_id = FRA_National_Concorde
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.9 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Reaching_out_to_the_USA #SI, THIS FOCUS SHOULD MAKE US GET AN EVENT ABOUT FRANCE!
+		icon = GFX_focus_chi_mission_to_the_us
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Marechals_Footsteps
+		} 
+		prerequisite = {
+			focus = FRA_Return_of_the_Technocrats
+		} 
+		relative_position_id = FRA_Marechals_Footsteps
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.10 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Eye_of_Washington #SI, THIS FOCUS SHOULD MAKE US GET AN EVENT ABOUT FRANCE!
+		icon = GFX_USA_save_the_republic
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Reaching_out_to_the_USA
+		} 
+		relative_position_id = FRA_Reaching_out_to_the_USA
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.11 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Return_of_the_Technocrats
+		icon = GFX_FRA_Incorporate_The_Technocrats
+		x = 2
+		y = 1
+		cost = 9
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Darlan_Wins_the_Election
+		} 
+		relative_position_id = FRA_Darlan_Wins_the_Election
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.7 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Plan_Darlan_Pucheu
+		icon = GFX_FRA_Plan_Darlan-Pucheu
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Return_of_the_Technocrats
+		} 
+		relative_position_id = FRA_Return_of_the_Technocrats
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.12 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Franc_Darlan
+		icon = GFX_FRA_Darlan_Franc
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Plan_Darlan_Pucheu
+		} 
+		relative_position_id = FRA_Plan_Darlan_Pucheu
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.13 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Modern_Agricultural_Policy
+		icon = GFX_GENERIC_agricultural_subsidies
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Plan_Darlan_Pucheu
+		} 
+		relative_position_id = FRA_Plan_Darlan_Pucheu
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_ideas = FRA_Modernised_Agriculture
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Modern_Republic
+		icon = GFX_FRA_A_Modern_Republic
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Education_Reforms
+		} 
+		prerequisite = {
+			focus = FRA_Abrogate_the_Status_Laws
+		} 
+		prerequisite = {
+			focus = FRA_Eye_of_Washington
+		} 
+		prerequisite = {
+			focus = FRA_Franc_Darlan
+		} 
+		prerequisite = {
+			focus = FRA_Modern_Agricultural_Policy
+		} 
+		relative_position_id = FRA_Eye_of_Washington
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			swap_ideas = {
+			remove_idea = FRA_The_Republic_of_Petain
+			add_idea = FRA_The_Moderne_Republic 
+			}
+			add_ideas = facade_democracy
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_A_Strong_Navy
+		icon = GFX_FRA_Fleet_for_France
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Modern_Republic
+		} 
+		relative_position_id = FRA_Modern_Republic
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_ideas = FRA_A_New_French_Navy
+		}
+	}
+	
+	focus = {
+	cancelable = no  
+		id = FRA_Talk_to_Dakar1
+		icon = GFX_FRA_Meeting_with_De_Gaulle 
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+		FFR = {
+		has_government = conservative
+		exists = yes
+			}
+		}
+		prerequisite = {
+			focus = FRA_Modern_Republic
+		} 
+		relative_position_id = FRA_Modern_Republic
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_Talk_to_Dakar1"
+			country_event = { id = twrNoguesNew.14 }
+		}
+	}
+	
+	focus = {
+	cancelable = no  
+		id = FRA_Talk_to_Dakar3
+		icon = GFX_FFR_France_First
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+		FFR = {
+		has_government = conservative
+		exists = yes
+			}
+		}
+		prerequisite = {
+			focus = FRA_new_constitution
+		} 
+		relative_position_id = FRA_new_constitution
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_Talk_to_Dakar3"
+			country_event = { id = twrNoguesNew.14 }
+		}
+	}	
+	focus = {
+	cancelable = no 
+		id = FRA_Nogues_Wins_the_Election
+		icon = GFX_FRA_Nogues_wins_the_Election
+		x = 4
+		y = 1
+		cost = 0
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_National_Plebiscite
+		} 
+		mutually_exclusive = {
+			focus = FRA_Darlan_Wins_the_Election
+		}
+		relative_position_id = FRA_National_Plebiscite
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.15 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Return_to_Earth_Policy
+		icon = GFX_FRA_The_Return_to_Earth_Policy
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Nogues_Wins_the_Election
+		} 
+		relative_position_id = FRA_Nogues_Wins_the_Election
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.16 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Social_Role_of_Officer
+		icon = GFX_GENERIC_Officer_Cap
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Nogues_Wins_the_Election
+		} 
+		relative_position_id = FRA_Nogues_Wins_the_Election
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_stability = 0.1
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Reconnect_with_the_Clergy
+		icon = GFX_FRA_Sign_a_New_Concordat
+		x = 2
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Nogues_Wins_the_Election
+		} 
+		relative_position_id = FRA_Nogues_Wins_the_Election
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_stability = 0.05
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Return_to_the_Moral_Order
+		icon = GFX_FRA_Return_to_the_Moral_Order
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_Return_to_Earth_Policy
+		} 
+		prerequisite = {
+			focus = FRA_The_Social_Role_of_Officer
+		} 
+		prerequisite = {
+			focus = FRA_Reconnect_with_the_Clergy
+		} 
+		relative_position_id = FRA_The_Social_Role_of_Officer
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.17 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Empowering_Corporations1
+		icon = GFX_GER_Economic_Reform
+		x = -2
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Return_to_the_Moral_Order
+		} 
+		relative_position_id = FRA_Return_to_the_Moral_Order
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			swap_ideas = {
+			remove_idea = FRA_Return_to_the_Earth
+			add_idea = FRA_Return_to_the_Earth1
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Vegetable_Garden_of_Europe
+		icon = GFX_FRA_Subsidise_Land_Reclaimation
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Empowering_Corporations1
+		} 
+		relative_position_id = FRA_Empowering_Corporations1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			swap_ideas = {
+			remove_idea = FRA_Return_to_the_Earth1
+			add_idea = FRA_Return_to_the_Earth2
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Focus_on_the_Empire
+		icon = GFX_FRA_Napoleonic_Ambition
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Return_to_the_Moral_Order
+		} 
+		relative_position_id = FRA_Return_to_the_Moral_Order
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			custom_effect_tooltip = NoguesEmpire
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Our_Latin_Brothers
+		icon = GFX_FRA_Sons_and_Daughters_of_Gaul
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Focus_on_the_Empire
+		} 
+		relative_position_id = FRA_Focus_on_the_Empire
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.20 }
+			SPA = {
+			country_event = { id = twrNoguesNew.19 }
+			}
+			POR = {
+			country_event = { id = twrNoguesNew.191 }
+			}
+			ITA = {
+			country_event = { id = twrNoguesNew.192 }
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Strong_Natalist_Policy
+		icon = GFX_GENERIC_Family
+		x = 2
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Return_to_the_Moral_Order
+		} 
+		relative_position_id = FRA_Return_to_the_Moral_Order
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			swap_ideas = {
+			remove_idea = FRA_Return_to_the_Moral_Order
+			add_idea = FRA_Return_to_the_Moral_Order1
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Promote_the_Work_of_the_Marechal
+		icon = GFX_FRA_Promote_the_work_of_the_Marechal
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Strong_Natalist_Policy
+		} 
+		relative_position_id = FRA_Strong_Natalist_Policy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.21 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Corporatist_Republic
+		icon = GFX_FRA_Empowering_Corporations
+		x = 0
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_The_Vegetable_Garden_of_Europe
+		} 
+		prerequisite = {
+			focus = FRA_Our_Latin_Brothers
+		} 
+		prerequisite = {
+			focus = FRA_Promote_the_Work_of_the_Marechal
+		} 
+		relative_position_id = FRA_Our_Latin_Brothers
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrNoguesNew.22 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_France_of_Tommorow
+		icon = GFX_FRA_The_France_of_Tommorow
+		x = -1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Corporatist_Republic
+		} 
+		relative_position_id = FRA_Corporatist_Republic
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			swap_ideas = {
+			remove_idea = FRA_incompetent_military
+			add_idea = FRA_The_New_Army
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Local_Democracy_National_Authority
+		icon = GFX_FRA_Local_Democracy_National_Authority
+		x = 1
+		y = 1
+		cost = 8
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Corporatist_Republic
+		} 
+		relative_position_id = FRA_Corporatist_Republic
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_stability = 0.1
+			add_political_power = 150
+			add_ideas = facade_democracy
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Restore_Order
+		icon = GFX_FRA_French_Fascists
+		x = 28
+		y = 0
+		cost = 2.2
+		ai_will_do = {
+		factor = 10
+		}
+		available = {
+		always = no
+		}
+		search_filters = { Focus_Nogues_Restores_Order }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrRestorationPuppet.1 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Break_the_Resistance
+		icon = GFX_GENERIC_Gun_Purge
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Restore_Order
+		} 
+		search_filters = { Focus_Nogues_Restores_Order }
+		relative_position_id = FRA_Restore_Order
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrRestorationPuppet.3 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Purge_the_Fascists
+		icon = GFX_FRA_A_Knife_in_the_Back
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Restore_Order
+		} 
+		search_filters = { Focus_Nogues_Restores_Order }
+		relative_position_id = FRA_Restore_Order
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			country_event = { id = twrRestorationPuppet.2 }
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_Authority_is_Restored
+		icon = GFX_FRA_Weygard_Dead
+		x = 1
+		y = 1
+		cost = 15
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Break_the_Resistance
+		} 
+		prerequisite = {
+			focus = FRA_Purge_the_Fascists
+		} 
+		search_filters = { Focus_Nogues_Restores_Order }
+		relative_position_id = FRA_Break_the_Resistance
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			add_timed_idea = {
+			idea = FRA_Authority_is_Restored
+			days = 150
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no 
+		id = FRA_The_Carrot_and_the_Stick
+		icon = GFX_GENERIC_Flower_Gun
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+		factor = 10
+		}
+		prerequisite = {
+			focus = FRA_Authority_is_Restored
+		} 
+		search_filters = { Focus_Nogues_Restores_Order }
+		relative_position_id = FRA_Authority_is_Restored
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FRA_nation_soc_pop_revolution"
+			remove_ideas = FRA_incompetent_government
+			remove_ideas = FRA_incompetent_military
+		}
+	}
+}

@@ -1,0 +1,268 @@
+##################################################
+###===========| SERBIA RANKOVIC |==============###
+###======| Made by Canadian Lizard  |==========###
+####=========| Coded by GreyShadow |==========####
+##################################################
+
+    shared_focus = {
+		cancelable = no
+		id = SER_The_Communist_Party_of_Yugoslavia
+		icon = GFX_SER_focus_rankovic_victory
+		x = 3
+		y = 0
+		cost = 0
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Communist_Party_of_Yugoslavia"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Empower_the_UDBA
+		icon = GFX_SER_focus_empower_udba
+		prerequisite = { focus = SER_The_Communist_Party_of_Yugoslavia }
+		x = -2
+		y = 1
+		relative_position_id = SER_The_Communist_Party_of_Yugoslavia
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Empower_the_UDBA"
+			add_ideas = SER_UDBA_Empowered
+			country_event = { hours = 2 id = twrserbiaflavour.38 }
+			hidden_effect = {
+				country_event = { days = 3 id =  twrserbiaflavour.50 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Sideline_the_Republics
+		icon = GFX_SER_focus_sideline_republics
+		prerequisite = { focus = SER_The_Communist_Party_of_Yugoslavia }
+		x = 0
+		y = 1
+		relative_position_id = SER_The_Communist_Party_of_Yugoslavia
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		available = {
+			has_country_flag = YUGO_Formed
+			has_completed_focus = SER_Empower_the_UDBA
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Sideline_the_Republics"
+			add_political_power = 200
+			add_stability = -0.2
+			country_event = { hours = 5 id = twrserbiaflavour.39 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Collectivize_the_Countryside
+		icon = GFX_goal_generic_soviet_construction
+		prerequisite = { focus = SER_The_Communist_Party_of_Yugoslavia }
+		x = 2
+		y = 1
+		relative_position_id = SER_The_Communist_Party_of_Yugoslavia
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Collectivize_the_Countryside"
+			swap_ideas = {
+				remove_idea = SER_recovering_from_civil_war
+				add_idea = SER_recovering_from_civil_war_2
+			}
+			add_political_power = -50
+			add_stability = -0.05
+			country_event = { hours = 5 id = twrserbiaflavour.41 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Barren_Island_Reeducation_Project
+		icon = GFX_GENERIC_Worker_Police
+		prerequisite = { focus = SER_Empower_the_UDBA }
+		prerequisite = { focus = SER_Sideline_the_Republics }
+		x = 1
+		y = 1
+		relative_position_id = SER_Empower_the_UDBA
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		available = {
+			owns_state = 103
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Barren_Island_Reeducation_Project"
+			add_popularity = {
+				ideology = bolshevik_leninist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = national_socialist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = -0.1
+			}
+			add_stability = -0.1
+			country_event = { days = 1 id = twrserbiaflavour.42 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Revolution_in_Full
+		icon = GFX_GENERIC_Global_Revolution
+		prerequisite = { focus = SER_Collectivize_the_Countryside }
+		prerequisite = { focus = SER_Sideline_the_Republics }
+		x = 1
+		y = 1
+		relative_position_id = SER_Sideline_the_Republics
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Revolution_in_Full"
+			swap_ideas = {
+				remove_idea = SER_recovering_from_civil_war_2
+				add_idea = SER_Revolution_in_Full
+			}
+			country_event = { days = 1 id = twrserbiaflavour.40 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Venerate_the_Peoples_Hero
+		icon = GFX_SER_focus_venerate_the_peoples_hero
+		prerequisite = { focus = SER_The_Barren_Island_Reeducation_Project }
+		prerequisite = { focus = SER_The_Revolution_in_Full }
+		x = -1
+		y = 1
+		relative_position_id = SER_The_Barren_Island_Reeducation_Project
+		cost = 3
+		available = {
+			has_completed_focus = SER_The_Yugoslav_Cultural_Revolution
+		}
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Venerate_the_Peoples_Hero"
+			add_country_leader_trait = Peoples_Hero
+			hidden_effect = {
+				country_event = { days = 2 id = twrserbiaflavour.45 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_End_the_Church
+		icon = GFX_GENERIC_Stamp_Christain
+		prerequisite = { focus = SER_The_Barren_Island_Reeducation_Project }
+		prerequisite = { focus = SER_The_Revolution_in_Full }
+		x = 1
+		y = 1
+		relative_position_id = SER_The_Barren_Island_Reeducation_Project
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_End_the_Church"
+			add_timed_idea = {
+				days = 60
+				idea = SER_Churches_Destroyed
+			}
+			hidden_effect = {
+				country_event = { days = 2 id = twrserbiaflavour.43 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Yugoslav_Cultural_Revolution
+		icon = GFX_SER_focus_yugoslav_cultural_revolution
+		prerequisite = { focus = SER_The_Barren_Island_Reeducation_Project }
+		prerequisite = { focus = SER_The_Revolution_in_Full }
+		x = 1
+		y = 1
+		relative_position_id = SER_The_Revolution_in_Full
+		cost = 3
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Yugoslav_Cultural_Revolution"
+			add_ideas = SER_Yugoslav_Cultural_Revolution
+			hidden_effect = {
+				country_event = { days = 3 id = twrserbiaflavour.44 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Red_Spot_in_Europe
+		icon = GFX_SER_focus_red_spot_in_europe
+		prerequisite = { focus = SER_Venerate_the_Peoples_Hero }
+		prerequisite = { focus = SER_End_the_Church }
+		prerequisite = { focus = SER_The_Yugoslav_Cultural_Revolution }
+		x = 0
+		y = 1
+		relative_position_id = SER_End_the_Church
+		cost = 3
+		available = {
+			has_completed_focus = SER_Resource_Nationalization
+			has_completed_focus = SER_Consolidate_Socialist_Yugoslavia
+			has_completed_focus = SER_Sloboda_svim_Narodima
+			has_completed_focus = SER_Defenders_of_the_Revolution
+			has_completed_focus = SER_Defence_of_the_Adriatic
+			has_completed_focus = SER_The_New_Balkan_Tiger
+		}
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Ensrine_Marhsal_Tito"
+			add_ideas = SER_Red_Spot_in_Europe
+			add_ideas = fanatical_dictatorship
+			add_ideas = closed_economy
+			add_country_leader_trait = Peoples_Hero
+			hidden_effect = {
+				set_country_leader_portrait = {
+					ideology = marxist_leninist
+					portrait = GFX_portrait_Aleksandar_Rankovic_marshal
+				}
+				set_country_leader_ideology = ultravanguardist_marxism
+				country_event = { days = 1 id = twrserbiaflavour.46 }
+			}
+		}
+	}

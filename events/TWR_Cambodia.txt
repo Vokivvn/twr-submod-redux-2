@@ -1,0 +1,285 @@
+﻿#########################################################################
+# TWR Hour Events : CAMBODIA
+#########################################################################
+add_namespace = twrcambodia
+
+country_event = {#The 1953 elections
+	id = twrcambodia.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcambodia.1"}
+	title = twrcambodia.1.t
+	desc = twrcambodia.1.d
+	picture = GFX_report_event_CAM_vote
+
+	is_triggered_only = yes
+
+
+
+	immediate = {
+		set_country_flag = CAM_ELECTION_1953 
+	}
+
+	option = {#Conservative Party Victory
+		name = twrcambodia.1.a
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAM_LIBERAL
+					has_global_flag = COUNTRY_PATH_CAM_SANGKUM
+					has_global_flag = COUNTRY_PATH_CAM_COMMIE
+				}
+			}
+		}
+		add_popularity = { ideology = social_democrat popularity = 0.2 }
+		set_politics = { ruling_party = social_democrat }
+		news_event = { id = twrcamnews.1 days = 0 }
+	}
+
+	option = {#Liberal Party Victory
+		name = twrcambodia.1.b
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAM_DEMOCRAT
+					has_global_flag = COUNTRY_PATH_CAM_SANGKUM
+					has_global_flag = COUNTRY_PATH_CAM_COMMIE
+				}
+			}
+		}
+		add_popularity = { ideology = conservative popularity = 0.2 }
+		set_politics = { ruling_party = conservative }
+		news_event = { id = twrcamnews.2 days = 0 }
+	}
+
+	option = {#Sangkum Victory
+		name = twrcambodia.1.c
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAM_LIBERAL
+					has_global_flag = COUNTRY_PATH_CAM_DEMOCRAT
+					has_global_flag = COUNTRY_PATH_CAM_COMMIE
+				}
+			}
+		}
+		trigger = { 
+			has_country_flag = mon_Norodom_Suramarit 
+		}
+		add_popularity = { ideology = paternal_autocrat popularity = 0.2 }
+		set_politics = { ruling_party = paternal_autocrat }
+		news_event = { id = twrcamnews.3 days = 0 }
+	}
+
+	option = {#Socialist Victory
+		name = twrcambodia.1.e
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0
+				OR = {
+					has_global_flag = COUNTRY_PATH_CAM_LIBERAL
+					has_global_flag = COUNTRY_PATH_CAM_SANGKUM
+					has_global_flag = COUNTRY_PATH_CAM_DEMOCRAT
+				}
+			}
+		}
+		add_popularity = { ideology = socialist popularity = 0.2 }
+		set_politics = { ruling_party = socialist }
+		news_event = { id = twrcamnews.4 days = 0 }
+		hidden_effect = { 
+		country_event = { id = twrcambodia.4 days = 30 }
+		}
+	}	
+}
+
+
+country_event = {#End of Democratic Dominance
+	id = twrcambodia.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcambodia.1"}
+	title = twrcambodia.2.t
+	desc = twrcambodia.2.d
+	picture = GFX_report_event_CAM_vote
+
+	fire_only_once = yes
+
+
+	trigger = { 
+	tag = CAM
+	NOT = { has_government = social_democrat }
+	has_idea = CAM_democrat_dominance 
+	}
+
+	immediate = {
+		set_country_flag = CAM_CON_DOM_END
+	}
+
+	option = {#Conservative Party Victory
+		name = twrcambodia.2.a
+		remove_ideas = { CAM_democrat_dominance }
+		add_popularity = { ideology = social_democrat popularity = -0.1 }
+	}
+	
+}
+
+country_event = {#Abdication of the King
+	id = twrcambodia.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcambodia.1"}
+	title = twrcambodia.3.t
+	desc = twrcambodia.3.d
+	picture = GFX_report_event_CAM_king
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+trigger = { 
+NOT = { has_country_flag = CAM_KING }
+}
+
+	immediate = {
+		set_country_flag = CAM_KING 
+	}
+
+	option = {#Allow it
+		name = twrcambodia.3.a
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = { ideology = paternal_autocrat popularity = 0.1 }
+		add_popularity = { ideology = fascist popularity = 0.05 }
+		set_party_name = { 
+		ideology = paternal_autocrat
+		long_name = "Sangkum Reastr Niyum (Popular Socialist Community)"
+		name = "Sangkum"
+		}
+		clr_country_flag = mon_Norodom_Sihanouk
+		set_country_flag = mon_Norodom_Suramarit
+		add_stability = -0.05
+	}
+
+	option = {#Don't Allow it
+		name = twrcambodia.3.b
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0
+				has_global_flag = COUNTRY_PATH_CAM_SANGKUM
+			}
+		}
+		add_popularity = { ideology = social_democrat popularity = -0.05 }
+		add_stability = -0.05
+		add_political_power = -100
+	}
+	
+}
+
+country_event = {#Socialists and Communists joint-coup
+	id = twrcambodia.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcambodia.1"}
+	title = twrcambodia.4.t
+	desc = twrcambodia.4.d
+	picture = GFX_report_event_CAM_pol_pot
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = CAM_WENT_COMMIE
+	}
+
+	option = {#Allow it
+		name = twrcambodia.4.a
+		add_popularity = { ideology = bolshevik_leninist popularity = 0.15 }
+		set_politics = { ruling_party = bolshevik_leninist }
+		add_stability = -0.1
+		add_war_support = 0.05
+		country_event = { id = twrcambodia.5 days = 5 }
+	}	
+}
+
+country_event = {#Establishment of Democratic Kampuchea
+	id = twrcambodia.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcambodia.1"}
+	title = twrcambodia.5.t
+	desc = twrcambodia.5.d
+	picture = GFX_report_event_CAM_pol_pot
+
+	is_triggered_only = yes
+
+
+	option = {#Allow it
+		name = twrcambodia.5.a
+		add_popularity = { ideology = bolshevik_leninist popularity = 0.05 }
+		set_cosmetic_tag = CAM_KAMPUCHEA
+		country_event = { id = twrcambodia.6 days = 5 }
+		country_event = { id = twrcambodia.7 days = 20 }
+	}	
+}
+
+
+country_event = {#Keep the King
+	id = twrcambodia.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcambodia.1"}
+	title = twrcambodia.6.t
+	desc = twrcambodia.6.d
+	picture = GFX_report_event_CAM_king
+
+	is_triggered_only = yes
+
+
+	option = {#Allow it
+		name = twrcambodia.6.a
+		ai_chance = {
+			factor = 25
+		}
+		add_stability = 0.05
+		add_political_power = 50
+	}	
+
+	option = {#NOT Allow it
+		name = twrcambodia.6.b
+		ai_chance = {
+			factor = 25
+		}
+		add_stability = -0.05
+		add_popularity = { ideology = marxist_leninist popularity = 0.05 }
+		add_popularity = { ideology = bolshevik_leninist popularity = 0.05 }
+		clr_country_flag = has_symbolic_figurehead
+		clr_country_flag = mon_Norodom_Sihanouk
+		clr_country_flag = mon_Norodom_Suramarit
+		custom_effect_tooltip = CAM_LOSES_KING
+	}	
+}
+
+country_event = {#Cambodian Armed Forces launch attack
+	id = twrcambodia.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrcambodia.1"}
+	title = twrcambodia.7.t
+	desc = twrcambodia.7.d
+	picture = GFX_report_event_CAM_hurt_man
+
+	is_triggered_only = yes
+
+
+	option = {#
+		name = twrcambodia.7.a
+		add_popularity = { ideology = conservative popularity = -1 }
+		add_war_support = 0.15
+		add_manpower = -30000
+		custom_effect_tooltip = CAM_BEGIN_WAR
+		hidden_effect = { 
+		news_event = { id = twrcamnews.6 days = 0 }
+		CAF = { transfer_state = 892 }
+		CAF = { load_oob = "CAF" }
+		CAF = { 
+		declare_war_on = {
+		    target = CAM
+		    type = annex_everything
+				}
+			}
+		}
+	}	
+}

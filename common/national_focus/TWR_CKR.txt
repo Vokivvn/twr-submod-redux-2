@@ -1,0 +1,197 @@
+focus_tree = {
+    id = ckr_tree
+	
+	########################################################
+	###===========| Caparthia FOCUS TREE |===============###
+	###=========|    Made by Agatha   |===========###
+	####=========|   Coded by Agatha    |===========####
+	########################################################
+    
+    country = {
+        factor = 0
+        modifier = {
+            add = 10
+            tag = CKR
+        }
+    }
+    continuous_focus_position = { x = 50 y = -1000 }      
+    default = no
+    reset_on_civilwar = no
+
+    focus = {
+		cancelable = no
+		id = CKR_Second_Declaration_of_Independence
+		icon = GFX_CKR_Independence
+		x = 5
+		y = 0
+		cost = 1
+		ai_will_do = {
+		    factor = 10
+		}
+		available = {
+		is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CKR_Second_Declaration_of_Independence"
+			country_event = twrckr.1
+		}
+	}
+	focus = {
+		cancelable = no
+		id = CKR_Reform_the_Carpathian_Sich
+		icon = GFX_CKR_militia
+		prerequisite = { focus = CKR_Second_Declaration_of_Independence }
+		x = 0
+		y = 1
+		relative_position_id = CKR_Second_Declaration_of_Independence
+		cost = 3
+		ai_will_do = {
+		    factor = 10
+		}
+		available = {
+		is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CKR_Reform_the_Carpathian_Sich"
+			add_manpower = 15000
+			country_event = twrckr.2
+		}
+	}
+	focus = {
+		cancelable = no
+		id = CKR_A_United_Front_for_Freedom
+		icon = GFX_GENERIC_Freedom
+		prerequisite = { focus = CKR_Reform_the_Carpathian_Sich }
+		x = -1
+		y = 2
+		relative_position_id = CKR_Second_Declaration_of_Independence
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		available = {
+		is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CKR_A_United_Front_for_Freedom"
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_political_power = 100
+		}
+	}
+	focus = {
+		cancelable = no
+		id = CKR_Nationalize_Hungarian_Businesses
+		icon = GFX_GENERIC_state_economy
+		prerequisite = { focus = CKR_A_United_Front_for_Freedom }
+		x = -1
+		y = 3
+		relative_position_id = CKR_Second_Declaration_of_Independence
+		cost = 8
+		ai_will_do = {
+		    factor = 10
+		}
+		available = {
+		is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CKR_Nationalize_Hungarian_Businesses"
+			capital_scope = {
+			add_building_construction = {
+		    type = arms_factory
+		    level = 1
+		    instant_build = yes
+			}
+			add_building_construction = {
+		    type = industrial_complex
+		    level = 1
+		    instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = CKR_Open_the_Armories
+		icon = GFX_GENERIC_Military_Equipment
+		prerequisite = { focus = CKR_Reform_the_Carpathian_Sich }
+		x = 1
+		y = 2
+		relative_position_id = CKR_Second_Declaration_of_Independence
+		cost = 3
+		ai_will_do = {
+		    factor = 10
+		}
+		available = {
+		is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CKR_Open_the_Armories"
+			add_equipment_to_stockpile = {
+		    type = infantry_equipment
+		    amount = 500
+		    producer = HUN
+			}
+			add_equipment_to_stockpile = {
+		    type = motorized_equipment
+		    amount = 30
+		    producer = GER
+			}
+			add_equipment_to_stockpile = {
+		    type = gw_tank_equipment
+		    amount = 5
+		    producer = GER
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = CKR_Trenches_Around_the_Capital
+		icon = GFX_focus_CDA_fortress_on_the_volga
+		prerequisite = { focus = CKR_Open_the_Armories }
+		x = 1
+		y = 3
+		relative_position_id = CKR_Second_Declaration_of_Independence
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		available = {
+		is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CKR_Trenches_Around_the_Capital"
+			capital_scope = {
+			add_building_construction = {
+			    type = bunker
+			    level = 2
+			    instant_build = yes
+			    province = 3548
+				}
+			}
+		}
+	}
+	focus = {
+		cancelable = no
+		id = CKR_Call_the_General_Election
+		icon = GFX_GENERIC_Democracy
+		prerequisite = { focus = CKR_Trenches_Around_the_Capital }
+		prerequisite = { focus = CKR_Nationalize_Hungarian_Businesses }
+		x = 0
+		y = 4
+		relative_position_id = CKR_Second_Declaration_of_Independence
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		available = {
+		is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CKR_Trenches_Around_the_Capital"
+			add_ideas = facade_democracy
+			country_event = twrckr.3
+		}
+	}
+}

@@ -1,0 +1,1899 @@
+diplomatic_decisions = {
+	un_japan_resolution = {
+		allowed = {
+			tag = USA
+		}
+		cost = 50
+		fire_only_once = yes
+		icon = UN
+
+		available = {
+			JAP = {
+				has_completed_focus = JAP_Japan_Out_Of_Control
+			}
+		}
+		visible = {
+			JAP = {
+				has_completed_focus = JAP_Japan_Out_Of_Control
+			}
+		}
+		complete_effect = {
+			TWR_restore_japan_resolution_effect = yes
+			custom_effect_tooltip = UN_resolution_japan
+        }
+        ai_will_do = {
+			factor = 1000
+		}
+	}
+	USA_release_okinawa = {
+		allowed = {
+			tag = USA
+		}
+		cost = 35
+		fire_only_once = yes
+		icon = infiltrate_state
+
+		available = {
+			JAP = {
+				OR = {
+					is_communist = yes
+					is_fascist = yes
+					has_completed_focus = JAP_Second_Showa_Restoration
+				}
+			}
+			owns_state = 526
+		}
+		visible = {
+			JAP = {
+				OR = {
+					is_communist = yes
+					is_fascist = yes
+					has_completed_focus = JAP_Second_Showa_Restoration
+				}
+			}
+			tag = USA
+		}
+		complete_effect = {
+			news_event = twrjapan.88
+			release = RYK
+			give_guarantee = RYK
+			RYK = {
+				give_military_access = ROOT
+				diplomatic_relation = {
+					country = ROOT
+					relation = docking_rights
+					active = yes
+				}
+			}
+			add_opinion_modifier = {
+				target = RYK
+				modifier = huge_increase
+				}
+			reverse_add_opinion_modifier = {
+				target = RYK
+				modifier = huge_increase
+			}
+		}
+        ai_will_do = {
+			factor = 1000
+		}
+	}
+}
+USA_cia_operations = {
+	psychological_warfare = {
+		cost = 50
+		icon = infiltrate_state
+		available = {
+			NOT = { has_country_flag = ongoing_target }
+			FROM = {
+				has_idea = CENTRAL_drifting_apart
+			}
+			has_war = no
+		}
+
+		visible = {
+			FROM = { has_idea = CENTRAL_drifting_apart }
+			FROM = {
+				NOT = { is_neighbor_of = ROOT }
+			}
+			NOT = { has_country_flag = ongoing_target }
+		}
+
+		target_trigger = {
+			FROM = {
+				NOT = { is_neighbor_of = ROOT }
+				has_idea = CENTRAL_drifting_apart
+			}
+		}
+
+		days_remove = 150
+
+		fire_only_once = yes
+
+		cost = 75
+
+		modifier = {
+			war_support_weekly = 0.001
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision psychological_warfare target: [From.GetName]"
+			set_country_flag = ongoing_target
+			FROM = {
+				add_ideas = US_covert_activies
+			}
+			USA = { set_country_flag = US_preparing_coup }
+			hidden_effect = {
+				country_event = { id = twrusa.37 days = 150 }
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove psychological_warfare target: [From.GetName]"
+		}
+
+		ai_will_do = {
+			factor = 50
+			modifier = {
+				factor = 100
+				OR = {
+					AND = {
+						FROM = {
+							tag = GUA
+						}
+						has_global_flag = COUNTRY_PATH_GUA_COUP_YES
+					}
+					AND = {
+						FROM = {
+							tag = CUB
+						}
+						has_global_flag = COUNTRY_PATH_CUB_COUP_YES
+					}
+					AND = {
+						FROM = {
+							tag = DOM
+						}
+						has_global_flag = COUNTRY_PATH_DOM_COUP_YES
+					}
+				}
+			}
+		}
+	}
+	launch_coup = {
+		cost = 50
+		icon = infiltrate_state
+		available = {
+			FROM = {
+				has_idea = US_covert_activies
+			}
+			has_war = no
+			NOT = { has_country_flag = US_preparing_coup }
+		}
+
+		visible = {
+			FROM = { has_idea = US_covert_activies }
+			FROM = {
+				NOT = { is_neighbor_of = ROOT }
+			}
+		}
+
+		target_trigger = {
+			FROM = {
+				NOT = { is_neighbor_of = ROOT }
+				has_idea = US_covert_activies
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision launch_coup target: [From.GetName]"
+			clr_country_flag = ongoing_target
+			if = {
+				limit = {
+					FROM = { TAG = DOM }
+				}   
+				FROM = { country_event = { id = twrlatinamerica.1 days = 1 } }
+			}
+			if = {
+				limit = {
+					FROM = { TAG = CUB }
+				}   
+				FROM = { country_event = { id = twrlatinamerica.2 days = 1 } }
+			}
+			if = {
+				limit = {
+					FROM = { TAG = GUA }
+				}   
+				FROM = { country_event = { id = twrlatinamerica.3 days = 1 } }
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove launch_coup target: [From.GetName]"
+		}
+
+		ai_will_do = {
+			factor = 50
+			modifier = {
+				factor = 100
+				OR = {
+					AND = {
+						FROM = {
+							tag = GUA
+						}
+						has_global_flag = COUNTRY_PATH_GUA_COUP_YES
+					}
+					AND = {
+						FROM = {
+							tag = CUB
+						}
+						has_global_flag = COUNTRY_PATH_CUB_COUP_YES
+					}
+					AND = {
+						FROM = {
+							tag = DOM
+						}
+						has_global_flag = COUNTRY_PATH_DOM_COUP_YES
+					}
+				}
+			}
+		}
+	}
+}
+
+USA_aerial_spying = {
+	spy_on_SS = {
+		cost = 200
+		days_re_enable = 200
+		icon = generic_air
+		available = {
+			country_exists = HSS
+			custom_trigger_tooltip = {
+				tooltip = no_detente_tt
+				NOT = {
+					GER = {
+						has_completed_focus = BGR_Successful_Meeting
+					}
+				}
+				NOT = {
+					has_global_flag = RESTORING_TIES_WITH_WEST
+				}
+				NOT = {
+				has_war = yes
+				}
+			}
+		}
+		complete_effect = {
+            HSS = { country_event = { id = twrta.100 days = 0 } }
+        }
+        ai_will_do = {
+			factor = 4
+		}
+	}
+	spy_on_main = {
+		cost = 200
+		days_re_enable = 200
+		icon = generic_air
+		available = {
+			country_exists = GER
+			custom_trigger_tooltip = {
+				tooltip = no_detente_tt
+				NOT = {
+					GER = {
+						has_completed_focus = BGR_Successful_Meeting
+					}
+				}
+				NOT = {
+					has_global_flag = RESTORING_TIES_WITH_WEST
+				}
+				NOT = {
+				has_war = yes
+				}
+			}
+		}
+		complete_effect = {
+            GER = { country_event = { id = twrta.101 days = 0 } }
+        }
+        ai_will_do = {
+			factor = 4
+		}
+	}
+	spy_on_heer = {
+		cost = 200
+		days_re_enable = 200
+		icon = generic_air
+		available = {
+			country_exists = HGR
+			custom_trigger_tooltip = {
+				tooltip = no_detente_tt
+				NOT = {
+					GER = {
+						has_completed_focus = BGR_Successful_Meeting
+					}
+				}
+				NOT = {
+					has_global_flag = RESTORING_TIES_WITH_WEST
+				}
+				NOT = {
+				has_war = yes
+				}
+			}
+		}
+		complete_effect = {
+            HGR = { country_event = { id = twrta.102 days = 0 } }
+        }
+        ai_will_do = {
+			factor = 4
+		}
+	}
+}
+
+USA_aerial_spying_2 = {
+	spy_on_ger = {
+		cost = 100
+		days_re_enable = 730
+		icon = generic_air
+		available = {
+			country_exists = GER
+			custom_trigger_tooltip = {
+				tooltip = no_detente_tt
+				NOT = {
+					GER = {
+						has_completed_focus = BGR_Successful_Meeting
+					}
+				}
+				NOT = {
+					has_global_flag = RESTORING_TIES_WITH_WEST
+				}
+			}
+		}
+		complete_effect = {
+            GER = { country_event = { id = twrta.101 days = 0 } }
+        }
+        ai_will_do = {
+			factor = 4
+		}
+	}
+}
+
+USA_vietnam = {
+	criticise_invasion = {
+		cost = 50
+		icon = generic_civil_support
+		fire_only_once = yes
+		available = {
+			has_global_flag = vietnam_war
+		}
+		ai_will_do = {
+			factor = 40
+		}
+		complete_effect = {
+			news_event = { days = 1 id = twrnews.94 }
+			country_event = { id = twrusa.33 days = 3 }
+			CHI = {
+				add_opinion_modifier = { target = CHI modifier = medium_decrease }
+			}
+			set_global_flag = china_criticised
+        }
+	}
+	un_vietnam_resolution = {
+		cost = 50
+		fire_only_once = yes
+		icon = UN
+		available = {
+			has_global_flag = {
+			    flag = china_criticised
+			    days > 3
+			}
+		}
+		complete_effect = {
+			TWR_vietnam_resolution_effect = yes
+			custom_effect_tooltip = UN_resolution_vietnam
+        }
+        ai_will_do = {
+			factor = 1000
+		}
+	}
+	aid_vietnam = {
+		cost = 20
+		days_re_enable = 100
+		icon = generic_civil_support
+		available = {
+			has_global_flag = vietnam_war
+			CHI = {
+				has_war_with = VIN
+			}
+			country_exists = VIN
+			has_country_flag = USA_aid_vietnam
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		complete_effect = {
+            send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 5000
+		    	target = VIN
+			}
+			VIN = {
+				country_event = twrvietnam.1
+			}
+        }
+	}
+	american_volunteers = {
+		cost = 60
+		fire_only_once = yes
+		icon = generic_civil_support
+		available = {
+			has_global_flag = vietnam_war
+			CHI = {
+				has_war_with = VIN
+			}
+			country_exists = VIN
+			has_country_flag = USA_aid_vietnam
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		complete_effect = {
+            send_equipment = {
+		    	equipment = fighter_equipment
+		    	amount = 10
+		    	target = VIN
+			}
+			VIN = {
+				country_event = twrvietnam.3
+			}
+        }
+	}
+}
+
+USA_supporting_rebels = {
+	aid_poland = {
+		cost = 50
+		days_re_enable = 200
+		icon = generic_civil_support
+		available = {
+			country_exists = POL
+		}
+		complete_effect = {
+            send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 5000
+		    	target = POL
+			}
+        }
+	}
+	aid_czechs = {
+		cost = 50
+		days_re_enable = 200
+		icon = generic_civil_support
+		available = {
+			country_exists = CZE
+		}
+		complete_effect = {
+			send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 5000
+		    	target = CZE
+			}
+		}
+	}
+	aid_swiss = {
+		cost = 50
+		days_re_enable = 200
+		icon = generic_civil_support
+		available = {
+			country_exists = SWI
+		}
+		complete_effect = {
+			send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 5000
+		    	target = SWI
+			}
+		}
+	}
+}
+
+USA_desegregation_cat = {
+	open_debate = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_political_discourse
+		available = {
+		}
+		complete_effect = {	
+			country_event = { id = twrusa.35 days = 0 }
+			set_country_flag = CIVIL_RIGHTS_DEBATE_OPEN
+        }
+        ai_will_do = {
+			factor = 50
+		}
+	}
+	desegregate_army = {
+		cost = 100
+		fire_only_once = yes
+		icon = decision_generic_decision
+		available = {
+			NOT = {
+				has_country_flag = USA_desegregated_army
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		complete_effect = {
+			swap_ideas = {
+    			remove_idea = USA_segregation
+    			add_idea = USA_segregation_without_army
+			}
+			country_event = { id = twrusaflavour.33 days = 1 }
+			set_country_flag = USA_desegregated_army
+        }
+	}
+	brown_v_board = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_political_discourse
+		visible = {
+			has_country_flag = CIVIL_RIGHTS_DEBATE_OPEN
+		}
+		available = {
+			has_country_flag = USA_desegregated_army
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		complete_effect = {	
+			news_event = { id = twrnews.107 days = 0 }
+			swap_ideas = {
+    			remove_idea = USA_segregation_without_army
+    			add_idea = USA_segregation_no_army_no_schools
+			}
+			hidden_effect = {
+				country_event = { id = twrusa.36 days = 3 }
+			}
+        }
+	}
+}
+
+USA_supporting_armies = {
+	aid_algeria = {
+		cost = 50
+		days_re_enable = 200
+		icon = generic_civil_support
+		available = {
+			country_exists = ALG
+			ALG = { has_war = yes }
+		}
+		complete_effect = {
+            send_equipment = {
+		    	equipment = infantry_equipment
+		    	amount = 5000
+		    	target = ALG
+			}
+        }
+	}
+}
+
+USA_nuclear_retaliation = {
+	nuke_german_cities = {
+		cost = 0
+		fire_only_once = yes
+		icon = nuke
+		available = {
+			OR = {
+				has_war_with = GER
+				has_war_with = HGR
+				has_war_with = HSS
+			}
+			OR = {
+				has_global_flag = TA_nuked
+				any_state = {
+    			    is_owned_by = USA
+    			    is_core_of = USA
+    			    OR = {
+    			    	is_controlled_by = GER
+    			    	is_controlled_by = HGR
+    			    	is_controlled_by = HSS
+    			    }
+    			}
+    			any_state = {
+    			    is_owned_by = ENG
+    			    is_core_of = ENG
+    			    OR = {
+    			    	is_controlled_by = GER
+    			    	is_controlled_by = HGR
+    			    	is_controlled_by = HSS
+    			    }
+    			}
+    			any_state = {
+    			    is_owned_by = CAN
+    			    is_core_of = CAN
+    			    OR = {
+    			    	is_controlled_by = GER
+    			    	is_controlled_by = HGR
+    			    	is_controlled_by = HSS
+    			    }
+    			}
+    			any_state = {
+    			    is_owned_by = AST
+    			    is_core_of = AST
+    			    OR = {
+    			    	is_controlled_by = GER
+    			    	is_controlled_by = HGR
+    			    	is_controlled_by = HSS
+    			    }
+    			}
+    			any_state = {
+    			    is_owned_by = NZL
+    			    is_core_of = NZL
+    			    OR = {
+    			    	is_controlled_by = GER
+    			    	is_controlled_by = HGR
+    			    	is_controlled_by = HSS
+    			    }
+    			}
+			}
+		}
+		complete_effect = {
+			news_event = {
+				id = twrnews.124 days = 1
+			}
+			custom_effect_tooltip = nuke_germany_tt
+			if = {
+				limit = {
+					855 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 6521
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					808 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 6488
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					52 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 692
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					4 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 11666
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					58 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 9347
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					59 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 6377
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+				launch_nuke = {
+				    province = 3226
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					50 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 9517
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					5 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 6332
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					51 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 587
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			if = {
+				limit = {
+					809 = {
+						OR = {
+							is_controlled_by = GER
+							is_controlled_by = HGR
+							is_controlled_by = HSS
+						}
+					}
+            	}
+            	launch_nuke = {
+				    province = 6469
+				    #state = 42
+				    controller = USA
+				    use_nuke = no
+				}
+			}
+			hidden_effect = {
+				GER = {
+					add_timed_idea = { 
+						idea = GEN_nuclear_devestation
+						days = 180
+					}
+				}
+				HGR = {
+					add_timed_idea = { 
+						idea = GEN_nuclear_devestation
+						days = 180
+					}
+				}
+				HSS = {
+					add_timed_idea = { 
+						idea = GEN_nuclear_devestation
+						days = 180
+					}
+				}
+				add_named_threat = { 
+				    threat = 100
+				    name = nuclear_war
+				}
+			}
+        }
+        ai_will_do = {
+			factor = 10000
+		}
+	}
+}
+
+USA_spy_satellites = {
+	satellite_on_ger = {
+		cost = 100
+		days_re_enable = 365
+		icon = rocket
+		available = {
+			country_exists = GER
+		}
+		visible = {
+			has_country_flag = USA_satellites
+			has_completed_focus = USA_spy_satellites
+		}
+		complete_effect = {
+			add_timed_idea = {
+				idea = USA_spy_satellite
+				days = 100
+			}
+        }
+        ai_will_do = {
+			factor = 4
+		}
+	}
+	create_nacsa = {
+		cost = 50
+		fire_only_once = yes
+		icon = rocket
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		complete_effect = {
+			set_country_flag = NACSA_created
+			custom_effect_tooltip = US_nacsa_tt
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	early_rocket_tests = {
+		cost = 25
+		fire_only_once = yes
+		icon = rocket
+		available = {
+			has_country_flag = {
+			    flag = NACSA_created
+			    days > 60
+			}
+		}
+		complete_effect = {
+			set_country_flag = USA_early_rockets
+			custom_effect_tooltip = US_nacsa_tt
+			country_event = { id = twrusa.137 days = 1 }
+        }
+        ai_will_do = {
+			factor = 15
+		}
+	}
+	orbital_rocket_tests = {
+		cost = 25
+		fire_only_once = yes
+		icon = rocket
+		available = {
+			has_country_flag = {
+			    flag = USA_early_rockets
+			    days > 360
+			}
+		}
+		complete_effect = {
+			set_country_flag = USA_orbital_rockets
+			custom_effect_tooltip = US_nacsa_tt
+			country_event = { id = twrusa.138 days = 1 }
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	launch_test_satellite = {
+		cost = 25
+		fire_only_once = yes
+		icon = rocket
+		visible = {
+			NOT = { has_country_flag = USA_satellites }
+		}
+		available = {
+			has_country_flag = {
+			    flag = USA_orbital_rockets
+			    days > 360
+			}
+			NOT = { has_country_flag = USA_satellites }
+		}
+		complete_effect = {
+			random_list = {
+				70 = { 
+					news_event = twrnews.125
+					set_country_flag = USA_satellites
+					custom_effect_tooltip = US_satellites_tt
+				}
+				30 = {
+					country_event = { id = twrusa.139 days = 1 }
+				}
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+}
+
+USA_building_interstate = {
+	new_england_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 400
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.40 days = 300 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = new_england_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	new_england_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = new_england_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 300
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = new_england_highways_tt
+		}
+	}
+	north_east_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 400
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.41 days = 300 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = north_east_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	north_east_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = north_east_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 300
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = north_east_highways_tt
+		}
+	}
+	great_lakes_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 400
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.42 days = 300 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = great_lakes_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	great_lakes_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = great_lakes_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 300
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = great_lakes_highways_tt
+		}
+	}
+	center_east_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 300
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.43 days = 200 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = center_east_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	center_east_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = center_east_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 200
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = center_east_highways_tt
+		}
+	}
+	south_east_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 400
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.44 days = 300 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = south_east_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	south_east_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = south_east_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 300
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = south_east_highways_tt
+		}
+	}
+	deep_south_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 300
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.45 days = 200 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = deep_south_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	deep_south_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = deep_south_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 200
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = deep_south_highways_tt
+		}
+	}
+	south_west_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 400
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.46 days = 300 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = south_west_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	south_west_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = south_west_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 300
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = south_west_highways_tt
+		}
+	}
+	midwest_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 400
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.47 days = 300 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = midwest_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	midwest_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = midwest_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 300
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = midwest_highways_tt
+		}
+	}
+	rockies_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 400
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.48 days = 300 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = rockies_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	rockies_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = rockies_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 300
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = rockies_highways_tt
+		}
+	}
+	pacific_highways = {
+		cost = 50
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			has_country_flag = USA_interstate
+			NOT = {
+				has_country_flag = building_highways
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_building_highways 
+				days = 400
+			}
+			set_country_flag = building_highways
+			country_event = { id = twrusa.49 days = 300 }
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = pacific_highways
+			}
+        }
+        ai_will_do = {
+			factor = 25
+		}
+	}
+	pacific_highways_construction = {
+		fire_only_once = yes
+		icon = generic_construction
+		available = {
+			always = no
+		}
+		activation = {
+			has_country_flag = pacific_highways
+		}
+		is_good = yes
+		fire_only_once = yes
+		days_mission_timeout = 300
+		complete_effect = {
+        }
+        timeout_effect = {
+        	custom_effect_tooltip = pacific_highways_tt
+		}
+	}
+}
+
+USA_europe_cleanup = {
+	un_occupation_resolution = {
+		cost = 10
+		fire_only_once = yes
+		icon = UN
+		available = {
+			country_exists = PGR
+		}
+		visible = {
+			country_exists = PGR
+		}
+		complete_effect = {
+			TWR_un_germany_resolution_effect = yes
+			custom_effect_tooltip = UN_resolution_occupy_germany
+        }
+        ai_will_do = {
+			factor = 1000
+		}
+	}
+	dealing_with_italy = {
+		cost = 20
+		fire_only_once = yes
+		icon = generic_civil_support
+		available = {
+			country_exists = ITA
+			ITA = {
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+			}
+		}
+		complete_effect = {
+			country_event = { id = twrusaforeign.2 days = 1 }
+        }
+        ai_will_do = {
+			factor = 45
+		}
+	}
+	stamping_out_fascism = {
+		cost = 25
+		icon = infiltrate_state
+		available = {
+			has_war = no
+			has_war_support > 0.5
+			FROM = {
+			capital_scope = {
+				is_on_continent = europe
+				}
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+				NOT = {
+					is_in_faction_with = ITA
+					tag = RUK
+					tag = UIA
+					tag = UKR
+					tag = RMD
+					tag = BGS
+					tag = BKU
+					tag = STR
+					tag = PET
+					tag = RMO
+					tag = RGO
+					tag = FIN
+					tag = SWE
+					tag = RKA
+					#tag = ROS
+					tag = DON
+					tag = MTR
+					tag = RAR
+					tag = ENG
+					tag = SBA
+					tag = GER
+					tag = ZHU
+					tag = NOG
+					tag = CDA
+					tag = KMY
+					tag = KAM
+					tag = LZG
+					tag = LIT
+					}
+			}
+		}
+
+		visible = {
+			FROM = {
+			capital_scope = {
+				is_on_continent = europe
+				}
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+				NOT = {
+					is_in_faction_with = ITA
+					tag = RUK
+					tag = UIA
+					tag = UKR
+					tag = RMD
+					tag = BGS
+					tag = BKU
+					tag = STR
+					tag = PET
+					tag = RMO
+					tag = RGO
+					tag = FIN
+					tag = SWE
+					tag = RKA
+					tag = ROS
+					tag = DON
+					tag = MTR
+					tag = RAR
+					tag = ENG
+					tag = GER
+					tag = ZHU
+					tag = NOG
+					tag = CDA
+					tag = KMY
+					tag = KAM
+					tag = LZG
+					tag = LIT
+				}
+			}
+		}
+
+		target_trigger = {
+			FROM = {
+			capital_scope = {
+				is_on_continent = europe
+				}
+				OR = {
+					has_government = fascist
+					has_government = national_socialist
+				}
+				NOT = {
+					is_in_faction_with = ITA
+					tag = RUK
+					tag = UIA
+					tag = UKR
+					tag = RMD
+					tag = BGS
+					tag = BKU
+					tag = STR
+					tag = PET
+					tag = RMO
+					tag = RGO
+					tag = FIN
+					tag = SWE
+					tag = RKA
+					tag = ROS
+					tag = DON
+					tag = MTR
+					tag = RAR
+					tag = ENG
+					tag = GER
+					tag = ZHU
+					tag = NOG
+					tag = CDA
+					tag = KMY
+					tag = KAM
+					tag = LZG
+					tag = LIT
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision stamping_out_fascism target: [From.GetName]"
+			create_wargoal = {
+				type = annex_everything
+				target = FROM
+			}
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+	}
+}
+
+USA_presidential_agenda_cat  = {
+	dewey_increase_education_funding = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_political_discourse
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		visible = {
+			has_country_flag = USA_1952_term
+			has_country_leader = {
+			    name = "Thomas Dewey"
+			    ruling_only = yes
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_dewey_education
+				days = 1000
+			}
+			custom_effect_tooltip = inflation_increase_0.1
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.1
+			}
+        }
+	}
+	macarthur_war_support = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_political_discourse
+		available = {
+		}
+		visible = {
+			has_country_flag = USA_1952_term
+			has_country_leader = {
+			    name = "Douglas MacArthur"
+			    ruling_only = yes
+			}
+		}
+		complete_effect = {
+			add_war_support = 0.1
+        }
+	}
+	warren_strengthen_the_courts = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_political_discourse
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		visible = {
+			has_country_flag = USA_1952_term
+			has_country_leader = {
+			    name = "Earl Warren"
+			    ruling_only = yes
+			}
+		}
+		complete_effect = {
+			add_stability = 0.05
+        }
+	}
+	kefauver_consumer_regulations_boost = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_political_discourse
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		visible = {
+			has_country_flag = USA_1952_term
+			has_country_leader = {
+			    name = "Estes Kefauver"
+			    ruling_only = yes
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_kefauver_consumer_regulations
+				days = 1000
+			}
+			custom_effect_tooltip = inflation_increase_0.5
+			add_to_variable = {
+				var = USA_var_inflation
+				value = 0.5
+			}
+        }
+	}
+	stevenson_anti_corruption = {
+		cost = 100
+		fire_only_once = yes
+		icon = generic_political_discourse
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = enough_house_support
+				check_variable = {
+				    var = congress_house_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = enough_senate_support
+				check_variable = {
+				    var = congress_senate_support
+				    value = 50
+				    compare = greater_than_or_equals
+				}
+			}
+		}
+		visible = {
+			has_country_flag = USA_1952_term
+			has_country_leader = {
+			    name = "Adlai Stevenson"
+			    ruling_only = yes
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { 
+				idea = USA_stevenson_stamping_out_corruption
+				days = 1000
+			}
+			custom_effect_tooltip = inflation_decrease_0.3
+			add_to_variable = {
+				var = USA_var_inflation
+				value = -0.3
+			}
+        }
+	}
+}
+
+USA_federal_reserve = {
+	increase_interest_rate = {
+		cost = 50
+		days_re_enable = 15
+		#fire_only_once = yes
+		icon = generic_decision
+		available = {
+		}
+		visible = {
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 100
+				check_variable = { USA_var_inflation > 5 }
+			}
+		}
+		complete_effect = {
+			add_to_variable = {
+			    var = USA_var_interest_rate
+			    value = 0.5
+			}
+			custom_effect_tooltip = inflation_will_fall
+			hidden_effect = {
+				country_event = { id = twrusa.63 days = 30 }
+				country_event = { id = twrusa.63 days = 60 }
+				country_event = { id = twrusa.63 days = 90 }
+			}
+        }
+	}
+	decrease_interest_rate = {
+		cost = 50
+		days_re_enable = 15
+		#fire_only_once = yes
+		icon = generic_decision
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = positive_interest_rate
+				check_variable = {
+				    var = USA_var_interest_rate
+				    value = 0
+				    compare = greater_than
+				}
+			}
+		}
+		visible = {
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 100
+				check_variable = { USA_var_inflation < 0 }
+			}
+		}
+		complete_effect = {
+			add_to_variable = {
+			    var = USA_var_interest_rate
+			    value = -0.5
+			}
+			custom_effect_tooltip = inflation_will_rise
+			hidden_effect = {
+				country_event = { id = twrusa.62 days = 30 }
+				country_event = { id = twrusa.62 days = 60 }
+				country_event = { id = twrusa.62 days = 90 }
+			}
+        }
+	}
+}

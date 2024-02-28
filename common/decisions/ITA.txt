@@ -1,0 +1,1504 @@
+#########################################################################
+#  Italian Decisions
+#########################################################################
+ITA_opposition_variables = {
+
+	ITA_Umberto_Visit_Empire = { #Umberto Tours the Empire
+		icon = generic_army_support
+		cost = 100
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+			has_country_flag = umberto_ii
+		}
+		available = {
+			has_completed_focus = ITA_Look_To_The_Empire
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_Umberto_Visit_Empire"
+			country_event = { days = 25 id = twritalyroyalty.1 } #Umberto begins his trip
+			custom_effect_tooltip = TOOLTIP_EMPIRE_TOUR
+		}
+	}
+	ITA_Talks_With_the_Chiefs = { #Italy talk with chiefs
+		icon = generic_army_support
+		cost = 150
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+			has_government = fascist
+			owns_state = 458
+			owns_state = 665
+		}
+		available = {
+			has_completed_focus = ITA_Pacify_The_Tribes
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_Talks_With_the_Chiefs"
+			add_stability = 0.1
+			custom_effect_tooltip = LOWERS_NORTH_AFRICAN_UNREST
+			subtract_from_variable = {
+				var = ita_var_north_african_opposition
+				value = 0.3
+			}
+		}
+	}
+	ITA_Raise_Tunisian_Rifle_Corp = { #Italy talk with chiefs
+		icon = generic_army_support
+		cost = 200
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+			has_government = fascist
+			owns_state = 458
+			owns_state = 665
+		}
+		available = {
+			has_completed_focus = ITA_Pacify_The_Tribes
+			custom_trigger_tooltip = {
+				tooltip = ENOUGH_SUPPORT_IN_NORTH_AFRICA
+				check_variable = {
+					var = ita_var_north_african_opposition
+					value = 0.7
+					compare = greater_than_or_equals
+				}
+			}
+		}
+		days_remove = 50
+		modifier = {
+			political_power_factor = -0.15
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_Raise_Tunisian_Rifle_Corp"
+			division_template = {
+				name = "Tunisian Rifles Legion"
+				regiments = {
+					light_infantry = { x = 0 y = 0 }
+					light_infantry = { x = 0 y = 1 }
+					light_infantry = { x = 0 y = 2 }
+					light_infantry = { x = 0 y = 3 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+					artillery = { x = 0 y = 1 }
+					recon = { x = 0 y = 2 }
+				}
+				priority = 2
+				is_locked = yes
+			}
+			458 = {
+				create_unit = {
+					division = "name = \"1a Legione di Fucili Tunisini\" division_template = \"Tunisian Rifles Legion\" start_experience_factor = 1.0 start_equipment_factor = 0.1"
+					owner = ITA
+				}
+				create_unit = {
+					division = "name = \"2a Legione di Fucili Tunisini\" division_template = \"Tunisian Rifles Legion\" start_experience_factor = 1.0 start_equipment_factor = 0.1"
+					owner = ITA
+				}
+				create_unit = {
+					division = "name = \"3a Legione di Fucili Tunisini\" division_template = \"Tunisian Rifles Legion\" start_experience_factor = 1.0 start_equipment_factor = 0.1"
+					owner = ITA
+				}
+			}
+
+		}
+	}
+	ITA_Establish_the_protectorate_of_Yemen = { #Yemen
+		icon = generic_form_nation
+		cost = 150
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+			has_government = fascist
+		}
+		available = {
+			has_completed_focus = ITA_Rekindle_Relations_with_Yemen
+			has_war = no
+			EGY = {
+				OR = {
+					is_subject_of = ITA
+					is_in_faction_with = ITA
+				}
+				has_war = no
+			}
+			YEM = {
+				is_in_faction = no
+				has_war = no
+			}
+			IEA = {
+				is_subject_of = ITA
+				has_war = no
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_Establish_the_protectorate_of_Yemen"
+			puppet = YEM
+			set_autonomy = {
+				target = YEM
+				autonomy_state = autonomy_ITA_autonomous_protectorate
+			}
+			add_stability = 0.1
+			add_to_variable = { ita_var_gcf_loyalty = 0.05 }
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt
+			YEM = {
+				set_cosmetic_tag = YEM_ITA
+				set_politics = {
+					ruling_party = paternal_autocrat
+				}
+				add_popularity = {
+					ideology = paternal_autocrat
+					popularity = 0.8
+				}
+			}
+			news_event = twrnews.175
+		}
+	}
+	ITA_Establish_the_protectorate_of_Egypt = { #Egypt
+		icon = generic_form_nation
+		cost = 150
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 100
+		}
+		visible = {
+			has_government = fascist
+		}
+		available = {
+			has_country_flag = EGY_ITA_SECURED
+			has_war = no
+			EGY = {
+				has_cosmetic_tag = EGY_ITA
+				has_war = no
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_Establish_the_protectorate_of_Egypt"
+			puppet = EGY
+			set_autonomy = {
+				target = EGY
+				autonomy_state = autonomy_ITA_autonomous_protectorate
+			}
+			add_stability = 0.1
+			add_to_variable = { ita_var_gcf_loyalty = 0.05 }
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt
+			news_event = twrnews.176
+		}
+	}
+	ITA_Concessions_to_the_GCF = { #Italy talk with chiefs
+		icon = generic_army_support
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 25
+		}
+		visible = {
+			is_fascist = yes
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GCF_NOT_VERY_LOYAL
+				check_variable = { ita_var_gcf_loyalty < 0.60 }
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_Concessions_to_the_GCF"
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt
+			add_to_variable = {
+				var = ita_var_gcf_loyalty
+				value = 0.1
+			}
+			clamp_italian_variables = yes
+			random_list = {
+				34 = { country_event = { id = twritavar.1 days = 30 random = 300 } }
+				34 = { country_event = { id = twritavar.3 days = 30 random = 300 } }
+				32 = { }
+			}
+		}
+	}
+	ITA_Concessions_to_the_public = { #Italy talk with chiefs
+		icon = generic_army_support
+		cost = 50
+		days_re_enable = 30
+		fire_only_once = no
+		ai_will_do = {
+			factor = 25
+		}
+		visible = {
+			is_fascist = yes
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = PEOPLE_NOT_VERY_LOYAL
+				check_variable = {  ita_var_domestic_opposition > 0.30 }
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_Concessions_to_the_GCF"
+			custom_effect_tooltip = ita_decrease_unrest_mainland_tt
+			subtract_from_variable = {
+				var = ita_var_domestic_opposition
+				value = 0.1
+			}
+			clamp_italian_variables = yes
+			random_list = {
+				34 = { country_event = { id = twritavar.2 days = 30 random = 300 } }
+				34 = { country_event = { id = twritavar.3 days = 30 random = 300 } }
+				32 = { }
+			}
+		}
+	}
+	ITA_Concessions_to_the_msvn = { #Italy talk with chiefs
+		icon = generic_army_support
+		cost = 50
+		fire_only_once = no
+		ai_will_do = {
+			factor = 25
+		}
+		visible = {
+			is_fascist = yes
+		}
+		days_re_enable = 30
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MSVN_NOT_VERY_LOYAL
+				check_variable = {  ita_var_south_italy_opposition > 0.30 }
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_Concessions_to_the_MSVN"
+			custom_effect_tooltip = ita_increase_loyalty_mvsn_tt
+			custom_effect_tooltip = ita_decrease_coup_chance_tt
+			add_to_variable = {
+				var = ita_var_mvsn_loyalty
+				value = 0.1
+			}
+			subtract_from_variable = {
+				var = ita_var_coup_chance
+				value = 0.1
+			}
+			clamp_italian_variables = yes
+			random_list = {
+				34 = { country_event = { id = twritavar.1 days = 30 random = 300 } }
+				34 = { country_event = { id = twritavar.2 days = 30 random = 300 } }
+				32 = { }
+			}
+		}
+	}
+	italy_aiding_hans_HGR = {
+		allowed = { tag = ITA }
+		cost = 25
+		available = {
+			has_war = no
+			has_equipment = { infantry_equipment > 3000 }
+		}
+		visible = {
+		is_fascist = yes
+		has_country_flag = ITA_HGR_AID_START
+			HGR = {
+				has_war = yes
+				exists = yes
+				has_global_flag = german_civil_war_started
+				has_country_leader = {
+			    name = "Hans Speidel"
+			    ruling_only = yes
+				}
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision italy_aiding_hans_HGR"
+			send_equipment = { target = HGR type = infantry_equipment amount = 3000 }
+			add_manpower = -1000
+			HGR = {
+			add_manpower = 1000
+			country_event = twritalyforeign.70
+			}
+		}
+	}
+	italy_escalate_our_intervention = {
+		allowed = { tag = ITA }
+		cost = 100
+		available = {
+			has_war = no
+			has_war_support > 0.5
+		}
+		visible = {
+		is_fascist = yes
+		has_country_flag = ITA_HGR_AID_START
+			HGR = {
+				exists = yes
+				has_war = yes
+				has_global_flag = german_civil_war_started
+				has_country_leader = {
+			    name = "Hans Speidel"
+			    ruling_only = yes
+				}
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision italy_escalate_our_intervention"
+			add_manpower = -5000
+			custom_effect_tooltip = ALLOW_VOLUNTEERS_TO_HANS_SPIEDEL
+			set_country_flag = ITA_DIRECT_SUPPORT_UNLOCKED_HGR
+			add_stability = -0.1
+			HGR = {
+			country_event = twritalyforeign.71
+			add_manpower = 5000
+			}
+		}
+	}
+	italy_invite_hungary = {
+		allowed = { tag = ITA }
+		cost = 50
+		available = {
+			HUN = {
+			has_government = paternal_autocrat
+			has_idea = ITA_mediterranean_union_member
+			}
+		}
+		visible = {
+		is_fascist = yes
+		HUN = {
+			has_government = paternal_autocrat
+			has_idea = ITA_mediterranean_union_member
+			}
+		has_non_aggression_pact_with = HUN
+		is_faction_leader = yes
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision italy_invite_hungary"
+			HUN = {
+			country_event = { id = twrinvitetofac.1 days = 2 }
+				}
+		}
+	}
+	italy_invite_rom_to_med_pact = {
+		allowed = { tag = ITA }
+		cost = 100
+		available = {
+			ROM = {
+			has_government = paternal_autocrat
+			has_completed_focus = ROM_PP_Pragmatic_Diplomacy
+			}
+		}
+		visible = {
+		is_fascist = yes
+		ROM = {
+			has_government = paternal_autocrat
+			has_completed_focus = ROM_PP_Pragmatic_Diplomacy
+			has_idea = ITA_mediterranean_union_member
+			}
+		has_non_aggression_pact_with = ROM
+		is_faction_leader = yes
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision italy_invite_rom_to_med_pact"
+			ROM = {
+			country_event = { id = twritalyforeign.38 days = 2 }
+				}
+		}
+	}
+}
+
+ITA_ethiopian_war = {
+
+	italy_send_men = {
+		allowed = { tag = ITA }
+		cost = freedec?0
+		available = {
+			ETH = {
+				has_war_with = IEA
+			}
+		}
+		visible = {
+			ETH = {
+				has_war_with = IEA
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision italy_send_men"
+			ITA = {
+				add_manpower = -5000
+			}
+			IEA = {
+				add_manpower = 5000
+			}
+		}
+	}
+	italy_send_arms = {
+		allowed = { tag = ITA }
+		cost = freedec?0
+		available = {
+			ETH = {
+				has_war_with = IEA
+			}
+			ITA = {
+				has_equipment = { infantry_equipment > 4999 }
+			}
+		}
+		visible = {
+			ETH = {
+				has_war_with = IEA
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision italy_send_arms"
+			send_equipment = { target = IEA type = infantry_equipment amount = 5000 }
+		}
+	}
+}
+
+ITA_matter_of_dalmatia = {
+	ITA_encourage_italian_settlers_to_zara = {
+		icon = generic_nationalism
+		cost = 150
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 163
+		}
+		visible = {
+			controls_state = 163
+			has_government = fascist
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_encourage_italian_settlers"
+			163 = {
+				add_manpower = 7000
+				add_state_modifier = {
+					modifier = {
+						local_building_slots_factor = 0.3
+						local_non_core_manpower = 0.3
+					}
+				}
+			}
+		}
+	}
+	ITA_land_ownership_projects = {
+		icon = generic_nationalism
+		cost = 70
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 163
+		}
+		visible = {
+			controls_state = 163
+			has_government = fascist
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_land_ownership_projects"
+			163 = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	ITA_incoporate_zara = {
+		icon = generic_nationalism
+		cost = 200
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 163
+		}
+		visible = {
+			controls_state = 163
+			has_government = fascist
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_incoporate_zara"
+			163 = {
+				add_core_of = ITA
+			}
+		}
+	}
+	ITA_incoporate_dalmatia = {
+		icon = generic_nationalism
+		cost = 200
+		allowed = { tag = ITA }
+		available = {
+			owns_state = 103
+			owns_state = 1016
+		}
+		visible = {
+			owns_state = 103
+			owns_state = 1016
+			has_government = fascist
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_incoporate_dalmatia"
+			103 = {
+				add_core_of = ITA
+			}
+			1016 = {
+				add_core_of = ITA
+			}
+		}
+	}
+}
+
+ITA_dealings_with_the_church = {
+	ITA_allow_the_recruitment_of_swiss_guards = {
+		icon = eng_trade_unions_support
+		cost = 150
+		allowed = { tag = ITA }
+		available = {
+			has_war = no
+			owns_state = 767
+		}
+		visible = {
+			has_government = fascist
+			owns_state = 767
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_allow_the_recruitment_of_swiss_guards"
+			custom_effect_tooltip = ita_decrease_unrest_mainland_tt
+			custom_effect_tooltip = ita_decrease_unrest_south_italy_tt
+			767 = {
+				add_state_modifier = {
+					modifier = {
+						local_non_core_manpower = 0.15
+					}
+				}
+			}
+			hidden_effect = {
+				subtract_from_variable = {
+					var = ita_var_domestic_opposition
+					value = 0.1
+				}
+				subtract_from_variable = {
+					var = ita_var_south_italy_opposition
+					value = 0.1
+				}
+			}
+
+		}
+	}
+}
+
+ITA_matter_of_tyrol = {
+	forceful_integration = {
+		icon = generic_nationalism
+		cost = 150
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 39
+			has_country_flag = ITALIAN_LANGUAGE
+			has_country_flag = ITALIAN_SETTLERS
+		}
+		visible = {
+			controls_state = 39
+			has_completed_focus = ITA_Continue_Italianisation_In_Tyrol
+		}
+		fire_only_once = yes
+		days_remove = 70
+		remove_effect = {
+			39 = {
+				add_core_of = ITA
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision forceful_integration"
+		}
+	}
+	ITA_the_italian_language_act = {
+		icon = generic_nationalism
+		cost = 50
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 39
+		}
+		visible = {
+			controls_state = 39
+			has_completed_focus = ITA_Continue_Italianisation_In_Tyrol
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_the_italian_language_act"
+			add_stability = -0.1
+			add_to_variable = { ita_var_gcf_loyalty = 0.1 }
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt
+			39 = {
+				add_manpower = -4000
+				add_state_modifier = {
+					modifier = {
+						local_building_slots_factor = 0.3
+						resistance_activity = 0.1
+					}
+				}
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.1
+			}
+			set_country_flag = ITALIAN_LANGUAGE
+		}
+	}
+	ITA_encourage_italian_settlers = {
+		icon = generic_nationalism
+		cost = 150
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 39
+		}
+		visible = {
+			controls_state = 39
+			has_completed_focus = ITA_Continue_Italianisation_In_Tyrol
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_encourage_italian_settlers"
+			add_stability = -0.15
+			39 = {
+				add_manpower = 7000
+				add_state_modifier = {
+					modifier = {
+						local_building_slots_factor = 0.3
+						local_non_core_manpower = 0.3
+					}
+				}
+			}
+			set_country_flag = ITALIAN_SETTLERS
+		}
+	}
+	ITA_south_tyrol_autonomy = {
+		icon = generic_nationalism
+		cost = 150
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 39
+			has_country_flag = GERMAN_LANGUAGE
+			has_country_flag = GERMAN_COUNCIL
+		}
+		visible = {
+			controls_state = 39
+			has_completed_focus = ITA_Promote_Germanic_Heritage
+		}
+		days_remove = 70
+		remove_effect = {
+			add_stability = -0.1
+			subtract_from_variable = { ita_var_gcf_loyalty = 0.1 }
+			custom_effect_tooltip = ita_decrease_loyalty_gcf_tt
+			39 = {
+				add_core_of = ITA
+				add_dynamic_modifier = { modifier = autonomous_state  }
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_south_tyrol_autonomy"
+		}
+	}
+	ITA_recognize_german_language = {
+		icon = generic_nationalism
+		cost = 70
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 39
+		}
+		visible = {
+			controls_state = 39
+			has_completed_focus = ITA_Promote_Germanic_Heritage
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_recognize_german"
+			subtract_from_variable = { ita_var_gcf_loyalty = 0.1 }
+			custom_effect_tooltip = ita_decrease_loyalty_gcf_tt
+			subtract_from_variable = {
+				var = ita_var_mvsn_loyalty
+				value = 0.1
+			}
+			custom_effect_tooltip = ita_unpopular_decision_for_MSVN_tt
+			add_stability = 0.15
+			39 = {
+				add_state_modifier = {
+					modifier = {
+						local_non_core_manpower = 0.45
+					}
+				}
+			}
+			set_country_flag = GERMAN_LANGUAGE
+		}
+	}
+	ITA_local_german_leaders = {
+		icon = generic_nationalism
+		cost = 70
+		allowed = { tag = ITA }
+		available = {
+			controls_state = 39
+		}
+		visible = {
+			controls_state = 39
+			has_completed_focus = ITA_Promote_Germanic_Heritage
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ITA_local_german_leaders"
+			subtract_from_variable = { ita_var_gcf_loyalty = 0.1 }
+			custom_effect_tooltip = ita_decrease_loyalty_gcf_tt
+			add_stability = 0.2
+			add_war_support = 0.15
+			39 = {
+				add_state_modifier = {
+					modifier = {
+						mobilization_speed = 0.1
+						local_building_slots_factor = 0.3
+					}
+				}
+			}
+			set_country_flag = GERMAN_COUNCIL
+		}
+	}
+}
+
+ITA_Matter_of_Greece = {
+
+	ITA_Put_an_End_to_the_Chaos = {
+		icon = generic_scorched_earth
+		allowed = { tag = ITA }
+		available = {
+			NOT = {
+				GRE = {
+					is_puppet_of = ITA
+				}
+			}
+			OR = {
+				NOT = {
+					owns_state = 876
+				}
+				GRE = {
+					has_war_with = BUL
+				}
+			}
+		}
+		visible = {
+			NOT = {
+				GRE = {
+					is_puppet_of = ITA
+				}
+			}
+			OR = {
+				NOT = {
+					owns_state = 876
+				}
+				GRE = {
+					has_war_with = BUL
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+
+		complete_effect = {
+			declare_war_on = {
+				target = GRE
+				type = annex_everything
+			}
+		}
+	}
+
+	ITA_Establish_the_Governate_of_Greece = {
+		icon = generic_scorched_earth
+		allowed = { tag = ITA }
+		available = {
+			ITA = {
+				owns_state = 731
+				owns_state = 185
+				owns_state = 878
+				owns_state = 47
+				owns_state = 877
+				owns_state = 186
+				owns_state = 879
+			}
+		}
+		visible = {
+			ITA = {
+				owns_state = 731
+				owns_state = 185
+				owns_state = 878
+				owns_state = 47
+				owns_state = 877
+				owns_state = 186
+				owns_state = 879
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 1000
+		}
+
+		complete_effect = {
+			release_puppet = GRE
+			hidden_effect = {
+				GRE = {
+					set_politics = {
+						ruling_party = fascist
+					}
+					set_party_name = {
+						ideology = fascist
+						long_name = ITA_Greece_Occupation_long
+						name = ITA_Greece_Occupation
+					}
+					retire_ideology_leader = fascist
+					create_country_leader = {
+						name = "Governo Italiano di Occupazione"
+						desc = ""
+						picture = "Greek_Coat_of_Arms.dds"
+						expire = "1982.1.1"
+						ideology = fascism
+						traits = { }
+					}
+					set_cosmetic_tag = ITALIAN_GREECE
+					remove_ideas = GRE_Despised_Government
+					remove_ideas = GRE_A_Ruined_Economy
+					clr_country_flag = has_symbolic_figurehead
+					clr_country_flag = governor_Carlo_Geloso
+					load_focus_tree = TWR_GRE_ITA_Puppet_Tree
+				}
+				transfer_state = 876
+				transfer_state = 182
+				transfer_state = 164
+			}
+		}
+	}
+
+}
+
+ita_montenegrin_partisans_category = {
+	
+	ita_issue_a_warning = {
+		cost = 0
+		allowed = {
+			original_tag = ITA
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_Save_Crna_Gora
+					has_completed_focus = SER_Unite_the_Lost_Brothers
+				}
+				NOT = {
+					OR = {
+						has_country_flag = SER_montenegro_partisans_over
+						owns_state = 105
+					}
+				}
+			}
+			NOT = {
+				has_country_flag = issued_a_warning
+			}
+		}
+		
+		available = {
+            has_war_support > 0.45
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		complete_effect = {
+			set_country_flag = issued_a_warning
+			SER = {
+				country_event = { days = 1 id = twrserbia.109 }
+			}
+		}
+	}
+	
+	ita_track_the_resistance_network = {
+		cost = 50
+		allowed = {
+			original_tag = ITA
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_Save_Crna_Gora
+					has_completed_focus = SER_Unite_the_Lost_Brothers
+				}
+				NOT = {
+					OR = {
+						has_country_flag = SER_montenegro_partisans_over
+						owns_state = 105
+					}
+				}
+			}
+		}
+		
+		available = {
+            has_manpower > 999
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -500
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+            custom_effect_tooltip = ita_decrease_partisan_monetegro_strength_low_tt
+			ITA = {
+				subtract_from_variable = { ita_var_montenegrin_opposition = 0.05 }
+			}
+        }
+	}
+	
+	ita_send_addition_men = {
+		cost = 40
+		allowed = {
+			original_tag = ITA
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_Save_Crna_Gora
+					has_completed_focus = SER_Unite_the_Lost_Brothers
+				}
+				NOT = {
+					OR = {
+						has_country_flag = SER_montenegro_partisans_over
+						owns_state = 105
+					}
+				}
+			}
+		}
+		
+		available = {
+            has_manpower > 1499
+			command_power > 50
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 40
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -100
+			add_command_power = -40
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = ita_decrease_partisan_monetegro_strength_med_tt
+			ITA = {
+				subtract_from_variable = { ita_var_montenegrin_opposition = 0.10 }
+			}
+        }
+	}
+	
+	ita_equip_the_garrison = {
+		cost = 20
+		allowed = {
+			original_tag = ITA
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_Save_Crna_Gora
+					has_completed_focus = SER_Unite_the_Lost_Brothers
+				}
+				NOT = {
+					OR = {
+						has_country_flag = SER_montenegro_partisans_over
+						owns_state = 105
+					}
+				}
+			}
+		}
+		
+		available = {
+            has_equipment = {
+				infantry_equipment > 2999
+			}
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 70
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -3000
+				producer = ITA
+			}
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = ita_decrease_partisan_monetegro_strength_high_tt
+			ITA = {
+				subtract_from_variable = { ita_var_montenegrin_opposition = 0.15 }
+			}
+        }
+	}
+}
+
+ita_dalmatian_partisans_category = {
+	
+	ita_track_the_dalmatian_resistance_network = {
+		cost = 50
+		allowed = {
+			OR = {
+				original_tag = ITA
+				original_tag = CRO
+			}
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Mare_Nostrum
+					has_completed_focus = SER_Secure_the_Adriatic
+				}
+				NOT = {
+					has_country_flag = SER_zara_partisans_over
+				}
+			}
+			OR = {
+				AND = {
+					tag = ITA
+					ITA = {
+						owns_state = 163
+					}
+				}
+				AND = {
+					tag = CRO
+					CRO = {
+						owns_state = 103
+					}
+				}
+			}
+		}
+		
+		available = {
+            has_manpower > 999
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -500
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+            custom_effect_tooltip = ita_decrease_partisan_dalmatian_strength_low_tt
+			ITA = {
+				subtract_from_variable = { ita_var_dalmatia_opposition = 0.05 }
+			}
+        }
+	}
+	
+	ita_send_addition_men_to_zadar = {
+		cost = 40
+		allowed = {
+			OR = {
+				original_tag = ITA
+				original_tag = CRO
+			}
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Mare_Nostrum
+					has_completed_focus = SER_Secure_the_Adriatic
+				}
+				NOT = {
+					has_country_flag = SER_zara_partisans_over
+				}
+			}
+			OR = {
+				AND = {
+					tag = ITA
+					ITA = {
+						owns_state = 163
+					}
+				}
+				AND = {
+					tag = CRO
+					CRO = {
+						owns_state = 103
+					}
+				}
+			}
+		}
+		
+		available = {
+            has_manpower > 1499
+			command_power > 50
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 40
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -100
+			add_command_power = -40
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = ita_decrease_partisan_dalmatian_strength_med_tt
+			ITA = {
+				subtract_from_variable = { ita_var_dalmatia_opposition = 0.10 }
+			}
+        }
+	}
+	
+	ita_equip_the_zadar_garrison = {
+		cost = 20
+		allowed = {
+			OR = {
+				original_tag = ITA
+				original_tag = CRO
+			}
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Mare_Nostrum
+					has_completed_focus = SER_Secure_the_Adriatic
+				}
+				NOT = {
+					has_country_flag = SER_zara_partisans_over
+				}
+			}
+			OR = {
+				AND = {
+					tag = ITA
+					ITA = {
+						owns_state = 163
+					}
+				}
+				AND = {
+					tag = CRO
+					CRO = {
+						owns_state = 103
+					}
+				}
+			}
+		}
+		
+		available = {
+            has_equipment = {
+				infantry_equipment > 2999
+			}
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 70
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -3000
+			}
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = ita_decrease_partisan_dalmatian_strength_high_tt
+			ITA = {
+				subtract_from_variable = { ita_var_dalmatia_opposition = 0.15 }
+			}
+        }
+	}
+}
+
+ita_slovenian_partisans_category = {
+	
+	ita_issue_a_warning2 = {
+		cost = 0
+		allowed = {
+			original_tag = ITA
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Mare_Nostrum
+					AND = {
+						has_completed_focus = SER_Secure_the_Adriatic
+						has_completed_focus = SER_The_South_Slavic_Salvation_Front
+					}
+				}
+				NOT = {
+					OR = {
+						has_country_flag = SER_istria_partisans_over
+					}
+				}
+			}
+			ITA = {
+				owns_state = 814
+			}
+			NOT = {
+				has_country_flag = issued_a_warning
+			}
+		}
+		
+		available = {
+            has_war_support > 0.45
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		complete_effect = {
+			set_country_flag = issued_a_warning
+			SER = {
+				country_event = { days = 1 id = twrserbia.109 }
+			}
+		}
+	}
+	
+	ita_track_the_slovenian_resistance_network = {
+		cost = 50
+		allowed = {
+			original_tag = ITA
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Mare_Nostrum
+					AND = {
+						has_completed_focus = SER_Secure_the_Adriatic
+						has_completed_focus = SER_The_South_Slavic_Salvation_Front
+					}
+				}
+				NOT = {
+					has_country_flag = SER_istria_partisans_over
+				}
+			}
+			ITA = {
+				owns_state = 814
+			}
+		}
+		
+		available = {
+            has_manpower > 999
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -500
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+            custom_effect_tooltip = ita_decrease_partisan_slovenian_strength_low_tt
+			ITA = {
+				subtract_from_variable = { ita_var_slovenia_opposition = 0.05 }
+			}
+        }
+	}
+	
+	ita_send_addition_men_to_istria = {
+		cost = 40
+		allowed = {
+			original_tag = ITA
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Mare_Nostrum
+					AND = {
+						has_completed_focus = SER_Secure_the_Adriatic
+						has_completed_focus = SER_The_South_Slavic_Salvation_Front
+					}
+				}
+				NOT = {
+					has_country_flag = SER_istria_partisans_over
+				}
+			}
+			ITA = {
+				owns_state = 814
+			}
+		}
+		
+		available = {
+            has_manpower > 1499
+			command_power > 50
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 40
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_manpower = -100
+			add_command_power = -40
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = ita_decrease_partisan_slovenian_strength_med_tt
+			ITA = {
+				subtract_from_variable = { ita_var_slovenia_opposition = 0.10 }
+			}
+        }
+	}
+	
+	ita_equip_the_slovenian_garrison = {
+		cost = 20
+		allowed = {
+			original_tag = ITA
+		}
+		
+		visible = {
+			SER = {
+				OR = {
+					has_completed_focus = SER_End_the_Mare_Nostrum
+					AND = {
+						has_completed_focus = SER_Secure_the_Adriatic
+						has_completed_focus = SER_The_South_Slavic_Salvation_Front
+					}
+				}
+				NOT = {
+					has_country_flag = SER_istria_partisans_over
+				}
+			}
+			ITA = {
+				owns_state = 814
+			}
+		}
+		
+		available = {
+            has_equipment = {
+				infantry_equipment > 2999
+			}
+			NOT = {
+				has_country_flag = taken_an_action
+			}
+        }
+		
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		days_remove = 70
+		complete_effect = {
+			set_country_flag = taken_an_action
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -3000
+				producer = ITA
+			}
+		}
+		remove_effect = {
+			clr_country_flag = taken_an_action
+			custom_effect_tooltip = ita_decrease_partisan_slovenian_strength_high_tt
+			ITA = {
+				subtract_from_variable = { ita_var_slovenia_opposition = 0.15 }
+			}
+        }
+	}
+}

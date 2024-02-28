@@ -1,0 +1,341 @@
+scripted_gui = {
+	RUS_duma = {
+		context_type = decision_category
+		window_name = "RUS_duma_container"
+		dirty = show_RUS_duma
+
+		visible = {
+			always = yes
+		}
+
+		dynamic_lists = {
+			RUS_duma_main_grid = {
+				array = RUS_duma_main_array
+				index = RUS_duma_main_index
+				change_scope = yes
+				entry_container = RUS_duma_main_entry
+			}
+			RUS_duma_government_grid = {
+				array = RUS_duma_government_array
+				index = RUS_duma_government_index
+				change_scope = yes
+				entry_container = RUS_duma_party_entry
+
+				ai_weights = {
+					RUS_duma_interaction_button_click = {
+						ai_will_do = {
+							base = 0
+						}
+					}
+					RUS_duma_negotiate_button_click = {
+						ai_will_do = {
+							base = 0
+							modifier = {
+								add = 40
+
+								check_variable = { ROOT.RUS_duma_interaction_progress > 4 }
+								check_variable = { RUS_duma_support_percent < 90 }
+								check_variable = { ROOT.RUS_duma_support_total < ROOT.RUS_duma_seat_majority }
+							}
+						}
+					}
+				}
+			}
+			RUS_duma_neutral_grid = {
+				array = RUS_duma_neutral_array
+				index = RUS_duma_neutral_index
+				change_scope = yes
+				entry_container = RUS_duma_party_entry
+
+				ai_weights = {
+					RUS_duma_interaction_button_click = {
+						ai_will_do = {
+							base = 0
+							modifier = {
+								add = 50
+
+								check_variable = { RUS.RUS_duma_screen = 1 }
+								check_variable = { ROOT.RUS_duma_government_seat_total < ROOT.RUS_duma_seat_majority }
+							}
+						}
+					}
+					RUS_duma_negotiate_button_click = {
+						ai_will_do = {
+							base = 0
+							modifier = {
+								add = 20
+
+								check_variable = { ROOT.RUS_duma_interaction_progress > 9 }
+								check_variable = { RUS_duma_support_percent < 70 }
+								check_variable = { ROOT.RUS_duma_support_total < ROOT.RUS_duma_seat_majority }
+							}
+						}
+					}
+				}
+			}
+			RUS_duma_opposition_grid = {
+				array = RUS_duma_opposition_array
+				index = RUS_duma_opposition_index
+				change_scope = yes
+				entry_container = RUS_duma_party_entry
+
+				ai_weights = {
+					RUS_duma_interaction_button_click = {
+						ai_will_do = {
+							base = 0
+						}
+					}
+					RUS_duma_negotiate_button_click = {
+						ai_will_do = {
+							base = 0
+							modifier = {
+								add = 40
+
+								check_variable = { ROOT.RUS_duma_interaction_progress > 14 }
+								check_variable = { RUS_duma_support_percent < 70 }
+								check_variable = { ROOT.RUS_duma_support_total < ROOT.RUS_duma_seat_majority }
+							}
+						}
+					}
+				}
+			}
+			RUS_duma_amendment_grid = {
+				array = RUS_duma_amendment_array
+				index = RUS_duma_amendment_index
+				change_scope = no
+				entry_container = RUS_duma_amendment_entry
+
+				ai_weights = {
+					RUS_duma_amendment_add_button_click = {
+						ai_will_do = {
+							base = 0
+							modifier = {
+								add = 10
+
+								check_variable = { ROOT.RUS_duma_interaction_progress > 4 }
+								check_variable = { ROOT.RUS_duma_support_total < ROOT.RUS_duma_seat_majority }
+							}
+						}
+					}
+				}
+			}
+			RUS_duma_government_leader_grid = {
+				array = RUS_duma_government_leader_array
+				index = RUS_duma_government_leader_index
+				change_scope = yes
+				entry_container = RUS_duma_government_leader_entry
+
+				ai_weights = {
+					RUS_duma_government_leader_click = {
+						ai_will_do = {
+							base = 5
+							modifier = {
+								add = 100
+
+								OR = {
+									AND = {
+										state = 1
+										check_variable = { 2.RUS_duma_seat > 3.RUS_duma_seat }
+										check_variable = { 2.RUS_duma_seat > 4.RUS_duma_seat }
+									}
+								}
+								OR = {
+									AND = {
+										state = 2
+										check_variable = { 3.RUS_duma_seat > 2.RUS_duma_seat }
+										check_variable = { 3.RUS_duma_seat > 4.RUS_duma_seat }
+									}
+								}
+								OR = {
+									AND = {
+										state = 3
+										check_variable = { 4.RUS_duma_seat > 2.RUS_duma_seat }
+										check_variable = { 4.RUS_duma_seat > 3.RUS_duma_seat }
+									}
+								}
+							}
+							modifier = {
+								factor = 0
+								check_variable = { 100.RUS_duma_government_leader > 0 }
+							}
+						}
+					}
+				}
+			}
+			RUS_duma_submenu_grid = {
+				array = RUS_duma_submenu_array
+				change_scope = no
+				entry_container = "[GetRUSDumaSubmenu]"
+			}
+		}
+
+		triggers = {
+			RUS_duma_switch_view_button_click_enabled = {
+				check_variable = { RUS_duma_bill > 0 }
+			}
+			RUS_duma_interaction_button_visible = {
+				set_temp_variable = { temp_interaction_button_frame = RUS_duma_alignment }
+				check_variable = { temp_interaction_button_frame > 0 }
+			}
+			RUS_duma_interaction_button_click_enabled = {
+				OR = {
+					AND = {
+						ROOT = {
+							NOT = {
+								check_variable = { ROOT.RUS_duma_screen = 1 }
+							}
+						}
+						NOT = {
+							OR = {
+								check_variable = { RUS_duma_alignment = 3 }
+								check_variable = { RUS_duma_alignment = 5 }
+							}
+						}
+					}
+					check_variable = { 100.RUS_duma_government_leader > 0 }
+				}
+			}
+			RUS_duma_bill_timer_text_visible = {
+				check_variable = { RUS_duma_bill > 0 }
+			}
+			RUS_duma_negotiate_button_visible = {
+				check_variable = { ROOT.RUS_duma_bill > 0 }
+				NOT = {
+					check_variable = { RUS_duma_alignment = 5 }
+				}
+			}
+			RUS_duma_negotiate_button_click_enabled = {
+				OR = {
+					AND = {
+						check_variable = { ROOT.RUS_duma_interaction_progress > 4 }
+						check_variable = { RUS_duma_alignment = 1 }
+					}
+					AND = {
+						check_variable = { ROOT.RUS_duma_interaction_progress > 9 }
+						check_variable = { RUS_duma_alignment = 3 }
+					}
+					AND = {
+						check_variable = { ROOT.RUS_duma_interaction_progress > 14 }
+						check_variable = { RUS_duma_alignment = 4 }
+					}
+				}
+			}
+			RUS_duma_current_bill_effect_button_click_enabled = {
+				always = no
+			}
+			RUS_duma_amendment_add_button_visible = {
+				check_variable = { v:RUS_duma_amendment_set = 0 }
+			}
+			RUS_duma_amendment_text_visible = {
+				check_variable = { v:RUS_duma_amendment_set = 1 }
+			}
+			RUS_duma_government_leader_click_enabled = {
+				check_variable = { RUS.RUS_duma_screen = 1 }
+				check_variable = { v > 0 }
+			}
+			RUS_duma_government_timer_click_enabled = {
+				always = no
+			}
+			RUS_duma_government_formation_confirm_button_click_enabled = {
+				check_variable = { RUS_duma_screen = 1 }
+				OR = {
+					check_variable = { RUS_duma_government_seat_total = RUS_duma_seat_majority }
+					check_variable = { RUS_duma_government_seat_total > RUS_duma_seat_majority }
+				}
+			}
+		}
+
+		effects = {
+			RUS_duma_switch_view_button_click = {
+				if = {
+					limit = { has_country_flag = RUS_duma_support_view }
+					clr_country_flag = RUS_duma_support_view
+					RUS_duma_reload_normal = yes
+				}
+				else = {
+					set_country_flag = RUS_duma_support_view
+					RUS_duma_reload_support = yes
+				}
+			}
+			RUS_duma_interaction_button_click = {
+				if = {
+					limit = {
+						check_variable = { ROOT.RUS_duma_screen = 1 }
+						check_variable = { RUS_duma_alignment = 2 }
+					}
+					RUS_duma_remove_from_coalition = yes
+				}
+				else_if = {
+					limit = {
+						check_variable = { ROOT.RUS_duma_screen = 1 }
+						check_variable = { RUS_duma_alignment = 3 }
+					}
+					RUS_duma_add_to_coalition = yes
+				}
+			}
+			RUS_duma_negotiate_button_click = {
+				RUS_duma_negotiate_effect = yes
+			}
+			RUS_duma_current_bill_effect_button_click = {
+				RUS_duma_end_bill_effect = yes
+			}
+			RUS_duma_amendment_add_button_click = {
+				RUS_duma_amendment_add_effect = yes
+			}
+			RUS_duma_government_leader_click = {
+				RUS_duma_load_government_leader = yes
+			}
+			RUS_duma_government_formation_confirm_button_click = {
+				RUS_duma_confirm_government_leader = yes
+			}
+		}
+
+		properties = {
+			RUS_duma_party_icon = {
+				frame = v
+				x = ROOT.RUS_duma_x_array^RUS_duma_main_index
+				y = ROOT.RUS_duma_y_array^RUS_duma_main_index
+			}
+			RUS_duma_interaction_button = {
+				frame = temp_interaction_button_frame
+			}
+			RUS_duma_government_leader = {
+				image = "[GetRUSDumaLeaderPortraitContext1]"
+			}
+			RUS_duma_bill_interaction_bar = {
+				frame = RUS_duma_interaction_progress
+			}
+		}
+
+		ai_enabled = { tag = RUS }
+		ai_check = { has_country_flag = RUS_duma_enabled }
+		ai_test_interval = 48
+		ai_test_variance = 0
+		ai_weights = {
+			RUS_duma_switch_view_button_click = {
+				ai_will_do = {
+					base = 0
+				}
+			}
+			RUS_duma_current_bill_effect_button_click = {
+				ai_will_do = {
+					base = 0
+				}
+			}
+			RUS_duma_government_formation_confirm_button_click = {
+				ai_will_do = {
+					base = 0
+					modifier = {
+						add = 100
+
+						check_variable = { RUS_duma_screen = 1 }
+						OR = {
+							check_variable = { RUS_duma_government_seat_total = RUS_duma_seat_majority }
+							check_variable = { RUS_duma_government_seat_total > RUS_duma_seat_majority }
+						}
+					}
+				}
+			}
+		}
+	}
+}

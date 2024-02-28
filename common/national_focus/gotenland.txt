@@ -1,0 +1,1565 @@
+focus_tree = {
+	id = RGO_focus
+	country = {
+		factor = 0
+		modifier = {
+			add = 100
+			tag = RGO
+		}
+	}
+	continuous_focus_position = { x = 50 y = -1000 }
+	focus = {
+	cancelable = no
+		id = RGO_military_autarky
+		icon = GFX_GER_reinhard_ss
+		x = 16
+		y = 0
+		cost = 5
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_military_autarky"
+			capital_scope = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+
+	}
+	
+	#####luftwaffe########
+	
+	focus = {
+	cancelable = no
+		id = RGO_gotische_luftwaffe
+		icon = GFX_GER_the_luftwaffe
+		prerequisite = { focus = RGO_military_autarky }
+		relative_position_id = RGO_military_autarky
+		x = -5
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_gotische_luftwaffe"
+			air_experience = 40
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_modern_rocketry_program
+		icon = GFX_focus_rocketry
+		prerequisite = { focus = RGO_gotische_luftwaffe }
+		relative_position_id = RGO_gotische_luftwaffe
+		x = -4
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_modern_rocketry_program"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = rocketry
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_volksflieger_program
+		icon = GFX_GENERIC_skilled_fighters
+		prerequisite = { focus = RGO_gotische_luftwaffe }
+		mutually_exclusive = { focus = RGO_next_generation_aircraft_initiative }
+		relative_position_id = RGO_gotische_luftwaffe
+		x = -1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_volksflieger_program"
+			add_ideas = rk_airwing
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_next_generation_aircraft_initiative
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = RGO_gotische_luftwaffe }
+		mutually_exclusive = { focus = RGO_volksflieger_program }
+		relative_position_id = RGO_gotische_luftwaffe
+		x = 1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_next_generation_aircraft_initiative"
+			add_ideas = rk_theoretical_fighters
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_airfield_construction
+		icon = GFX_goal_generic_air_production
+		prerequisite = { focus = RGO_gotische_luftwaffe }
+		relative_position_id = RGO_gotische_luftwaffe
+		x = 4
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_airfield_construction"
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_construct_new_rocket_sites
+		icon = GFX_GENERIC_rocket_bases
+		prerequisite = { focus = RGO_modern_rocketry_program }
+		relative_position_id = RGO_modern_rocketry_program
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_construct_new_rocket_sites"
+			random_owned_state = {
+				add_building_construction = {
+					type = rocket_site 
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_rapid_strike_doctrine
+		icon = GFX_GENERIC_rapid_strike
+		prerequisite = { focus = RGO_volksflieger_program }
+		relative_position_id = RGO_volksflieger_program
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_rapid_strike_doctrine"
+			add_ideas = rk_local_air
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_high_performance_missions
+		icon = GFX_GENERIC_skilled_fighters
+		prerequisite = { focus = RGO_next_generation_aircraft_initiative }
+		relative_position_id = RGO_next_generation_aircraft_initiative
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_high_performance_missions"
+			add_ideas = RGO_high_perform
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_gotenland_regional_airport
+		icon = GFX_GENERIC_air_construction
+		prerequisite = { focus = RGO_airfield_construction }
+		relative_position_id = RGO_airfield_construction
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_gotenland_regional_airport"
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_long_range_high_yield
+		icon = GFX_goal_generic_air_bomber
+		prerequisite = { focus = RGO_construct_new_rocket_sites }
+		relative_position_id = RGO_construct_new_rocket_sites
+		x = -1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_long_range_high_yield"
+			add_ideas = RGO_long_range_n_high_yield
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_fighter_bombers
+		icon = GFX_focus_usa_escort_fighters
+		prerequisite = { focus = RGO_rapid_strike_doctrine }
+		mutually_exclusive = { focus = RGO_fighters_and_bombers }
+		relative_position_id = RGO_rapid_strike_doctrine
+		x = -1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_fighter_bombers"
+			add_ideas = RGO_fighter_bomber
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_fighters_and_bombers
+		icon = GFX_GENERIC_fighters_and_bombers
+		prerequisite = { focus = RGO_rapid_strike_doctrine focus = RGO_high_performance_missions }
+		mutually_exclusive = { focus = RGO_fighter_bombers }
+		relative_position_id = RGO_rapid_strike_doctrine
+		x = 1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_fighters_and_bombers"
+			add_ideas = RGO_fighter_n_bombers
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_gothic_helicopter_corp
+		icon = GFX_GENERIC_helicopter
+		prerequisite = { focus = RGO_high_performance_missions }
+		relative_position_id = RGO_high_performance_missions
+		x = 1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_gothic_helicopter_corp"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = helicopter
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_gotische_luft_hansa
+		icon = GFX_RGO_Lufthansa
+		prerequisite = { focus = RGO_gotenland_regional_airport }
+		relative_position_id = RGO_gotenland_regional_airport
+		x = 1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_gotische_luft_hansa"
+			add_ideas = RGO_lufthansa
+			country_event = { id = twrgotenland.50 days = 1 }
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_gotische_atomkraft
+		icon = GFX_SS_Nuclear
+		prerequisite = { focus = RGO_long_range_high_yield }
+		relative_position_id = RGO_long_range_high_yield
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_gotische_atomkraft"
+			add_manpower = -3000
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = nuclear
+			}
+			add_research_slot = 1
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_rocket_supremacy
+		icon = GFX_GENERIC_advanced_rockets
+		prerequisite = { focus = RGO_long_range_high_yield }
+		prerequisite = { focus = RGO_fighter_bombers }
+		relative_position_id = RGO_long_range_high_yield
+		x = 2
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_rocket_supremacy"
+			country_event = { id = twrgotenland.52 days = 1 }
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_improved_aircraft_workshops
+		icon = GFX_GENERIC_air_production
+		prerequisite = { focus = RGO_fighter_bombers focus = RGO_fighters_and_bombers }
+		relative_position_id = RGO_fighter_bombers
+		x = 1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_improved_aircraft_workshops"
+			capital_scope = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_flight_of_the_valkyries
+		icon = GFX_RGO_internaional_airport
+		prerequisite = { focus = RGO_gothic_helicopter_corp }
+		relative_position_id = RGO_gothic_helicopter_corp
+		x = -1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_flight_of_the_valkyries"
+			add_ideas = RGO_flight_of_valkyries
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_commercial_use_of_helicopters
+		icon = GFX_GENERIC_capitalism
+		prerequisite = { focus = RGO_gothic_helicopter_corp }
+		prerequisite = { focus = RGO_gotische_luft_hansa }
+		relative_position_id = RGO_gothic_helicopter_corp
+		x = 1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_commercial_use_of_helicopters"
+			add_ideas = RGO_commercial_helicopters
+			country_event = { id = twrgotenland.51 days = 1 }
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_gotenland_international_airport
+		icon = GFX_GEN_good_airport
+		prerequisite = { focus = RGO_gotische_luft_hansa }
+		relative_position_id = RGO_gotische_luft_hansa
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_gotenland_international_airport"
+			add_manpower = -500
+			country_event = { id = twrgotenland.49 days = 1 }
+			capital_scope = {
+				set_building_level = {
+					type = air_base
+					level = 10
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_fortified_silos
+		icon = GFX_RGO_fortified_silos
+		prerequisite = { focus = RGO_gotische_atomkraft }
+		relative_position_id = RGO_gotische_atomkraft
+		x = -3
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_fortified_silos"
+			custom_effect_tooltip = FORTED_SILOS
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_intercontinental_range
+		icon = GFX_SS_Cleansed_Europe
+		prerequisite = { focus = RGO_gotische_atomkraft }
+		relative_position_id = RGO_gotische_atomkraft
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		available = {
+			has_tech = ICBM_0
+			has_completed_focus = RGO_fortified_silos
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_intercontinental_range"
+			custom_effect_tooltip = ICBM_RANGE
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_nuclear_power_for_civic_use
+		icon = GFX_SS_nuclear_tophat
+		prerequisite = { focus = RGO_gotische_atomkraft }
+		relative_position_id = RGO_gotische_atomkraft
+		x = 2
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		available = {
+			has_tech = atomic_research
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_nuclear_power_for_civic_use"
+			add_stability = 0.1
+			add_political_power = 250
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_national_bunker_system
+		icon = GFX_RGO_Fotress_Gotenland
+		prerequisite = { focus = RGO_fortified_silos }
+		mutually_exclusive = { focus = RGO_missile_base_defense }
+		relative_position_id = RGO_fortified_silos
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_national_bunker_system"
+			137 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = {
+						all_provinces = yes
+					}
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_missile_base_defense
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = RGO_fortified_silos }
+		mutually_exclusive = { focus = RGO_national_bunker_system }
+		relative_position_id = RGO_fortified_silos
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_missile_base_defense"
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+				add_building_construction = {
+					type = anti_air_building 
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_the_fingers_of_tiwaz
+		icon = GFX_GENERIC_nuclear_hellfire
+		prerequisite = { focus = RGO_intercontinental_range }
+		relative_position_id = RGO_intercontinental_range
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		available = {
+			has_tech = ICBM_0
+			has_tech = atomic_research
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_the_fingers_of_tiwaz"
+			custom_effect_tooltip = RGO_tiwaz
+			hidden_effect = {
+				set_country_flag = RGO_totenhand_achievable
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_expand_nuclear_plant
+		icon = GFX_GENERIC_nuclear
+		prerequisite = { focus = RGO_nuclear_power_for_civic_use }
+		relative_position_id = RGO_nuclear_power_for_civic_use
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_expand_nuclear_plant"
+			capital_scope = {
+				add_building_construction = {
+					type = nuclear_reactor 
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_gotenland_space_program
+		icon = GFX_GENERIC_SPACEFLIGHT_1
+		prerequisite = { focus = RGO_nuclear_power_for_civic_use }
+		prerequisite = { focus = RGO_intercontinental_range }
+		prerequisite = { focus = RGO_improved_aircraft_workshops }
+		prerequisite = { focus = RGO_gotenland_international_airport }
+		relative_position_id = RGO_flight_of_the_valkyries
+		x = 1
+		y = 2
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_gotenland_space_program"
+			country_event = { id = twrgotenland.53 days = 1 }
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_totenhand
+		icon = GFX_RGO_totenkopf_nuke
+		relative_position_id = RGO_national_bunker_system
+		x = 2
+		y = 1
+		cost = 7
+		prerequisite = {
+			focus = RGO_national_bunker_system
+			focus = RGO_missile_base_defense
+		}
+		prerequisite = {
+			focus = RGO_the_fingers_of_tiwaz
+		}
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_totenhand"
+			custom_effect_tooltip = TOTENHAND
+			add_war_support = 0.3
+			country_event = { id = twrgotenland.54 days = 1 }
+		}
+
+	}
+	
+	####heer#######
+	
+	focus = {
+	cancelable = no
+		id = RGO_gotische_heer
+		icon = GFX_focus_ger_oppose_hitler
+		prerequisite = { focus = RGO_military_autarky }
+		relative_position_id = RGO_military_autarky
+		x = 5
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_gotische_heer"
+			army_experience = 50
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_the_bastion_of_national_socialism
+		icon = GFX_RGO_model
+		prerequisite = { focus = RGO_gotische_heer }
+		relative_position_id = RGO_gotische_heer
+		x = -3
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_the_bastion_of_national_socialism"
+			add_stability = 0.1
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_disaster_response_teams
+		icon = GFX_GER_SS_infiltration
+		prerequisite = { focus = RGO_the_bastion_of_national_socialism }
+		relative_position_id = RGO_the_bastion_of_national_socialism
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_disaster_response_teams"
+			custom_effect_tooltip = RGODISASTER
+			hidden_effect = {
+				division_template = {
+					name = "Einsatzgruppe Division"
+					regiments = {
+						light_infantry = { x = 0 y = 0 }
+						light_infantry = { x = 0 y = 1 }
+						light_infantry = { x = 0 y = 2 }
+						light_infantry = { x = 0 y = 3 }					
+					}
+						support = {
+							recon = { x = 0 y = 0 }
+						}	
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"1. Gotische Einsatzgruppe Division\" division_template = \"Einsatzgruppe Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"8. Gotische Einsatzgruppe Division\" division_template = \"Einsatzgruppe Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+						owner = ROOT
+					}
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_civic_defense_program
+		icon = GFX_GENERIC_static_defense
+		prerequisite = { focus = RGO_disaster_response_teams }
+		relative_position_id = RGO_disaster_response_teams
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_civic_defense_program"
+			add_ideas = RGO_civic_defense
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_unshakable_will
+		icon = GFX_SS_Stands_Alone
+		prerequisite = { focus = RGO_civic_defense_program }
+		relative_position_id = RGO_civic_defense_program
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_unshakable_will"
+			add_war_support = 0.3
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_totaler_krieg
+		icon = GFX_GER_Fanatic_Germany
+		prerequisite = { focus = RGO_gotische_heer }
+		mutually_exclusive = { focus = RGO_an_elite_force }
+		relative_position_id = RGO_gotische_heer
+		x = -1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_totaler_krieg"
+			capital_scope = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_auxiliary_integration
+		icon = GFX_GER_SS_police
+		prerequisite = { focus = RGO_totaler_krieg }
+		relative_position_id = RGO_totaler_krieg
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_auxiliary_integration"
+			custom_effect_tooltip = RGOAUXILIARY
+			hidden_effect = {
+				division_template = {
+					name = "Auxiliary Division"
+					regiments = {
+						light_infantry = { x = 0 y = 0 }
+						light_infantry = { x = 0 y = 1 }
+						light_infantry = { x = 0 y = 2 }
+						light_infantry = { x = 0 y = 3 }
+						light_infantry = { x = 1 y = 0 }
+						light_infantry = { x = 1 y = 1 }
+						light_infantry = { x = 1 y = 2 }
+						light_infantry = { x = 1 y = 3 }					
+					}
+						support = {
+							military_police = { x = 0 y = 0 }
+						}	
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"1. Gotische Guards\" division_template = \"Auxiliary Division\" start_experience_factor = 0.3 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"2. Heydrich Guards\" division_template = \"Auxiliary Division\" start_experience_factor = 0.3 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"3. Heydrich Guards\" division_template = \"Auxiliary Division\" start_experience_factor = 0.3 start_equipment_factor = 1"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_formalize_the_volkssturm
+		icon = GFX_SS_Free_Corps
+		prerequisite = { focus = RGO_auxiliary_integration }
+		relative_position_id = RGO_auxiliary_integration
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_formalize_the_volkssturm"
+			add_manpower = 20000
+			custom_effect_tooltip = RGOVOLKSSTURM
+			hidden_effect = {
+				division_template = {
+					name = "Volkssturm Division"
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 0 y = 2 }
+						militia = { x = 0 y = 3 }
+						militia = { x = 1 y = 0 }
+						militia = { x = 1 y = 1 }
+						militia = { x = 1 y = 2 }
+						militia = { x = 1 y = 3 }					
+					}
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"441. Volkssturm Division\" division_template = \"Volkssturm Division\" start_experience_factor = 0.1 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"290. Volkssturm Division\" division_template = \"Volkssturm Division\" start_experience_factor = 0.1 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"23. Volkssturm Division\" division_template = \"Volkssturm Division\" start_experience_factor = 0.1 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"92. Volkssturm Division\" division_template = \"Volkssturm Division\" start_experience_factor = 0.1 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"772. Volkssturm Division\" division_template = \"Volkssturm Division\" start_experience_factor = 0.1 start_equipment_factor = 1"
+						owner = ROOT
+					}
+				}
+			}			
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_unbreakable_lines
+		icon = GFX_GENERIC_deep_defense
+		prerequisite = { focus = RGO_formalize_the_volkssturm }
+		relative_position_id = RGO_formalize_the_volkssturm
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_unbreakable_lines"
+			add_manpower = 5000
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_fortress_mentality
+		icon = GFX_RGO_enforce_gotenland
+		prerequisite = { focus = RGO_unbreakable_lines }
+		prerequisite = { focus = RGO_unshakable_will }
+		relative_position_id = RGO_unbreakable_lines
+		x = -1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_fortress_mentality"
+			add_ideas = RGO_fortress_mental
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_an_elite_force
+		icon = GFX_GER_ss_volunteers
+		prerequisite = { focus = RGO_gotische_heer }
+		mutually_exclusive = { focus = RGO_totaler_krieg }
+		relative_position_id = RGO_gotische_heer
+		x = 1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_an_elite_force"
+			custom_effect_tooltip = RGOELITE
+			hidden_effect = {
+				division_template = {
+					name = "Elite Division"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						light_infantry = { x = 1 y = 0 }
+						light_infantry = { x = 1 y = 1 }
+						light_infantry = { x = 1 y = 2 }
+						light_infantry = { x = 1 y = 3 }				
+					}
+						support = {
+							engineer = { x = 0 y = 0 }
+							artillery = { x = 0 y = 1 }
+							logistics_company = { x = 0 y = 2 }
+							signal_company = { x = 0 y = 3 } 
+
+						}	
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"89. Elite Division\" division_template = \"Elite Division\" start_experience_factor = 0.4 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"90. Elite Division\" division_template = \"Elite Division\" start_experience_factor = 0.4 start_equipment_factor = 1"
+						owner = ROOT
+					}
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_panzergrenadiers
+		icon = GFX_GENERIC_mechanisation
+		prerequisite = { focus = RGO_an_elite_force }
+		relative_position_id = RGO_an_elite_force
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_panzergrenadiers"
+			custom_effect_tooltip = RGOGRENADIERS
+			hidden_effect = {
+				division_template = {
+					name = "Gotsiche Panzergrenadier Division"
+					regiments = {
+						APC = { x = 0 y = 0 }
+						APC = { x = 0 y = 1 }
+						APC = { x = 0 y = 2 }
+						APC = { x = 0 y = 3 }
+						IFV = { x = 1 y = 0 }
+						IFV = { x = 1 y = 1 }
+						IFV = { x = 1 y = 2 }
+						artillery_brigade  = { x = 2 y = 0 }				
+					}
+						support = {
+							engineer = { x = 0 y = 0 }
+							artillery = { x = 0 y = 1 }
+							logistics_company = { x = 0 y = 2 }
+							signal_company = { x = 0 y = 3 } 
+
+						}	
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"10. Gotsiche Panzergrenadier Division\" division_template = \"Gotsiche Panzergrenadier Division\" start_experience_factor = 0.4 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"11. Gotsiche Panzergrenadier Division\" division_template = \"Gotsiche Panzergrenadier Division\" start_experience_factor = 0.4 start_equipment_factor = 1"
+						owner = ROOT
+					}
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_infantry_supports_armor
+		icon = GFX_GENERIC_tank_destruction
+		prerequisite = { focus = RGO_panzergrenadiers }
+		relative_position_id = RGO_panzergrenadiers
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_infantry_supports_armor"
+			add_equipment_to_stockpile = {
+				type = IFV_1950_equipment_1
+				amount = 300
+				producer = RGO
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_modern_mechanized_designs
+		icon = GFX_focus_research2
+		prerequisite = { focus = RGO_infantry_supports_armor }
+		relative_position_id = RGO_infantry_supports_armor
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_modern_mechanized_designs"
+			add_research_slot = 1
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_clear_land_for_industrial_use
+		icon = GFX_GENERIC_industrial_grey
+		prerequisite = { focus = RGO_gotische_heer }
+		relative_position_id = RGO_gotische_heer
+		x = 3
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_clear_land_for_industrial_use"
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_military_industry
+		icon = GFX_GENERIC_arms_industry
+		prerequisite = { focus = RGO_clear_land_for_industrial_use }
+		relative_position_id = RGO_clear_land_for_industrial_use
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_military_industry"
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_truck_factories
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = RGO_military_industry }
+		relative_position_id = RGO_military_industry
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_truck_factories"
+			custom_effect_tooltip = RGOTRUCK
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}			
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_heavy_vehicle_factories
+		icon = GFX_focus_generic_tank_production
+		prerequisite = { focus = RGO_truck_factories }
+		relative_position_id = RGO_truck_factories
+		x = 0
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_heavy_vehicle_factories"
+			add_ideas = RGO_heavy_production
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+
+	}
+	
+	focus = {
+	cancelable = no
+		id = RGO_zukunftspanzer
+		icon = GFX_GER_panzer_parts
+		prerequisite = { focus = RGO_heavy_vehicle_factories }
+		prerequisite = { focus = RGO_modern_mechanized_designs }
+		relative_position_id = RGO_modern_mechanized_designs
+		x = 1
+		y = 1
+		cost = 7
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_zukunftspanzer"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = MBT
+			}
+		}
+
+	}
+	#POLITICAL TREE#
+	focus = {
+	cancelable = no
+		id = RGO_Gotisch_Politics
+		icon = GFX_RGO_model
+		x = 29
+		y = 0
+		cost = 3
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Gotisch_Politics"
+			add_political_power = 100
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Fall_Of_Third_Reich
+		icon = GFX_GER_revolution
+		relative_position_id = RGO_Gotisch_Politics
+		x = 1
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Gotisch_Politics }
+		ai_will_do = {
+			
+		}
+		available = {
+			always = no
+		}
+		bypass = {
+			AND = {
+				has_global_flag = hitler_is_dead
+				has_global_flag = german_civil_war_started
+			}				
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Fall_Of_Third_Reich"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Independent_Gotenland
+		icon = GFX_RGO_fortified_silos2
+		relative_position_id = RGO_Fall_Of_Third_Reich
+		x = -1
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Fall_Of_Third_Reich }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Independent_Gotenland"
+			add_ideas = RGO_gotenland_stands_alone
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Expand_Gotische_Claims
+		icon = GFX_GENERIC_draw_borders
+		relative_position_id = RGO_Independent_Gotenland
+		x = 0
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Independent_Gotenland }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Expand_Gotische_Claims"
+			every_state = {
+				limit = { is_core_of = RKA }
+				add_claim_by = RGO
+			}
+			every_state = {
+				limit = { is_core_of = RUK }
+				add_claim_by = RGO
+			}
+			every_state = {
+				limit = { is_core_of = RMO }
+				add_claim_by = RGO
+			}
+			every_state = {
+				limit = { is_core_of = ROS }
+				add_claim_by = RGO
+			}
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_True_Aryan_State
+		icon = GFX_GENERIC_ARYAN
+		relative_position_id = RGO_Expand_Gotische_Claims
+		x = 0
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Expand_Gotische_Claims }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_True_Aryan_State"
+			add_stability = 0.3
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Loyalist_Exiles
+		icon = GFX_GER_order_reestablished
+		relative_position_id = RGO_Fall_Of_Third_Reich
+		x = 1
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Fall_Of_Third_Reich }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Loyalist_Exiles"
+			add_manpower = 20000
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Attract_German_Refugees
+		icon = GFX_RGO_Germania_Gotenland
+		relative_position_id = RGO_Loyalist_Exiles
+		x = 0
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Loyalist_Exiles }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Attract_German_Refugees"
+			add_ideas = RGO_attraction
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Urbanize_Gotenland
+		icon = GFX_GENERIC_urbanization1
+		relative_position_id = RGO_Attract_German_Refugees
+		x = 0
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Attract_German_Refugees }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Urbanize_Gotenland"
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}		
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Proclaim_The_Gotsiche_Reich
+		icon = GFX_RGO_Gotische_Reich
+		relative_position_id = RGO_Urbanize_Gotenland
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = { focus = RGO_True_Aryan_State }
+		prerequisite = { focus = RGO_Urbanize_Gotenland }
+		ai_will_do = {
+			
+		}
+		available = {
+		has_country_leader = {
+			name = "Reinhard Heydrich"
+			ruling_only = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Proclaim_The_Gotsiche_Reich"
+			set_cosmetic_tag = RGO_GOTISCHE_REICH
+			news_event = {
+				id = twrnews.54 hours = 3
+			}
+			remove_ideas =  {
+				GER_RK_repression
+				RGO_memories_of_crimea
+			}
+			hidden_effect = {
+			add_named_threat = { 
+				threat = 20 
+				name = RGO_reich
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Ukraine_Raids
+		icon = GFX_SS_Raiders
+		relative_position_id = RGO_Gotisch_Politics
+		x = -2
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Gotisch_Politics }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Ukraine_Raids"
+			add_manpower = -900
+			add_political_power = 150
+			capital_scope = {
+				add_resource = {
+					type = steel
+					amount = 20
+				}
+			}			
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Gotische_Oil_Raids
+		icon = GFX_goal_generic_oil_refinery
+		relative_position_id = RGO_Ukraine_Raids
+		x = 0
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Ukraine_Raids }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Gotische_Oil_Raids"
+			capital_scope = {
+				add_resource = {
+					type = oil
+					amount = 50
+				}
+			}
+		}
+
+	}
+	focus = {
+	cancelable = no
+		id = RGO_Oil_Stockpile
+		icon = GFX_GER_oil_barrels
+		relative_position_id = RGO_Gotische_Oil_Raids
+		x = 0
+		y = 1
+		cost = 7
+		prerequisite = { focus = RGO_Gotische_Oil_Raids }
+		ai_will_do = {
+			
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus RGO_Oil_Stockpile"
+			capital_scope = {
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+
+	}
+}

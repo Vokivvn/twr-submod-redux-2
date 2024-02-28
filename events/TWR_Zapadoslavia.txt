@@ -1,0 +1,503 @@
+﻿###########################
+# Zapadoslavia
+###########################
+
+add_namespace = zapadoslavia
+add_namespace = twrczechia
+
+country_event = { #Poland - Form Zapadoslavia?
+	id = zapadoslavia.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.1"}
+	title = zapadoslavia.1.t
+	desc = zapadoslavia.1.d
+	picture = GFX_report_event_poland_map
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yes
+		name = zapadoslavia.1.a
+		ai_chance = { 
+			factor = 0
+			modifier = {
+                add = 9
+                OR = {
+                	POL = {
+                		owns_state = 766
+                	}
+                	CZE = {
+                		owns_state = 766
+                	}
+                }
+            }
+		}
+		hidden_effect = { 
+			CZE = { country_event = { days = 5 id = zapadoslavia.2 } }
+		}
+	}
+	option = { #No
+		name = zapadoslavia.1.b
+		ai_chance = { 
+			factor = 1
+		}
+	}
+}
+
+country_event = { #Czechoslovakia - Form Zapadoslavia?
+	id = zapadoslavia.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.2"}
+	title = zapadoslavia.2.t
+	desc = zapadoslavia.2.d
+	picture = GFX_report_event_poland_map
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yes
+		name = zapadoslavia.2.a
+			ai_chance = { 
+				factor = 90
+			}
+			hidden_effect = { POL = { country_event = { days = 5 id = zapadoslavia.3 } }
+		}
+	}
+	option = { #No
+		name = zapadoslavia.2.b
+			ai_chance = { 
+				factor = 10
+			}
+			hidden_effect = { POL = { country_event = { days = 5 id = zapadoslavia.4 } }
+		}
+	}
+}
+
+country_event = { #Zapadoslavia Formed!
+	id = zapadoslavia.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.3"}
+	title = zapadoslavia.3.t
+	desc = zapadoslavia.3.d
+	picture = GFX_report_event_poland_map
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = zapadoslavia.3.a
+		hidden_effect = {
+			annex_country = {
+    			target = CZE
+    			transfer_troops = yes
+			}
+			set_cosmetic_tag = POL_ZAP
+			set_capital = { state = 88 }
+			news_event = { days = 1 id = twrnews.59 }
+			complete_national_focus = ZAP_The_Unusual_Federation
+		}
+	}
+}
+
+country_event = { #Zapadoslavia not formed
+	id = zapadoslavia.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.4"}
+	title = zapadoslavia.4.t
+	desc = zapadoslavia.4.d
+	picture = GFX_report_event_poland_map
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = zapadoslavia.4.a
+	}
+}
+
+
+country_event = { #Slovakia demand
+	id = zapadoslavia.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.4"}
+	title = zapadoslavia.5.t
+	desc = zapadoslavia.5.d
+	picture = GFX_report_event_slovak_uni_protest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = zapadoslavia.5.a #Accept demands
+		ai_chance = {
+		factor = 50
+			modifier = {
+                factor = 0.6
+                has_completed_focus = SLO_Slovak_Statehood
+            }
+		}
+		every_unit_leader = {
+		set_nationality = FROM
+		}
+		FROM = {
+		country_event = { id = zapadoslavia.6 days = 1 }
+		}
+	}
+	option = {
+		name = zapadoslavia.5.alt #Accept demands switch tag
+		trigger = {
+		FROM = { is_ai = yes }
+		is_ai = no
+		}
+		every_unit_leader = {
+		set_nationality = FROM
+		}
+		FROM = {
+		country_event = { id = zapadoslavia.6 days = 1 }
+		change_tag_from = ROOT
+		}
+	}
+	option = {
+		name = zapadoslavia.5.b #Refuse demands
+		ai_chance = {
+		factor = 50
+			modifier = {
+                factor = 0
+                has_completed_focus = SLO_Czechoslovak_Ideals
+            }
+		}
+		FROM = {
+		country_event = { id = zapadoslavia.7 days = 1 }
+		}
+	}
+}
+
+country_event = { #Czechoslovakia Formed
+	id = zapadoslavia.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.6"}
+	title = zapadoslavia.6.t
+	desc = zapadoslavia.6.d
+	picture = GFX_report_event_slovak_uni_protest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = zapadoslavia.6.a
+		set_cosmetic_tag = CZE_SLO
+		SLO = {
+		every_unit_leader = {
+		set_unit_leader_flag = SLOVAKIANS_MILITARY_GENERALS
+		set_nationality = CZE
+			}
+		}
+		annex_country = {
+    	target = SLO
+    	transfer_troops = yes
+		}
+		add_stability = 0.1
+		news_event = zapadoslavia.8
+	}
+}
+country_event = { #Slovakia refuse
+	id = zapadoslavia.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.7"}
+	title = zapadoslavia.7.t
+	desc = zapadoslavia.7.d
+	picture = GFX_report_event_slovak_uni_protest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = zapadoslavia.7.a #Invade
+		ai_chance = {
+		factor = 50
+		}
+		declare_war_on = {
+    	target = SLO
+    	type = annex_everything
+		}
+		set_country_flag = HAD_WAR_WITH_SLOVAKIA
+		add_stability = -0.1
+		news_event = zapadoslavia.9
+	}
+	option = {
+		name = zapadoslavia.7.b #Leave them be
+		ai_chance = {
+		factor = 30
+		}
+	}
+}
+news_event = { #Czechoslovakia Reformed
+	id = zapadoslavia.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.8"}
+ 	title = zapadoslavia.8.t
+ 	desc = zapadoslavia.8.d
+ 	picture = GFX_news_event_czechoslovakia_reform
+	major = yes
+	fire_only_once = no
+	is_triggered_only = yes
+ 	
+ 	option = { 
+ 		name = zapadoslavia.8.a
+ 	}
+}
+news_event = { #Czech-Slovak War
+	id = zapadoslavia.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.9"}
+ 	title = zapadoslavia.9.t
+ 	desc = zapadoslavia.9.d
+ 	picture = GFX_news_event_czechoslovakia_reform
+	major = yes
+	fire_only_once = no
+	is_triggered_only = yes
+ 	
+ 	option = { 
+ 		name = zapadoslavia.9.a
+ 	}
+}
+news_event = { #Return ot the Czech Exile Government
+	id = zapadoslavia.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.10"}
+ 	title = zapadoslavia.10.t
+ 	desc = zapadoslavia.10.d
+ 	picture = GFX_news_event_czechoslovak_government_returns
+	major = yes
+	fire_only_once = no
+	is_triggered_only = yes
+ 	
+ 	option = { 
+ 		name = zapadoslavia.10.a
+ 	}
+}
+#Czechoslovakia wants us to rejoin, promises autonomy
+country_event = {
+	id = zapadoslavia.11
+	immediate = { log = "[GetDateText]: [ROOT.GetName]: event zapadoslavia.11" }
+	title = zapadoslavia.11.t
+	desc = zapadoslavia.11.d
+	is_triggered_only = yes
+	
+	option = {
+		name = zapadoslavia.11.a
+		ai_chance = {
+			factor = 80
+		}
+		effect_tooltip = {
+			CZE = {
+				annex_country = {
+					target = CKR
+					transfer_troops = yes
+				}
+				add_state_core = 73
+				73 = {
+					add_dynamic_modifier = { modifier = semi_autonomous_state }
+				}
+			}
+		}
+		hidden_effect = {
+			CZE = {
+				country_event = {
+					id = zapadoslavia.13
+					days = 2
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = zapadoslavia.11.b
+		ai_chance = {
+			factor = 20
+		}
+		CZE = {
+			country_event = {
+				id = zapadoslavia.12
+				days = 2
+			}
+		}
+	}
+}
+#They said no, prepare to die CKR
+country_event = {
+	id = zapadoslavia.12
+	immediate = { log = "[GetDateText]: [ROOT.GetName]: event zapadoslavia.12" }
+	title = zapadoslavia.12.t
+	desc = zapadoslavia.12.d
+	is_triggered_only = yes
+	
+	option = {
+		name = zapadoslavia.12.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+			limit = {
+				is_ai = no
+			}
+			create_wargoal = {
+				target = CKR
+				type = annex_everything
+			}
+		}
+		else = {
+			declare_war_on = {
+				target = CKR
+				type = annex_everything
+			}
+		}
+	}
+	
+	option = {
+		name = zapadoslavia.12.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+	}
+}
+#They said yes
+country_event = {
+	id = zapadoslavia.13
+	immediate = { log = "[GetDateText]: [ROOT.GetName]: event zapadoslavia.13" }
+	title = zapadoslavia.12.t
+	desc = zapadoslavia.12.d
+	is_triggered_only = yes
+	
+	option = {
+		name = zapadoslavia.13.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+			limit = {
+				CKR = {
+					is_ai = no
+				}
+			}
+			change_tag_from = CKR #Why why why are you playing that tag
+		}
+		annex_country = {
+			target = CKR
+			transfer_troops = yes
+		}
+		add_state_core = 73
+		73 = {
+			add_dynamic_modifier = { modifier = semi_autonomous_state }
+		}
+	}
+}
+
+country_event = { #slovakia - Join Zapadoslavia?
+	id = zapadoslavia.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.14"}
+	title = zapadoslavia.14.t
+	desc = zapadoslavia.14.d
+	picture = GFX_report_event_poland_map
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yes
+		name = zapadoslavia.14.a
+			ai_chance = { 
+				factor = 5
+			}
+			hidden_effect = { POL = { country_event = { days = 1 id = zapadoslavia.15 } }
+		}
+	}
+	option = { #No
+		name = zapadoslavia.14.b
+			ai_chance = { 
+				factor = 5
+			}
+			hidden_effect = { POL = { country_event = { days = 1 id = zapadoslavia.16 } }
+		}
+	}
+}
+
+country_event = { #Slovakia accepts
+	id = zapadoslavia.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.15"}
+	title = zapadoslavia.15.t
+	desc = zapadoslavia.15.d
+	picture = GFX_report_event_poland_map
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = zapadoslavia.15.a
+		annex_country = {
+    		target = SLO
+    		transfer_troops = yes
+		}
+	}
+}
+
+country_event = { #Slovakia refuses
+	id = zapadoslavia.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zapadoslavia.16"}
+	title = zapadoslavia.16.t
+	desc = zapadoslavia.16.d
+	picture = GFX_report_event_poland_map
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = zapadoslavia.16.a
+	}
+}
+
+#Czechia
+
+country_event = { #Czech Ceasefire
+	id = twrczechia.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrczechia.1"}
+	title = twrczechia.1.t
+	desc = twrczechia.1.d
+	picture = GFX_report_event_prague_protest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yes
+		name = twrczechia.1.a
+		add_stability = 0.1
+		news_event = twrczechia.2
+		transfer_state = 75
+		if = {
+		limit = { controls_state = 72 }
+		transfer_state = 72
+			}
+		if = {
+		limit = { controls_state = 74 }
+		transfer_state = 74
+			}
+		if = {
+		limit = { controls_state = 69 }
+		transfer_state = 69
+			}
+		white_peace_with_all = yes
+		}
+	}
+news_event = { #Czeech Ceasefire
+	id = twrczechia.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrczechia.2"}
+ 	title = twrczechia.2.t
+ 	desc = twrczechia.2.d
+ 	picture = GFX_news_event_czech_ceasefire
+	major = yes
+	fire_only_once = no
+	is_triggered_only = yes
+ 	
+ 	option = { 
+ 		name = twrczechia.2.a
+ 		trigger = { tag = CZE }
+ 	}
+ 	option = { 
+ 		name = twrczechia.2.b
+ 		trigger = {
+ 		NOT = {
+ 		tag = CZE 
+ 			}
+ 		}
+ 	}
+}

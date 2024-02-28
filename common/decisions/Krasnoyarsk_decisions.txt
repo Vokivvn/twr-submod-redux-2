@@ -1,0 +1,549 @@
+KRA_debug = {
+	KRA_debug_load_start = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = KRA_starting_focus_tree
+		}
+	}
+	KRA_debug_load_unification = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = KRA_central_unification_focus
+		}
+	}
+	KRA_debug_load_kosygin = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = KRA_kosygin_tree
+		}
+	}
+	KRA_debug_load_zhukov_maintain_power = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = KRA_zhukov_maintains_power_tree
+		}
+	}
+	KRA_debug_load_zhukov_maintain_power2 = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = KRA_zhukov_maintains_power_tree2
+		}
+	}
+	KRA_debug_load_zhukov_death = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = KRA_zhukov_death_tree
+		}
+	}
+	KRA_debug_load_malinovsky = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = KRA_malinovsky_tree
+		}
+	}
+	KRA_debug_load_pdr = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = IRK_focus_tree
+		}
+	}
+	KRA_debug_load_emergency_government = {
+		cost = freedec?0
+		complete_effect = {
+			load_focus_tree = KCS_focus_tree
+		}
+	}
+}
+
+KRA_foreign_policy = {
+}
+political_actions = {
+	KRA_reunif = {
+		icon = generic_flags
+		allowed = {
+			tag = KRA
+		}
+		activation = {
+			NOT = {
+			country_exists = TRV
+			country_exists = SOV
+			country_exists = RUS
+			country_exists = NRI
+			country_exists = NOV
+			country_exists = BRY
+			country_exists = KAZ
+			country_exists = RFP
+			country_exists = SBR	
+			}
+			KRA = {
+				has_country_flag = KRA_regional_tree_complete
+			}
+		}
+		selectable_mission = yes
+		days_mission_timeout = 5
+		is_good = no
+		cost = freedec?0
+		fire_only_once = yes
+		cancel_trigger = {
+		}
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision KRA_reunif"
+		if = {
+			limit = {
+				has_country_flag = sp_Kosygin
+			}
+			news_event = { id = twrkrasnoyarsk.21 } #Kosygin has more power
+			set_cosmetic_tag = KRA_KOS_UNIF
+		}
+		if = {
+			limit = {
+				has_country_flag = sp_Alexander
+			}
+			news_event = { id = twrkrasnoyarsk.20 } #Zhukov Keeps his power (Clique)
+			set_cosmetic_tag = KRA_CLIQE_UNIF
+		}
+		if = {
+			limit = {
+				has_country_flag = sp_Orudzhev
+			}
+			news_event = { id = twrkrasnoyarsk.222 } #Zhukov Keeps his power (Commitee)
+			set_cosmetic_tag = KRA_COMMITEE_UNIF
+		}
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout KRA_reunif"
+		if = {
+			limit = {
+				has_country_flag = sp_Kosygin
+			}
+			news_event = { id = twrkrasnoyarsk.21 } #Kosygin has more power
+			set_cosmetic_tag = KRA_KOS_UNIF
+		}
+		if = {
+			limit = {
+				has_country_flag = sp_Alexander
+			}
+			news_event = { id = twrkrasnoyarsk.20 } #Zhukov Keeps his power (Clique)
+			set_cosmetic_tag = KRA_CLIQE_UNIF
+		}
+		if = {
+			limit = {
+				has_country_flag = sp_Orudzhev
+			}
+			news_event = { id = twrkrasnoyarsk.222 } #Zhukov Keeps his power (Commitee)
+			set_cosmetic_tag = KRA_COMMITEE_UNIF
+		}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+}
+foreign_politics = {
+	KRA_Kill_Afghanistan = {
+		allowed = { tag = KRA }
+		icon = generic_nationalism
+		available = {
+			AFG = {
+				exists = no
+			}
+		}
+		activation = {
+			has_war_with = AFG
+		}
+		is_good = no
+		days_mission_timeout = 200
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout KRA_Kill_Afghanistan"
+			country_event = { id = twrkrasnoyarsk_kosygin.31 }
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision complete KRA_Kill_Afghanistan"
+			country_event = { id = twrkrasnoyarsk_kosygin.32 }
+		}
+	}
+}
+
+KCS_SEOs = {
+	KCS_arkhangelsk_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 214
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+            214 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				214 = {
+					add_dynamic_modifier = { modifier = arkhangelsk_seo_flag_i }
+            	}
+			}
+		}
+	}
+	KCS_talinn_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 13
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+            13 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				13 = {
+					add_dynamic_modifier = { modifier = talinn_seo_flag_i }
+				}
+			}
+		}
+	}
+	KCS_dolgikhgrad_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 13
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+            137 = {
+            	set_state_name = KCS_Dolgikhgrad
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				137 = {
+					add_dynamic_modifier = { modifier = dolgikhgrad_seo_flag_i }
+            	}
+			}
+		}
+	}
+	KCS_magadan_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 562
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 90
+		complete_effect = {
+            562 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				562 = {
+					add_dynamic_modifier = { modifier = magadan_seo_flag_i }
+            	}
+			}
+		}
+	}	
+	KCS_kharbarovsk_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 409
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+            409 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				409 = {
+					add_dynamic_modifier = { modifier = kharbarovsk_seo_flag_i }
+            	}
+			}
+		}
+	}
+	KCS_vitebsk_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 207
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+            207 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				207 = {
+					add_dynamic_modifier = { modifier = vitebsk_seo_flag_i }
+            	}
+			}
+		}
+	}
+	KCS_suvorovgrad_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 217
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+            217 = {
+            	set_state_name = KCS_suvorovgrad
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				217 = {
+					add_dynamic_modifier = { modifier = suvorovgrad_seo_flag_i }
+            	}
+			}
+		}
+	}
+	KCS_rostov_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 218
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+            218 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				218 = {
+					add_dynamic_modifier = { modifier = rostov_seo_flag_i }
+            	}
+			}
+		}
+	}
+	KCS_norilsk_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 1021
+			owns_state = 516
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+            1021 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+            516 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+            }
+			hidden_effect = {
+				1021 = {
+					add_dynamic_modifier = { modifier = norilsk_seo_flag_i }
+					}
+				516 = {
+					add_dynamic_modifier = { modifier = norilsk_seo_flag_i }
+            	}
+			}
+		}
+	}
+	KCS_moscow_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 1021
+			owns_state = 516
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+            219 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+            1003 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+            }
+			hidden_effect = {
+				219 = {
+					add_dynamic_modifier = { modifier = moscow_seo_flag_i }
+					}
+				1003 = {
+					add_dynamic_modifier = { modifier = moscow_seo_flag_i }
+            	}
+			}
+		}
+	}
+	KCS_magnitogorsk_seo = {
+		allowed = {
+			tag = KCS
+		}
+		icon = eng_trade_unions_support
+		available = {
+			owns_state = 582
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 100
+		complete_effect = {
+            582 = {
+                custom_effect_tooltip = setup_seo_here
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+			hidden_effect = {
+				582 = {
+					add_dynamic_modifier = { modifier = magnitogorsk_seo_flag_i }
+            	}
+			}
+		}
+	}
+}

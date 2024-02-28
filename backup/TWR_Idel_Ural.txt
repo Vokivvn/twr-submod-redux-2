@@ -1,0 +1,645 @@
+	
+	shared_focus = {
+	cancelable = no
+		id = IDE_The_General_Strike_Begins
+		icon = GFX_GENERIC_Strike
+		cost = 0
+		x = 42
+		y = 0
+		ai_will_do = { 
+			factor = 100
+		} 
+		available_if_capitulated = no
+		available = {
+			always = no
+		}
+
+	completion_reward = {
+			add_ideas = IDE_General_Strike
+			}
+		}
+	
+	shared_focus = {
+	cancelable = no 
+		id = IDE_The_Workers_Wont_Win
+		icon = GFX_GENERIC_Crush_the_Workers
+
+		x = -5
+		y = 1
+		cost = 0.8
+		
+		prerequisite = { focus = IDE_The_General_Strike_Begins } 
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_General_Strike_Begins
+		completion_reward = {
+			add_political_power = 50
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Establish_the_Anti_Strike_Work_Force
+		icon = GFX_GENERIC_workers_rights
+
+		x = -1
+		y = 1
+		cost = 4.3
+		
+		prerequisite = { focus = IDE_The_Workers_Wont_Win } 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_The_Workers_Wont_Win
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = IDE_General_Strike
+				add_idea = IDE_General_Strike_Anti_Strike
+					}
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Higher_Pay_for_those_Willing_to_Work
+		icon = GFX_GENERIC_money
+
+		x = 0
+		y = 1
+		cost = 2.2
+		
+		prerequisite = { focus = IDE_Establish_the_Anti_Strike_Work_Force } 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_Establish_the_Anti_Strike_Work_Force
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = IDE_General_Strike_Anti_Strike
+				add_idea = IDE_General_Strike_Higher_Pay
+					}
+			}
+		}
+	
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Infiltrate_the_Unions
+		icon = GFX_GENERIC_another_spy
+
+		x = 1
+		y = 1
+		cost = 8.7
+		
+		prerequisite = { focus = IDE_The_Workers_Wont_Win } 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_The_Workers_Wont_Win
+		completion_reward = {
+			add_ideas = IDE_Agents_in_the_Unions
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Establish_Anti_Protest_Laws
+		icon = GFX_GENERIC_Anti_Protest_Law
+
+		x = 0
+		y = 1
+		cost = 5.8
+		
+		prerequisite = { focus = IDE_Infiltrate_the_Unions } 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_Infiltrate_the_Unions
+		completion_reward = {
+			add_political_power = 25
+			add_stability = -0.02
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Open_Doors_to_Foreign_Workers
+		icon = GFX_GENERIC_minority_aimed_projects
+
+		x = -1
+		y = 1
+		cost = 0.8
+		
+		prerequisite = { 
+		focus = IDE_Higher_Pay_for_those_Willing_to_Work 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_Higher_Pay_for_those_Willing_to_Work
+		completion_reward = {
+			add_ideas = IDE_Foreign_Workers
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Contracts_with_German_Companies
+		icon = GFX_GER_Diplomacy_Suitcase
+
+		x = 1
+		y = 1
+		cost = 5
+		
+		prerequisite = { 
+		focus = IDE_Higher_Pay_for_those_Willing_to_Work 
+		focus = IDE_Establish_Anti_Protest_Laws
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_Higher_Pay_for_those_Willing_to_Work
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_If_not_Man_then_Woman_and_Child
+		icon = GFX_GENERIC_Child_Worker
+
+		x = 1
+		y = 1
+		cost = 9.4
+		
+		prerequisite = { 
+		focus = IDE_Establish_Anti_Protest_Laws
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_Establish_Anti_Protest_Laws
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = IDE_General_Strike_Higher_Pay
+				add_idea = IDE_General_Strike_Child_Workers
+					}
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Martial_Law_in_Every_Workplace
+		icon = GFX_GENERIC_Police_Equipment
+		
+		x = 1
+		y = 1
+		cost = 3.6
+		
+		prerequisite = { 
+		focus = IDE_Open_Doors_to_Foreign_Workers
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_Open_Doors_to_Foreign_Workers
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = IDE_General_Strike_Child_Workers
+				add_idea = IDE_General_Strike_Martial_Law
+					}
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Crush_the_Unions
+		icon = GFX_goal_anti_comintern_pact
+		
+		x = -1
+		y = 1
+		cost = 10
+		
+		prerequisite = { 
+		focus = IDE_If_not_Man_then_Woman_and_Child
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_If_not_Man_then_Woman_and_Child
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Slavery_for_those_who_Protest
+		icon = GFX_GER_Slavery
+		
+		x = 1
+		y = 1
+		cost = 5
+		
+		prerequisite = { 
+		focus = IDE_Martial_Law_in_Every_Workplace
+		} 
+		prerequisite = { 
+		focus = IDE_Crush_the_Unions
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		
+		relative_position_id = IDE_Martial_Law_in_Every_Workplace
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = IDE_General_Strike_Martial_Law
+				add_idea = IDE_General_Strike_Slavery
+					}
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_We_Rule_This_Country
+		icon = GFX_GENERIC_Auth_Dem
+		
+		x = 0
+		y = 1
+		cost = 0.8
+		
+		prerequisite = { 
+		focus = IDE_The_General_Strike_Begins 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_General_Strike_Begins
+		completion_reward = {
+			add_stability = 0.05
+			}
+		}
+	
+	shared_focus = {
+	cancelable = no 
+		id = IDE_The_Worker_Police
+		icon = GFX_GENERIC_Worker_Police
+		
+		x = 0
+		y = 1
+		cost = 9.4
+		
+		prerequisite = { 
+		focus = IDE_We_Rule_This_Country 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_We_Rule_This_Country
+		completion_reward = {
+			add_ideas = IDE_Work_Police
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Burn_the_Bolshevik_Newspapers
+		icon = GFX_GENERIC_Burn_Soviet_News
+		
+		x = -1
+		y = 1
+		cost = 12.2
+		
+		prerequisite = { 
+		focus = IDE_The_Worker_Police 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_Worker_Police
+		completion_reward = {
+			add_ideas = IDE_State_Media_Only
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Imprison_the_Workers_Party
+		icon = GFX_GENERIC_Mass_Imprisonment
+		
+		x = 1
+		y = 1
+		cost = 10
+		
+		prerequisite = { 
+		focus = IDE_The_Worker_Police 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_Worker_Police
+		completion_reward = {
+			add_stability = 0.02
+			add_ideas = IDE_One_Party_State
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_No_Speech_for_those_who_Protest
+		icon = GFX_GENERIC_gag
+		
+		x = 1
+		y = 1
+		cost = 5
+		
+		prerequisite = { 
+		focus = IDE_Burn_the_Bolshevik_Newspapers 
+		} 
+		prerequisite = { 
+		focus = IDE_Imprison_the_Workers_Party 
+		}
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_Burn_the_Bolshevik_Newspapers
+		completion_reward = {
+			add_political_power = 50
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_The_Economy_Above_the_Worker
+		icon = GFX_GENERIC_planned_economy
+		
+		x = 4
+		y = 1
+		cost = 0.8
+		
+		prerequisite = { 
+		focus = IDE_The_General_Strike_Begins 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_General_Strike_Begins
+		completion_reward = {
+			add_ideas = IDE_Economic_Profit_Above_Humanity
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Bread_for_those_who_Cooperate
+		icon = GFX_IDE_Bread_for_those_who_Cooperate
+		
+		x = -1
+		y = 1
+		cost = 8.6
+		
+		prerequisite = { 
+		focus = IDE_The_Economy_Above_the_Worker 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_Economy_Above_the_Worker
+		completion_reward = {
+			add_ideas = IDE_Food_for_Loyalists
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Camps_for_those_who_Resist
+		icon = GFX_SOV_gulag_labour
+		
+		x = 1
+		y = 1
+		cost = 8.6
+		
+		prerequisite = { 
+		focus = IDE_The_Economy_Above_the_Worker 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_Economy_Above_the_Worker
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+			}
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_The_New_State_Oligarchy
+		icon = GFX_SOV_create_oligarchs
+		
+		x = 1
+		y = 1
+		cost = 1
+		
+		prerequisite = { 
+		focus = IDE_Bread_for_those_who_Cooperate 
+		} 
+		prerequisite = { 
+		focus = IDE_Camps_for_those_who_Resist 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_Bread_for_those_who_Cooperate
+		completion_reward = {
+			add_political_power = 150
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_No_Workers_Rights
+		icon = GFX_GENERIC_Restricting_Workers_Right
+		
+		x = -1
+		y = 1
+		cost = 5
+		
+		prerequisite = { 
+		focus = IDE_The_New_State_Oligarchy 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_New_State_Oligarchy
+		completion_reward = {
+			add_ideas = IDE_No_Rights_for_Workers
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Slave_Trade_with_Germany
+		icon = GFX_GENERIC_Slavery
+		
+		x = 1
+		y = 1
+		cost = 2.2
+		
+		prerequisite = { 
+		focus = IDE_The_New_State_Oligarchy 
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_The_New_State_Oligarchy
+		completion_reward = {
+			add_ideas = IDE_Free_Slavery
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_Work_or_Be_Homeless
+		icon = GFX_GENERIC_Death_Factory
+		
+		x = 1
+		y = 1
+		cost = 7.9
+		
+		prerequisite = { 
+		focus = IDE_No_Workers_Rights
+		} 
+		prerequisite = { 
+		focus = IDE_Slave_Trade_with_Germany 
+		} 
+		
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_No_Workers_Rights
+		completion_reward = {
+			add_ideas = IDE_Build_Your_Homes
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_No_Rights_for_Those_who_Protest
+		icon = GFX_GENERIC_Skull_Torn_Treaty
+		
+		x = 0
+		y = 1
+		cost = 5
+		
+		prerequisite = { 
+		focus = IDE_Work_or_Be_Homeless
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_Work_or_Be_Homeless
+		completion_reward = {
+			add_stability = 0.1
+			}
+		}
+		
+	shared_focus = {
+	cancelable = no 
+		id = IDE_The_Workers_Have_Been_Crushed
+		icon = GFX_IDE_Crush_Workers
+		
+		x = 0
+		y = 3
+		cost = 10
+		
+		prerequisite = { 
+		focus = IDE_Slavery_for_those_who_Protest
+		} 
+		prerequisite = { 
+		focus = IDE_No_Speech_for_those_who_Protest
+		} 
+		prerequisite = { 
+		focus = IDE_No_Rights_for_Those_who_Protest
+		} 
+		
+		available_if_capitulated = yes 
+		ai_will_do = { 
+			factor = 100
+		} 
+		relative_position_id = IDE_No_Speech_for_those_who_Protest
+		completion_reward = {
+			remove_ideas = IDE_General_Strike_Slavery
+			}
+		}

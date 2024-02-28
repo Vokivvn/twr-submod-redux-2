@@ -1,0 +1,87 @@
+SLO_DEBT = {
+	icon = GFX_decision_category_generic
+
+	allowed = {
+        tag = SLO
+	}
+	visible = {
+        GER = {
+        exists = yes
+        }
+        NOT = {
+        has_country_flag = SLO_DEBT_PAID
+        }
+        tag = SLO
+	}	
+	visible_when_empty = yes
+
+        scripted_gui = TWR_SLO_DEBT_Scripted_GUI
+
+	priority = 100
+}
+
+SLO_Governor = {
+	icon = GFX_decision_category_generic
+
+	allowed = {
+        tag = SLO
+	}
+	visible = {
+        SLO = {
+        has_completed_focus = SLO_Go_With_The_Governor
+        }
+	}	
+
+	priority = 90
+}
+
+SLO_Secretary = {
+	icon = GFX_decision_category_generic
+
+	allowed = {
+        tag = SLO
+	}
+	visible = {
+        SLO = {
+        has_completed_focus = SLO_Go_With_The_Secretary
+        }
+	}	
+
+	priority = 90
+}
+
+SLO_Military_Professionalism = {
+	icon = GFX_decision_category_army_reform
+
+	allowed = {
+        tag = SLO
+	}
+	visible = {
+        NOT = { has_country_flag = SLO_Army_Modern }
+        tag = SLO
+	}	
+	visible_when_empty = yes
+ 
+        scripted_gui = TWR_SLO_ARMY
+
+	priority = 80
+}
+
+SLO_Support_Czech_Brothers = {
+	icon = GFX_decision_category_army_reform
+
+	allowed = {
+        tag = SLO
+	}
+	visible = {
+        tag = SLO
+        has_country_flag = CZE_ASSIST
+        country_exists = CZE
+        CZE = {
+        has_war = yes
+        }
+        has_global_flag = german_civil_war_started
+        has_global_flag = czech_revolt
+	}	
+	priority = 80
+}

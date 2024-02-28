@@ -1,0 +1,1563 @@
+#################################################
+###===========| SERBIA LJOTIC |===============###
+###======| Made by Canadian Lizard  |=========###
+####=========| Coded by GreyShadow |=========####
+#################################################
+
+	##########################
+	### LJOTIC  FOCUS TREE ###
+	##########################
+
+    shared_focus = {
+		cancelable = no
+		id = SER_The_Fatherland_Reborn
+		icon = GFX_SER_focus_New_Fatherland
+		x = 7
+		y = 0
+		cost = 1
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Fatherland_Reborn"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+			hidden_effect = {
+				country_event = { hours = 5 id = twrserbiaflavour.94 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Securing_the_New_State
+		icon = GFX_SER_focus_Secure_the_New_State
+		prerequisite = { focus = SER_The_Fatherland_Reborn }
+		x = 0
+		y = 1
+		relative_position_id = SER_The_Fatherland_Reborn
+		cost = 6
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Securing_the_New_State"
+			swap_ideas = {
+				remove_idea = SER_recovering_from_civil_war
+				add_idea = SER_recovering_from_civil_war_2
+			}
+			country_event = { hours = 5 id = twrserbiaflavour.95 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_Green_Terror
+		icon = GFX_SER_focus_The_Green_Terror
+		prerequisite = { focus = SER_Securing_the_New_State }
+		x = 0
+		y = 1
+		relative_position_id = SER_Securing_the_New_State
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_Green_Terror"
+			add_timed_idea = {
+				idea = SER_green_terror
+				days = 220
+			}
+			country_event = { hours = 5 id = twrserbiaflavour.96 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_New_State_Security
+		icon = GFX_GER_security_act
+		prerequisite = { focus = SER_The_Green_Terror }
+		x = -2
+		y = 1
+		relative_position_id = SER_The_Green_Terror
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_New_State_Security"
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				create_intelligence_agency = yes
+			}
+			add_ideas = SER_state_security
+			country_event = { hours = 5 id = twrserbiaflavour.97 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Mobilize_the_White_Eagles
+		icon = GFX_SER_focus_Mobilize_White_Eagles
+		prerequisite = { focus = SER_The_Green_Terror }
+		x = 0
+		y = 1
+		relative_position_id = SER_The_Green_Terror
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Mobilize_the_White_Eagles"
+			add_ideas = SER_white_eagles
+			country_event = { hours = 5 id = twrserbiaflavour.98 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Class_Collaboration
+		icon = GFX_GENERIC_Compromise_With_Capitalists
+		prerequisite = { focus = SER_The_Green_Terror }
+		x = 2
+		y = 1
+		relative_position_id = SER_The_Green_Terror
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Class_Collaboration"
+			remove_ideas = SER_recovering_from_civil_war_2
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Protect_our_Faith
+		icon = GFX_GENERIC_Orthodox_Secular
+		prerequisite = { focus = SER_A_New_State_Security }
+		prerequisite = { focus = SER_Mobilize_the_White_Eagles }
+		x = 1
+		y = 1
+		relative_position_id = SER_A_New_State_Security
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Protect_our_Faith"
+			swap_ideas = {
+				remove_idea = SER_white_eagles
+				add_idea = SER_white_eagles_2
+			}
+			country_event = { hours = 5 id = twrserbiaflavour.99 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_New_Fascist_Constitution
+		icon = GFX_GENERIC_Adapt_Constitution
+		prerequisite = { focus = SER_Protect_our_Faith }
+		x = 0
+		y = 1
+		relative_position_id = SER_Protect_our_Faith
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_New_Fascist_Constitution"
+			add_stability = -0.1
+			add_political_power = -50
+			country_event = { hours = 5 id = twrserbiaflavour.101 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Embracing_Homogenous_Serbia
+		icon = GFX_SER_focus_homogenous_serbia_theory
+		prerequisite = { focus = SER_Mobilize_the_White_Eagles }
+		prerequisite = { focus = SER_Class_Collaboration }
+		x = 1
+		y = 1
+		relative_position_id = SER_Mobilize_the_White_Eagles
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Embracing_Homogenous_Serbia"
+			add_timed_idea = {
+				idea = SER_homogeneous_serbia_ljotic
+				days = 160
+			}
+			country_event = { hours = 5 id = twrserbiaflavour.100 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Strict_State_Orthodoxy
+		icon = GFX_GENERIC_Orthodoxy
+		prerequisite = { focus = SER_Embracing_Homogenous_Serbia }
+		x = 0
+		y = 1
+		relative_position_id = SER_Embracing_Homogenous_Serbia
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Strict_State_Orthodoxy"
+			add_stability = 0.15
+			add_war_support = 0.15
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_New_Regency
+		icon = GFX_SER_focus_New_Regency
+		prerequisite = { focus = SER_A_New_Fascist_Constitution }
+		prerequisite = { focus = SER_Strict_State_Orthodoxy }
+		x = 1
+		y = 1
+		relative_position_id = SER_A_New_Fascist_Constitution
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_New_Regency"
+			SER = {
+				add_dynamic_modifier = {
+					modifier = SER_fascist_state
+				}
+			}
+			set_country_flag = has_symbolic_figurehead
+			set_country_flag = SER_vacant_throne
+			set_cosmetic_tag = SER_KGS
+			set_variable = { SER_fascist_state_political_power_gain = 0 }
+			set_variable = { SER_fascist_state_land_reinforce_rate = 0 }
+			set_variable = { SER_fascist_state_army_morale_factor = 0 }
+			set_variable = { SER_fascist_state_monthly_pop = 0 }
+			set_variable = { SER_fascist_state_consumer_goods = 0 }
+			set_variable = { SER_fascist_state_conscription = 0 }
+			country_event = { hours = 5 id = twrserbiaflavour.102 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_An_Organic_Bureaucracy
+		icon = GFX_SER_focus_Organic_Bureaucracy
+		prerequisite = { focus = SER_A_New_Regency }
+		x = -2
+		y = 1
+		relative_position_id = SER_A_New_Regency
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_An_Organic_Bureaucracy"
+			set_variable = { SER_fascist_state_political_power_gain = 0.1 }
+			custom_effect_tooltip = SER_fascist_state_political_power_gain_tt
+			country_event = { hours = 5 id = twrserbiaflavour.103 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Our_Blood_for_Our_Destiny
+		icon = GFX_GENERIC_From_the_depths
+		prerequisite = { focus = SER_An_Organic_Bureaucracy }
+		x = 0
+		y = 1
+		relative_position_id = SER_An_Organic_Bureaucracy
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_Blood_for_Our_Destiny"
+			set_variable = { SER_fascist_state_land_reinforce_rate = 0.05 }
+			set_variable = { SER_fascist_state_army_morale_factor = 0.08 }
+			custom_effect_tooltip = SER_fascist_state_land_reinforce_rate_army_morale_tt
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Protect_the_Serbian_Family
+		icon = GFX_GENERIC_Family
+		prerequisite = { focus = SER_A_New_Regency }
+		x = 0
+		y = 1
+		relative_position_id = SER_A_New_Regency
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Protect_the_Serbian_Family"
+			set_variable = { SER_fascist_state_monthly_pop = 0.10 }
+			custom_effect_tooltip = SER_fascist_state_monthly_pop_tt
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Destroy_Western_Decadence
+		icon = GFX_SAF_Emergency_Act
+		prerequisite = { focus = SER_Protect_the_Serbian_Family }
+		x = 0
+		y = 1
+		relative_position_id = SER_Protect_the_Serbian_Family
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Destroy_Western_Decadence"
+			add_timed_idea = {
+				idea = SER_destroyed_western_decadence
+				days = 100
+			}
+			country_event = { hours = 5 id = twrserbiaflavour.104 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Power_of_the_Peasants
+		icon = GFX_SER_focus_farmer_battalions
+		prerequisite = { focus = SER_A_New_Regency }
+		x = 2
+		y = 1
+		relative_position_id = SER_A_New_Regency
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Power_of_the_Peasants"
+			set_variable = { SER_fascist_state_consumer_goods = -0.04 }
+			custom_effect_tooltip = SER_fascist_state_consumer_goods_tt
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Found_the_Labour_Service_Troikas
+		icon = GFX_GER_Labourist
+		prerequisite = { focus = SER_Power_of_the_Peasants }
+		x = 0
+		y = 1
+		relative_position_id = SER_Power_of_the_Peasants
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Found_the_Labour_Service_Troikas"
+			set_variable = { SER_fascist_state_conscription = 0.05 }
+			custom_effect_tooltip = SER_fascist_state_conscription_tt
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Our_Spirit_and_Strength_is_Unbreakable
+		icon = GFX_SER_focus_Unbreakable_Spirit
+		prerequisite = { focus = SER_Our_Blood_for_Our_Destiny }
+		prerequisite = { focus = SER_Destroy_Western_Decadence }
+		prerequisite = { focus = SER_Found_the_Labour_Service_Troikas }
+		x = 0
+		y = 1
+		relative_position_id = SER_Destroy_Western_Decadence
+		available = {
+			has_completed_focus = SER_Organic_Diplomacy
+			has_completed_focus = SER_Our_Sacred_Homeland_Secured
+			has_completed_focus = SER_The_New_Balkan_Tiger_ljotic
+			has_completed_focus = SER_Defence_of_the_Adriatic_Fascist
+			has_completed_focus = SER_Resource_Nationalization_Fascist
+			has_completed_focus = SER_Mother_Serbia_Watches_Over_Her_Sons
+		}
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_Spirit_and_Strength_is_Unbreakable"
+			add_ideas = fanatical_dictatorship
+			remove_country_leader_trait = unpopular_figurehead
+			add_country_leader_trait = dictator
+			country_event = { hours = 5 id = twrserbiaflavour.105 }
+			set_country_leader_portrait = {
+				ideology = fascist
+				portrait = GFX_portrait_Dimitrije_Ljotic_1960
+			}
+		}
+	}
+	
+	###################################
+	### LJOTIC EXPANSION PATH
+	###################################
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Union_If_You_can_Keep_It
+		icon = GFX_SER_focus_A_Union_if_you_can_Keep_it
+		x = 1
+		y = 0
+		cost = 6
+		ai_will_do = {
+		    factor = 2
+			
+			modifier = {
+				factor = 18
+				
+				has_army_manpower = {
+					size > 49999
+				}
+				num_of_factories > 10
+			}
+		}
+		cancel_if_invalid = yes
+		available = {
+			has_army_manpower = {
+				size > 49999
+			}
+			num_of_factories > 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Union_If_You_can_Keep_It"
+			add_war_support = 0.15
+			add_state_core = 105 #Montenegro
+			add_state_core = 104 #Bosnia
+			add_state_core = 983 #Herzegovina
+			add_state_core = 103 #Dalmatia
+			add_state_core = 163 #Zara
+			add_state_core = 1030 #Slavonia
+			add_state_core = 980 #Western Macedonia
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_renewed_Offer_to_Janko
+		icon = GFX_GENERIC_An_Offer
+		prerequisite = { focus = SER_A_Union_If_You_can_Keep_It }
+		relative_position_id = SER_A_Union_If_You_can_Keep_It
+		x = 0
+		y = 1
+		cost = 6
+		cancel_if_invalid = yes
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+		    factor = 18
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 772
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_renewed_Offer_to_Janko"
+			if = {
+				limit = {
+					SBA = {
+						exists = yes
+					}
+				}
+				SBA = {
+					country_event = { days = 1 id = twrserbia.157 }
+				}
+				else_if = {
+					limit = {
+						BNT = {
+							owns_state = 772
+						}
+					}
+					HUN = {
+						country_event = { days = 1 id = twrserbia.86 }
+					}
+				}
+				else = {
+					772 = {
+						owner = {
+							SER = {
+								create_wargoal = {
+									type = annex_everything
+									target = PREV
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Union_With_Our_Southern_Brothers
+		icon = GFX_SER_focus_unite_the_lost_brothers
+		prerequisite = { focus = SER_A_renewed_Offer_to_Janko }
+		relative_position_id = SER_A_renewed_Offer_to_Janko
+		x = 0
+		y = 1
+		cost = 6
+		cancel_if_invalid = yes
+		available = {
+			has_war = no
+			ITA = {
+			is_fascist = yes
+			exists = yes
+			}
+		}
+		ai_will_do = {
+		    factor = 18
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 105
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_renewed_Offer_to_Janko"
+			ITA = {
+				country_event = { days = 1 id = twrserbia.160 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Negotiate_for_Vojvodina
+		icon = GFX_SER_focus_Ask_Hungary_for_Vojvodina
+		prerequisite = { focus = SER_A_renewed_Offer_to_Janko }
+		relative_position_id = SER_A_renewed_Offer_to_Janko
+		x = -2
+		y = 1
+		cost = 6
+		cancel_if_invalid = yes
+		available = {
+			has_war = no
+			owns_state = 772
+		}
+		ai_will_do = {
+		    factor = 18
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 45
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Negotiate_for_Vojvodina"
+			if = {
+				limit = {
+					HUN = {
+						owns_state = 45
+					}
+				}
+				HUN = {
+					country_event = { days = 1 id = twrserbia.163 }
+				}
+				else = {
+					45 = {
+						owner = {
+							SER = {
+								create_wargoal = {
+									type = annex_everything
+									target = PREV
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Stabilize_Kosovo
+		icon = GFX_SER_focus_bring_order_to_pristina
+		prerequisite = { focus = SER_A_renewed_Offer_to_Janko }
+		relative_position_id = SER_A_renewed_Offer_to_Janko
+		x = 2
+		y = 1
+		cost = 6
+		cancel_if_invalid = yes
+		available = {
+			has_war = no
+			ALB = {
+				OR = {
+					has_government = bolshevik_leninist
+					has_government = marxist_leninist
+					has_government = socialist
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 18
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 818
+				owns_state = 980
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Stabilize_Kosovo"
+			create_wargoal = {
+				type = annex_everything
+				target = ALB
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Enforce_Serbian_Hegemony
+		icon = GFX_CRO_Italian_Supervision
+		prerequisite = { focus = SER_A_Union_With_Our_Southern_Brothers }
+		relative_position_id = SER_A_Union_With_Our_Southern_Brothers
+		x = 0
+		y = 1
+		cost = 6
+		cancel_if_invalid = yes
+		available = {
+			has_war = no
+		}
+		bypass = {
+			ROOT = {
+				owns_state = 819
+				owns_state = 982
+				owns_state = 1030
+				owns_state = 981
+				owns_state = 104
+				owns_state = 983
+			}
+		}
+		ai_will_do = {
+		    factor = 18
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Enforce_Serbian_Hegemony"
+			create_wargoal = {
+				type = annex_everything
+				target = CRO
+			}
+			if = {
+				limit = {
+					BOS = { exists = yes }
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BOS
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Our_Sacred_Homeland_Secured
+		icon = GFX_SER_focus_Our_Sacred_Homeland
+		prerequisite = { focus = SER_Enforce_Serbian_Hegemony }
+		relative_position_id = SER_Enforce_Serbian_Hegemony
+		x = 0
+		y = 1
+		cost = 6
+		cancel_if_invalid = yes
+		ai_will_do = {
+		    factor = 18
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_Sacred_Homeland_Secured"
+			add_stability = 0.1
+			add_war_support = 0.1
+			add_political_power = 100
+		}
+	}
+	
+	##################################
+	### LJOTIC DIPLOMACY
+	##################################
+
+	shared_focus = {
+		cancelable = no
+		id = SER_Back_on_the_World_Stage
+		icon = GFX_SER_focus_Zbor_Diplomacy
+		x = -12
+		y = 0
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Back_on_the_World_Stage"
+			add_political_power = 70
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Between_Fascists
+		icon = GFX_GENERIC_Between_Fascists
+		prerequisite = { focus = SER_Back_on_the_World_Stage }
+		relative_position_id = SER_Back_on_the_World_Stage
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Between_Fascists"
+			country_event = { hours = 8 id = twrserbia.166 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_With_Rome
+		icon = GFX_SPA_close_to_italy
+		prerequisite = { focus = SER_Between_Fascists }
+		mutually_exclusive = { focus = SER_With_Germania }
+		relative_position_id = SER_Between_Fascists
+		x = -2
+		y = 1
+		cost = 6
+		available = {
+			has_country_flag = SER_italians_chosen
+			ITA = {
+				is_fascist = yes
+				exists = yes
+				has_war = no
+			}
+		}
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Between_Fascists"
+			add_ideas = SER_Italian_Cooperation
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Patching_the_Mend
+		icon = GFX_GENERIC_Alliance_with_Italy
+		prerequisite = { focus = SER_With_Rome }
+		relative_position_id = SER_With_Rome
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Patching_the_Mend"
+			swap_ideas = {
+				remove_idea = SER_Italian_Cooperation
+				add_idea = SER_Italian_Cooperation_2
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Our_Place_in_the_Mediterranean
+		icon = GFX_ITA_Italian_Empire
+		prerequisite = { focus = SER_Patching_the_Mend }
+		relative_position_id = SER_Patching_the_Mend
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_Place_in_the_Mediterranean"
+			swap_ideas = {
+				remove_idea = SER_Italian_Cooperation_2
+				add_idea = SER_Italian_Cooperation_3
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_With_Germania
+		icon = GFX_ROS_Direct_Rule_From_Germania
+		prerequisite = { focus = SER_Between_Fascists }
+		mutually_exclusive = { focus = SER_With_Rome }
+		relative_position_id = SER_Between_Fascists
+		x = 2
+		y = 1
+		cost = 6
+		available = {
+			has_country_flag = SER_germans_chosen
+			OR = {
+				GER = {
+					exists = yes
+					has_war = no
+				}
+				HGR = {
+					exists = yes
+					has_war = no
+				}
+				HSS = {
+					exists = yes
+					has_war = no
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Between_Fascists"
+			add_ideas = SER_German_Cooperation
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Saints_Blessing
+		icon = GFX_SER_focus_saint_savas_blessing
+		prerequisite = { focus = SER_With_Germania }
+		relative_position_id = SER_With_Germania
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Saints_Blessing"
+			swap_ideas = {
+				remove_idea = SER_German_Cooperation
+				add_idea = SER_German_Cooperation_2
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Our_Place_in_the_European_Order
+		icon = GFX_FRA_Linking_France_and_Germany
+		prerequisite = { focus = SER_A_Saints_Blessing }
+		relative_position_id = SER_A_Saints_Blessing
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_Place_in_the_European_Order"
+			swap_ideas = {
+				remove_idea = SER_German_Cooperation_2
+				add_idea = SER_German_Cooperation_3
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Foreign_Military_Attaches
+		icon = GFX_GRE_Copy_German_and_Italian_Designs
+		prerequisite = { focus = SER_With_Rome focus = SER_With_Germania }
+		relative_position_id = SER_With_Rome
+		x = 2
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Foreign_Military_Attaches"
+			if = {
+				limit = {
+					has_completed_focus = SER_With_Rome
+				}
+				add_ideas = SER_italian_detachment
+				else_if = {
+					limit = {
+						has_completed_focus = SER_With_Germania
+					}
+					add_ideas = SER_german_detachment_2
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Grant_Foreign_Mining_Rights
+		icon = GFX_focus_cze_german_puppet
+		prerequisite = { focus = SER_Foreign_Military_Attaches }
+		relative_position_id = SER_Foreign_Military_Attaches
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Grant_Foreign_Mining_Rights"
+			if = {
+				limit = {
+					has_completed_focus = SER_With_Rome
+				}
+				give_resource_rights = { receiver = ITA state = 108 }
+				else_if = {
+					limit = {
+						has_completed_focus = SER_With_Germania
+						country_exists = GER
+					}
+					give_resource_rights = { receiver = GER state = 108 }
+				}
+				else_if = {
+					limit = {
+						has_completed_focus = SER_With_Germania
+						country_exists = HSS
+					}
+					give_resource_rights = { receiver = HSS state = 108 }
+				}
+				else_if = {
+					limit = {
+						has_completed_focus = SER_With_Germania
+						country_exists = HGR
+					}
+					give_resource_rights = { receiver = HGR state = 108 }
+				}
+			}
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Denounce_the_Perfidious_Huns
+		icon = GFX_GENERIC_destroy_nazism
+		prerequisite = { focus = SER_Our_Place_in_the_Mediterranean }
+		prerequisite = { focus = SER_Grant_Foreign_Mining_Rights }
+		relative_position_id = SER_Our_Place_in_the_Mediterranean
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Denounce_the_Perfidious_Huns"
+			855 = {
+			owner = {
+				add_opinion_modifier = {
+					target = SER
+					modifier = faction_traitor
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_In_the_Name_of_God
+		icon = GFX_SER_focus_In_the_Name_of_God
+		prerequisite = { focus = SER_Denounce_the_Perfidious_Huns }
+		relative_position_id = SER_Denounce_the_Perfidious_Huns
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Denounce_the_Decadent_Judeo_Masons"
+			swap_ideas = {
+				remove_idea = SER_Italian_Cooperation_3
+				add_idea = SER_Italian_Cooperation_4
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Denounce_the_Decadent_Judeo_Masons
+		icon = GFX_GENERIC_Anti_Semetism
+		prerequisite = { focus = SER_Our_Place_in_the_European_Order }
+		prerequisite = { focus = SER_Grant_Foreign_Mining_Rights }
+		relative_position_id = SER_Grant_Foreign_Mining_Rights
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Denounce_the_Decadent_Judeo_Masons"
+			ITA = {
+				add_opinion_modifier = {
+					target = SER
+					modifier = faction_traitor
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Crusade_Against_Bolshevism
+		icon = GFX_GENERIC_communism_legal
+		prerequisite = { focus = SER_Denounce_the_Decadent_Judeo_Masons }
+		relative_position_id = SER_Denounce_the_Decadent_Judeo_Masons
+		x = 0
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Crusade_Against_Bolshevism"
+			SOV = {
+				add_opinion_modifier = {
+					target = SER
+					modifier = large_decrease
+				}
+			}
+			swap_ideas = {
+				remove_idea = SER_German_Cooperation_3
+				add_idea = SER_German_Cooperation_4
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Organic_Diplomacy
+		icon = GFX_SER_focus_Organic_Diplomacy
+		prerequisite = { focus = SER_In_the_Name_of_God focus = SER_Crusade_Against_Bolshevism }
+		relative_position_id = SER_In_the_Name_of_God
+		x = 1
+		y = 1
+		cost = 6
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Organic_Diplomacy"
+			add_stability = 0.1
+			if = {
+				limit = {
+					has_completed_focus = SER_With_Rome
+				}
+				ITA = {
+					country_event = { days = 1 id = twrserbia.167 }
+				}
+				else_if = {
+					limit = {
+						has_completed_focus = SER_With_Germania
+						OR = {
+							country_exists = GER
+							country_exists = HGR
+							country_exists = HSS
+						}
+					}
+					855 = {
+						owner = {
+							country_event = { days = 1 id = twrserbia.167 }
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	##################################
+	### LJOTIC AIRFORCE PATH
+	##################################
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Founding_an_Airforce_Fascist
+		icon = GFX_SER_focus_Royal_Airforce
+		x = 19
+		y = 0
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Founding_an_Airforce_Fascist"
+			air_experience = 15
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Reuse_leftover_Luftwaffe_planes_ljotic
+		icon = GFX_GENERIC_Luftwaffe
+		prerequisite = { focus = SER_Founding_an_Airforce_Fascist }
+		relative_position_id = SER_Founding_an_Airforce_Fascist
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Reuse_leftover_Luftwaffe_planes_ljotic"
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_0
+				amount = 50
+				producer = GER
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment_1
+				amount = 50
+				producer = GER
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Battlefield_support_ljotic
+		icon = GFX_GENERIC_airland_battle
+		prerequisite = { focus = SER_Reuse_leftover_Luftwaffe_planes_ljotic }
+		relative_position_id = SER_Reuse_leftover_Luftwaffe_planes_ljotic
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Battlefield_support_ljotic"
+			add_ideas = SER_Battlefield_support
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Request_German_Assistance
+		icon = GFX_focus_chi_mission_to_germany
+		prerequisite = { focus = SER_Battlefield_support_ljotic }
+		prerequisite = { focus = SER_Lessons_from_Barbarossa }
+		relative_position_id = SER_Battlefield_support_ljotic
+		x = 0
+		y = 1
+		cost = 5
+		bypass = {
+			AND = {
+				GER = {
+					exists = no
+				}
+				HGR = {
+					exists = no
+				}
+				HSS = {
+					exists = no
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Request_German_Assistance"
+			if = {
+				limit = {
+					GER = {
+						exists = yes
+					}
+				}
+				GER = {
+					country_event = { days = 1 id = twrserbia.97 }
+				}
+				else_if = {
+					limit = {
+						HGR = {
+							exists = yes
+						}
+					}
+					HGR = {
+						country_event = { days = 1 id = twrserbia.97 }
+					}
+				}
+				else_if = {
+					limit = {
+						HSS = {
+							exists = yes
+						}
+					}
+					HSS = {
+						country_event = { days = 1 id = twrserbia.97 }
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Lessons_from_Barbarossa
+		icon = GFX_GENERIC_Firebombing
+		prerequisite = { focus = SER_Reuse_leftover_Luftwaffe_planes_ljotic }
+		relative_position_id = SER_Reuse_leftover_Luftwaffe_planes_ljotic
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Lessons_from_Barbarossa"
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.8
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Own_the_skies_ljotic
+		icon = GFX_SER_focus_Own_the_Skies_ZBOR
+		prerequisite = { focus = SER_Lessons_from_Barbarossa }
+		prerequisite = { focus = SER_Battlefield_support_ljotic }
+		relative_position_id = SER_Lessons_from_Barbarossa
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Own_the_skies_ljotic"
+			custom_effect_tooltip = SER_battlefield_support_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_Battlefield_support
+					}
+					swap_ideas = {
+						remove_idea = SER_Battlefield_support
+						add_idea = SER_Battlefield_support2
+					}
+					else = {
+						swap_ideas = {
+							remove_idea = SER_Battlefield_support2
+							add_idea = SER_Battlefield_support3
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Lessons_from_the_Partisans
+		icon = GFX_focus_generic_military_mission
+		prerequisite = { focus = SER_Lessons_from_Barbarossa }
+		prerequisite = { focus = SER_Battlefield_support_ljotic }
+		relative_position_id = SER_Reuse_leftover_Luftwaffe_planes_ljotic
+		x = 0
+		y = 2
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Lessons_from_the_Partisans"
+			custom_effect_tooltip = SER_battlefield_support_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SER_Battlefield_support
+					}
+					swap_ideas = {
+						remove_idea = SER_Battlefield_support
+						add_idea = SER_Battlefield_support2
+					}
+					else = {
+						swap_ideas = {
+							remove_idea = SER_Battlefield_support2
+							add_idea = SER_Battlefield_support3
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Serbian_Plane
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = SER_Request_German_Assistance }
+		prerequisite = { focus = SER_Lessons_from_the_Partisans }
+		prerequisite = { focus = SER_Own_the_skies_ljotic }
+		relative_position_id = SER_Request_German_Assistance
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Serbian_Plane"
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 1
+				category = jet_fighter
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_Serbian_Helicopter
+		icon = GFX_GENERIC_helicopter
+		prerequisite = { focus = SER_Request_German_Assistance }
+		prerequisite = { focus = SER_Lessons_from_the_Partisans }
+		prerequisite = { focus = SER_Own_the_skies_ljotic }
+		relative_position_id = SER_Own_the_skies_ljotic
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_Serbian_Helicopter"
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 1
+				category = helicopter
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_The_New_Balkan_Tiger_ljotic
+		icon = GFX_focus_chi_flying_tigers
+		prerequisite = { focus = SER_A_Serbian_Plane }
+		prerequisite = { focus = SER_A_Serbian_Helicopter }
+		relative_position_id = SER_A_Serbian_Plane
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 11
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_The_New_Balkan_Tiger_ljotic"
+			custom_effect_tooltip = SER_battlefield_support_tt
+			hidden_effect = {
+				swap_ideas = {
+					remove_idea = SER_Battlefield_support3
+					add_idea = SER_Battlefield_support4
+				}
+			}
+		}
+	}
+	
+	##############################
+	### LJOTIC NAVY PATH
+	##############################
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_A_New_Navy
+		icon = GFX_SER_focus_New_Navy
+		x = 24
+		y = 0
+		cost = 5
+		available = {
+			any_owned_state = {
+				is_coastal = yes
+			}
+		}
+		ai_will_do = {
+		    factor = 13
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_A_New_Navy"
+			navy_experience = 15
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Appropriate_Foreign_Ships
+		icon = GFX_SER_focus_reuse_old_italian_ships
+		prerequisite = { focus = SER_A_New_Navy }
+		relative_position_id = SER_A_New_Navy
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			owns_state = 105
+		}
+		ai_will_do = {
+		    factor = 13
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Appropriate_Foreign_Ships"
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 40
+				producer = SER
+			}
+			set_technology = {
+				ww2_destroyer = 1
+			}
+			custom_effect_tooltip = SER_Outdated_Destroyers
+			hidden_effect = { load_oob = "SER_Outdated_Destroyers" }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Request_old_German_UBoats
+		icon = GFX_focus_chi_mission_to_germany
+		prerequisite = { focus = SER_Appropriate_Foreign_Ships }
+		relative_position_id = SER_Appropriate_Foreign_Ships
+		x = 0
+		y = 1
+		cost = 5
+		bypass = {
+			AND = {
+				GER = {
+					exists = no
+				}
+				HGR = {
+					exists = no
+				}
+				HSS = {
+					exists = no
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Request_old_German_UBoats"
+			if = {
+				limit = {
+					GER = {
+						exists = yes
+					}
+				}
+				GER = {
+					country_event = { days = 1 id = twrserbia.154 }
+				}
+				else_if = {
+					limit = {
+						HGR = {
+							exists = yes
+						}
+					}
+					HGR = {
+						country_event = { days = 1 id = twrserbia.154 }
+					}
+				}
+				else_if = {
+					limit = {
+						HSS = {
+							exists = yes
+						}
+					}
+					HSS = {
+						country_event = { days = 1 id = twrserbia.154 }
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Challenge_the_Roayal_Navy
+		icon = GFX_SER_focus_challenge_royal_navy
+		prerequisite = { focus = SER_Request_old_German_UBoats }
+		relative_position_id = SER_Request_old_German_UBoats
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 7
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Challenge_the_Roayal_Navy"
+			add_ideas = SER_Challenge_the_Royal_Navy
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Our_Destiny_is_on_the_Open_Sea
+		icon = GFX_SER_focus_challenge_the_regina_marina
+		prerequisite = { focus = SER_Request_old_German_UBoats }
+		relative_position_id = SER_Request_old_German_UBoats
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 7
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Our_Destiny_is_on_the_Open_Sea"
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = SER_Defence_of_the_Adriatic_Fascist
+		icon = GFX_SER_focus_defense_of_the_adriatic
+		prerequisite = { focus = SER_Challenge_the_Roayal_Navy }
+		prerequisite = { focus = SER_Our_Destiny_is_on_the_Open_Sea }
+		relative_position_id = SER_Challenge_the_Roayal_Navy
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+		    factor = 8
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_Defence_of_the_Adriatic_Fascist"
+			swap_ideas = {
+				remove_idea = SER_Challenge_the_Royal_Navy
+				add_idea = SER_Challenge_the_Royal_Navy2
+			}
+		}
+	}

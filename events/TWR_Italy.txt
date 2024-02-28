@@ -1,0 +1,5210 @@
+﻿	###########################
+	# Italian Events
+	###########################
+
+	add_namespace = twritalyforeign
+	add_namespace = twritalypolitics
+	add_namespace = twritalyeconomy
+	add_namespace = twritalygreece 
+	add_namespace = twritalyborghese
+	add_namespace = twrgreeceuprising
+	add_namespace = twritalymontenegro
+	add_namespace = twritalyalbania
+	add_namespace = twritalyethiopia
+	add_namespace = twritalylibya
+	add_namespace = twritalystrikes
+	add_namespace = twritalynewsevents
+	add_namespace = twritalyroyalty
+	add_namespace = twritalydebug
+	add_namespace = twritavar
+
+		###INTERNAL POLITICS
+
+	country_event = {	#Viva il Duce! (INTRO EVENT)
+		id = twritalypolitics.1
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.1"}
+		title = twritalypolitics.1.t
+		desc = twritalypolitics.1.d
+		picture = GFX_report_event_duce_intro
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.1"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.1.a
+			complete_national_focus = ITA_Viva_Il_Duce
+		}
+	}
+
+	country_event = {	#Loyalty Mechanic
+		id = twritalypolitics.0
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.0"}
+		title = twritalypolitics.0.t
+		desc = twritalypolitics.0.d
+		picture = GFX_report_event_italy_tutorial
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.0.a
+		}
+	}
+
+	country_event = {
+		id = twritalypolitics.2 #Government tightens the grip
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.2"}
+		title = twritalypolitics.2.t
+		desc = twritalypolitics.2.d
+		picture = GFX_report_event_rome
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.2.a
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+		}
+	}
+
+	country_event = {
+		id = twritalypolitics.3 #Government relaxes the grip
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.3"}
+		title = twritalypolitics.3.t
+		desc = twritalypolitics.3.d
+		picture = GFX_report_event_rome
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.3.a
+			add_popularity = {
+				ideology = liberal 
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.01
+			}
+		}
+	}
+
+	country_event = {
+		id = twritalypolitics.100 #Italian Empire Collapse start
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.100"}
+		title = twritalypolitics.100.t
+		desc = twritalypolitics.100.d
+		picture = GFX_report_event_burgund_strikes
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.100.a
+			custom_effect_tooltip = ITA_MAINLAND_UNREST
+			hidden_effect = {
+				clr_country_flag = normal_italy
+				country_event = { id = twritalypolitics.101 days = 5 }
+			}
+		}
+	}
+	country_event = {
+		id = twritalypolitics.101 #The Grand Council holds a Vote of No Confidence
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.101"}
+		title = twritalypolitics.101.t
+		desc = twritalypolitics.101.d
+		picture = GFX_report_event_southern_italy
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.101.a
+			add_stability = -0.1
+			hidden_effect = {
+				country_event = { id = twritalypolitics.103 days = 2 }
+				news_event = { id = twritalypolitics.104 hours = 3 }
+			}
+		}
+	}
+	country_event = {
+		id = twritalypolitics.103 #The King Intervenes
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.103"}
+		title = twritalypolitics.103.t
+		desc = twritalypolitics.103.d
+		picture = GFX_report_event_grand_council_italy
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.103.a
+			add_political_power = -25
+			create_country_leader = {
+				name = "Giovanni Messe"
+				desc = ""
+				picture = "Portrait_Italy_Giovanni_Messe.dds"
+				expire = "1965.1.1"
+				ideology = transitional_regime
+				traits = {}
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.5
+			}
+			set_politics = {
+				ruling_party = paternal_autocrat
+			}
+			hidden_effect = {
+				country_event = { id = twritalypolitics.105 days = 27 }
+				country_event = { id = twritalypolitics.113 days = 18 }
+				load_focus_tree = ITA_democratic_tree
+				complete_national_focus = ITA_The_Reconstruction_Congress
+				news_event = { id = twritalypolitics.106 hours = 5 }
+				set_global_flag = collapse_of_the_italian_empire
+				clr_country_flag = normal_italy
+				collapse_the_remaining_puppets_ITA = yes
+			}
+		}
+	}
+	country_event = {
+		id = twritalypolitics.105 #Italian Democracy
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.105"}
+		title = twritalypolitics.105.t
+		desc = twritalypolitics.105.d
+		picture = GFX_report_event_bloodless_coup_italy
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.105.a
+			set_politics = {
+				ruling_party = social_democrat
+			}
+			add_ideas = {
+				ITA_young_democracy
+				established_democracy
+			}
+			hidden_effect = {
+				set_popularities = {
+					national_socialist = 1 
+					fascist = 2
+					paternal_autocrat = 1
+					conservative = 16
+					liberal = 20
+					social_democrat = 24
+					socialist = 15
+					bolshevik_leninist = 6
+					marxist_leninist = 15
+				}
+				every_state = {
+					set_border_war = no
+				}
+				country_event = { id = twritalypolitics.101 days = 5 }
+				country_event = { id = twritalyforeign.7979791 days = 7 }
+			}
+		}
+		#option = {
+		#	name = twritalypolitics.105.b
+		#	add_stability = -0.15
+		#}
+	}
+	country_event = {
+		id = twritalypolitics.107 #milan trials
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.107"}
+		title = twritalypolitics.107.t
+		desc = twritalypolitics.107.d
+		picture = GFX_report_event_italian_milan
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.107.a
+			add_stability = 0.05
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			ai_chance = {
+				factor = 0
+			}
+			hidden_effect = {
+				set_country_flag = fascists_harsh_sentence_ITA
+			}
+		}
+		option = {
+			name = twritalypolitics.107.b
+			ai_chance = {
+				factor = 70
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			hidden_effect = {
+				set_country_flag = fair_sentence_ITA
+			}
+		}
+		option = {
+			name = twritalypolitics.107.c
+			ai_chance = {
+				factor = 0
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+			}
+			hidden_effect = {
+				set_country_flag = pardon_sentence_ITA
+			}
+		}
+	}
+	country_event = {
+		id = twritalypolitics.108 #king problem
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.108"}
+		title = twritalypolitics.108.t
+		desc = twritalypolitics.108.d
+		picture = GFX_report_event_monarch_question_ITA
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		immediate = {
+				hidden_effect = {
+				create_country_leader = {
+					name = "Ferruccio Parri"
+					desc = "Ferruccio_Parri_DESC"
+					picture = "Ferruccio_Parri.dds"
+					expire = "1965.1.1"
+					ideology = social_liberalism
+					traits = {
+
+					}
+				}
+				create_country_leader = {
+					name = "Alessandro Pertini"
+					desc = "Alessandro_Pertini_DESC"
+					picture = "Alessandro_Pertini.dds"
+					expire = "1965.1.1"
+					ideology = radical_socialism
+					traits = {
+
+					}
+				}
+				create_country_leader = {
+					name = "Amintore Fanfani"
+					desc = "Amintore_Fanfani_DESC"
+					picture = "Amintore_Fanfani.dds"
+					expire = "1965.1.1"
+					ideology = traditionalist_conservatism
+					traits = {
+
+					}
+				}
+				create_country_leader = {
+					name = "Giuseppe Saragat"
+					desc = "giuseppe_saragat_desc"
+					picture = "giuseppe_saragat.dds"
+					expire = "1965.1.1"
+					ideology = social_democracy
+					traits = {
+
+					}
+				}
+				create_country_leader = {
+					name = "Luigi Longo"
+					desc = "Luigi_Longo_DESC"
+					picture = "Luigi_Longo.dds"
+					expire = "1965.1.1"
+					ideology = bordigism
+					traits = {
+
+					}
+				}
+			}
+		}
+		
+		option = {
+			name = twritalypolitics.108.a
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			hidden_effect = {
+				set_country_flag = execute_the_royals
+			}
+		}
+		option = {
+			name = twritalypolitics.108.b
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			hidden_effect = {
+				set_country_flag = demote_the_royals
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+		}
+		option = {
+			name = twritalypolitics.108.c
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = keep_the_royals
+			}
+			set_politics = {
+				ruling_party = conservative
+			}
+		}
+	}
+	country_event = {
+		id = twritalypolitics.109 #national debate
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.109"}
+		title = twritalypolitics.109.t
+		desc = twritalypolitics.109.d
+		picture = GFX_report_event_nationhood_debate_ITA
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+
+		option = {
+			name = twritalypolitics.109.a
+			ai_chance = {
+				factor = 50
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			hidden_effect = {
+				set_country_flag = italian_republic
+			}
+		}
+		option = {
+			name = twritalypolitics.109.b
+			ai_chance = {
+				factor = 50
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			hidden_effect = {
+				set_country_flag = confederation_of_italians
+			}
+		}
+	}
+	country_event = {
+		id = twritalypolitics.110 #government reform
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.110"}
+		title = twritalypolitics.110.t
+		desc = twritalypolitics.110.d
+		picture = GFX_report_event_ita_congress
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.110.b
+			ai_chance = {
+				factor = 50
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			hidden_effect = {
+				set_country_flag = italian_small_government
+			}
+		}
+		option = {
+			name = twritalypolitics.110.a
+			ai_chance = {
+				factor = 50
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			hidden_effect = {
+				set_country_flag = italian_big_government
+			}
+		}
+	}
+	country_event = {
+		id = twritalypolitics.113 #The DC Forms and Joins the CLN
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.113"}
+		title = twritalypolitics.113.t
+		desc = twritalypolitics.113.d
+		picture = GFX_report_event_ita_election
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.113.a #By God...
+			create_country_leader = {
+				name = "Comitato di Liberazione Nazionale"
+				desc = "Amintore_Fanfani_DESC"
+				picture = "ITA_CLN_portrait.dds"
+				expire = "1965.1.1"
+				ideology = traditionalist_conservatism
+				traits = {
+
+				}
+			}
+			set_party_name = {
+				ideology = conservative
+				long_name = ITA_conservative_DC_CLN_party_long
+				name = ITA_conservative_DC_CLN_party
+			}
+			
+		}
+	}
+	country_event = {
+		id = twritalypolitics.111 #Italian Election
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.111"}
+		title = twritalypolitics.111.t
+		desc = twritalypolitics.111.d
+		picture = GFX_report_event_ita_election
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.111.a #congress stays
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = CONGRESS_ITALY
+				news_event = { id = twritalypolitics.112 days = 3 }
+			}
+			create_country_leader = {
+				name = "Comitato di Liberazione Nazionale"
+				desc = "Italian_Congress_DESC"
+				picture = "ITA_CLN_portrait.dds"
+				expire = "1965.1.1"
+				ideology = social_democracy
+				traits = {
+
+				}
+			}
+			set_politics = {
+				ruling_party = social_democrat
+			}
+		}
+		option = {
+			name = twritalypolitics.111.b #liberals in power
+			trigger = {
+				count_triggers = {
+					amount = 2
+					has_country_flag = fair_sentence_ITA
+					has_country_flag = demote_the_royals
+					has_country_flag = ITA_fed_rep
+					has_country_flag = italian_small_government
+				}
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = liberal_italy
+				news_event = { id = twritalypolitics.112 days = 3 }
+			}
+		}
+		option = {
+			name = twritalypolitics.111.c #chrisdems in power
+			trigger = {
+				count_triggers = {
+					amount = 3
+					has_country_flag = pardon_sentence_ITA
+					has_country_flag = demote_the_royals
+					has_country_flag = keep_the_royals
+					has_country_flag = italian_republic
+					has_country_flag = italian_small_government
+				}
+			}
+			set_politics = {
+				ruling_party = conservative
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = conservative_italy
+				news_event = { id = twritalypolitics.112 days = 3 }
+			}
+		}
+		option = {
+			name = twritalypolitics.111.e #socs in power
+			trigger = {
+				AND = {
+					count_triggers = {
+						amount = 2
+						has_country_flag = fascists_harsh_sentence_ITA
+						has_country_flag = execute_the_royals
+						has_country_flag = confederation_of_italians
+						has_country_flag = italian_big_government
+					}
+					NOT = {
+						has_country_flag = umberto_ii
+					}
+				}
+			}
+			set_politics = {
+				ruling_party = socialist
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.1
+			}
+			hidden_effect = {
+				set_country_flag = socialist_italy
+				news_event = { id = twritalypolitics.112 days = 3 }
+			}
+			
+		}
+	}
+	country_event = {
+		id = twritalypolitics.114 #Constitutional Referendum
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.111"}
+		title = twritalypolitics.114.t
+		desc = twritalypolitics.114.d
+		picture = GFX_report_event_ita_election
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.114.a #Republic
+			add_stability = 0.05
+			clr_country_flag = umberto_ii
+			clr_country_flag = has_symbolic_figurehead
+			set_cosmetic_tag = ITA_republic
+		}
+		option = {
+			name = twritalypolitics.114.b #Monarchy
+			add_political_power = 25
+		}
+	}
+	news_event = {
+		id = twritalypolitics.112 #Italy Democracy
+		title = twritalypolitics.112.t 
+		desc = {                               #This is the first description, it will be used if the ace pilot is promoted in any country except the major ones (listed below).
+			text = twritalypolitics.112.d1        #this is the localisable text name, which needs to be unique.
+			trigger = {                    #this is needed trigger.
+				ITA = {
+					has_government = social_democrat
+				}
+			}
+		}  
+		desc = {                               #This is the first description, it will be used if the ace pilot is promoted in any country except the major ones (listed below).
+			text = twritalypolitics.112.d2       #this is the localisable text name, which needs to be unique.
+			trigger = {  
+				NOT = {               #this is needed trigger.
+					ITA = {
+						has_government = social_democrat
+					}
+				}
+			}
+		} 
+		picture = GFX_news_event_italian_freedom # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #new page
+			trigger = {
+				NOT = {
+					tag = ITA
+				}
+			}
+			name = twritalypolitics.112.a									
+		}
+		option = { #new page
+			trigger = {
+				tag = ITA
+			}
+			name = twritalypolitics.112.b							
+		}
+	}  
+	news_event = {
+		id = twritalypolitics.106 #Italy falls
+		title = twritalypolitics.106.t 
+		desc = twritalypolitics.106.d      
+		picture = GFX_news_event_italian_partisan # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #oh no 
+			name = twritalypolitics.106.a									
+		}
+	}  
+
+	news_event = {
+		id = twritalypolitics.104 #Italian reforms
+		title = twritalypolitics.104.t 
+		desc = twritalypolitics.104.d      
+		picture = GFX_news_event_grand_council_italy # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #oh no 
+			name = twritalypolitics.104.a		
+			trigger = {
+				NOT = {
+					tag = ITA
+				}
+			}							
+		}
+		option = {
+			name = twritalypolitics.104.b
+			trigger = {
+				tag = ITA
+			}
+			kill_country_leader = yes
+			create_country_leader = {
+				name = "Grand Council of Fascism"
+				desc = "Grand_Council_of_Fascism_DESC"
+				picture = "Grand_Council.dds"
+				expire = "1965.1.1"
+				ideology = fascism
+				traits = {
+					cabinet_crisis
+				}
+			}
+		}
+	}  
+
+
+	news_event = {
+		id = twritalypolitics.102 #Southern Italy
+		title = twritalypolitics.102.t 
+		desc = twritalypolitics.102.d      
+		picture = GFX_news_event_southern_italy # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #oh no 
+			name = twritalypolitics.102.a									
+		}
+	}  
+
+
+		### DEATH OF DUCE ###
+
+	country_event = {
+		id = twritalypolitics.200 #200 and up is post-DUCE events 
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.200"}
+		title = twritalypolitics.200.t
+		desc = twritalypolitics.200.d
+		picture = GFX_report_event_mussolini_death
+		is_triggered_only = yes
+		fire_only_once = yes
+		trigger = {
+		has_country_leader = {
+	    name = "Benito Mussolini"
+	    ruling_only = yes
+	    }
+		}
+		
+		option = {
+			name = twritalypolitics.200.a #Mussolini dies 
+			kill_country_leader = yes
+
+			create_country_leader = {
+				name = "Umberto II"
+				desc = "ITA_UMBERTO_II_DESC"
+				picture = "Umberto_II.dds"
+				ideology = fascism
+				traits = {
+				}
+			}
+			add_stability = -0.05
+
+			hidden_effect = {
+				country_event = { id = twritalypolitics.201 days = 10 }
+				news_event = {
+					id = twrnews.121
+				}
+			}
+		}
+	}
+
+	country_event = { #Funeral Arrangements for Mussolini 
+		id = twritalypolitics.201 #200 and up is post-DUCE events 
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalypolitics.201"}
+		title = twritalypolitics.201.t
+		desc = twritalypolitics.201.d
+		picture = GFX_report_event_mussolini_funeral
+		
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalypolitics.201.a #New Mausoleum for him - is burried temporarily in the Mausoleum of Hadrian 
+
+			add_political_power = -200
+			hidden_effect = {
+				country_event = { id = twritalypolitics.202 days = 20 }
+			}
+		}
+
+		option = {
+			name = twritalypolitics.201.b #burried in Il Vittoriano - takes 20 days 
+
+			add_political_power = -100
+			hidden_effect = {
+				country_event = { id = twritalypolitics.203 days = 20 }
+			}
+		}
+
+		option = {
+			name = twritalypolitics.201.c #Burried in his hometown - takes 10 days 
+
+			hidden_effect = {
+				country_event = { id = twritalypolitics.204 days = 10 }
+			}
+		}
+	}
+
+	country_event = { #Funeral for Mussolini - Mausoleum  
+		id = twritalypolitics.202 #200 and up is post-DUCE events 
+		title = twritalypolitics.202.t
+		desc = twritalypolitics.202.d
+		picture = GFX_report_event_mussolini_funeral
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			hidden_effect = {
+				news_event = { id = twritalynewsevents.6 }
+			}
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.202"
+		}
+		option = {
+			name = twritalypolitics.202.a 
+			hidden_effect = {
+				country_event = { id = twritalypolitics.205 days = 10 }
+			}
+		}
+	}
+
+	country_event = { ##Funeral for Mussolini - Vittoriano 
+		id = twritalypolitics.203 #200 and up is post-DUCE events 
+		title = twritalypolitics.203.t
+		desc = twritalypolitics.203.d
+		picture = GFX_report_event_mussolini_funeral
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			hidden_effect = {
+				news_event = { id = twritalynewsevents.6 }
+			}
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.203"
+		}
+		option = {
+			name = twritalypolitics.203.a
+			hidden_effect = {
+				country_event = { id = twritalypolitics.205 days = 10 }
+			}
+		}
+	}
+
+
+	country_event = { #Funeral for Mussolini - Village
+		id = twritalypolitics.204 #200 and up is post-DUCE events 
+		title = twritalypolitics.204.t
+		desc = twritalypolitics.204.d
+		picture = GFX_report_event_mussolini_funeral
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			hidden_effect = {
+				news_event = { id = twritalynewsevents.6 }
+			}
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.203"
+		}
+		option = {
+			name = twritalypolitics.204.a   
+			hidden_effect = {
+				country_event = { id = twritalypolitics.205 days = 10 }
+			}
+		}
+	}
+
+	country_event = { #Options Options 
+		id = twritalypolitics.205 #200 and up is post-DUCE events 
+		title = twritalypolitics.205.t
+		desc = twritalypolitics.205.d
+		picture = GFX_report_event_fascist_council
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.203"
+		}
+		option = {
+			name = twritalypolitics.205.a #Balbo succeeds  
+			trigger = {
+			OR = {
+				has_country_flag = ita_flag_balbo_successor
+				check_variable = { var_balbo_influence_gcf > 449 }
+				}
+			}
+			hidden_effect = {
+				country_event = { id = twritalypolitics.300 days = 10 }
+			}
+		}
+		option = {
+			name = twritalypolitics.205.b #Ciano succeeds  
+			trigger = {
+			OR = {
+				has_country_flag = ita_flag_ciano_successor
+				check_variable = { var_ciano_influence_gcf > 449 }
+				}
+			}
+			hidden_effect = {
+				country_event = { id = twritalypolitics.400 days = 10 }
+			}
+		}
+		option = {
+			name = twritalypolitics.205.c #Ciano contests leadership
+			trigger = {
+				check_variable = { var_ciano_influence_gcf > 449 }
+			}
+			hidden_effect = {
+				country_event = { id = twritalypolitics.210 days = 10 }
+			}
+		}
+		option = {
+			name = twritalypolitics.205.e #Balbo contests leadership
+			trigger = {
+				check_variable = { var_ciano_influence_gcf > 449 }
+			}
+			hidden_effect = {
+				country_event = { id = twritalypolitics.210 days = 10 }
+			}
+		}
+	}
+
+	    ### CONTESTS LEADERSHIP EVENTS ###
+	country_event = { #Ciano contests leadership 
+		id = twritalypolitics.210 #200 and up is post-DUCE events 
+		title = twritalypolitics.210.t
+		desc = twritalypolitics.210.d
+		picture = GFX_report_event_fascist_council
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.210"
+		}
+		option = { #Side with Ciano 
+			name = twritalypolitics.210.a #Ciano calls on the GCF   
+			trigger = {
+				check_variable = { var_balbo_influence_gcf < 449 }
+			}	
+			hidden_effect = {
+				country_event = { id = twritalypolitics.211 days = 5 }
+			}
+			add_stability = -0.05 
+		}
+		option = { #Side with Balbo  
+			name = twritalypolitics.210.b #Balbo disbands the GCF 
+			trigger = {
+				check_variable = { var_ciano_influence_gcf < 449 }
+			}
+			hidden_effect = {
+				country_event = { id = twritalypolitics.211 days = 5 }
+			}
+			add_stability = -0.05 
+		}
+	}
+
+	country_event = { #Ciano calls the GCF 
+		id = twritalypolitics.211 #200 and up is post-DUCE events 
+		title = twritalypolitics.211.t
+		desc = twritalypolitics.211.d
+		picture = GFX_report_event_fascist_council
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.211"
+		}
+		option = { #GCF supports Ciano 
+			name = twritalypolitics.211.a
+			trigger = {
+			OR = {
+				has_country_flag = ita_flag_ciano_successor
+				check_variable = { var_ciano_influence_gcf > 449 }
+				}
+			}		
+			hidden_effect = {
+				country_event = { id = twritalypolitics.212 days = 5 } 
+			}
+			retire_country_leader = yes
+
+			create_country_leader = {
+				name = "Galeazzo Ciano"
+				desc = "ITA_GALEAZZO_CIANO_DESC"
+				picture = "Portrait_Italy_Galeazzo_Ciano.dds"
+				ideology = fascism
+				traits = {
+				}
+			}
+			add_stability = -0.05
+			news_event = {
+				id = twrnews.123
+			}
+			load_focus_tree = { tree = ITA_ciano_1960 keep_completed = yes }
+			ciano_victory_gui = yes
+		}
+		option = { #GCF supports Balbo 
+			name = twritalypolitics.211.b
+			trigger = {
+			OR = {
+				has_country_flag = ita_flag_ciano_successor
+				check_variable = { var_ciano_influence_gcf > 449 }
+				}
+			}
+			hidden_effect = {
+				country_event = { id = twritalypolitics.212 days = 5 } 
+			}
+			retire_country_leader = yes
+
+			create_country_leader = {
+				name = "Italo Balbo"
+				desc = "ITA_ITALO_BALBO_DESC"
+				picture = "Portrait_Italy_Italo_Balbo.dds"
+				ideology = fascism
+				traits = {
+				}
+			}
+			news_event = {
+				id = twrnews.122
+			}
+			load_focus_tree = { tree = ITA_balbo_1960 keep_completed = yes }
+			balbo_victory_gui = yes
+			add_stability = -0.05 
+		}
+	}
+
+	country_event = { #Challenger arrested 
+		id = twritalypolitics.212 #200 and up is post-DUCE events 
+		title = twritalypolitics.212.t
+		desc = twritalypolitics.212.d
+		picture = GFX_report_event_fascist_council
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.212"
+		}
+		option = { #Pardon Ciano 
+			name = twritalypolitics.212.a 
+			trigger = {
+				has_country_flag = ita_flag_ciano_successor
+				check_variable = { var_ciano_influence_gcf < 449 }
+			}
+			add_stability = 0.05
+			add_political_power = -100			
+		}
+		option = { #Exile Ciano 
+			name = twritalypolitics.212.b 
+			trigger = {
+				has_country_flag = ita_flag_ciano_successor
+				check_variable = { var_ciano_influence_gcf < 449 }
+			}
+			add_stability = -0.05
+			add_political_power = 100		
+		}
+		option = { #Pardon Balbo 
+			trigger = {
+				has_country_flag = ita_flag_balbo_successor
+				check_variable = { var_balbo_influence_gcf < 449 }
+			}
+			name = twritalypolitics.212.c 
+			add_stability = 0.05
+			add_political_power = -100			
+		}
+		option = { #Exile Balbo 
+			trigger = {
+				has_country_flag = ita_flag_balbo_successor
+				check_variable = { var_balbo_influence_gcf < 449 }
+			}
+			name = twritalypolitics.212.e 
+			add_stability = -0.05
+			add_political_power = 100		
+		}
+	}
+
+	### BALBO LEADS ITALY 
+
+	country_event = { #Balbo becomes Duce  
+		id = twritalypolitics.300 #300-400 BALBO EVENTS 
+		title = twritalypolitics.300.t
+		desc = twritalypolitics.300.d
+		picture = GFX_report_event_balbo
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.300"
+		}
+		option = { #Balbo Wins 
+			name = twritalypolitics.300.a 
+			add_stability = 0.05
+
+			retire_country_leader = yes
+
+			create_country_leader = {
+				name = "Italo Balbo"
+				desc = "ITA_ITALO_BALBO_DESC"
+				picture = "Portrait_Italy_Italo_Balbo.dds"
+				ideology = fascism
+				traits = {
+				}
+			}
+			news_event = {
+				id = twrnews.122
+			}
+			load_focus_tree = { tree = ITA_balbo_1960 keep_completed = yes }
+			balbo_victory_gui = yes
+		}
+	}
+
+	### CIANO LEADS ITALY 
+
+	country_event = { #Ciano becomes Duce  
+		id = twritalypolitics.400 #400-500 CIANO EVENTS 
+		title = twritalypolitics.400.t
+		desc = twritalypolitics.400.d
+		picture = GFX_report_event_ciano
+
+		is_triggered_only = yes 
+
+		fire_only_once = yes
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalypolitics.400"
+		}
+		option = { #Ciano Wins 
+			name = twritalypolitics.400.a 
+			add_stability = 0.05
+
+			retire_country_leader = yes
+
+			create_country_leader = {
+				name = "Galeazzo Ciano"
+				desc = "ITA_GALEAZZO_CIANO_DESC"
+				picture = "Portrait_Italy_Galeazzo_Ciano.dds"
+				ideology = fascism
+				traits = {
+				}
+			}
+
+			news_event = {
+				id = twrnews.123
+			}
+			load_focus_tree = { tree = ITA_ciano_1960 keep_completed = yes }
+			ciano_victory_gui = yes
+		}
+	}
+
+		##ECONOMY EVENTS##
+
+	country_event = {	#Begin the Recovery
+		id = twritalyeconomy.1
+		title = twritalyeconomy.1.t
+		desc = twritalyeconomy.1.d
+		picture = GFX_report_event_italy_rome
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyeconomy.1"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyeconomy.1.a
+			add_political_power = 20
+		}
+	}
+	country_event = {	#Repay Debts
+		id = twritalyeconomy.2
+		title = twritalyeconomy.2.t
+		desc = twritalyeconomy.2.d
+		picture = GFX_report_event_italy_rome
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyeconomy.2"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyeconomy.2.a
+			GER = {
+				add_opinion_modifier = {
+					target = ITA
+					modifier = ITA_GER_repaid_debts
+				}
+			}
+		}
+	}
+	country_event = {	#Codice Fiscale
+		id = twritalyeconomy.3
+		title = twritalyeconomy.3.t
+		desc = twritalyeconomy.3.d
+		picture = GFX_report_event_italy_rome
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyeconomy.3"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyeconomy.3.a
+			add_stability = 0.05
+		}
+	}
+	country_event = {	#Model Colony
+		id = twritalyeconomy.4
+		title = twritalyeconomy.4.t
+		desc = twritalyeconomy.4.d
+		picture = GFX_report_event_italian_addis_ababa
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyeconomy.4"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyeconomy.4.a
+			add_political_power = 100
+		}
+	}
+	country_event = {	#University of Addis Ababa
+		id = twritalyeconomy.5
+		title = twritalyeconomy.5.t
+		desc = twritalyeconomy.5.d
+		picture = GFX_report_event_italian_addis_ababa
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyeconomy.5"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyeconomy.5.a
+			add_research_slot = 1
+		}
+	}
+	country_event = {	#Discovery of Cyrene
+		id = twritalyeconomy.6
+		title = twritalyeconomy.6.t
+		desc = twritalyeconomy.6.d
+		picture = GFX_report_event_italy_rome
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyeconomy.6"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyeconomy.6.a
+			add_stability = 0.01
+		}
+	}
+
+	    ##BORGHESE EVENTS HERE 
+
+	country_event = {
+		id = twritalyborghese.1 #Colpo Borghese 
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyborghese.1"}
+		title = twritalyborghese.1.t
+		desc = twritalyborghese.1.d
+		picture = GFX_report_event_colpo_borghese_2
+
+		fire_only_once = yes
+		is_triggered_only = yes
+		trigger = {
+			tag = ITA
+			OR = {
+				AND = {
+					check_variable = { ita_var_coup_chance > 0.6 }	
+					check_variable = { ita_var_mvsn_loyalty < 0.4 }					
+				}
+				check_variable = { ita_var_coup_chance > 0.8 }						
+			}
+		}
+		
+		option = {
+			name = twritalyborghese.1.a #Borghese's coup d'Etat 
+			hidden_effect = {
+				retire_country_leader = yes 
+				create_country_leader = {
+					name = "Junio Valerio Borghese"
+					desc = "JUNIO_BORGHESE_DESC"
+					picture = "Portrait_ITA_Junio_Valerio_Borghese.dds"
+					ideology = fascism
+					traits = {
+					}
+				}
+				set_cosmetic_tag = ITA_Cosmetic_Italian_Empire_Borghese
+				country_event = { id = twritalyborghese.2 days = 15 }
+				news_event = { id = twritalynewsevents.5 days = 15 }
+			}
+		}
+	}
+
+	country_event = {
+		id = twritalyborghese.2 #Borghese's speech  
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyborghese.2"}
+		title = twritalyborghese.2.t
+		desc = twritalyborghese.2.d
+		picture = GFX_report_event_borghese_speech
+
+		fire_only_once = yes
+		is_triggered_only = yes 
+		
+		option = {
+			name = twritalyborghese.2.a #AIDA 
+			hidden_effect = {
+				add_stability = 0.2 
+				add_political_power = 50 
+				add_war_support = 0.25 
+			}
+		}
+	}
+
+	    ##STRIKE EVENTS HERE
+
+	country_event = {
+		id = twritalystrikes.1 #Bergamo Strikes
+		title = twritalystrikes.1.t
+		desc = twritalystrikes.1.d
+		picture = GFX_report_event_general_strike
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalystrikes.1"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = { #Negotiate
+			name = twritalystrikes.1.b
+			add_political_power = -150
+			hidden_effect = {
+				random_list = {		
+					60 = {				
+						country_event = {
+							id = twritalystrikes.2 days = 10 #strikes concluded
+						}			 
+						set_country_flag = ita_flag_bergamo_strikes_negotiate1 
+					}
+					40 = {				
+						country_event = {
+							id = twritalystrikes.3 days = 10 #strikes escalate
+						}			
+						set_country_flag = ita_flag_bergamo_strikes_negotiate2
+					}
+				}
+			}
+		}		
+		option = { #Send the Army
+			name = twritalystrikes.1.a
+			add_stability = -0.1
+			hidden_effect = {
+				random_list = {
+					75 = {
+						country_event = {
+							id = twritalystrikes.2 days = 10 #strikes concluded
+						}
+						set_country_flag = ita_flag_bergamo_strikes_army1
+					}
+					25 = {
+						country_event = {
+							id = twritalystrikes.3 days = 10 #strikes escalate
+						}
+						set_country_flag = ita_flag_bergamo_strikes_army2					    
+					}
+				}
+			}
+
+		}
+	}
+
+	country_event = {
+		id = twritalystrikes.2 #Bergamo Strikes Concluded 
+		title = twritalystrikes.2.t
+		desc = {
+			text = twritalystrikes.2.d1
+			trigger = {
+				has_country_flag = ita_flag_bergamo_strikes_army1
+			}
+		}
+		desc = {
+			text = twritalystrikes.2.d2
+			trigger = {
+				has_country_flag = ita_flag_bergamo_strikes_negotiate1	
+			}
+		}
+		picture = GFX_report_event_general_strike
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalystrikes.2"}
+
+		fire_only_once = yes
+		is_triggered_only = yes 
+
+		option = { #Army sent
+			name = twritalystrikes.2.a
+			trigger = {
+				has_country_flag = ita_flag_bergamo_strikes_army1
+			}
+
+			hidden_effect = {
+				add_to_variable = { ita_var_domestic_opposition = 0.1 }		
+				add_to_variable = { ita_var_coup_chance = -0.1 }	
+				add_to_variable = { ita_var_gcf_loyalty = -0.1 }		
+				add_to_variable = { ita_var_mvsn_loyalty = 0.1 }						
+
+				add_to_variable = { var_ciano_influence_gcf = -50 }
+				add_to_variable = { var_balbo_influence_gcf = 50 }
+
+				clamp_italian_variables = yes 			
+				clr_country_flag = ita_flag_bergamo_strikes_army1				
+			}
+			custom_effect_tooltip = ita_increase_unrest_mainland_tt
+			custom_effect_tooltip = ita_decrease_coup_chance_tt
+			custom_effect_tooltip = ita_decrease_loyalty_gcf_tt
+			custom_effect_tooltip = ita_increase_loyalty_mvsn_tt
+			custom_effect_tooltip = ita_balbo_win_seats_tt		 						
+		}				
+		option = { #Negotiate
+			name = twritalystrikes.2.b
+
+			trigger = { 
+				has_country_flag = ita_flag_bergamo_strikes_negotiate1
+			}
+
+			hidden_effect = {
+				add_to_variable = { ita_var_domestic_opposition = -0.1 }		
+				add_to_variable = { ita_var_coup_chance = 0.1 }	
+				add_to_variable = { ita_var_gcf_loyalty = 0.1 }		
+				add_to_variable = { ita_var_mvsn_loyalty = -0.1 }						
+
+				add_to_variable = { var_ciano_influence_gcf = 50 }
+				add_to_variable = { var_balbo_influence_gcf = -50 }
+				
+				clamp_italian_variables = yes 				
+				clr_country_flag = ita_flag_bergamo_strikes_negotiate1				
+			}
+			custom_effect_tooltip = ita_decrease_unrest_mainland_tt
+			custom_effect_tooltip = ita_increase_coup_chance_tt
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt
+			custom_effect_tooltip = ita_decrease_loyalty_mvsn_tt
+			custom_effect_tooltip = ita_ciano_win_seats_tt
+		}
+	}
+
+	country_event = {
+		id = twritalystrikes.3 #Bergamo Strikes Fail Miserably  
+		title = twritalystrikes.3.t
+		desc = twritalystrikes.3.d
+		desc = {
+			text = twritalystrikes.3.d1
+			trigger = {
+				has_country_flag = ita_flag_bergamo_strikes_army2
+			}
+		}
+		desc = {
+			text = twritalystrikes.3.d2
+			trigger = {
+				has_country_flag = ita_flag_bergamo_strikes_negotiate2	
+			}
+		}
+		picture = GFX_report_event_general_strike
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalystrikes.3"
+		}
+
+		fire_only_once = yes
+		is_triggered_only = yes 
+		
+		option = { #Kill them all
+			name = twritalystrikes.3.a
+
+			hidden_effect = {
+				add_to_variable = { ita_var_domestic_opposition = 0.15 }		
+				add_to_variable = { ita_var_coup_chance = -0.1 }	
+				add_to_variable = { ita_var_mvsn_loyalty = 0.1 }						
+
+				clamp_italian_variables = yes 					
+				news_event = {
+					id = twritalynewsevents.1 days = 5 
+				}				
+			}
+			custom_effect_tooltip = ita_increase_unrest_mainland_tt
+			custom_effect_tooltip = ita_decrease_coup_chance_tt
+			custom_effect_tooltip = ita_increase_loyalty_mvsn_tt
+			if = {
+				limit = {
+					has_country_flag = ita_flag_bergamo_strikes_army2
+				}
+				custom_effect_tooltip = ita_ciano_win_seats_tt
+				add_to_variable = { var_ciano_influence_gcf = 75 }
+				add_to_variable = { var_balbo_influence_gcf = -75 }
+				clr_country_flag = ita_flag_bergamo_strikes_army2
+			}
+			else = {
+				custom_effect_tooltip = ita_balbo_win_seats_tt
+				add_to_variable = { var_ciano_influence_gcf = -75 }
+				add_to_variable = { var_balbo_influence_gcf = 75 }		
+				clr_country_flag = ita_flag_bergamo_strikes_negotiate2	
+			}										
+		}				
+
+		option = { #Accept their demands 
+			name = twritalystrikes.3.b
+
+			hidden_effect = {
+				add_to_variable = { ita_var_domestic_opposition = -0.1 }		
+				add_to_variable = { ita_var_coup_chance = 0.1 }		
+				add_to_variable = { ita_var_mvsn_loyalty = -0.1 }						
+
+				clamp_italian_variables = yes 								
+				country_event = {
+					id = twritalystrikes.4 days = 5 
+				}	
+			}
+			custom_effect_tooltip = ita_decrease_unrest_mainland_tt
+			custom_effect_tooltip = ita_increase_coup_chance_tt
+			custom_effect_tooltip = ita_decrease_loyalty_mvsn_tt
+			add_popularity = {
+			    ideology = socialist
+			    popularity = 0.1
+			}
+			if = {
+				limit = {
+					has_country_flag = ita_flag_bergamo_strikes_army2
+				}
+				custom_effect_tooltip = ita_ciano_win_seats_tt
+				add_to_variable = { var_ciano_influence_gcf = 75 }
+				add_to_variable = { var_balbo_influence_gcf = -75 }
+				clr_country_flag = ita_flag_bergamo_strikes_army2
+			}
+			else = {
+				custom_effect_tooltip = ita_balbo_win_seats_tt
+				add_to_variable = { var_ciano_influence_gcf = -75 }
+				add_to_variable = { var_balbo_influence_gcf = 75 }		
+				clr_country_flag = ita_flag_bergamo_strikes_negotiate2	
+			}	
+		}
+	}
+
+	country_event = {
+		id = twritalystrikes.4 #Bergamo Strike Peacefuly ended  
+		title = twritalystrikes.4.t
+		desc = twritalystrikes.4.d
+		picture = GFX_report_event_general_strike
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalystrikes.4"
+		}
+
+		fire_only_once = yes
+		is_triggered_only = yes 
+		
+		option = { #Nice
+			name = twritalystrikes.4.a									
+		}				
+	}
+
+		###NEWS EVENTS 
+
+	news_event = {
+		id = twritalynewsevents.1 #Strike goes bloody
+		title = twritalynewsevents.1.t 
+		desc = twritalynewsevents.1.d      
+		picture = GFX_news_event_bloody_strikes # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #oh no 
+			name = twritalynewsevents.1.a									
+		}
+	}  
+
+	news_event = {
+		id = twritalynewsevents.2 #Revolt in Greece 
+		title = twritalynewsevents.2.t 
+		desc = twritalynewsevents.2.d      
+		picture = GFX_news_event_italy_greek_revolt # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #oh no 
+			name = twritalynewsevents.2.a
+		}
+	}  
+
+	news_event = {
+		id = twritalynewsevents.3 #Revolt in Greece - Success 
+		title = twritalynewsevents.3.t 
+		desc = twritalynewsevents.3.d      
+		picture = GFX_news_event_italy_greek_revolt # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #oh no 
+			name = twritalynewsevents.3.a									
+		}
+	}  
+
+	news_event = {
+		id = twritalynewsevents.4 #Revolt in Greece - Failure  
+		title = twritalynewsevents.4.t 
+		desc = twritalynewsevents.4.d      
+		picture = GFX_news_event_italy_greek_revolt # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #oh no 
+			name = twritalynewsevents.4.a
+		}
+	}  
+
+	news_event = {
+		id = twritalynewsevents.5 #Borghese's coup 
+		title = twritalynewsevents.5.t 
+		desc = twritalynewsevents.5.d      
+		picture = GFX_news_event_colpo_borghese # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #oh no 
+			name = twritalynewsevents.5.a
+		}
+	}  
+
+
+
+		###GREECE EVENTS
+
+	country_event = {
+		id = twritalygreece.1
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalygreece.1"}
+		title = twritalygreece.1.t #The Corfu Incident 
+		desc = twritalygreece.1.d 
+		picture = GFX_report_event_italy_atrocities
+		fire_only_once = yes
+		is_triggered_only = yes
+		
+		immediate = {
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_completed_focus = ITA_Anarchy_In_The_Balkans
+						}
+					}
+					complete_national_focus = ITA_Anarchy_In_The_Balkans
+				}
+			}
+		}
+
+		option = {
+			name = twritalygreece.1.a #Accept the Blame
+			hidden_effect = {
+				country_event = { id = twritalygreece.2 days = 25 } #Protests happen 
+				GRE = { country_event = { id = twritalygreece.101 days = 1 } }
+				add_to_variable = { ita_var_fascist_opposition = 0.05 }
+				custom_effect_tooltip = ita_unpopular_decision_for_party_tt
+			}
+		}
+		option = {
+			name = twritalygreece.1.b #Try to hide the incident 
+			custom_effect_tooltip = ITA_opposition_increase
+			hidden_effect = {
+				random_list = {
+					95 = {
+						country_event = { id = twritalygreece.2 days = 25 }#Greeks find out 
+						set_country_flag = twr_italy_corfu_incident_find_out 
+						GRE = { country_event =  { id = twritalygreece.101 days = 1 } }
+					}
+					5 = {
+						country_event = { id = twritalygreece.3 days = 25 } #Incident successfully hidden 
+					}
+				}
+			}
+		}
+	}
+	country_event = {
+		id = twritalygreece.101 #greece reaction
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalygreece.1"}
+		title = twritalygreece.101.t #The Corfu Incident 
+		desc = twritalygreece.101.d 
+		picture = GFX_report_event_italy_atrocities
+		fire_only_once = yes
+		is_triggered_only = yes
+
+		option = {
+			name = twritalygreece.101.a #uh oh
+			add_stability = -0.15
+			add_war_support = -0.15
+		}
+	}	
+	country_event = {
+		id = twritalygreece.2
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalygreece.2"}
+		title = twritalygreece.2.t #Protests in Corfu  
+		desc = { 
+			text = twritalygreece.2.d_1 
+			trigger = { has_country_flag = twr_italy_corfu_incident_find_out }
+		}
+		desc = { 
+			text = twritalygreece.2.d_2  
+			trigger = { NOT = { has_country_flag = twr_italy_corfu_incident_find_out } } 
+		}
+		picture = GFX_report_event_greece_protests
+
+		is_triggered_only = yes 
+
+		option = {
+			name = twritalygreece.2.a #Lock them up
+			trigger = {
+				has_country_flag = twr_italy_corfu_incident_find_out
+			}
+		}
+		option = {
+			name = twritalygreece.2.b #Let the protests 
+			hidden_effect = {
+				random_list = {
+					65 = {
+						if = {
+							limit = { has_country_flag = twr_italy_corfu_incident_find_out }
+							add_political_power = -250
+						}
+					}
+					35 = {                
+					}
+				} 
+			}
+		}
+	}
+
+	country_event = {
+		id = twritalygreece.3
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalygreece.3"}
+		title = twritalygreece.3.t #Incident hidden   
+		desc = twritalygreece.3.d 
+		picture = GFX_report_event_italy_troops_marching 
+
+		is_triggered_only = yes
+
+		option = {
+			name = twritalygreece.3.a #All fine 
+			add_political_power = 50
+		}
+	}
+
+		###ETHIOPIA EVENTS
+
+	country_event = {	#Conflict with the Ethiopian Natives
+		id = twritalyethiopia.1
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.1"}
+		title = twritalyethiopia.1.t
+		desc = twritalyethiopia.1.d
+		picture = GFX_report_event_italy_ethiopian_fighters
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.1"
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_completed_focus = ITA_Insecurity_In_Africa
+						}
+					}
+					complete_national_focus = ITA_Insecurity_In_Africa
+				}
+			}
+		}
+		
+		fire_only_once = yes
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyethiopia.1.a
+			add_to_variable = { 
+				var = ita_var_ethiopian_opposition 
+				value = 0.1 
+			}
+			custom_effect_tooltip = ita_increase_unrest_ethiopia_tt
+		}
+		option = {
+			name = twritalyethiopia.1.b
+			custom_effect_tooltip = ita_unpopular_decision_for_party_tt
+		}
+	}
+
+	country_event = {	#Poor Colonial Management in Ethiopia
+		id = twritalyethiopia.2
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.2"}
+		title = twritalyethiopia.2.t
+		desc = twritalyethiopia.2.d
+		picture = GFX_report_event_italy_ethiopian_fighters
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.2"}
+		
+		fire_only_once = yes
+
+		is_triggered_only = yes
+
+		trigger = {
+			NOT = { has_country_flag = twr_italy_badoglio_in_ethiopia }
+		}
+		
+		option = {
+			name = twritalyethiopia.2.a
+			add_to_variable = { ita_var_domestic_opposition = 0.05 }
+			add_to_variable = { 
+				var = ita_var_ethiopian_opposition 
+				value = 0.1 
+			}
+			custom_effect_tooltip = ita_increase_unrest_ethiopia_tt
+		}
+	}
+
+	country_event = {	#Conflict with the Ethiopian Natives 2
+		id = twritalyethiopia.3
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.3"}
+		title = twritalyethiopia.3.t
+		desc = twritalyethiopia.3.d
+		picture = GFX_report_event_italy_ethiopian_fighters
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.3"}
+		
+		fire_only_once = yes
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyethiopia.3.a
+			add_to_variable = { 
+				var = ita_var_ethiopian_opposition 
+				value = 0.1 
+			}
+			custom_effect_tooltip = ita_increase_unrest_ethiopia_tt
+		}
+		option = {
+			name = twritalyethiopia.3.b
+			custom_effect_tooltip = ita_unpopular_decision_for_party_tt
+		}
+	}
+
+	country_event = {	#Conflict with the Ethiopian Natives 3
+		id = twritalyethiopia.4
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.4"}
+		title = twritalyethiopia.4.t
+		desc = twritalyethiopia.4.d
+		picture = GFX_report_event_italy_ethiopian_fighters
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.4"}
+		
+		fire_only_once = yes
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyethiopia.4.a
+			add_to_variable = { ita_var_ethiopian_opposition = 0.1 }
+			custom_effect_tooltip = ita_increase_unrest_ethiopia_tt
+		}
+		option = {
+			name = twritalyethiopia.4.b
+			custom_effect_tooltip = ita_unpopular_decision_for_party_tt
+		}
+	}
+
+	country_event = {	#Ethiopian Uprising
+		id = twritalyethiopia.5
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.5"}
+		title = twritalyethiopia.5.t
+		desc = twritalyethiopia.5.d
+		picture = GFX_report_event_italy_ethiopian_fighters
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.5"}
+		
+		fire_only_once = yes
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyethiopia.5.a
+			add_to_variable = { ita_var_ethiopian_opposition = 0.3 }
+			set_global_flag = ethiopian_uprising_started
+			set_global_flag = ethiopian_war_ongoing
+			end_puppet = IEA
+			IEA = {
+				leave_faction = yes
+				release = ETH
+				add_ai_strategy = {
+					type = conquer
+					id = ETH
+					value = 500
+				}
+				hidden_effect = {
+					transfer_state = 907
+					transfer_state = 909
+					transfer_state = 550
+					set_politics = {
+						ruling_party = paternal_autocrat
+					}
+					set_politics = {
+						ruling_party = paternal_autocrat
+						last_election = "1934.3.26"
+						election_frequency = 60
+						elections_allowed = no
+					}
+					set_popularities = {
+					    national_socialist = 0
+					    fascist = 8
+					    paternal_autocrat = 51
+					    conservative = 24
+					    liberal = 10
+					    social_democrat = 0
+					    socialist = 7
+					    bolshevik_leninist = 0
+					    marxist_leninist = 0
+					}
+				declare_war_on = {
+				    target = ETH
+				    type = annex_everything
+				    }
+				    set_country_flag = IEA_WAR_TIME
+				}
+				country_event = { id = twritalyethiopia.6 days = 1 }
+			}
+			ETH = {
+				load_oob = "ETH_REBEL"
+			}
+			hidden_effect = { 
+				news_event = { id = twrnews.120 days = 1 }
+			}
+		}
+	}
+
+	country_event = {	#IEA reintegrated
+		id = twritalyethiopia.7
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.7"}
+		title = twritalyethiopia.7.t
+		desc = twritalyethiopia.7.d
+		picture = GFX_report_event_italy_ethiopian_fighters
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.7"}
+		
+		fire_only_once = yes
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyethiopia.7.a
+			add_to_faction = IEA
+			set_autonomy = {
+	    	target = IEA
+	    	autonomy_state = autonomy_ITA_governate
+			}
+			hidden_effect = {
+			IEA = {
+			set_politics = {
+			ruling_party = paternal_autocrat
+			last_election = "1934.3.26"
+			election_frequency = 60
+			elections_allowed = no
+			}
+
+			set_popularities = {
+			national_socialist = 0
+			fascist = 8
+			paternal_autocrat = 51
+			conservative = 24
+			liberal = 10
+			social_democrat = 0
+			socialist = 7
+			bolshevik_leninist = 0
+			marxist_leninist = 0
+					}
+				}
+			}
+		}
+	}
+
+	country_event = {	#Uprising - IEA
+		id = twritalyethiopia.6
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.6"}
+		title = twritalyethiopia.6.t
+		desc = twritalyethiopia.6.d
+		picture = GFX_report_event_italy_ethiopian_fighters
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyethiopia.6"}
+		
+		fire_only_once = yes
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyethiopia.6.a
+			load_oob = "IEA_WAR"
+		}
+	}
+
+
+		###MONTENEGRO EVENTS
+
+	country_event = {
+		id = twritalymontenegro.1 #Montenegrin Rebels Attack Danilovgrad
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.1"}
+		title = twritalymontenegro.1.t
+		desc = twritalymontenegro.1.d
+		picture = GFX_report_event_partisans_montenegro
+		is_triggered_only = yes
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.1"}
+		
+		fire_only_once = yes
+		immediate = {
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_completed_focus = ITA_Anarchy_In_The_Balkans
+						}
+					}
+					complete_national_focus = ITA_Anarchy_In_The_Balkans
+				}
+			}
+		}
+
+		
+		option = {
+			name = twritalymontenegro.1.a #Send in the Police Immediately!
+			hidden_effect = {
+				set_country_flag = Montenegro_Troubles
+				random_list = {
+					65 = {
+						country_event = { id = twritalymontenegro.2 days = 5 } #Rebels Dispersed 
+					}
+					35 = {
+						country_event = { id = twritalymontenegro.3 days = 5 } #Conflict Escalates
+					}
+				}
+			}
+		}
+	}
+
+	country_event = {
+		id = twritalymontenegro.2 #Rebels Dispersed Successfully
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.2"}
+		title = twritalymontenegro.2.t
+		desc = twritalymontenegro.2.d
+		picture = GFX_report_event_greece_protests
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.2"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalymontenegro.2.a #Arrest the Captured Rebels
+			hidden_effect = {
+				add_to_variable = { ita_var_montenegrin_opposition = 0.02 }
+			}
+		}
+
+		option = {
+			name = twritalymontenegro.2.b #Hang them!
+			hidden_effect = {
+				add_to_variable = { ita_var_montenegrin_opposition = 0.05}
+			}
+		} 
+	}
+
+	country_event = {
+		id = twritalymontenegro.3 #Conflict Escalates
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.3"}
+		title = twritalymontenegro.3.t
+		desc = twritalymontenegro.3.d
+		picture = GFX_report_event_greece_protests
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.3"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalymontenegro.3.a #Stomp them All!
+			hidden_effect = {
+				random_list = {
+					65 = { set_country_flag = twr_italy_montenegrin_rebels_defeated }
+					35 = { set_country_flag = twr_italy_montenegrin_rebels_escaped }
+				}
+				country_event = { id = twritalymontenegro.4 days = 5 }
+			}
+		}
+	}
+
+	country_event = {
+		id = twritalymontenegro.4 #Montenegrin Rebels Defeated!
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.4"}
+		title = twritalymontenegro.4.t
+		desc = {
+			text = twritalymontenegro.4.d_1
+			trigger = { has_country_flag = twr_italy_montenegrin_rebels_defeated }
+		}
+		desc = {
+			text = twritalymontenegro.4.d_2
+			trigger = { has_country_flag = twr_italy_montenegrin_rebels_escaped }
+		}
+		picture = GFX_report_event_greece_protests
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.3"}
+		
+		fire_only_once = yes
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalymontenegro.3.a #Peace at Last!
+			hidden_effect = {
+				if = {
+					limit = {
+						ITA = { has_country_flag = twr_italy_montenegrin_rebels_defeated }
+					}
+					add_to_variable = { ita_var_montenegrin_opposition = 0.05}
+				}
+				else = {
+					add_to_variable = { ita_var_montenegrin_opposition = 0.02}
+				}
+			}
+		}
+	}
+
+	country_event = {
+		id = twritalymontenegro.5 #Gang Conflict in Podgorica
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.5"}
+		title = twritalymontenegro.5.t
+		desc = twritalymontenegro.5.d
+		picture = GFX_report_event_greece_protests
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.5"}
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		trigger = {
+			ITA = {
+				NOT = { has_country_flag = twr_italy_balbo_in_montenegro }
+			}
+		}
+		
+		option = {
+			name = twritalymontenegro.3.a #Send in the police immediately!
+			add_to_variable = { ita_var_montenegrin_opposition = 0.03 }
+			add_stability = -0.05
+			hidden_effect = {
+				country_event = { id = twritalymontenegro.6 days = 3 }
+			}
+		}
+	}
+
+	country_event = {	#The Gang Dispersed Succesfuly
+		id = twritalymontenegro.6
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.6"}
+		title = twritalymontenegro.6.t
+		desc = twritalymontenegro.6.d
+		picture = GFX_report_event_greece_protests
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.6"}
+		
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalymontenegro.6.a
+
+		}
+	}
+
+	country_event = {
+		id = twritalymontenegro.7 #Terrorist Strike in Montenegro
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.7"}
+		title = twritalymontenegro.7.t
+		desc = twritalymontenegro.7.d	#Montenegrin people blame the government for sponsoring the terrorist group
+		picture = GFX_report_event_partisans_montenegro
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.7"}
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#What? This wasn't us!
+		name = twritalymontenegro.7.a	
+		ai_chance = { factor = 40 }
+		add_to_variable = { ita_var_montenegrin_opposition = 0.1 }
+	}
+
+	option = {	#Don't release any public statements yet, we need to investigate this...
+	trigger = {
+		has_country_flag = twr_italy_balbo_in_montenegro
+	}
+	name = twritalymontenegro.7.b
+	ai_chance = { factor = 60 }
+	add_to_variable = { ita_var_montenegrin_opposition = 0.1 }
+	add_stability = -0.05
+	custom_effect_tooltip = ITA_montenegro_investigation_tt
+	hidden_effect = {
+		random_list = {
+			60 = {
+				country_event = { id = twritalymontenegro.8 days = 63 }
+			}
+			40 = {
+				country_event = { id = twritalymontenegro.9 days = 58 }
+			}
+		}
+	}
+	}
+	}
+
+	country_event = {	#Investigation Succesfull
+		id = twritalymontenegro.8
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.8"}
+		title = twritalymontenegro.8.t
+		desc = twritalymontenegro.8.d
+		picture = GFX_report_event_partisans_montenegro
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.8"}
+		
+		is_triggered_only = yes
+		
+		option = {	#Good job
+			name = twritalymontenegro.8.a
+			subtract_from_variable = { ita_var_montenegrin_opposition = 0.03 }
+		}
+	}
+
+	country_event = {	#Failed Investigation
+		id = twritalymontenegro.9
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.9"}
+		title = twritalymontenegro.9.t
+		desc = twritalymontenegro.9.d
+		picture = GFX_report_event_partisans_montenegro
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.9"}
+
+		is_triggered_only = yes
+		
+		option = {	#Why cant we have better agents?
+		name = twritalymontenegro.9.a
+		add_to_variable = { ita_var_montenegrin_opposition = 0.02 }
+	}
+	}
+
+	country_event = {	#Conflict with the Police 
+		id = twritalymontenegro.10
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.10"}
+		title = twritalymontenegro.10.t
+		desc = twritalymontenegro.10.d
+		picture = GFX_report_event_partisans_montenegro
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalymontenegro.10"}
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		trigger = {
+			NOT = { has_country_flag = twr_italy_balbo_in_montenegro }
+		}
+		
+		option = {	#Theyre just doing their job!
+		name = twritalymontenegro.10.a
+		add_to_variable = { ita_var_montenegrin_opposition = 0.02 }
+		hidden_effect = {
+			#country_event = { id = twritalymontenegro.11 days = 10 }
+			}
+		}
+	}
+
+		###FOREIGN DIPLOMACY EVENTS
+
+	country_event = {	#GER - Breakup of the Pact of Steel
+		id = twritalyforeign.1
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.1"}
+		title = twritalyforeign.1.t
+		desc = twritalyforeign.1.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.1"}
+		
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyforeign.1.a
+			hidden_effect = {
+				add_opinion_modifier = { target = ITA modifier = ITA_GER_broken_pack_of_steel }
+				reverse_add_opinion_modifier = { target = ITA modifier = ITA_GER_broken_pack_of_steel }
+			}
+		}
+	}
+
+	country_event = {	#ITA - Rekindling of the Pact
+		id = twritalyforeign.2
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.2"}
+		title = twritalyforeign.2.t
+		desc = twritalyforeign.2.d
+		picture = GFX_report_event_axis_europe_map
+
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.2"}
+
+		is_triggered_only = yes
+
+		option = {	#Get the Germans on this ASAP
+			name = twritalyforeign.2.a
+			hidden_effect = {
+				HGR = {
+					country_event = { id = twritalyforeign.3 days = 10 }
+				}
+			}
+		}
+	}
+
+	country_event = {	#GER - Italys plea
+	id = twritalyforeign.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.3"}
+	title = twritalyforeign.3.t
+	desc = twritalyforeign.3.d
+	picture = GFX_report_event_axis_europe_map
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.3"}
+
+	is_triggered_only = yes
+
+	option = {	#This will be good development for the both sides
+		name = twritalyforeign.3.a
+		ai_chance = { factor = 70 }
+		hidden_effect = {
+			ITA = {
+				country_event = { id = twritalyforeign.4 days = 5 }
+			}
+		}
+	}
+
+	option = {	#Let them rot alone
+		name = twritalyforeign.3.b
+		ai_chance = { factor = 30 }
+		hidden_effect = {
+			ITA = {
+				country_event = { id = twritalyforeign.5 days = 5 }
+			}
+		}
+	}
+	}
+
+	country_event = {	#ITA - The Germans come to our aid!
+		id = twritalyforeign.4
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.4"}
+		title = twritalyforeign.4.t
+		desc = twritalyforeign.4.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.4"}
+		
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyforeign.4.a
+			custom_effect_tooltip = ITA_GER_cooperation_option_tt
+		}
+	}
+
+	country_event = {	#ITA - The Germans abandon us
+		id = twritalyforeign.5
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.5"}
+		title = twritalyforeign.5.t
+		desc = twritalyforeign.5.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.5"}
+		
+		is_triggered_only = yes
+		
+		option = {	#We knew this day would come
+			name = twritalyforeign.5.a
+			hidden_effect = {
+				add_opinion_modifier = { target = GER modifier = ITA_GER_broken_pack_of_steel }
+				reverse_add_opinion_modifier = { target = GER modifier = ITA_GER_broken_pack_of_steel }
+			}
+		}
+	}
+
+	country_event = {	#Puppet government in Egypt installed
+		id = twritalyforeign.6
+		title = twritalyforeign.6.t
+		desc = twritalyforeign.6.d
+		picture = GFX_report_event_italy_armored_cars
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.6"}
+
+		is_triggered_only = yes
+		
+		option = {	#Viva Italia!
+			name = twritalyforeign.6.a
+			ai_chance = {
+			factor = 50
+			}
+			add_political_power = -100
+			add_stability = 0.1
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt			
+			EGY = {
+				set_cosmetic_tag = EGY_ITA
+			}
+			ENG = { country_event = { id = twrbritainforeign.17 days = 3 } }
+			hidden_effect = {
+				add_to_variable = { ita_var_gcf_loyalty = 0.1 }
+			}
+		}
+		
+		option = {	#There is no rush
+			name = twritalyforeign.6.b
+			ai_chance = {
+			factor = 40
+			}
+			custom_effect_tooltip = SAVE_EGYPT_FOR_LATER
+			set_country_flag = EGY_LATER_ITA
+		}
+	}
+
+		##ROYAL EVENTS BEGIN HERE 
+
+	country_event = {	#Umberto begins his trip 
+		id = twritalyroyalty.1
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.1"}
+		title = twritalyroyalty.1.t
+		desc = twritalyroyalty.1.d
+		picture = GFX_report_event_italy_umberto_jose_marie
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.1"}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#Excellent 
+			name = twritalyroyalty.1.a
+			hidden_effect = {
+				country_event = { id = twritalyroyalty.2 days = 10 }
+			}
+		}
+	}
+
+	country_event = {	#Arrival in Naples  
+		id = twritalyroyalty.2
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.2"}
+		title = twritalyroyalty.2.t
+		desc = twritalyroyalty.2.d
+		picture = GFX_report_event_italy_napoli
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.2"}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#Excellent 
+			name = twritalyroyalty.2.a
+			hidden_effect = {
+				country_event = { id = twritalyroyalty.3 days = 15 }
+			}
+		}
+	}
+
+	country_event = {	#Assasination attempt in Athens!   
+		id = twritalyroyalty.3
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.3"}
+		title = twritalyroyalty.3.t
+		desc = twritalyroyalty.3.d
+		picture = GFX_report_event_greece_athens
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.3"}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#Continue the trip  
+			name = twritalyroyalty.3.a
+			hidden_effect = {
+				country_event = { id = twritalyroyalty.4 days = 15 }
+			}
+		}
+		option = {	#Cancel the trip  
+			name = twritalyroyalty.3.b
+			hidden_effect = {
+			}
+		}
+	}
+
+	country_event = {	#Visit to Tripoli 
+		id = twritalyroyalty.4
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.4"}
+		title = twritalyroyalty.4.t
+		desc = twritalyroyalty.4.d
+		picture = GFX_report_event_italy_tripoli
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.4"}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#Nice   
+			name = twritalyroyalty.4.a
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							country_exists = ETH
+						}
+					}
+					country_event = { id = twritalyroyalty.5 days = 15 }
+				}
+				country_event = { id = twritalyroyalty.6 days = 35 }
+			}
+		}
+	}
+
+	country_event = {	#Visit to Italian East Africa   
+		id = twritalyroyalty.5
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.5"}
+		title = twritalyroyalty.5.t
+		desc = twritalyroyalty.5.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.5"}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#Cool    
+			name = twritalyroyalty.5.a
+#			hidden_effect = {
+#				country_event = { id = twritalyroyalty.5 days = 20 }
+#			}
+		}
+	}
+
+	country_event = {	#Iginio Ugo Faralli opens the Hotel Savoia in Crete   
+		id = twritalyroyalty.6
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.6"}
+		title = twritalyroyalty.6.t
+		desc = twritalyroyalty.6.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyroyalty.6"}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#Cool    
+			name = twritalyroyalty.6.a
+			add_political_power = 10
+		}
+	}
+
+		###ALBANIA EVENTS
+
+	country_event = {	#The Ships depart from Brindisi   
+		id = twritalyalbania.1
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyalbania.1"}
+		title = twritalyalbania.1.t
+		desc = twritalyalbania.1.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyalbania.1"}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#See them go!    
+			name = twritalyalbania.1.a
+			add_war_support = 0.05
+			custom_effect_tooltip = ita_increase_unrest_albania_tt
+			add_to_variable = { ita_var_albania_opposition = 0.1 }	
+			ALB = {
+				country_event = {
+					id = twritalyalbania.2
+					days = 2
+				}
+			}
+		}
+	}
+	country_event = {	#Italian Colonists Arrive   
+		id = twritalyalbania.2
+		title = twritalyalbania.2.t
+		desc = twritalyalbania.2.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyalbania.2"}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+		
+		option = {	#Good!
+			name = twritalyalbania.1.a
+			add_stability = 0.05
+			add_war_support = -0.05
+		}
+	}
+
+		### GREEK REVOLT EVENTS 
+
+	country_event = {	#Reports indicate Greeks are preparing revolt    
+		id = twrgreeceuprising.1
+		title = twrgreeceuprising.1.t
+		desc = twrgreeceuprising.1.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrgreeceuprising.1"}
+		fire_only_once = yes 
+		is_triggered_only = yes
+
+		trigger = {
+			tag = ITA
+			country_exists = GRE 
+			GRE = { is_puppet_of = ITA }
+		}
+		
+		option = {	    
+			name = twrgreeceuprising.1.a
+			add_stability = -0.05 
+			add_political_power = -50 
+
+			GRE = {
+				country_event = {
+					id = twrgreeceuprising.2
+					days = 40 
+				}
+			}
+		}
+	}
+
+	country_event = {	#Greek revolt begins     
+		id = twrgreeceuprising.2
+		title = twrgreeceuprising.2.t
+		desc = twrgreeceuprising.2.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twrgreeceuprising.2"
+			hidden_effect = {
+			ITA = {
+			end_puppet = GRE
+			set_autonomy = {
+	    	target = GRE
+	    	autonomy_state = autonomy_free
+				}
+			}
+				set_party_name = { 
+					ideology = liberal  
+					long_name = GRE_liberal_party_revolt 
+					name = GRE_liberal_party_revolt
+				} 
+				start_civil_war = {
+					ruling_party = fascist 
+					ideology = liberal  
+					size = 0.4 
+					capital = 185
+					states = { 
+						185 879 182 878 731 187 
+					} 
+				}
+				random_other_country = {	 
+					limit = {
+						original_tag = GRE 
+						has_government = liberal 
+						has_civil_war = yes 
+					}
+					save_global_event_target_as = greek_plastiras_revolt
+					create_country_leader = {
+						name = "Nikolaos Plastiras"
+						desc = "NIKOLAOS_PLASTIRAS_DESC"
+						picture = "Portrait_GRE_Nikolaos_Plastiras.dds"
+						expire = "1990.1.1"
+						ideology = conservative_liberalism 
+					}
+					create_field_marshal = {
+						name = "Alexandros Papagos"
+						picture = "Portrait_GRE_Alexandros_Papagos.dds"
+						traits = {  }
+						skill = 3
+						attack_skill = 3
+						defense_skill = 3
+						planning_skill = 4
+						logistics_skill = 4
+						id = 18211
+					}
+					create_corps_commander = {
+						name = "Aris Velouchiotis"
+						picture = "Portrait_GRE_Aris_Velouchiotis.dds"
+						traits = {  }
+						skill = 4
+						attack_skill = 5
+						defense_skill = 4
+						planning_skill = 4
+						logistics_skill = 3
+						id = 18212
+					}	
+					create_corps_commander = {
+						name = "Napoleon Zervas"
+						picture = "Portrait_GRE_Napoleon_Zervas.dds"
+						traits = {  }
+						skill = 4
+						attack_skill = 4
+						defense_skill = 4
+						planning_skill = 3
+						logistics_skill = 4
+						id = 18213
+					}	
+					create_corps_commander = {
+						name = "Georgios Siantos"
+						picture = "Portrait_GRE_Georgios_Siantos.dds"
+						traits = {  }
+						skill = 3
+						attack_skill = 3
+						defense_skill = 3
+						planning_skill = 2
+						logistics_skill = 3
+						id = 18214
+					}
+					create_corps_commander = {
+						name = "Stefanos Sarafis"
+						picture = "Portrait_GRE_Stefanos_Sarafis.dds"
+						traits = {  }
+						skill = 3
+						attack_skill = 4
+						defense_skill = 4
+						planning_skill = 2
+						logistics_skill = 2
+						id = 18215
+					}
+					create_corps_commander = {
+						name = "Thrasyvoulos Tsakalotos"
+						picture = "Portrait_GRE_Thrasyvoulos_Tsakalotos.dds"
+						traits = {  }
+						skill = 2
+						attack_skill = 2
+						defense_skill = 2
+						planning_skill = 3 
+						logistics_skill = 2
+						id = 18216
+					}
+					create_corps_commander = {
+						name = "Georgios Grivas"
+						picture = "Portrait_GRE_Georgios_Digenis.dds"
+						traits = {  }
+						skill = 3
+						attack_skill = 4
+						defense_skill = 3
+						planning_skill = 2 
+						logistics_skill = 3
+						id = 18217 
+					}
+					load_oob = "GRE_Revolt_1952"
+					add_ideas = GRE_idea_Popular_Uprising			
+				}
+				ITA = { country_event = twrgreeceuprising.3 }
+				news_event = twritalynewsevents.2
+			}
+		}
+		
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		trigger = {		
+			country_exists = GRE 
+			is_puppet_of = ITA
+		}
+		
+		option = {	    
+			name = twrgreeceuprising.2.a #be ruling Greece 
+			add_stability = -0.20  
+			add_political_power = -100 
+			GRE = {
+			set_country_flag = ITA_GREEKREVOLT
+			}
+		}
+
+		option = {	    
+			name = twrgreeceuprising.2.b #be the rebels  
+			ai_chance = {
+			factor = 0
+			}
+			add_stability = -0.20  
+			add_political_power = -100  
+			GRE = {
+			set_country_flag = ITA_GREEKREVOLT
+			}
+
+			random_other_country = {	 
+				limit = {
+					original_tag = GRE 
+					has_government = liberal 
+					has_civil_war = yes 
+				}
+				change_tag_from	= ROOT  
+			}
+		}
+	}
+
+	country_event = {	#Italian event for Greek revolt 
+		id = twrgreeceuprising.3
+		title = twrgreeceuprising.3.t
+		desc = twrgreeceuprising.3.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrgreeceuprising.3"}
+
+		is_triggered_only = yes
+		fire_only_once = yes 
+		
+		option = {
+			name = twrgreeceuprising.3.a #Intervene in the War
+			ai_chance = {
+			factor = 40
+			}
+
+			declare_war_on = {
+				target = event_target:greek_plastiras_revolt
+				type = topple_government 
+			}			
+			hidden_effect = {
+				add_to_variable = { ita_var_domestic_opposition = 0.05 }
+				add_to_variable = { ita_var_montenegrin_opposition = 0.05 }
+				add_to_variable = { ita_var_albania_opposition = 0.05 }	
+				add_to_variable = { ita_var_dalmatia_opposition = 0.05 }				
+				add_to_variable = { ita_var_slovenia_opposition = 0.05 }
+				add_to_variable = { ita_var_sicily_opposition = 0.05 }
+				add_to_variable = { ita_var_veneto_opposition = 0.05 }
+				add_to_variable = { ita_var_south_italy_opposition = 0.05 }
+				add_to_variable = { ita_var_sardinia_corsica_opposition = 0.05 }				
+				add_to_variable = { ita_var_coup_chance = -0.05 }	
+				add_to_variable = { ita_var_gcf_loyalty = 0.05 }		
+				add_to_variable = { ita_var_mvsn_loyalty = 0.05 }						
+				
+				clamp_italian_variables = yes 	
+			}
+			custom_effect_tooltip = ita_increase_unrest_europe_tt
+			custom_effect_tooltip = ita_decrease_coup_chance_tt
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt
+			custom_effect_tooltip = ita_increase_loyalty_mvsn_tt
+		}
+		option = {
+			name = twrgreeceuprising.3.b #Do nothing 
+			ai_chance = {
+			factor = 60
+			}
+			add_political_power = -50 
+			add_stability = -0.05 
+			hidden_effect = {				
+				add_to_variable = { ita_var_coup_chance = 0.15 }	
+				add_to_variable = { ita_var_gcf_loyalty = -0.05 }		
+				add_to_variable = { ita_var_mvsn_loyalty = -0.15 }						
+				
+				clamp_italian_variables = yes 	
+			}
+			custom_effect_tooltip = ita_increase_coup_chance_tt
+			custom_effect_tooltip = ita_decrease_loyalty_gcf_tt
+			custom_effect_tooltip = ita_decrease_loyalty_mvsn_tt			
+		}
+	}
+
+	country_event = {	# event for fascist Greek victory 
+		id = twrgreeceuprising.4
+		title = twrgreeceuprising.4.t
+		desc = twrgreeceuprising.4.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrgreeceuprising.4"}
+
+		is_triggered_only = yes
+		fire_only_once = yes 
+		
+		option = {
+			name = twrgreeceuprising.4.a 
+
+			add_stability = 0.1 
+			add_political_power = 50 
+			ITA = { country_event = { id = twrgreeceuprising.6 days = 5 } }
+		}
+	}
+
+	country_event = {	# event for fascist Greek loss  
+		id = twrgreeceuprising.5
+		title = twrgreeceuprising.5.t
+		desc = twrgreeceuprising.5.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrgreeceuprising.5"}
+
+		is_triggered_only = yes
+		fire_only_once = yes 
+		
+		option = {
+			name = twrgreeceuprising.5.a 
+
+			set_popularities = {
+				fascist = 2
+				national_socialist = 1
+				paternal_autocrat = 18
+				conservative = 27
+				liberal = 20
+				social_democrat = 8
+				socialist = 10
+				bolshevik_leninist = 4 
+				marxist_leninist = 10  
+			}
+			add_stability = 0.25  
+			add_political_power = 150 
+			add_war_support = 0.1 			
+			ITA = { country_event = { id = twrgreeceuprising.7 days = 5 } }
+		}
+	}
+
+	country_event = {	#Italian event for fascist Greek victory   
+		id = twrgreeceuprising.6
+		title = twrgreeceuprising.6.t
+		desc = twrgreeceuprising.6.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrgreeceuprising.6"}
+
+		is_triggered_only = yes
+		fire_only_once = yes 
+		
+		option = {
+			name = twrgreeceuprising.6.a 
+
+			add_stability = 0.05  
+			add_political_power = 50 
+			add_war_support = 0.01 	
+			hidden_effect = {
+				add_to_variable = { ita_var_domestic_opposition = -0.05 }
+				add_to_variable = { ita_var_montenegrin_opposition = -0.05 }
+				add_to_variable = { ita_var_albania_opposition = -0.05 }	
+				add_to_variable = { ita_var_dalmatia_opposition = -0.05 }				
+				add_to_variable = { ita_var_slovenia_opposition = -0.05 }
+				add_to_variable = { ita_var_sicily_opposition = -0.05 }
+				add_to_variable = { ita_var_veneto_opposition = -0.05 }
+				add_to_variable = { ita_var_south_italy_opposition = -0.05 }
+				add_to_variable = { ita_var_sardinia_corsica_opposition = -0.05 }				
+				add_to_variable = { ita_var_coup_chance = -0.01 }	
+				add_to_variable = { ita_var_gcf_loyalty = 0.01 }		
+				add_to_variable = { ita_var_mvsn_loyalty = 0.01 }						
+				
+				clamp_italian_variables = yes 	
+			}
+			custom_effect_tooltip = ita_decrease_unrest_europe_tt
+			custom_effect_tooltip = ita_decrease_coup_chance_tt
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt
+			custom_effect_tooltip = ita_increase_loyalty_mvsn_tt			
+		}
+	}
+
+	country_event = {	#Italian event for fascist Greek lost   
+		id = twrgreeceuprising.7
+		title = twrgreeceuprising.7.t
+		desc = twrgreeceuprising.7.d
+		picture = GFX_report_event_italy_mogadiscio
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twrgreeceuprising.7"}
+
+		is_triggered_only = yes
+		fire_only_once = yes 
+		
+		option = {
+			name = twrgreeceuprising.7.a 
+
+			add_stability = -0.05  
+			add_political_power = -50 
+			add_war_support = -0.05 	
+			hidden_effect = {
+				add_to_variable = { ita_var_domestic_opposition = 0.05 }
+				add_to_variable = { ita_var_montenegrin_opposition = 0.05 }
+				add_to_variable = { ita_var_albania_opposition = 0.05 }	
+				add_to_variable = { ita_var_dalmatia_opposition = 0.05 }				
+				add_to_variable = { ita_var_slovenia_opposition = 0.05 }
+				add_to_variable = { ita_var_sicily_opposition = 0.05 }
+				add_to_variable = { ita_var_veneto_opposition = 0.05 }
+				add_to_variable = { ita_var_south_italy_opposition = 0.05 }
+				add_to_variable = { ita_var_sardinia_corsica_opposition = 0.05 }				
+				add_to_variable = { ita_var_coup_chance = 0.10 }	
+				add_to_variable = { ita_var_gcf_loyalty = -0.05 }		
+				add_to_variable = { ita_var_mvsn_loyalty = -0.05 }				
+				
+				clamp_italian_variables = yes 	
+			}
+			custom_effect_tooltip = ita_increase_unrest_europe_tt
+			custom_effect_tooltip = ita_increase_coup_chance_tt
+			custom_effect_tooltip = ita_decrease_loyalty_gcf_tt
+			custom_effect_tooltip = ita_decrease_loyalty_mvsn_tt			
+		}
+	}
+
+		###DEBUG EVENTS
+
+	country_event = {	#Load Ciano Focus Tree
+		id = twritalydebug.1
+		title = twritalydebug.1.t
+		desc = twritalydebug.1.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.1"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.1.a
+			kill_country_leader = yes
+			if = {
+				limit = {
+					NOT = {
+						has_government = fascist
+					}
+				}
+				set_politics = {
+					ruling_party = fascist
+				}
+			}
+			create_country_leader = {
+				name = "Galeazzo Ciano"
+				desc = ""
+				picture = "Portrait_Italy_Galeazzo_Ciano.dds"
+				expire = "1990.1.1"
+				ideology = fascism
+			}
+			load_focus_tree = ITA_ciano_1960
+			ciano_victory_gui = yes
+		}
+	}
+
+	country_event = {	#Load Balbo Focus Tree
+		id = twritalydebug.2
+		title = twritalydebug.2.t
+		desc = twritalydebug.2.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.2"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.2.a
+			kill_country_leader = yes
+			if = {
+				limit = {
+					NOT = {
+						has_government = fascist
+					}
+				}
+				set_politics = {
+					ruling_party = fascist
+				}
+			}
+			create_country_leader = {
+				name = "Italo Balbo"
+				desc = ""
+				picture = "Portrait_Italy_Italo_Balbo.dds"
+				expire = "1990.1.1"
+				ideology = fascism
+			}
+			load_focus_tree = ITA_balbo_1960
+			balbo_victory_gui = yes
+		}
+	}
+
+	country_event = {	#Make Umberto Leader
+		id = twritalydebug.3
+		title = twritalydebug.3.t
+		desc = twritalydebug.3.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.3"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.3.a
+			retire_country_leader = yes
+			if = {
+				limit = {
+					NOT = {
+						has_government = paternal_autocrat
+					}
+				}
+				set_politics = {
+					ruling_party = paternal_autocrat
+				}
+			}
+			create_country_leader = {
+				name = "Umberto II"
+				desc = ""
+				picture = "Portrait_Italy_Umberto_II.dds"
+				expire = "1990.1.1"
+				ideology = monarchism
+			}
+		}
+	}
+
+	country_event = {	#Make Balbo uberman 
+		id = twritalydebug.4
+		title = twritalydebug.4.t
+		desc = twritalydebug.4.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.4"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.4.a
+
+			add_to_variable = { var_balbo_influence_gcf = 200 }
+
+			add_to_variable = { var_ciano_influence_gcf = -200 }
+
+			clamp_variable = {
+				var = var_balbo_influence_gcf
+				min = 0
+				max = 600			
+			}
+			clamp_variable = {
+				var = var_ciano_influence_gcf
+				min = 0
+				max = 600			
+			}
+		}
+	}
+
+	country_event = {	#Make Ciano uberman 
+		id = twritalydebug.5
+		title = twritalydebug.5.t
+		desc = twritalydebug.5.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.5"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.5.a
+
+			add_to_variable = { var_ciano_influence_gcf = 200 }
+
+			add_to_variable = { var_balbo_influence_gcf = -200 }
+
+			clamp_variable = {
+				var = var_balbo_influence_gcf
+				min = 0
+				max = 600			
+			}
+			clamp_variable = {
+				var = var_ciano_influence_gcf
+				min = 0
+				max = 600			
+			}
+		}
+	}
+	country_event = {	#Make Balbo smallman  
+		id = twritalydebug.6
+		title = twritalydebug.6.t
+		desc = twritalydebug.6.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.6"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.6.a
+
+
+			add_to_variable = { var_balbo_influence_gcf = 100 }
+
+			add_to_variable = { var_ciano_influence_gcf = -100 }
+
+			clamp_variable = {
+				var = var_balbo_influence_gcf
+				min = 0
+				max = 600			
+			}
+			clamp_variable = {
+				var = var_ciano_influence_gcf
+				min = 0
+				max = 600			
+			}
+		}
+	}
+	country_event = {	#Make Ciano smallman  
+		id = twritalydebug.7
+		title = twritalydebug.7.t
+		desc = twritalydebug.7.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.7"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.7.a
+
+			add_to_variable = { var_ciano_influence_gcf = 100 }
+
+			add_to_variable = { var_balbo_influence_gcf = -100 }
+
+			clamp_variable = {
+				var = var_balbo_influence_gcf
+				min = 0
+				max = 600			
+			}
+			clamp_variable = {
+				var = var_ciano_influence_gcf
+				min = 0
+				max = 600			
+			}
+		}
+	}
+	country_event = {	#Make Balbo tinyman   
+		id = twritalydebug.8
+		title = twritalydebug.8.t
+		desc = twritalydebug.8.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.8"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.8.a
+
+
+			add_to_variable = { var_balbo_influence_gcf = 50 }
+
+			add_to_variable = { var_ciano_influence_gcf = -50 }
+
+			clamp_variable = {
+				var = var_balbo_influence_gcf
+				min = 0
+				max = 600			
+			}
+			clamp_variable = {
+				var = var_ciano_influence_gcf
+				min = 0
+				max = 600			
+			}
+		}
+	}
+	country_event = {	#Make Ciano smallman  
+		id = twritalydebug.9
+		title = twritalydebug.9.t
+		desc = twritalydebug.9.d
+		picture = GFX_placeholder
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalydebug.9"}
+
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalydebug.9.a
+
+			add_to_variable = { var_ciano_influence_gcf = 50 }
+
+			add_to_variable = { var_balbo_influence_gcf = -50 }
+
+			clamp_variable = {
+				var = var_balbo_influence_gcf
+				min = 0
+				max = 600			
+			}
+			clamp_variable = {
+				var = var_ciano_influence_gcf
+				min = 0
+				max = 600			
+			}
+		}
+	}
+
+
+
+
+	#IGNORE
+	country_event = {	#VSan Marino
+		id = twritalyforeign.797979
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.797979"}
+		title = twritalyforeign.797979.t
+		desc = twritalyforeign.797979.d
+		picture = GFX_report_event_san_marino_election
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.797979.a
+		}
+	}
+	country_event = {	#San Marino Revolution
+		id = twritalyforeign.7979791
+		title = twritalyforeign.7979791.t
+		desc = twritalyforeign.7979791.d
+		picture = GFX_report_event_san_marino_revolution
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.7979791"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.7979791.a
+			hidden_effect = {
+				162 = {
+					add_province_modifier = {
+						static_modifiers = { san_marino_ii }
+						province = {
+							id = 11889
+						}
+					}
+				}
+			162 = {
+				remove_province_modifier = { 					
+					static_modifiers = { san_marino_i }
+						province = {
+							id = 11889
+						} 
+					}
+			}
+			}
+		}
+	}
+
+	country_event = {	#Monaco Monarch
+		id = twritalyforeign.8080
+		title = twritalyforeign.8080.t
+		desc = twritalyforeign.8080.d
+		picture = GFX_report_event_prince_back
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.8080"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.8080.a
+			hidden_effect = {
+				735 = {
+					add_province_modifier = {
+						static_modifiers = { monaco_ii }
+						province = {
+							id = 9909
+						}
+					}
+				}
+			735 = {
+				remove_province_modifier = { 					
+					static_modifiers = { monaco_i }
+						province = {
+							id = 9909
+						} 
+					}
+			}
+			}
+		}
+	}
+
+	country_event = {	#Puppet Croatia
+		id = twritalyforeign.11
+		title = twritalyforeign.11.t
+		desc = twritalyforeign.11.d
+		picture = GFX_report_event_croatia_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.11"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.11.a
+			custom_effect_tooltip = CRO_monarchy_established_tt
+			hidden_effect = {
+			CRO = {
+			transfer_state = 109
+			transfer_state = 1030
+			transfer_state = 104
+			transfer_state = 981
+			transfer_state = 982
+			transfer_state = 983
+			IF = {
+				limit = {
+				owns_state = 819
+					}
+			transfer_state = 819
+				}
+			add_ideas = {
+				CRO_Low_Legitimacy_idea
+				CRO_Ustashe_Resistance_idea
+				CRO_End_of_Monstrosity_idea
+				}
+
+			ITA = { puppet = CRO }
+			set_cosmetic_tag = CRO_kingdom
+			set_politics = {
+				ruling_party = paternal_autocrat
+				last_election = "1935.6.9"
+				election_frequency = 12
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = paternal_autocrat
+				popularity = 0.60
+			}
+			create_country_leader = {
+				name = "Regency"
+				desc = "CROATIAN_REGENCY_DESC"
+				picture = "Vacant_Crown.dds"
+				expire = "1965.1.1"
+				ideology = monarchism
+				traits = {}
+			}
+			load_focus_tree = CRO_Kingdom_Tree
+			complete_national_focus = CRO_Kingdom_As_Rome_Commands
+			remove_ideas = {
+				CRO_german_funding_for_supression
+				CRO_dream_of_a_greater_croatia
+				CRO_italian_influence
+				CRO_Divided_Home_Guard_idea
+				CRO_Italian_Competition
+				CRO_Against_Italy
+				CRO_Unstable_Government_idea
+				CRO_Unstable_Government_1_idea
+				CRO_No_More_German_Funding
+				CRO_One_Last_Offensive_idea
+				CRO_The_Croatian_Terror_idea
+				CRO_Slash_and_Burn_idea
+				CRO_No_Mercy_for_Partisans_idea
+				CRO_Roaming_Pacification_Battalions_idea
+				CRO_The_Scapegoat_idea
+				CRO_Indiscriminate_Bombing_Campaigns_idea
+				CRO_Indiscriminate_Bombing_Campaigns_BOS_idea
+				CRO_Purged_Home_Guard_idea
+				CRO_Purged_Government_idea
+				CRO_Everyone_Must_Do_Their_Part_idea
+				CRO_German_Trade_idea
+				CRO_Wehrmacht_Advisors_idea
+				CRO_The_Master_Race_Arrives_idea
+				CRO_The_People_are_Fed_idea
+				CRO_Defeat_at_Srem_idea
+			}
+			country_lock_all_division_template = no
+					}
+			news_event = { id = twrnews.174 }
+		}
+	}
+}
+	
+	country_event = {	#Diplomacy with France
+		id = twritalyforeign.14
+		title = twritalyforeign.14.t
+		desc = twritalyforeign.14.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.14"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.14.a
+			FRA = { country_event = { id = twritalyforeign.15 days = 1 } }
+		}
+	}
+
+	country_event = {	#Diplomacy with France - France's side
+		id = twritalyforeign.15
+		title = twritalyforeign.15.t
+		desc = twritalyforeign.15.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.15"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.15.a
+			ai_chance = {
+				factor = 7
+			}
+			ITA = { country_event = { id = twritalyforeign.16 days = 1 } }
+		}
+		option = {
+			name = twritalyforeign.15.b
+			ai_chance = {
+				factor = 3
+			}
+			add_ideas = ITA_accepted_mediterranean_union
+			ITA = { country_event = { id = twritalyforeign.17 days = 1 } }
+			trigger = {
+				has_war = no
+				NOT = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+					has_government = conservative
+					has_government = liberal
+					has_government = social_democrat
+				}
+			}
+		}
+		option = {
+			name = twritalyforeign.15.c
+			ai_chance = {
+				factor = 0
+			}
+			add_ideas = ITA_accepted_mediterranean_union
+			ITA = { add_to_faction = FRA }
+			ITA = { country_event = { id = twritalyforeign.18 days = 1 } }
+			trigger = {
+				has_war = no
+				is_in_faction = no
+				NOT = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+					has_government = conservative
+					has_government = liberal
+					has_government = social_democrat
+				}
+			}
+		}
+	}
+
+	country_event = {	#France refused
+		id = twritalyforeign.16
+		title = twritalyforeign.16.t
+		desc = twritalyforeign.16.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.16"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.16.a
+		}
+	}
+
+	country_event = {	#France accepted med union only
+		id = twritalyforeign.17
+		title = twritalyforeign.17.t
+		desc = twritalyforeign.17.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.17"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.17.a
+		}
+	}
+
+	country_event = {	#France accepted med union and med pact
+		id = twritalyforeign.18
+		title = twritalyforeign.18.t
+		desc = twritalyforeign.18.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.18"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.18.a
+		}
+	}
+
+	country_event = {	#Diplomacy with Spain
+		id = twritalyforeign.19
+		title = twritalyforeign.19.t
+		desc = twritalyforeign.19.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.19"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.19.a
+			SPA = { country_event = { id = twritalyforeign.20 days = 1 } }
+		}
+	}
+
+	country_event = {	#Diplomacy with Spain - Spain's side
+		id = twritalyforeign.20
+		title = twritalyforeign.20.t
+		desc = twritalyforeign.20.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.20"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.20.a
+			ai_chance = {
+				factor = 3
+			}
+			ITA = { country_event = { id = twritalyforeign.21 days = 1 } }
+		}
+		option = {
+			name = twritalyforeign.20.b
+			ai_chance = {
+				factor = 3
+			}
+			add_ideas = ITA_accepted_mediterranean_union
+			ITA = { country_event = { id = twritalyforeign.22 days = 1 } }
+			trigger = {
+				has_war = no
+				NOT = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+					has_government = conservative
+					has_government = liberal
+					has_government = social_democrat
+				}
+			}
+		}
+		option = {
+			name = twritalyforeign.20.c
+			ai_chance = {
+				factor = 1
+			}
+			add_ideas = ITA_accepted_mediterranean_union
+			ITA = { add_to_faction = SPA }
+			ITA = { country_event = { id = twritalyforeign.23 days = 1 } }
+			trigger = {
+				has_war = no
+				is_in_faction = no
+				NOT = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+					has_government = conservative
+					has_government = liberal
+					has_government = social_democrat
+				}
+			}
+		}
+	}
+
+	country_event = {	#Spain refused
+		id = twritalyforeign.21
+		title = twritalyforeign.21.t
+		desc = twritalyforeign.21.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.21"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.21.a
+		}
+	}
+
+	country_event = {	#Spain accepted med union only
+		id = twritalyforeign.22
+		title = twritalyforeign.22.t
+		desc = twritalyforeign.22.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.22"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.22.a
+		}
+	}
+
+	country_event = {	#Spain accepted med union and med pact
+		id = twritalyforeign.23
+		title = twritalyforeign.23.t
+		desc = twritalyforeign.23.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.23"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.23.a
+		}
+	}
+
+	country_event = {	#Diplomacy with Portugal
+		id = twritalyforeign.24
+		title = twritalyforeign.24.t
+		desc = twritalyforeign.24.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.24"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.24.a
+			POR = { country_event = { id = twritalyforeign.25 days = 1 } }
+		}
+	}
+
+	country_event = {	#Diplomacy with Portugal - Portugal's side
+		id = twritalyforeign.25
+		title = twritalyforeign.25.t
+		desc = twritalyforeign.25.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.25"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.25.a
+			ai_chance = {
+				factor = 3
+			}
+			ITA = { country_event = { id = twritalyforeign.26 days = 1 } }
+		}
+		option = {
+			name = twritalyforeign.25.b
+			ai_chance = {
+				factor = 3
+			}
+			add_ideas = ITA_accepted_mediterranean_union
+			ITA = { country_event = { id = twritalyforeign.27 days = 1 } }
+			trigger = {
+				has_war = no
+				NOT = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+					has_government = conservative
+					has_government = liberal
+					has_government = social_democrat
+				}
+			}
+		}
+		option = {
+			name = twritalyforeign.25.c
+			ai_chance = {
+				factor = 1
+			}
+			add_ideas = ITA_accepted_mediterranean_union
+			ITA = { add_to_faction = POR }
+			ITA = { country_event = { id = twritalyforeign.28 days = 1 } }
+			trigger = {
+				has_war = no
+				is_in_faction = no
+				NOT = {
+					has_government = marxist_leninist
+					has_government = bolshevik_leninist
+					has_government = socialist
+					has_government = conservative
+					has_government = liberal
+					has_government = social_democrat
+				}
+			}
+		}
+	}
+
+	country_event = {	#Portugal refused
+		id = twritalyforeign.26
+		title = twritalyforeign.26.t
+		desc = twritalyforeign.26.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.26"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.26.a
+		}
+	}
+
+	country_event = {	#Portugal accepted med union only
+		id = twritalyforeign.27
+		title = twritalyforeign.27.t
+		desc = twritalyforeign.27.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.27"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.27.a
+		}
+	}
+
+	country_event = {	#Portugal accepted med union and med pact
+		id = twritalyforeign.28
+		title = twritalyforeign.28.t
+		desc = twritalyforeign.28.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.28"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.28.a
+		}
+	}
+
+	country_event = {	#Greece - Italy returns islands
+		id = twritalyforeign.29
+		title = twritalyforeign.29.t
+		desc = twritalyforeign.29.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.29"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.29.a
+		}
+	}
+
+	country_event = {	#Lugano Agreement
+		id = twritalyforeign.30
+		title = twritalyforeign.30.t
+		desc = twritalyforeign.30.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.30"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.30.a
+			if = {
+			limit = {
+			country_exists = GER
+			}
+			GER = { country_event = { id = twritalyforeign.31 days = 5 } }
+			}
+			else_if = {
+			limit = {
+			country_exists = HGR
+			}
+			HGR = { country_event = { id = twritalyforeign.31 days = 5 } }		
+			}
+		}
+	}
+
+	country_event = {	#Lugano Agreement - Germany's side
+		id = twritalyforeign.31
+		title = twritalyforeign.31.t
+		desc = twritalyforeign.31.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.31"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.31.a
+			ai_chance = {
+				factor = 30
+			}
+			ITA = { 
+				country_event = { id = twritalyforeign.32 days = 5 }
+				}
+			add_opinion_modifier = {
+				target = ITA
+				modifier = large_increase
+			}
+			}
+		option = {
+			name = twritalyforeign.31.b
+			ai_chance = {
+				factor = 75
+			}
+			ITA = { country_event = { id = twritalyforeign.33 days = 5 } }
+		}
+	}
+
+	country_event = {	#Germany accepts
+		id = twritalyforeign.32
+		title = twritalyforeign.32.t
+		desc = twritalyforeign.32.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.32"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.32.a
+			add_opinion_modifier = {
+					target = FROM
+					modifier = large_increase
+			}
+		}
+	}
+
+	country_event = {	#Germany refuses
+		id = twritalyforeign.33
+		title = twritalyforeign.33.t
+		desc = twritalyforeign.33.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.33"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.33.a
+			set_country_flag = GER_REFUSED
+		}
+	}
+
+	country_event = {	#Pact of Steel 2
+		id = twritalyforeign.34
+		title = twritalyforeign.34.t
+		desc = twritalyforeign.34.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.34"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.34.a
+			if = {
+			limit = {
+			country_exists = GER
+			}
+			GER = { country_event = { id = twritalyforeign.35 days = 2 } }
+			}
+			else_if = {
+			limit = {
+			country_exists = HGR
+			}
+			HGR = { country_event = { id = twritalyforeign.35 days = 2 } }	
+			}
+		}
+	}
+
+	country_event = {	#Pact of Steel 2? - Germany's side
+		id = twritalyforeign.35
+		title = twritalyforeign.35.t
+		desc = twritalyforeign.35.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.35"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.35.a
+			ai_chance = {
+				factor = 6
+			}
+			ITA = { 
+				country_event = { id = twritalyforeign.36 days = 1 }
+			}
+		}
+		option = {
+			name = twritalyforeign.35.b
+			ai_chance = {
+				factor = 4
+			}
+			ITA = { country_event = { id = twritalyforeign.37 days = 1 } }
+		}
+	}
+
+	country_event = {	#Germany accepts
+		id = twritalyforeign.36
+		title = twritalyforeign.36.t
+		desc = twritalyforeign.36.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.36"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.36.a
+			news_event = { id = twrnews.119 days = 1 }
+			diplomatic_relation = {
+			    country = FROM
+			    relation = non_aggression_pact
+			    #active = no
+			}
+		}
+	}
+
+	country_event = {	#Germany refuses
+		id = twritalyforeign.37
+		title = twritalyforeign.37.t
+		desc = twritalyforeign.37.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.37"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.37.a
+		}
+	}
+
+	country_event = {	#Invite Romania to Med Pact
+		id = twritalyforeign.38
+		title = twritalyforeign.38.t
+		desc = twritalyforeign.38.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.38"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.38.a
+			ROM = { country_event = { id = twritalyforeign.39 days = 2 } }
+		}
+		option = {
+			name = twritalyforeign.38.b
+		}
+	}
+
+	country_event = {	#Romania - Join med pact?
+		id = twritalyforeign.39
+		title = twritalyforeign.39.t
+		desc = twritalyforeign.39.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.39"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.39.a
+			ITA = { 
+				country_event = { id = twritalyforeign.40 days = 1 }
+				add_to_faction = ROM
+			}
+		}
+		option = {
+			name = twritalyforeign.39.b
+			ITA = { country_event = { id = twritalyforeign.41 days = 1 } }
+		}
+	}
+
+	country_event = {	#Romania Accepted
+		id = twritalyforeign.40
+		title = twritalyforeign.40.t
+		desc = twritalyforeign.40.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.40"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.40.a
+		}
+	}
+
+	country_event = {	#Romania Refused
+		id = twritalyforeign.41
+		title = twritalyforeign.41.t
+		desc = twritalyforeign.41.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.41"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.41.a
+		}
+	}
+
+	country_event = {	#Invite Turkey to Med Pact
+		id = twritalyforeign.42
+		title = twritalyforeign.42.t
+		desc = twritalyforeign.42.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.42"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.42.a
+			TUR = { country_event = { id = twritalyforeign.43 days = 2 } }
+		}
+		option = {
+			name = twritalyforeign.42.b
+			country_event = { id = twritalyforeign.450 days = 3 }
+		}
+	}
+
+	country_event = {	#Turkey - Join med pact?
+		id = twritalyforeign.43
+		title = twritalyforeign.43.t
+		desc = twritalyforeign.43.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.43"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.43.a
+			ai_chance = {
+				factor = 1
+			}
+			ITA = { 
+				country_event = { id = twritalyforeign.44 days = 1 }
+				add_to_faction = TUR
+			}
+		}
+		option = {
+			name = twritalyforeign.43.b
+			ai_chance = {
+				factor = 3
+			}
+			ITA = { country_event = { id = twritalyforeign.45 days = 1 } }
+		}
+	}
+
+	country_event = {	#Turkey Accepted
+		id = twritalyforeign.44
+		title = twritalyforeign.44.t
+		desc = twritalyforeign.44.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.44"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.44.a
+		}
+	}
+
+	country_event = {	#Turkey Refused
+		id = twritalyforeign.45
+		title = twritalyforeign.45.t
+		desc = twritalyforeign.45.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.45"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.45.a
+			country_event = { id = twritalyforeign.450 days = 2 }
+		}
+	}
+
+	country_event = {	#War with Turkey?
+		id = twritalyforeign.450
+		title = twritalyforeign.450.t
+		desc = twritalyforeign.450.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.450"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.450.a
+			ai_chance = {
+				factor = 3
+			}
+		}
+		option = {
+			name = twritalyforeign.450.b
+			ai_chance = {
+				factor = 1
+					modifier = {
+					factor = 0
+					OR = {
+						TUR = {
+							is_guaranteed_by = USA
+						}
+						TUR = {
+							is_guaranteed_by = ENG
+						}
+						is_in_faction_with = USA
+					}
+				}
+			}
+			declare_war_on = {
+			    target = TUR
+			    type = annex_everything
+			}
+			set_global_flag = ITA_TUR_war
+		}
+	}
+
+	country_event = {	#Invite Bulgaria to Med Pact
+		id = twritalyforeign.46
+		title = twritalyforeign.46.t
+		desc = twritalyforeign.46.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.46"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.46.a
+			BUL = { country_event = { id = twritalyforeign.47 days = 2 } }
+		}
+		option = {
+			name = twritalyforeign.46.b
+		}
+	}
+
+	country_event = {	#Bulgaria - Join med pact?
+		id = twritalyforeign.47
+		title = twritalyforeign.47.t
+		desc = twritalyforeign.47.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.47"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.47.a
+			ITA = { 
+				country_event = { id = twritalyforeign.48 days = 1 }
+				add_to_faction = BUL
+			}
+		}
+		option = {
+			name = twritalyforeign.47.b
+			ITA = { country_event = { id = twritalyforeign.49 days = 1 } }
+		}
+	}
+
+	country_event = {	#Bulgaria Accepted
+		id = twritalyforeign.48
+		title = twritalyforeign.48.t
+		desc = twritalyforeign.48.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.44"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.48.a
+		}
+	}
+
+	country_event = {	#Bulgaria Refused
+		id = twritalyforeign.49
+		title = twritalyforeign.49.t
+		desc = twritalyforeign.49.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.49"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.49.a
+		}
+	}
+
+	country_event = {	#Puppet Turkey
+		id = twritalyforeign.50
+		title = twritalyforeign.50.t
+		desc = twritalyforeign.50.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.50"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.50.a
+			clr_global_flag = ITA_TUR_war
+			release_autonomy = {
+		    target = TUR
+		    autonomy_state = autonomy_ITA_associated_nation
+		    freedom_level = 0.5
+			}
+			transfer_state = 342
+			hidden_effect = {
+				every_country = {
+					limit = {
+						is_in_faction_with = ITA
+					}
+					release = TUR
+				}
+			TUR = {
+				set_politics = {
+					ruling_party = paternal_autocrat
+				}
+				set_party_name = {
+				ideology = paternal_autocrat
+				long_name = TUR_ITA_SPEC_LONG
+				name = TUR_ITA_SPEC
+				}
+				create_country_leader = {
+					name = "Kâzım Orbay"
+					desc = "Kazım_Orbay_DESC"
+					picture = "Kazım_Orbay.dds"
+					ideology = military_dictatorshipz
+					traits = {
+						#
+					}
+				}
+				set_popularities = {
+				    national_socialist = 0
+				    fascist = 22
+				    paternal_autocrat = 28
+				    conservative = 36
+				    liberal = 12
+				    social_democrat = 0
+				    socialist = 0
+				    bolshevik_leninist = 1
+				    marxist_leninist = 1
+				    }
+				}
+			transfer_state = 342
+			}
+		}
+	}
+
+	country_event = {	#Losing to Turkey
+		id = twritalyforeign.51
+		title = twritalyforeign.51.t
+		desc = twritalyforeign.51.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.51"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.51.a
+			add_stability = -0.03
+			clr_global_flag = ITA_TUR_war
+			custom_effect_tooltip = ITA_Lose_war_tt
+			TUR = { white_peace_with_ROOT = yes }
+			TUR = { country_event = { id = twritalyforeign.52 days = 1 } }
+			hidden_effect = {
+				add_to_variable = { ita_var_domestic_opposition = 0.15 }		
+				add_to_variable = { ita_var_coup_chance = 0.1 }
+				add_to_variable = { ita_var_gcf_loyalty = -0.15 }
+				set_global_flag = ITA_LOST_TO_TURKEY
+			}
+			subtract_from_variable = {
+				var = ita_var_mvsn_loyalty
+				value = 0.1
+			}
+			custom_effect_tooltip = ita_unpopular_decision_for_MSVN_tt
+		}
+	}
+
+	country_event = {	#Victory for Turkey
+		id = twritalyforeign.52
+		title = twritalyforeign.52.t
+		desc = twritalyforeign.52.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.52"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.52.a
+			add_stability = 0.1
+		}
+	}
+
+	country_event = {	#Talks with Hungary
+		id = twritalyforeign.53
+		title = twritalyforeign.53.t
+		desc = twritalyforeign.53.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.53"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.53.a
+			ai_chance = {
+				factor = 3
+			}
+			HUN = { country_event = { id = twritalyforeign.54 days = 2 } }
+		}
+		option = {
+			name = twritalyforeign.53.b
+			ai_chance = {
+				factor = 1
+			}
+		}
+	}
+
+	country_event = {	#Hungary - NAP with Italy?
+		id = twritalyforeign.54
+		title = twritalyforeign.54.t
+		desc = twritalyforeign.54.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.54"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.54.a
+			ai_chance = {
+				factor = 2
+			}
+			ITA = { 
+				country_event = { id = twritalyforeign.55 days = 1 }
+				diplomatic_relation = {
+			 	   country = ITA
+				   relation = non_aggression_pact
+				   active = yes
+				}
+			}
+		}
+		option = {
+			name = twritalyforeign.54.b
+			ai_chance = {
+				factor = 1
+			}
+			ITA = { country_event = { id = twritalyforeign.56 days = 1 } }
+		}
+	}
+
+	country_event = {	#Hungary Accepted
+		id = twritalyforeign.55
+		title = twritalyforeign.55.t
+		desc = twritalyforeign.55.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.55"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.55.a
+			add_opinion_modifier = {
+				target = HUN
+				modifier = large_increase
+			}
+			HUN = {
+				add_opinion_modifier = {
+					target = ITA
+					modifier = large_increase
+				}
+			}
+		}
+	}
+
+	country_event = {	#Hungary Refused
+		id = twritalyforeign.56
+		title = twritalyforeign.56.t
+		desc = twritalyforeign.56.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.56"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.56.a
+		}
+	}
+
+	country_event = {	#Open Talks with Britain
+		id = twritalyforeign.57
+		title = twritalyforeign.57.t
+		desc = twritalyforeign.57.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.57"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.57.a
+			subtract_from_variable = {
+				var = ita_var_mvsn_loyalty
+				value = 0.1
+			}
+			custom_effect_tooltip = ita_unpopular_decision_for_MSVN_tt
+			ENG = { country_event = { id = twritalyforeign.58 days = 1 } }
+		}
+		option = {
+			name = twritalyforeign.57.b
+				hidden_effect = {
+					unlock_national_focus = ITA_Mutual_Security_Pact
+					unlock_national_focus = ITA_Request_Aid
+				}
+		}
+	}
+
+	country_event = {	#britain hears of talks
+		id = twritalyforeign.58
+		title = twritalyforeign.58.t
+		desc = twritalyforeign.58.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.58"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.58.a
+			ITA = { country_event = { id = twritalyforeign.59 days = 1 } }
+		}
+		option = {
+			name = twritalyforeign.58.b
+			ITA = { country_event = { id = twritalyforeign.60 days = 1 } }
+		}
+	}
+
+	country_event = {	#britain accepted
+		id = twritalyforeign.59
+		title = twritalyforeign.59.t
+		desc = twritalyforeign.59.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.59"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.59.a
+		}
+	}
+
+	country_event = {	#britain refused
+		id = twritalyforeign.60
+		title = twritalyforeign.60.t
+		desc = twritalyforeign.60.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.60"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.60.a
+		}
+	}
+
+	country_event = {	#Security Pact with britain?
+		id = twritalyforeign.61
+		title = twritalyforeign.61.t
+		desc = twritalyforeign.61.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.61"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.61.a
+			ai_chance = {
+				factor = 2
+			}
+			subtract_from_variable = {
+				var = ita_var_mvsn_loyalty
+				value = 0.1
+			}
+			custom_effect_tooltip = ita_unpopular_decision_for_MSVN_tt
+			ENG = { country_event = { id = twritalyforeign.62 days = 1 } }
+		}
+		option = {
+			name = twritalyforeign.57.b
+			ai_chance = {
+				factor = 1
+			}
+			hidden_effect = {
+				unlock_national_focus = ITA_Request_Aid
+			}
+		}
+	}
+
+	country_event = {	#britain hears of talks
+		id = twritalyforeign.62
+		title = twritalyforeign.62.t
+		desc = twritalyforeign.62.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.62"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.62.a
+			ai_chance = {
+				factor = 1
+			}
+			ITA = { country_event = { id = twritalyforeign.63 days = 1 } }
+			add_ideas = ITA_anglo_italian_security_agreement
+		}
+		option = {
+			name = twritalyforeign.62.b
+			ai_chance = {
+				factor = 2
+			}
+			ITA = { country_event = { id = twritalyforeign.64 days = 1 } }
+		}
+	}
+
+	country_event = {	#britain accepted
+		id = twritalyforeign.63
+		title = twritalyforeign.63.t
+		desc = twritalyforeign.63.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.63"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.63.a
+			add_ideas = ITA_anglo_italian_security_agreement
+		}
+	}
+
+	country_event = {	#britain refused
+		id = twritalyforeign.64
+		title = twritalyforeign.64.t
+		desc = twritalyforeign.64.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.64"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.64.a
+		}
+	}
+
+	country_event = {	#America - give Italy aid?
+		id = twritalyforeign.65
+		title = twritalyforeign.65.t
+		desc = twritalyforeign.65.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.65"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.65.a
+			ai_chance = {
+				factor = 1
+			}
+			ITA = { country_event = { id = twritalyforeign.66 days = 1 } }
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 1000
+			    producer = USA
+			}
+		}
+		option = {
+			name = twritalyforeign.65.b
+			ai_chance = {
+				factor = 5
+			}
+			ITA = { country_event = { id = twritalyforeign.67 days = 1 } }
+		}
+	}
+
+	country_event = {	#america accepted
+		id = twritalyforeign.66
+		title = twritalyforeign.66.t
+		desc = twritalyforeign.66.d
+		picture = GFX_report_event_us_flag
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.66"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.66.a
+			add_timed_idea = {
+				idea = ITA_US_aid
+				days = 100
+			}
+		}
+	}
+
+	country_event = {	#america refused
+		id = twritalyforeign.67
+		title = twritalyforeign.67.t
+		desc = twritalyforeign.67.d
+		picture = GFX_report_event_us_flag
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.67"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.67.a
+		}
+	}
+
+	country_event = {	#USA opens diplomacy
+		id = twritalyforeign.68
+		title = twritalyforeign.68.t
+		desc = twritalyforeign.68.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.68"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.68.a
+			complete_national_focus = ITA_Request_Aid
+		}
+	}
+
+	country_event = {	#A New Face in Germany
+		id = twritalyforeign.69
+		title = twritalyforeign.69.t
+		desc = twritalyforeign.69.d
+		picture = GFX_report_event_hans_rommel_guy
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.69"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.69.a
+			add_political_power = 50
+			custom_effect_tooltip = WE_CAN_SUPPORT_HIM_ITA
+		}
+	}
+
+	country_event = {	#Italian Support
+		id = twritalyforeign.70
+		title = twritalyforeign.70.t
+		desc = twritalyforeign.70.d
+		picture = GFX_report_event_italian_flag
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.70"}
+		
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyforeign.70.a
+			effect_tooltip = {
+			add_equipment_to_stockpile = {
+		    type = infantry_equipment
+		    amount = 3000
+		    producer = ITA
+			}
+			add_manpower = 1000
+			}
+		}
+	}
+
+	country_event = {	#Italian Intervention
+		id = twritalyforeign.71
+		title = twritalyforeign.71.t
+		desc = twritalyforeign.71.d
+		picture = GFX_report_event_italian_troops_marching
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.71"}
+		
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyforeign.71.a
+			add_opinion_modifier = {
+		    target = ITA
+		    modifier = offered_support
+			}
+			reverse_add_opinion_modifier = {
+			target = ITA
+			modifier = offered_support
+			}
+			effect_tooltip = {
+			add_manpower = 5000
+			}
+			news_event = twritalyforeign.73
+		}
+	}
+
+	country_event = {	#Hans won with our support
+		id = twritalyforeign.72
+		title = twritalyforeign.72.t
+		desc = twritalyforeign.72.d
+		picture = GFX_report_event_italian_troops_marching
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.72"}
+		
+		is_triggered_only = yes
+		
+		option = {
+			name = twritalyforeign.72.a
+			army_experience = 50
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_war_support = 0.1
+			hidden_effect = {	
+				add_to_variable = { ita_var_gcf_loyalty = 0.1 }		
+				add_to_variable = { ita_var_mvsn_loyalty = 0.1 }						
+				clamp_italian_variables = yes 						
+			}
+			custom_effect_tooltip = ita_increase_loyalty_gcf_tt
+			custom_effect_tooltip = ita_increase_loyalty_mvsn_tt			
+		}
+	}
+
+	news_event = {
+		id = twritalyforeign.73 #Italy Intervention in Germany
+		title = twritalyforeign.73.t 
+		desc = twritalyforeign.73.d
+		picture = GFX_news_event_italian_intervention_in_germany # Image displayed alongside the text.
+
+		major = yes
+		is_triggered_only = yes 
+		fire_only_once = no 
+
+		option = { #new page
+			trigger = {
+				NOT = {
+					tag = ITA
+					tag = HGR
+				}
+			}
+			name = twritalyforeign.73.a									
+		}
+		option = { #new page
+			trigger = {
+				tag = ITA
+			}
+			name = twritalyforeign.73.b							
+		}
+		option = { #new page
+			trigger = {
+				tag = HGR
+			}
+			name = twritalyforeign.73.c							
+		}
+	} 
+	country_event = {	#let fascist greece start its independence plan? #SI
+		id = twritalyforeign.74
+		title = twritalyforeign.74.t
+		desc = twritalyforeign.74.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.74"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.74.a
+			ai_chance = {
+				factor = 1
+			}
+			GRE = { country_event = { id = twritalyforeign.75 days = 1 } }
+			add_offsite_building = { type = arms_factory level = 2 }
+		}
+		option = {
+			name = twritalyforeign.74.b
+			ai_chance = {
+				factor = 0
+			}
+			GRE = { country_event = { id = twritalyforeign.76 days = 1 } }
+		}
+	}
+	country_event = {	# italy accepts
+		id = twritalyforeign.75
+		title = twritalyforeign.75.t
+		desc = twritalyforeign.75.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.75"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.75.a
+			set_global_flag = italy_accepted_greek_plan
+			ITA = {
+			set_autonomy = {
+    		target = ROOT
+    		autonomy_state = autonomy_ITA_associated_nation
+				}
+			}
+		}
+	}
+	country_event = {	# italy refuses
+		id = twritalyforeign.76
+		title = twritalyforeign.76.t
+		desc = twritalyforeign.76.d
+		picture = GFX_report_event_axis_europe_map
+		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritalyforeign.76"}
+		
+		is_triggered_only = yes
+
+		fire_only_once = yes
+		
+		option = {
+			name = twritalyforeign.76.a
+			set_global_flag = italy_refused_greek_plan
+		}
+	}
+#Idiotic amount of variables, thanks filip for the mess you left us
+#FOR FUTURE MECHANIC, SEE USA SENATE/HOUSE MECHANIC IN BASE GAME HOI4!
+	country_event = {
+		id = twritavar.1 #Internal Opposition rise
+		title = twritavar.1.t
+		desc = twritavar.1.d
+		picture = GFX_report_event_general_strike
+		trigger = {
+			has_country_leader = {
+				name = "Benito Mussolini"
+				ruling_only = yes
+			}
+		}
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritavar.1"}
+		fire_only_once = no
+		is_triggered_only = yes 
+
+		option = { #Damn
+			name = twritavar.1.a
+			custom_effect_tooltip = ita_increase_unrest_mainland_tt	
+			hidden_effect = {
+				add_to_variable = {
+					var = ita_var_domestic_opposition
+					value = 0.05
+				}		
+				clamp_italian_variables = yes
+			}					
+		}				
+	}
+	country_event = {
+		id = twritavar.2 #GCF Opposition rise
+		title = twritavar.2.t
+		desc = twritavar.2.d
+		picture = GFX_report_event_italian_flag
+		trigger = {
+			has_country_leader = {
+				name = "Benito Mussolini"
+				ruling_only = yes
+			}
+		}		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritavar.2"}
+		fire_only_once = no
+		is_triggered_only = yes 
+
+		option = { #Damn
+			name = twritavar.1.a
+			custom_effect_tooltip = ita_decrease_loyalty_gcf_tt
+			hidden_effect = {
+				subtract_from_variable = {
+					var = ita_var_gcf_loyalty
+					value = 0.05
+				}
+				clamp_italian_variables = yes
+			}							
+		}				
+	}
+	country_event = {
+		id = twritavar.3 #MSVN Opposition rise
+		title = twritavar.3.t
+		desc = twritavar.3.d
+		picture = GFX_report_event_italian_flag
+		trigger = {
+			has_country_leader = {
+				name = "Benito Mussolini"
+				ruling_only = yes
+			}
+		}		
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritavar.3"}
+		fire_only_once = no
+		is_triggered_only = yes 
+
+		option = { #Damn
+			name = twritavar.1.a
+			custom_effect_tooltip = ita_increase_coup_chance_tt
+			custom_effect_tooltip = ita_decrease_loyalty_mvsn_tt
+			hidden_effect = {
+				add_to_variable = {
+					var = ita_var_coup_chance
+					value = 0.05
+				}
+				subtract_from_variable = {
+					var = ita_var_mvsn_loyalty
+					value = 0.05
+				}
+				clamp_italian_variables = yes
+			}							
+		}				
+	}
+	country_event = {
+		id = twritavar.49012
+
+		hidden = yes
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		immediate = {
+			log = "[GetDateText]: [Root.GetName]: event twritavar.49012"
+			news_event = twritavar.4
+		}
+	}
+	news_event = {
+		id = twritavar.4 #Italian nuclear test
+		immediate = {log = "[GetDateText]: [Root.GetName]: event twritavar.4"}
+		title = twritavar.4.t
+		desc = twritavar.4.d
+		picture = GFX_news_event_italy_goes_nuclear
+		major = yes
+		is_triggered_only = yes
+		option = {
+			trigger = {
+				tag = ITA
+			}
+			name = twritavar.4.a
+			add_war_support = 0.05
+			add_named_threat = { 
+		    threat = 5
+		    name = ITA_NUCLEAR_AGE
+			}
+		}
+		option = {
+			trigger = {
+				NOT = {
+					tag = ITA
+				}
+			}
+			name = twritavar.4.b
+		}
+	}

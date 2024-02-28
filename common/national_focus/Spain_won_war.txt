@@ -1,0 +1,517 @@
+	focus_tree = {  
+	id = spain_focus_won
+	country = {
+		factor = 0 
+	}
+	default = no
+	reset_on_civilwar = no
+	shared_focus = SPA_acknowledge_economic_stagnation
+	shared_focus = SPA_Moroccan_independence_war_victory_2
+	shared_focus = SPA_spanish_army
+	shared_focus = SPA_spanish_armada
+    shared_focus = SPA_modernize_the_canary_islands
+	#shared_focus = SPA_Prince_Xavier
+	#shared_focus = SPA_Don_Juan
+	#shared_focus = SPA_Anton
+    shared_focus = SPA_open_up_to_the_west
+    shared_focus = SPA_open_up_to_italy
+    shared_focus = SPA_open_up_to_germany
+ 	continuous_focus_position = { x = 50 y = -1000 }
+
+}
+	shared_focus = {
+	cancelable = no
+		id = SPA_Moroccan_independence_war_victory_2
+		icon = GFX_SPA_morocco_conquered
+		x = 53
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+                available = { has_country_flag = SPR_MOR_WIN }
+		cost = 10
+		completion_reward = {
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_placate_the_carlists
+		icon = GFX_SPA_traditionalists
+		x = 49
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		available = { NOT = { SPA_atleast_three_placated = yes } }
+        prerequisite = { focus = SPA_Moroccan_independence_war_victory_2 }
+		cost = 10
+		completion_reward = {
+			add_to_variable = {
+			    var = SPA_placated_var 
+			    value = 1
+			}				
+			custom_effect_tooltip = SPA_build_support_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_placate_the_falangists
+		icon = GFX_SPA_Falangists
+		x = 55
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+available = { NOT = { SPA_atleast_three_placated = yes } }
+available = {NOT = { has_country_flag = SPA_BLUE_SHIRT_REBELLION    } }
+                prerequisite = { focus = SPA_Moroccan_independence_war_victory_2 }
+		cost = 10
+		completion_reward = {
+add_to_variable = {
+    var = SPA_placated_var 
+    value = 1
+}				
+			custom_effect_tooltip = SPA_build_support_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_placate_the_catholics
+		icon = GFX_SPA_church
+		x = 53
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+available = { NOT = { SPA_atleast_three_placated = yes } }
+                prerequisite = { focus = SPA_Moroccan_independence_war_victory_2 }
+		cost = 10
+		completion_reward = {
+add_to_variable = {
+    var = SPA_placated_var 
+    value = 1
+}				
+			custom_effect_tooltip = SPA_build_support_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_placate_the_monarchists
+		icon = GFX_SPA_monarchists
+		x = 51
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+available = { NOT = { SPA_atleast_three_placated = yes } }
+                prerequisite = { focus = SPA_Moroccan_independence_war_victory_2 }
+		cost = 10
+		completion_reward = {
+add_to_variable = {
+    var = SPA_placated_var 
+    value = 1
+}				
+			custom_effect_tooltip = SPA_build_support_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_placate_the_franco_loyalists
+		icon = GFX_SPA_Francoist_Cult
+		x = 57
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+available = { NOT = { SPA_atleast_three_placated = yes } }
+                prerequisite = { focus = SPA_Moroccan_independence_war_victory_2 }
+		cost = 10
+		completion_reward = {
+add_to_variable = {
+    var = SPA_placated_var 
+    value = 1
+}			
+			custom_effect_tooltip = SPA_build_support_tt
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_the_franco_status_quo
+		icon = GFX_SPA_our_caudillo_victorious
+		x = 53
+		y = 2
+		ai_will_do = {
+			factor = 1
+		}
+                available = { 
+					SPA_atleast_three_placated = yes
+					custom_trigger_tooltip = {
+						tooltip = SPA_ATLEAST_3
+						check_variable = {
+						    var = SPA_placated_var
+							value = 3
+							compare = greater_than_or_equals
+						}
+					}
+				}
+                prerequisite = { 
+                	focus = SPA_placate_the_carlists 
+                	focus = SPA_placate_the_monarchists
+                	focus = SPA_placate_the_catholics
+                	focus = SPA_placate_the_falangists
+                	focus = SPA_placate_the_franco_loyalists
+                }
+		cost = 10
+		completion_reward = {
+	add_ideas = { SPA_power_of_franco }		
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_continue_language_politics
+		icon = GFX_SPA_catalonia_silenced
+		x = 55
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+
+                prerequisite = { focus = SPA_the_franco_status_quo }
+		cost = 10
+		completion_reward = {
+	add_stability = -0.05
+        add_popularity = { ideology = paternal_autocrat popularity = -0.05 }
+        add_political_power = 150		
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_found_more_labour_camps
+		icon = GFX_GENERIC_imprison_opposition
+		x = 55
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+
+                prerequisite = { focus = SPA_continue_language_politics focus = SPA_attract_spanish_immigrants }
+		cost = 10
+		completion_reward = {
+random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex
+    level = 1
+    instant_build = yes
+}			
+}			
+random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex
+    level = 1
+    instant_build = yes
+}			
+}
+random_owned_state = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex
+    level = 1
+    instant_build = yes
+}			
+}			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_centralize_power_to_madrid
+		icon = GFX_GENERIC_capital_region
+		x = 56
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+
+                prerequisite = { focus = SPA_continue_language_politics }
+		cost = 10
+		completion_reward = {
+		swap_ideas = { add_idea = SPA_power_of_franco_2 remove_idea = SPA_power_of_franco }	
+			
+		}
+	}
+
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_rebuild_north_africa
+		icon = GFX_GENERIC_Grim_Industry
+		x = 53
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+                available = { 
+has_full_control_of_state = 461
+                }
+                prerequisite = { focus = SPA_the_franco_status_quo }
+		cost = 5
+		completion_reward = {
+461 = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex
+    level = 1
+    instant_build = yes
+}			
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = arms_factory
+    level = 1
+    instant_build = yes
+}
+}			
+		}
+	}
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_attract_spanish_immigrants
+		icon = GFX_GENERIC_Factory_Planning
+		x = 54
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                available = { 
+has_full_control_of_state = 290
+                }
+                prerequisite = { focus = SPA_rebuild_north_africa }
+		cost = 10
+		completion_reward = {
+290 = { add_manpower = 10000 }
+add_stability = -0.02
+add_war_support = 0.03			
+290 = {
+add_extra_state_shared_building_slots = 1
+add_building_construction = {
+    type = industrial_complex
+    level = 1
+    instant_build = yes
+}
+}			
+		}
+	}
+
+
+	shared_focus = {
+		cancelable = no
+		id = SPA_exploit_rif_riches
+		icon = GFX_goal_generic_construction2
+		x = 53
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+        available = { 
+        has_full_control_of_state = 290
+        }
+        prerequisite = { focus = SPA_rebuild_north_africa }
+		cost = 10
+		completion_reward = {		
+			add_resource = {
+				type = steel
+				amount = 11
+				state = 290
+			}
+		}
+	}
+
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_falangist_lip_service
+		icon = GFX_SPA_falangist_loyalty
+		x = 51
+		y = 3
+		ai_will_do = {
+			factor = 1
+		}
+                available = { 
+
+                }
+                prerequisite = { focus = SPA_the_franco_status_quo }
+		cost = 10
+		completion_reward = {
+	add_popularity = { ideology = fascist popularity = 0.03 } 
+        add_political_power = 150		
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_replace_the_moroccan_rails
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 52
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                available = { 
+has_full_control_of_state = 290
+has_full_control_of_state = 461
+has_full_control_of_state = 462
+has_full_control_of_state = 931
+                }
+                prerequisite = { focus = SPA_rebuild_north_africa }
+		cost = 10
+		completion_reward = {
+290 = {
+add_building_construction = {
+    type = infrastructure
+    level = 2
+    instant_build = yes
+}
+}
+461 = {
+add_building_construction = {
+    type = infrastructure
+    level = 2
+    instant_build = yes
+}
+}
+462 = {
+add_building_construction = {
+    type = infrastructure
+    level = 2
+    instant_build = yes
+}
+}
+931 = {
+add_building_construction = {
+    type = infrastructure
+    level = 2
+    instant_build = yes
+}
+}			
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_lower_carlist_tension
+		icon = GFX_SPA_Xavier
+		x = 50
+		y = 4
+		ai_will_do = {
+			factor = 1
+		}
+                available = { 
+
+                }
+                prerequisite = { focus = SPA_falangist_lip_service }
+		cost = 10
+		completion_reward = {
+	add_popularity = { ideology = paternal_autocrat popularity = 0.03 }
+        add_stability = 0.1		
+			
+		}
+	}
+
+	shared_focus = {
+	cancelable = no
+		id = SPA_expand_the_Sindicato_Vertical
+		icon = GFX_SPA_Union
+		x = 51
+		y = 5
+		ai_will_do = {
+			factor = 1
+		}
+                available = { 
+
+                }
+                prerequisite = { focus = SPA_falangist_lip_service focus = SPA_replace_the_moroccan_rails }
+		cost = 10
+		completion_reward = {
+	        add_popularity = { ideology = socialist popularity = -0.1 }
+                add_popularity = { ideology = social_democrat popularity = -0.1 }		
+	        add_popularity = { ideology = marxist_leninist popularity = -0.1 }		
+add_war_support = 0.05
+}
+	}
+
+#	shared_focus = {
+#	cancelable = no
+#		id = SPA_return_of_the_king
+#		icon = GFX_BUL_Absorb_RW_Mon
+#		x = 72
+#		y = 6
+#		ai_will_do = {
+#			factor = 1
+#		}
+#                available = { #
+
+#                }
+#                prerequisite = { focus = SPA_expand_the_Sindicato_Vertical }
+#                prerequisite = { focus = SPA_exploit_rif_riches }
+#                prerequisite = { focus = SPA_found_more_labour_camps }
+#		cost = 10
+#		completion_reward = {
+#			
+#	add_stability = -0.05		
+#		}
+#	}#
+
+#	shared_focus = {
+#	cancelable = no
+#		id = SPA_organic_law_referendum
+#		icon = GFX_GENERIC_Tear_It_Up
+#		x = 73
+#		y = 7
+#		ai_will_do = {
+#			factor = 1
+#		}#
+
+#                prerequisite = { focus = SPA_return_of_the_king }
+#                mutually_exclusive = { focus = SPA_grant_franco_total_control }
+#		cost = 10
+#		completion_reward = {
+#			
+#			
+#		}
+#	}#
+
+#	shared_focus = {
+#	cancelable = no
+#		id = SPA_grant_franco_total_control
+#		icon = GFX_SPA_franco_decides
+#		x = 71
+#		y = 7
+#		ai_will_do = {
+#			factor = 1
+#		}
+#                mutually_exclusive = { focus = SPA_organic_law_referendum }
+#                prerequisite = { focus = SPA_return_of_the_king }
+#		cost = 10
+#		completion_reward = {
+#			
+#			
+#		}
+#	}

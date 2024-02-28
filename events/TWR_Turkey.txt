@@ -1,0 +1,243 @@
+﻿add_namespace = twrturkey
+
+#Republic Day
+country_event = {
+	id = twrturkey.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.1"}
+	title = twrturkey.1.t
+	desc = twrturkey.1.d
+	picture = GFX_report_event_turkey_republic_day
+	trigger = {
+	date > 1952.10.29
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	#immediate = { hidden_effect = { country_event = { id = twrturkey.1010 days = 365 } } }
+	option = {
+		name = twrturkey.1.a
+		add_political_power = 10
+		trigger = {
+			OR = {
+        has_government = socialist
+		has_government = social_democrat
+		has_government = liberal
+		has_government = conservative
+		has_government = paternal_autocrat
+				}
+		}
+	}
+	option = {
+		name = twrturkey.1.b
+		add_political_power = -10
+		trigger = {
+			OR = {
+		has_government = national_socialist
+		has_government = fascist
+		has_government = bolshevik_leninist
+		has_government = marxist_leninist
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twrturkey.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.2"}
+	title = twrturkey.2.t
+	picture = GFX_report_event_usa_congress
+	desc = twrturkey.2.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrturkey.2.a
+		add_ideas = TUR_revise_economy
+	}
+}
+
+country_event = {
+	id = twrturkey.3 #Conclude the operation the revolution follows 
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.3"}
+	title = twrturkey.3.t
+	picture = GFX_report_event_tur_rising
+	desc = twrturkey.3.d
+	is_triggered_only = yes
+	trigger = {
+		tag = TUR
+	}
+	fire_only_once = yes
+	option = {
+		name = twrturkey.3.a
+		trigger = {
+			tag = TUR
+		}
+		add_ideas = TUR_revise_economy			
+		kill_country_leader = yes
+		set_politics = {
+			ruling_party = national_socialist
+		}
+		remove_ideas = TUR_opposing_influences_nazi2
+		hidden_effect = {
+			clr_country_flag = pres_Celal_Bayar
+			set_country_flag = pres_Nihal_Atsiz
+			set_party_name = { 
+				ideology = national_socialist
+				long_name = TUR_THB_united_party_long 
+				name = TUR_THB_united_party
+			}
+			add_popularity = {
+				ideology = national_socialist
+				popularity = 0.2
+			}
+			news_event = twrturkey.4
+		}
+	}
+}
+
+news_event = {
+	id = twrturkey.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.4"}
+	title = twrturkey.4.t
+	picture = GFX_news_event_turkish_revolution
+	desc = twrturkey.4.d
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes
+	option = {
+		name = twrturkey.4.a
+	}
+}
+
+country_event = {
+	id = twrturkey.5 #Purge
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.5"}
+	title = twrturkey.5.t
+	picture = GFX_report_event_usa_congress
+	desc = twrturkey.5.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrturkey.5.a
+		custom_effect_tooltip = TUR_bye_west
+		hidden_effect = {
+		remove_unit_leader = 1100
+		remove_unit_leader = 1101
+		remove_unit_leader = 1103
+		remove_unit_leader = 1105
+		remove_unit_leader = 1106 #Hidden
+		remove_ideas = TUR_heterogeneous_army
+		}
+		add_timed_idea = { 
+		idea = TUR_army_purge
+		days = 365
+		}
+		create_field_marshal = {
+		name = "Osman Köksal"
+		picture = "Osman_Koksal.dds"
+		traits = { trait_engineer career_officer right_wing_general fortress_buster }
+		skill = 4
+		attack_skill = 4
+		defense_skill = 2
+		planning_skill = 3
+		logistics_skill = 2
+		}
+
+		create_corps_commander = {
+		name = "Mehmet Özgüneş"
+		picture = "Mehmet Özgüneş.dds"
+		traits = { trait_engineer }
+		skill = 2
+		attack_skill = 3
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 2
+		}
+		
+		create_corps_commander = {
+		name = "Orhan Erkanlı"
+		picture = "Orhan Erkanlı.dds"
+		traits = { }
+		skill = 2
+		attack_skill = 2
+		defense_skill = 2
+		planning_skill = 2
+		logistics_skill = 3
+		}
+
+		create_corps_commander = {
+		name = "Suphi Karaman"
+		picture = "Suphi Karaman.dds"
+		traits = { trait_engineer }
+		skill = 3
+		attack_skill = 3
+		defense_skill = 2
+		planning_skill = 3
+		logistics_skill = 2
+		}		
+	}
+}
+#DONT FORGET THE CONSCRIPTION OF NEW GUYS FOR THE TURANIST COUP
+
+country_event = {
+	id = twrturkey.6 #Deportation
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.6"}
+	title = twrturkey.6.t
+	picture = GFX_report_event_usa_congress
+	desc = twrturkey.6.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrturkey.6.a
+		news_event = twrturkey.9
+		add_manpower = -20000
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = twrturkey.7 #Cyprus
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.7"}
+	title = twrturkey.7.t
+	picture = GFX_report_event_usa_congress
+	desc = twrturkey.7.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrturkey.7.a
+		
+	}
+	option = {
+		name = twrturkey.7.b
+		TUR = { country_event = twrturkey.8 } 
+	}
+}
+
+
+country_event = {
+	id = twrturkey.8 #Cyprus Yes
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.8"}
+	title = twrturkey.8.t
+	picture = GFX_report_event_usa_congress
+	desc = twrturkey.8.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = twrturkey.8.a
+		TUR = { transfer_state = 183 }
+	}
+
+}
+
+news_event = {
+	id = twrturkey.9 #Deportation NEWS
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twrturkey.9"}
+	title = twrturkey.9.t
+	picture = GFX_news_event_turkish_deportation
+	desc = twrturkey.9.d
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes
+	option = {
+		name = twrturkey.9.a
+		
+	}
+}

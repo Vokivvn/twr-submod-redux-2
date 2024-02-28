@@ -1,0 +1,102 @@
+#########################################################################
+#  Yanat
+#########################################################################
+SBA_region_war = {
+	SBA_test_the_serbians = {
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			has_army_experience > 15
+		}
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		visible = {
+			has_global_flag = SBABORDERS
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SBA_test_the_serbians"
+			SER = {
+				country_event = {
+					id = twrbanatser.1 days = 2
+				}
+			}
+			army_experience = -15
+		}
+	}
+	SBA_pillaging = {
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			has_army_experience > 15
+		}
+
+		cost = 20
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		visible = {
+			has_country_flag = SBA_ENCOURAGED_PILLAGE
+		}
+		fire_only_once = no
+		days_re_enable = 30
+		fixed_random_seed = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SBA_pillaging"
+			random_list = {
+				25 = { country_event = { id = twrbanat.21 days = 3 random = 900 } } #no results
+				25 = { country_event = { id = twrbanat.22 days = 3 random = 900 } } #equipment rifles
+				25 = { country_event = { id = twrbanat.23 days = 3 random = 900 } } #stolen mech
+				25 = { country_event = { id = twrbanat.24 days = 3 random = 900 } } #stolen support equipment
+			}
+		}
+	}
+	SBA_unify_banat = {
+		icon = generic_ignite_civil_war
+
+		available = {
+			is_subject = no
+			all_owned_state = {
+				is_claimed_by = SBA
+				is_controlled_by = SBA
+			}
+		}
+
+		cost = 60
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		visible = {
+			TAG = SBA
+			has_completed_focus = SBA_Sudschwaben_Reich
+		}
+
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SBA_unify_banat"
+			news_event = {
+				id = twrnews.53 days = 1
+			}
+			every_owned_state = {
+				limit = { 
+					is_claimed_by = SBA 
+					is_controlled_by = SBA
+				}
+				add_core_of = SBA
+			}
+		}
+	}
+}

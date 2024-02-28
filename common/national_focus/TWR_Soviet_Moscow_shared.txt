@@ -1,0 +1,489 @@
+################
+## Intro Tree ##
+################
+shared_focus = {
+	id = SMO_Death_to_Fascism
+	icon = GFX_GENERIC_Anti-Nazi_Propaganda
+	cost = 5
+	x = 5
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Death_to_Fascism"
+		add_war_support = 0.25
+	}
+}
+
+shared_focus = {
+	id = SMO_Freedom_to_the_People
+	icon = GFX_GENERIC_left_wing_victory
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = SMO_Death_to_Fascism
+	prerequisite = {
+		focus = SMO_Death_to_Fascism
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Freedom_to_the_People"
+		load_oob = SMO_BRYANSK_SLAVES_OOB
+		RMO = {
+			country_event = {
+				id = smo.1
+			}
+		}
+		hidden_effect = {
+			add_ideas = TWR_SECRET_AGGRESSIVE_WACK
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Tie_Ourselves_to_Perm
+	icon = GFX_SOV_Angel
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = SMO_Freedom_to_the_People
+	prerequisite = {
+		focus = SMO_Freedom_to_the_People
+	}
+	mutually_exclusive = {
+		focus = SMO_Liberation_is_Our_Aim
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Tie_Ourselves_to_Perm"
+		RUZ = {
+			country_event = {
+				id = smo.2
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Working_With_Our_Comrades
+	icon = GFX_GENERIC_handshake
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = SMO_Tie_Ourselves_to_Perm
+	prerequisite = {
+		focus = SMO_Tie_Ourselves_to_Perm
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Working_With_Our_Comrades"
+		IF = {
+			limit = {
+				BLR = { country_exists = yes }
+			}
+			BLR = {
+				country_event = {
+					id = smo.3
+				}
+			}
+		}
+		IF = {
+			limit = {
+				BLG = { country_exists = yes }
+			}
+			BLG = {
+				country_event = {
+					id = smo.3
+					hours = 4
+				}
+			}
+		}
+		IF = {
+			limit = {
+				SUK = { country_exists = yes }
+			}
+			SUK = {
+				country_event = {
+					id = smo.3
+					hours = 7
+				}
+			}
+		}
+		IF = {
+			limit = {
+				ZHU = { country_exists = yes }
+			}
+			ZHU = {
+				country_event = {
+					id = smo.3
+					hours = 10
+				}
+			}
+		}
+		IF = {
+			limit = {
+				LZG = { country_exists = yes }
+			}
+			LZG = {
+				country_event = {
+					id = smo.3
+					hours = 13
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Equipment_from_the_Government
+	icon = GFX_GENERIC_Weapons
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = SMO_Tie_Ourselves_to_Perm
+	prerequisite = {
+		focus = SMO_Tie_Ourselves_to_Perm
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Equipment_from_the_Government"
+		RUZ = {
+			country_event = {
+				id = smo.6
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Support_from_the_TsShPD
+	icon = GFX_GENERIC_Partisans
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = SMO_Working_With_Our_Comrades
+	prerequisite = {
+		focus = SMO_Working_With_Our_Comrades
+	}
+	prerequisite = {
+		focus = SMO_Equipment_from_the_Government
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Support_from_the_TsShPD"
+		add_timed_idea = {
+			idea = SMO_TsShPD_Support_idea
+			days = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Execute_the_Collaborators
+	icon = GFX_GENERIC_The_Noose
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = SMO_Support_from_the_TsShPD
+	prerequisite = {
+		focus = SMO_Support_from_the_TsShPD
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Execute_the_Collaborators"
+		country_event = {
+			id = smo.9
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Support_Urban_Uprisings
+	icon = GFX_GENERIC_Urban_Warfare
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = SMO_Support_from_the_TsShPD
+	prerequisite = {
+		focus = SMO_Support_from_the_TsShPD
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Support_Urban_Uprisings"
+		load_oob = SMO_MOSCOW_UPRISING_OOB
+		RMO = {
+			country_event = {
+				id = smo.10
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Eyeing_Reactionaries_with_Suspicion
+	icon = GFX_RMD_Reorg_KONR
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = SMO_Support_from_the_TsShPD
+	prerequisite = {
+		focus = SMO_Support_from_the_TsShPD
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Eyeing_Reactionaries_with_Suspicion"
+		create_wargoal = {
+			type = annex_everything
+			target = RMD
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Assist_Our_Partisan_Comrades
+	icon = GFX_GENERIC_Unionize
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = SMO_Execute_the_Collaborators
+	prerequisite = {
+		focus = SMO_Execute_the_Collaborators
+	}
+	prerequisite = {
+		focus = SMO_Support_Urban_Uprisings
+	}
+	prerequisite = {
+		focus = SMO_Eyeing_Reactionaries_with_Suspicion
+	}
+	mutually_exclusive = {
+		focus = SMO_We_Fight_for_Russia_Alone
+	}
+	available = {
+		RMO = { country_exists = no }
+		RMD = { country_exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Assist_Our_Partisan_Comrades"
+		IF = {
+			limit = {
+				BLR = { country_exists = yes }
+			}
+			BLR = {
+				country_event = {
+					id = smo.11
+				}
+			}
+		}
+		IF = {
+			limit = {
+				BLG = { country_exists = yes }
+			}
+			BLG = {
+				country_event = {
+					id = smo.11
+					hours = 4
+				}
+			}
+		}
+		IF = {
+			limit = {
+				SUK = { country_exists = yes }
+			}
+			SUK = {
+				country_event = {
+					id = smo.11
+					hours = 7
+				}
+			}
+		}
+		IF = {
+			limit = {
+				ZHU = { country_exists = yes }
+			}
+			ZHU = {
+				country_event = {
+					id = smo.11
+					hours = 10
+				}
+			}
+		}
+		IF = {
+			limit = {
+				LZG = { country_exists = yes }
+			}
+			LZG = {
+				country_event = {
+					id = smo.11
+					hours = 13
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_We_Fight_for_Russia_Alone
+	icon = GFX_GENERIC_ussr_map
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = SMO_Support_Urban_Uprisings
+	prerequisite = {
+		focus = SMO_Execute_the_Collaborators
+	}
+	prerequisite = {
+		focus = SMO_Support_Urban_Uprisings
+	}
+	prerequisite = {
+		focus = SMO_Eyeing_Reactionaries_with_Suspicion
+	}
+	mutually_exclusive = {
+		focus = SMO_Assist_Our_Partisan_Comrades
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_We_Fight_for_Russia_Alone"
+		add_stability = 0.1
+	}
+}
+
+shared_focus = {
+	id = SMO_Liberation_is_Our_Aim
+	icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = SMO_Freedom_to_the_People
+	prerequisite = {
+		focus = SMO_Freedom_to_the_People
+	}
+	mutually_exclusive = {
+		focus = SMO_Tie_Ourselves_to_Perm
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Liberation_is_Our_Aim"
+		load_oob = SMO_PEOPLES_MILITIA_OOB
+	}
+}
+
+shared_focus = {
+	id = SMO_Stoke_the_Flames_of_Patriotism
+	icon = GFX_GENERIC_Victory_or_DEATH
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = SMO_Liberation_is_Our_Aim
+	prerequisite = {
+		focus = SMO_Liberation_is_Our_Aim
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Stoke_the_Flames_of_Patriotism"
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = SMO_A_Truce_with_the_Church
+	icon = GFX_GENERIC_Orthodoxy
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = SMO_Stoke_the_Flames_of_Patriotism
+	prerequisite = {
+		focus = SMO_Stoke_the_Flames_of_Patriotism
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_A_Truce_with_the_Church"
+		add_timed_idea = {
+			idea = SMO_Church_Sponsorship_idea
+			days = 180
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_The_Unthinkable_Alliance
+	icon = GFX_RMD_New_Central_Command
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = SMO_Liberation_is_Our_Aim
+	prerequisite = {
+		focus = SMO_Liberation_is_Our_Aim
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_The_Unthinkable_Alliance"
+		RMD = {
+			country_event = {
+				id = smo.12
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_A_Lighter_Hand_on_Reactionaries
+	icon = GFX_GENERIC_Appease_People
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = SMO_The_Unthinkable_Alliance
+	prerequisite = {
+		focus = SMO_The_Unthinkable_Alliance
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_A_Lighter_Hand_on_Reactionaries"
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Rise_from_the_Countryside
+	icon = GFX_GENERIC_Russian_Warcry
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = SMO_A_Truce_with_the_Church
+	prerequisite = {
+		focus = SMO_A_Truce_with_the_Church
+	}
+	prerequisite = {
+		focus = SMO_A_Lighter_Hand_on_Reactionaries
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Rise_from_the_Countryside"
+		load_oob = SMO_RURAL_UPRISING_OOB
+		RMO = {
+			country_event = {
+				id = smo.15
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SMO_Throw_Off_the_German_Yoke
+	icon = GFX_GENERIC_armed_liberation
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = SMO_Rise_from_the_Countryside
+	prerequisite = {
+		focus = SMO_Rise_from_the_Countryside
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_Throw_Off_the_German_Yoke"
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = SMO_I_Never_Really_Was_on_Your_Side
+	icon = GFX_GENERIC_Backstab
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = SMO_Throw_Off_the_German_Yoke
+	prerequisite = {
+		focus = SMO_Throw_Off_the_German_Yoke
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SMO_I_Never_Really_Was_on_Your_Side"
+		declare_war_on = {
+			target = RMD
+			type = annex_everything
+		}
+	}
+}

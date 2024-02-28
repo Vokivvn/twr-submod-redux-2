@@ -1,0 +1,114 @@
+debug_intro_tree = {
+	MAL = {
+		set_country_flag = TWR_malaya_communist_cleanup_tree
+		set_country_flag = TWR_malaya_independence_tree
+		clr_country_flag = TWR_malaya_emergency_tree
+		clr_country_flag = TWR_malaya_jaafar_tree
+		clr_country_flag = TWR_malaya_rahman_tree
+		clr_country_flag = TWR_malaya_umno_tree
+		clr_country_flag = TWR_malaya_diplomacy_tree
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+debug_malaya_emergency_tree = {
+	MAL = {
+		clr_country_flag = TWR_malaya_communist_cleanup_tree
+		clr_country_flag = TWR_malaya_independence_tree
+		set_country_flag = TWR_malaya_emergency_tree
+		clr_country_flag = TWR_malaya_jaafar_tree
+		clr_country_flag = TWR_malaya_rahman_tree
+		clr_country_flag = TWR_malaya_umno_tree
+		clr_country_flag = TWR_malaya_diplomacy_tree
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+debug_malaya_jaafar_tree = {
+	MAL = {
+		clr_country_flag = TWR_malaya_communist_cleanup_tree
+		clr_country_flag = TWR_malaya_independence_tree
+		clr_country_flag = TWR_malaya_emergency_tree
+		set_country_flag = TWR_malaya_jaafar_tree
+		clr_country_flag = TWR_malaya_rahman_tree
+		clr_country_flag = TWR_malaya_umno_tree
+		set_country_flag = TWR_malaya_diplomacy_tree
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+debug_malaya_rahman_tree = {
+	MAL = {
+		clr_country_flag = TWR_malaya_communist_cleanup_tree
+		clr_country_flag = TWR_malaya_independence_tree
+		clr_country_flag = TWR_malaya_emergency_tree
+		clr_country_flag = TWR_malaya_jaafar_tree
+		set_country_flag = TWR_malaya_rahman_tree
+		clr_country_flag = TWR_malaya_umno_tree
+		set_country_flag = TWR_malaya_diplomacy_tree
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+debug_malaya_umno_tree = {
+	MAL = {
+		clr_country_flag = TWR_malaya_communist_cleanup_tree
+		clr_country_flag = TWR_malaya_independence_tree
+		clr_country_flag = TWR_malaya_emergency_tree
+		clr_country_flag = TWR_malaya_jaafar_tree
+		clr_country_flag = TWR_malaya_rahman_tree
+		set_country_flag = TWR_malaya_umno_tree
+		set_country_flag = TWR_malaya_diplomacy_tree
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+MAL_add_malay_influence = {
+	custom_effect_tooltip = MAL_add_malay_influence_tt
+	if = {
+		limit = {
+			check_variable = { malay_influence < 100 }
+		}
+		add_to_variable = { malay_influence = temp_influence }
+		subtract_from_variable = { chinese_influence = temp_influence }
+		set_temp_variable = { temp_1 = temp_influence }
+		multiply_temp_variable = { temp_1 = 0.005 }
+		add_to_variable = { MAL_racial_tensions_conscription_factor = temp_1 }
+		add_to_variable = { MAL_racial_tensions_production_speed_buildings_factor = temp_1 }
+		subtract_from_variable = { MAL_racial_tensions_production_factory_max_efficiency_factor = temp_1 }
+		set_temp_variable = { temp_1 = temp_influence }
+		multiply_temp_variable = { temp_1 = 0.004 }
+		add_to_variable = { MAL_racial_tensions_consumer_goods_factor = temp_1 }
+		set_temp_variable = { temp_1 = temp_influence }
+		multiply_temp_variable = { temp_1 = 0.01 }
+		add_to_variable = { MAL_racial_tensions_political_power_gain = temp_1 }
+		set_temp_variable = { temp_1 = temp_influence }
+		multiply_temp_variable = { temp_1 = 0.002 }
+		add_to_variable = { MAL_racial_tensions_research_speed_factor = temp_1 }
+	}
+}
+
+MAL_add_chinese_influence = {
+	custom_effect_tooltip = MAL_add_chinese_influence_tt
+	if = {
+		limit = {
+			check_variable = { chinese_influence < 100 }
+		}
+		add_to_variable = { chinese_influence = temp_influence }
+		subtract_from_variable = { malay_influence = temp_influence }
+		set_temp_variable = { temp_1 = temp_influence }
+		multiply_temp_variable = { temp_1 = 0.005 }
+		subtract_from_variable = { MAL_racial_tensions_conscription_factor = temp_1 }
+		subtract_from_variable = { MAL_racial_tensions_production_speed_buildings_factor = temp_1 }
+		add_to_variable = { MAL_racial_tensions_production_factory_max_efficiency_factor = temp_1 }
+		set_temp_variable = { temp_1 = temp_influence }
+		multiply_temp_variable = { temp_1 = 0.004 }
+		add_to_variable = { MAL_racial_tensions_consumer_goods_factor = temp_1 }
+		set_temp_variable = { temp_1 = temp_influence }
+		multiply_temp_variable = { temp_1 = 0.01 }
+		subtract_from_variable = { MAL_racial_tensions_political_power_gain = temp_1 }
+		set_temp_variable = { temp_1 = temp_influence }
+		multiply_temp_variable = { temp_1 = 0.002 }
+		add_to_variable = { MAL_racial_tensions_research_speed_factor = temp_1 }
+	}
+}

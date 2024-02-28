@@ -1,0 +1,454 @@
+﻿add_namespace = twregypt
+
+country_event = {
+	id = twregypt.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.1"}
+	title = twregypt.1.t #Cairo Fire 26 January 1952 
+	desc = twregypt.1.d
+	picture = GFX_report_event_cairo_fire
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twregypt.1.a
+		add_stability = -0.3
+		add_political_power = -100
+		446 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		hidden_effect = {
+			country_event = { id = twregypt.2 days = 1 }
+			news_event = { id = twrnews.57 days = 1 }
+			ENG = {
+				country_event = { days = 1 id = twregypt.53 } #cairo fire
+			}
+		}
+	}
+}
+country_event = {
+	id = twregypt.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.2"}
+	title = twregypt.2.t #martial law
+	desc = twregypt.2.d
+	picture = GFX_report_event_egyptian_martial_law
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twregypt.2.a
+		add_stability = 0.15
+		add_political_power = -100
+		hidden_effect = {
+			country_event = { id = twregypt.3 days = 72 random = 300 }
+		}
+	}
+}
+country_event = {
+	id = twregypt.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.3"}
+	title = twregypt.3.t #strange troops movement
+	desc = twregypt.3.d
+	picture = GFX_report_event_egyptian_martial_law
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twregypt.3.a
+		hidden_effect = {
+			country_event = { id = twregypt.4 days = 14 random = 300 }
+		}
+	}
+}
+country_event = {
+	id = twregypt.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.4"}
+	title = twregypt.4.t #Free Officers Coup
+	desc = twregypt.4.d
+	picture = GFX_report_event_officer_coup
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twregypt.4.a
+		add_stability = -0.2
+		add_political_power = -100
+		hidden_effect = { country_event = { id = twregypt.5 days = 3 } }
+	}
+}
+country_event = {
+	id = twregypt.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.5"}
+	title = twregypt.5.t #Farouk Question
+	desc = twregypt.5.d
+	picture = GFX_report_event_farouk_question
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twregypt.5.a #farouk abdicates and flee FO takeover	
+		retire_country_leader = yes
+		ai_chance = {
+			factor = 80
+		}
+		set_cosmetic_tag = EGY_INDP
+		create_country_leader = {
+			name = "Mohamed Naguib"
+			desc = "Mohamed_Naguib_DESC"
+			picture = "Mohamed_Naguib.dds"
+			expire = "1965.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+
+			}
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = EGY_free_officers_long 
+			name = EGY_free_officers 
+		}
+		remove_ideas = {
+			EGY_western_influence
+			EGY_discontented_population
+		}
+		every_unit_leader = {
+		limit = { has_trait = old_guard }
+		retire = yes
+		}
+		hidden_effect = {
+				news_event = { id = twrnews.58 days = 1 }
+		}
+	}
+	option = {
+		name = twregypt.5.b #farouk abdicates and regency pleas to italians
+		ai_chance = {
+			factor = 20
+		}
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = fascist
+		}
+		set_party_name = { 
+			ideology = fascist 
+			long_name = EGY_paternal_autocrat_party_long 
+			name = EGY_paternal_autocrat_party 
+		}		
+		ITA = {
+			country_event = {
+				id = twregypt.51 days = 1
+			}
+		}
+	}
+	option = {
+		name = twregypt.5.c #farouk pleas to british
+		add_stability = -0.1
+		add_political_power = -100
+		ai_chance = {
+			factor = 40
+		}
+		ENG = {
+			country_event = {
+				id = twregypt.52 days = 1
+			}
+		}
+	}
+}
+country_event = {
+	id = twregypt.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.6"}
+	title = twregypt.6.t #Counter Coup Italian won
+	desc = twregypt.6.d
+	picture = GFX_report_event_italy_armored_cars
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twregypt.6.a
+		add_stability = 0.3
+		add_political_power = -90
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.5
+		}
+		446 = {
+			create_unit = {
+				division = "name = \"Brigata di Sicurezza Italo-Egiziana\" division_template = \"Egyptian Royal Guards\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = EGY
+				prioritize_location = 7011
+			}
+		}
+		remove_ideas = EGY_western_influence
+		add_ideas = EGY_italian_influence
+		hidden_effect = {
+			news_event = { id = twrnews.61 days = 1 }
+			PAL = {
+				country_event = { id = twregypt.70 days = 5 random = 300 }
+			}
+			ITA = { 
+				country_event = { id = twritalyforeign.6 days = 5 }
+			}
+		}
+	}
+}
+country_event = {
+	id = twregypt.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.7"}
+	title = twregypt.7.t #Counter Coup British Won
+	desc = twregypt.7.d
+	picture = GFX_report_event_british_canal
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twregypt.7.a
+		add_stability = 0.3
+		add_political_power = -100
+		446 = {
+			create_unit = {
+				division = "name = \"Anglo-Egyptian Security Force\" division_template = \"Egyptian Royal Guards\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = EGY
+				prioritize_location = 7011
+			}
+		}
+		hidden_effect = {
+			news_event = { id = twrnews.57 days = 1 }
+			PAL = {
+				country_event = { id = twregypt.70 days = 5 random = 300 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = twregypt.699
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.699"}
+	title = twregypt.699.t #Failed counter revolution
+	desc = twregypt.699.d
+	picture = GFX_report_event_egyptian_royal_martial_law_2
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = twregypt.699.a #FO wins anyway
+		retire_country_leader = yes
+		set_cosmetic_tag = EGY_INDP
+		create_country_leader = {
+			name = "Mohamed Naguib"
+			desc = "Mohamed_Naguib_DESC"
+			picture = "Mohamed_Naguib.dds"
+			expire = "1965.1.1"
+			ideology = military_dictatorshipz
+			traits = {
+
+			}
+		}
+		set_politics = {
+			ruling_party = paternal_autocrat
+		}
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = EGY_free_officers_long 
+			name = EGY_free_officers 
+		}
+		set_party_name = { 
+			ideology = fascist 
+			long_name = EGY_fascist_party_long 
+			name = EGY_fascist_party 
+		}	
+		every_unit_leader = {
+		limit = { has_trait = old_guard }
+		retire = yes
+		}
+		hidden_effect = {
+				news_event = { id = twrnews.58 days = 1 }
+		}
+	}
+}
+
+country_event = {
+	id = twregypt.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.51"}
+	title = twregypt.51.t #Italian considering
+	desc = twregypt.51.d
+	picture = GFX_report_event_italy_armored_cars
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twregypt.51.a #accepts
+		ai_chance = {
+			factor = 40
+		}
+		add_manpower = -1000
+		add_political_power = -100
+		hidden_effect = { EGY = { country_event = { id = twregypt.6 days = 3 } } }
+	}
+	option = {
+		name = twregypt.51.b #stay out
+		ai_chance = {
+			factor = 20
+		}
+		add_political_power = 80
+		hidden_effect = { EGY = { country_event = { id = twregypt.699 days = 3 } } }
+	}
+}
+
+country_event = {
+	id = twregypt.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.52"}
+	title = twregypt.52.t #English considering
+	desc = twregypt.52.d
+	picture = GFX_report_event_british_canal
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twregypt.52.a #accepts
+		ai_chance = {
+			factor = 60
+		}
+		add_manpower = -1000
+		add_political_power = -100
+		hidden_effect = { EGY = { country_event = { id = twregypt.7 days = 3 } } }
+	}
+	option = {
+		name = twregypt.52.b #stay out
+		ai_chance = {
+			factor = 20
+		}
+		add_political_power = 80
+		hidden_effect = { EGY = { country_event = { id = twregypt.699 days = 3 } } }
+	}
+}
+
+country_event = {
+	id = twregypt.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.53"}
+	title = twregypt.53.t #Cairo Fire
+	desc = twregypt.53.d
+	picture = GFX_report_event_cairo_fire
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twregypt.53.a #reaction
+		add_manpower = -30
+		add_war_support = 0.01
+		add_opinion_modifier = {
+			target = EGY
+			modifier = protest_action
+		}
+	}
+}
+
+country_event = {
+	id = twregypt.70
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.70"}
+	title = twregypt.70.t #Palestine Exiles
+	desc = twregypt.70.d
+	picture = GFX_report_event_nasser
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = twregypt.70.a
+		add_political_power = 50
+		add_war_support = 0.01
+	}
+}
+
+country_event = {
+	id = twregypt.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.8"}
+	title = twregypt.8.t #Republican Victory
+	desc = twregypt.8.d
+	picture = GFX_report_event_egypt
+	trigger = {
+	original_tag = EGY
+	has_cosmetic_tag = EGY_REP
+	has_war = no
+	}
+	is_triggered_only = no
+
+	fire_only_once = yes
+
+	option = {
+		name = twregypt.8.a
+		add_political_power = 50
+		add_stability = 0.1
+		news_event = twrnews.82
+	}
+}
+
+country_event = {
+	id = twregypt.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.9"}
+	title = twregypt.9.t #Italian Victory
+	desc = twregypt.9.d
+	picture = GFX_report_event_egypt
+	trigger = {
+	original_tag = EGY
+	has_cosmetic_tag = EGY_ITA
+	has_war = no
+	has_country_flag = EGY_REVOLT_HAPPENED
+	}
+	is_triggered_only = no
+
+	fire_only_once = yes
+
+	option = {
+		name = twregypt.9.a
+		add_political_power = 50
+		add_stability = 0.1
+		ITA = {
+		set_country_flag = EGY_ITA_SECURED
+		clr_country_flag = SUEZ_CANAL_BLOCKED_FOR_COUNTRY
+		country_event = twritavar.1
+		}
+		news_event = twregypt.10
+	}
+}
+
+
+news_event = { # Royalist Victory Egypt
+	id = twregypt.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event twregypt.10"}
+	title = twregypt.10.t
+	desc = twregypt.10.d
+	picture = GFX_news_event_italian_egypt
+	
+	is_triggered_only = yes
+	hidden = no
+	major = yes
+	
+
+	option = {
+		name = twregypt.10.a
+	}
+}

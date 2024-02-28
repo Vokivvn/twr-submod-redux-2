@@ -1,0 +1,1013 @@
+focus_tree = {
+	id = germancivilwar
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			OR = {
+				tag = HSS
+				tag = HGR
+			}
+		}
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+	cancelable = no
+		id = GER_German_Civil_War
+		icon = GFX_GER_political_rodeo
+		cost = 6.00
+		x = 6
+		y = 0
+		available = {
+			always = no
+		}
+		bypass = {
+			has_global_flag = german_civil_war_started
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_German_Civil_War"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Victory_At_GCW
+		icon = GFX_GER_End_Of_The_Civil_War
+		cost = 1.00
+		x = 17
+		y = 0
+		available = {
+			has_war = no
+			hidden_trigger = {
+			has_global_flag = DONT_TRY_TO_CHEESE_IT_BOY
+			}
+			OR = {
+			AND = {
+			tag = HGR
+			NOT = {
+			country_exists = HSS
+			country_exists = GER
+			country_exists = DDR
+					}
+				}
+			AND = {
+			tag = GER
+			NOT = {
+			country_exists = HSS
+			country_exists = HGR
+			country_exists = DDR
+					}
+				}
+			AND = {
+			tag = HSS
+			NOT = {
+			country_exists = HGR
+			country_exists = GER
+			country_exists = DDR
+					}
+				}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Victory_At_GCW"
+			if = {
+			limit = {
+			tag = GER
+			}
+				country_event = { hours = 5 id = tgcw.9991 } #GCW RIGHTFUL Victory
+			}
+			if = {
+			limit = {
+			tag = HSS
+			}
+			country_event = { hours = 5 id = tgcw.9993 } #GCW SS Victory
+			}
+			if = {
+			limit = {
+			tag = HGR
+			}
+			country_event = { hours = 5 id = tgcw.9992 } #GCW HEER Victory
+			}
+			set_political_power = -300
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Volunteer_Army
+		icon = GFX_GENERIC_recruitment
+		cost = 6.00
+		prerequisite = {
+			focus = GER_German_Civil_War
+		}
+		x = 3
+		y = 1
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Volunteer_Army"
+			add_ideas = GCW_volunteer_army
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_SS_Volks
+		icon = GFX_GER_ss_volunteers
+		cost = 6.00
+		prerequisite = {
+			focus = GER_Volunteer_Army
+		}
+		mutually_exclusive = {
+			focus = GER_Emergency_Responese
+		}
+		x = 1
+		y = 2
+		available = {
+			has_war = yes
+			tag = HSS
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_SS_Volks"
+			add_ideas = GCW_ss_volks
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Emergency_Responese
+		icon = GFX_GENERIC_mobilize_police
+		cost = 6.00
+		prerequisite = {
+			focus = GER_Volunteer_Army
+		}
+		mutually_exclusive = {
+			focus = GER_SS_Volks
+		}
+		x = 3
+		y = 2
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Emergency_Responese"
+			add_ideas = GCW_emergency_army
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Trench_Warfare
+		icon = GFX_focus_CDA_fortressmountain
+		cost = 6.00
+		prerequisite = {
+			focus = GER_German_Civil_War
+		}
+		x = 5
+		y = 1
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Trench_Warfare"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.7
+				uses = 2
+				category = cat_asymmetric_warfare
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Dig_Or_Die
+		icon = GFX_goal_generic_construction2
+		cost = 6.00
+		prerequisite = {
+			focus = GER_Trench_Warfare
+		}
+		x = 5
+		y = 2
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Dig_Or_Die"
+			add_ideas = GCW_dug_in
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Old_Equipments
+		icon = GFX_GER_stg_45
+		cost = 8.00
+		prerequisite = {
+			focus = GER_German_Civil_War
+		}
+		x = 7
+		y = 1
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Old_Equipments"
+			add_ideas = GCW_equipment_productions
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 1000
+				producer = GER
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_More_Old_Equipments
+		icon = GFX_GER_kinda_shitty_rifles
+		cost = 8.00
+		prerequisite = {
+			focus = GER_Old_Equipments
+		}
+		x = 7
+		y = 2
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_More_Old_Equipments"
+			add_stability = -0.1
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 6000
+				producer = GER
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Controls_The_Sky
+		icon = GFX_GER_the_luftwaffe
+		cost = 8.00
+		prerequisite = {
+			focus = GER_German_Civil_War
+		}
+		x = 9
+		y = 1
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Controls_The_Sky"
+			add_ideas = GCW_to_the_skies
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Emergency_Plane_Assemble
+		icon = GFX_GENERIC_rapid_strike
+		cost = 6.00
+		prerequisite = {
+			focus = GER_Controls_The_Sky
+		}
+		x = 9
+		y = 2
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Emergency_Plane_Assemble"
+			add_war_support = -0.1
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_0
+				amount = 1000
+				producer = GER
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_SS_Victory
+		icon = GFX_GER_ss_resolved
+		cost = 1.00
+		prerequisite = {
+			focus = GER_Victory_At_GCW
+		}
+		relative_position_id = GER_Victory_At_GCW
+		x = -5
+		y = 1
+		available = {
+			has_war = no
+			tag = HSS
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_SS_Victory"
+			activate_decision = GER_himmler_load_tree
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Council_Victory
+		icon = GFX_GER_punch_swastikka
+		cost = 1.00
+		prerequisite = {
+			focus = GER_Victory_At_GCW
+		}
+		relative_position_id = GER_Victory_At_GCW
+		x = -3
+		y = 1
+		available = {
+			has_war = no
+			tag = GER
+			has_country_flag = germany_dead_nation
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Council_Victory"
+			activate_decision = GER_council_load_tree
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_SG_Victory
+		icon = GFX_GER_sperr_goebbels_bloc
+		cost = 1.00
+		prerequisite = {
+			focus = GER_Victory_At_GCW
+		}
+		relative_position_id = GER_Victory_At_GCW
+		x = -1
+		y = 1
+		available = {
+			has_war = no
+			tag = GER
+			OR = {
+				has_country_leader = {
+					name = "Albert Speer"
+					ruling_only = yes
+				}
+				has_country_leader = {
+					name = "Joseph Goebbels"
+					ruling_only = yes
+				}
+			}
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_SG_Victory"
+			activate_decision = GER_sg_load_tree
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_BOR_Victory
+		icon = GFX_BGR_Bormann_Death_Squad
+		cost = 1.00
+		prerequisite = {
+			focus = GER_Victory_At_GCW
+		}
+		relative_position_id = GER_Victory_At_GCW
+		x = 1
+		y = 1
+		available = {
+			has_war = no
+			tag = GER
+			has_country_leader = {
+				name = "Martin Bormann"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_BOR_Victory"
+			activate_decision = GER_b_load_tree
+
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Total_Gamble
+		icon = GFX_GENERIC_Roll_the_Die
+		cost = 2.00
+		prerequisite = {
+			focus = GER_Dig_Or_Die
+		}
+		x = 5
+		y = 3
+		available = {
+			has_war = yes
+			surrender_progress > 0.1
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Total_Gamble"
+			custom_effect_tooltip = ALLOWTOGAMBLE
+			add_war_support = 0.15
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Hold_The_Line
+		icon = GFX_GER_Fortress_Germans
+		cost = 2.00
+		prerequisite = {
+			focus = GER_Total_Gamble
+		}
+		x = 2
+		y = 4
+		available = {
+			has_war = yes
+			surrender_progress > 0.2
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Hold_The_Line"
+			custom_effect_tooltip = ALLOWTOHOLDLINE
+			add_timed_idea = {
+				idea = GCW_last_defence
+				days = 180
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Destruction_of_the_Self
+		icon = GFX_GENERIC_nuke_death
+		cost = 2.00
+		prerequisite = {
+			focus = GER_Hold_The_Line
+		}
+		x = 2
+		y = 5
+		available = {
+			has_war = yes
+			surrender_progress > 0.6
+			tag = HSS
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Destruction_of_the_Self"
+			custom_effect_tooltip = ENDGERMANY
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_All_Out_Waves
+		icon = GFX_GER_great_wave
+		cost = 2.00
+		prerequisite = {
+			focus = GER_Total_Gamble
+		}
+		x = 4
+		y = 4
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_All_Out_Waves"
+			add_ideas = GCW_human_wave
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Encourage_Chemical_Warfare
+		icon = GFX_GENERIC_Chemical_Gas
+		cost = 2.00
+		prerequisite = {
+			focus = GER_Total_Gamble
+		}
+		x = 6
+		y = 4
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Encourage_Chemical_Warfare"
+			add_tech_bonus = {
+				bonus = 0.8
+				uses = 1
+				category = chemical_tech
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Commission_All_Equipments
+		icon = GFX_GER_trash_guns
+		cost = 7.00
+		prerequisite = {
+			focus = GER_More_Old_Equipments
+		}
+		x = 7
+		y = 3
+		available = {
+			has_war = yes
+			surrender_progress > 0.1
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Commission_All_Equipments"
+			add_stability = -0.15
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 15000
+				producer = GER
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_SS_Volksgrenadier
+		icon = GFX_GER_ss_police
+		cost = 6.00
+		prerequisite = {
+			focus = GER_SS_Volks
+		}
+		x = 1
+		y = 3
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_SS_Volksgrenadier"
+			custom_effect_tooltip = SS_VOLKS_FORMED
+			hidden_effect = {
+				division_template = {
+					name = "SS Volksgrenadier"
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 0 y = 2 }
+						militia = { x = 0 y = 3 }
+						militia = { x = 1 y = 0 }
+						militia = { x = 1 y = 1 }
+						militia = { x = 1 y = 2 }
+						militia = { x = 1 y = 3 }
+						mechanized = { x = 2 y = 0 }
+					}
+					support = { 
+					}
+					priority = 0 
+					is_locked = yes
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"1. SS Volksgrenadier\" division_template = \"SS Volksgrenadier\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"2. SS Volksgrenadier\" division_template = \"SS Volksgrenadier\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"3. SS Volksgrenadier\" division_template = \"SS Volksgrenadier\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"4. SS Volksgrenadier\" division_template = \"SS Volksgrenadier\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"5. SS Volksgrenadier\" division_template = \"SS Volksgrenadier\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"6. SS Volksgrenadier\" division_template = \"SS Volksgrenadier\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Defence_Militias
+		icon = GFX_goal_generic_small_arms
+		cost = 6.00
+		prerequisite = {
+			focus = GER_Emergency_Responese
+		}
+		x = 3
+		y = 3
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Defence_Militias"
+			custom_effect_tooltip = VOLKS_FOURMED
+			hidden_effect = {
+				division_template = {
+					name = "Miliz Division"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						militia = { x = 0 y = 3 }
+						militia = { x = 1 y = 0 }
+						militia = { x = 1 y = 1 }
+						militia = { x = 1 y = 2 }
+						militia = { x = 1 y = 3 }
+					}
+					support = { 
+					}
+					priority = 0 
+					is_locked = yes
+				}
+				random_owned_state = {
+					limit = {
+						is_capital = yes
+					}
+					create_unit = {
+						division = "name = \"1. Miliz Division\" division_template = \"Miliz Division\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"2. Miliz Division\" division_template = \"Miliz Division\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"3. Miliz Division\" division_template = \"Miliz Division\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"4. Miliz Division\" division_template = \"Miliz Division\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"5. Miliz Division\" division_template = \"Miliz Division\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"6. Miliz Division\" division_template = \"Miliz Division\" start_experience_factor = 0 start_equipment_factor = 0.5"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Tactical_Carpet_Bombings
+		icon = GFX_GENERIC_Firebombing
+		cost = 6.00
+		prerequisite = {
+			focus = GER_Emergency_Plane_Assemble
+		}
+		x = 9
+		y = 3
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Tactical_Carpet_Bombings"
+			add_ideas = {
+				GCW_carpet_bomb
+			}
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Rally_The_People
+		icon = GFX_GER_Totalen_Kreig
+		cost = 3.00
+		x = 3
+		y = 1
+		available = {
+			has_war = yes
+		}
+		bypass = {
+
+		}
+		relative_position_id = GER_Total_Gamble
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+		prerequisite = {
+			focus = GER_Total_Gamble
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Rally_The_People"
+			add_manpower = 100000
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Fanatical_Warriors
+		icon = GFX_GER_Cheeky_SS
+		cost = 3.00
+		x = 3
+		y = 2
+		available = {
+			has_war = yes
+			tag = HSS
+		}
+		bypass = {
+
+		}
+		relative_position_id = GER_Total_Gamble
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+		prerequisite = {
+			focus = GER_Rally_The_People
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Fanatical_Warriors"
+			custom_effect_tooltip = SS_SUICIDEBOMBER
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Junta_Victory
+		icon = GFX_GER_iron_swastika
+		cost = 1.00
+		prerequisite = {
+			focus = GER_Victory_At_GCW
+		}
+		relative_position_id = GER_Victory_At_GCW
+		x = 3
+		y = 1
+		available = {
+			has_war = no
+			tag = HGR
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Junta_Victory"
+			activate_decision = GER_heer_load_tree
+		}
+	}
+	focus = {
+	cancelable = no
+		id = GER_Goering_Victory
+		icon = GFX_GER_The_Real_Successor
+		cost = 1.00
+		prerequisite = {
+			focus = GER_Victory_At_GCW
+		}
+		relative_position_id = GER_Victory_At_GCW
+		x = 5
+		y = 1
+		available = {
+			has_country_leader = {
+				name = "Hermann Göring"
+				ruling_only = yes
+			}
+			has_war = no
+			tag = GER
+		}
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Goering_Victory"
+			activate_decision = GER_goe_load_tree
+		}
+	}
+}

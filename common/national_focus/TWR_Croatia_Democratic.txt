@@ -1,0 +1,562 @@
+shared_focus = {
+	id = CRO_Dalmatian_Democracy
+	icon = GFX_CRO_Dalmatian_Democracy
+	cost = 5
+	x = 13
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Dalmatian_Democracy"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		custom_effect_tooltip = CRO_disable_military_mechanic_tt
+			set_country_flag = CRO_military_influence_disabled
+		clr_country_flag = CRO_resistance_mechanic_enabled
+                
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Announce_Snap_Elections
+	icon = GFX_GENERIC_TA_overseen_elections
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Dalmatian_Democracy
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Dalmatian_Democracy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Announce_Snap_Elections"
+                country_event = { id = twrcroatia.230 }
+                add_ideas = CRO_new_democracy 
+		add_ideas = CRO_Croatian_Civil_and_Peasant_Protection_idea 
+	}
+}
+
+
+shared_focus = {
+	id = CRO_HSS_Election_Victory
+	icon = GFX_GENERIC_Liberal_Conservatism
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Announce_Snap_Elections
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Announce_Snap_Elections
+	}
+	available = {
+		always = no
+	}
+	mutually_exclusive = {
+		focus = CRO_SDP_Election_Victory
+		}
+	mutually_exclusive = {
+		focus = CRO_NDSH_Election_Victory
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_HSS_Election_Victory"
+		news_event = { id = croatianews.31 }
+                add_ideas = CRO_HSS_Victorious
+                add_stability = 0.10
+                hidden_effect = { country_event = { id = twr_cro_flavour.6 days = 1000 } }
+	}
+}
+
+shared_focus = {
+	id = CRO_SDP_Election_Victory
+	icon = GFX_GENERIC_social_democracy
+	cost = 5
+	x = 3
+	y = 1
+	relative_position_id = CRO_Announce_Snap_Elections
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Announce_Snap_Elections
+	}
+	available = {
+		always = no
+	}
+	mutually_exclusive = {
+		focus = CRO_HSS_Election_Victory
+		}
+	mutually_exclusive = {
+		focus = CRO_NDSH_Election_Victory
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_SDP_Election_Victory"
+		news_event = { id = croatianews.33 }
+                add_ideas = CRO_HoG_Miko_Tripalo
+		set_politics = {
+			ruling_party = social_democrat
+			last_election = "1952.1.1"
+			election_frequency = 60
+			elections_allowed = yes
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.6
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_NDSH_Election_Victory
+	icon = GFX_GENERIC_Social_Liberalism 
+	cost = 5
+	x = -3
+	y = 1
+	relative_position_id = CRO_Announce_Snap_Elections
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Announce_Snap_Elections
+	}
+	available = {
+		always = no
+	}
+	mutually_exclusive = {
+		focus = CRO_HSS_Election_Victory
+		}
+	mutually_exclusive = {
+		focus = CRO_SDP_Election_Victory
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_NDSH_Election_Victory"
+		news_event = { id = croatianews.32 }
+                add_ideas = CRO_HoG_Savka_Kucar
+		set_politics = {
+			ruling_party = liberal
+			last_election = "1952.1.1"
+			election_frequency = 60
+			elections_allowed = yes
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.6
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_A_Drop_of_Democracy_in_a_Despotic_Sea
+	icon = GFX_CRO_Despotic_Sea
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_HSS_Election_Victory
+	cancelable = no
+	prerequisite = {
+		focus = CRO_HSS_Election_Victory
+		focus = CRO_SDP_Election_Victory
+		focus = CRO_NDSH_Election_Victory
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_A_Drop_of_Democracy_in_a_Despotic_Sea"
+		add_ideas = CRO_A_Drop_of_Democracy_idea
+		IF = { 
+			limit = {
+				has_idea = CRO_Unstable_Government_idea
+				}
+			remove_ideas = CRO_Unstable_Government_idea
+		}
+		IF = { 
+			limit = {
+				has_idea = CRO_Unstable_Government_1_idea
+				}
+			remove_ideas = CRO_Unstable_Government_1_idea
+		}
+		IF = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			cro_create_intelligence_agency = yes
+		}	
+	}
+}
+
+shared_focus = {
+	id = CRO_United_Nations
+	icon = GFX_GENERIC_United_Nations
+	cost = 5
+	x = 20
+	y = 0
+	available = { has_completed_focus = CRO_A_Drop_of_Democracy_in_a_Despotic_Sea }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_United_Nations"
+			custom_effect_tooltip = BUL_JOIN_UN
+                add_stability = 0.1
+                TWR_add_to_un = yes
+	}
+}
+
+shared_focus = {
+	id = CRO_Serbian_Reconciliation
+	icon = GFX_SER_focus_matters_of_the_state
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_United_Nations
+	cancelable = no
+	prerequisite = {
+		focus = CRO_United_Nations
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Serbian_Reconciliation"
+				remove_opinion_modifier = {
+					target = SER
+					modifier = hostile_status
+				}
+				SER = { 
+					remove_opinion_modifier = {
+					target = CRO
+					modifier = hostile_status
+				}
+			}
+		SER = {
+			add_opinion_modifier = {
+				target = CRO
+				modifier = CRO_SER_Reconciliation
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Blessings_From_the_Church
+	icon = GFX_GENERIC_Catholic_Government
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Serbian_Reconciliation
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Serbian_Reconciliation
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Blessings_From_the_Church"
+		country_event = {
+			id = twrcroatia.43
+		}
+	}
+}
+
+
+shared_focus = {
+	id = CRO_Join_the_Toronto_Accord
+	icon = GFX_CRO_Join_the_TA
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_United_Nations
+	cancelable = no
+	prerequisite = {
+		focus = CRO_United_Nations
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Join_the_Toronto_Accord"
+		USA = {
+			country_event = {
+				id = twrcroatia.42
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Democracy_in_a_Dark_Continent
+	icon = GFX_USA_real_democracy
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Join_the_Toronto_Accord
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Join_the_Toronto_Accord
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Democracy_in_a_Dark_Continent"
+		country_event = { hours = 2 id = twrcroatia.238 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Our_Man_in_London
+	icon = GFX_ENG_flag
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_United_Nations
+	cancelable = no
+	prerequisite = {
+		focus = CRO_United_Nations
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Our_Man_in_London"
+		add_opinion_modifier = {
+			target = ENG
+			modifier = CRO_ENG_trade_improvements
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Request_British_Assistance
+	icon = GFX_GENERIC_foreign_investment_2
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Our_Man_in_London
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Our_Man_in_London
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Request_British_Assistance"
+		custom_effect_tooltip = cro_british_companies_tt
+		ENG = {
+			country_event = {
+				id = twrcroatia.44
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_To_Make_Macek_And_Radic_Proud
+	icon = GFX_CRO_To_Make_Macek_And_Radic_Proud
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Democracy_in_a_Dark_Continent
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Democracy_in_a_Dark_Continent
+	}
+	prerequisite = {
+		focus = CRO_Blessings_From_the_Church
+	}
+	prerequisite = {
+		focus = CRO_Request_British_Assistance
+	}
+	available = { has_global_flag = form_croatia_reunited_flag }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_To_Make_Macek_And_Radic_Proud"
+		country_event = { id = cro_endings.7 hours = 4 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Rebuild_the_Countryside
+	icon = GFX_GENERIC_Factory_Complex_Green
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_A_Drop_of_Democracy_in_a_Despotic_Sea
+	cancelable = no
+	prerequisite = {
+		focus = CRO_A_Drop_of_Democracy_in_a_Despotic_Sea
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Rebuild_the_Countryside"
+		163 = { add_extra_state_shared_building_slots = 1 }
+		983 = { add_extra_state_shared_building_slots = 1 }
+		1016 = { add_extra_state_shared_building_slots = 1 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Ease_Taxes_on_Our_Farmers
+	icon = GFX_SER_focus_farmer_battalions
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_A_Drop_of_Democracy_in_a_Despotic_Sea
+	cancelable = no
+	prerequisite = {
+		focus = CRO_A_Drop_of_Democracy_in_a_Despotic_Sea
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Ease_Taxes_on_Our_Farmers"
+		add_timed_idea = {
+			idea = CRO_Eased_Taxes_idea
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Croatian_Cultural_Golden_Age
+	icon = GFX_CRO_Golden_Age
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Ease_Taxes_on_Our_Farmers
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Rebuild_the_Countryside
+	}
+	prerequisite = {
+		focus = CRO_Ease_Taxes_on_Our_Farmers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Croatian_Cultural_Golden_Age"
+		add_ideas = CRO_Croatian_Cultural_Golden_Age_idea
+		unlock_decision_category_tooltip = Croatian_Culture_category
+		set_country_flag = cro_culture_decisions_flag
+		add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = CRO_A_Liberal_Croatia
+	icon = GFX_GENERIC_Market_Liberal
+	cost = 5
+	x = -2
+	y = 1
+	relative_position_id = CRO_Croatian_Cultural_Golden_Age
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Croatian_Cultural_Golden_Age
+	}
+        available = { has_government = liberal }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_A_Liberal_Croatia"
+                add_ideas = HUN_tax_breaks 
+	}
+}
+shared_focus = {
+	id = CRO_A_Liberal_Market
+	icon = GFX_RMD_Economic_Liberalization
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_A_Liberal_Croatia
+	cancelable = no
+	prerequisite = {
+		focus = CRO_A_Liberal_Croatia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_A_Liberal_Market"
+                add_ideas = CRO_liberal_economy 
+	}
+}
+
+
+shared_focus = {
+	id = CRO_An_Agrarian_Croatia
+	icon = GFX_GENERIC_Conservative
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Croatian_Cultural_Golden_Age
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Croatian_Cultural_Golden_Age
+	}
+        available = { has_government = conservative }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_An_Agrarian_Croatia"
+                 add_ideas = CRO_Boost_Agriculture
+	}
+}
+
+shared_focus = {
+	id = CRO_Agrarianism
+	icon = GFX_GENERIC_agriculture
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_An_Agrarian_Croatia
+	cancelable = no
+	prerequisite = {
+		focus = CRO_An_Agrarian_Croatia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_An_Agrarian_Croatia"
+                add_ideas = CRO_Agrarianism
+	}
+}
+
+shared_focus = {
+	id = CRO_A_Social_Democratic_Croatia
+	icon = GFX_GENERIC_Industrial_Social_Democracy
+	cost = 5
+	x = 2
+	y = 1
+	relative_position_id = CRO_Croatian_Cultural_Golden_Age
+	cancelable = no
+	prerequisite = {
+		focus = CRO_Croatian_Cultural_Golden_Age
+	}
+        available = { has_government = social_democrat }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_A_Social_Democratic_Croatia"
+                add_ideas = CRO_workers_rights_protected    
+	}
+}
+
+shared_focus = {
+	id = CRO_Welfare_State
+	icon = GFX_GENERIC_Social_Democracy_Time
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_A_Social_Democratic_Croatia
+	cancelable = no
+	prerequisite = {
+		focus = CRO_A_Social_Democratic_Croatia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Welfare_State"
+                add_ideas = CRO_humanist_policy  
+                add_ideas = CRO_social_welfares         
+	}
+}
+
+shared_focus = {
+	id = CRO_Renewed_Greater_Croatia
+	icon = GFX_CRO_A_Dream_Come_True
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Agrarianism
+	cancelable = no
+	prerequisite = {
+		focus = CRO_A_Liberal_Market
+		focus = CRO_Agrarianism
+		focus = CRO_Welfare_State
+	}
+	available = {
+		has_completed_focus = CRO_The_Worst_is_Behind_Us
+		has_completed_focus = CRO_Mediterranean_Navy_Expansion
+		has_completed_focus = CRO_Modernise_Our_Land_Forces
+		has_completed_focus = CRO_Improving_The_Airforce
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Renewed_Greater_Croatia"
+                custom_effect_tooltip = CRO_reunification_decision_tt
+                set_country_flag = CRO_Reunify_Croatia_decision_flag
+			add_state_core = 104  
+			add_state_core = 983   
+			add_state_core = 163  
+			add_state_core = 815   
+            add_state_core = 981
+            add_state_core = 982
+            add_state_core = 819
+            add_state_core = 813
+		IF = {
+			limit = {
+			45 = { is_owned_by = CRO }
+                                }
+           		add_state_core = 45
+	        }
+		IF = {
+			limit = {
+			BOS = { is_subject_of = CRO }
+                                }
+           		annex_country = { target = BOS transfer_troops = yes }
+	        }
+	}
+     }

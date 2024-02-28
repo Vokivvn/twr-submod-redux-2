@@ -1,0 +1,213 @@
+scripted_gui = {
+
+	us_congress_button = {
+		context_type = player_context
+		
+		window_name = "us_congress_button_container"
+		parent_window_token = politics_tab
+		visible = {
+            tag = USA
+			NOT = {
+				has_country_flag = us_coup
+			}
+		}
+		
+		effects = {
+			us_congress_button_bg_click = {
+				set_temp_variable = { show = 1 }
+				subtract_from_temp_variable = { show = show_us_congress }
+				set_variable = { show_us_congress = show }
+				#Support bar
+				set_temp_variable = { house_frame_variable_temp = congress_house_support }
+				divide_temp_variable = { house_frame_variable_temp = 5 }
+				add_to_temp_variable = { house_frame_variable_temp = 1 }
+				set_variable = { house_frame_variable = house_frame_variable_temp }
+				set_temp_variable = { senate_frame_variable_temp = congress_senate_support }
+				divide_temp_variable = { senate_frame_variable_temp = 5 }
+				add_to_temp_variable = { senate_frame_variable_temp = 1 }
+				set_variable = { senate_frame_variable = senate_frame_variable_temp }
+				#House seats support
+				set_temp_variable = { house_seats_variable_temp = congress_house_support }
+				divide_temp_variable = { house_seats_variable_temp = 100 }
+				multiply_temp_variable = { house_seats_variable_temp = 435 }
+				set_variable = { house_seats = house_seats_variable_temp }
+				#Senate seats support
+				set_temp_variable = { senate_seats_variable_temp = congress_senate_support }
+				divide_temp_variable = { senate_seats_variable_temp = 100 }
+				multiply_temp_variable = { senate_seats_variable_temp = 96 }
+				set_variable = { senate_seats = senate_seats_variable_temp }
+			}
+		}
+		ai_enabled = {
+			tag = USA
+		}
+	}
+	us_congress_window = {
+		context_type = player_context
+		window_name = "us_congress_window_container"
+		parent_window_token = politics_tab
+		visible = {
+			check_variable = {
+				show_us_congress > 0
+			}
+		}
+		effects = {
+			us_congress_exit_click = {
+				set_variable = {
+					var = show_us_congress
+					value = 0
+				}
+			}
+		}
+		ai_enabled = {
+			tag = USA
+		}
+	}
+	us_senate_window = {
+		context_type = player_context 
+		window_name = "us_congress_senate_container"
+		parent_window_token = politics_tab
+		visible = {
+			check_variable = {
+				show_us_congress > 0
+			}
+		}
+		properties = {
+			senate_progress_bar = {
+				frame = senate_frame_variable
+			}
+		}
+		properties = {
+			senate_seats_graphic = {
+				frame = senate_frame_variable
+			}
+		}
+		effects = {
+			senate_support_click = {
+				add_to_variable = {
+					var = congress_senate_support
+					value = 5
+				}
+				add_political_power = -100
+				clamp_variable = {
+					var = congress_senate_support
+					min = 0
+					max = 100
+				}
+				set_temp_variable = { house_frame_variable_temp = congress_house_support }
+				divide_temp_variable = { house_frame_variable_temp = 5 }
+				add_to_temp_variable = { house_frame_variable_temp = 1 }
+				set_variable = { house_frame_variable = house_frame_variable_temp }
+				set_temp_variable = { senate_frame_variable_temp = congress_senate_support }
+				divide_temp_variable = { senate_frame_variable_temp = 5 }
+				add_to_temp_variable = { senate_frame_variable_temp = 1 }
+				set_variable = { senate_frame_variable = senate_frame_variable_temp }
+				#Senate seats support
+				set_temp_variable = { senate_seats_variable_temp = congress_senate_support }
+				divide_temp_variable = { senate_seats_variable_temp = 100 }
+				multiply_temp_variable = { senate_seats_variable_temp = 96 }
+				set_variable = { senate_seats = senate_seats_variable_temp }
+			}
+		}
+		triggers = {
+			senate_support_click_enabled = {
+				has_political_power > 100
+				check_variable = {
+					congress_senate_support < 95
+				}
+			}
+		}
+		ai_enabled = {
+            tag = USA
+		}
+        
+		ai_check = {
+			check_variable = {  congress_senate_support < 55 }
+		}
+		
+		ai_weights = {
+			senate_support_click = {
+				ai_will_do = {
+					factor = 0
+					modifier = {
+						add = 50
+						check_variable = {  congress_senate_support < 55 }
+					}
+				}
+			}
+		}
+	}
+	us_house_window = {
+		context_type = player_context 
+		window_name = "us_congress_house_container"
+		parent_window_token = politics_tab
+		visible = {
+			check_variable = {
+				show_us_congress > 0
+			}
+		}
+		properties = {
+			house_progress_bar = {
+				frame = house_frame_variable
+			}
+		}
+		properties = {
+			house_seats_graphic = {
+				frame = house_frame_variable
+			}
+		}
+		effects = {
+			house_support_click = {
+				add_to_variable = {
+					var = congress_house_support
+					value = 5
+				}
+				add_political_power = -100
+				clamp_variable = {
+					var = congress_house_support
+					min = 0
+					max = 100
+				}
+				set_temp_variable = { house_frame_variable_temp = congress_house_support }
+				divide_temp_variable = { house_frame_variable_temp = 5 }
+				add_to_temp_variable = { house_frame_variable_temp = 1 }
+				set_variable = { house_frame_variable = house_frame_variable_temp }
+				set_temp_variable = { senate_frame_variable_temp = congress_senate_support }
+				divide_temp_variable = { senate_frame_variable_temp = 5 }
+				add_to_temp_variable = { senate_frame_variable_temp = 1 }
+				set_variable = { senate_frame_variable = senate_frame_variable_temp }
+				#House seats support
+				set_temp_variable = { house_seats_variable_temp = congress_house_support }
+				divide_temp_variable = { house_seats_variable_temp = 100 }
+				multiply_temp_variable = { house_seats_variable_temp = 435 }
+				set_variable = { house_seats = house_seats_variable_temp }
+			}
+		}
+		triggers = {
+			house_support_click_enabled = {
+				has_political_power > 100
+				check_variable = {
+					congress_house_support < 95
+				}
+			}
+		}
+		ai_enabled = {
+            tag = USA
+		}
+        
+		ai_check = {
+			check_variable = {  congress_house_support < 55 }
+		}
+		ai_weights = {
+			house_support_click = {
+				ai_will_do = {
+					factor = 0
+					modifier = {
+						add = 50
+						check_variable = {  congress_house_support < 55 }
+					}
+				}
+			}
+		}
+	}
+}

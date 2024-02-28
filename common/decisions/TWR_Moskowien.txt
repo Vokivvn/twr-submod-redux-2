@@ -1,0 +1,218 @@
+RMO_nordic_colonists_category = {
+	RMO_Settler_Propaganda_decision = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RMO
+		}
+		available = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+			NOT = {
+				has_idea = RMO_Nordic_Propaganda_idea
+			}
+		}
+		visible = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+		}
+
+		cost = 15
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RMO_Settler_Propaganda_decision"
+			add_timed_idea = {
+				idea = RMO_Nordic_Propaganda_idea
+				days = 50
+			}
+			add_to_variable = { RMO_nordics_support = 0.1 }
+		}
+	}
+	
+	RMO_Invest_in_the_Colonies_decision = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RMO
+		}
+		available = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+			NOT = {
+				has_idea = RMO_Colonial_Investment_idea
+			}
+		}
+		visible = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+		}
+
+		cost = 15
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RMO_Invest_in_the_Colonies_decision"
+			add_timed_idea = {
+				idea = RMO_Colonial_Investment_idea
+				days = 50
+			}
+			add_to_variable = { RMO_nordics_support = 0.1 }
+		}
+	}
+	
+	RMO_Decrease_Taxes_on_Settlers_decision = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RMO
+		}
+		available = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+			NOT = {
+				has_idea = RMO_Colonial_Taxes_Decreased_idea
+			}
+		}
+		visible = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+		}
+
+		cost = 20
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RMO_Decrease_Taxes_on_Settlers_decision"
+			add_timed_idea = {
+				idea = RMO_Colonial_Taxes_Decreased_idea
+				days = 50
+			}
+			add_to_variable = { RMO_nordics_support = 0.15 }
+		}
+	}
+	
+	RMO_Settler_Self_Defence_decision = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RMO
+		}
+		available = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+			NOT = {
+				has_idea = RMO_Settler_Self_Defence_idea
+			}
+		}
+		visible = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+		}
+
+		cost = 20
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RMO_Settler_Self_Defence_decision"
+			add_timed_idea = {
+				idea = RMO_Settler_Self_Defence_idea
+				days = 50
+			}
+			add_to_variable = { RMO_nordics_support = 0.2 }
+		}
+	}
+	
+	RMO_Raise_Settler_Units_decision = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RMO
+		}
+		available = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+			check_variable = { RMO_nordics_support > 0.29 }
+		}
+		visible = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+		}
+
+		cost = 30
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RMO_Raise_Settler_Units_decision"
+			load_oob = RMO_NORDICS_OOB
+			add_to_variable = { RMO_nordics_support = -0.3 }
+		}
+	}
+	
+	RMO_Refugee_Ships_Arrive_mission = {
+		icon = eng_blackshirt_march
+		allowed = {
+			tag = RMO
+		}
+		available = {
+			check_variable = { RMO_nordics_support > 0.5 }
+		}
+		activation = {
+			OR = {
+				has_war_with = SMO
+				has_war_with = RSB
+				has_war_with = RMD
+			}
+		}
+		is_good = no
+		days_mission_timeout = 75
+		timeout_effect = {
+			add_to_variable = { RMO_nordics_support = -0.5 }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RMO_Refugee_Ships_Arrive_mission"
+			add_to_variable = { RMO_nordics_support = -0.25 }
+		}
+	}
+}

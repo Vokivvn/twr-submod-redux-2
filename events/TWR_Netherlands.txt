@@ -1,0 +1,809 @@
+﻿############################
+## Dutch Events
+#############################
+
+add_namespace = TWR_HOL
+add_namespace = TWR_HOL_intro
+
+country_event = {
+	id = TWR_HOL_intro.1 #Introduction
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_HOL_intro.1"}
+	title = TWR_HOL_intro.1.t
+	desc = TWR_HOL_intro.1.d
+	picture = GFX_report_event_colonial_war
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = TWR_HOL_intro.1.a	
+	}
+}
+
+country_event = {
+	id = TWR_HOL.2000 #UN Plea/retreat
+	title = TWR_HOL.2000.t
+	desc = TWR_HOL.2000.d
+	picture = GFX_report_event_colonial_war
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWR_HOL.2000" }
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = TWR_HOL.2000.a	
+		set_capital = { state = 309 }
+		set_cosmetic_tag = HOL_RETREAT
+		hidden_effect = {
+			TWR_indonesian_revolt_resolution_effect = yes
+		}
+		news_event = { id = twrnews.30 days = 1 }
+	}
+}
+
+country_event = {
+	id = TWR_HOL.2002 #UN Deal Reaction HOL
+	title = TWR_HOL.2002.t
+	desc = TWR_HOL.2002.d
+	picture = GFX_report_event_un_meeting
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event TWR_HOL.2002"
+		hidden_effect = {
+			country_event = { id = TWR_HOL.2004 days = 7 }
+			INS = {
+				country_event = { id = TWR_HOL.2005 days = 7 }
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = TWR_HOL.2002.a
+		INS = { white_peace_with_ROOT = yes }
+		set_truce = {
+			target = INS
+			days = 100
+		}
+		add_stability = 0.1
+		INS = {
+			transfer_state = 850
+			transfer_state = 865
+		}
+	}
+}
+country_event = {
+	id = TWR_HOL.2003 #UN Deal Reaction INS
+	title = TWR_HOL.2003.t
+	desc = TWR_HOL.2003.d
+	picture = GFX_report_event_un_meeting
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWR_HOL.2003" }
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = TWR_HOL.2003.a	
+		remove_ideas = INS_indonesian_war
+		set_truce = {
+			target = HOL
+			days = 100
+		}
+		add_stability = 0.10
+		add_political_power = 150
+	}
+}
+country_event = {
+	id = TWR_HOL.2004 #UN Deal Reaction HOL
+	title = TWR_HOL.2004.t
+	desc = TWR_HOL.2004.d
+	picture = GFX_report_event_indonesian_declaration
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWR_HOL.2004" }
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = TWR_HOL.2004.a #Besides Dutch New Guinea
+		hidden_effect = {
+			ENG = {
+				set_autonomy = {
+					target = HOL
+					autonomy_state = autonomy_dominion
+				}
+			}
+			HOL = {
+			set_politics = {
+				ruling_party = liberal
+				last_election = "1948.6.25"
+				election_frequency = 48
+				elections_allowed = no
+			}
+
+			set_popularities = {
+			    national_socialist = 0
+			    fascist = 3
+			    paternal_autocrat = 4
+			    conservative = 38
+			    liberal = 30
+			    social_democrat = 15
+			    socialist = 3
+			    bolshevik_leninist = 0
+			    marxist_leninist = 7
+			}
+				remove_ideas = {
+				HOL_INS_control_1
+				HOL_INS_control_2
+				HOL_INS_control_3
+				HOL_INS_control_4
+				HOL_INS_control_5
+				HOL_INS_guerilla_1
+				HOL_INS_guerilla_2
+				HOL_INS_guerilla_3
+				HOL_INS_guerilla_4
+				HOL_INS_nationalist
+				HOL_INS_communist
+				HOL_INS_islamist
+				HOL_INS_socialist
+				HOL_INS_divided
+				HOL_INS_politics_1
+				HOL_INS_politics_2
+				HOL_INS_politics_3
+				HOL_INS_politics_4
+				HOL_INS_politics_5
+				HOL_INS_economy_1
+				HOL_INS_economy_2
+				HOL_INS_economy_3
+				HOL_INS_economy_4
+				}
+			}
+		}
+		INS = {
+			transfer_state = 869
+			transfer_state = 868
+			transfer_state = 866
+			transfer_state = 864
+			transfer_state = 863
+			transfer_state = 862
+			transfer_state = 861
+			transfer_state = 852
+			transfer_state = 853
+			transfer_state = 849
+			transfer_state = 848
+			transfer_state = 673
+			transfer_state = 668
+			transfer_state = 334
+			transfer_state = 672
+			transfer_state = 738
+			transfer_state = 667
+			transfer_state = 1012
+			transfer_state = 935
+			transfer_state = 936
+		}
+	}
+}
+country_event = {
+	id = TWR_HOL.2005 #UN Deal Reaction INS
+	title = TWR_HOL.2005.t
+	desc = TWR_HOL.2005.d
+	picture = GFX_report_event_indonesian_declaration
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWR_HOL.2005" }
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = TWR_HOL.2005.a #Indonesia nationhood
+		give_military_access = HOL
+		add_stability = 0.1
+		hidden_effect = {
+			news_event = { id = twrnews.29 days = 1 }
+		}
+	}
+}
+country_event = {
+	id = TWR_HOL.2006 #colony
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_HOL.2006"}
+	title = TWR_HOL.2006.t
+	desc = TWR_HOL.2006.d
+	picture = GFX_report_event_colonial_war
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = TWR_HOL.2006.a #New colony
+		DWP = {
+			transfer_state = 851
+			transfer_state = 669
+			transfer_state = 847
+			transfer_state = 867	
+		}
+		set_autonomy = {
+			target = DWP
+			autonomy_state = autonomy_colony
+		}
+		hidden_effect = {
+			DWP = {
+				set_politics = {					
+					ruling_party = paternal_autocrat
+				}
+                set_popularities = {
+                    national_socialist = 0
+                    fascist = 0
+                    paternal_autocrat = 49
+                    conservative = 48
+                    liberal = 0
+                    social_democrat = 2
+                    socialist = 0
+                    bolshevik_leninist = 0
+                    marxist_leninist = 0
+                }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TWR_HOL.2007 #Defeat by Indonesia
+	title = TWR_HOL.2007.t
+	desc = TWR_HOL.2007.d
+	picture = GFX_report_event_colonial_war
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWR_HOL.2007" }
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = TWR_HOL.2007.a
+		white_peace = INS
+		set_capital = { state = 309 }
+		#every_country = {
+		news_event = {
+			id = twrnews.29
+			days = 1
+		}
+		#}
+		hidden_effect = {
+			country_event = {
+				id = TWR_HOL.2006
+				days = 1
+			}
+			ENG = {
+				set_autonomy = {
+					target = HOL
+					autonomy_state = autonomy_dominion
+				}
+			}
+			HOL = {
+				set_politics = {
+					ruling_party = liberal
+					last_election = "1948.6.25"
+					election_frequency = 48
+					elections_allowed = no
+				}
+				set_popularities = {
+					national_socialist = 0
+					fascist = 3
+					paternal_autocrat = 4
+					conservative = 38
+					liberal = 30
+					social_democrat = 15
+					socialist = 3
+					bolshevik_leninist = 0
+					marxist_leninist = 7
+				}
+				remove_ideas = {
+					HOL_INS_control_1
+					HOL_INS_control_2
+					HOL_INS_control_3
+					HOL_INS_control_4
+					HOL_INS_control_5
+					HOL_INS_guerilla_1
+					HOL_INS_guerilla_2
+					HOL_INS_guerilla_3
+					HOL_INS_guerilla_4
+					HOL_INS_nationalist
+					HOL_INS_communist
+					HOL_INS_islamist
+					HOL_INS_socialist
+					HOL_INS_divided
+					HOL_INS_politics_1
+					HOL_INS_politics_2
+					HOL_INS_politics_3
+					HOL_INS_politics_4
+					HOL_INS_politics_5
+					HOL_INS_economy_1
+					HOL_INS_economy_2
+					HOL_INS_economy_3
+					HOL_INS_economy_4
+				}
+			}
+		}
+		INS = {
+			transfer_state = 334
+			transfer_state = 335
+			transfer_state = 667
+			transfer_state = 668
+			transfer_state = 673
+			transfer_state = 738
+			transfer_state = 848
+			transfer_state = 849
+			transfer_state = 850
+			transfer_state = 852
+			transfer_state = 853
+			transfer_state = 863
+			transfer_state = 864
+			transfer_state = 865
+			transfer_state = 866
+			transfer_state = 868
+			transfer_state = 869
+			transfer_state = 935
+			transfer_state = 936
+			transfer_state = 861
+			transfer_state = 862
+			transfer_state = 872
+			transfer_state = 1012
+		}
+	}
+}
+
+######PRE CIVIL WAR####
+country_event = {
+	id = TWR_HOL.1000 #Riot
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_HOL.1000"}
+	title = TWR_HOL.1000.t
+	desc = TWR_HOL.1000.d
+	picture = GFX_report_event_indonesian_protests
+	immediate = {
+		hidden_effect = {
+			country_event = { id = TWR_HOL.10000 days = 5 }
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = TWR_HOL.1000.a
+		add_political_power = -100
+		add_stability = -0.1
+	}
+}
+country_event = {
+	id = TWR_HOL.10000 #Riot escalates
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_HOL.10000"}
+	title = TWR_HOL.10000.t
+	desc = TWR_HOL.10000.d
+	picture = GFX_report_event_indonesian_declaration
+	immediate = {
+		hidden_effect = {
+			country_event = { id = TWR_HOL.1 days = 3 }
+		}
+	}
+	is_triggered_only = yes
+
+	option = {
+		name = TWR_HOL.10000.a
+		add_political_power = -200
+		add_stability = -0.1
+		swap_ideas = {
+    	remove_idea = HOL_INS_guerilla_3
+    	add_idea = HOL_INS_guerilla_4
+		}
+	}
+}
+#Civil war event
+
+country_event = {
+	id = TWR_HOL.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_HOL.1"}
+	title = TWR_HOL.1.t
+	desc = TWR_HOL.1.d
+	picture = GFX_report_event_colonial_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = TWR_HOL.1.a
+		leave_faction = yes
+		ENG = { end_puppet = HOL }
+		INS = {
+			transfer_state = 672 #Sumatra
+			transfer_state = 335 #Java
+			transfer_state = 861
+			transfer_state = 862
+			transfer_state = 864
+			set_province_controller = 1533
+			set_province_controller = 1373
+			set_province_controller = 1345
+			set_province_controller = 1386
+		}
+		HOL = { 
+			add_ideas = HOL_indonesian_war
+			declare_war_on = { target = INS type = annex_everything } 
+			news_event = { id = twrnews.24 days = 1 }
+		}
+		hidden_effect = {
+			HOL = {
+				division_template = {
+					name = "Militaire Politie"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+					}
+					support = { 
+						military_police = { x = 0 y = 0 }
+					}
+				}
+				850 = {
+					create_unit = {
+						division = "name = \"Koninklijke Politie \\\"Batavia\\\"\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+					create_unit = {
+						division = "name = \"1e Militaire Politie\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+					create_unit = {
+						division = "name = \"2e Militaire Politie\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+					create_unit = {
+						division = "name = \"3e Militaire Politie\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+					create_unit = {
+						division = "name = \"4e Militaire Politie\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+				}
+			}
+			INS = { 
+				load_oob = INS_REVOLT
+				drop_cosmetic_tag = yes
+			}
+		}
+	}
+	option = {
+		name = TWR_HOL.1.b
+		leave_faction = yes
+		ENG = { end_puppet = HOL }
+		INS = {
+			transfer_state = 672 #Sumatra
+			transfer_state = 335 #Java
+			transfer_state = 861
+			transfer_state = 862
+			transfer_state = 864
+			set_province_controller = 1533
+			set_province_controller = 1373
+			set_province_controller = 1345
+			set_province_controller = 1386
+		}
+		HOL = {
+			add_ideas = HOL_indonesian_war 
+			declare_war_on = { target = INS type = annex_everything } 
+		}
+		hidden_effect = {
+			change_tag_from = ROOT
+			HOL = {
+				division_template = {
+					name = "Militaire Politie"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+					}
+					support = { 
+						military_police = { x = 0 y = 0 }
+					} 
+				}
+				850 = {
+					create_unit = {
+						division = "name = \"Koninklijke Politie \\\"Batavia\\\"\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+					create_unit = {
+						division = "name = \"1e Militaire Politie\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+					create_unit = {
+						division = "name = \"2e Militaire Politie\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+					create_unit = {
+						division = "name = \"3e Militaire Politie\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+					create_unit = {
+						division = "name = \"4e Militaire Politie\" division_template = \"Militaire Politie\" start_experience_factor = 0.4 start_equipment_factor = 0.3"
+						owner = HOL
+					}
+				}
+			}
+			INS = { 
+				load_oob = INS_REVOLT
+				drop_cosmetic_tag = yes 
+			}
+		}
+	}
+}
+country_event = {
+	id = TWR_HOL.1004 #Victory at Indonesia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TWR_HOL.1004"}
+	title = TWR_HOL.1004.t
+	desc = TWR_HOL.1004.d
+	picture = GFX_report_event_indonesian_declaration
+	is_triggered_only = yes
+
+	option = {
+		name = TWR_HOL.1004.a #need news
+		add_political_power = 200
+		add_stability = 0.1
+	}
+}
+
+#New two nation theory
+country_event = {
+	id = TWR_HOL.2
+	title = TWR_HOL.2.t
+	desc = TWR_HOL.2.d
+	picture = GFX_report_event_enforce_gotenland#TODO#
+
+	is_triggered_only = yes#
+
+	option = {
+		name = TWR_HOL.2.a
+		INS = {
+		transfer_state = 841
+		transfer_state = 840
+		transfer_state = 849
+			transfer_state = 738
+			transfer_state = 672
+			transfer_state = 667
+			transfer_state = 668
+			transfer_state = 334
+		}
+		hidden_effect = {
+			INS = { set_cosmetic_tag = INS_FREE }
+		}
+	}
+}
+
+##Crisis reigniting
+#country_event = {
+#	id = TWR_HOL.3
+#	title = TWR_HOL.3.t
+#	desc = TWR_HOL.3.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	is_triggered_only = yes#
+
+#	option = {
+#		name = TWR_HOL.3.a
+#		hidden_effect = {
+#			HOL = { load_focus_tree = { tree = dutch_crisis_focus keep_completed = yes } }
+#			complete_national_focus = HOL_crisis
+#			add_ideas = HOL_unequality#
+
+#			remove_ideas = HOL_unequality_soft_hand
+#			remove_ideas = HOL_unequality_soft_hand_grant_seats
+#			remove_ideas = HOL_unequality_soft_hand_grant_seats_total_equality
+#			remove_ideas = HOL_equality_united_nation_seats
+#			remove_ideas = HOL_equality_two_nation_theory_seats
+#			remove_ideas = HOL_unequality_soft_hand_grant_seats_establish_apartheid
+#			remove_ideas = HOL_unequality_soft_hand_grant_seats_establish_apartheid_two_nation_theory
+#			remove_ideas = HOL_unequality_soft_hand_grant_rights
+#			remove_ideas = HOL_unequality_soft_hand_grant_rights_total_equality
+#			remove_ideas = HOL_equality_united_nation_rights
+#			remove_ideas = HOL_equality_two_nation_theory_rights
+#			remove_ideas = HOL_unequality_soft_hand_grant_rights_establish_apartheid
+#			remove_ideas = HOL_unequality_soft_hand_grant_rights_establish_apartheid_two_nation_theory
+#			remove_ideas = HOL_unequality_hard_hand
+#			remove_ideas = HOL_unequality_hard_hand_grant_rights
+#			remove_ideas = HOL_unequality_hard_hand_grant_rights_total_equality
+#			remove_ideas = HOL_unequality_hard_hand_grant_rights_total_equality_two_nation_theory
+#			remove_ideas = HOL_unequality_hard_hand_grant_rights_establish_apartheid
+#			remove_ideas = HOL_unequality_hard_hand_grant_rights_establish_apartheid_two_nation_theory
+#			remove_ideas = HOL_unequality_hard_hand_grant_rights_establish_apartheid_solve_the_problem
+#			remove_ideas = HOL_unequality_hard_hand_establish_military_junta
+#			remove_ideas = HOL_unequality_hard_hand_establish_military_junta_total_equality
+#			remove_ideas = HOL_unequality_hard_hand_establish_military_junta_establish_apartheid
+#			remove_ideas = HOL_unequality_hard_hand_establish_military_junta_establish_apartheid_solve_the_problem
+#		}
+#	}
+#}#
+
+##Reform succeeded (TNT)
+#country_event = {
+#	id = TWR_HOL.4
+#	title = TWR_HOL.4.t
+#	desc = TWR_HOL.4.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	is_triggered_only = yes
+#	hidden = yes#
+
+#	option = {
+#		name = TWR_HOL.4.a
+#		load_focus_tree = { tree = dutch_focus keep_completed = yes }
+#		set_global_flag = HOL_crisis_resolved
+#	}
+#}#
+
+##Load initial crisis tree
+#country_event = {
+#	id = TWR_HOL.5
+#	title = TWR_HOL.5.t
+#	desc = TWR_HOL.5.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	is_triggered_only = yes#
+
+#	option = {
+#		name = TWR_HOL.5.a
+#	}
+#}#
+
+##Dutch elections begin
+#country_event = {
+#	id = TWR_HOL.6
+#	title = TWR_HOL.6.t
+#	desc = TWR_HOL.6.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	fire_only_once = yes
+#	mean_time_to_happen = { days = 1 }#
+
+#	immediate = {
+#		hidden_effect = {
+#			set_country_flag = HOL_1952_elections_tt
+#			complete_national_focus = HOL_1952_elections
+#		}
+#	}#
+
+#	trigger = {
+#		tag = HOL
+#		date > 1952.6.25
+#	}#
+
+#	option = {
+#		name = TWR_HOL.6.a
+#		country_event = { id = TWR_HOL.7 days = 1 }
+#	}
+#}#
+
+##Dutch elections: government: democracy, socialism or nationalism
+#country_event = {
+#	id = TWR_HOL.7
+#	title = TWR_HOL.7.t
+#	desc = TWR_HOL.7.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	is_triggered_only = yes#
+
+#	option = { #democracy
+#		name = TWR_HOL.7.a
+#		set_country_flag = HOL_1952_elections_democracy
+#	}
+#	option = { #socialism
+#		name = TWR_HOL.7.b
+#		set_country_flag = HOL_1952_elections_socialism
+#	}
+#	option = { #nationalism
+#		name = TWR_HOL.7.c
+#		set_country_flag = HOL_1952_elections_nationalism
+#	}
+#}#
+
+##Dutch elections: democracy in government
+#country_event = {
+#	id = TWR_HOL.8
+#	title = TWR_HOL.8.t
+#	desc = TWR_HOL.8.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	fire_only_once = yes
+#	mean_time_to_happen = { days = 1 }#
+
+#	trigger = {
+#		tag = HOL
+#		has_country_flag = HOL_1952_elections_democracy
+#	}#
+
+#	option = { #ARP
+#		name = TWR_HOL.8.a
+#		set_country_flag = HOL_1952_elections_ARP
+#		hidden_effect = { complete_national_focus = HOL_ARP }
+#	}
+#	option = { #VDB
+#		name = TWR_HOL.8.b
+#		set_country_flag = HOL_1952_elections_VDB
+#		hidden_effect = { complete_national_focus = HOL_VDB }
+#	}
+#	option = { #PVDA
+#		name = TWR_HOL.8.c
+#		set_country_flag = HOL_1952_elections_PVDA
+#		hidden_effect = { complete_national_focus = HOL_PVDA }
+#	}
+#}#
+
+##Dutch elections: Socialism in government
+#country_event = {
+#	id = TWR_HOL.9
+#	title = TWR_HOL.9.t
+#	desc = TWR_HOL.9.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	fire_only_once = yes
+#	mean_time_to_happen = { days = 1 }#
+
+#	trigger = {
+#		tag = HOL
+#		has_country_flag = HOL_1952_elections_socialism
+#	}#
+
+#	option = { #PVDA
+#		name = TWR_HOL.9.a
+#		set_country_flag = HOL_1952_elections_PVDA
+#		hidden_effect = { complete_national_focus = HOL_PVDA }
+#	}
+#	option = { #SU
+#		name = TWR_HOL.9.b
+#		set_country_flag = HOL_1952_elections_SU
+#		hidden_effect = { complete_national_focus = HOL_SU }
+#	}
+#	option = { #CPN
+#		name = TWR_HOL.9.c
+#		set_country_flag = HOL_1952_elections_CPN
+#		hidden_effect = { complete_national_focus = HOL_CPN }
+#	}
+#}#
+
+##Dutch elections: Nationalism in government
+#country_event = {
+#	id = TWR_HOL.10
+#	title = TWR_HOL.10.t
+#	desc = TWR_HOL.10.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	fire_only_once = yes
+#	mean_time_to_happen = { days = 1 }#
+
+#	trigger = {
+#		tag = HOL
+#		has_country_flag = HOL_1952_elections_nationalism
+#	}#
+
+#	option = { #NSNAP
+#		name = TWR_HOL.10.a
+#		set_country_flag = HOL_1952_elections_NSNAP
+#		hidden_effect = { complete_national_focus = HOL_NSNAP }
+#	}
+#	option = { #NNF
+#		name = TWR_HOL.10.b
+#		set_country_flag = HOL_1952_elections_NNF
+#		hidden_effect = { complete_national_focus = HOL_NNF }
+#	}
+#	option = { #ON, Oranje-Nassau
+#		name = TWR_HOL.10.c
+#		set_country_flag = HOL_1952_elections_oranje
+#		hidden_effect = { complete_national_focus = HOL_oranje }
+#	}
+#}#
+
+##Test event for crisis
+#country_event = {
+#	id = TWR_HOL.100
+#	title = TWR_HOL.100.t
+#	desc = TWR_HOL.100.d
+#	picture = GFX_report_event_enforce_gotenland#TODO#
+
+#	is_triggered_only = yes#
+
+#	option = {
+#		name = TWR_HOL.100.a
+#		custom_effect_tooltip = HOL_crisis_counter_value
+#	}
+#}

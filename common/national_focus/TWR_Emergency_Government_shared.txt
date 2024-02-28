@@ -1,0 +1,1829 @@
+################################################################
+# Proudly coded by NarcisisticNiceSarcasticAsshole while drunk #
+# other work done by Aljazbird, Agatha, mupper				   #
+################################################################
+
+shared_focus = {
+	id = KCS_And_There_Was_A_City_Upon_A_Red_Hill
+	icon = GFX_KCS_city_on_a_red_hill
+	cost = 2
+	cancelable = no
+	x = 12
+	y = 0  
+	ai_will_do = {
+		base = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus And_There_Was_A_City_Upon_A_Red_Hill"
+		add_ideas = KCS_Peoples_Opposition
+	}
+}
+
+shared_focus = {
+	id = KCS_The_City_Shall_Be_Saved_By_His_Will
+	icon = GFX_KCS_The_City_Shall_be_Saved_by_His_Will
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_And_There_Was_A_City_Upon_A_Red_Hill
+	ai_will_do = {
+		base = 20
+	} 
+	available = {
+		has_war = no
+		NOT = {
+			country_exists = TAN
+			country_exists = IRK
+			country_exists = KRA
+		}
+	}
+	prerequisite = {
+		focus = KCS_And_There_Was_A_City_Upon_A_Red_Hill
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus The_City_Shall_Be_Saved_By_His_Will"
+		remove_ideas = KRA_Krasnoyarskian_Civil_War
+	}
+}
+
+shared_focus = {
+	id = KCS_The_LZK_One_Party_State
+	icon = GFX_GENERIC_Auth_Dem
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_The_City_Shall_Be_Saved_By_His_Will
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_City_Shall_Be_Saved_By_His_Will
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_LZK_One_Party_State"
+		country_event = twrKCS.1
+	}
+}
+
+shared_focus = {
+	id = KCS_Disbanding_All_Socialist_Organizations
+	icon = GFX_GENERIC_End_Marxism
+	cost = 5
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_The_LZK_One_Party_State
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_LZK_One_Party_State
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Disbanding_All_Socialist_Organizations"
+		add_timed_idea = {
+			idea = KCS_Crackdown_Socialists
+			days = 95
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Rebuilding_The_Limping_State
+	icon = GFX_GENERIC_Government
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_The_LZK_One_Party_State
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_LZK_One_Party_State
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Rebuilding_The_Limping_State"
+		add_timed_idea = {
+			idea = KCS_Reconstruction
+			days = 95
+		}
+		set_country_flag = CENTRAL_RUSSIA_REUNIFICATION
+		set_country_flag = reconquering_russia
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Death_Of_Siberian_Stalinism
+	icon = GFX_KRA_focus_Beginning_The_Great_Unification_War
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Disbanding_All_Socialist_Organizations
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		country_exists = NOV
+	}
+	bypass = {
+		NOT = {
+			country_exists = NOV
+		}
+	}
+	prerequisite = {
+		focus = KCS_Rebuilding_The_Limping_State 
+	}
+	prerequisite = {	
+		focus = KCS_Disbanding_All_Socialist_Organizations
+	}
+	will_lead_to_war_with = NOV
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Death_Of_Siberian_Stalinism"
+		declare_war_on = {
+			target = NOV
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {#left tree branch
+	id = KCS_From_Nothing_Siberias_Saviour_Has_Come
+	icon = GFX_KCS_From_Nothing_Siberias_Saviour_has_Come
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_The_Death_Of_Siberian_Stalinism
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		country_exists = NRI
+		NOT = { country_exists = NOV }
+	}
+	bypass = {
+		NOT = {
+			country_exists = NRI
+		}
+	}	
+	will_lead_to_war_with = NRI
+	prerequisite = {
+		focus = KCS_The_Death_Of_Siberian_Stalinism
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_From_Nothing_Siberias_Saviour_Has_Come"
+		declare_war_on = {
+			target = NRI
+			type = annex_everything
+		}		
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Siberian_Protection_Forces
+	icon = GFX_GENERIC_army_guy
+	cost = 5
+	cancelable = no
+	x = -8
+	y = 1
+	relative_position_id = KCS_From_Nothing_Siberias_Saviour_Has_Come
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_From_Nothing_Siberias_Saviour_Has_Come
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Siberian_Protection_Forces"
+		army_experience = 25
+	}
+}
+
+shared_focus = {
+	id = KCS_The_True_Heirs_Of_Suvorov
+	icon = GFX_GENERIC_Suvorov
+	cost = 5
+	cancelable = no
+	x = -2
+	y = 1
+	relative_position_id = KCS_The_Siberian_Protection_Forces
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Siberian_Protection_Forces 
+	}
+	mutually_exclusive = {
+		focus = KCS_More_Than_An_Mere_Army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_True_Heirs_Of_Suvorov"
+		swap_ideas = {
+			add_idea = KCS_Protection_Forces
+			remove_idea = KCS_Red_Army_Defectors
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_More_Than_An_Mere_Army
+	icon = GFX_GENERIC_Army_Cooperation
+	cost = 5
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = KCS_The_Siberian_Protection_Forces
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Siberian_Protection_Forces
+	}
+	mutually_exclusive = {
+		focus = KCS_The_True_Heirs_Of_Suvorov 
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_More_Than_An_Mere_Army"
+		swap_ideas = {
+			add_idea = KCS_Protection_Forces_COMPASSIONATE
+			remove_idea = KCS_Red_Army_Defectors
+		}		
+		create_corps_commander = {
+			name = "Sergey Chernykh"
+			picture = "Sergey_Chernykh.dds"
+			traits = { career_officer }
+			skill = 2
+		    attack_skill = 2
+		    defense_skill = 2
+		    planning_skill = 1
+		    logistics_skill = 2
+		}
+
+		create_corps_commander = {
+			name = "Nikolay Gapich"
+			picture = "Nikolay_Gapich.dds"
+			traits = { career_officer }
+			skill = 3
+		    attack_skill = 1
+		    defense_skill = 1
+		    planning_skill = 3
+		    logistics_skill = 3
+		}
+
+		create_corps_commander = {
+			name = "Vladimir Sviridov"
+			picture = "Vladimir_Sviridov.dds"
+			traits = { bearer_of_artillery }
+			skill = 1
+		    attack_skill = 2
+		    defense_skill = 1
+		    planning_skill = 1
+		    logistics_skill = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Emphasis_On_Decisive_Action
+	icon = GFX_GENERIC_deport_people
+	cost = 6 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_The_True_Heirs_Of_Suvorov
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_True_Heirs_Of_Suvorov
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Emphasis_On_Decisive_Action"
+		swap_ideas = {
+			add_idea = KCS_Protection_Forces_1
+			remove_idea = KCS_Protection_Forces
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Krasnoyarsk_Millitary_Institute
+	icon = GFX_GENERIC_Military_Government
+	cost = 6 
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = KCS_The_True_Heirs_Of_Suvorov
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_True_Heirs_Of_Suvorov
+		focus = KCS_More_Than_An_Mere_Army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Krasnoyarsk_Millitary_Institute"
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Army_Corps_Of_Education
+	icon = GFX_GENERIC_Military_Science
+	cost = 6 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_More_Than_An_Mere_Army
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_More_Than_An_Mere_Army 
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Army_Corps_Of_Education"
+		swap_ideas = {
+			add_idea = KCS_Protection_Forces_COMPASSIONATE_1
+			remove_idea = KCS_Protection_Forces_COMPASSIONATE
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_You_Protect_People_First_And_Foremost
+	icon = GFX_GENERIC_Soviet_Soldiers_Village
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_The_Krasnoyarsk_Millitary_Institute
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Krasnoyarsk_Millitary_Institute
+	}
+	prerequisite = {
+		focus = KCS_The_Army_Corps_Of_Education
+		focus = KCS_Emphasis_On_Decisive_Action
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_You_Protect_People_First_And_Foremost"
+		if = {
+			limit = {has_idea = KCS_Protection_Forces_COMPASSIONATE_1 }
+			swap_ideas = {
+				add_idea = KCS_Protection_Forces_COMPASSIONATE_2
+				remove_idea = KCS_Protection_Forces_COMPASSIONATE_1
+			}		
+		}
+		if = {
+			limit = {has_idea = KCS_Protection_Forces_1 }
+			swap_ideas = {
+				add_idea = KCS_Protection_Forces_2
+				remove_idea = KCS_Protection_Forces_1
+			}		
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Any_Who_Lose_The_Sight_Of_That
+	icon = GFX_GENERIC_Soldiers_Defense
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_You_Protect_People_First_And_Foremost
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_You_Protect_People_First_And_Foremost
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Any_Who_Lose_The_Sight_Of_That"	
+		add_war_support = 0.1
+		every_unit_leader = { add_unit_leader_trait = skilled_staffer }
+	}
+}
+
+shared_focus = {#middle tree branch
+	id = KCS_Rebuilding_The_Vanished_Market
+	icon = GFX_GENERIC_Trading
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_From_Nothing_Siberias_Saviour_Has_Come
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_From_Nothing_Siberias_Saviour_Has_Come
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Rebuilding_The_Vanished_Market"
+		swap_ideas = {
+			remove_idea = KCS_The_Failures_Of_Socialism
+			add_idea = KCS_The_Failures_Of_Socialism_2
+		}
+		add_offsite_building = {
+			type = industrial_complex
+			level = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Siberian_Reconstruction_Plan
+	icon = GFX_GENERIC_industry_i
+	cost = 5 
+	cancelable = no
+	x = -2
+	y = 1
+	relative_position_id = KCS_Rebuilding_The_Vanished_Market
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Rebuilding_The_Vanished_Market
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Siberian_Reconstruction_Plan"
+		country_event = twrKCS.2
+	}
+}
+
+shared_focus = {
+	id = KCS_Ancestry_Based_Land_Privatization
+	icon = GFX_GENERIC_Land_Reform
+	cost = 6 
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_The_Siberian_Reconstruction_Plan
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Siberian_Reconstruction_Plan 
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Ancestry_Based_Land_Privatization"
+		capital_scope = {
+			add_extra_state_shared_building_slots = 2
+		}
+		add_political_power = 95
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Siberian_Recontruction_Project
+	icon = GFX_GENERIC_industrial_grey
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_The_Siberian_Reconstruction_Plan
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Siberian_Reconstruction_Plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Siberian_Recontruction_Project"
+		add_timed_idea = {
+			idea = KCS_Construction_Boom
+			days = 100
+		}		
+	}
+}
+
+shared_focus = {
+	id = KCS_Rebuilding_Our_Shattered_Roads
+	icon = GFX_GENERIC_Village_Road
+	cost = 8 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Ancestry_Based_Land_Privatization
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Ancestry_Based_Land_Privatization
+	}
+	prerequisite = {
+		focus = KCS_The_Siberian_Recontruction_Project
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Rebuilding_Our_Shattered_Roads"
+		every_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Immediate_Urban_Privatization
+	icon = GFX_GENERIC_Urban_Road
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Rebuilding_The_Vanished_Market
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		has_idea = KCS_The_Failures_Of_Socialism_3
+	}
+	prerequisite = {
+		focus = KCS_Rebuilding_The_Vanished_Market
+	}
+	mutually_exclusive = {
+		focus = KCS_Quantitative_Urban_Privatization
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Immediate_Urban_Privatization"
+		swap_ideas = {
+			remove_idea = KCS_The_Failures_Of_Socialism_3
+			add_idea = KCS_The_Failures_Of_Socialism_4_IMME
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Quantitative_Urban_Privatization
+	icon = GFX_GENERIC_urbanization1
+	cost = 5 
+	cancelable = no
+	x = 3
+	y = 1
+	relative_position_id = KCS_Rebuilding_The_Vanished_Market
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		has_idea = KCS_The_Failures_Of_Socialism_3
+	}
+	prerequisite = {
+		focus = KCS_Rebuilding_The_Vanished_Market
+	}
+	mutually_exclusive = {
+		focus = KCS_Immediate_Urban_Privatization
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Quantitative_Urban_Privatization"
+		swap_ideas = {
+			remove_idea = KCS_The_Failures_Of_Socialism_3
+			add_idea = KCS_The_Failures_Of_Socialism_4_QUAN
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Dolgihks_Theory_Of_Capitalist_Transition
+	icon = GFX_GENERIC_foreign_investment
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Immediate_Urban_Privatization
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Quantitative_Urban_Privatization
+		focus = KCS_Immediate_Urban_Privatization
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Dolgihk's_Theory_Of_Capitalist_Transition"
+		if = {
+			limit = { has_idea = KCS_The_Failures_Of_Socialism_4_QUAN }
+			swap_ideas = {
+				add_idea = KCS_The_Failures_Of_Socialism_5_QUAN
+				remove_idea = KCS_The_Failures_Of_Socialism_4_QUAN
+			}
+		}
+		if = {
+			limit = { has_idea = KCS_The_Failures_Of_Socialism_4_IMME }
+			swap_ideas = {
+				add_idea = KCS_The_Failures_Of_Socialism_5_IMME
+				remove_idea = KCS_The_Failures_Of_Socialism_4_IMME
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Forming_A_State_Owned_Realty_Company
+	icon = GFX_GENERIC_house
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_Dolgihks_Theory_Of_Capitalist_Transition
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Dolgihks_Theory_Of_Capitalist_Transition
+	}
+	complete_tooltip = {
+		remove_ideas = KCS_The_Failures_Of_Socialism_5_IMME
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Forming_A_State_Owned_Realty_Company"
+		remove_ideas = KCS_The_Failures_Of_Socialism_5_IMME
+		remove_ideas = KCS_The_Failures_Of_Socialism_5_QUAN
+	}
+}
+
+shared_focus = {
+	id = KCS_Opening_The_Eastern_Border_To_Trade
+	icon = GFX_GENERIC_Asia
+	cost = 5 
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = KCS_Rebuilding_Our_Shattered_Roads
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Rebuilding_Our_Shattered_Roads
+	}
+	prerequisite = {
+		focus = KCS_Forming_A_State_Owned_Realty_Company
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Opening_The_Eastern_Border_To_Trade"
+		CHI = { country_event = twrKCS.3 }
+		add_offsite_building = {
+			type = arms_factory
+			level = 1
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = CHI
+		}
+	}
+}
+
+shared_focus = {#right tree branch
+	id = KCS_The_LZK_Has_Evolved
+	icon = GFX_GENERIC_General_Staff_Meeting
+	cost = 5 
+	cancelable = no
+	x = 8
+	y = 1
+	relative_position_id = KCS_From_Nothing_Siberias_Saviour_Has_Come
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_From_Nothing_Siberias_Saviour_Has_Come
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_LZK_Has_Evolved"
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.1
+		}
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = KCS_Into_Something_Far_Greater 
+	icon = GFX_GENERIC_government_power
+	cost = 5
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_The_LZK_Has_Evolved
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_LZK_Has_Evolved
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Into_Something_Far_Greater"
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KCS_Technocratic_Political_Appointments
+	icon = GFX_GENERIC_science
+	cost = 5
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_Into_Something_Far_Greater
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Into_Something_Far_Greater
+	}
+	mutually_exclusive = {
+		focus = KCS_Intraparty_Democracy_Concept
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Technocratic_Political_Appointments"
+		add_ideas = KCS_LZK_the_Technocratic_Party
+	}
+}
+
+shared_focus = {
+	id = KCS_Intraparty_Democracy_Concept
+	icon = GFX_GENERIC_Secret_Meeting
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Into_Something_Far_Greater
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Into_Something_Far_Greater
+	}
+	mutually_exclusive = {
+		focus = KCS_Technocratic_Political_Appointments
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Intraparty_Democracy_Concept"
+		add_ideas = KCS_LZK_the_Consensus_Party
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Cult_Of_Higher_Education
+	icon = GFX_GENERIC_School
+	cost = 9
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_Technocratic_Political_Appointments
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Technocratic_Political_Appointments
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Cult_Of_Higher_Education"
+		add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = KCS_Enfornce_Compliance_With_SZK_Doctrine
+	icon = GFX_GENERIC_CIvil_Oversight
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Intraparty_Democracy_Concept
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Intraparty_Democracy_Concept
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Enfornce_Compliance_With_SZK_Doctrine"
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.1
+		}
+		add_stability = 0.05		
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Formation_Of_The_Cliques 
+	icon = GFX_CRO_Zagreb_Nights
+	cost = 5 
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_Intraparty_Democracy_Concept
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Intraparty_Democracy_Concept
+		focus = KCS_Technocratic_Political_Appointments
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Formation_Of_The_Cliques"
+		country_event = twrKCS.5
+	}
+}
+
+shared_focus = {
+	id = KCS_Declaring_Socialism_Unconstitutional
+	icon = GFX_GENERIC_Pass_Legislation
+	cost = 5 
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = KCS_The_Cult_Of_Higher_Education
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Cult_Of_Higher_Education
+		focus = KCS_Enfornce_Compliance_With_SZK_Doctrine
+	}
+	available = {
+		
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Declaring_Socialism_Unconstitutional" 
+		remove_ideas = KCS_Peoples_Opposition
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Red_Horizon_Calls
+	icon = GFX_SOV_New_Battle
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_Opening_The_Eastern_Border_To_Trade
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Any_Who_Lose_The_Sight_Of_That
+	}
+	prerequisite = {
+		focus = KCS_Opening_The_Eastern_Border_To_Trade
+	}
+	prerequisite = {
+		focus = KCS_Declaring_Socialism_Unconstitutional 
+	}
+	bypass = {
+		owns_state = 398
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Red_Horizon_Calls"
+		add_ideas = KCS_Anti_Communist_Crusade
+	}
+}
+
+shared_focus = {
+	id = KCS_Prepare_For_The_Onslaught
+	icon = GFX_KRA_Preparing_to_March_West
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_The_Red_Horizon_Calls
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		owns_state = 398
+	}
+	prerequisite = {
+		focus = KCS_The_Red_Horizon_Calls
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Prepare_For_The_Onslaught"
+		declare_war_on = {
+			target = RUZ
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Last_Vestige_Of_Communism_Ended
+	icon = GFX_GENERIC_Anti_Com
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_Prepare_For_The_Onslaught
+	ai_will_do = {
+		base = 20
+	}
+	available = {
+		owns_state = 398
+	}
+	prerequisite = {
+		focus = KCS_Prepare_For_The_Onslaught
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Last_Vestige_Of_Communism_Ended"
+		remove_ideas = KCS_Anti_Communist_Crusade
+		country_event = twrKCS.6
+	}
+}
+
+shared_focus = {
+	id = KCS_I_Will_Shed_No_Tears_For_Foreign_Puppets
+	icon = GFX_RMD_Anti_Republican
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_The_Last_Vestige_Of_Communism_Ended
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Last_Vestige_Of_Communism_Ended
+	}
+	bypass = {
+		NOT = {
+			OR = {
+				country_exists = RUS
+				country_exists = RFP
+				country_exists = SBR
+				country_exists = PEC
+				country_exists = BRY
+			}
+		}
+		owns_state = 408
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_I_Will_Shed_No_Tears_For_Foreign_Puppets"
+		add_ideas = KCS_Anti_Russian_Crusade
+	}
+}
+
+shared_focus = {
+	id = KCS_Greenlight_The_Advance
+	icon = GFX_KRA_Vicious_Anti_Republican_Purges
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_I_Will_Shed_No_Tears_For_Foreign_Puppets
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_I_Will_Shed_No_Tears_For_Foreign_Puppets
+	}
+	bypass = {
+		NOT = {
+			OR = {
+				country_exists = RUS
+				country_exists = RFP
+				country_exists = SBR
+				country_exists = PEC
+				country_exists = BRY
+			}
+		}
+		owns_state = 408
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Greenlight_The_Advance"
+		if = {
+			limit = { country_exists = BRY }
+			declare_war_on = {
+				target = BRY
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = RFP }
+			declare_war_on = {
+				target = RFP
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = PEC }
+			declare_war_on = {
+				target = PEC
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = SBR }
+			declare_war_on = {
+				target = SBR
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = RUS }
+			declare_war_on = {
+				target = RUS
+				type = annex_everything
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Russia_My_Love_You_Have_Returned
+	icon = GFX_GENERIC_armed_liberation
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	available = {
+		NOT = {
+			OR = {
+				country_exists = RUS
+				country_exists = RFP
+				country_exists = SBR
+				country_exists = PEC
+				country_exists = BRY
+			}
+		}
+		owns_state = 408
+	}
+	relative_position_id = KCS_Greenlight_The_Advance
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Greenlight_The_Advance
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Russia_My_Love_You_Have_Returned" 
+		add_timed_idea = {
+			idea = KCS_Russia_my_beloved
+			days = 365
+		}
+		unlock_decision_category_tooltip = russia_reconquering
+		set_country_flag = RUS_RECLAIM_DECISION_UNLOCKED
+	}
+}
+
+shared_focus = {#left tree 
+	id = KCS_The_Vodka_Doctrine
+	icon = GFX_KCS_Vodka_Doctrine
+	cost = 5
+	cancelable = no
+	x = -3
+	y = 1
+	relative_position_id = KCS_Russia_My_Love_You_Have_Returned
+	ai_will_do = {	
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Russia_My_Love_You_Have_Returned
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Vodka_Doctrine"
+		country_event = twrKCS.7
+	}
+}
+	
+shared_focus = {
+	id = KCS_Formation_Of_The_Neutral_Protection_Bloc #Neutral Movement
+	icon = GFX_GENERIC_globalist
+	cost = 5 
+	cancelable = no
+	x = -2
+	y = 1
+	relative_position_id = KCS_The_Vodka_Doctrine
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Vodka_Doctrine 
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Formation_Of_The_Neutral_Protection_Bloc"
+		news_event = twrKCS.8
+		add_to_tech_sharing_group = neutral_movement_research
+	}
+}
+
+shared_focus = {
+	id = KCS_Our_Brothers_In_Blood
+	icon = GFX_BRY_Russian_Reinforcement
+	cost = 5 
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_Formation_Of_The_Neutral_Protection_Bloc
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Formation_Of_The_Neutral_Protection_Bloc
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Our_Brothers_In_Blood"
+		set_country_flag = WESTERN_RUSSIA_UNIFICATION
+		if = {
+			limit = { country_exists = UKR }
+			add_opinion_modifier = {
+				target = UKR
+				modifier = foreign_company_deals
+			}
+			reverse_add_opinion_modifier = {
+				target = UKR
+				modifier = foreign_company_deals
+			}
+			UKR = {
+				set_country_flag = NOT_INTERESTED_LMAO_SOV
+				country_event = twrKCS.12
+			}
+		}
+		if = {
+			limit = { country_exists = UKW }
+			add_opinion_modifier = {
+				target = UKW
+				modifier = foreign_company_deals
+			}
+			reverse_add_opinion_modifier = {
+				target = UKW
+				modifier = foreign_company_deals
+			}
+			UKW = {
+				set_country_flag = NOT_INTERESTED_LMAO_SOV
+				country_event = twrKCS.12
+			}
+		}
+		if = {
+			limit = { country_exists = POL }
+			add_opinion_modifier = {
+				target = POL
+				modifier = foreign_company_deals
+			}
+			reverse_add_opinion_modifier = {
+				target = POL
+				modifier = foreign_company_deals
+			}
+			POL = {
+				set_country_flag = NOT_INTERESTED_LMAO_SOV
+				country_event = twrKCS.12
+			}
+		}
+		if = {
+			limit = { country_exists = BLR }
+			add_opinion_modifier = {
+				target = BLR
+				modifier = foreign_company_deals
+			}
+			reverse_add_opinion_modifier = {
+				target = BLR
+				modifier = foreign_company_deals
+			}	
+			BLR = {
+				set_country_flag = NOT_INTERESTED_LMAO_SOV
+				country_event = twrKCS.12
+			}	
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Returning_Pan_Slavism_For_The_Modern_World
+	icon = GFX_RUS_Pan_Slavic_Identity
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_Our_Brothers_In_Blood
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Our_Brothers_In_Blood
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Returning_Pan_Slavism_For_The_Modern_World"
+		if = {
+			limit = { country_exists = UKR }
+			country_event = twrKCS.9
+		}
+		if = {
+			limit = { country_exists = UKW }
+			country_event = twrKCS.9
+		}
+		if = {
+			limit = { country_exists = POL }
+			country_event = twrKCS.9
+		}
+		if = {
+			limit = { country_exists = BLR }	
+			country_event = twrKCS.9	
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Our_Brothers_In_Spirit #Iran trade thing
+	icon = GFX_GENERIC_Oil_Wells
+	cost = 5
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Formation_Of_The_Neutral_Protection_Bloc
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Formation_Of_The_Neutral_Protection_Bloc
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Our_Brothers_In_Spirit"
+		add_opinion_modifier = {
+			target = PER
+			modifier = foreign_company_deals
+		}
+		reverse_add_opinion_modifier = {
+			target = PER
+			modifier = foreign_company_deals
+		}
+		PER = { country_event = twrKCS.12 }	
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Cessation_Of_Tuva #Chinese relationship
+	icon = GFX_CHI_Chinas_Dream_of_Democracy
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_Our_Brothers_In_Spirit
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Our_Brothers_In_Spirit
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Cessation_Of_Tuva"
+		add_opinion_modifier = {
+			target = CHI
+			modifier = foreign_company_deals
+		}
+		reverse_add_opinion_modifier = {
+			target = CHI
+			modifier = foreign_company_deals
+		}
+		CHI = { country_event = twrKCS.12 }	
+	}
+}
+
+shared_focus = {
+	id = KCS_An_Envoy_To_Seoul
+	icon = GFX_KOR_world
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Returning_Pan_Slavism_For_The_Modern_World
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Cessation_Of_Tuva
+	}
+	prerequisite = {
+		focus = KCS_Returning_Pan_Slavism_For_The_Modern_World
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_An_Envoy_To_Seoul"
+		add_opinion_modifier = {
+			target = KOR
+			modifier = foreign_company_deals
+		}
+		reverse_add_opinion_modifier = {
+			target = KOR
+			modifier = foreign_company_deals
+		}
+		KOR = { country_event = twrKCS.12 }	
+	}
+}
+
+shared_focus = {
+	id = KCS_Completely_Disreagarding_TA
+	icon = GFX_GENERIC_Anti_Dem
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_The_Vodka_Doctrine
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Vodka_Doctrine
+	}
+	mutually_exclusive = {
+		focus = KCS_A_Most_Unwanted_Obligation
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Completely_Disreagarding_TA"
+		add_war_support = 0.05
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KCS_A_Most_Unwanted_Obligation
+	icon = GFX_GENERIC_Join_the_Toronto_Accord
+	cost = 5 
+	cancelable = no
+	x = 3
+	y = 1
+	relative_position_id = KCS_The_Vodka_Doctrine
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Vodka_Doctrine
+	}
+	mutually_exclusive = {
+		focus = KCS_Completely_Disreagarding_TA
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_A_Most_Unwanted_Obligation"
+		add_opinion_modifier = {
+			target = USA
+			modifier = medium_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = USA
+			modifier = medium_increase
+		}
+		USA = { country_event = twrKCS.12 }	
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Issue_Of_Kurill
+	icon = GFX_JAP_First_LDP_Crisis
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Completely_Disreagarding_TA
+	ai_will_do = {
+		base = 20
+	}
+	bypass = {
+		controls_state = 555
+	}
+	prerequisite = {
+		focus = KCS_Completely_Disreagarding_TA
+		focus = KCS_A_Most_Unwanted_Obligation
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Issue_Of_Kurill"
+		555 = {
+			add_core_of = KCS
+			owner = {
+				country_event = { id = twrKCS.13 days = 2 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Completely_Disregarding_Western_Europe
+	icon = GFX_GENERIC_Europe
+	cost = 5 
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_The_Issue_Of_Kurill
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Issue_Of_Kurill
+	}
+	mutually_exclusive = {
+		focus = KCS_An_Embassy_In_Ireland
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Completely_Disregarding_Western_Europe"
+		add_political_power = 95
+	}
+}
+
+shared_focus = {
+	id = KCS_An_Embassy_In_Ireland
+	icon = GFX_GENERIC_Ireland_Suitcase
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_The_Issue_Of_Kurill
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Issue_Of_Kurill
+	}
+	mutually_exclusive = {
+		focus = KCS_Completely_Disregarding_Western_Europe
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_An_Embassy_In_Ireland"
+		add_opinion_modifier = {
+			target = IRE
+			modifier = medium_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = IRE
+			modifier = medium_increase
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Issue_Of_Karelia
+	icon = GFX_FIN_karelia_flag
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Completely_Disregarding_Western_Europe
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Completely_Disregarding_Western_Europe
+		focus = KCS_An_Embassy_In_Ireland
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Issue_Of_Karelia"
+		unlock_decision_tooltip = SOV_karelia_or_war
+		set_country_flag = FUNNY_KCS_SHIT_FLAG_KRA
+	}
+}
+
+shared_focus = {
+	id = KCS_The_Global_Netrality_Movement #Join the UN
+	icon = GFX_GENERIC_UN
+	cost = 5 
+	cancelable = no
+	x = 2
+	y = 1
+	relative_position_id = KCS_An_Envoy_To_Seoul
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_An_Envoy_To_Seoul
+	}
+	prerequisite = {
+		focus = KCS_The_Issue_Of_Karelia
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Global_Netrality_Movement"
+		add_stability = 0.1
+		add_war_support = -0.1
+		add_ideas = neutrality_idea
+		news_event = twrnews.155
+		hidden_effect = {
+			TWR_add_to_un = yes
+		}
+	}
+}
+
+shared_focus = {#middle tree
+	id = KCS_Continuing_The_Capitalist_Tradition #Rise of RPZ
+	icon = GFX_GENERIC_handshake
+	cost = 5 
+	cancelable = no
+	x = 3
+	y = 1
+	relative_position_id = KCS_Russia_My_Love_You_Have_Returned
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Russia_My_Love_You_Have_Returned
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Continuing_The_Capitalist_Tradition"
+		set_party_name = { 
+			ideology = paternal_autocrat 
+			long_name = KCS_RPZ_LONG 
+			name = KCS_RPZ_SHORT 
+		}
+		set_party_name = { 
+			ideology = conservative 
+			long_name = KCS_RPZ_LONG 
+			name = KCS_RPZ_SHORT 
+		}
+		set_party_name = { 
+			ideology = social_democrat 
+			long_name = KCS_RPZ_LONG 
+			name = KCS_RPZ_SHORT 
+		}
+		set_party_name = { 
+			ideology = liberal 
+			long_name = KCS_RPZ_LONG 
+			name = KCS_RPZ_SHORT 
+		}
+		set_party_name = { 
+			ideology = socialist 
+			long_name = KCS_RPZ_LONG 
+			name = KCS_RPZ_SHORT 
+		}
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KCS_Adapting_The_Republican_Base #Apolitical Initiative
+	icon = GFX_GENERIC_Pawns
+	cost = 5 
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_Continuing_The_Capitalist_Tradition
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Continuing_The_Capitalist_Tradition
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Adopting_The_Republican_Base"
+		add_stability = 0.1
+		add_political_power = -150
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.5
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Rebuilding_The_Union_Bases #The "Iceberg" and "Taiga" Wings
+	icon = GFX_KCS_Iceberg_and_Taiga_Wings
+	cost = 8
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Continuing_The_Capitalist_Tradition
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Continuing_The_Capitalist_Tradition
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Rebuilding_The_Union_Bases"
+		country_event = twrKCS.14
+	}
+}
+
+shared_focus = {
+	id = KCS_Completely_Repairing_The_Trans_Siberian_Raliway #Restarting Soviet Industry
+	icon = GFX_GENERIC_Train_choo
+	cost = 8
+	cancelable = no
+	x = -1
+	y = 1
+	relative_position_id = KCS_Adapting_The_Republican_Base
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Adapting_The_Republican_Base
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Completely_Repairing_The_Trans_Siberian_Raliway"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = SOV
+		}
+		add_offsite_building = {
+			type = arms_factory
+			level = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Incorporating_Both_States_Bureaucracies
+	icon = GFX_GENERIC_bureaucracy_issues
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Adapting_The_Republican_Base
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Adapting_The_Republican_Base
+	}
+	prerequisite = {
+		focus = KCS_Rebuilding_The_Union_Bases
+	}
+	mutually_exclusive = {
+		focus = KCS_Barring_All_Old_Regime_Bureaucrats
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Incorporating_Both_States_Bureaucracies"
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.1
+		}
+		add_stability = 0.05
+		add_political_power = -150
+	}
+}
+
+shared_focus = {
+	id = KCS_Barring_All_Old_Regime_Bureaucrats
+	icon = GFX_GENERIC_Bulwark_against_Nazism_and_Bolshevism
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Rebuilding_The_Union_Bases
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Rebuilding_The_Union_Bases
+	}
+	mutually_exclusive = {
+		focus = KCS_Incorporating_Both_States_Bureaucracies
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Barring_All_Old_Regime_Bureaucrats"
+		add_popularity = {
+			ideology = paternal_autocrat
+			popularity = 0.1
+		}
+		add_stability = -0.05
+		add_political_power = 150
+	}
+}
+
+shared_focus = {
+	id = KCS_Incorporating_Former_Nazi_Industry #Schedule an Election
+	icon = GFX_GENERIC_Fake_Democracy
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Completely_Repairing_The_Trans_Siberian_Raliway
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Completely_Repairing_The_Trans_Siberian_Raliway
+	}
+	prerequisite = {	
+		focus = KCS_Incorporating_Both_States_Bureaucracies
+		focus = KCS_Barring_All_Old_Regime_Bureaucrats
+	}
+	mutually_exclusive = {
+		focus = KCS_Raze_It_All_To_The_Ground
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Incorporating_Former_Nazi_Industry"
+		add_ideas = facade_democracy
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.1
+		}
+		country_event = twrKCS.15
+	}
+}
+
+shared_focus = {
+	id = KCS_Raze_It_All_To_The_Ground #Russia Needs Strong Leadership!
+	icon = GFX_GENERIC_authoritarian_fist
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Incorporating_Both_States_Bureaucracies
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Completely_Repairing_The_Trans_Siberian_Raliway
+	}
+	prerequisite = {
+		focus = KCS_Barring_All_Old_Regime_Bureaucrats
+		focus = KCS_Incorporating_Both_States_Bureaucracies
+		focus = KCS_Completely_Repairing_The_Trans_Siberian_Raliway
+	}
+	mutually_exclusive = {
+		focus = KCS_Incorporating_Former_Nazi_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Raze_It_All_To_The_Ground"
+		add_stability = 0.1
+		add_popularity = {
+			ideology = conservative
+			popularity = -0.15
+		}	
+	}
+}
+
+shared_focus = {
+	id = KCS_Partisan_Service_Based_Land_Grants #Depoliticization of Life Campaign
+	icon = GFX_GENERIC_Appease_People
+	cost = 5 
+	cancelable = no
+	x = 1
+	y = 1
+	relative_position_id = KCS_Incorporating_Former_Nazi_Industry
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Incorporating_Former_Nazi_Industry
+		focus = KCS_Raze_It_All_To_The_Ground
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Partisan_Service_Based_Land_Grants"
+		add_stability = 0.2
+		add_war_support = -0.5
+		add_political_power = -150
+		add_offsite_building = {
+			type = industrial_complex
+			level = 1
+		}
+		hidden_effect = {
+			country_event = { id = twrKCS.16 days = 35 random = 300 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KCS_Re-Industrialization_Of_Western_Russia #Form the Special Economic Okrugs
+	icon = GFX_GENERIC_foreign_investment_2
+	cost = 5 
+	cancelable = no
+	x = 0
+	y = 1
+	relative_position_id = KCS_Partisan_Service_Based_Land_Grants
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_Partisan_Service_Based_Land_Grants
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_Re-Industrialization_Of_Western_Russia"
+		unlock_decision_category_tooltip = KCS_SEOs
+		news_event = twrKCS.18
+	}
+}
+shared_focus = {
+	id = KCS_The_Abdication_Of_Dolkigh
+	icon = GFX_GENERIC_Office_Desk
+	cost = 5 
+	cancelable = no
+	x = -3
+	y = 1
+	relative_position_id = KCS_Re-Industrialization_Of_Western_Russia
+	ai_will_do = {
+		base = 20
+	}
+	prerequisite = {
+		focus = KCS_The_Global_Netrality_Movement
+	}
+	prerequisite = {
+		focus = KCS_Re-Industrialization_Of_Western_Russia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KCS_The_Abdication_Of_Dolkigh"
+		country_event = twrKCS.19
+	}
+}

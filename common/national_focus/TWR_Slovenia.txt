@@ -1,0 +1,943 @@
+focus_tree = {
+    id = slovenian_tree
+	
+	########################################################
+	###===========| SLOVENIAN FOCUS TREE |===============###
+	###=========|    Made by Ammonia World   |===========###
+	####=========|   Coded by GreyShadow    |===========####
+	########################################################
+    
+    country = {
+        factor = 0
+        modifier = {
+            add = 10
+            tag = SLV
+        }
+    }
+    continuous_focus_position = { x = 50 y = -1000 }      
+    default = no
+    reset_on_civilwar = no
+
+    focus = {
+		cancelable = no
+		id = SLV_The_Collapse_of_the_German_Rule
+		icon = GFX_SLV_focus_the_collapse_of_the_german_rule
+		x = 7
+		y = 0
+		cost = 1
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_The_Collapse_of_the_German_Rule"
+			add_ideas = SLV_Vanished_German_Rule
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_The_Battle_of_Ljubljana
+		icon = GFX_GENERIC_Volunteer
+		prerequisite = { focus = SLV_The_Collapse_of_the_German_Rule }
+		x = 0
+		y = 1
+		relative_position_id = SLV_The_Collapse_of_the_German_Rule
+		cost = 3
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_The_Battle_of_Ljubljana"
+			country_event = { id = twrslovenia.1 }
+		}
+	}
+	
+	# NLA-PDS Path
+	
+	focus = {
+		cancelable = no
+		id = SLV_The_NLA_PDS_Ascendent
+		icon = GFX_SLV_focus_the_nla_pds_ascendent
+		prerequisite = { focus = SLV_The_Battle_of_Ljubljana }
+		mutually_exclusive = { focus = SLV_The_Home_Guard_Assumese_Control }
+		x = -5
+		y = 1
+		relative_position_id = SLV_The_Battle_of_Ljubljana
+		cost = 2
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_The_NLA_PDS_Ascendent"
+			add_ideas = SLV_A_Nation_Torn_Asunder
+			add_ideas = SLV_A_Dangerous_Position
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Rebuilding_our_Shattered_Nation
+		icon = GFX_GENERIC_Communist_Spy
+		prerequisite = { focus = SLV_The_NLA_PDS_Ascendent }
+		x = 0
+		y = 1
+		relative_position_id = SLV_The_NLA_PDS_Ascendent
+		cost = 2
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Rebuilding_our_Shattered_Nation"
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = SLV_A_Nation_Torn_Asunder
+				add_idea = SLV_A_Nation_Torn_Asunder_2
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Rooting_Out_Collaborator_Scum
+		icon = GFX_GENERIC_Arrests
+		prerequisite = { focus = SLV_Rebuilding_our_Shattered_Nation }
+		x = -1
+		y = 1
+		relative_position_id = SLV_Rebuilding_our_Shattered_Nation
+		cost = 4
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Rooting_Out_Collaborator_Scum"
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.1
+			}
+			swap_ideas = {
+				remove_idea = SLV_A_Nation_Torn_Asunder_2
+				add_idea = SLV_A_Nation_Torn_Asunder_3
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Deporting_German_Settlers
+		icon = GFX_GENERIC_deport_people
+		prerequisite = { focus = SLV_Rooting_Out_Collaborator_Scum }
+		x = 0
+		y = 1
+		relative_position_id = SLV_Rooting_Out_Collaborator_Scum
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Deporting_German_Settlers"
+			add_popularity = {
+				ideology = national_socialist
+				popularity = -0.1
+			}
+			add_stability = 0.05
+			add_political_power = 50
+			swap_ideas = {
+				remove_idea = SLV_A_Nation_Torn_Asunder_3
+				add_idea = SLV_A_Nation_Torn_Asunder_4
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Collectivizing_Siezed_German_Land
+		icon = GFX_GENERIC_Workers_Paradise
+		prerequisite = { focus = SLV_Rebuilding_our_Shattered_Nation }
+		x = 1
+		y = 1
+		relative_position_id = SLV_Rebuilding_our_Shattered_Nation
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Collectivizing_Siezed_German_Land"
+			add_political_power = 50
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			102 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_The_Slovene_Repatriation_Association
+		icon = GFX_GENERIC_Communist_Icon
+		prerequisite = { focus = SLV_Collectivizing_Siezed_German_Land }
+		x = 0
+		y = 1
+		relative_position_id = SLV_Collectivizing_Siezed_German_Land
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_The_Slovene_Repatriation_Association"
+			add_ideas = SLV_Slovene_Repatriation_Association
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Establish_International_Connections
+		icon = GFX_GENERIC_Communist_Discourse
+		prerequisite = { focus = SLV_Deporting_German_Settlers }
+		prerequisite = { focus = SLV_The_Slovene_Repatriation_Association }
+		x = 1
+		y = 1
+		relative_position_id = SLV_Deporting_German_Settlers
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Establish_International_Connections"
+			remove_ideas = SLV_A_Nation_Torn_Asunder_4
+			add_ideas = SLV_International_Connections
+		}
+	}
+	
+	# Home Guard path
+	
+	focus = {
+		cancelable = no
+		id = SLV_The_Home_Guard_Assumese_Control
+		icon = GFX_SLV_focus_the_home_guard_assumese_control
+		prerequisite = { focus = SLV_The_Battle_of_Ljubljana }
+		mutually_exclusive = { focus = SLV_The_NLA_PDS_Ascendent }
+		x = 5
+		y = 1
+		relative_position_id = SLV_The_Battle_of_Ljubljana
+		cost = 2
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_The_Home_Guard_Assumese_Control"
+			add_ideas = SLV_An_Unwanted_Nation
+			add_ideas = SLV_Remaining_Partisans
+			add_ideas = SLV_A_Dangerous_Position
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Finding_Needed_Allies
+		icon = GFX_GENERIC_From_the_depths
+		prerequisite = { focus = SLV_The_Home_Guard_Assumese_Control }
+		x = 0
+		y = 1
+		relative_position_id = SLV_The_Home_Guard_Assumese_Control
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Finding_Needed_Allies"
+			add_political_power = 50
+			country_event = { id = twrslovenia.2 }
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Esablishing_Relations_with_Italy
+		icon = GFX_GENERIC_ITA_Diplomat
+		prerequisite = { focus = SLV_Finding_Needed_Allies }
+		x = -2
+		y = 1
+		relative_position_id = SLV_Finding_Needed_Allies
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Esablishing_Relations_with_Italy"
+			add_ideas = SLV_Italo_Slovene_Relationship
+			diplomatic_relation = {
+				country = ITA
+				relation = non_aggression_pact
+				active = yes
+			}
+			custom_effect_tooltip = SLV_Unwanted_Nation_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SLV_An_Unwanted_Nation
+					}
+					swap_ideas = {
+						remove_idea = SLV_An_Unwanted_Nation
+						add_idea = SLV_An_Unwanted_Nation_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_2
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_2
+							add_idea = SLV_An_Unwanted_Nation_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_3
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_3
+							add_idea = SLV_An_Unwanted_Nation_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_4
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_4
+							add_idea = SLV_An_Unwanted_Nation_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_5
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_5
+							add_idea = SLV_An_Unwanted_Nation_6
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_6
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_6
+							add_idea = SLV_An_Unwanted_Nation_7
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Inviting_Italian_Corporations
+		icon = GFX_ITA_Restart_Foreign_Trade
+		prerequisite = { focus = SLV_Esablishing_Relations_with_Italy }
+		x = 0
+		y = 1
+		relative_position_id = SLV_Esablishing_Relations_with_Italy
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Inviting_Italian_Corporations"
+			102 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			custom_effect_tooltip = SLV_Unwanted_Nation_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SLV_An_Unwanted_Nation
+					}
+					swap_ideas = {
+						remove_idea = SLV_An_Unwanted_Nation
+						add_idea = SLV_An_Unwanted_Nation_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_2
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_2
+							add_idea = SLV_An_Unwanted_Nation_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_3
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_3
+							add_idea = SLV_An_Unwanted_Nation_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_4
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_4
+							add_idea = SLV_An_Unwanted_Nation_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_5
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_5
+							add_idea = SLV_An_Unwanted_Nation_6
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_6
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_6
+							add_idea = SLV_An_Unwanted_Nation_7
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Esablishing_a_Hungarian_Embassy
+		icon = GFX_HUN_handling_refugees
+		prerequisite = { focus = SLV_Finding_Needed_Allies }
+		x = 0
+		y = 1
+		relative_position_id = SLV_Finding_Needed_Allies
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Esablishing_a_Hungarian_Embassy"
+			add_ideas = SLV_Italo_Slovene_Relationship
+			custom_effect_tooltip = SLV_Unwanted_Nation_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SLV_An_Unwanted_Nation
+					}
+					swap_ideas = {
+						remove_idea = SLV_An_Unwanted_Nation
+						add_idea = SLV_An_Unwanted_Nation_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_2
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_2
+							add_idea = SLV_An_Unwanted_Nation_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_3
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_3
+							add_idea = SLV_An_Unwanted_Nation_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_4
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_4
+							add_idea = SLV_An_Unwanted_Nation_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_5
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_5
+							add_idea = SLV_An_Unwanted_Nation_6
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_6
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_6
+							add_idea = SLV_An_Unwanted_Nation_7
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Recognizing_Hungarian_Transylvania
+		icon = GFX_HUN_Flag_From_Wall
+		prerequisite = { focus = SLV_Esablishing_a_Hungarian_Embassy }
+		x = 0
+		y = 1
+		relative_position_id = SLV_Esablishing_a_Hungarian_Embassy
+		cost = 4
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Recognizing_Hungarian_Transylvania"
+			swap_ideas = {
+				remove_idea = SLV_Hungaro_Slovene_Relationship
+				add_idea = SLV_Hungaro_Slovene_Relationship_2
+			}
+			custom_effect_tooltip = SLV_Unwanted_Nation_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SLV_An_Unwanted_Nation
+					}
+					swap_ideas = {
+						remove_idea = SLV_An_Unwanted_Nation
+						add_idea = SLV_An_Unwanted_Nation_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_2
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_2
+							add_idea = SLV_An_Unwanted_Nation_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_3
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_3
+							add_idea = SLV_An_Unwanted_Nation_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_4
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_4
+							add_idea = SLV_An_Unwanted_Nation_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_5
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_5
+							add_idea = SLV_An_Unwanted_Nation_6
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_6
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_6
+							add_idea = SLV_An_Unwanted_Nation_7
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Esablishing_Ustasa_Contacts
+		icon = GFX_focus_yug_banovina_of_croatia
+		prerequisite = { focus = SLV_Finding_Needed_Allies }
+		x = 2
+		y = 1
+		relative_position_id = SLV_Finding_Needed_Allies
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Esablishing_Ustasa_Contacts"
+			add_ideas = SLV_Croat_Slovene_Relationship
+			swap_ideas = {
+				remove_idea = SLV_Remaining_Partisans
+				add_idea = SLV_Remaining_Partisans_2
+			}
+			custom_effect_tooltip = SLV_Unwanted_Nation_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SLV_An_Unwanted_Nation
+					}
+					swap_ideas = {
+						remove_idea = SLV_An_Unwanted_Nation
+						add_idea = SLV_An_Unwanted_Nation_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_2
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_2
+							add_idea = SLV_An_Unwanted_Nation_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_3
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_3
+							add_idea = SLV_An_Unwanted_Nation_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_4
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_4
+							add_idea = SLV_An_Unwanted_Nation_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_5
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_5
+							add_idea = SLV_An_Unwanted_Nation_6
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_6
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_6
+							add_idea = SLV_An_Unwanted_Nation_7
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Join_Anti_Parisan_Operations
+		icon = GFX_GENERIC_Partisans
+		prerequisite = { focus = SLV_Esablishing_Ustasa_Contacts }
+		x = 0
+		y = 1
+		relative_position_id = SLV_Esablishing_Ustasa_Contacts
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Join_Anti_Parisan_Operations"
+			swap_ideas = {
+				remove_idea = SLV_Croat_Slovene_Relationship
+				add_idea = SLV_Croat_Slovene_Relationship_2
+			}
+			remove_ideas = SLV_Remaining_Partisans_2
+			custom_effect_tooltip = SLV_Unwanted_Nation_Improvement_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = SLV_An_Unwanted_Nation
+					}
+					swap_ideas = {
+						remove_idea = SLV_An_Unwanted_Nation
+						add_idea = SLV_An_Unwanted_Nation_2
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_2
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_2
+							add_idea = SLV_An_Unwanted_Nation_3
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_3
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_3
+							add_idea = SLV_An_Unwanted_Nation_4
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_4
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_4
+							add_idea = SLV_An_Unwanted_Nation_5
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_5
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_5
+							add_idea = SLV_An_Unwanted_Nation_6
+						}
+					}
+					else_if = {
+						limit = {
+							has_idea = SLV_An_Unwanted_Nation_6
+						}
+						swap_ideas = {
+							remove_idea = SLV_An_Unwanted_Nation_6
+							add_idea = SLV_An_Unwanted_Nation_7
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_An_Olive_Branch_To_The_Empire
+		icon = GFX_GENERIC_Ultranat_Eagle
+		prerequisite = { focus = SLV_Inviting_Italian_Corporations }
+		prerequisite = { focus = SLV_Recognizing_Hungarian_Transylvania }
+		prerequisite = { focus = SLV_Join_Anti_Parisan_Operations }
+		x = 0
+		y = 1
+		relative_position_id = SLV_Recognizing_Hungarian_Transylvania
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_An_Olive_Branch_To_The_Empire"
+			remove_ideas = SLV_An_Unwanted_Nation_7
+			ENG = {
+				country_event = { days = 1 id = twrslovenia.3 }
+			}
+		}
+	}
+	
+	# Shared
+	
+	focus = {
+		cancelable = no
+		id = SLV_Equipping_An_Independent_Military
+		icon = GFX_GENERIC_Military_Equipment
+		prerequisite = { focus = SLV_The_NLA_PDS_Ascendent focus = SLV_The_Home_Guard_Assumese_Control }
+		x = 5
+		y = 1
+		relative_position_id = SLV_The_NLA_PDS_Ascendent
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Equipping_An_Independent_Military"
+			swap_ideas = {
+				remove_idea = SLV_A_Dangerous_Position
+				add_idea = SLV_A_Dangerous_Position_2
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Acquiring_Black_Market_Arms
+		icon = GFX_GENERIC_AGAINST_THEM
+		prerequisite = { focus = SLV_Equipping_An_Independent_Military }
+		x = -1
+		y = 1
+		relative_position_id = SLV_Equipping_An_Independent_Military
+		cost = 4
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Acquiring_Black_Market_Arms"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 1000
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment_1
+				amount = 200
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Ljubljana_Arms_Complex
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = SLV_Equipping_An_Independent_Military }
+		x = 1
+		y = 1
+		relative_position_id = SLV_Equipping_An_Independent_Military
+		cost = 5
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Acquiring_Black_Market_Arms"
+			102 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = SLV_A_Dangerous_Position_2
+				add_idea = SLV_A_Dangerous_Position_3
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Adressing_The_Italian_Border
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = SLV_Acquiring_Black_Market_Arms }
+		prerequisite = { focus = SLV_Ljubljana_Arms_Complex }
+		x = 1
+		y = 1
+		relative_position_id = SLV_Acquiring_Black_Market_Arms
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_Adressing_The_Italian_Border"
+			remove_ideas = SLV_A_Dangerous_Position_3
+			102 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3631
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 9596
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3654
+				}
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_Supporting_Istrian_Slovenes
+		icon = GFX_GENERIC_Soviet_Soldier
+		prerequisite = { focus = SLV_Deporting_German_Settlers }
+		prerequisite = { focus = SLV_The_Slovene_Repatriation_Association }
+		prerequisite = { focus = SLV_Adressing_The_Italian_Border }
+		x = -2
+		y = 1
+		relative_position_id = SLV_Adressing_The_Italian_Border
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_The_Slovene_Repatriation_Association"
+			add_state_core = 814
+			add_state_core = 813
+			swap_ideas = {
+				remove_idea = SLV_Slovene_Repatriation_Association
+				add_idea = SLV_Slovene_Repatriation_Association_2
+			}
+		}
+	}
+	
+	focus = {
+		cancelable = no
+		id = SLV_De_Regulating_Border_Trade
+		icon = GFX_goal_generic_trade
+		prerequisite = { focus = SLV_Inviting_Italian_Corporations }
+		prerequisite = { focus = SLV_Recognizing_Hungarian_Transylvania }
+		prerequisite = { focus = SLV_Join_Anti_Parisan_Operations }
+		prerequisite = { focus = SLV_Adressing_The_Italian_Border }
+		x = 2
+		y = 1
+		relative_position_id = SLV_Adressing_The_Italian_Border
+		cost = 6
+		ai_will_do = {
+		    factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SLV_De_Regulating_Border_Trade"
+			102 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = SLV_Italo_Slovene_Relationship
+				add_idea = SLV_Italo_Slovene_Relationship_2
+			}
+			add_resource = {
+				type = steel
+				amount = 2
+				state = 102
+			}
+		}
+	}
+}

@@ -1,0 +1,460 @@
+#############################
+## Partisans Uprising Tree ##
+#############################
+shared_focus = {
+	id = CRO_For_The_People
+	icon = GFX_CRO_An_Uneasy_Calm
+	cost = 5
+	x = 7
+	y = 0
+	cancelable = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_For_The_People"
+		custom_effect_tooltip = Focus_be_Bypassed_tt
+		add_ideas = authoritarian_system
+		clr_country_flag = CRO_resistance_mechanic_enabled
+		set_country_flag = CRO_military_influence_disabled
+		set_country_flag = CRO_Bakaric_Cabinet_Flag
+		clr_country_flag = Vladimir_Bakaric_unavailable
+		hidden_effect = { 
+		add_ideas = CRO_Croatian_Civil_War_idea
+		remove_ideas = CRO_Divided_Home_Guard_idea 
+		remove_ideas = {
+		CRO_pavelic_funeral_cost_idea
+		CRO_german_funding_for_supression 
+		CRO_german_funding_for_supression_1
+		CRO_italian_influence 
+		CRO_The_Demarcation_Line_idea 
+		CRO_Legacy_Of_The_Treaty_Of_Rome_idea 
+		CRO_dream_of_a_greater_croatia 
+		}
+		}
+		country_lock_all_division_template = no
+		hidden_effect = {
+			1016 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_partisan_hq
+				}
+			}
+			109 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_ustase_hq
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CRO_Death_To_Fascism
+	icon = GFX_SER_focus_death_to_fascism
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_For_The_People
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_For_The_People
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Death_To_Fascism"
+		add_war_support = 0.10
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Jugoslavenska Oslobodilačka Brigada'\" division_template = \"Jugoslavenska Oslobodilačka Brigada\" start_experience_factor = 0.3" owner = ROOT
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Jugoslavenska Oslobodilačka Brigada'\" division_template = \"Jugoslavenska Oslobodilačka Brigada\" start_experience_factor = 0.3" owner = ROOT
+						}
+					}
+	}
+}
+
+shared_focus = {
+	id = CRO_And_Freedom_To_The_People
+	icon = GFX_SER_focus_freedom_to_the_people
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_For_The_People
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_For_The_People
+	}
+	available = { has_completed_focus = CRO_Death_To_Fascism}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_And_Freedom_To_The_People"
+		add_war_support = 0.10
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Jugoslavenska Oslobodilačka Brigada'\" division_template = \"Jugoslavenska Oslobodilačka Brigada\" start_experience_factor = 0.3" owner = ROOT
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Jugoslavenska Oslobodilačka Brigada'\" division_template = \"Jugoslavenska Oslobodilačka Brigada\" start_experience_factor = 0.3" owner = ROOT
+						}
+					}
+	}
+}
+
+shared_focus = {
+	id = CRO_Mobilise_The_Workers
+	icon = GFX_SOV_Old_Worker
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Death_To_Fascism
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Death_To_Fascism
+	}
+	prerequisite = {
+		focus = CRO_And_Freedom_To_The_People
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Mobilise_The_Workers"
+		add_manpower = 10000
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Jugoslavenska Oslobodilačka Brigada'\" division_template = \"Jugoslavenska Oslobodilačka Brigada\" start_experience_factor = 0.3" owner = ROOT
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Jugoslavenska Oslobodilačka Brigada'\" division_template = \"Jugoslavenska Oslobodilačka Brigada\" start_experience_factor = 0.3" owner = ROOT
+						}
+					}
+	}
+}
+
+shared_focus = {
+	id = CRO_Smuggle_Volunteers
+	icon = GFX_GENERIC_Volunteer
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Death_To_Fascism
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Death_To_Fascism
+	}
+	prerequisite = {
+		focus = CRO_And_Freedom_To_The_People
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Smuggle_Volunteers"
+		add_manpower = 10000
+        add_equipment_to_stockpile = {
+        	type = infantry_equipment
+       		amount = 1000
+        }
+	}
+}
+
+shared_focus = {
+	id = CRO_Offer_Rewards_To_Defectors
+	icon = GFX_GRE_Peace_For_Past_Friends
+	cost = 5
+	x = 3
+	y = 1
+	relative_position_id = CRO_Death_To_Fascism
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Death_To_Fascism
+	}
+	prerequisite = {
+		focus = CRO_And_Freedom_To_The_People
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Offer_Rewards_To_Defectors"
+		add_political_power = -150
+        add_equipment_to_stockpile = {
+        	type = infantry_equipment
+       		amount = 1000
+        }
+	}
+}
+
+shared_focus = {
+	id = CRO_Form_Special_Dettachments
+	icon = GFX_REM_The_New_Proletarian_Social_Revolution
+	cost = 5
+	x = 1
+	y = 2
+	relative_position_id = CRO_Death_To_Fascism
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Mobilise_The_Workers
+	}
+	prerequisite = {
+		focus = CRO_Smuggle_Volunteers
+	}
+	prerequisite = {
+		focus = CRO_Offer_Rewards_To_Defectors
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Form_Special_Dettachments"
+		add_manpower = 2000
+        add_equipment_to_stockpile = {
+        	type = infantry_equipment
+       		amount = 1000
+        }
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Jugoslavenska Oslobodilačka Brigada'\" division_template = \"Jugoslavenska Oslobodilačka Brigada\" start_experience_factor = 0.3" owner = ROOT
+						}
+					}
+	random_owned_controlled_state = {
+				create_unit = { 
+					division = "name = \"Jugoslavenska Oslobodilačka Brigada'\" division_template = \"Jugoslavenska Oslobodilačka Brigada\" start_experience_factor = 0.3" owner = ROOT
+						}
+					}
+	}
+}
+
+shared_focus = {
+	id = CRO_An_United_Front_Against_Fascism
+	icon = GFX_CRO_National_Liberation_Army
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_Form_Special_Dettachments
+	cancelable = no
+	bypass = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Form_Special_Dettachments
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_An_United_Front_Against_Fascism"
+		add_war_support = 0.10
+		add_stability = 0.10
+	}
+}
+
+shared_focus = {
+	id = CRO_Declare_Partisan_Victory
+	icon = GFX_GENERIC_Socialist_Revolution
+	cost = 5
+	x = 0
+	y = 1
+	relative_position_id = CRO_An_United_Front_Against_Fascism
+	cancelable = no
+	available = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_An_United_Front_Against_Fascism
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Declare_Partisan_Victory"
+		set_cosmetic_tag = CRO_Partisan_Victory 
+		add_stability = 0.10
+		hidden_effect = {
+		cro_remove_bosnia_modifiers = yes              
+				109 = { #zagreb
+                remove_province_modifier = {
+                    static_modifiers = { terrain_zagreb }
+                    province = { id = 11581 }
+                }
+                add_province_modifier = {
+                    static_modifiers = { terrain_zagreb_free }
+                    province = { id = 11581 }
+                		}
+            		}
+			1016 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_partisan_hq
+				}
+			}
+			109 = {
+				remove_dynamic_modifier = {
+					modifier = croatian_ustase_hq
+				}
+			}
+       		 }
+add_ideas = CRO_Ustashe_Resistance_idea
+add_ideas = CRO_End_of_Monstrosity_idea
+add_ideas = CRO_Unstable_Government_idea
+	}
+}
+
+shared_focus = {
+	id = CRO_Collaborator_Trials
+	icon = GFX_CRO_Collaborator_Trials
+	cost = 5
+	x = -1
+	y = 1
+	relative_position_id = CRO_Declare_Partisan_Victory
+	cancelable = no
+	available = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Declare_Partisan_Victory
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Collaborator_Trials"
+		country_event = { id = croatiauprising.24 hours = 2 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Amnesty_For_The_Homeguard
+	icon = GFX_CRO_Amnesty_For_The_Homeguard
+	cost = 5
+	x = -1
+	y = 2
+	relative_position_id = CRO_Declare_Partisan_Victory
+	cancelable = no
+	available = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Collaborator_Trials
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Amnesty_For_The_Homeguard"
+		country_event = { id = croatiauprising.23 hours = 2 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Redistribute_Ustashe_Property
+	icon = GFX_SER_focus_end_the_ustase
+	cost = 5
+	x = 1
+	y = 1
+	relative_position_id = CRO_Declare_Partisan_Victory
+	cancelable = no
+	available = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Declare_Partisan_Victory
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Redistribute_Ustashe_Property"
+		add_political_power = 150
+                add_offsite_building = { type = industrial_complex level = 1 }
+                add_offsite_building = { type = industrial_complex level = 1 }
+	}
+}
+
+shared_focus = {
+	id = CRO_Calm_Down_Ethnic_Tension
+	icon = GFX_SER_focus_promise_minority_rights
+	cost = 5
+	x = 1
+	y = 2
+	relative_position_id = CRO_Declare_Partisan_Victory
+	cancelable = no
+	available = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Redistribute_Ustashe_Property
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_Calm_Down_Ethnic_Tension"
+		add_stability = 0.10
+	}
+}
+
+shared_focus = {
+	id = CRO_The_Congress_Begins
+	icon = GFX_SER_focus_SOKJ_Session
+	cost = 5
+	x = 0
+	y = 3
+	relative_position_id = CRO_Declare_Partisan_Victory
+	cancelable = no
+	available = {
+		has_war = no
+		has_civil_war = no
+	}
+	prerequisite = {
+		focus = CRO_Calm_Down_Ethnic_Tension
+	}
+	prerequisite = {
+		focus = CRO_Amnesty_For_The_Homeguard
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CRO_The_Congress_Begins"
+	        create_country_leader = {
+		name = "Council of Communists"
+		desc = "SER_Council_of_Communists_desc"
+		picture = "Council_of_Communists.dds"
+		expire = "1965.1.1"
+		ideology = council_communism
+		traits = {}
+	}
+	        create_country_leader = {
+		name = "Council of Communists"
+		desc = "SER_Council_of_Communists_desc"
+		picture = "Council_of_Communists.dds"
+		expire = "1965.1.1"
+		ideology = radical_socialism 
+		traits = {}
+	}
+	        create_country_leader = {
+		name = "Council of Communists"
+		desc = "SER_Council_of_Communists_desc"
+		picture = "Council_of_Communists.dds"
+		expire = "1965.1.1"
+		ideology = marxism_leninism 
+		traits = {}
+	}
+        set_party_name = {
+                               ideology = socialist
+                               name = SSPH
+                               long_name = SSPH_long
+       } 
+                set_party_name = {
+                               ideology = bolshevik_leninist
+                               name = SKH
+                               long_name = SKH_long
+}
+                set_party_name = {
+                               ideology = marxist_leninist
+                               name = KPH
+                               long_name = KPH_long
+} 
+		country_event = { id = twr_croatia_communist.3 days = 2 }
+	}
+}
+

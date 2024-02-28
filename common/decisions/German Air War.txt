@@ -1,0 +1,183 @@
+GER_the_air_war = {
+	GER_all_out_fighter_strikes = {
+
+		icon = generic_air
+
+		available = {
+			original_tag = GER
+			NOT = { 
+				OR = {
+					has_idea = recent_air_operations 
+					has_idea = recent_fighter_operations
+					has_idea = recent_political_operations
+				}
+			}
+		}
+
+		visible = {
+			original_tag = GER
+			has_global_flag = remove_goering_in_progress
+			hidden_trigger = { 
+				check_variable = {
+					var = var_name
+					value = var_name_2
+					compare = less_than
+				}    
+			}		
+		}
+
+		fire_only_once = no
+
+		cost = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_all_out_fighter_strikes"
+			add_political_power = -100
+			random_list = {
+				25 = { country_event = { id = sovietairwar.101 days = 3 } }
+				25 = { country_event = { id = sovietairwar.102 days = 3 } }
+				25 = { country_event = { id = sovietairwar.103 days = 3 } }
+				25 = { country_event = { id = sovietairwar.104 days = 3 } }
+			}
+			hidden_effect = {
+				add_timed_idea = {
+					idea = recent_air_operations
+					days = 10
+				}
+				add_timed_idea = {
+					idea = recent_fighter_operations
+					days = 20
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 100
+		}
+	}
+	GER_one_way_bomber_trips = {
+
+		icon = generic_air
+
+		available = {
+			original_tag = GER
+			NOT = { 
+				OR = {
+					has_idea = recent_air_operations 
+					has_idea = recent_bomber_operations
+					has_idea = recent_political_operations
+				}
+			}
+		}
+
+		visible = {
+			original_tag = GER
+			has_global_flag = remove_goering_in_progress		
+		}
+
+		fire_only_once = no
+
+		cost = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_one_way_bomber_trips"
+			add_political_power = -100
+			random_list = {
+				20 = { country_event = { id = sovietairwar.105 days = 3 } }
+				20 = { country_event = { id = sovietairwar.106 days = 3 } }
+				30 = { country_event = { id = sovietairwar.107 days = 3 } }
+				30 = { country_event = { id = sovietairwar.108 days = 3 } }
+			}
+			hidden_effect = {
+			add_timed_idea = {
+				idea = recent_air_operations
+				days = 10
+			}
+			add_timed_idea = {
+				idea = recent_bomber_operations
+				days = 20
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 100
+		}
+	}
+	GER_24_7_fighter_opeartions = {
+
+		icon = generic_air
+
+		available = {
+			original_tag = GER
+			NOT = { 
+			has_idea = recent_air_operations
+			has_idea = recent_political_operations
+			}
+		}
+
+		visible = {
+			original_tag = GER
+			has_global_flag = remove_goering_in_progress		
+		}
+
+		fire_only_once = no
+
+		cost = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_24_7_fighter_opeartions"
+			add_political_power = -100
+			random_list = {
+				50 = { country_event = { id = sovietairwar.109 days = 3 } }
+				49 = { country_event = { id = sovietairwar.110 days = 3 } }
+				1 = { country_event = { id = sovietairwar.111 days = 3 } }
+			}
+			add_timed_idea = {
+				idea = recent_air_operations
+				days = 10
+			}
+		}
+
+		ai_will_do = {
+			base = 100
+		}
+	}
+	GER_political_moves = {
+
+		icon = generic_nationalism
+
+		available = {
+			original_tag = GER
+			NOT = { has_idea = recent_political_operations }
+		}
+
+		visible = {
+			original_tag = GER
+			has_global_flag = remove_goering_in_progress	
+		check_variable = {
+    	var = airdefeats
+    	value = 15
+    	compare = greater_than_or_equals
+			}	
+		}
+
+		fire_only_once = no
+
+		cost = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_political_moves"
+			add_political_power = -100
+			add_timed_idea = {
+				idea = recent_political_operations
+				days = 20
+			}
+			country_event = { id = sovietairwar.112 days = 0 }
+		}
+
+		ai_will_do = {
+			base = 100
+		}
+	}
+}

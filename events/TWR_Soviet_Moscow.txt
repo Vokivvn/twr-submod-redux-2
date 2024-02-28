@@ -1,0 +1,289 @@
+﻿#####################
+## Moscow Red Army ##
+#####################
+add_namespace = smo
+
+country_event = { # Moskowien - Slave Uprising in Bryansk!
+	id = smo.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.1"}
+	title = smo.1.t
+	desc = smo.1.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.1.a
+	}
+}
+
+country_event = { # Perm - Moscow Partisans Indicate Their Support
+	id = smo.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.2"}
+	title = smo.2.t
+	desc = smo.2.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.2.a
+	}
+}
+
+country_event = { # a lot of fucking places - Moscow Partisans Propose Further Cooperation
+	id = smo.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.3"}
+	title = smo.3.t
+	desc = smo.3.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = { # okay
+		name = smo.3.a
+		give_military_access = SMO
+		SMO = {
+			country_event = {
+				id = smo.4
+				hours = 3
+			}
+		}
+	}
+	option = { # no
+		name = smo.3.b
+		SMO = {
+			country_event = {
+				id = smo.5
+				hours = 3
+			}
+		}
+	}
+}
+
+country_event = { # [ROOT] Agrees to Cooperation
+	id = smo.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.4"}
+	title = smo.4.t
+	desc = smo.4.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.4.a
+		give_military_access = ROOT
+	}
+}
+
+country_event = { # [ROOT] Refuses Cooperation
+	id = smo.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.5"}
+	title = smo.5.t
+	desc = smo.5.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.5.a
+	}
+}
+
+country_event = { # Perm - Moscow Partisans Request Equipment
+	id = smo.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.6"}
+	title = smo.6.t
+	desc = smo.6.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = { # okay
+		name = smo.6.a
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 500
+			target = SMO
+		}
+		SMO = {
+			country_event = {
+				id = smo.7
+				hours = 7
+			}
+		}
+	}
+	option = { # no
+		name = smo.6.b
+		SMO = {
+			country_event = {
+				id = smo.8
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = { # Perm Sends Arms!
+	id = smo.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.7"}
+	title = smo.7.t
+	desc = smo.7.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.7.a
+	}
+}
+
+country_event = { # Perm Refuses to Send Guns
+	id = smo.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.8"}
+	title = smo.8.t
+	desc = smo.8.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.8.a
+	}
+}
+
+country_event = { # Collaborator Officers Executed
+	id = smo.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.9"}
+	title = smo.9.t
+	desc = smo.9.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.9.a
+		add_war_support = 0.05
+	}
+}
+
+country_event = { # Moskowien - Uprising in Moscow!
+	id = smo.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.10"}
+	title = smo.10.t
+	desc = smo.10.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.10.a
+	}
+}
+
+country_event = { # partisans - Moscow Partisans Send Aid
+	id = smo.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.11"}
+	title = smo.11.t
+	desc = smo.11.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.11.a
+		SMO = {
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 500
+				target = ROOT
+			}
+		}
+	}
+}
+
+country_event = { # ROA/RNNA - Reds Propose a Truce
+	id = smo.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.12"}
+	title = smo.12.t
+	desc = smo.12.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = { # ok
+		name = smo.12.a
+		give_military_access = SMO
+		diplomatic_relation = {
+			country = SMO
+			relation = non_aggression_pact
+			active = yes
+		}
+		SMO = {
+			give_military_access = RMD
+			diplomatic_relation = {
+				country = RMD
+				relation = non_aggression_pact
+				active = yes
+			}
+		}
+		hidden_effect = {
+			RUZ = {
+				country_event = {
+					id = smo.13
+				}
+			}
+		}
+	}
+	option = { # no
+		name = smo.12.b
+		SMO = {
+			country_event = {
+				id = smo.14
+				hours = 7
+			}
+		}
+	}
+}
+
+country_event = { # Perm - Treason from the Moscow Partisans!
+	id = smo.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.13"}
+	title = smo.13.t
+	desc = smo.13.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.13.a
+	}
+}
+
+country_event = { # ROA Refuses Truce!
+	id = smo.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.14"}
+	title = smo.14.t
+	desc = smo.14.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.14.a
+	}
+}
+
+country_event = { # Moskowien - Uprising in the Forests!
+	id = smo.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event smo.15"}
+	title = smo.15.t
+	desc = smo.15.d
+	#picture = GFX_report_event_
+ 
+	is_triggered_only = yes
+	
+	option = {
+		name = smo.15.a
+	}
+}

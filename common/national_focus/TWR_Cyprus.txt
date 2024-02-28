@@ -1,0 +1,593 @@
+################################################
+###==============| CYPRUS |==================###
+##===========|  Made by GreekSpy   |==========##
+###=========| Coded by GreyShadow |==========###
+################################################
+
+focus_tree = {
+	id = cyprus_tree
+	country = {
+		factor = 0
+	}
+	default = no
+	reset_on_civilwar = no
+	shared_focus = CYP_Liberty_for_Cyprus
+	continuous_focus_position = { x = 50 y = -1000 }
+}
+
+	shared_focus = {
+		cancelable = no
+		id = CYP_Liberty_for_Cyprus
+		icon = GFX_CYP_Liberty_For_Cyprus
+		x = 8
+		y = 0
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Liberty_for_Cyprus"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_The_First_Cypriot_Elections
+		icon = GFX_GENERIC_Democracy
+		prerequisite = { focus = CYP_Liberty_for_Cyprus }
+		x = 0
+		y = 1
+		relative_position_id = CYP_Liberty_for_Cyprus
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_The_First_Cypriot_Elections"
+			country_event = { id = twrcyprus.9 }
+		}
+	}
+	
+	#AKEL
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_AKEL_Wins_the_Vote
+		icon = GFX_CYP_AKEL_Wins_The_Vote
+		prerequisite = { focus = CYP_The_First_Cypriot_Elections }
+		mutually_exclusive = { focus = CYP_EOKA_Wins_the_Vote }
+		x = -5
+		y = 1
+		relative_position_id = CYP_The_First_Cypriot_Elections
+		cost = 1
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_AKEL_Wins_the_Vote"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Nationalise_What_the_British_Left
+		icon = GFX_CYP_Nationalise_What_The_British_Left
+		prerequisite = { focus = CYP_AKEL_Wins_the_Vote }
+		x = 0
+		y = 1
+		relative_position_id = CYP_AKEL_Wins_the_Vote
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Nationalise_What_the_British_Left"
+			183 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_ideas = CYP_Nationalisation_for_the_Workers
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Step_on_Right_Wing_Extremism
+		icon = GFX_SER_focus_death_to_fascism
+		prerequisite = { focus = CYP_Nationalise_What_the_British_Left }
+		x = -1
+		y = 1
+		relative_position_id = CYP_Nationalise_What_the_British_Left
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Step_on_Right_Wing_Extremism"
+			add_ideas = CYP_Out_with_the_Fascists
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Unity_and_Autonomy_for_the_Turkish_Cypriots
+		icon = GFX_CYP_Unity_And_Autonomy_For_The_Turkish_Cypriots
+		prerequisite = { focus = CYP_Step_on_Right_Wing_Extremism }
+		x = 0
+		y = 1
+		relative_position_id = CYP_Step_on_Right_Wing_Extremism
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Unity_and_Autonomy_for_the_Turkish_Cypriots"
+			swap_ideas = {
+				remove_idea = CYP_One_Nation_Two_People
+				add_idea = CYP_A_Cypriot_Federation
+			}
+			hidden_effect = {
+				183 = {
+					add_province_modifier = {
+						static_modifiers = { cyprus_i }
+						province = {
+							id = 11984
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_State_Assisted_Farming
+		icon = GFX_SER_focus_modern_farming
+		prerequisite = { focus = CYP_Nationalise_What_the_British_Left }
+		x = 2
+		y = 1
+		relative_position_id = CYP_Nationalise_What_the_British_Left
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_State_Assisted_Farming"
+			183 = {
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = CYP_Nationalisation_for_the_Workers
+				add_idea = CYP_Nationalisation_for_the_Workers_2
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_The_Cypriot_Highway
+		icon = GFX_GENERIC_highway
+		prerequisite = { focus = CYP_State_Assisted_Farming }
+		x = 0
+		y = 1
+		relative_position_id = CYP_State_Assisted_Farming
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_The_Cypriot_Highway"
+			183 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			183 = {
+				add_building_construction = {
+					type = supply_node
+					province = 11984
+					level = 1
+					instant_build = yes
+				}
+			}
+			build_railway = {
+				level = 1
+				path = { 11984 7193 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_The_Red_Bannerists
+		icon = GFX_CYP_The_Red_Bannerists
+		prerequisite = { focus = CYP_Unity_and_Autonomy_for_the_Turkish_Cypriots }
+		prerequisite = { focus = CYP_The_Cypriot_Highway }
+		x = 1
+		y = 1
+		relative_position_id = CYP_Unity_and_Autonomy_for_the_Turkish_Cypriots
+		cost = 5
+		available = {
+			GRE = {
+				has_government = marxist_leninist
+			}
+		}
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_The_Red_Bannerists"
+			country_event = { id = twrcyprus.11 }
+		}
+	}
+	
+	#EOKA
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_EOKA_Wins_the_Vote
+		icon = GFX_CYP_EOKA_Wins_The_Vote
+		prerequisite = { focus = CYP_The_First_Cypriot_Elections }
+		mutually_exclusive = { focus = CYP_AKEL_Wins_the_Vote }
+		x = 5
+		y = 1
+		relative_position_id = CYP_The_First_Cypriot_Elections
+		cost = 1
+		available = {
+			always = no
+		}
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_EOKA_Wins_the_Vote"
+			custom_effect_tooltip = Focus_be_Bypassed_tt
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Investment_for_What_the_British_Left
+		icon = GFX_GENERIC_British_Tourists
+		prerequisite = { focus = CYP_EOKA_Wins_the_Vote }
+		x = 0
+		y = 1
+		relative_position_id = CYP_EOKA_Wins_the_Vote
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Investment_for_What_the_British_Left"
+			183 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = CYP_Investments_for_Cyprus
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Work_for_the_Nation
+		icon = GFX_GENERIC_worker
+		prerequisite = { focus = CYP_Investment_for_What_the_British_Left }
+		x = -2
+		y = 1
+		relative_position_id = CYP_Investment_for_What_the_British_Left
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Work_for_the_Nation"
+			add_ideas = CYP_The_Cypriot_Worker
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_The_Leukosia_Industrial_Plan
+		icon = GFX_GENERIC_Steel_Industry
+		prerequisite = { focus = CYP_Work_for_the_Nation }
+		x = 0
+		y = 1
+		relative_position_id = CYP_Work_for_the_Nation
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_The_Leukosia_Industrial_Plan"
+			183 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Covertly_Push_the_AKEL_Aside
+		icon = GFX_GENERIC_Purge_SocDem
+		prerequisite = { focus = CYP_Investment_for_What_the_British_Left }
+		x = 1
+		y = 1
+		relative_position_id = CYP_Investment_for_What_the_British_Left
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Covertly_Push_the_AKEL_Aside"
+			country_event = { days = 1 id = twrcyprus.10 }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Recognise_the_Turkish_Cypriot_Minority
+		icon = GFX_GENERIC_minority_aimed_projects
+		prerequisite = { focus = CYP_Covertly_Push_the_AKEL_Aside }
+		mutually_exclusive = { focus = CYP_Greek_Cypriots_Holds_Firm }
+		x = -1
+		y = 1
+		relative_position_id = CYP_Covertly_Push_the_AKEL_Aside
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Recognise_the_Turkish_Cypriot_Minority"
+			swap_ideas = {
+				remove_idea = CYP_One_Nation_Two_People
+				add_idea = CYP_Bare_Minimum_Autonomy
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Greek_Cypriots_Holds_Firm
+		icon = GFX_TRV_fuck_minorities
+		prerequisite = { focus = CYP_Covertly_Push_the_AKEL_Aside }
+		mutually_exclusive = { focus = CYP_Recognise_the_Turkish_Cypriot_Minority }
+		x = 1
+		y = 1
+		relative_position_id = CYP_Covertly_Push_the_AKEL_Aside
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Greek_Cypriots_Holds_Firm"
+			swap_ideas = {
+				remove_idea = CYP_One_Nation_Two_People
+				add_idea = CYP_One_People_One_Nation
+			}
+			TUR = {
+				country_event = { days = 1 id = twrcyprus.14 }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_The_Question_of_Enosis
+		icon = GFX_CYP_The_Question_Of_Enosis
+		prerequisite = { focus = CYP_The_Leukosia_Industrial_Plan }
+		prerequisite = { focus = CYP_Recognise_the_Turkish_Cypriot_Minority focus = CYP_Greek_Cypriots_Holds_Firm }
+		x = 2
+		y = 1
+		relative_position_id = CYP_The_Leukosia_Industrial_Plan
+		cost = 5
+		available = {
+			GRE = {
+				OR = {
+					has_government = paternal_autocrat
+					has_government = conservative
+					has_government = liberal
+				}
+			}
+		}
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Greek_Cypriots_Holds_Firm"
+			#event chain
+			GRE = {
+				country_event = { id = twrcyprus.25 days = 1 }
+			}
+		}
+	}
+	
+	#Shared
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_The_Cypriot_Home_Guard
+		icon = GFX_GENERIC_Army_Cooperation
+		prerequisite = { focus = CYP_AKEL_Wins_the_Vote focus = CYP_EOKA_Wins_the_Vote }
+		x = 5
+		y = 1
+		relative_position_id = CYP_AKEL_Wins_the_Vote
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Nationalise_What_the_British_Left"
+			delete_unit_template_and_units = {
+				division_template = "Laiki Merarxia"
+				disband = yes
+			}
+			add_manpower = 10000
+			custom_effect_tooltip = CYP_unit
+			hidden_effect = {
+				random_owned_controlled_state = {
+				    create_unit = { division = "name = \"Ethniki Froura Kyprou\" division_template = \"Tagma Pezikou\" start_experience_factor = 1.0 start_equipment_factor = 1.0" owner = ROOT }
+			    }
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Leukosia_Arms_Plant
+		icon = GFX_GENERIC_arms_industry
+		prerequisite = { focus = CYP_The_Cypriot_Home_Guard }
+		x = -1
+		y = 1
+		relative_position_id = CYP_The_Cypriot_Home_Guard
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Leukosia_Arms_Plant"
+			183 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Project_Thalassio_Teixos
+		icon = GFX_ENG_fortress_cyprus
+		prerequisite = { focus = CYP_The_Cypriot_Home_Guard }
+		x = 1
+		y = 1
+		relative_position_id = CYP_The_Cypriot_Home_Guard
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Project_Thalassio_Teixos"
+			183 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 11984
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					instant_build = yes
+					province = 11984
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					instant_build = yes
+					province = 7193
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_The_Cypriot_Navy
+		icon = GFX_CYR_The_Cypriot_Navy
+		prerequisite = { focus = CYP_Leukosia_Arms_Plant }
+		prerequisite = { focus = CYP_Project_Thalassio_Teixos }
+		x = 1
+		y = 1
+		relative_position_id = CYP_Leukosia_Arms_Plant
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_The_Cypriot_Navy"
+			183 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			set_technology = {
+				ww2_destroyer = 1
+			}
+			custom_effect_tooltip = CYP_Destroyers
+			hidden_effect = { load_oob = "CYP_Destroyers" }
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_Pancyprian_Federation_of_Labour
+		icon = GFX_CYP_Pancyprian_Federation_of_Labour
+		prerequisite = { focus = CYP_The_Cypriot_Highway }
+		prerequisite = { focus = CYP_The_Cypriot_Navy }
+		x = 1
+		y = 1
+		relative_position_id = CYP_The_Cypriot_Highway
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_Pancyprian_Federation_of_Labour"
+			add_ideas = CYP_Pancyprian_Federation_of_Labour
+		}
+	}
+	
+	shared_focus = {
+		cancelable = no
+		id = CYP_The_Mediterranean_Trade_Hotspot
+		icon = GFX_GENERIC_Trading
+		prerequisite = { focus = CYP_The_Leukosia_Industrial_Plan }
+		prerequisite = { focus = CYP_The_Cypriot_Navy }
+		x = 2
+		y = 1
+		relative_position_id = CYP_The_Cypriot_Navy
+		cost = 5
+		ai_will_do = {
+		    factor = 12
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CYP_The_Mediterranean_Trade_Hotspot"
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_resource = {
+				type = oil
+				amount = 4
+				state = 183
+			}
+		}
+	}

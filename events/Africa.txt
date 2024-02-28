@@ -1,0 +1,633 @@
+﻿add_namespace = africa
+
+# Barotseland requests rights
+country_event = {
+	id = africa.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.1"}
+	title = africa.1.t
+	desc = africa.1.d
+	picture = GFX_report_event_barotseland
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = { days = 30 }
+
+	trigger = {
+		tag = ZAM
+		ZAM = { owns_state = 959 }
+	}
+	
+	option = { #They deserve their rights
+		name = africa.1.a
+		ai_chance = {
+			factor = 50
+		}
+		add_ideas = ZAM_Lozi_Autonomous_Region
+	}
+	
+	option = { #Dont give them the rights
+		name = africa.1.b
+		ai_chance = {
+			factor = 50
+		}
+		random_list = {
+			75 = {
+				country_event = {
+					id = africa.2
+					days = 1
+					random = 24
+				}
+			}
+			25 = {
+				country_event = {
+					id = africa.3
+					days = 1
+					random = 24
+				}
+			}
+		}
+	}
+}
+
+# Barotseland declares independence!
+country_event = {
+	id = africa.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.2"}
+	title = africa.2.t
+	desc = africa.2.d
+	picture = GFX_report_event_barotseland
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Ready the militias!
+		name = africa.2.a
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+			load_oob = "ZAM_MILITIA"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_2
+				amount = 500
+				producer = ENG
+			}
+			BRT = { 
+				set_state_owner = 959
+				load_oob = "BRT_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 200
+					producer = ENG
+				}
+			}
+		}
+		declare_war_on = {
+			target = BRT
+			type = annex_everything
+		}
+	}
+	
+	option = { #Freedom for Barotseland!
+		name = africa.2.b
+		ai_chance = {
+			factor = 0
+		}
+		hidden_effect = {
+			load_oob = "ZAM_MILITIA"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_2
+				amount = 500
+				producer = ENG
+			}
+			BRT = { 
+				set_state_owner = 959
+				load_oob = "BRT_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 200
+					producer = ENG
+				}
+			}
+		}
+		BRT = { change_tag_from = ZAM }
+		ZAM = {
+			declare_war_on = {
+				target = BRT
+				type = annex_everything
+			}
+		}
+	}
+}
+
+#Barotse people cave into the demands
+country_event = {
+	id = africa.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.3"}
+	title = africa.3.t
+	desc = africa.3.d
+	picture = GFX_report_event_barotseland
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = { #ok
+		name = africa.3.a
+		add_ideas = ZAM_Lozi_Dissidence
+	}
+}
+
+#Zimbabwe
+country_event = {
+	id = africa.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.4"}
+	title = africa.4.t
+	desc = africa.4.d
+	picture = GFX_report_event_zimbabwe
+	
+	mean_time_to_happen = { days = 60 }
+
+	trigger = {
+		tag = ZAM
+		ZAM = { has_war_with = BRT }
+		OR = {
+			ZAM = { owns_state = 771 }
+			ZAM = { owns_state = 946 }
+		}
+	}
+	
+	fire_only_once = yes
+	
+	option = { #declare on zimbabwe
+		name = africa.4.a
+		trigger = {
+			NOT = { ZAM = { has_war_with = RHD } }
+		}
+		hidden_effect = {
+			ZIM = { 
+				set_state_owner = 946
+				load_oob = "ZIM_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 200
+					producer = ENG
+				}
+			}
+		}
+		declare_war_on = {
+			target = ZIM
+			type = annex_everything
+		}
+	}
+	
+	option = { #declare on zimbabwe (play as zimbabwe)
+		name = africa.4.b
+		trigger = {
+			NOT = { ZAM = { has_war_with = RHD } }
+		}
+		hidden_effect = {
+			ZIM = { 
+				set_state_owner = 946
+				load_oob = "ZIM_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 200
+					producer = ENG
+				}
+			}
+		}
+		ZIM = { change_tag_from = ZAM }
+		ZAM = {
+			declare_war_on = {
+				target = ZIM
+				type = annex_everything
+			}
+		}
+	}
+	
+	option = { #declare on zimbabwe + rhodesia
+		name = africa.4.c
+		trigger = {
+			ZAM = { has_war_with = RHD }
+		}
+		hidden_effect = {
+			ZIM = { 
+				set_state_owner = 946
+				load_oob = "ZIM_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 200
+					producer = ENG
+				}
+			}
+		}
+		ZIM = {
+			declare_war_on = {
+				target = RHD
+				type = annex_everything
+			}
+		}
+		declare_war_on = {
+			target = ZIM
+			type = annex_everything
+		}
+	}
+	
+	option = { #declare on zimbabwe + rhodesia (play as zimbabwe)
+		name = africa.4.e
+		trigger = {
+			ZAM = { has_war_with = RHD }
+		}
+		hidden_effect = {
+			ZIM = { 
+				set_state_owner = 946
+				load_oob = "ZIM_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 200
+					producer = ENG
+				}
+			}
+		}
+		declare_war_on = {
+			target = RHD
+			type = annex_everything
+		}
+		ZIM = { change_tag_from = ZAM }
+		ZAM = {
+			declare_war_on = {
+				target = ZIM
+				type = annex_everything
+			}
+		}
+	}
+}
+
+#Rhodesia
+country_event = {
+	id = africa.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.5"}
+	title = africa.5.t
+	desc = africa.5.d
+	picture = GFX_report_event_rhodesia
+	
+	mean_time_to_happen = { days = 50 }
+
+	trigger = {
+		tag = ZAM
+		ZAM = { has_war_with = BRT }
+		OR = {
+			ZAM = { owns_state = 771 }
+			ZAM = { owns_state = 946 }
+		}
+	}
+	
+	fire_only_once = yes
+	
+	option = { #declare on rhodesia
+		name = africa.5.a
+		trigger = {
+			NOT = { ZAM = { has_war_with = ZIM } }
+		}
+		hidden_effect = {
+			RHD = { 
+				set_state_owner = 771
+				load_oob = "RHD_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 400
+					producer = ENG
+				}
+			}
+		}
+		declare_war_on = {
+			target = RHD
+			type = annex_everything
+		}
+	}
+	
+	option = { #declare on rhodesia (play as rhodesia)
+		name = africa.5.b
+		trigger = {
+			NOT = { ZAM = { has_war_with = ZIM } }
+		}
+		hidden_effect = {
+			RHD = { 
+				set_state_owner = 771
+				load_oob = "RHD_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 400
+					producer = ENG
+				}
+			}
+		}
+		RHD = { change_tag_from = ZAM }
+		ZAM = {
+			declare_war_on = {
+				target = RHD
+				type = annex_everything
+			}
+		}
+	}
+	
+	option = { #declare on zimbabwe + rhodesia
+		name = africa.5.c
+		trigger = {
+			ZAM = { has_war_with = ZIM }
+		}
+		hidden_effect = {
+			RHD = { 
+				set_state_owner = 771
+				load_oob = "RHD_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 400
+					producer = ENG
+				}
+			}
+		}
+		ZIM = {
+			declare_war_on = {
+				target = RHD
+				type = annex_everything
+			}
+		}
+		declare_war_on = {
+			target = RHD
+			type = annex_everything
+		}
+	}
+	
+	option = { #declare on zimbabwe + rhodesia (play as zimbabwe)
+		name = africa.5.e
+		trigger = {
+			ZAM = { has_war_with = ZIM }
+		}
+		hidden_effect = {
+			RHD = { 
+				set_state_owner = 771
+				load_oob = "RHD_REVOLT"
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 400
+					producer = ENG
+				}
+			}
+		}
+		RHD = { change_tag_from = ZAM }
+		ZIM = {
+			declare_war_on = {
+				target = RHD
+				type = annex_everything
+			}
+		}
+		ZAM = {
+			declare_war_on = {
+				target = RHD
+				type = annex_everything
+			}
+		}
+	}
+}
+
+#Change name for South Sudan
+country_event = {
+	id = africa.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.6"}
+	title = africa.6.t
+	desc = africa.6.d
+	picture = GFX_report_event_nationalist_front_african
+	
+	mean_time_to_happen = { days = 20 }
+
+	trigger = {
+		tag = ARD
+	}
+	
+	fire_only_once = yes
+	
+	option = { #Kushland!
+		name = africa.6.a
+		ai_chance = {
+			factor = 15
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+		}
+		set_cosmetic_tag = ARD_KUSHLAND 
+		add_war_support = 0.05
+	}
+	
+	option = { #Juwama!
+		name = africa.6.b
+		ai_chance = {
+			factor = 15
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+		}
+		set_cosmetic_tag = ARD_JUWAMA 
+		add_war_support = 0.05
+	}
+	
+	option = { #Ima-Toj!
+		name = africa.6.c
+		ai_chance = {
+			factor = 15
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+		}
+		set_cosmetic_tag = ARD_IMATOJ 
+		add_war_support = 0.05
+	}
+	
+	option = { #The Nile Republic!
+		name = africa.6.e
+		ai_chance = {
+			factor = 55
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+		}
+		set_cosmetic_tag = ARD_NILE 
+		add_war_support = 0.05
+	}
+}
+
+#Tanganyika proposes a union
+country_event = {
+	id = africa.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.7"}
+	title = africa.7.t
+	desc = africa.7.d
+	picture = GFX_report_event_nationalist_front_african
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = { #Yes
+		name = africa.7.a
+		ai_chance = {
+			factor = 100
+		}
+		TZN = {
+			annex_country = {
+				target = ZAN
+				transfer_troops = yes
+			}
+			country_event = africa.8
+		}
+	}
+	
+	option = { #No
+		name = africa.7.b
+		ai_chance = {
+			factor = 0
+		}
+		TZN = {
+			country_event = africa.9
+		}
+	}
+}
+
+#Zanzibar accepts
+country_event = {
+	id = africa.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.8"}
+	title = africa.8.t
+	desc = africa.8.d
+	picture = GFX_report_event_nationalist_front_african
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = africa.8.a
+		add_political_power = 20
+		add_stability = 0.1
+		add_war_support = 0.1
+		set_cosmetic_tag = TZN_TANZANIA
+	}
+}
+
+#Zanzibar refuses
+country_event = {
+	id = africa.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.9"}
+	title = africa.9.t
+	desc = africa.9.d
+	picture = GFX_report_event_nationalist_front_african
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = africa.9.a
+		#add a negative modifier
+	}
+}
+
+# The fate of Sudan 1
+country_event = {
+	id = africa.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event africa.10" }
+	title = africa.10.t
+	desc = africa.10.d
+	picture = GFX_report_event_sudan_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = africa.10.a
+		trigger = {
+			NOT = {
+				EGY = {
+					is_puppet_of = ITA
+				}
+			}
+			country_exists = EGY
+		}
+		country_event = {
+			id = africa.11
+			days = 3
+		}
+	}
+	option = {
+		name = africa.10.b
+		release = SUD
+		news_event = { days = 1 id = twrnews.99 }
+	}
+	option = {
+		name = africa.10.c
+		release = SUD
+		release = ARD
+		ARD = {
+			transfer_state = 958
+		}
+		news_event = { days = 1 id = twrnews.99 }
+	}
+}
+
+# Fate of Sudan 2 - referendum result
+country_event = {
+	id = africa.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event africa.11"}
+	title = africa.11.t
+	desc = africa.11.d
+	picture = GFX_report_event_sudan_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = africa.11.a
+		random_list = {
+			50 = {
+        		EGY = {
+					transfer_state = 955
+					transfer_state = 551
+					transfer_state = 840
+					transfer_state = 956
+					transfer_state = 957
+					transfer_state = 958
+					transfer_state = 549
+					country_event = {
+						id = africa.12
+						days = 2
+					}
+				}
+				news_event = { days = 1 id = twrnews.100 }
+    		}
+    		50 = {
+        		release = SUD
+    		}
+		}
+	}
+}
+
+# The fate of Sudan 3 - Secessions
+country_event = {
+	id = africa.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event africa.12" }
+	title = africa.12.t
+	desc = africa.12.d
+	picture = GFX_report_event_sudan_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = africa.12.a
+		release = ARD
+		release = DRF
+		news_event = { days = 1 id = twrnews.101 }
+	}
+}
